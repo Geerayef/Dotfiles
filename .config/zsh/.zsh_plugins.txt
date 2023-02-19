@@ -1,0 +1,51 @@
+# .zsh_plugins.txt
+# NOTE: Order matters in this file!
+
+
+### Prompts
+
+romkatv/powerlevel10k 
+# sindresorhus/pure kind:fpath
+
+
+### Frameworks
+#
+# Annotation :`path:location/of/plugin` || full git url.
+#
+# Oh-My-Zsh
+
+#ohmyzsh/ohmyzsh path:plugins/zsh-interactive-cd
+#ohmyzsh/ohmyzsh path:plugins/fzf
+ohmyzsh/ohmyzsh path:plugins/dnf
+ohmyzsh/ohmyzsh path:plugins/extract
+ohmyzsh/ohmyzsh path:plugins/magic-enter
+
+# Prezto
+
+sorin-ionescu/prezto path:modules/directory
+
+# (Micro-)Framework: zsh-utils
+
+belak/zsh-utils path:editor
+belak/zsh-utils path:history
+belak/zsh-utils path:utility
+
+
+### Completions
+
+zsh-users/zsh-completions path:src kind:fpath
+belak/zsh-utils path:completion
+Aloxaf/fzf-tab
+
+### Deferred Plugins
+
+# Syntax highlighting
+#zsh-users/zsh-syntax-highlighting kind:defer
+zdharma-continuum/fast-syntax-highlighting kind:defer
+
+
+### Plugins
+
+# Popular plugins for Fish-like behavior:
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
