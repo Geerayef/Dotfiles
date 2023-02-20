@@ -5,11 +5,22 @@ local keymap = vim.keymap
 
 -- # General keymaps
 
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- # Search
 -- Clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>") -- Clear search highlights
+keymap.set("n", "n", "nzzzv")
+keymap.set("n", "N", "Nzzzv")
 
+-- # Copy/Yank/Paste
 -- x wont copy deleted character to register
 keymap.set("n", "x", '"_x')
+keymap.set("x", "<leader>P", "\"_dP")
+keymap.set("n", "<leader>y", "\"+y")
+keymap.set("n", "<leader>Y", "\"+Y")
+keymap.set("v", "<leader>y", "\"+y")
 
 -- Window Splitting
 keymap.set("n", "<leader>spv", "<C-w>v") -- vertical
@@ -35,8 +46,8 @@ keymap.set("n", "<leader><space>", "<cmd>Telescope buffers<CR>", { desc = "[ ] F
 keymap.set("n", "<leader>/", function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
-    winblend = 10,
-    previewer = false,
+    winblend = 1,
+    previewer = true,
   })
 end, { desc = "[/] Fuzzily search in current buffer]" })
 

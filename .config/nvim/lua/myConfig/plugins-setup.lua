@@ -30,6 +30,7 @@ packer.startup(function(use)
   -- Themes
   use ("navarasu/onedark.nvim")
   use ({ "projekt0n/github-nvim-theme", branch = "0.0.x" })
+  use ("JoosepAlviste/palenightfall.nvim")
 
   use ("nvim-lua/plenary.nvim")
 
@@ -55,8 +56,8 @@ packer.startup(function(use)
 
   -- Snippets
   use ("L3MON4D3/LuaSnip")
-  use ("saadparwaiz1/cmp_luasnip")
   use ("rafamadriz/friendly-snippets")
+  use ("saadparwaiz1/cmp_luasnip")
 
   -- Treesitter
   use ({
@@ -79,6 +80,8 @@ packer.startup(function(use)
   -- commenting with gc
   use ("numToStr/Comment.nvim")
   use ("tpope/vim-sleuth")
+  -- ys<motion><surrounder>
+  -- cs<motion><current surrounder><new surrounder>
   use ("tpope/vim-surround")
   use ("nvim-tree/nvim-tree.lua")
   use ("kyazdani42/nvim-web-devicons")
