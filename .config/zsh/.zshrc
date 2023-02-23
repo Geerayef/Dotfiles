@@ -9,7 +9,7 @@ fi
 
 # ~  Antidote setup
 
-source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+[[ -e .config/zsh/.antidote ]] && source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
 # Load plugins
 antidote_dir=${ZDOTDIR:-~}/.antidote
@@ -61,14 +61,47 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 # ~  Aliases
 
 alias nv="nvim"
+alias code="/usr/bin/codium"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
+
+# List
+alias l.="ls -A | egrep '^\.'"
+
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   tar xf $1    ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+#give the list of all installed desktops - xsessions desktops
+alias xd="ls /usr/share/xsessions"
+alias xdw="ls /usr/share/wayland-sessions"
 
 # -------------------------------------------------------------------------------- #
 
 # ~  Developer Environment
 
 # Rust: Cargo
-source "$HOME/.cargo/env"
+[[ -e "$HOME/.cargo/" ]] && source "$HOME/.cargo/env"
 
 # Haskell: ghcup
 [ -f "/home/tibor/.ghcup/env" ] && source "/home/tibor/.ghcup/env"
@@ -82,3 +115,5 @@ source "$HOME/.cargo/env"
 
 bindkey -e
 
+setopt GLOB_DOTS
+unsetopt SHARE_HISTORY

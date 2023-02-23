@@ -36,7 +36,7 @@ window:
 
   decorations: none
 
-  opacity: 0.95
+  opacity: 1
 
   startup_mode: Windowed
 
@@ -82,7 +82,7 @@ font:
     family: FiraCode Nerd Font Mono
     style: Medium
 
-  size: 14.0
+  size: 10.0
 
   # Spacing
   offset:
@@ -297,7 +297,7 @@ schemes:
       focused_match:
         foreground: '#44475a'
         background: '#ffb86c'
-      bar:
+      footer_bar:
         background: '#282a36'
         foreground: '#f8f8f2'
     line_indicator:
@@ -389,7 +389,7 @@ cursor:
     blinking: On
 
   # Vi mode cursor style
-  vi_mode_style: Block
+  #vi_mode_style: 
 
   blink_interval: 750
 
