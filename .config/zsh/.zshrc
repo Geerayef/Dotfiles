@@ -61,8 +61,8 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 # ~  Aliases
 
 alias nv="nvim"
-alias code="/usr/bin/codium"
-alias dotfiles="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
+alias code="$(which codium)"
+alias dtfls="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
 
 # List
 alias l.="ls -A | egrep '^\.'"
@@ -104,10 +104,10 @@ alias xdw="ls /usr/share/wayland-sessions"
 [[ -e "$HOME/.cargo/" ]] && source "$HOME/.cargo/env"
 
 # Haskell: ghcup
-[ -f "/home/tibor/.ghcup/env" ] && source "/home/tibor/.ghcup/env"
+[[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env"
 
 # OCaml: opam
-[[ ! -r "/home/tibor/.opam/opam-init/init.zsh" ]] || source "/home/tibor/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null
+[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null
 
 # -------------------------------------------------------------------------------- #
 
