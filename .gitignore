@@ -1,3 +1,4 @@
 Dotfiles/
-.config/zsh/.zcompdump
 .config/zsh/.antidote/
+.config/zsh/.antidote/*
+.config/zsh/.zcompdump
