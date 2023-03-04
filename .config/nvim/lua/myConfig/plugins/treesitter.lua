@@ -4,6 +4,18 @@ if not status then
 end
 
 treesitter.setup({
+  highlight = { enable = true },
+  autotag = { enable = true },
+  indent = { enable = true, disable = { 'python' } },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = '<c-space>',
+      node_incremental = '<c-space>',
+      scope_incremental = '<c-s>',
+      node_decremental = '<c-backspace>',
+    },
+  },
   ensure_installed = {
     "c",
     "cpp",
@@ -20,18 +32,8 @@ treesitter.setup({
     "vim",
     "gitignore"
   },
-
-  highlight = { enable = true },
-  indent = { enable = true, disable = { 'python' } },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
-      scope_incremental = '<c-s>',
-      node_decremental = '<c-backspace>',
-    },
-  },
+  autoinstall = true,
+  
   textobjects = {
     select = {
       enable = true,

@@ -16,11 +16,15 @@ export FZF_BASE="/usr/bin/fzf"
 # ~ Paths
 
 if [[ -d "$HOME/.bin" ]]
-  then PATH="$HOME/.bin:$PATH"
+  then export PATH="$HOME/.bin:$PATH"
 fi
 
 if [[ -d "$HOME/.local/bin" ]]
-  then PATH="$HOME/.local/bin:$PATH"
+  then export PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [[ -d "$HOME/Software/Neovim/bin" ]]
+  then export PATH="$HOME/Software/Neovim/bin:$PATH"
 fi
 
 if [[ -e $HOME/.pyenv ]] then
@@ -29,6 +33,5 @@ if [[ -e $HOME/.pyenv ]] then
     command -v pyenv >/dev/null || export PATH="$PATH:$PYENV_ROOT/bin"
     eval "$(pyenv init -)"
 )
-echo "pyenv is not installed.
-"
+echo "pyenv is not installed."
 fi

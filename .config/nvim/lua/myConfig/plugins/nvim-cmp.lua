@@ -13,8 +13,10 @@ if not lspkind_status then
   return
 end
 
--- load friendly-snippers
-require("luasnip/loaders/from_vscode").lazy_load()
+-- load friendly-snippets
+require("luasnip.loaders.from_vscode").lazy_load()
+
+vim.opt.completeopt = "menu,menuone,noselect"
 
 cmp.setup({
   snippet = {

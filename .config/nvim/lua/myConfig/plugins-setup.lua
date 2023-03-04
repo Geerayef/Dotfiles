@@ -28,31 +28,28 @@ packer.startup(function(use)
   use ("wbthomason/packer.nvim")
 
   -- Themes
-  use ("navarasu/onedark.nvim")
-  use ({ "projekt0n/github-nvim-theme", branch = "0.0.x" })
-  use ("JoosepAlviste/palenightfall.nvim")
+  use ("tiagovla/tokyodark.nvim")
+  -- use ("navarasu/onedark.nvim")
+  -- use ({ "projekt0n/github-nvim-theme", branch = "0.0.x" })
+  -- use ("JoosepAlviste/palenightfall.nvim")
 
   use ("nvim-lua/plenary.nvim")
 
   -- Mason - manage & install lsp servers
   use ("williamboman/mason.nvim")
   use ("williamboman/mason-lspconfig.nvim")
+  use ("neovim/nvim-lspconfig")
 
   -- Configuring lsp servers
-  use ("neovim/nvim-lspconfig")
-  use ("j-hui/fidget.nvim")
-  use ("folke/neodev.nvim")
+  use ({ "j-hui/fidget.nvim", after = "nvim-lspconfig" })
+    -- use ("folke/neodev.nvim")
 
   -- Autocompletion
   use ("hrsh7th/nvim-cmp")
   use ("hrsh7th/cmp-buffer")
   use ("hrsh7th/cmp-path")
   use ("hrsh7th/cmp-nvim-lsp")
-
-  -- Telescope - Fuzzy finder
-  use ({ "nvim-telescope/telescope-fzf-native.nvim", run = "make"})
-  use ({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
-  use ({ "nvim-telescope/telescope-ui-select.nvim" })
+  use ("onsails/lspkind.nvim")
 
   -- Snippets
   use ("L3MON4D3/LuaSnip")
@@ -69,6 +66,11 @@ packer.startup(function(use)
   })
 
   use ({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter", })
+
+  -- Telescope - Fuzzy finder
+  use ({ "nvim-telescope/telescope-fzf-native.nvim", run = "make"})
+  use ({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
+  use ({ "nvim-telescope/telescope-ui-select.nvim" })
 
   -- Git related plugins
   use ("tpope/vim-fugitive")
@@ -112,6 +114,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et

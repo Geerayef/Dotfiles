@@ -25,8 +25,8 @@ local servers = {
     clangd = {},
     pyright = {},
     rust_analyzer = {},
-    hls = {},
-    ocamllsp = {},
+    -- hls = {},
+    -- ocamllsp = {},
     lua_ls = {
         Lua = {
             diagnostics = { globals = {"vim"} },

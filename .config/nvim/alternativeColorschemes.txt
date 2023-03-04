@@ -1,8 +1,15 @@
--- Pale nightfall
+-- plugins-setup.lua:
+
+-- TokyoDark theme
+use ("tiagovla/tokyodark.nvim")
+
+-- OneDark theme
+use ("navarasu/onedark.nvim")
+
+-- Pale Nightfall theme
 use ('JoosepAlviste/palenightfall.nvim')
 
 -- Github theme
--- plugins-setup.lua:
 use ({ 'projekt0n/github-nvim-theme', branch = '0.0.x' })
 
 -- colorscheme.lua
