@@ -9,19 +9,19 @@ fi
 
 # ~  Antidote setup
 
-[[ -e .config/zsh/.antidote ]] && source ${ZDOTDIR:-~}/.antidote/antidote.zsh
+[[ -e $ZDOTDIR/.antidote ]] && source $ZDOTDIR/.antidote/antidote.zsh
 
 # Load plugins
-antidote_dir=${ZDOTDIR:-~}/.antidote
-plugins_txt=${ZDOTDIR:-~}/.zsh_plugins.txt
-static_file=${ZDOTDIR:-~}/.zsh_plugins.zsh
+antidote_dir=${ZDOTDIR:-~/.config/zsh}/.antidote
+plugins_txt=${ZDOTDIR:-~/.config/zsh}/.zsh_plugins.txt
+static_file=${ZDOTDIR:-~/.config/zsh}/.zsh_plugins.zsh
 
 autoload -Uz $antidote_dir/functions/antidote
 
 # Clone antidote if necessary and generate a static plugin file.
 [[ -e $antidote_dir ]] || 
   git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
-  (
+(
   [[ -e $plugins_txt ]] || touch $plugins_txt
   antidote bundle <$plugins_txt >$static_file
 )
@@ -53,19 +53,17 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 
 # Prompt: Powerlevel10K
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ${ZDOTDIR:-~}/.p10k.zsh ]] || 
-  source ${ZDOTDIR:-~}/.p10k.zsh
+[[ ! -f ${ZDOTDIR:-~/.config/zsh}/.p10k.zsh ]] || source ${ZDOTDIR:-~/.config/zsh}/.p10k.zsh
 
 # -------------------------------------------------------------------------------- #
 
-# ~  Aliases
+# ~  Aliases: source
 
-alias nv="nvim"
-alias code="$(which codium)"
-alias dtfls="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
+source $ZDOTDIR/aliases.sh
 
-# List
-alias l.="ls -A | egrep '^\.'"
+# -------------------------------------------------------------------------------- #
+
+# ~  Functions
 
 ex ()
 {
@@ -92,23 +90,6 @@ ex ()
   fi
 }
 
-#give the list of all installed desktops - xsessions desktops
-alias xd="ls /usr/share/xsessions"
-alias xdw="ls /usr/share/wayland-sessions"
-
-# -------------------------------------------------------------------------------- #
-
-# ~  Developer Environment
-
-# Rust: Cargo
-[[ -e "$HOME/.cargo/" ]] && source "$HOME/.cargo/env"
-
-# Haskell: ghcup
-[[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env"
-
-# OCaml: opam
-[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null
-
 # -------------------------------------------------------------------------------- #
 
 # ~  General settings
@@ -117,3 +98,6 @@ bindkey -e
 
 setopt GLOB_DOTS
 unsetopt SHARE_HISTORY
+
+# -------------------------------------------------------------------------------- #
+

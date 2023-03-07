@@ -2,3 +2,4 @@ Dotfiles/
 .config/zsh/.antidote/
 .config/zsh/.antidote/*
 .config/zsh/.zcompdump
+.config/nvim/plugin/*

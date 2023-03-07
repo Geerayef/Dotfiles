@@ -90,6 +90,8 @@ packer.startup(function(use)
   use ("windwp/nvim-autopairs")
   use ({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
 
+  use ("simrat39/rust-tools.nvim")
+
   if packer_bootstrap then
     require("packer").sync()
   end
