@@ -22,12 +22,12 @@ keymap.set("n", "<leader>y", "\"+y")
 keymap.set("n", "<leader>Y", "\"+Y")
 keymap.set("v", "<leader>y", "\"+y")
 
--- Window Splitting
+-- # Window Splitting
 keymap.set("n", "<leader>spv", "<C-w>v") -- vertical
 keymap.set("n", "<leader>sph", "<C-w>s") -- horizontal
 keymap.set("n", "<leader>spe", "<C-w>=") -- equalize width
 keymap.set("n", "<leader>spx", ":close<CR>") -- close current
-
+-- # Tabs
 keymap.set("n", "<leader>to", ":tabnew<CR>")
 keymap.set("n", "<leader>tx", ":tabclose<CR>")
 keymap.set("n", "<leader>tn", ":tabn<CR>")
@@ -39,7 +39,6 @@ keymap.set("n", "<leader>tp", ":tabp<CR>")
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 
 -- telescope
-
 -- See `:help telescope.builtin`
 keymap.set("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", { desc = "[?] Find recently opened files" })
 keymap.set("n", "<leader><space>", "<cmd>Telescope buffers<CR>", { desc = "[ ] Find existing buffers" })
@@ -58,5 +57,7 @@ keymap.set("n", "<leader>sg", "<cmd>Telescope live_grep<CR>", { desc = "[S]earch
 keymap.set("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", { desc = "[S]earch [D]iagnostics" })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+keymap.set("n", "[d", vim.diagnostic.goto_prev)
+keymap.set("n", "]d", vim.diagnostic.goto_next)
+keymap.set("n", "g?", "<cmd>lua vim.diagnostic.open_float()<CR>", { silent = true, })
+

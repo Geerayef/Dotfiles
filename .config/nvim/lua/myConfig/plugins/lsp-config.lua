@@ -18,6 +18,10 @@ if not cmp_nvim_lsp_status then
   return
 end
 
+vim.diagnostic.config({
+    virtual_text = false
+})
+
 mason.setup()
 
 local servers = {

@@ -24,7 +24,7 @@ if vim.fn.has('syntax') and not vim.g.syntax_on then
   vim.cmd('syntax enable')
 end
 
-opt.completeopt = "menu,menuone,noselect"
+opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.complete:remove('i')
 opt.laststatus = 2
 opt.showcmd = true
