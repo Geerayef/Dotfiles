@@ -2,5 +2,7 @@ Dotfiles/
 .config/zsh/.antidote/
 .config/zsh/.antidote/*
 .config/zsh/.zcompdump
-.config/nvim/plugin/
+.config/zsh/.zsh_plugins.zsh
+.config/nvim/plugin
 .config/nvim/plugin/*
+.config/nvim/plugin/packer_compiled.lua
