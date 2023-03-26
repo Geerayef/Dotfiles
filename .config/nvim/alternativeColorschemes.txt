@@ -1,4 +1,8 @@
--- plugins-setup.lua:
+-- @  plugins-setup.lua:
+
+-- Ayu theme
+use ("CantoroMC/ayu-nvim")
+use ("/")
 
 -- TokyoDark theme
 use ("tiagovla/tokyodark.nvim")
@@ -7,12 +11,12 @@ use ("tiagovla/tokyodark.nvim")
 use ("navarasu/onedark.nvim")
 
 -- Pale Nightfall theme
-use ('JoosepAlviste/palenightfall.nvim')
+use ("JoosepAlviste/palenightfall.nvim")
 
 -- Github theme
-use ({ 'projekt0n/github-nvim-theme', branch = '0.0.x' })
+use ({ "projekt0n/github-nvim-theme", branch = "0.0.x" })
 
--- colorscheme.lua
+-- @  colorscheme.lua
 
 github-theme.setup({
   theme_style = "dark_colorblind",
@@ -22,3 +26,7 @@ github-theme.setup({
   -- Change the "hint" color to the "orange" color, and make the "error" color bright red
   colors = {hint = "orange"},
 })
+
+vim.g.tokyodark_transparent_background = true
+vim.g.tokyodark_color_gamma = "0.90"
+

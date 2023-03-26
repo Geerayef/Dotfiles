@@ -3,8 +3,29 @@ if not setup then
     return
 end
 
--- Recommended settings
-vim.g.loaded = 1
-vim.g.loaded_netrwPlugin = 1
-
-nvimtree.setup()
+nvimtree.setup({
+    sort_by = "case_sensitive",
+    view = {
+        width = 35,
+        mappings = {
+            list = {
+                -- My mappings
+            }
+        }
+    },
+    renderer = {
+        group_empty = true,
+        highlight_git = true,
+        highlight_opened_files = "name",
+        highlight_modified = "icon",
+    },
+    diagnostics = {
+        enable = true,
+    },
+    filters = {
+    },
+    modified = {
+        enable = true,
+        show_on_open_dirs = false,
+    },
+})

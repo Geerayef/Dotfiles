@@ -33,7 +33,6 @@ treesitter.setup({
     "gitignore"
   },
   autoinstall = true,
-  
   textobjects = {
     select = {
       enable = true,

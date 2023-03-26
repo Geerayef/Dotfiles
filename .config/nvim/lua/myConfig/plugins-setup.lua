@@ -28,7 +28,8 @@ packer.startup(function(use)
   use ("wbthomason/packer.nvim")
 
   -- Themes
-  use ("tiagovla/tokyodark.nvim")
+  use ("CantoroMC/ayu-nvim")
+  -- use ("tiagovla/tokyodark.nvim")
   -- use ("navarasu/onedark.nvim")
   -- use ({ "projekt0n/github-nvim-theme", branch = "0.0.x" })
   -- use ("JoosepAlviste/palenightfall.nvim")
@@ -86,7 +87,7 @@ packer.startup(function(use)
   -- cs<motion><current surrounder><new surrounder>
   use ("tpope/vim-surround")
   use ("nvim-tree/nvim-tree.lua")
-  use ("kyazdani42/nvim-web-devicons")
+  use ("nvim-tree/nvim-web-devicons")
   use ("windwp/nvim-autopairs")
   use ({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
 

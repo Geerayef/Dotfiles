@@ -26,4 +26,15 @@ alias aar="sudo apt autoremove"
 
 # ~  Aliases: dnf
 
-alias dnfu="sudo dnf update --refresh"
+alias dnfu="sudo dnf upgrade --refresh"
+alias dnfi="sudo dnf install"
+alias dnfgi="sudo dnf groupinstall"
+alias dnfr="sudo dnf remove"
+alias dnfar="sudo dnf autoremove"
+alias dnfgr="sudo dnf groupremove"
+alias dnfc="sudo dnf clean all"
+alias dnfs="sudo dnf search"
+alias dnfl="sudo dnf list"
+alias dfnli="sudo dnf list installed"
+alias dnfgl="sudo dnf grouplist"
+

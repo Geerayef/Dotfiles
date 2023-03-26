@@ -14,9 +14,8 @@ romkatv/powerlevel10k
 #
 # Oh-My-Zsh
 
-#ohmyzsh/ohmyzsh path:plugins/zsh-interactive-cd
-#ohmyzsh/ohmyzsh path:plugins/fzf
-ohmyzsh/ohmyzsh path:plugins/dnf
+ohmyzsh/ohmyzsh path:plugins/zsh-interactive-cd
+ohmyzsh/ohmyzsh path:plugins/fzf
 ohmyzsh/ohmyzsh path:plugins/extract
 ohmyzsh/ohmyzsh path:plugins/magic-enter
 
@@ -44,8 +43,6 @@ Aloxaf/fzf-tab
 zdharma-continuum/fast-syntax-highlighting kind:defer
 
 
-### Plugins
-
-# Popular plugins for Fish-like behavior:
+### Fish-like
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
