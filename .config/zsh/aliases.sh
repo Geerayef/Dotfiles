@@ -2,8 +2,13 @@
 
 alias L="clear"
 alias nv="nvim"
-[[ -e "$(which codium)" && -e "$(which code)" ]] && alias codi="$(which codium)"
-[[ -e "$(which codium)" && ! -e "$(which code)" ]] && alias code="$(which codium)"
+
+if [[ -e "$(which codium)" && -e "$(which code)" ]] then 
+    alias codi="$(which codium)"
+fi
+if [[ -e "$(which codium)" && ! -e "$(which code)" ]] then
+    alias code="$(which codium)"
+fi
 
 alias dtfls="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
 
