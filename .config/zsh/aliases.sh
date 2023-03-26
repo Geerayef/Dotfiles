@@ -2,7 +2,9 @@
 
 alias L="clear"
 alias nv="nvim"
-alias code="$(which codium)"
+[[ -e "$(which codium)" && -e "$(which code)" ]] && alias codi="$(which codium)"
+[[ -e "$(which codium)" && ! -e "$(which code)" ]] && alias code="$(which codium)"
+
 alias dtfls="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
 
 alias l.="ls -A | egrep '^\.'"

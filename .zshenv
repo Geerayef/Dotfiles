@@ -16,16 +16,6 @@ export FZF_BASE="/usr/bin/fzf"
 
 # -------------------------------------------------------------------------------- #
 
-# ~ Paths
-
-[[ -d "$HOME/.bin" ]] && export PATH="$HOME/.bin:$PATH"
-
-[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
-
-[[ -d "$HOME/Software/Neovim/bin" ]] && export PATH="$HOME/Software/Neovim/bin:$PATH"
-
-# -------------------------------------------------------------------------------- #
-
 # ~  Developer Environment
 
 # Rust: Cargo
@@ -45,3 +35,24 @@ if [[ -e $HOME/.pyenv ]] then
     eval "$(pyenv init -)"
 )
 fi
+
+# Android
+if [[ -e $HOME/Android ]] && [[ -e $HOME/.android ]] then
+(
+    export ANDROID_HOME="$HOME/Android/Sdk/"
+    export ANDROID_USER_HOME="$HOME/.android/" 
+)
+fi
+
+# -------------------------------------------------------------------------------- #
+
+# ~ Path
+
+[[ -d "$HOME/.bin" ]] && export PATH="$HOME/.bin:$PATH"
+
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+
+[[ -d "$HOME/Software/Neovim/bin" ]] && export PATH="$HOME/Software/Neovim/bin:$PATH"
+
+[[ -d "$ANDROID_HOME" ]] && export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
+

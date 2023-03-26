@@ -59,5 +59,5 @@ keymap.set("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", { desc = "[S]ear
 -- Diagnostic keymaps
 keymap.set("n", "[d", vim.diagnostic.goto_prev)
 keymap.set("n", "]d", vim.diagnostic.goto_next)
-keymap.set("n", "g?", "<cmd>lua vim.diagnostic.open_float()<CR>", { silent = true, })
+keymap.set("n", "e?", "<cmd>lua vim.diagnostic.open_float()<CR>", { silent = true, })
 
