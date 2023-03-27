@@ -1,5 +1,17 @@
 # -------------------------------------------------------------------------------- #
 
+# ~ Path
+
+[[ -d "$HOME/.bin" ]] && export PATH="$HOME/.bin:$PATH"
+
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+
+[[ -d "$HOME/Software/Neovim/bin" ]] && export PATH="$HOME/Software/Neovim/bin:$PATH"
+
+[[ -d "$ANDROID_HOME" ]] && export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
+
+# -------------------------------------------------------------------------------- #
+
 # ~  Environment variables
 
 # Locations
@@ -8,11 +20,16 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
 
 # General settings
-export TERM="alacritty"
-export EDITOR="/usr/bin/nvim"
-export VISUAL="/usr/bin/nvim"
 export HISTCONTROL=ignoreboth:erasedups
+export TERM="alacritty"
+export EDITOR="$(which nvim)"
+export VISUAL="$(which nvim)"
 export FZF_BASE="/usr/bin/fzf"
+# Android
+if [[ -e $HOME/Android ]] && [[ -e $HOME/.android ]] then
+    export ANDROID_HOME="$HOME/Android/Sdk/"
+    export ANDROID_USER_HOME="$HOME/.android/" 
+fi
 
 # -------------------------------------------------------------------------------- #
 
@@ -36,23 +53,4 @@ if [[ -e $HOME/.pyenv ]] then
 )
 fi
 
-# Android
-if [[ -e $HOME/Android ]] && [[ -e $HOME/.android ]] then
-(
-    export ANDROID_HOME="$HOME/Android/Sdk/"
-    export ANDROID_USER_HOME="$HOME/.android/" 
-)
-fi
-
-# -------------------------------------------------------------------------------- #
-
-# ~ Path
-
-[[ -d "$HOME/.bin" ]] && export PATH="$HOME/.bin:$PATH"
-
-[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
-
-[[ -d "$HOME/Software/Neovim/bin" ]] && export PATH="$HOME/Software/Neovim/bin:$PATH"
-
-[[ -d "$ANDROID_HOME" ]] && export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
 
