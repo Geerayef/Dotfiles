@@ -7,6 +7,8 @@ alias codi="$(which codium)"
 alias dtfls="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
 
 alias l.="ls -A | egrep '^\.'"
+alias la="ls -a"
+alias ll="ls -la"
 
 # List installed desktops
 alias xd="ls /usr/share/xsessions"
