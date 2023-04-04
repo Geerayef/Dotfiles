@@ -2,13 +2,7 @@
 
 alias L="clear"
 alias nv="nvim"
-<<<<<<< Updated upstream
 alias codi="$(which codium)"
-=======
-
-alias codi="$(which codium)"
-alias code="$(which codium)"
->>>>>>> Stashed changes
 
 alias dtfls="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
 
@@ -46,4 +40,3 @@ alias dnfs="sudo dnf search"
 alias dnfl="sudo dnf list"
 alias dfnli="sudo dnf list installed"
 alias dnfgl="sudo dnf grouplist"
-
