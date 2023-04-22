@@ -28,7 +28,9 @@ local servers = {
     bashls = {},
     clangd = {},
     pyright = {},
-    rust_analyzer = {},
+    rust_analyzer = {
+
+    },
     -- hls = {},
     -- ocamllsp = {},
     lua_ls = {

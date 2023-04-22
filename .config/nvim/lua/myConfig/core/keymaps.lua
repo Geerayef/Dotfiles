@@ -8,6 +8,8 @@ local keymap = vim.keymap
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+keymap.set("i", "jj", "<Esc>")
+
 -- # Search
 -- Clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>") -- Clear search highlights
