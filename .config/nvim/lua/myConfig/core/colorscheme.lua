@@ -1,13 +1,15 @@
-local ayu, status = pcall(require, "ayu-nvim")
+local tokyodark, status = pcall(require, "tokyodark")
 if not status then
     print("Colorscheme not found!")
     return
 end
 
-vim.cmd("colorscheme ayu")
+vim.cmd("colorscheme tokyodark")
+
+-- vim.g.ayu_mirage = true
 
 -- vim.g.tokyodark_transparent_background = true
--- vim.g.tokyodark_color_gamma = "0.90"
+vim.g.tokyodark_color_gamma = "1.1"
 
 -- palenightfall.setup()
 

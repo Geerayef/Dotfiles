@@ -1,12 +1,5 @@
 # .zsh_plugins.txt
-# NOTE: Order matters in this file!
-
-
-### Prompts
-
-romkatv/powerlevel10k 
-# sindresorhus/pure kind:fpath
-
+# NOTE: Order matters
 
 ### Frameworks
 #
@@ -28,12 +21,11 @@ sorin-ionescu/prezto path:modules/directory
 belak/zsh-utils path:editor
 belak/zsh-utils path:history
 belak/zsh-utils path:utility
-
+belak/zsh-utils path:completion
 
 ### Completions
 
 zsh-users/zsh-completions path:src kind:fpath
-belak/zsh-utils path:completion
 Aloxaf/fzf-tab
 
 ### Deferred Plugins
@@ -42,7 +34,11 @@ Aloxaf/fzf-tab
 #zsh-users/zsh-syntax-highlighting kind:defer
 zdharma-continuum/fast-syntax-highlighting kind:defer
 
-
 ### Fish-like
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
+
+### Prompts
+
+romkatv/powerlevel10k 
+# sindresorhus/pure kind:fpath

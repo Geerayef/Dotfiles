@@ -1,3 +1,26 @@
+# ~  Environment variables
+
+# Locations
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
+export MSW2_BASE=$HOME/Work/Projects/MSW2/Projects.SPS.MSW2/
+export NEOVIM_HOME=$HOME/Software/Neovim/
+export FZF_BASE="/usr/bin/fzf"
+
+# General settings
+export HISTCONTROL=ignoreboth:erasedups
+export TERM="alacritty"
+export EDITOR="$(which code)"
+export VISUAL="$(which code)"
+
+# Android
+if [[ -d $HOME/Software/AndroidStudio/ && -d $HOME/Software/AndroidStudio/ ]] then
+    export ANDROID_HOME="$HOME/Software/AndroidStudio/Android/Sdk/"
+    export ANDROID_USER_HOME="$HOME/Software/AndroidStudio/.android/" 
+    export ANDROID_SDK_HOME="$HOME/Software/AndroidStudio/"
+fi
+
 # -------------------------------------------------------------------------------- #
 
 # ~ Path
@@ -10,33 +33,14 @@
 
 [[ -d "$ANDROID_HOME" ]] && export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
 
-# -------------------------------------------------------------------------------- #
-
-# ~  Environment variables
-
-# Locations
-export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
-export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
-
-# General settings
-export HISTCONTROL=ignoreboth:erasedups
-export TERM="alacritty"
-export EDITOR="$(which nvim)"
-export VISUAL="$(which nvim)"
-export FZF_BASE="/usr/bin/fzf"
-# Android
-if [[ -e $HOME/Android ]] && [[ -e $HOME/.android ]] then
-    export ANDROID_HOME="$HOME/Android/Sdk/"
-    export ANDROID_USER_HOME="$HOME/.android/" 
-fi
+[[ -d "$HOME/Scripts/" ]] && export PATH="$HOME/Scripts/:$PATH"
 
 # -------------------------------------------------------------------------------- #
 
 # ~  Developer Environment
 
 # Rust: Cargo
-[[ -e "$HOME/.cargo/" ]] && source "$HOME/.cargo/env"
+[[ -d "$HOME/.cargo/" ]] && source "$HOME/.cargo/env"
 
 # Haskell: ghcup
 [[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env"
@@ -53,4 +57,5 @@ if [[ -e $HOME/.pyenv ]] then
 )
 fi
 
+# -------------------------------------------------------------------------------- #
 

@@ -22,7 +22,15 @@ vim.diagnostic.config({
     virtual_text = false
 })
 
-mason.setup()
+mason.setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
 
 local servers = {
     bashls = {},

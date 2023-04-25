@@ -19,7 +19,6 @@ treesitter.setup({
   ensure_installed = {
     "c",
     "cpp",
-    "lua",
     "python",
     "rust",
     "haskell",
@@ -28,9 +27,10 @@ treesitter.setup({
     "javascript",
     "json",
     "yaml",
-    "help",
     "vim",
-    "gitignore"
+    "lua",
+    "gitignore",
+    "help",
   },
   autoinstall = true,
   textobjects = {

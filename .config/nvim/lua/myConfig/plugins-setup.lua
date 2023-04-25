@@ -29,7 +29,7 @@ packer.startup(function(use)
 
   -- Themes
   use ("CantoroMC/ayu-nvim")
-  -- use ("tiagovla/tokyodark.nvim")
+  use ("tiagovla/tokyodark.nvim")
   -- use ("navarasu/onedark.nvim")
   -- use ({ "projekt0n/github-nvim-theme", branch = "0.0.x" })
   -- use ("JoosepAlviste/palenightfall.nvim")
@@ -43,7 +43,7 @@ packer.startup(function(use)
 
   -- Configuring lsp servers
   use ({ "j-hui/fidget.nvim", after = "nvim-lspconfig" })
-    -- use ("folke/neodev.nvim")
+  -- use ("folke/neodev.nvim")
 
   -- Autocompletion
   use ("hrsh7th/nvim-cmp")

@@ -40,6 +40,7 @@ autoload -Uz compinit && compinit
 MAGIC_ENTER_GIT_COMMAND='git status .'
 MAGIC_ENTER_OTHER_COMMAND='ls -a .'
 
+# fzf-tab
 # Disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # Set descriptions format to enable group support
@@ -50,6 +51,13 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 # Switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
+# Tmux style popup instead of default fzf
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+# Key bindings
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+# bindkey ^R fzf-history-widget
 
 # Prompt: Powerlevel10K
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
@@ -64,6 +72,24 @@ source $ZDOTDIR/aliases.sh
 # -------------------------------------------------------------------------------- #
 
 # ~  Functions
+
+fzf-history-widget() {
+      local selected num
+      setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+      selected=( $(fc -rl 1 |
+      FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+      local ret=$?
+      if [ -n "$selected" ]; then
+         num=$selected[1]
+         if [ -n "$num" ]; then
+            zle vi-fetch-history -n $num
+         fi
+      fi
+      zle reset-prompt
+      return $ret
+   }
+   zle     -N   fzf-history-widget
+   bindkey '^R' fzf-history-widget
 
 ex ()
 {
@@ -100,3 +126,4 @@ setopt GLOB_DOTS
 unsetopt SHARE_HISTORY
 
 # -------------------------------------------------------------------------------- #
+

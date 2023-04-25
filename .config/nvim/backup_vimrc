@@ -1,0 +1,126 @@
+" ~  Plugins
+
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'ryanoasis/vim-devicons'
+Plug 'junegunn/fzf'
+Plug 'preservim/nerdtree'
+Plug 'ayu-theme/ayu-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'jiangmiao/auto-pairs'
+
+call plug#end()
+
+
+" ---------------------------------------------
+
+" ~  Variables
+
+
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme="ayu_dark"
+
+" ---------------------------------------------
+
+" ~  Color Theme
+
+set termguicolors
+let ayucolor="dark"
+colorscheme ayu
+
+" ---------------------------------------------
+
+" ~  Keymaps
+
+
+" Leader
+let mapleader = " "
+
+" General keymaps
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+Y
+vnoremap <leader>y "+y
+nnoremap <leader>P "_dP
+nnoremap <leader>nh :nohl<CR>
+nnoremap n nzzzv
+nnoremap N Nzzzv
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap x "_x
+
+" Window Splitting
+nnoremap <leader>spv <C-w>v
+nnoremap <leader>sph <C-w>s
+nnoremap <leader>spe <C-w>=
+nnoremap <leader>spx :close<CR>
+
+" Tabs
+nnoremap <leader>to :tabnew<CR>
+nnoremap <leader>tx :tabclose<CR>
+nnoremap <leader>tn :tabn<CR>
+nnoremap <leader>tp :tabp<CR>
+
+" Plugin keymaps
+nnoremap <leader>e :NERDTreeToggle<CR>
+
+" ---------------------------------------------
+
+" ~  Options
+
+
+" Load netrw
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
+" General options
+set visualbell t_vb=
+set guicursor=
+set number
+set relativenumber
+set tabstop=4
+set expandtab
+set smarttab
+set shiftwidth=4
+set autoindent
+set breakindent
+set smartindent
+set nowrap
+set ruler
+set backspace+=indent,eol,start
+set completeopt=menu,menuone,noinsert,noselect
+set laststatus=2
+set showcmd
+set wildmenu
+set formatoptions+=j
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set background=dark
+set signcolumn=yes
+set undofile
+set display+=lastline
+set mouse=a
+set updatetime=50
+set splitright
+set splitbelow
+set scrolloff=2
+set sidescrolloff=5
+set nrformats-=octal
+
+if has("autocmd")
+    filetype plugin indent on
+endif
+
+if has("syntax") && !&syntax
+    syntax enable
+endif
+

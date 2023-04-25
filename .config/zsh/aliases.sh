@@ -1,7 +1,7 @@
 # ~  General, platform independent aliases
 
-alias W="cd Work/Projects/MSW2/Projects.SPS.MSW2"
-alias L="clear"
+alias msw="cd ~/Work/Projects/MSW2/Projects.SPS.MSW2"
+alias C="clear"
 alias nv="nvim"
 alias codi="$(which codium)"
 
