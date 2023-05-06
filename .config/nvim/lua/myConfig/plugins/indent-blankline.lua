@@ -1,4 +1,4 @@
-local status indent_blankline = pcall(require, "indent-blankline")
+local status, indent_blankline = pcall(require, "indent-blankline")
 if not status then
     return
 end

@@ -43,7 +43,6 @@ packer.startup(function(use)
 
   -- Configuring lsp servers
   use ({ "j-hui/fidget.nvim", after = "nvim-lspconfig" })
-  -- use ("folke/neodev.nvim")
 
   -- Autocompletion
   use ("hrsh7th/nvim-cmp")
@@ -78,20 +77,25 @@ packer.startup(function(use)
   use ("tpope/vim-rhubarb")
   use ("lewis6991/gitsigns.nvim")
 
-  use ("nvim-lualine/lualine.nvim")
+  use ({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
   use ("lukas-reineke/indent-blankline.nvim")
-  -- commenting with gc
   use ("numToStr/Comment.nvim")
   use ("tpope/vim-sleuth")
-  -- ys<motion><surrounder>
-  -- cs<motion><current surrounder><new surrounder>
   use ("tpope/vim-surround")
   use ("nvim-tree/nvim-tree.lua")
   use ("nvim-tree/nvim-web-devicons")
   use ("windwp/nvim-autopairs")
-  use ({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
+  use ({
+    "nvim-lualine/lualine.nvim",
+    requires = {
+      "nvim-tree/nvim-web-devicons",
+      opt = true
+    }
+  })
 
+  -- Programming Languages
   use ("simrat39/rust-tools.nvim")
+  use ("rust-lang/rust.vim")
 
   if packer_bootstrap then
     require("packer").sync()
@@ -107,13 +111,3 @@ if packer_bootstrap then
   return
 end
 
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})

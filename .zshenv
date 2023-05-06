@@ -4,8 +4,7 @@
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
-export MSW2_BASE=$HOME/Work/Projects/MSW2/Projects.SPS.MSW2/
-export NEOVIM_HOME=$HOME/Software/Neovim/
+[[ -d "$HOME/Software/Neovim/" ]] && export NEOVIM_HOME=$HOME/Software/Neovim/
 export FZF_BASE="/usr/bin/fzf"
 
 # General settings
@@ -13,6 +12,7 @@ export HISTCONTROL=ignoreboth:erasedups
 export TERM="alacritty"
 export EDITOR="$(which code)"
 export VISUAL="$(which code)"
+export BASHLS="**/*@(.sh|.zsh|.inc|.bash|.command)"
 
 # Android
 if [[ -d $HOME/Software/AndroidStudio/ && -d $HOME/Software/AndroidStudio/ ]] then
