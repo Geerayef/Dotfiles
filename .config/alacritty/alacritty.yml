@@ -3,7 +3,7 @@
 
 # -------------------------------------------------------------------------------- #
 
-# ~ Environment variables
+#  ~ Environment variables
 
 env:
   # TERM variable
@@ -36,7 +36,7 @@ window:
 
   decorations: none
 
-  opacity: 0.95
+  opacity: 1
 
   startup_mode: Windowed
 
@@ -68,7 +68,7 @@ window:
 font:
   normal:
     family: FiraCode Nerd Font Mono
-    style: Retina
+    style: Regular
 
   bold:
     family: FiraCode Nerd Font Mono
@@ -363,11 +363,78 @@ schemes:
       cyan: '#95E6CB'
       white: '#FFFFFF'
 
+  ### Ayu mirage ###
+  AyuMirage: &AyuMirage
+    # Default colors
+    primary:
+      background: '#1f2430'
+      foreground: '#cbccc6'
+      bright_foreground: '#f28779'
+
+    # Normal colors
+    normal:
+      black:   '#212733' #
+      red:     '#f08778' #
+      green:   '#53bf97' #
+      yellow:  '#fdcc60' #
+      blue:    '#60b8d6' # 
+      magenta: '#ec7171' #
+      cyan:    '#98e6ca' #
+      white:   '#fafafa' #
+
+    # Brightened
+    bright:
+      black: '#686868'
+      red: '#f58c7d'
+      green: '#58c49c'
+      yellow: '#ffd165'
+      blue: '#65bddb'
+      magenta: '#f17676'
+      cyan: '#9debcf'
+      white: '#ffffff'
+
+  ### Tokyo Night ###
+  TokyoNight: &TokyoNight
+    # Default colors
+    primary:
+      background: '0x1a1b26'
+      foreground: '0xc0caf5'
+
+    # Normal colors
+    normal:
+      black:   '0x15161e'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xbb9af7'
+      cyan:    '0x7dcfff'
+      white:   '0xa9b1d6'
+
+    # Bright colors
+    bright:
+      black:   '0x414868'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xbb9af7'
+      cyan:    '0x7dcfff'
+      white:   '0xc0caf5'
+
+    indexed_colors:
+      - { index: 16, color: '0xff9e64' }
+      - { index: 17, color: '0xdb4b4b' }
+
+#  ~ MyThemes
+
 #1. *DoomOne
 #2. *Dracula
 #3. *AyuDark
+#4. *AyuMirage
+#5. *TokyoNight
 
-colors: *AyuDark
+colors: *TokyoNight
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
