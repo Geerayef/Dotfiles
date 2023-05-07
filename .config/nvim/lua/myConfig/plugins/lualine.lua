@@ -7,7 +7,7 @@ end
 lualine.setup {
   options = {
     icons_enabled = true,
-    theme = "ayu_dark",
+    theme = "tokyonight",
     component_separators = { left = "", right = "" },
     section_separators ="",
     disabled_filetypes = {
@@ -37,13 +37,18 @@ lualine.setup {
     lualine_x = {
       "encoding",
       "fileformat",
-      "filetype"
     },
     lualine_y = {
       "progress",
       "searchcount"
     },
-    lualine_z = {}
+    lualine_z = {
+      "filetype",
+      {
+        "windows",
+        mode = 1,
+      }
+    }
   },
   inactive_sections = {
     lualine_a = {},
@@ -54,12 +59,18 @@ lualine.setup {
     lualine_z = {}
   },
   tabline = {
-    -- lualine_a = {},
-    -- lualine_b = {},
-    -- lualine_c = {},
-    -- lualine_x = {},
-    -- lualine_y = {},
-    -- lualine_z = {}
+    lualine_a = {
+      {
+        "tabs",
+        mode = 1,
+        max_length = vim.o.columns / 2,
+      }
+    },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
   },
   winbar = {},
   inactive_winbar = {},

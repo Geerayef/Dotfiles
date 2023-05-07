@@ -29,7 +29,8 @@ packer.startup(function(use)
 
   -- Themes
   use ("CantoroMC/ayu-nvim")
-  use ("tiagovla/tokyodark.nvim")
+  use ("folke/tokyonight.nvim")
+  -- use ("tiagovla/tokyodark.nvim")
   -- use ("navarasu/onedark.nvim")
   -- use ({ "projekt0n/github-nvim-theme", branch = "0.0.x" })
   -- use ("JoosepAlviste/palenightfall.nvim")

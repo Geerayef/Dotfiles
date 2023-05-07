@@ -4,7 +4,7 @@
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
-[[ -d "$HOME/Software/Neovim/" ]] && export NEOVIM_HOME=$HOME/Software/Neovim/
+export NEOVIM_HOME=$HOME/Software/Neovim/
 export FZF_BASE="/usr/bin/fzf"
 
 # General settings

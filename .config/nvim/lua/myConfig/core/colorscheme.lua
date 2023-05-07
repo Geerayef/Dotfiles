@@ -1,18 +1,27 @@
-local tokyodark, status = pcall(require, "tokyodark")
-if not status then
-    print("Colorscheme not found!")
-    return
-end
+-- local tokyonight, status = pcall(require, "tokyonight")
+-- if not status then
+--     print("Colorscheme not found!")
+--     return
+-- end
 
-vim.cmd("colorscheme tokyodark")
+-- Tokyo Night config *Must come before calling the theme*
+require("tokyonight").setup({
+    style = "night"
+})
 
+vim.cmd("colorscheme tokyonight")
+
+-- Ayu config
 -- vim.g.ayu_mirage = true
 
+-- TokyoDark config
 -- vim.g.tokyodark_transparent_background = true
-vim.g.tokyodark_color_gamma = "1.1"
+-- vim.g.tokyodark_color_gamma = "1.1"
 
+-- PaleNightFall config
 -- palenightfall.setup()
 
+-- GitHug config
 -- github_theme.setup({
 --   theme_style = "dark",
 --   comment_style = "italic",

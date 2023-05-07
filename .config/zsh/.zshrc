@@ -55,9 +55,6 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 # Key bindings
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-# bindkey ^R fzf-history-widget
 
 # Prompt: Powerlevel10K
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
