@@ -8,6 +8,9 @@ opt.guicursor = ""
 opt.number = true
 opt.relativenumber = true
 
+opt.cursorline = true
+opt.cursorlineopt = "number"
+
 opt.tabstop = 4
 opt.expandtab = true
 opt.smarttab = true

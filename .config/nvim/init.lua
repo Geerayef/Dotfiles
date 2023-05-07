@@ -1,5 +1,4 @@
 require("myConfig.plugins-setup")
--- require("myConfig.lazy-plugins")
 require("myConfig.core.options")
 require("myConfig.core.keymaps")
 require("myConfig.core.colorscheme")
