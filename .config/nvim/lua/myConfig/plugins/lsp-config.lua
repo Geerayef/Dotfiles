@@ -10,16 +10,136 @@ end
 
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status then
-  return
+    return
 end
 
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
-  return
+    return
 end
 
+local navic_status, navic = pcall(require, "nvim-navic")
+if not navic_status then
+    return
+end
+
+local navbuddy_status, navbuddy = pcall(require, "nvim-navbuddy")
+if not navbuddy_status then
+    return
+end
+
+navic.setup {
+    icons = {
+        File          = "󰈙 ",
+        Module        = " ",
+        Namespace     = "󰌗 ",
+        Package       = " ",
+        Class         = "󰌗 ",
+        Method        = "󰆧 ",
+        Property      = " ",
+        Field         = " ",
+        Constructor   = " ",
+        Enum          = "󰕘",
+        Interface     = "󰕘",
+        Function      = "󰊕 ",
+        Variable      = "󰆧 ",
+        Constant      = "󰏿 ",
+        String        = "󰀬 ",
+        Number        = "󰎠 ",
+        Boolean       = "◩ ",
+        Array         = "󰅪 ",
+        Object        = "󰅩 ",
+        Key           = "󰌋 ",
+        Null          = "󰟢 ",
+        EnumMember    = " ",
+        Struct        = "󰌗 ",
+        Event         = " ",
+        Operator      = "󰆕 ",
+        TypeParameter = "󰊄 ",
+    },
+    lsp = {
+        auto_attach = false,
+        preference = nil,
+    },
+    highlight = false,
+    separator = " > ",
+    depth_limit = 0,
+    depth_limit_indicator = "..",
+    safe_output = true,
+    click = false
+}
+
+navbuddy.setup {
+    window = {
+        border = "rounded", -- "rounded", "double", "solid", "none"
+        -- or an array with eight chars building up the border in a clockwise fashion
+        -- starting with the top-left corner. eg: { "╔", "═" ,"╗", "║", "╝", "═", "╚", "║" }.
+        size = {
+                 -- Or table format example: { height = "40%", width = "100%"}
+            height = "60%",
+            width = "80%"
+        },
+        position = "50%", -- Or table format example: { row = "100%", col = "0%"}
+        scrolloff = nil,  -- scrolloff value within navbuddy window
+        sections = {
+            left = {
+                size = "20%",
+                border = nil, -- You can set border style for each section individually as well.
+            },
+            mid = {
+                size = "40%",
+                border = nil,
+            },
+            right = {
+                -- No size option for right most section. It fills to
+                -- remaining area.
+                border = nil,
+                preview = "leaf", -- Right section can show previews too.
+                -- Options: "leaf", "always" or "never"
+            }
+        },
+    },
+    node_markers = {
+        enabled = true,
+        icons = {
+            leaf = "  ",
+            leaf_selected = " → ",
+            branch = " ",
+        },
+    },
+    icons = {
+        File          = " ",
+        Module        = " ",
+        Namespace     = " ",
+        Package       = " ",
+        Class         = " ",
+        Method        = " ",
+        Property      = " ",
+        Field         = " ",
+        Constructor   = " ",
+        Enum          = "練",
+        Interface     = "練",
+        Function      = " ",
+        Variable      = " ",
+        Constant      = " ",
+        String        = " ",
+        Number        = " ",
+        Boolean       = "◩ ",
+        Array         = " ",
+        Object        = " ",
+        Key           = " ",
+        Null          = "ﳠ ",
+        EnumMember    = " ",
+        Struct        = " ",
+        Event         = " ",
+        Operator      = " ",
+        TypeParameter = " ",
+    },
+    use_default_mappings = true,
+}
+
 vim.diagnostic.config({
-    virtual_text = false
+    virtual_text = true
 })
 
 mason.setup({
@@ -35,15 +155,10 @@ mason.setup({
 local servers = {
     bashls = {},
     clangd = {},
-    -- pyright = {},
-    rust_analyzer = {
-
-    },
-    -- hls = {},
-    -- ocamllsp = {},
+    rust_analyzer = {},
     lua_ls = {
         Lua = {
-            diagnostics = { globals = {"vim"} },
+            diagnostics = { globals = { "vim" } },
             workspace = {
                 library = {
                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
@@ -54,6 +169,14 @@ local servers = {
             telemetry = { enable = false },
         }
     },
+    pylsp = {
+        plugins = {
+            flake8 = {
+                maxLineLength = 100,
+            },
+        },
+    },
+    ruff_lsp = {},
     tsserver = {},
     jsonls = {},
     volar = {},
@@ -61,7 +184,12 @@ local servers = {
 }
 
 -- LSP settings.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+    end
+
+    navbuddy.attach(client, bufnr)
 
     local nmap = function(keys, func, desc)
         if desc then
@@ -119,31 +247,31 @@ mason_lspconfig.setup_handlers {
 
 -- Python special setup for pyright
 
-local util = require 'lspconfig/util'
-
-lspconfig.pyright.setup{
-    on_attach = on_attach,
-    cmd = { "pyright-langserver", "--stdio" },
-    filetypes = { "python" },
-    root_dir = function(fname)
-        local root_files = {
-            'pyproject.toml',
-            'setup.py',
-            'setup.cfg',
-            'requirements.txt',
-            'Pipfile',
-            'pyrightconfig.json',
-        }
-        return util.root_pattern(table.unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
-    end,
-    settings = {
-        python = {
-            analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = "workspace",
-                useLibraryCodeForTypes = false,
-                typeCheckingMode = "off",
-            },
-        },
-    },
-}
+-- local util = require 'lspconfig/util'
+--
+-- lspconfig.pyright.setup{
+--     on_attach = on_attach,
+--     cmd = { "pyright-langserver", "--stdio" },
+--     filetypes = { "python" },
+--     root_dir = function(fname)
+--         local root_files = {
+--             'pyproject.toml',
+--             'setup.py',
+--             'setup.cfg',
+--             'requirements.txt',
+--             'Pipfile',
+--             'pyrightconfig.json',
+--         }
+--         return util.root_pattern(table.unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
+--     end,
+--     settings = {
+--         python = {
+--             analysis = {
+--                 autoSearchPaths = true,
+--                 diagnosticMode = "workspace",
+--                 useLibraryCodeForTypes = false,
+--                 typeCheckingMode = "off",
+--             },
+--         },
+--     },
+-- }

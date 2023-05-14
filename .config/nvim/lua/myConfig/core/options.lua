@@ -18,17 +18,12 @@ opt.shiftwidth = 4
 opt.autoindent = true
 opt.breakindent = true
 opt.smartindent = true
-opt.wrap = false
+opt.wrap = true
 opt.ruler = true
 opt.backspace:append('indent,eol,start')
 
-if vim.fn.has('autocmd') then
-  vim.cmd('filetype plugin indent on')
-end
-
-if vim.fn.has('syntax') and not vim.g.syntax_on then
-  vim.cmd('syntax enable')
-end
+vim.cmd('filetype plugin indent on')
+vim.cmd('syntax enable')
 
 opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.complete:remove('i')
@@ -51,7 +46,7 @@ opt.undofile = true
 opt.display:append('lastline')
 
 opt.mouse = "a"
-opt.updatetime = 50
+opt.updatetime = 100
 opt.splitright = true
 opt.splitbelow = true
 opt.scrolloff = 2
@@ -59,7 +54,7 @@ opt.sidescrolloff = 5
 
 -- Functions as options
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "sh",
+  pattern = "*sh",
   callback = function()
     vim.lsp.start({
       name = "bash-language-server",

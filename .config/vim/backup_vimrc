@@ -54,6 +54,10 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+inoremap J :m '>+1<CR>gv=gv
+inoremap K :m '<-2<CR>gv=gv
+nnoremap J :m '>+1<CR>gv=gv
+nnoremap K :m '<-2<CR>gv=gv
 nnoremap x "_x
 
 " Window Splitting

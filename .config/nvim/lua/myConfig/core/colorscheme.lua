@@ -1,15 +1,15 @@
--- local tokyonight, status = pcall(require, "tokyonight")
--- if not status then
---     print("Colorscheme not found!")
---     return
--- end
+local status, tokyonight = pcall(require, "tokyonight")
+if not status then
+    print("Colorscheme not found!")
+    return
+end
 
--- Tokyo Night config *Must come before calling the theme*
-require("tokyonight").setup({
+-- Tokyo Night config *Must come before calling the theme
+tokyonight.setup {
     style = "night"
-})
+}
 
-vim.cmd("colorscheme tokyonight")
+vim.cmd('colorscheme tokyonight')
 
 -- Ayu config
 -- vim.g.ayu_mirage = true

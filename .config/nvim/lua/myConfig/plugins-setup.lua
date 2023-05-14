@@ -26,6 +26,7 @@ end
 
 packer.startup(function(use)
   use ("wbthomason/packer.nvim")
+  use ("nvim-lua/plenary.nvim")
 
   -- Themes
   use ("CantoroMC/ayu-nvim")
@@ -35,13 +36,11 @@ packer.startup(function(use)
   -- use ({ "projekt0n/github-nvim-theme", branch = "0.0.x" })
   -- use ("JoosepAlviste/palenightfall.nvim")
 
-  use ("nvim-lua/plenary.nvim")
-
+  -- LSP
   -- Mason - manage & install lsp servers
   use ("williamboman/mason.nvim")
   use ("williamboman/mason-lspconfig.nvim")
   use ("neovim/nvim-lspconfig")
-
   -- Configuring lsp servers
   use ({ "j-hui/fidget.nvim", after = "nvim-lspconfig" })
 
@@ -65,7 +64,6 @@ packer.startup(function(use)
       ts_update.setup()
     end,
   })
-
   use ({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter", })
 
   -- Telescope - Fuzzy finder
@@ -91,6 +89,22 @@ packer.startup(function(use)
     requires = {
       "nvim-tree/nvim-web-devicons",
       opt = true
+    }
+  })
+
+  -- Breadcrumbs
+  use ({
+    "SmiteshP/nvim-navic",
+    requires = "neovim/nvim-lspconfig"
+  })
+  use ({
+    "SmiteshP/nvim-navbuddy",
+    requires = {
+        "neovim/nvim-lspconfig",
+        "SmiteshP/nvim-navic",
+        "MunifTanjim/nui.nvim",
+        "numToStr/Comment.nvim",
+        "nvim-telescope/telescope.nvim"
     }
   })
 

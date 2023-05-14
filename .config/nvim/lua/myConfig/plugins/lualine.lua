@@ -3,6 +3,11 @@ if not status then
     return
 end
 
+local navic_status, navic = pcall(require, "nvim-navic")
+if not navic_status then
+  return
+end
+
 -- Favorite themes: ayu_mirage, ayu_dark, horizon, iceberg_dark
 lualine.setup {
   options = {
@@ -33,28 +38,30 @@ lualine.setup {
         update_in_insert = true,
       }
     },
-    lualine_c = {"filename"},
+    lualine_c = {
+      {
+        "filename",
+        file_status = true,
+        newfile_status = false,
+        path = 4,
+      },
+      "location"
+    },
     lualine_x = {
       "encoding",
       "fileformat",
     },
     lualine_y = {
       "progress",
-      "searchcount"
     },
     lualine_z = {
-      "filetype",
-      {
-        "windows",
-        mode = 1,
-      }
     }
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {"filename"},
-    lualine_x = {"location"},
+    lualine_c = {},
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {}
   },
@@ -69,8 +76,25 @@ lualine.setup {
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
+    lualine_y = {
+      {
+        "navic",
+        -- function()
+        --   return navic.get_location()
+        -- end,
+        -- cond = function()
+        --   return navic.is_available()
+        -- end,
+        color_correction = "dynamic",
+        navic_opts = {
+          separator = " > ",
+          depth_limit = 5,
+          depth_limit_indicator = "..",
+        }
+      },
+    },
+    lualine_z = {
+    }
   },
   winbar = {},
   inactive_winbar = {},

@@ -8,10 +8,6 @@ local keymap = vim.keymap
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-keymap.set("i", "es", "<Esc>")
-keymap.set("n", "es", "<Esc>")
-keymap.set("v", "es", "<Esc>")
-
 -- #  Search
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 keymap.set("n", "n", "nzzzv")
@@ -65,3 +61,5 @@ keymap.set("n", "[d", vim.diagnostic.goto_prev)
 keymap.set("n", "]d", vim.diagnostic.goto_next)
 keymap.set("n", "e?", "<cmd>lua vim.diagnostic.open_float()<CR>", { silent = true, })
 
+-- #  Breadcrumbs
+keymap.set("n", "<leader>bc", "<cmd>Navbuddy<CR>")

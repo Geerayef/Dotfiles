@@ -10,15 +10,22 @@ export FZF_BASE="/usr/bin/fzf"
 # General settings
 export HISTCONTROL=ignoreboth:erasedups
 export TERM="alacritty"
-export EDITOR="$(which code)"
+export EDITOR="$NEOVIM_HOME/bin/nvim"
 export VISUAL="$(which code)"
+export SUDO_EDITOR="nvim"
 export BASHLS="**/*@(.sh|.zsh|.inc|.bash|.command)"
+export FZF_DEFAULT_OPTS="--extended --height 40% -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m"
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic"
 
 # Android
 if [[ -d $HOME/Software/AndroidStudio/ && -d $HOME/Software/AndroidStudio/ ]] then
-    export ANDROID_HOME="$HOME/Software/AndroidStudio/Android/Sdk/"
-    export ANDROID_USER_HOME="$HOME/Software/AndroidStudio/.android/" 
-    export ANDROID_SDK_HOME="$HOME/Software/AndroidStudio/"
+    export ANDROID_HOME="$HOME/Software/AndroidStudio/Android/Sdk"
+    export ANDROID_USER_HOME="$HOME/Software/AndroidStudio/.android" 
+    export ANDROID_SDK_HOME="$HOME/Software/AndroidStudio"
 fi
 
 # -------------------------------------------------------------------------------- #

@@ -15,7 +15,7 @@ if [ $? = 0 ]; then
   echo "Checked out config.";
   else
     echo "Backing up pre-existing dot files.";
-    dtfls checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} Dotfiles.bkp/{}
+    dtfls checkout 2>&1 | grep -E "\s+\." | awk {'print $1'} | xargs -I{} mv {} Dotfiles.bkp/{}
 fi;
 dtfls checkout
 dtfls config status.showUntrackedFiles no
