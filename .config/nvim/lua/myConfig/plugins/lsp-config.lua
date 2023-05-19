@@ -244,34 +244,3 @@ mason_lspconfig.setup_handlers {
         }
     end,
 }
-
--- Python special setup for pyright
-
--- local util = require 'lspconfig/util'
---
--- lspconfig.pyright.setup{
---     on_attach = on_attach,
---     cmd = { "pyright-langserver", "--stdio" },
---     filetypes = { "python" },
---     root_dir = function(fname)
---         local root_files = {
---             'pyproject.toml',
---             'setup.py',
---             'setup.cfg',
---             'requirements.txt',
---             'Pipfile',
---             'pyrightconfig.json',
---         }
---         return util.root_pattern(table.unpack(root_files))(fname) or util.find_git_ancestor(fname) or util.path.dirname(fname)
---     end,
---     settings = {
---         python = {
---             analysis = {
---                 autoSearchPaths = true,
---                 diagnosticMode = "workspace",
---                 useLibraryCodeForTypes = false,
---                 typeCheckingMode = "off",
---             },
---         },
---     },
--- }

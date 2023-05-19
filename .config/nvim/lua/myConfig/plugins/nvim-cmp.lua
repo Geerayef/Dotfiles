@@ -13,10 +13,43 @@ if not lspkind_status then
   return
 end
 
+lspkind.init({
+    mode = "symbol_text",
+    -- can be either 'default' (requires nerd-fonts font) or
+    -- 'codicons' for codicon preset (requires vscode-codicons font)
+    preset = "default",
+    -- default: {}
+    symbol_map = {
+      Text = "󰉿",
+      Method = "󰆧",
+      Function = "󰊕",
+      Constructor = "",
+      Field = "󰜢",
+      Variable = "󰀫",
+      Class = "󰠱",
+      Interface = "",
+      Module = "",
+      Property = "󰜢",
+      Unit = "󰑭",
+      Value = "󰎠",
+      Enum = "",
+      Keyword = "󰌋",
+      Snippet = "",
+      Color = "󰏘",
+      File = "󰈙",
+      Reference = "󰈇",
+      Folder = "󰉋",
+      EnumMember = "",
+      Constant = "󰏿",
+      Struct = "󰙅",
+      Event = "",
+      Operator = "󰆕",
+      TypeParameter = "",
+    },
+})
+
 -- load friendly-snippets
 require("luasnip.loaders.from_vscode").lazy_load()
-
-vim.opt.completeopt = "menu,menuone,noselect"
 
 cmp.setup({
   snippet = {
@@ -59,11 +92,39 @@ cmp.setup({
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
+    { name = "cmdline" },
   }),
   formatting = ({
     format = lspkind.cmp_format({
-      maxwidth = 50,
+      maxwidth = 75,
       ellipsis_char = "...",
     }),
   }),
+  view = ({
+    entries = { name = "custom", selection_order = "near_cursor" }
+  }),
+})
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = "buffer" }
+  },
+  view = {
+    entries = {name = "wildmenu", separator = ' | '}
+  },
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources(
+    {
+      { name = "path" }
+    },
+    {
+      { name = "cmdline" }
+    }
+  )
 })
