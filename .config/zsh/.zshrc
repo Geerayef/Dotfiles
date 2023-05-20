@@ -35,15 +35,16 @@ autoload -Uz compinit && compinit
 
 # -------------------------------------------------------------------------------- #
 
+# ~  Functions
+
+source $ZDOTDIR/functions.zsh
+
+# -------------------------------------------------------------------------------- #
+
 # ~  Plugin settings
 
 MAGIC_ENTER_GIT_COMMAND='git status .'
 MAGIC_ENTER_OTHER_COMMAND='ls -a .'
-
-# fzf
-# source /usr/share/doc/fzf/examples/completion.zsh
-# source /usr/share/doc/fzf/examples/key-bindings.zsh
-zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
 # fzf-tab
 # Disable sort when completing `git checkout`
@@ -59,10 +60,19 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 # Tmux style popup instead of default fzf
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
-# Key bindings
+# fzf
+# source /usr/share/doc/fzf/examples/completion.zsh
+# source /usr/share/doc/fzf/examples/key-bindings.zsh
+zstyle ':autocomplete:*' default-context history-incremental-search-backward
+
+# -------------------------------------------------------------------------------- #
+
+# ~  Key bindings
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey C-r fzf-history-widget
+# bindkey C-r fzf-history-widget
+
+# -------------------------------------------------------------------------------- #
 
 # Prompt: Powerlevel10K
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
@@ -73,53 +83,6 @@ bindkey C-r fzf-history-widget
 # ~  Aliases: source
 
 source $ZDOTDIR/aliases.zsh
-
-# -------------------------------------------------------------------------------- #
-
-# ~  Functions
-
-fzf-history-widget() {
-      local selected num
-      setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-      selected=( $(fc -rl 1 |
-      FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(fzf)) )
-      local ret=$?
-      if [ -n "$selected" ]; then
-         num=$selected[1]
-         if [ -n "$num" ]; then
-            zle vi-fetch-history -n $num
-         fi
-      fi
-      zle reset-prompt
-      return $ret
-   }
-   zle     -N   fzf-history-widget
-   bindkey C-r fzf-history-widget
-
-ex ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   tar xf $1    ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
 
 # -------------------------------------------------------------------------------- #
 

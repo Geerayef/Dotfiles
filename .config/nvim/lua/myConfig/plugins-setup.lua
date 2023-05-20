@@ -41,20 +41,19 @@ packer.startup(function(use)
   use ("williamboman/mason.nvim")
   use ("williamboman/mason-lspconfig.nvim")
   use ("neovim/nvim-lspconfig")
-  -- Configuring lsp servers
-  use ({ "j-hui/fidget.nvim", after = "nvim-lspconfig" })
 
   -- Autocompletion
   use ("hrsh7th/nvim-cmp")
+  use ("hrsh7th/cmp-nvim-lsp")
   use ("hrsh7th/cmp-buffer")
   use ("hrsh7th/cmp-path")
-  use ("hrsh7th/cmp-nvim-lsp")
+  use ("hrsh7th/cmp-cmdline")
   use ("onsails/lspkind.nvim")
 
   -- Snippets
   use ("L3MON4D3/LuaSnip")
-  use ("rafamadriz/friendly-snippets")
   use ("saadparwaiz1/cmp_luasnip")
+  use ("rafamadriz/friendly-snippets")
 
   -- Treesitter
   use ({
@@ -65,6 +64,7 @@ packer.startup(function(use)
     end,
   })
   use ({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter", })
+  use ({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
 
   -- Telescope - Fuzzy finder
   use ({ "nvim-telescope/telescope-fzf-native.nvim", run = "make"})
@@ -76,7 +76,6 @@ packer.startup(function(use)
   use ("tpope/vim-rhubarb")
   use ("lewis6991/gitsigns.nvim")
 
-  use ({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
   use ("lukas-reineke/indent-blankline.nvim")
   use ("numToStr/Comment.nvim")
   use ("tpope/vim-sleuth")
