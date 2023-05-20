@@ -10,9 +10,9 @@ export FZF_BASE="/usr/bin/fzf"
 # General settings
 export HISTCONTROL=ignoreboth:erasedups
 export TERM="alacritty"
-export EDITOR="$NEOVIM_HOME/bin/nvim"
-export VISUAL="$(which code)"
 export SUDO_EDITOR="nvim"
+export EDITOR="$(which nvim)"
+export VISUAL="$(which nvim)"
 export BASHLS="**/*@(.sh|.zsh|.inc|.bash|.command)"
 export FZF_DEFAULT_OPTS="--extended --height 40% -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m"
 export FZF_CTRL_R_OPTS="

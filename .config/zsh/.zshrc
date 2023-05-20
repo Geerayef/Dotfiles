@@ -41,8 +41,8 @@ MAGIC_ENTER_GIT_COMMAND='git status .'
 MAGIC_ENTER_OTHER_COMMAND='ls -a .'
 
 # fzf
-source /usr/share/doc/fzf/examples/completion.zsh
-source /usr/share/doc/fzf/examples/key-bindings.zsh
+# source /usr/share/doc/fzf/examples/completion.zsh
+# source /usr/share/doc/fzf/examples/key-bindings.zsh
 zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
 # fzf-tab
@@ -78,23 +78,23 @@ source $ZDOTDIR/aliases.zsh
 
 # ~  Functions
 
-# fzf-history-widget() {
-#       local selected num
-#       setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-#       selected=( $(fc -rl 1 |
-#       FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
-#       local ret=$?
-#       if [ -n "$selected" ]; then
-#          num=$selected[1]
-#          if [ -n "$num" ]; then
-#             zle vi-fetch-history -n $num
-#          fi
-#       fi
-#       zle reset-prompt
-#       return $ret
-#    }
-#    zle     -N   fzf-history-widget
-#    bindkey '^R' fzf-history-widget
+fzf-history-widget() {
+      local selected num
+      setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+      selected=( $(fc -rl 1 |
+      FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(fzf)) )
+      local ret=$?
+      if [ -n "$selected" ]; then
+         num=$selected[1]
+         if [ -n "$num" ]; then
+            zle vi-fetch-history -n $num
+         fi
+      fi
+      zle reset-prompt
+      return $ret
+   }
+   zle     -N   fzf-history-widget
+   bindkey C-r fzf-history-widget
 
 ex ()
 {
@@ -132,3 +132,5 @@ unsetopt SHARE_HISTORY
 
 # -------------------------------------------------------------------------------- #
 
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
