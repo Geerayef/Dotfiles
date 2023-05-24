@@ -3,7 +3,7 @@
     "python.formatting.provider": "black",
     "[python]": {
         "editor.defaultFormatter": "mikoz.black-py",
-        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
     },
     "python.formatting.blackArgs": [
         "--line-length=110"
@@ -14,6 +14,11 @@
     "ruff.args": [
         "--line-length=110"
     ],
+
+    "r.lsp.enabled": true,
+    "r.rpath.linux": "/usr/bin/R",
+    "r.libPaths": ["/usr/lib64/R/library/languageser/R/languageserver"],
+
     "editor.cursorSmoothCaretAnimation": "explicit",
     "editor.cursorStyle": "block",
     "editor.fontFamily": "FiraCode Nerd Font Mono",
@@ -220,4 +225,5 @@
             ]
         }
     ],
+    "window.zoomLevel": 1
 }
