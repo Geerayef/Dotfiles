@@ -12,13 +12,8 @@ export TERM="alacritty"
 export EDITOR="$(which nvim)"
 export SUDO_EDITOR="$(which nvim)"
 export VISUAL="$(which code)"
-export BASHLS="**/*@(.sh|.zsh|.inc|.bash|.command)"
-export FZF_CTRL_R_OPTS="
---preview 'echo {}' --preview-window up:3:hidden:wrap
---bind 'ctrl-/:toggle-preview'
---bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
---color header:italic"
-export FZF_DEFAULT_OPTS="--extended --height 40% -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m"
+export RUFF_CACHE_DIR="$HOME/.cache/ruff"
+export CONDA_AUTO_ACTIVATE_BASE=false
 
 # Android
 if [[ -d $HOME/Software/AndroidStudio/ && -d $HOME/Software/AndroidStudio/ ]] then

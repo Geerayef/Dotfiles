@@ -1,37 +1,43 @@
 {
     "python.defaultInterpreterPath": "/usr/bin/python3.10",
     "python.formatting.provider": "black",
-     "[python]": {
+    "[python]": {
         "editor.defaultFormatter": "mikoz.black-py",
-        "editor.formatOnType": true,
+        "editor.formatOnSave": true,
     },
-    "python.formatting.blackArgs": ["--line-length=110"],
-    "ruff.interpreter": ["/usr/bin/python3.10"],
-
+    "python.formatting.blackArgs": [
+        "--line-length=110"
+    ],
+    "ruff.interpreter": [
+        "/usr/bin/python3.10"
+    ],
+    "ruff.args": [
+        "--line-length=110"
+    ],
     "editor.cursorSmoothCaretAnimation": "explicit",
     "editor.cursorStyle": "block",
     "editor.fontFamily": "FiraCode Nerd Font Mono",
     "editor.fontLigatures": true,
     "editor.fontSize": 16,
+    "editor.formatOnSave": true,
     "editor.lineNumbers": "relative",
     "editor.overviewRulerBorder": false,
     "editor.guides.highlightActiveIndentation": true,
     "editor.renderLineHighlight": "gutter",
     "editor.roundedSelection": false,
+    "files.saveConflictResolution": "overwriteFileOnDisk",
     "telemetry.telemetryLevel": "off",
     "window.menuBarVisibility": "compact",
     "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}",
     "window.titleBarStyle": "custom",
-    "window.zoomLevel": 1,
-    "workbench.colorTheme": "Tokyo Night",
+    "workbench.colorTheme": "Ayu Dark Bordered",
     "workbench.editor.tabCloseButton": "off",
     "workbench.iconTheme": "eq-material-theme-icons-darker",
     "workbench.productIconTheme": "fluent-icons",
-
-    
+    "window.zoomLevel": 2,
     "extensions.experimental.affinity": {
         "vscodevim.vim": 1
-    }, 
+    },
     "vim.leader": "<space>",
     "vim.handleKeys": {
         "<C-a>": false
@@ -41,89 +47,177 @@
     "vim.autoindent": true,
     "vim.highlightedyank.enable": true,
     "vim.smartRelativeLine": true,
-    "vim.textwidth": 90,
+    "vim.textwidth": 110,
     "vim.hlsearch": true,
     "vim.useSystemClipboard": true,
     "vim.useCtrlKeys": false,
     "vim.surround": true,
     "vim.scroll": 16,
-    
     "vim.normalModeKeyBindings": [
         {
-            "before": ["<leader>", "s", "b"],
-            "commands": ["workbench.action.toggleSidebarVisibility"]
+            "before": [
+                "<leader>",
+                "s",
+                "b"
+            ],
+            "commands": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
         },
         {
-            "before": ["<leader>", "e"],
-            "commands": ["workbench.view.explorer"]
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                "workbench.view.explorer"
+            ]
         },
         {
-            "before": ["<leader>", "s"],
-            "commands": ["workbench.view.search"]
+            "before": [
+                "<leader>",
+                "s"
+            ],
+            "commands": [
+                "workbench.view.search"
+            ]
         },
         {
-            "before": ["<leader>", "g"],
-            "commands": ["workbench.scm.focus"]
+            "before": [
+                "<leader>",
+                "g"
+            ],
+            "commands": [
+                "workbench.scm.focus"
+            ]
         },
         {
-            "before": ["e", "?"],
-            "commands": ["editor.action.marker.next"]
-        },
-
-
-        {
-            "before": ["<leader>", "t", "x"],
-            "commands": ["workbench.action.closeActiveEditor"]
-        },
-        {
-            "before": ["<leader>", "t", "n"],
-            "commands": ["workbench.action.nextEditor"]
+            "before": [
+                "e",
+                "?"
+            ],
+            "commands": [
+                "editor.action.marker.next"
+            ]
         },
         {
-            "before": ["<leader>", "t", "p"],
-            "commands": ["workbench.action.previousEditor"]
-        },
-        
-
-        {
-            "before": ["<leader>", "n", "h"],
-            "commands": [":nohl"]
-        },
-        {
-            "before": ["n", "z", "z", "z", "v"],
-            "after": ["n"]
+            "before": [
+                "<leader>",
+                "t",
+                "x"
+            ],
+            "commands": [
+                "workbench.action.closeActiveEditor"
+            ]
         },
         {
-            "before": ["N", "z", "z", "z", "v"],
-            "after": ["N"]
+            "before": [
+                "<leader>",
+                "t",
+                "n"
+            ],
+            "commands": [
+                "workbench.action.nextEditor"
+            ]
         },
-
-
         {
-            "before": ["<leader>", "s", "p", "v"],
-            "commands": ["workbench.action.splitEditor"]
+            "before": [
+                "<leader>",
+                "t",
+                "p"
+            ],
+            "commands": [
+                "workbench.action.previousEditor"
+            ]
         },
         {
-            "before": ["<leader>", "s", "p", "h"],
-            "commands": ["workbench.action.splitEditorOrthogonal"]
+            "before": [
+                "<leader>",
+                "n",
+                "h"
+            ],
+            "commands": [
+                ":nohl"
+            ]
         },
-        
-
         {
-            "before": ["<leader>", "c", "h"],
-            "commands": ["references-view.findReferences"]
+            "before": [
+                "n",
+                "z",
+                "z",
+                "z",
+                "v"
+            ],
+            "after": [
+                "n"
+            ]
+        },
+        {
+            "before": [
+                "N",
+                "z",
+                "z",
+                "z",
+                "v"
+            ],
+            "after": [
+                "N"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "s",
+                "p",
+                "v"
+            ],
+            "commands": [
+                "workbench.action.splitEditor"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "s",
+                "p",
+                "h"
+            ],
+            "commands": [
+                "workbench.action.splitEditorOrthogonal"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "c",
+                "h"
+            ],
+            "commands": [
+                "references-view.findReferences"
+            ]
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-            "before": ["<leader>", "f", "f"],
-            "commands": ["workbench.action.findInFiles"]
+            "before": [
+                "<leader>",
+                "f",
+                "f"
+            ],
+            "commands": [
+                "workbench.action.findInFiles"
+            ]
         }
     ],
     "vim.insertModeKeyBindingsNonRecursive": [
         {
-            "before": ["j", "j"],
-            "commands": ["extension.vim_escape"]
+            "before": [
+                "j",
+                "j"
+            ],
+            "commands": [
+                "extension.vim_escape"
+            ]
         }
     ],
 }

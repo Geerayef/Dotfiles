@@ -1,4 +1,5 @@
-fzf_history_widget() {
+fzf_history_widget()
+{
   local selected num
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
   selected=($(fc -rl 1 | FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS $(__fzfcmd)))
@@ -15,7 +16,7 @@ fzf_history_widget() {
 zle -N fzf_history_widget
 bindkey C-r fzf_history_widget
 
-ex ()
+ex()
 {
   if [ -f $1 ] ; then
     case $1 in
@@ -38,4 +39,10 @@ ex ()
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+check_conda()
+{
+  local info=$(conda info -vq | awk -F: '{print $2}' | grep -E -m 1 "base|tf")
+  echo $info
 }

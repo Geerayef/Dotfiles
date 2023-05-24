@@ -29,8 +29,9 @@ packer.startup(function(use)
   use ("nvim-lua/plenary.nvim")
 
   -- Themes
-  use ("CantoroMC/ayu-nvim")
-  use ("folke/tokyonight.nvim")
+  -- use ("CantoroMC/ayu-nvim")
+  use ("Shatur/neovim-ayu")
+  -- use ("folke/tokyonight.nvim")
   -- use ("tiagovla/tokyodark.nvim")
   -- use ("navarasu/onedark.nvim")
   -- use ({ "projekt0n/github-nvim-theme", branch = "0.0.x" })
@@ -110,6 +111,7 @@ packer.startup(function(use)
   -- Programming Languages
   use ("simrat39/rust-tools.nvim")
   use ("rust-lang/rust.vim")
+  use ("astral-sh/ruff-lsp")
 
   if packer_bootstrap then
     require("packer").sync()
