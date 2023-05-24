@@ -36,7 +36,7 @@ window:
 
   decorations: none
 
-  opacity: 0.90
+  opacity: 0.95
 
   startup_mode: Windowed
 
@@ -363,6 +363,35 @@ schemes:
       cyan: '#95E6CB'
       white: '#FFFFFF'
 
+  ### Ayu Dark 2 ###
+  AyuDark2: &AyuDark2
+    # Default colors
+    primary:
+      background: '0x0f1419'
+      foreground: '0xe6e1cf'
+
+    # Normal colors
+    normal:
+      black:   '0x000000'
+      red:     '0xf34a4a'
+      green:   '0xbae67e'
+      yellow:  '0xffee99'
+      blue:    '0x73d0ff'
+      magenta: '0xd4bfff'
+      cyan:    '0x83CEC6'
+      white:   '0xf2f2f2'
+
+    # Bright colors
+    bright:
+      black:   '0x737d87'
+      red:     '0xff3333'
+      green:   '0xc2d94c'
+      yellow:  '0xe7c547'
+      blue:    '0x59c2ff'
+      magenta: '0xb77ee0'
+      cyan:    '0x5ccfe6'
+      white:   '0xffffff'
+
   ### Ayu mirage ###
   AyuMirage: &AyuMirage
     # Default colors
@@ -426,15 +455,46 @@ schemes:
       - { index: 16, color: '0xff9e64' }
       - { index: 17, color: '0xdb4b4b' }
 
+  ### Tokyo Night 2 ###
+  TokyoNight2: &TokyoNight2
+    # Default colors
+    primary:
+      background: '#1a1b26'
+      foreground: '#a9b1d6'
+
+    # Normal colors
+    normal:
+      black:   '#32344a'
+      red:     '#f7768e'
+      green:   '#9ece6a'
+      yellow:  '#e0af68'
+      blue:    '#7aa2f7'
+      magenta: '#ad8ee6'
+      cyan:    '#449dab'
+      white:   '#787c99'
+
+    # Bright colors
+    bright:
+      black:   '#444b6a'
+      red:     '#ff7a93'
+      green:   '#b9f27c'
+      yellow:  '#ff9e64'
+      blue:    '#7da6ff'
+      magenta: '#bb9af7'
+      cyan:    '#0db9d7'
+      white:   '#acb0d0'
+
 #  ~ MyThemes
 
 #1. *DoomOne
 #2. *Dracula
 #3. *AyuDark
-#4. *AyuMirage
-#5. *TokyoNight
+#4. *AyuDark2
+#5. *AyuMirage
+#6. *TokyoNight
+#7. *TokyoNight2
 
-colors: *TokyoNight
+colors: *AyuDark2
 
 #######################################
 ##       END OF COLOR SCHEMES        ##

@@ -1,22 +1,27 @@
--- @  plugins-setup.lua:
+-- @ plugins-setup.lua:
 
--- Ayu theme
+
+-- ~  Ayu theme
 use ("CantoroMC/ayu-nvim")
-use ("/")
+use ("Shatur/neovim-ayu")
 
--- TokyoDark theme
+-- ~  TokyoDark theme
 use ("tiagovla/tokyodark.nvim")
 
--- OneDark theme
+-- ~  Tokyo Night
+use ("folke/tokyonight.nvim")
+
+-- ~   OneDark theme
 use ("navarasu/onedark.nvim")
 
--- Pale Nightfall theme
+-- ~  Pale Nightfall theme
 use ("JoosepAlviste/palenightfall.nvim")
 
--- Github theme
+-- ~  Github theme
 use ({ "projekt0n/github-nvim-theme", branch = "0.0.x" })
 
--- @  colorscheme.lua
+
+-- @ colorscheme.lua
 
 github-theme.setup({
   theme_style = "dark_colorblind",

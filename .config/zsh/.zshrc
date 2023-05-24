@@ -70,7 +70,7 @@ zstyle ':autocomplete:*' default-context history-incremental-search-backward
 # ~  Key bindings
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
-# bindkey C-r fzf-history-widget
+bindkey C-r fzf_history_widget
 
 # -------------------------------------------------------------------------------- #
 
@@ -94,4 +94,26 @@ setopt GLOB_DOTS
 unsetopt SHARE_HISTORY
 
 # -------------------------------------------------------------------------------- #
+
+# ~  Conda
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/novakovic/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/novakovic/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/novakovic/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/novakovic/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+currconda=$(check_conda)
+if [[ $currconda == "tf" ]]; then
+    source $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+fi
 

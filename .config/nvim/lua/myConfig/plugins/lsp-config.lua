@@ -138,10 +138,6 @@ navbuddy.setup {
     use_default_mappings = true,
 }
 
-vim.diagnostic.config({
-    virtual_text = true
-})
-
 mason.setup({
     ui = {
         icons = {
@@ -170,13 +166,24 @@ local servers = {
         }
     },
     pylsp = {
-        plugins = {
-            flake8 = {
-                maxLineLength = 100,
-            },
-        },
+        settings = {
+            pylsp = {
+                plugins = {
+                    ruff = {
+                        enabled = true,
+                        extendSelect = { "I" },
+                        config = { "/home/novakovic/.config/ruff/pyproject.toml" }
+                    },
+                }
+            }
+        }
     },
-    ruff_lsp = {},
+    -- ruff_lsp = {
+    --     args = {
+    --         "--config=/home/novakovic/.config/ruff/pyproject.toml"
+    --     },
+    --     path = {"/home/novakovic/.local/bin/ruff"},
+    -- },
     tsserver = {},
     jsonls = {},
     volar = {},
@@ -244,3 +251,4 @@ mason_lspconfig.setup_handlers {
         }
     end,
 }
+

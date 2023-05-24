@@ -1,6 +1,6 @@
 # ~  General, platform independent aliases
 
-alias msw="cd ~/Work/Projects/MSW2/Projects.SPS.MSW2"
+alias msw="cd $MSW2_BASE"
 alias mswl="cd ~/Work/Projects/Launcher/Projects.SPS.Launcher/"
 alias C="clear"
 alias nv="nvim"
