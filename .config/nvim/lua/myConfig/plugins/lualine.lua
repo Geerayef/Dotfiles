@@ -70,7 +70,7 @@ lualine.setup {
       {
         "tabs",
         mode = 1,
-        max_length = vim.o.columns / 2,
+        max_length = vim.o.columns,
       }
     },
     lualine_b = {},

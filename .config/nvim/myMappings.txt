@@ -1,0 +1,31 @@
+~  <leader>
+
+rename                  rn
+code action             ca
+type definition         D
+document symbols        ds
+workspace symbols       ws
+ws. add folder          wa
+ws. remove folder       wr
+ws. list folders        wl
+
+- telescope
+search help             tsh
+search current word     tsw
+search by grep          tsg
+search diagnostics      tsd
+
+- Navbuddy
+breadcrumbs             bc
+
+
+~  pure
+
+documentation           K
+signature docum.        <C-k>
+go definition           gd
+go Declaration          gD
+go references           gr
+go Implementation       gI
+
+
