@@ -5,6 +5,14 @@ export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
 export FZF_BASE="/usr/bin/fzf"
+export MSW2_BASE="$HOME/Work/Projects/MSW2/Projects.SPS.MSW2"
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
+
+# Android
+if [[ -d $HOME/Software/AndroidStudio ]] then
+    export ANDROID_HOME="$HOME/Software/AndroidStudio/sdk"
+    export ANDROID_USER_HOME="$HOME/Software/AndroidStudio/.android" 
+fi
 
 # General settings
 export HISTCONTROL=ignoreboth:erasedups
@@ -14,13 +22,6 @@ export SUDO_EDITOR="$(which nvim)"
 export VISUAL="$(which code)"
 export RUFF_CACHE_DIR="$HOME/.cache/ruff"
 export CONDA_AUTO_ACTIVATE_BASE=false
-
-# Android
-if [[ -d $HOME/Software/AndroidStudio/ && -d $HOME/Software/AndroidStudio/ ]] then
-    export ANDROID_HOME="$HOME/Software/AndroidStudio/Android/Sdk"
-    export ANDROID_USER_HOME="$HOME/Software/AndroidStudio/" 
-    export ANDROID_SDK_HOME="$HOME/Software/AndroidStudio"
-fi
 
 # -------------------------------------------------------------------------------- #
 
@@ -34,9 +35,9 @@ fi
 
 [[ -d "$ANDROID_HOME" ]] && export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
 
-[[ -d "$HOME/Scripts/" ]] && export PATH="$HOME/Scripts/:$PATH"
+[[ -d "$JAVA_HOME" ]] && export PATH="$JAVA_HOME:$PATH"
 
-[[ -d "$HOME/.local/share/JetBrains/" ]] && export PATH="$HOME/.local/share/JetBrains/Toolbox/scripts/:$PATH"
+[[ -d "$HOME/Scripts/" ]] && export PATH="$HOME/Scripts/:$PATH"
 
 # -------------------------------------------------------------------------------- #
 

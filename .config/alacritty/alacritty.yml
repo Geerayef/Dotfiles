@@ -341,6 +341,21 @@ schemes:
       background: '#0A0E14'
       foreground: '#B3B1AD'
 
+    cursor:
+      text: CellBackground
+      cursor: '#528bff'
+
+    search:
+      matches:
+        foreground: '#44475a'
+        background: '#50fa7b'
+      focused_match:
+        foreground: '#44475a'
+        background: '#ffb86c'
+      footer_bar:
+        background: '#282a36'
+        foreground: '#f8f8f2'
+
     # Normal colors
     normal:
       black: '#01060E'
@@ -369,6 +384,21 @@ schemes:
     primary:
       background: '0x0f1419'
       foreground: '0xe6e1cf'
+
+    cursor:
+      text: CellBackground
+      cursor: '#528bff'
+
+    search:
+      matches:
+        foreground: '#44475a'
+        background: '#50fa7b'
+      focused_match:
+        foreground: '#44475a'
+        background: '#ffb86c'
+      footer_bar:
+        background: '#282a36'
+        foreground: '#f8f8f2'
 
     # Normal colors
     normal:
@@ -400,6 +430,21 @@ schemes:
       foreground: '#cbccc6'
       bright_foreground: '#f28779'
 
+    cursor:
+      text: CellBackground
+      cursor: '#528bff'
+
+    search:
+      matches:
+        foreground: '#44475a'
+        background: '#50fa7b'
+      focused_match:
+        foreground: '#44475a'
+        background: '#ffb86c'
+      footer_bar:
+        background: '#282a36'
+        foreground: '#f8f8f2'
+
     # Normal colors
     normal:
       black:   '#212733' #
@@ -428,6 +473,21 @@ schemes:
     primary:
       background: '0x1a1b26'
       foreground: '0xc0caf5'
+
+    cursor:
+      text: CellBackground
+      cursor: '#528bff'
+
+    search:
+      matches:
+        foreground: '#44475a'
+        background: '#50fa7b'
+      focused_match:
+        foreground: '#44475a'
+        background: '#ffb86c'
+      footer_bar:
+        background: '#282a36'
+        foreground: '#f8f8f2'
 
     # Normal colors
     normal:
@@ -462,6 +522,21 @@ schemes:
       background: '#1a1b26'
       foreground: '#a9b1d6'
 
+    cursor:
+      text: CellBackground
+      cursor: '#528bff'
+
+    search:
+      matches:
+        foreground: '#44475a'
+        background: '#50fa7b'
+      focused_match:
+        foreground: '#44475a'
+        background: '#ffb86c'
+      footer_bar:
+        background: '#282a36'
+        foreground: '#f8f8f2'
+
     # Normal colors
     normal:
       black:   '#32344a'
@@ -494,7 +569,7 @@ schemes:
 #6. *TokyoNight
 #7. *TokyoNight2
 
-colors: *AyuDark2
+colors: *TokyoNight
 
 #######################################
 ##       END OF COLOR SCHEMES        ##

@@ -149,7 +149,10 @@ mason.setup({
 })
 
 local servers = {
-    bashls = {},
+    bashls = {
+        pattern = "sh",
+        filetype = {"sh", "zsh", "bash"},
+    },
     clangd = {},
     rust_analyzer = {},
     lua_ls = {
@@ -178,15 +181,7 @@ local servers = {
             }
         }
     },
-    -- ruff_lsp = {
-    --     args = {
-    --         "--config=/home/novakovic/.config/ruff/pyproject.toml"
-    --     },
-    --     path = {"/home/novakovic/.local/bin/ruff"},
-    -- },
-    tsserver = {},
     jsonls = {},
-    volar = {},
     yamlls = {},
 }
 
