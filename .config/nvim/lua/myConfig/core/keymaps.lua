@@ -29,12 +29,17 @@ keymap.set("n", "<leader>spe", "<C-w>=")
 keymap.set("n", "<leader>spx", ":close<CR>")
 
 -- #  Tabs
-keymap.set("n", "<leader>to", ":tabnew<CR>")
-keymap.set("n", "<leader>tx", ":q!<CR>")
-keymap.set("n", "<leader>tn", ":tabn<CR>")
-keymap.set("n", "<leader>tp", ":tabp<CR>")
+keymap.set("n", "<leader>to", "<cmd>tabnew<CR>")
+keymap.set("n", "<leader>tx", "<cmd>q!<CR>")
+keymap.set("n", "<leader>tn", "<cmd>tabn<CR>")
+keymap.set("n", "<leader>tp", "<cmd>tabp<CR>")
+keymap.set("n", "<leader>tml", "<cmd>tabmove +1<CR>")
+keymap.set("n", "<leader>tmr", "<cmd>tabmove -1<CR>")
 
--- # Plugin keymaps
+-- #  Terminal
+keymap.set("t", "<Esc>", "<C-\\><C-n>")
+
+-- #  Plugin keymaps
 
 -- nvim-tree
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")

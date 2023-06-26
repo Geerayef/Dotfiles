@@ -3,7 +3,7 @@
     "python.formatting.provider": "autopep8",
     "[python]": {
         "editor.defaultFormatter": "charliermarsh.ruff",
-        "editor.formatOnType": true,
+        "editor.formatOnType": true
     },
     "ruff.interpreter": [
         "/usr/bin/python3.10"
@@ -13,9 +13,9 @@
     ],
     "editor.cursorSmoothCaretAnimation": "explicit",
     "editor.cursorStyle": "block",
-    "editor.fontFamily": "FiraCode Nerd Font Mono",
+    "editor.fontFamily": "FiraCode Nerd Font Mono Retina, FiraCode Nerd Font Propo Retina",
     "editor.fontLigatures": true,
-    "editor.fontSize": 16,
+    "editor.fontSize": 12,
     "editor.formatOnSave": true,
     "editor.lineNumbers": "relative",
     "editor.overviewRulerBorder": false,
@@ -27,7 +27,7 @@
     "window.menuBarVisibility": "compact",
     "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}",
     "window.titleBarStyle": "custom",
-    "workbench.colorTheme": "Ayu Dark Bordered",
+    "workbench.colorTheme": "Tokyo Night",
     "workbench.editor.tabCloseButton": "off",
     "workbench.iconTheme": "eq-material-theme-icons-darker",
     "workbench.productIconTheme": "fluent-icons",
@@ -46,7 +46,7 @@
     "vim.textwidth": 110,
     "vim.hlsearch": true,
     "vim.useSystemClipboard": true,
-    "vim.useCtrlKeys": false,
+    "vim.useCtrlKeys": true,
     "vim.surround": true,
     "vim.scroll": 16,
     "vim.normalModeKeyBindings": [
@@ -185,13 +185,44 @@
         {
             "before": [
                 "<leader>",
-                "c",
-                "h"
+                "g",
+                "d"
             ],
             "commands": [
-                "references-view.findReferences"
+                "editor.action.revealDefinition"
+            ],
+            "silent": true
+        },
+        {
+            "before": [
+                "<leader>",
+                "g",
+                "D"
+            ],
+            "commands": [
+                "editor.action.goToDeclaration"
             ]
-        }
+        },
+        {
+            "before": [
+                "<leader>",
+                "g",
+                "I"
+            ],
+            "commands": [
+                "editor.action.goToImplementation"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.goToReferences"
+            ]
+        },
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
@@ -207,15 +238,12 @@
     ],
     "vim.insertModeKeyBindingsNonRecursive": [
         {
-            "before": [
-                "j",
-                "j"
-            ],
-            "commands": [
-                "extension.vim_escape"
-            ]
+            "before": [],
+            "commands": []
         }
     ],
-    "window.zoomLevel": 1,
-    "terminal.integrated.inheritEnv": false
+    "window.zoomLevel": 3,
+    "cmake.configureOnOpen": true,
+    "workbench.startupEditor": "none",
+    "clangd.path": "/home/novakovic/.config/VSCodium/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/16.0.2/clangd_16.0.2/bin/clangd"
 }

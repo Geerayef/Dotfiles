@@ -36,7 +36,7 @@ window:
 
   decorations: none
 
-  opacity: 0.95
+  opacity: 1
 
   startup_mode: Windowed
 
@@ -476,7 +476,7 @@ schemes:
 
     cursor:
       text: CellBackground
-      cursor: '#528bff'
+      cursor: '#F9AF4F'
 
     search:
       matches:

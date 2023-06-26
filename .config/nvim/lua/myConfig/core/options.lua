@@ -12,27 +12,29 @@ opt.cursorline = true
 opt.cursorlineopt = "number"
 
 opt.tabstop = 4
+opt.softtabstop = 0
+opt.shiftwidth = 4
 opt.expandtab = true
 opt.smarttab = true
-opt.shiftwidth = 4
 opt.autoindent = true
 opt.breakindent = true
 opt.smartindent = true
 opt.wrap = true
 opt.ruler = true
-opt.backspace:append('indent,eol,start')
+opt.backspace:append("indent,eol,start")
 
-vim.cmd('filetype plugin indent on')
-vim.cmd('syntax enable')
+vim.cmd("filetype plugin indent on")
+vim.cmd("syntax enable")
 
+opt.fileformats = "unix"
 opt.completeopt = "menu,menuone,noinsert,noselect"
-opt.complete:remove('i')
+opt.complete:remove("i")
 opt.laststatus = 2
 opt.showcmd = true
 opt.wildmenu = true
-opt.nrformats:remove('octal')
+opt.nrformats:remove("octal")
 -- Delete comment character when joining commented lines
-opt.formatoptions:append('j')
+opt.formatoptions:append("j")
 
 opt.ignorecase = true
 opt.smartcase = true
@@ -78,3 +80,4 @@ vim.diagnostic.config({
     virtual_text = false,
     signs = true,
 })
+

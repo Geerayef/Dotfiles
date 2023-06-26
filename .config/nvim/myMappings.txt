@@ -8,6 +8,10 @@ workspace symbols       ws
 ws. add folder          wa
 ws. remove folder       wr
 ws. list folders        wl
+go definition           gd
+go Declaration          gD
+go references           gr
+go Implementation       gI
 
 - telescope
 search help             tsh
@@ -23,9 +27,5 @@ breadcrumbs             bc
 
 documentation           K
 signature docum.        <C-k>
-go definition           gd
-go Declaration          gD
-go references           gr
-go Implementation       gI
 
 
