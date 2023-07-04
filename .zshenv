@@ -39,6 +39,10 @@ export CONDA_AUTO_ACTIVATE_BASE=false
 
 [[ -d "$HOME/Scripts/" ]] && export PATH="$HOME/Scripts/:$PATH"
 
+[[ -d "$HOME/linuxbrew/" ]] && export PATH="$HOME/linuxbrew/.linuxbrew/bin/"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+ 
 # -------------------------------------------------------------------------------- #
 
 # ~  Developer Environment
