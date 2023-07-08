@@ -63,14 +63,13 @@ zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 # fzf
 # source /usr/share/doc/fzf/examples/completion.zsh
 # source /usr/share/doc/fzf/examples/key-bindings.zsh
-zstyle ':autocomplete:*' default-context history-incremental-search-backward
+# zstyle ':autocomplete:*' default-context history-incremental-search-backward
 
 # -------------------------------------------------------------------------------- #
 
 # ~  Key bindings
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey C-r fzf_history_widget
+# bindkey "$terminfo[kcuu1]" history-substring-search-up
+# bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # -------------------------------------------------------------------------------- #
 
@@ -88,7 +87,7 @@ source $ZDOTDIR/aliases.zsh
 
 # ~  General settings
 
-bindkey -e
+bindkey -v
 
 setopt GLOB_DOTS
 unsetopt SHARE_HISTORY
@@ -97,23 +96,25 @@ unsetopt SHARE_HISTORY
 
 # ~  Conda
 
+if [[ -d "$HOME/miniconda3" ]] then
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/novakovic/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/novakovic/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/novakovic/miniconda3/etc/profile.d/conda.sh"
+    __conda_setup="$('/home/novakovic/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
     else
-        export PATH="/home/novakovic/miniconda3/bin:$PATH"
+        if [ -f "/home/novakovic/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/home/novakovic/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/home/novakovic/miniconda3/bin:$PATH"
+        fi
     fi
-fi
-unset __conda_setup
+    unset __conda_setup
 # <<< conda initialize <<<
 
 currconda=$(check_conda)
 if [[ $currconda == "tf" ]]; then
     source $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+fi
 fi
 

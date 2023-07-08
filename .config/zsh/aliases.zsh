@@ -1,9 +1,5 @@
 # ~  General, platform independent aliases
 
-alias msw="cd $MSW2_BASE"
-alias mswl="cd ~/Work/Projects/Launcher/Projects.SPS.Launcher/"
-alias sixml="cd ~/Work/Sixml\ Simulator/SIXmlSimulatorSDK-pl2-Snapshot-221011-0911/Java/Client/ && ./sixmlsimulator-pl2-client-Snapshot-221011-0911.jar"
-alias studio="cd /opt/android-studio/bin/ && ./studio.sh"
 alias C="clear"
 alias nv="nvim"
 alias codi="$(which codium)"

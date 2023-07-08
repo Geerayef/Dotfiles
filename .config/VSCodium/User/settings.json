@@ -9,13 +9,15 @@
         "/usr/bin/python3.10"
     ],
     "ruff.args": [
-        "--line-length=110"
+        "--line-length=100"
     ],
+    "cmake.configureOnOpen": true,
+    "clangd.path": "/home/novakovic/.config/VSCodium/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/16.0.2/clangd_16.0.2/bin/clangd",
     "editor.cursorSmoothCaretAnimation": "explicit",
     "editor.cursorStyle": "block",
     "editor.fontFamily": "FiraCode Nerd Font Mono Retina, FiraCode Nerd Font Propo Retina",
     "editor.fontLigatures": true,
-    "editor.fontSize": 12,
+    "editor.fontSize": 16,
     "editor.formatOnSave": true,
     "editor.lineNumbers": "relative",
     "editor.overviewRulerBorder": false,
@@ -27,10 +29,12 @@
     "window.menuBarVisibility": "compact",
     "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}",
     "window.titleBarStyle": "custom",
+    "window.zoomLevel": 1,
     "workbench.colorTheme": "Tokyo Night",
     "workbench.editor.tabCloseButton": "off",
     "workbench.iconTheme": "eq-material-theme-icons-darker",
     "workbench.productIconTheme": "fluent-icons",
+    "workbench.startupEditor": "none",
     "extensions.experimental.affinity": {
         "vscodevim.vim": 1
     },
@@ -242,8 +246,4 @@
             "commands": []
         }
     ],
-    "window.zoomLevel": 3,
-    "cmake.configureOnOpen": true,
-    "workbench.startupEditor": "none",
-    "clangd.path": "/home/novakovic/.config/VSCodium/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/16.0.2/clangd_16.0.2/bin/clangd"
 }

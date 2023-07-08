@@ -1,21 +1,3 @@
-fzf_history_widget()
-{
-  local selected num
-  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-  selected=($(fc -rl 1 | FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS $(__fzfcmd)))
-  local ret=$?
-  if [ -n "$selected" ]; then
-    num=$selected[1]
-    if [ -n "$num" ]; then
-      zle vi-fetch-history -n $num
-    fi
-  fi
-  zle reset-prompt
-  return $ret
-}
-zle -N fzf_history_widget
-bindkey C-r fzf_history_widget
-
 ex()
 {
   if [ -f $1 ] ; then

@@ -9,7 +9,7 @@
 
 ohmyzsh/ohmyzsh path:plugins/zsh-interactive-cd
 ohmyzsh/ohmyzsh path:plugins/fzf
-ohmyzsh/ohmyzsh path:plugins/extract
+# ohmyzsh/ohmyzsh path:plugins/extract
 ohmyzsh/ohmyzsh path:plugins/magic-enter
 
 # Prezto
@@ -27,6 +27,7 @@ belak/zsh-utils path:completion
 
 zsh-users/zsh-completions path:src kind:fpath
 Aloxaf/fzf-tab
+joshskidmore/zsh-fzf-history-search
 
 ### Deferred Plugins
 

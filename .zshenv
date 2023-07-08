@@ -5,8 +5,6 @@ export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
 export FZF_BASE="/usr/bin/fzf"
-export MSW2_BASE="$HOME/Work/Projects/MSW2/Projects.SPS.MSW2"
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 
 # Android
 if [[ -d $HOME/Software/AndroidStudio ]] then
