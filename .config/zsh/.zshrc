@@ -112,9 +112,9 @@ if [[ -d "$HOME/miniconda3" ]] then
     unset __conda_setup
 # <<< conda initialize <<<
 
-currconda=$(check_conda)
-if [[ $currconda == "tf" ]]; then
-    source $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
-fi
+    currconda=$(check_conda)
+    if [[ $currconda == "tf" ]]; then
+        source $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+    fi
 fi
 

@@ -36,7 +36,7 @@ window:
 
   decorations: none
 
-  opacity: 0.9
+  opacity: 0.95
 
   startup_mode: Windowed
 
@@ -340,11 +340,9 @@ schemes:
     primary:
       background: '#0A0E14'
       foreground: '#B3B1AD'
-
     cursor:
       text: CellBackground
       cursor: '#528bff'
-
     search:
       matches:
         foreground: '#44475a'
@@ -355,7 +353,6 @@ schemes:
       footer_bar:
         background: '#282a36'
         foreground: '#f8f8f2'
-
     # Normal colors
     normal:
       black: '#01060E'
@@ -366,7 +363,6 @@ schemes:
       magenta: '#FAE994'
       cyan: '#90E1C6'
       white: '#C7C7C7'
-
     # Bright colors
     bright:
       black: '#686868'
@@ -378,50 +374,6 @@ schemes:
       cyan: '#95E6CB'
       white: '#FFFFFF'
 
-  ### Ayu Dark 2 ###
-  AyuDark2: &AyuDark2
-    # Default colors
-    primary:
-      background: '0x0f1419'
-      foreground: '0xe6e1cf'
-
-    cursor:
-      text: CellBackground
-      cursor: '#528bff'
-
-    search:
-      matches:
-        foreground: '#44475a'
-        background: '#50fa7b'
-      focused_match:
-        foreground: '#44475a'
-        background: '#ffb86c'
-      footer_bar:
-        background: '#282a36'
-        foreground: '#f8f8f2'
-
-    # Normal colors
-    normal:
-      black:   '0x000000'
-      red:     '0xf34a4a'
-      green:   '0xbae67e'
-      yellow:  '0xffee99'
-      blue:    '0x73d0ff'
-      magenta: '0xd4bfff'
-      cyan:    '0x83CEC6'
-      white:   '0xf2f2f2'
-
-    # Bright colors
-    bright:
-      black:   '0x737d87'
-      red:     '0xff3333'
-      green:   '0xc2d94c'
-      yellow:  '0xe7c547'
-      blue:    '0x59c2ff'
-      magenta: '0xb77ee0'
-      cyan:    '0x5ccfe6'
-      white:   '0xffffff'
-
   ### Ayu mirage ###
   AyuMirage: &AyuMirage
     # Default colors
@@ -429,11 +381,9 @@ schemes:
       background: '#1f2430'
       foreground: '#cbccc6'
       bright_foreground: '#f28779'
-
     cursor:
       text: CellBackground
       cursor: '#528bff'
-
     search:
       matches:
         foreground: '#44475a'
@@ -444,7 +394,6 @@ schemes:
       footer_bar:
         background: '#282a36'
         foreground: '#f8f8f2'
-
     # Normal colors
     normal:
       black:   '#212733' #
@@ -455,7 +404,6 @@ schemes:
       magenta: '#ec7171' #
       cyan:    '#98e6ca' #
       white:   '#fafafa' #
-
     # Brightened
     bright:
       black: '#686868'
@@ -473,11 +421,9 @@ schemes:
     primary:
       background: '0x1a1b26'
       foreground: '0xc0caf5'
-
     cursor:
       text: CellBackground
       cursor: '#F9AF4F'
-
     search:
       matches:
         foreground: '#44475a'
@@ -488,7 +434,6 @@ schemes:
       footer_bar:
         background: '#282a36'
         foreground: '#f8f8f2'
-
     # Normal colors
     normal:
       black:   '0x15161e'
@@ -499,7 +444,6 @@ schemes:
       magenta: '0xbb9af7'
       cyan:    '0x7dcfff'
       white:   '0xa9b1d6'
-
     # Bright colors
     bright:
       black:   '0x414868'
@@ -510,22 +454,19 @@ schemes:
       magenta: '0xbb9af7'
       cyan:    '0x7dcfff'
       white:   '0xc0caf5'
-
     indexed_colors:
       - { index: 16, color: '0xff9e64' }
       - { index: 17, color: '0xdb4b4b' }
 
-  ### Tokyo Night 2 ###
-  TokyoNight2: &TokyoNight2
+  ### Tokyo Night Storm ###
+  TokyoNightStorm: &TokyoNightStorm
     # Default colors
     primary:
-      background: '#1a1b26'
-      foreground: '#a9b1d6'
-
+      background: '0x24283b'
+      foreground: '0xc0caf5'
     cursor:
       text: CellBackground
-      cursor: '#528bff'
-
+      cursor: '#F9AF4F'
     search:
       matches:
         foreground: '#44475a'
@@ -536,40 +477,85 @@ schemes:
       footer_bar:
         background: '#282a36'
         foreground: '#f8f8f2'
-
     # Normal colors
     normal:
-      black:   '#32344a'
-      red:     '#f7768e'
-      green:   '#9ece6a'
-      yellow:  '#e0af68'
-      blue:    '#7aa2f7'
-      magenta: '#ad8ee6'
-      cyan:    '#449dab'
-      white:   '#787c99'
-
+      black:   '0x1d202f'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xbb9af7'
+      cyan:    '0x7dcfff'
+      white:   '0xa9b1d6'
     # Bright colors
     bright:
-      black:   '#444b6a'
-      red:     '#ff7a93'
-      green:   '#b9f27c'
-      yellow:  '#ff9e64'
-      blue:    '#7da6ff'
-      magenta: '#bb9af7'
-      cyan:    '#0db9d7'
-      white:   '#acb0d0'
+      black:   '0x414868'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xbb9af7'
+      cyan:    '0x7dcfff'
+      white:   '0xc0caf5'
+    indexed_colors:
+      - { index: 16, color: '0xff9e64' }
+      - { index: 17, color: '0xdb4b4b' }
 
+  ### Tokyo Night Moon ###
+  TokyoNightMoon: &TokyoNightMoon
+    # Default colors
+    primary:
+      background: '0x222436'
+      foreground: '0xc8d3f5'
+    cursor:
+      text: CellBackground
+      cursor: '#F9AF4F'
+    search:
+      matches:
+        foreground: '#44475a'
+        background: '#50fa7b'
+      focused_match:
+        foreground: '#44475a'
+        background: '#ffb86c'
+      footer_bar:
+        background: '#282a36'
+        foreground: '#f8f8f2'
+    # Normal colors
+    normal:
+      black:   '0x1b1d2b'
+      red:     '0xff757f'
+      green:   '0xc3e88d'
+      yellow:  '0xffc777'
+      blue:    '0x82aaff'
+      magenta: '0xc099ff'
+      cyan:    '0x86e1fc'
+      white:   '0x828bb8'
+    # Bright colors
+    bright:
+      black:   '0x444a73'
+      red:     '0xff757f'
+      green:   '0xc3e88d'
+      yellow:  '0xffc777'
+      blue:    '0x82aaff'
+      magenta: '0xc099ff'
+      cyan:    '0x86e1fc'
+      white:   '0xc8d3f5'
+    indexed_colors:
+      - { index: 16, color: '0xff966c' }
+      - { index: 17, color: '0xc53b53' }
+    
+    
 #  ~ MyThemes
 
 #1. *DoomOne
 #2. *Dracula
 #3. *AyuDark
-#4. *AyuDark2
-#5. *AyuMirage
-#6. *TokyoNight
-#7. *TokyoNight2
+#4. *AyuMirage
+#5. *TokyoNight
+#6. *TokyoNightStorm
+#7. *TokyoNightMoon
 
-colors: *TokyoNight
+colors: *TokyoNightMoon
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
