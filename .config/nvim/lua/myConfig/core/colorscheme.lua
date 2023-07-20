@@ -6,7 +6,7 @@ end
 
 -- Tokyo Night config *Must come before calling the theme
 tokyonight.setup {
-    style = "night",
+    style = "moon",
     lualine_bold = true
 }
 

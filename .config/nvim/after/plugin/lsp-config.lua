@@ -126,32 +126,32 @@ navbuddy.setup {
         },
     },
     icons = {
-        File          = " ",
+        File          = "󰈙 ",
         Module        = " ",
-        Namespace     = " ",
+        Namespace     = "󰌗 ",
         Package       = " ",
-        Class         = " ",
-        Method        = " ",
+        Class         = "󰌗 ",
+        Method        = "󰆧 ",
         Property      = " ",
         Field         = " ",
         Constructor   = " ",
-        Enum          = "練",
-        Interface     = "練",
-        Function      = " ",
-        Variable      = " ",
-        Constant      = " ",
+        Enum          = "󰕘",
+        Interface     = "󰕘",
+        Function      = "󰊕 ",
+        Variable      = "󰆧 ",
+        Constant      = "󰏿 ",
         String        = " ",
-        Number        = " ",
+        Number        = "󰎠 ",
         Boolean       = "◩ ",
-        Array         = " ",
-        Object        = " ",
-        Key           = " ",
-        Null          = "ﳠ ",
+        Array         = "󰅪 ",
+        Object        = "󰅩 ",
+        Key           = "󰌋 ",
+        Null          = "󰟢 ",
         EnumMember    = " ",
-        Struct        = " ",
+        Struct        = "󰌗 ",
         Event         = " ",
-        Operator      = " ",
-        TypeParameter = " ",
+        Operator      = "󰆕 ",
+        TypeParameter = "󰊄 ",
     },
     use_default_mappings = true,
 }
@@ -172,7 +172,7 @@ local servers = {
         filetype = {"sh", "zsh", "bash"},
     },
     clangd = {},
-    rust_analyzer = {},
+    jsonls = {},
     lua_ls = {
         Lua = {
             diagnostics = { globals = { "vim" } },
@@ -187,19 +187,17 @@ local servers = {
         }
     },
     pylsp = {
-        settings = {
-            pylsp = {
-                plugins = {
-                    ruff = {
-                        enabled = true,
-                        extendSelect = { "I" },
-                        config = { "/home/novakovic/.config/ruff/pyproject.toml" }
-                    },
-                }
+        pylsp = {
+            plugins = {
+                ruff = {
+                    enabled = true,
+                    extendSelect = { "I" },
+                    config = "/home/novakovic/.config/ruff/pyproject.toml"
+                },
             }
         }
     },
-    jsonls = {},
+    rust_analyzer = {},
     yamlls = {},
 }
 

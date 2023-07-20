@@ -1,23 +1,23 @@
 ~  <leader>
 
-rename                  rn
 code action             ca
 type definition         D
 document symbols        ds
-workspace symbols       ws
-ws. add folder          wa
-ws. remove folder       wr
-ws. list folders        wl
 go definition           gd
 go Declaration          gD
-go references           gr
 go Implementation       gI
+go references           gr
+rename                  rn
+ws. add folder          wa
+ws. list folders        wl
+ws. remove folder       wr
+workspace symbols       ws
 
 - telescope
+search diagnostics      tsd
+search by grep          tsg
 search help             tsh
 search current word     tsw
-search by grep          tsg
-search diagnostics      tsd
 
 - Navbuddy
 breadcrumbs             bc
@@ -26,6 +26,4 @@ breadcrumbs             bc
 ~  pure
 
 documentation           K
-signature docum.        <C-k>
-
-
+signature docs       <C-k>

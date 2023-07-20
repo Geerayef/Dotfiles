@@ -20,6 +20,8 @@ export SUDO_EDITOR="$(which nvim)"
 export VISUAL="$(which code)"
 export RUFF_CACHE_DIR="$HOME/.cache/ruff"
 export CONDA_AUTO_ACTIVATE_BASE=false
+# Temporary
+PYGAME_DETECT_AVX2=1
 
 # -------------------------------------------------------------------------------- #
 
