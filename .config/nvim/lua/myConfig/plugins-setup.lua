@@ -29,7 +29,7 @@ packer.startup(function(use)
   use ("nvim-lua/plenary.nvim")
 
   -- Themes
-  use ("CantoroMC/ayu-nvim")
+  -- use ("CantoroMC/ayu-nvim")
   -- use ("Shatur/neovim-ayu")
   use ("folke/tokyonight.nvim")
   -- use ("tiagovla/tokyodark.nvim")
@@ -38,7 +38,6 @@ packer.startup(function(use)
   -- use ("JoosepAlviste/palenightfall.nvim")
 
   -- LSP
-  -- Mason - manage & install lsp servers
   use ("williamboman/mason.nvim")
   use ("williamboman/mason-lspconfig.nvim")
   use ("neovim/nvim-lspconfig")
@@ -56,7 +55,6 @@ packer.startup(function(use)
   use ("saadparwaiz1/cmp_luasnip")
   use ("rafamadriz/friendly-snippets")
 
-  -- Treesitter
   use ({
     "nvim-treesitter/nvim-treesitter",
     run = function()
@@ -64,15 +62,14 @@ packer.startup(function(use)
       ts_update.setup()
     end,
   })
-  use ({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter", })
+  use ({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
   use ({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
 
-  -- Telescope - Fuzzy finder
-  use ({ "nvim-telescope/telescope-fzf-native.nvim", run = "make"})
+  use ({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use ({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
   use ({ "nvim-telescope/telescope-ui-select.nvim" })
 
-  -- Git related plugins
+  -- Git
   use ("tpope/vim-fugitive")
   use ("tpope/vim-rhubarb")
   use ("lewis6991/gitsigns.nvim")
@@ -111,7 +108,6 @@ packer.startup(function(use)
   -- Programming Languages
   use ("simrat39/rust-tools.nvim")
   use ("rust-lang/rust.vim")
-  use ("astral-sh/ruff-lsp")
 
   if packer_bootstrap then
     require("packer").sync()

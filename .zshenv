@@ -21,7 +21,7 @@ export VISUAL="$(which code)"
 export RUFF_CACHE_DIR="$HOME/.cache/ruff"
 export CONDA_AUTO_ACTIVATE_BASE=false
 # Temporary
-PYGAME_DETECT_AVX2=1
+export PYGAME_DETECT_AVX2=1
 
 # -------------------------------------------------------------------------------- #
 
@@ -33,15 +33,13 @@ PYGAME_DETECT_AVX2=1
 
 [[ -d "$HOME/Software/Neovim/bin" ]] && export PATH="$HOME/Software/Neovim/bin:$PATH"
 
+[[ -d "$HOME/Scripts/" ]] && export PATH="$HOME/Scripts/:$PATH"
+
+[[ -d "$HOME/linuxbrew/" ]] && export PATH="$HOME/linuxbrew/.linuxbrew/bin/" && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 [[ -d "$ANDROID_HOME" ]] && export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
 
 [[ -d "$JAVA_HOME" ]] && export PATH="$JAVA_HOME:$PATH"
-
-[[ -d "$HOME/Scripts/" ]] && export PATH="$HOME/Scripts/:$PATH"
-
-[[ -d "$HOME/linuxbrew/" ]] && export PATH="$HOME/linuxbrew/.linuxbrew/bin/"
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
  
 # -------------------------------------------------------------------------------- #
 

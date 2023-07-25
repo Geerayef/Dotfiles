@@ -1,45 +1,30 @@
 # .zsh_plugins.txt
 # NOTE: Order matters
-
-### Frameworks
-#
 # Annotation :`path:location/of/plugin` || full git url.
-#
-# Oh-My-Zsh
 
-ohmyzsh/ohmyzsh path:plugins/zsh-interactive-cd
-ohmyzsh/ohmyzsh path:plugins/fzf
-# ohmyzsh/ohmyzsh path:plugins/extract
-ohmyzsh/ohmyzsh path:plugins/magic-enter
+# Prompt
 
-# Prezto
+romkatv/powerlevel10k 
 
-sorin-ionescu/prezto path:modules/directory
+# Quality of life
 
-# (Micro-)Framework: zsh-utils
-
+# ohmyzsh/ohmyzsh path:plugins/fzf
 belak/zsh-utils path:editor
 belak/zsh-utils path:history
 belak/zsh-utils path:utility
-belak/zsh-utils path:completion
+Aloxaf/fzf-tab
+joshskidmore/zsh-fzf-history-search
+ohmyzsh/ohmyzsh path:plugins/magic-enter
+sorin-ionescu/prezto path:modules/directory
 
 ### Completions
 
 zsh-users/zsh-completions path:src kind:fpath
-Aloxaf/fzf-tab
-joshskidmore/zsh-fzf-history-search
+belak/zsh-utils path:completion
+zsh-users/zsh-autosuggestions
 
 ### Deferred Plugins
 
-# Syntax highlighting
 #zsh-users/zsh-syntax-highlighting kind:defer
 zdharma-continuum/fast-syntax-highlighting kind:defer
 
-### Fish-like
-zsh-users/zsh-autosuggestions
-zsh-users/zsh-history-substring-search
-
-### Prompts
-
-romkatv/powerlevel10k 
-# sindresorhus/pure kind:fpath

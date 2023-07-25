@@ -60,17 +60,6 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 # Tmux style popup instead of default fzf
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
-# fzf
-# source /usr/share/doc/fzf/examples/completion.zsh
-# source /usr/share/doc/fzf/examples/key-bindings.zsh
-# zstyle ':autocomplete:*' default-context history-incremental-search-backward
-
-# -------------------------------------------------------------------------------- #
-
-# ~  Key bindings
-# bindkey "$terminfo[kcuu1]" history-substring-search-up
-# bindkey "$terminfo[kcud1]" history-substring-search-down
-
 # -------------------------------------------------------------------------------- #
 
 # Prompt: Powerlevel10K

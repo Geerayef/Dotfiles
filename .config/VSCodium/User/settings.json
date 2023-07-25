@@ -30,7 +30,7 @@
     "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}",
     "window.titleBarStyle": "custom",
     "window.zoomLevel": 1,
-    "workbench.colorTheme": "Tokyo Night",
+    "workbench.colorTheme": "Tokyo Night Storm",
     "workbench.editor.tabCloseButton": "off",
     "workbench.iconTheme": "eq-material-theme-icons-darker",
     "workbench.productIconTheme": "fluent-icons",
@@ -246,4 +246,5 @@
             "commands": []
         }
     ],
+    "terminal.integrated.inheritEnv": false,
 }

@@ -1,36 +1,31 @@
 local opt = vim.opt
 
-vim.g.loaded_netrw = 0
-vim.g.loaded_netrwPlugin = 0
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 opt.guicursor = ""
 
 opt.number = true
 opt.relativenumber = true
 
-opt.cursorline = true
-opt.cursorlineopt = "number"
-
 opt.tabstop = 4
-opt.softtabstop = 0
+opt.softtabstop = -1
 opt.shiftwidth = 4
 opt.expandtab = true
 opt.smarttab = true
+opt.smartindent = true
 opt.autoindent = true
 opt.breakindent = true
-opt.smartindent = true
 opt.wrap = true
-opt.ruler = true
 opt.backspace:append("indent,eol,start")
 
 vim.cmd("filetype plugin indent on")
 vim.cmd("syntax enable")
 
 opt.fileformats = "unix"
-opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.complete:remove("i")
+opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.laststatus = 2
-opt.showcmd = true
 opt.wildmenu = true
 opt.nrformats:remove("octal")
 -- Delete comment character when joining commented lines
@@ -43,7 +38,7 @@ opt.incsearch = true
 
 opt.termguicolors = true
 opt.background = "dark"
-opt.signcolumn = "yes"
+opt.signcolumn = "auto"
 opt.undofile = true
 opt.display:append('lastline')
 

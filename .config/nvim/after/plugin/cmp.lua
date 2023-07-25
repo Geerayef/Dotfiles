@@ -18,7 +18,7 @@ local t = function(str)
 end
 
 lspkind.init({
-    mode = "symbol_text",
+    mode = "default",
     -- can be either 'default' (requires nerd-fonts font) or
     -- 'codicons' for codicon preset (requires vscode-codicons font)
     preset = "default",
@@ -62,9 +62,7 @@ cmp.setup({
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
-    ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
-    ["<C-n>"] = cmp.mapping({
+    ["<C-j>"] = cmp.mapping({
       c = function()
         if cmp.visible() then
           cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
@@ -80,7 +78,7 @@ cmp.setup({
         end
       end
     }),
-    ["<C-p>"] = cmp.mapping({
+    ["<C-k>"] = cmp.mapping({
       c = function()
         if cmp.visible() then
           cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
@@ -97,14 +95,14 @@ cmp.setup({
       end
     }),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.abort(),
-    ["<c-k>"] = cmp.mapping.select_prev_item(),
-    ["<c-j>"] = cmp.mapping.select_next_item(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-x>"] = cmp.mapping.abort(),
+    ["<c-p>"] = cmp.mapping.select_prev_item(),
+    ["<c-n>"] = cmp.mapping.select_next_item(),
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = false,
+      select = true,
     },
   }),
   window = {
@@ -123,6 +121,7 @@ cmp.setup({
   }),
   formatting = {
     format = lspkind.cmp_format({
+      mode = "symbol",
       maxwidth = 75,
       ellipsis_char = "...",
     }),
@@ -134,24 +133,18 @@ cmp.setup({
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
-  mapping = cmp.mapping.preset.cmdline({
-    ["<C-j>"] = cmp.mapping.select_next_item(),
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-  }),
+  mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = "buffer" }
   },
   view = {
-    entries = {name = "wildmenu", separator = ' | '}
+    entries = { name = "wildmenu", separator = ' | ' }
   },
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline({
-    ["<C-j>"] = cmp.mapping.select_next_item(),
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-  }),
+  mapping = cmp.mapping.preset.cmdline(),
   sources = cmp.config.sources(
     {
       { name = "path" }
@@ -161,7 +154,7 @@ cmp.setup.cmdline(':', {
     }
   ),
   view = {
-    entries = {name = "custom"}
+    entries = { name = "custom" }
   }
 })
 
