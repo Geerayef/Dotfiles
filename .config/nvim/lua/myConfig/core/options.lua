@@ -1,5 +1,7 @@
 local opt = vim.opt
 
+opt.shell = "/usr/bin/bash"
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
