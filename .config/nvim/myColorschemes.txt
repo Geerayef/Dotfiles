@@ -5,9 +5,6 @@
 use ("CantoroMC/ayu-nvim")
 use ("Shatur/neovim-ayu")
 
--- ~  TokyoDark theme
-use ("tiagovla/tokyodark.nvim")
-
 -- ~  Tokyo Night
 use ("folke/tokyonight.nvim")
 
@@ -17,21 +14,6 @@ use ("navarasu/onedark.nvim")
 -- ~  Pale Nightfall theme
 use ("JoosepAlviste/palenightfall.nvim")
 
--- ~  Github theme
-use ({ "projekt0n/github-nvim-theme", branch = "0.0.x" })
-
 
 -- @ colorscheme.lua
-
-github-theme.setup({
-  theme_style = "dark_colorblind",
-  comment_style = "italic",
-  function_style = "italic",
-
-  -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-  colors = {hint = "orange"},
-})
-
-vim.g.tokyodark_transparent_background = true
-vim.g.tokyodark_color_gamma = "0.90"
 

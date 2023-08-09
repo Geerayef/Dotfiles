@@ -6,12 +6,6 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
 export FZF_BASE="/usr/bin/fzf"
 
-# Android
-if [[ -d $HOME/Software/AndroidStudio ]] then
-    export ANDROID_HOME="$HOME/Software/AndroidStudio/sdk"
-    export ANDROID_USER_HOME="$HOME/Software/AndroidStudio/.android" 
-fi
-
 # General settings
 export HISTCONTROL=ignoreboth:erasedups
 export TERM="alacritty"
@@ -20,8 +14,13 @@ export SUDO_EDITOR="$(which nvim)"
 export VISUAL="$(which code)"
 export RUFF_CACHE_DIR="$HOME/.cache/ruff"
 export CONDA_AUTO_ACTIVATE_BASE=false
-# Temporary
-export PYGAME_DETECT_AVX2=1
+export XMODIFIERS=@im=ibus
+
+# Android
+if [[ -d $HOME/Software/AndroidStudio ]] then
+    export ANDROID_HOME="$HOME/Software/AndroidStudio/sdk"
+    export ANDROID_USER_HOME="$HOME/Software/AndroidStudio/.android" 
+fi
 
 # -------------------------------------------------------------------------------- #
 
@@ -30,6 +29,8 @@ export PYGAME_DETECT_AVX2=1
 [[ -d "$HOME/.bin" ]] && export PATH="$HOME/.bin:$PATH"
 
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+
+[[ -d "$HOME/.local/share/nvim/mason/" ]] && export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 [[ -d "$HOME/Software/Neovim/bin" ]] && export PATH="$HOME/Software/Neovim/bin:$PATH"
 

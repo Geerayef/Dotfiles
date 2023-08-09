@@ -4,27 +4,26 @@
 
 # Prompt
 
-romkatv/powerlevel10k 
-
-# Quality of life
-
-# ohmyzsh/ohmyzsh path:plugins/fzf
-belak/zsh-utils path:editor
-belak/zsh-utils path:history
-belak/zsh-utils path:utility
-Aloxaf/fzf-tab
-joshskidmore/zsh-fzf-history-search
-ohmyzsh/ohmyzsh path:plugins/magic-enter
-sorin-ionescu/prezto path:modules/directory
+sindresorhus/pure
+#romkatv/powerlevel10k 
 
 ### Completions
 
-zsh-users/zsh-completions path:src kind:fpath
 belak/zsh-utils path:completion
+zsh-users/zsh-completions path:src kind:fpath
 zsh-users/zsh-autosuggestions
+
+# Quality of life
+
+belak/zsh-utils path:editor
+belak/zsh-utils path:history
+belak/zsh-utils path:utility
+sorin-ionescu/prezto path:modules/directory
+Aloxaf/fzf-tab
+joshskidmore/zsh-fzf-history-search
 
 ### Deferred Plugins
 
-#zsh-users/zsh-syntax-highlighting kind:defer
-zdharma-continuum/fast-syntax-highlighting kind:defer
+zsh-users/zsh-syntax-highlighting kind:defer
+#zdharma-continuum/fast-syntax-highlighting kind:defer
 

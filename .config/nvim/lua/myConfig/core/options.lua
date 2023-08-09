@@ -1,80 +1,77 @@
+-- #  ~ Statusline
+-- fns = require("myConfig.core.functions")
+-- vim.cmd([[
+-- function! NvimMode()
+--     return luaeval('fns.NvimMode()')
+-- endfunction
+-- ]])
+-- local statusline_str = "%-8.{NvimMode()} - %-3.m - %-4.r - %-32.{FugitiveStatusline()} %= %-t %= - %{get(b:,'gitsigns_status','')} - %4.l:%-3.c (%3.p%%)"
+
 local opt = vim.opt
 
-opt.shell = "/usr/bin/bash"
+opt.shell = "/usr/bin/zsh"
 
+-- ~  Disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-opt.guicursor = ""
+-- ~  File settings
+vim.cmd("syntax enable")
+vim.cmd("filetype plugin indent on")
+opt.fileformats = "unix"
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
 
-opt.number = true
-opt.relativenumber = true
-
+-- ~  Line
 opt.tabstop = 4
 opt.softtabstop = -1
 opt.shiftwidth = 4
 opt.expandtab = true
 opt.smarttab = true
-opt.smartindent = true
 opt.autoindent = true
+opt.smartindent = true
 opt.breakindent = true
 opt.wrap = true
 opt.backspace:append("indent,eol,start")
-
-vim.cmd("filetype plugin indent on")
-vim.cmd("syntax enable")
-
-opt.fileformats = "unix"
 opt.complete:remove("i")
 opt.completeopt = "menu,menuone,noinsert,noselect"
-opt.laststatus = 2
-opt.wildmenu = true
-opt.nrformats:remove("octal")
--- Delete comment character when joining commented lines
-opt.formatoptions:append("j")
 
+-- ~  Search
 opt.ignorecase = true
 opt.smartcase = true
 opt.hlsearch = true
 opt.incsearch = true
 
+-- ~  Visuals
+opt.guicursor = ""
+opt.cursorline = true
+opt.cursorlineopt = "number"
+opt.number = true
+opt.relativenumber = true
+opt.laststatus = 3
+opt.showtabline = 0
+-- opt.statusline = statusline_str
+opt.showcmd = false
+opt.showmode = false
+opt.switchbuf = "useopen,uselast"
+opt.signcolumn = "yes"
 opt.termguicolors = true
-opt.background = "dark"
-opt.signcolumn = "auto"
-opt.undofile = true
-opt.display:append('lastline')
+opt.ruler = false
 
+-- ~  Miscellaneous
+opt.undofile = true
+opt.wildmenu = true
+-- Delete comment character when joining commented lines
+opt.formatoptions:append("j")
+opt.nrformats:remove("octal")
 opt.mouse = "a"
-opt.updatetime = 100
+opt.updatetime = 300
 opt.splitright = true
 opt.splitbelow = true
 opt.scrolloff = 2
 opt.sidescrolloff = 5
 
--- Functions as options
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*sh",
-  callback = function()
-    vim.lsp.start({
-      name = "bash-language-server",
-      cmd = { "bash-language-server", "start" },
-    })
-  end,
-})
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = "*",
-})
-
 vim.diagnostic.config({
     virtual_text = false,
     signs = true,
 })
-

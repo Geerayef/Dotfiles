@@ -15,7 +15,7 @@ local packer_bootstrap = ensure_packer() -- true if packer was just installed
 vim.cmd([[ 
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
+    autocmd BufWritePost packer.lua source <afile> | PackerSync
   augroup end
 ]])
 
@@ -29,31 +29,15 @@ packer.startup(function(use)
   use ("nvim-lua/plenary.nvim")
 
   -- Themes
-  -- use ("CantoroMC/ayu-nvim")
-  -- use ("Shatur/neovim-ayu")
   use ("folke/tokyonight.nvim")
-  -- use ("tiagovla/tokyodark.nvim")
-  -- use ("navarasu/onedark.nvim")
-  -- use ({ "projekt0n/github-nvim-theme", branch = "0.0.x" })
-  -- use ("JoosepAlviste/palenightfall.nvim")
+  use ("navarasu/onedark.nvim")
+  use ("JoosepAlviste/palenightfall.nvim")
+  use ("ayu-theme/ayu-vim")
 
   -- LSP
   use ("williamboman/mason.nvim")
   use ("williamboman/mason-lspconfig.nvim")
   use ("neovim/nvim-lspconfig")
-
-  -- Autocompletion
-  use ("hrsh7th/nvim-cmp")
-  use ("hrsh7th/cmp-nvim-lsp")
-  use ("hrsh7th/cmp-buffer")
-  use ("hrsh7th/cmp-path")
-  use ("hrsh7th/cmp-cmdline")
-  use ("onsails/lspkind.nvim")
-
-  -- Snippets
-  use ("L3MON4D3/LuaSnip")
-  use ("saadparwaiz1/cmp_luasnip")
-  use ("rafamadriz/friendly-snippets")
 
   use ({
     "nvim-treesitter/nvim-treesitter",
@@ -62,8 +46,24 @@ packer.startup(function(use)
       ts_update.setup()
     end,
   })
-  use ({ "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" })
+  use ({
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    after = "nvim-treesitter",
+    requires = "nvim-treesitter/nvim-treesitter"
+  })
   use ({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
+
+  -- Autocompletion
+  use ("hrsh7th/cmp-nvim-lsp")
+  use ("hrsh7th/cmp-buffer")
+  use ("hrsh7th/cmp-path")
+  use ("hrsh7th/cmp-cmdline")
+  use ("hrsh7th/nvim-cmp")
+  use ("onsails/lspkind.nvim")
+
+  -- Snippets
+  use ({ "L3MON4D3/LuaSnip" })
+  use ("saadparwaiz1/cmp_luasnip")
 
   use ({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   use ({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
@@ -81,13 +81,7 @@ packer.startup(function(use)
   use ("nvim-tree/nvim-tree.lua")
   use ("nvim-tree/nvim-web-devicons")
   use ("windwp/nvim-autopairs")
-  use ({
-    "nvim-lualine/lualine.nvim",
-    requires = {
-      "nvim-tree/nvim-web-devicons",
-      opt = true
-    }
-  })
+  use ("ojroques/nvim-hardline")
 
   -- Breadcrumbs
   use ({
@@ -105,9 +99,7 @@ packer.startup(function(use)
     }
   })
 
-  -- Programming Languages
-  use ("simrat39/rust-tools.nvim")
-  use ("rust-lang/rust.vim")
+  use ("Pocco81/true-zen.nvim")
 
   if packer_bootstrap then
     require("packer").sync()

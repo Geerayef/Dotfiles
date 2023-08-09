@@ -10,23 +10,22 @@ treesitter.setup({
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "<c-space>",
-      node_incremental = "<c-space>",
-      scope_incremental = "<c-s>",
-      node_decremental = "<c-backspace>",
+      init_selection = "<C-space>",
+      node_incremental = "<C-space>",
+      scope_incremental = "<C-s>",
+      node_decremental = "<C-backspace>",
     },
   },
   ensure_installed = {
-    "bash",
     "c",
-    "cpp",
-    "json",
     "lua",
     "luadoc",
-    "python",
     "rust",
+    "python",
+    "typescript",
+    "javascript",
     "vim",
-    "yaml",
+    "yaml"
   },
   autoinstall = true,
   textobjects = {
@@ -35,43 +34,52 @@ treesitter.setup({
       lookahead = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
-        ['aa'] = '@parameter.outer',
-        ['ia'] = '@parameter.inner',
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
+        ["aa"] = "@parameter.outer",
+        ["ia"] = "@parameter.inner",
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
       },
     },
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
       },
       goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
       },
       goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
       },
       goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
       },
     },
     swap = {
       enable = true,
       swap_next = {
-        ['<leader>a'] = '@parameter.inner',
+        ["<leader>a"] = "@parameter.inner",
       },
       swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
+        ["<leader>A"] = "@parameter.inner",
       },
     },
+    lsp_interop = {
+      enable = true,
+      border = 'none',
+      floating_preview_opts = {},
+      peek_definition_code = {
+        ["<leader>pfd"] = "@function.outer",
+        ["<leader>pcd"] = "@class.outer",
+      },
+    }
   },
 })
 

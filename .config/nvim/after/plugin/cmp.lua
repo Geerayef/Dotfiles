@@ -17,45 +17,16 @@ local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
-lspkind.init({
-    mode = "default",
-    -- can be either 'default' (requires nerd-fonts font) or
-    -- 'codicons' for codicon preset (requires vscode-codicons font)
-    preset = "default",
-    -- default: {}
-    symbol_map = {
-      Text = "󰉿",
-      Method = "󰆧",
-      Function = "󰊕",
-      Constructor = "",
-      Field = "󰜢",
-      Variable = "󰀫",
-      Class = "󰠱",
-      Interface = "",
-      Module = "",
-      Property = "󰜢",
-      Unit = "󰑭",
-      Value = "󰎠",
-      Enum = "",
-      Keyword = "󰌋",
-      Snippet = "",
-      Color = "󰏘",
-      File = "󰈙",
-      Reference = "󰈇",
-      Folder = "󰉋",
-      EnumMember = "",
-      Constant = "󰏿",
-      Struct = "󰙅",
-      Event = "",
-      Operator = "󰆕",
-      TypeParameter = "",
-    },
-})
-
--- load friendly-snippets
--- require("luasnip.loaders.from_vscode").lazy_load()
-
 cmp.setup({
+  enabled = function ()
+    local context = require 'cmp.config.context'
+    if vim.api.nvim_get_mode().mode == 'c' then
+      return true
+    else
+      return not context.in_treesitter_capture("comment")
+        and not context.in_syntax_group("Comment")
+    end
+  end,
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -94,37 +65,53 @@ cmp.setup({
         end
       end
     }),
+    ["<CR>"] = cmp.mapping.confirm(),
     ["<C-Space>"] = cmp.mapping.complete(),
+    ["<Esc>"] = cmp.mapping.close(),
     ["<C-x>"] = cmp.mapping.abort(),
-    ["<c-p>"] = cmp.mapping.select_prev_item(),
-    ["<c-n>"] = cmp.mapping.select_next_item(),
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<CR>"] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
   }),
   window = {
-    completion = {
+    completion = cmp.config.window.bordered({
       winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
       col_offset = -3,
       side_padding = 0,
-    },
+    }),
+    documentation = cmp.config.window.bordered()
   },
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
+    { name = "nvim_lsp_signature_help" },
+    { name = "nvim_lua" },
     { name = "luasnip" },
-    { name = "buffer" },
     { name = "path" },
+    { name = "buffer" },
     { name = "cmdline" },
   }),
+  completion = {
+    keyword_length = 1,
+  },
   formatting = {
-    format = lspkind.cmp_format({
-      mode = "symbol",
-      maxwidth = 75,
-      ellipsis_char = "...",
-    }),
+    fields = { "kind", "abbr", "menu" },
+    format = function (entry, vim_item)
+      local kind = lspkind.cmp_format({
+        mode = "symbol",
+        maxwidth = 50,
+        menu = ({
+          nvim_lsp = "[LSP]",
+          luasnip = "[SNIP]",
+          nvim_lua = "[Lua]",
+          path = "[Path]",
+          buffer = "[Buffer]",
+          cmdline = "[CMD]",
+        }),
+      })(entry, vim_item)
+      local strings = vim.split(kind.kind, "%s", { trimempty = true })
+      kind.kind = " " .. (strings[1] or "") .. " "
+      kind.menu = "    (" .. (strings[2] or "") .. ")"
+      return kind
+    end,
   },
   view = ({
     entries = { name = "custom", selection_order = "near_cursor" }

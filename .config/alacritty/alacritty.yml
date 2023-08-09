@@ -36,7 +36,7 @@ window:
 
   decorations: none
 
-  opacity: 0.95
+  opacity: 0.97
 
   startup_mode: Windowed
 
@@ -68,7 +68,7 @@ window:
 font:
   normal:
     family: FiraCode Nerd Font Mono
-    style: Regular
+    style: Retina
 
   bold:
     family: FiraCode Nerd Font Mono
@@ -82,17 +82,17 @@ font:
     family: FiraCode Nerd Font Mono
     style: Medium
 
-  size: 14.0
+  size: 16.0
 
   # Spacing
   offset:
-    x: 1
-    y: 1
+    x: 0
+    y: 0
 
   # Glyph offset within cells
   glyph_offset:
     x: 0
-    y: 2
+    y: 0
 
   builtin_box_drawing: true
 
@@ -286,7 +286,7 @@ schemes:
       foreground: '#f8f8f2'
     cursor:
       text: CellBackground
-      cursor: CellForeground
+      cursor: '#528bff'
     vi_mode_cursor:
       text: CellBackground
       cursor: CellForeground
@@ -336,7 +336,6 @@ schemes:
 
   ### Ayu dark ###
   AyuDark: &AyuDark
-    # Default colors
     primary:
       background: '#0A0E14'
       foreground: '#B3B1AD'
@@ -353,7 +352,6 @@ schemes:
       footer_bar:
         background: '#282a36'
         foreground: '#f8f8f2'
-    # Normal colors
     normal:
       black: '#01060E'
       red: '#EA6C73'
@@ -363,7 +361,6 @@ schemes:
       magenta: '#FAE994'
       cyan: '#90E1C6'
       white: '#C7C7C7'
-    # Bright colors
     bright:
       black: '#686868'
       red: '#F07178'
@@ -376,7 +373,6 @@ schemes:
 
   ### Ayu mirage ###
   AyuMirage: &AyuMirage
-    # Default colors
     primary:
       background: '#1f2430'
       foreground: '#cbccc6'
@@ -394,7 +390,6 @@ schemes:
       footer_bar:
         background: '#282a36'
         foreground: '#f8f8f2'
-    # Normal colors
     normal:
       black:   '#212733' #
       red:     '#f08778' #
@@ -404,7 +399,6 @@ schemes:
       magenta: '#ec7171' #
       cyan:    '#98e6ca' #
       white:   '#fafafa' #
-    # Brightened
     bright:
       black: '#686868'
       red: '#f58c7d'
@@ -417,7 +411,6 @@ schemes:
 
   ### Tokyo Night ###
   TokyoNight: &TokyoNight
-    # Default colors
     primary:
       background: '0x1a1b26'
       foreground: '0xc0caf5'
@@ -434,7 +427,6 @@ schemes:
       footer_bar:
         background: '#282a36'
         foreground: '#f8f8f2'
-    # Normal colors
     normal:
       black:   '0x15161e'
       red:     '0xf7768e'
@@ -444,50 +436,6 @@ schemes:
       magenta: '0xbb9af7'
       cyan:    '0x7dcfff'
       white:   '0xa9b1d6'
-    # Bright colors
-    bright:
-      black:   '0x414868'
-      red:     '0xf7768e'
-      green:   '0x9ece6a'
-      yellow:  '0xe0af68'
-      blue:    '0x7aa2f7'
-      magenta: '0xbb9af7'
-      cyan:    '0x7dcfff'
-      white:   '0xc0caf5'
-    indexed_colors:
-      - { index: 16, color: '0xff9e64' }
-      - { index: 17, color: '0xdb4b4b' }
-
-  ### Tokyo Night Storm ###
-  TokyoNightStorm: &TokyoNightStorm
-    # Default colors
-    primary:
-      background: '0x24283b'
-      foreground: '0xc0caf5'
-    cursor:
-      text: CellBackground
-      cursor: '#F9AF4F'
-    search:
-      matches:
-        foreground: '#44475a'
-        background: '#50fa7b'
-      focused_match:
-        foreground: '#44475a'
-        background: '#ffb86c'
-      footer_bar:
-        background: '#282a36'
-        foreground: '#f8f8f2'
-    # Normal colors
-    normal:
-      black:   '0x1d202f'
-      red:     '0xf7768e'
-      green:   '0x9ece6a'
-      yellow:  '0xe0af68'
-      blue:    '0x7aa2f7'
-      magenta: '0xbb9af7'
-      cyan:    '0x7dcfff'
-      white:   '0xa9b1d6'
-    # Bright colors
     bright:
       black:   '0x414868'
       red:     '0xf7768e'
@@ -503,13 +451,12 @@ schemes:
 
   ### Tokyo Night Moon ###
   TokyoNightMoon: &TokyoNightMoon
-    # Default colors
     primary:
       background: '0x222436'
       foreground: '0xc8d3f5'
     cursor:
       text: CellBackground
-      cursor: '#F9AF4F'
+      cursor: '#528bff'
     search:
       matches:
         foreground: '#44475a'
@@ -520,7 +467,6 @@ schemes:
       footer_bar:
         background: '#282a36'
         foreground: '#f8f8f2'
-    # Normal colors
     normal:
       black:   '0x1b1d2b'
       red:     '0xff757f'
@@ -530,7 +476,6 @@ schemes:
       magenta: '0xc099ff'
       cyan:    '0x86e1fc'
       white:   '0x828bb8'
-    # Bright colors
     bright:
       black:   '0x444a73'
       red:     '0xff757f'
@@ -552,10 +497,9 @@ schemes:
 #3. *AyuDark
 #4. *AyuMirage
 #5. *TokyoNight
-#6. *TokyoNightStorm
-#7. *TokyoNightMoon
+#6. *TokyoNightMoon
 
-colors: *TokyoNightMoon
+colors: *AyuDark
 
 #######################################
 ##       END OF COLOR SCHEMES        ##

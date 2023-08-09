@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # -------------------------------------------------------------------------------- #
 
 # ~  Antidote setup
@@ -31,22 +24,12 @@ source $static_file
 unset antidote_dir plugins_txt static_file
 
 autoload -Uz promptinit && promptinit
-autoload -Uz compinit && compinit
-
-# -------------------------------------------------------------------------------- #
-
-# ~  Functions
-
-source $ZDOTDIR/functions.zsh
+# autoload -Uz compinit && compinit
 
 # -------------------------------------------------------------------------------- #
 
 # ~  Plugin settings
 
-MAGIC_ENTER_GIT_COMMAND='git status .'
-MAGIC_ENTER_OTHER_COMMAND='ls -a .'
-
-# fzf-tab
 # Disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # Set descriptions format to enable group support
@@ -59,17 +42,19 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group ',' '.'
 # Tmux style popup instead of default fzf
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':prompt:pure:git:stash' show yes
 
 # -------------------------------------------------------------------------------- #
 
-# Prompt: Powerlevel10K
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ${ZDOTDIR:-~/.config/zsh}/.p10k.zsh ]] || source ${ZDOTDIR:-~/.config/zsh}/.p10k.zsh
+# ~  Prompt
+
+prompt pure
 
 # -------------------------------------------------------------------------------- #
 
-# ~  Aliases: source
+# ~  Source
 
+source $ZDOTDIR/functions.zsh
 source $ZDOTDIR/aliases.zsh
 
 # -------------------------------------------------------------------------------- #
@@ -78,7 +63,7 @@ source $ZDOTDIR/aliases.zsh
 
 bindkey -v
 
-setopt GLOB_DOTS
+# setopt GLOB_DOTS
 unsetopt SHARE_HISTORY
 
 # -------------------------------------------------------------------------------- #

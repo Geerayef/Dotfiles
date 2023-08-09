@@ -6,7 +6,7 @@ end
 autopairs.setup({
   check_ts = true, -- enable treesitter
   ts_config = ({
-    lua = { "string" }, 
+    lua = { "string" },
     javascript = { "template_string" },
     java = false,
   }),
@@ -17,10 +17,10 @@ if not cmp_autopairs_setup then
   return
 end
 
-local cmp_setup, cmp = pcall(require, "nvim-cmp")
+local cmp_setup, cmp = pcall(require, "cmp")
 if not cmp_setup then
   return
 end
 
 -- make autopairs and completion work together
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())

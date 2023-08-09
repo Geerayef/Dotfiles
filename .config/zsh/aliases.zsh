@@ -4,7 +4,7 @@ alias C="clear"
 alias nv="nvim"
 alias codi="$(which codium)"
 
-alias dtfls="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
+alias dot="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
 
 alias l.="ls -A | egrep '^\.'"
 alias la="ls -a"

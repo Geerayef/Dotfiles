@@ -16,7 +16,7 @@ end
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
     return
-end
+end  
 
 local navic_status, navic = pcall(require, "nvim-navic")
 if not navic_status then
@@ -27,6 +27,7 @@ local navbuddy_status, navbuddy = pcall(require, "nvim-navbuddy")
 if not navbuddy_status then
     return
 end
+
 
 local _border = "single"
 
@@ -82,18 +83,16 @@ navic.setup {
     highlight = false,
     separator = " > ",
     depth_limit = 0,
-    depth_limit_indicator = "..",
+    depth_limit_indicator = " ~ ",
     safe_output = true,
+    lazy_update_context = false,
     click = false
 }
 
 navbuddy.setup {
     window = {
-        border = "rounded", -- "rounded", "double", "solid", "none"
-        -- or an array with eight chars building up the border in a clockwise fashion
-        -- starting with the top-left corner. eg: { "╔", "═" ,"╗", "║", "╝", "═", "╚", "║" }.
+        border = "rounded", -- { "╔", "═" ,"╗", "║", "╝", "═", "╚", "║" }, -- "rounded", "double", "solid", "none"
         size = {
-                 -- Or table format example: { height = "40%", width = "100%"}
             height = "60%",
             width = "80%"
         },
@@ -109,20 +108,17 @@ navbuddy.setup {
                 border = nil,
             },
             right = {
-                -- No size option for right most section. It fills to
-                -- remaining area.
                 border = nil,
-                preview = "leaf", -- Right section can show previews too.
-                -- Options: "leaf", "always" or "never"
+                preview = "leaf", -- Options: "leaf", "always" or "never"
             }
         },
     },
     node_markers = {
         enabled = true,
         icons = {
-            leaf = "  ",
+            leaf = " -",
             leaf_selected = " → ",
-            branch = " ",
+            branch = " >",
         },
     },
     icons = {
@@ -168,22 +164,32 @@ mason.setup({
 
 local servers = {
     bashls = {
-        pattern = "sh",
-        filetype = {"sh", "zsh", "bash"},
+        bashIde = {
+            globPattern = "**/*@(.sh|.inc|.bash|.command)",
+            enableSourceErrorDiagnostics = true
+        }
     },
     clangd = {},
     jsonls = {},
     lua_ls = {
         Lua = {
+            runtime = {
+                version = "Lua 5.4"
+            },
             diagnostics = { globals = { "vim" } },
             workspace = {
                 library = {
+                    vim.env.VIMRUNTIME,
                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                     [vim.fn.stdpath("config") .. "/lua"] = true,
                 },
                 checkThirdParty = false
             },
             telemetry = { enable = false },
+            hint = {
+                enable = true,
+                setType = true,
+            }
         }
     },
     pylsp = {
@@ -199,6 +205,7 @@ local servers = {
     },
     rust_analyzer = {},
     yamlls = {},
+    tsserver = {},
 }
 
 -- LSP settings.
@@ -251,7 +258,7 @@ mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers),
 }
 
-mason_lspconfig.setup_handlers {
+mason_lspconfig.setup_handlers({
     function(server_name)
         lspconfig[server_name].setup {
             capabilities = capabilities,
@@ -259,7 +266,7 @@ mason_lspconfig.setup_handlers {
             settings = servers[server_name],
         }
     end,
-}
+})
 
 require('lspconfig.ui.windows').default_options = {
   border = _border
