@@ -25,7 +25,8 @@ treesitter.setup({
     "typescript",
     "javascript",
     "vim",
-    "yaml"
+    "yaml",
+    "vue"
   },
   autoinstall = true,
   textobjects = {

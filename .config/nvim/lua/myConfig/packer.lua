@@ -28,12 +28,6 @@ packer.startup(function(use)
   use ("wbthomason/packer.nvim")
   use ("nvim-lua/plenary.nvim")
 
-  -- Themes
-  use ("folke/tokyonight.nvim")
-  use ("navarasu/onedark.nvim")
-  use ("JoosepAlviste/palenightfall.nvim")
-  use ("ayu-theme/ayu-vim")
-
   -- LSP
   use ("williamboman/mason.nvim")
   use ("williamboman/mason-lspconfig.nvim")
@@ -100,6 +94,12 @@ packer.startup(function(use)
   })
 
   use ("Pocco81/true-zen.nvim")
+
+  -- Themes
+  use ("folke/tokyonight.nvim")
+  use ("navarasu/onedark.nvim")
+  use ("JoosepAlviste/palenightfall.nvim")
+  use ("ayu-theme/ayu-vim")
 
   if packer_bootstrap then
     require("packer").sync()

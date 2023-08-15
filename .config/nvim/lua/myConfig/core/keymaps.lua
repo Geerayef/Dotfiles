@@ -11,6 +11,9 @@ keymap("v", "K", ":m '<-2<CR>gv=gv")
 keymap("n", "<C-d>", "10<C-d>", { noremap = true })
 keymap("n", "<C-u>", "10<C-u>", { noremap = true })
 
+-- Buffer
+keymap("n", "<leader>bd", "<cmd>bdelete<CR>")
+
 -- Search
 keymap("n", "<leader>nh", ":nohl<CR>")
 keymap("n", "n", "nzzzv")
@@ -31,7 +34,6 @@ keymap("n", "<leader>spx", ":close<CR>")
 
 -- Tabs
 keymap("n", "<leader>to", "<cmd>tabnew<CR>")
-keymap("n", "<leader>tx", "<cmd>q!<CR>")
 keymap("n", "<leader>tn", "<cmd>tabn<CR>")
 keymap("n", "<leader>tp", "<cmd>tabp<CR>")
 keymap("n", "<leader>tml", "<cmd>tabmove +1<CR>")

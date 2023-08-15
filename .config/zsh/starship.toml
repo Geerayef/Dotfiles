@@ -1,0 +1,54 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$line_break\
+$python\
+$character"""
+
+right_format="""
+$cmd_duration\
+"""
+
+add_newline = true
+scan_timeout = 10
+
+[directory]
+read_only = " "
+read_only_style = "red bold"
+style = "#46D9FF bold"
+
+[character]
+success_symbol = "[❯](#46D9FF)" # green
+error_symbol = "[❯](#FF6C6B)" # red
+vimcmd_symbol = "[❮](#DA8548)" # blue
+
+[git_branch]
+format = "[$branch]($style)"
+style = "#4DB5BD"
+
+[git_status]
+format = "[[([*](#4DB5BD) \\[($conflicted )($untracked )($modified )($staged )($renamed )$deleted\\])](#ECBE7B) ($ahead_behind $stashed)](cyan)"
+conflicted = "!"
+untracked = "?"
+modified = "~"
+staged = "+"
+renamed = "<>"
+deleted = "x"
+stashed = "≡"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "#202328"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "#F9AF4F"
+
+[python]
+format = "[$virtualenv]($style) "
+style = "#98BE65"
+symbol = ""

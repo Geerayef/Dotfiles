@@ -1,4 +1,4 @@
-local wezterm = require "wezterm"
+local wezterm = require("wezterm")
 local config = {}
 
 if wezterm.config_builder then
@@ -7,45 +7,60 @@ end
 
 ------------------------------------------------------------
 
+-- # APPEARANCE # --
+
+------------------------------------------------------------
+
 -- ~  Window UI
 
-config.harfbuzz_features = {"zero" , "ss01", "cv05"}
-
--- Tab
 config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 
--- Window
+config.window_background_opacity = 0.9
 config.window_decorations = "NONE"
-config.window_background_opacity = 0.92
 config.adjust_window_size_when_changing_font_size = false
+
+-- ~  Theme
+
+-- Legend: [Optional] / variant
+-- ayu / Ayu / Dark (Gogh) / Mirage [(Gogh)]
+-- Tokyo Night [(Gogh)] / Moon / Storm [(Gogh)]
+-- tokyonight / -storm / _storm / _moon / _night
+-- Trim Yer Beard (terminal.sexy)
+-- VWbug (terminal.sexy)
+-- Sublette / Subliminal
+-- Relaxed [(Gogh)]
+-- Rouge 2
+-- Palenight (Gogh)
+-- nord / fox / Nord (Gogh)
+-- Kasugano (terminal.sexy)
+
+local theme = "Sublette"
+config.color_scheme = theme
+
+-- ~  Font
+
+config.harfbuzz_features = {"zero" , "ss01", "cv05"}
+config.font_dirs = { "/usr/share/fonts/FiraCodeNF" }
+config.font = wezterm.font_with_fallback {
+    {
+        family = "FiraCodeNerdFontMono",
+    },
+    "JetBrains Mono",
+}
+config.font_size = 16
+config.line_height = 1.1
 
 ------------------------------------------------------------
 
--- Color
--- Legend: [Optional] / variant
+-- # BEHAVIOUR # --
 
--- Ayu:
--- ayu
--- Ayu / Dark (Gogh) / Mirage [(Gogh)]
--- folke:
--- Tokyo Night [(Gogh)] / Moon / Storm [(Gogh)]
--- tokyonight / -storm / _storm / _moon / _night
-config.color_scheme = "Ayu Dark (Gogh)"
-config.font = wezterm.font_with_fallback {
-    {
-        family = "Fira Code NerdFontMono",
-    },
-    "Jetbrains Mono"
-}
+------------------------------------------------------------
 
--- Font
-config.font_size = 16
-
--- Cursor
-config.cursor_blink_rate = 0
+-- ~  Cursor
 config.default_cursor_style = "SteadyBlock"
-config.cursor_thickness = "9pt"
+config.force_reverse_video_cursor = true
 
 return config
+

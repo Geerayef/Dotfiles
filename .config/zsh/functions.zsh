@@ -28,3 +28,7 @@ check_conda()
   local info=$(conda info -vq | awk -F: '{print $2}' | grep -E -m 1 "base|tf")
   echo $info
 }
+
+# ~  zsh vi mode: Static block cursor
+zle-line-init() { echo -ne "\e[2 q" }
+

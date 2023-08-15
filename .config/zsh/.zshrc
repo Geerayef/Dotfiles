@@ -2,26 +2,23 @@
 
 # ~  Antidote setup
 
-[[ -e $ZDOTDIR/.antidote ]] && source $ZDOTDIR/.antidote/antidote.zsh
+antidote_dir=${ZDOTDIR:-~/.config/zsh}/.antidote/
+plugins=${ZDOTDIR:-~/.config/zsh}/.zsh_plugins.txt
+static=${ZDOTDIR:-~/.config/zsh}/.zsh_plugins.zsh
 
-# Load plugins
-antidote_dir=${ZDOTDIR:-~/.config/zsh}/.antidote
-plugins_txt=${ZDOTDIR:-~/.config/zsh}/.zsh_plugins.txt
-static_file=${ZDOTDIR:-~/.config/zsh}/.zsh_plugins.zsh
+[[ -e $antidote_dir ]] || git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
+[[ -f $plugins ]] || touch $plugins
 
-autoload -Uz $antidote_dir/functions/antidote
+fpath+=$antidote_dir
+autoload -Uz $fpath[-1]/antidote
 
-# Clone antidote if necessary and generate a static plugin file.
-[[ -e $antidote_dir ]] || 
-  git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
-(
-  [[ -e $plugins_txt ]] || touch $plugins_txt
-  antidote bundle <$plugins_txt >$static_file
-)
+if [[ ! $static -nt $plugins ]]; then
+    ( antidote bundle <$plugins >$static )
+fi
 
-source $static_file
+source $static
 
-unset antidote_dir plugins_txt static_file
+unset antidote_dir plugins static
 
 autoload -Uz promptinit && promptinit
 # autoload -Uz compinit && compinit
@@ -42,13 +39,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group ',' '.'
 # Tmux style popup instead of default fzf
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-zstyle ':prompt:pure:git:stash' show yes
-
-# -------------------------------------------------------------------------------- #
-
-# ~  Prompt
-
-prompt pure
 
 # -------------------------------------------------------------------------------- #
 
@@ -63,8 +53,10 @@ source $ZDOTDIR/aliases.zsh
 
 bindkey -v
 
-# setopt GLOB_DOTS
 unsetopt SHARE_HISTORY
+setopt GLOB_DOTS
+setopt COMBINING_CHARS
+DISABLE_AUTO_UPDATE="true"
 
 # -------------------------------------------------------------------------------- #
 
@@ -92,3 +84,10 @@ if [[ -d "$HOME/miniconda3" ]] then
     fi
 fi
 
+# -------------------------------------------------------------------------------- #
+
+# ~  Prompt
+
+zle -N zle-line-init
+
+eval "$(starship init zsh)"

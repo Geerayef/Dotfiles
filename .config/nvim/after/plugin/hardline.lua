@@ -9,7 +9,7 @@ line.setup {
     exclude_terminal = false,
     show_index = false,
   },
-  theme = "one",
+  theme = "catppuccin_minimal",
   sections = {
     {class = "mode", item = require("hardline.parts.mode").get_item},
     {class = "high", item = require("hardline.parts.git").get_item, hide = 100},

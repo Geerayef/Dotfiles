@@ -1,4 +1,4 @@
-# ~  General, platform independent aliases
+# ~  General
 
 alias C="clear"
 alias nv="nvim"
@@ -9,6 +9,18 @@ alias dot="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
 alias l.="ls -A | egrep '^\.'"
 alias la="ls -a"
 alias ll="ls -la"
+
+alias gs="git status ."
+alias ga="git add ."
+alias grs="git restore --staged"
+alias gr="git restore"
+alias gc="git commit -m"
+alias gf="git fetch"
+alias gm="git merge"
+alias gpl="git pull --rebase"
+alias gps="git push --set-upstream"
+alias gb="git branch"
+alias gl="git log"
 
 # List installed desktops
 alias xd="ls /usr/share/xsessions"

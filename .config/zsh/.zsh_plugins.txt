@@ -1,20 +1,8 @@
 # .zsh_plugins.txt
 # NOTE: Order matters
-# Annotation :`path:location/of/plugin` || full git url.
-
-# Prompt
-
-sindresorhus/pure
-#romkatv/powerlevel10k 
-
-### Completions
 
 belak/zsh-utils path:completion
 zsh-users/zsh-completions path:src kind:fpath
-zsh-users/zsh-autosuggestions
-
-# Quality of life
-
 belak/zsh-utils path:editor
 belak/zsh-utils path:history
 belak/zsh-utils path:utility
@@ -24,6 +12,5 @@ joshskidmore/zsh-fzf-history-search
 
 ### Deferred Plugins
 
-zsh-users/zsh-syntax-highlighting kind:defer
-#zdharma-continuum/fast-syntax-highlighting kind:defer
-
+zdharma-continuum/fast-syntax-highlighting kind:defer
+zsh-users/zsh-autosuggestions kind:defer

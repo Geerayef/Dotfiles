@@ -16,7 +16,7 @@ end
 local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status then
     return
-end  
+end
 
 local navic_status, navic = pcall(require, "nvim-navic")
 if not navic_status then
@@ -170,13 +170,19 @@ local servers = {
         }
     },
     clangd = {},
-    jsonls = {},
     lua_ls = {
         Lua = {
+            completion = {
+                keywordSnippet = "Both",
+                displayContext = 3
+            },
+            diagnostics = {
+                globals = { "vim" },
+                neededFileStatus = "Opened"
+            },
             runtime = {
                 version = "Lua 5.4"
             },
-            diagnostics = { globals = { "vim" } },
             workspace = {
                 library = {
                     vim.env.VIMRUNTIME,
@@ -204,8 +210,24 @@ local servers = {
         }
     },
     rust_analyzer = {},
-    yamlls = {},
     tsserver = {},
+    volar = {
+        typescript = {
+            tsdk = ""
+        },
+        volar = {
+            takeOverMode = {
+                extension = "tsserver",
+            },
+        },
+        vue = {
+            inlayHints = {
+                missingProps = true,
+                optionsWrapper = true
+            },
+        },
+    },
+    tailwindcss = {},
 }
 
 -- LSP settings.
@@ -214,7 +236,9 @@ local on_attach = function(client, bufnr)
         navic.attach(client, bufnr)
     end
 
-    navbuddy.attach(client, bufnr)
+    if client == "tailwindcss" then
+        navbuddy.attach(client, bufnr)
+    end
 
     local nmap = function(keys, func, desc)
         if desc then
