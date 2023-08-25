@@ -1,7 +1,5 @@
 {
-  "r.rterm.linux": "/usr/bin/R",
   "python.defaultInterpreterPath": "/usr/bin/python3.10",
-  "python.formatting.provider": "autopep8",
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnType": true
