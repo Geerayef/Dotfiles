@@ -7,22 +7,23 @@
 -- ]])
 -- local statusline_str = "%-8.{NvimMode()} - %-3.m - %-4.r - %-32.{FugitiveStatusline()} %= %-t %= - %{get(b:,'gitsigns_status','')} - %4.l:%-3.c (%3.p%%)"
 
+M.disable_builtin()
+
 local opt = vim.opt
 
 opt.shell = "/usr/bin/zsh"
 
--- ~  Disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- ~  File settings
+-- ~  File
 vim.cmd("syntax enable")
 vim.cmd("filetype plugin indent on")
 opt.fileformats = "unix"
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
+opt.undofile = true
+opt.formatoptions:append("j")
+opt.nrformats:remove("octal")
 
--- ~  Line
+-- ~  Edit
 opt.tabstop = 4
 opt.softtabstop = -1
 opt.shiftwidth = 4
@@ -35,6 +36,7 @@ opt.wrap = true
 opt.backspace:append("indent,eol,start")
 opt.complete:remove("i")
 opt.completeopt = "menu,menuone,noinsert,noselect"
+opt.virtualedit = "block"
 
 -- ~  Search
 opt.ignorecase = true
@@ -42,7 +44,7 @@ opt.smartcase = true
 opt.hlsearch = true
 opt.incsearch = true
 
--- ~  Visuals
+-- ~  UI
 opt.guicursor = ""
 opt.cursorline = true
 opt.cursorlineopt = "number"
@@ -51,27 +53,27 @@ opt.relativenumber = true
 opt.laststatus = 3
 opt.showtabline = 0
 -- opt.statusline = statusline_str
+opt.title = false
 opt.showcmd = false
 opt.showmode = false
+opt.cmdheight = 1
 opt.switchbuf = "useopen,uselast"
 opt.signcolumn = "yes"
 opt.termguicolors = true
 opt.ruler = false
-
--- ~  Miscellaneous
-opt.undofile = true
 opt.wildmenu = true
--- Delete comment character when joining commented lines
-opt.formatoptions:append("j")
-opt.nrformats:remove("octal")
-opt.mouse = "a"
+opt.pumblend = 17
+opt.wildmode = "longest:full"
+opt.wildoptions = "pum"
+
+-- ~  Behaviour
+opt.ttyfast = true
+opt.lazyredraw = true
 opt.updatetime = 300
+opt.belloff = "all"
 opt.splitright = true
 opt.splitbelow = true
-opt.scrolloff = 2
-opt.sidescrolloff = 5
+opt.scrolloff = 4
+opt.sidescrolloff = 4
+opt.mouse = "a"
 
-vim.diagnostic.config({
-    virtual_text = false,
-    signs = true,
-})

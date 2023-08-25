@@ -1,1 +1,2 @@
-require("myConfig")
+require("myConfig.plugins")
+require("myConfig.init")

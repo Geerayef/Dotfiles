@@ -11,7 +11,7 @@ alias la="ls -a"
 alias ll="ls -la"
 
 alias gs="git status ."
-alias ga="git add ."
+alias ga="git add"
 alias grs="git restore --staged"
 alias gr="git restore"
 alias gc="git commit -m"

@@ -3,20 +3,6 @@ local autocmd = vim.api.nvim_create_autocmd
 
 --------------------------------------------------------------------------------
 
--- ~ Bash LS (NOT NEEDED: using Mason)
--- autocmd("FileType", {
---   pattern = 'sh',
---   callback = function()
---     vim.lsp.start({
---         name = "bash-language-server",
---         cmd = { 
---           "/home/tibor/.local/share/nvim/mason/bin/bash-language-server",
---           "start"
---         },
---     })
---   end,
--- })
-
 -- ~ Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
@@ -33,7 +19,7 @@ autocmd("TextYankPost", {
 
 M = {}
 
--- Furction definitions:
+-- Function definitions:
 
 M.NvimMode = function()
   local mode_map = {
@@ -51,6 +37,29 @@ M.NvimMode = function()
   }
 
   return mode_map[api.nvim_get_mode().mode] or '[Unknown]'
+end
+
+M.disable_builtin = function ()
+  vim.g.loaded_netrw = 1
+  vim.g.loaded_netrwPlugin = 1
+  vim.g.loaded_netrwSettings = 1
+  vim.g.loaded_netrwFileHandlers = 1
+
+  vim.g.loaded_gzip = 1
+  vim.g.loaded_zip = 1
+  vim.g.loaded_zipPlugin = 1
+  vim.g.loaded_tar = 1
+  vim.g.loaded_tarPlugin = 1
+
+  vim.g.loaded_getscript = 1
+  vim.g.loaded_getscriptPlugin = 1
+  vim.g.loaded_vimball = 1
+  vim.g.loaded_vimballPlugin = 1
+  vim.g.loaded_2html_plugin = 1
+
+  vim.g.loaded_matchit = 1
+  vim.g.loaded_logiPat = 1
+  vim.g.loaded_rrhelper = 1
 end
 
 return M

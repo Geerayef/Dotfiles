@@ -1,32 +1,38 @@
-local status, tokyonight = pcall(require, "tokyonight")
+local status, nightfox = pcall(require, "nightfox")
 if not status then
-    print("Colorscheme not found!")
-    return
+  print("Colorscheme not found!")
+  return
 end
 
-tokyonight.setup {
-    style = "moon",
-    lualine_bold = true,
+nightfox.setup({
+  options = {
     styles = {
-        keywords = { italic = false },
+      constants = "bold"
+    },
+    inverse = {
+      match_paren = false,
+      visual = true,
+      search = true,
+    },
+    colorblind = {
+      enable = true,
+      severity = {
+        deutan = 1
+      }
     }
-}
+  }
+})
 
--- tiagovla/TokyoDark config
--- tokyodark.setup({
---     gamma = "1.1"
--- })
+-- tokyonight.setup {
+--     style = "moon",
+--     lualine_bold = true,
+--     styles = {
+--         keywords = { italic = false },
+--     }
+-- }
 
+-- vim.g.nord_borders = true
+-- vim.g.nord_italic = false
 
--- JoosepAlviste/palenightfall config
--- palenightfall.setup()
-
--- navarasu/onedark.nvim (deep, cool, darker)
--- onedark.setup({
---     style = "deep"
--- })
--- onedark.load()
-
--- vim.g.ayucolor = "dark"
-
-vim.cmd("colorscheme tokyonight")
+-- nightfox / duskfox / nordfox / terafox
+vim.cmd("colorscheme duskfox")

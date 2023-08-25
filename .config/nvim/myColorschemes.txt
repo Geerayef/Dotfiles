@@ -1,15 +1,8 @@
 -- @ plugins-setup.lua:
 
 
--- ~  Ayu theme
-use ("CantoroMC/ayu-nvim")
-use ("Shatur/neovim-ayu")
-
 -- ~  Tokyo Night
 use ("folke/tokyonight.nvim")
-
--- ~   OneDark theme
-use ("navarasu/onedark.nvim")
 
 -- ~  Pale Nightfall theme
 use ("JoosepAlviste/palenightfall.nvim")

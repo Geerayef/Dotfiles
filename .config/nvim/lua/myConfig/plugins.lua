@@ -12,7 +12,7 @@ end
 local packer_bootstrap = ensure_packer() -- true if packer was just installed
 
 -- Auto-reload on save
-vim.cmd([[ 
+vim.cmd([[
   augroup packer_user_config
     autocmd!
     autocmd BufWritePost packer.lua source <afile> | PackerSync
@@ -24,7 +24,7 @@ if not status then
   return
 end
 
-packer.startup(function(use)
+packer.startup({function(use)
   use ("wbthomason/packer.nvim")
   use ("nvim-lua/plenary.nvim")
 
@@ -75,7 +75,7 @@ packer.startup(function(use)
   use ("nvim-tree/nvim-tree.lua")
   use ("nvim-tree/nvim-web-devicons")
   use ("windwp/nvim-autopairs")
-  use ("ojroques/nvim-hardline")
+  use ("freddiehaddad/feline.nvim")
 
   -- Breadcrumbs
   use ({
@@ -97,14 +97,20 @@ packer.startup(function(use)
 
   -- Themes
   use ("folke/tokyonight.nvim")
-  use ("navarasu/onedark.nvim")
-  use ("JoosepAlviste/palenightfall.nvim")
-  use ("ayu-theme/ayu-vim")
+  use ("EdenEast/nightfox.nvim")
+  use ("shaunsingh/nord.nvim")
 
   if packer_bootstrap then
     require("packer").sync()
   end
-end)
+end,
+config = {
+  display = {
+    open_fn = function()
+      return require('packer.util').float({ border = 'single' })
+    end
+  }
+}})
 
 if packer_bootstrap then
   print "=================================="

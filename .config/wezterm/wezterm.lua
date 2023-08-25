@@ -17,7 +17,7 @@ config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.95
 config.window_decorations = "NONE"
 config.adjust_window_size_when_changing_font_size = false
 
@@ -29,14 +29,13 @@ config.adjust_window_size_when_changing_font_size = false
 -- tokyonight / -storm / _storm / _moon / _night
 -- Trim Yer Beard (terminal.sexy)
 -- VWbug (terminal.sexy)
--- Sublette / Subliminal
--- Relaxed [(Gogh)]
+-- Sublette
 -- Rouge 2
 -- Palenight (Gogh)
 -- nord / fox / Nord (Gogh)
 -- Kasugano (terminal.sexy)
 
-local theme = "Sublette"
+local theme = "Rouge 2"
 config.color_scheme = theme
 
 -- ~  Font
@@ -49,7 +48,7 @@ config.font = wezterm.font_with_fallback {
     },
     "JetBrains Mono",
 }
-config.font_size = 16
+config.font_size = 14
 config.line_height = 1.1
 
 ------------------------------------------------------------
