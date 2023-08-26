@@ -36,7 +36,7 @@ window:
 
   decorations: none
 
-  opacity: 0.9
+  opacity: 0.925
 
   startup_mode: Windowed
 
@@ -499,7 +499,7 @@ schemes:
 #5. *TokyoNight
 #6. *TokyoNightMoon
 
-colors: *DoomOne
+colors: *TokyoNightMoon
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
