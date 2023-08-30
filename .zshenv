@@ -12,7 +12,7 @@ export HISTCONTROL=ignoreboth:erasedups
 export TERM="alacritty"
 export EDITOR="$(which nvim)"
 export SUDO_EDITOR="$(which nvim)"
-export VISUAL="$(which codium)"
+export VISUAL="$(which nvim)"
 export RUFF_CACHE_DIR="$HOME/.cache/ruff"
 export CONDA_AUTO_ACTIVATE_BASE=false
 

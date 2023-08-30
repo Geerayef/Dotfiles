@@ -136,6 +136,6 @@
   "files.associations": {
     "*.rmd": "markdown"
   },
-  "window.zoomLevel": 1,
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "window.zoomLevel": 2
 }

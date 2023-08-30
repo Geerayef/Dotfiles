@@ -30,7 +30,7 @@ window:
 
   padding:
     x: 16
-    y: 20
+    y: 8
 
   dynamic_padding: true
 
@@ -499,7 +499,7 @@ schemes:
 #5. *TokyoNight
 #6. *TokyoNightMoon
 
-colors: *TokyoNightMoon
+colors: *AyuMirage
 
 #######################################
 ##       END OF COLOR SCHEMES        ##

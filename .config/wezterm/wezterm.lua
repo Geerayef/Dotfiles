@@ -7,15 +7,21 @@ end
 
 ------------------------------------------------------------
 
--- # APPEARANCE # --
+-- ~ APPEARANCE ~ --
 
-------------------------------------------------------------
+-----------------------------------------------------------
 
 -- ~  Window UI
 
 config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
+config.window_padding = {
+  left = 8,
+  right = 8,
+  top = 16,
+  bottom = 0,
+}
 
 config.window_background_opacity = 0.925
 config.window_decorations = "NONE"
@@ -27,13 +33,13 @@ config.adjust_window_size_when_changing_font_size = false
 -- ayu / Ayu / Dark (Gogh) / Mirage [(Gogh)]
 -- Tokyo Night [(Gogh)] / Moon / Storm [(Gogh)]
 -- tokyonight / -storm / _storm / _moon / _night
--- Trim Yer Beard (terminal.sexy)
--- VWbug (terminal.sexy)
 -- Sublette
 -- Rouge 2
 -- Palenight (Gogh)
 -- nord / fox / Nord (Gogh)
 -- Kasugano (terminal.sexy)
+-- Trim Yer Beard (terminal.sexy)
+-- VWbug (terminal.sexy)
 
 local theme = "Rouge 2"
 config.color_scheme = theme
