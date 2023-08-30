@@ -1,24 +1,13 @@
--- #  ~ Statusline
--- fns = require("myConfig.core.functions")
--- vim.cmd([[
--- function! NvimMode()
---     return luaeval('fns.NvimMode()')
--- endfunction
--- ]])
--- local statusline_str = "%-8.{NvimMode()} - %-3.m - %-4.r - %-32.{FugitiveStatusline()} %= %-t %= - %{get(b:,'gitsigns_status','')} - %4.l:%-3.c (%3.p%%)"
+local opt = vim.opt
 
 M.disable_builtin()
-
-local opt = vim.opt
 
 opt.shell = "/usr/bin/zsh"
 
 -- ~  File
 vim.cmd("syntax enable")
-vim.cmd("filetype plugin indent on")
+vim.cmd("filetype indent on")
 opt.fileformats = "unix"
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
 opt.undofile = true
 opt.formatoptions:append("j")
 opt.nrformats:remove("octal")
@@ -39,6 +28,7 @@ opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.virtualedit = "block"
 
 -- ~  Search
+opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true
 opt.smartcase = true
 opt.hlsearch = true
@@ -50,9 +40,8 @@ opt.cursorline = true
 opt.cursorlineopt = "number"
 opt.number = true
 opt.relativenumber = true
-opt.laststatus = 3
+opt.laststatus = 0
 opt.showtabline = 0
--- opt.statusline = statusline_str
 opt.title = false
 opt.showcmd = false
 opt.showmode = false
@@ -62,7 +51,7 @@ opt.signcolumn = "yes"
 opt.termguicolors = true
 opt.ruler = false
 opt.wildmenu = true
-opt.pumblend = 17
+opt.pumblend = 20
 opt.wildmode = "longest:full"
 opt.wildoptions = "pum"
 
@@ -75,5 +64,4 @@ opt.splitright = true
 opt.splitbelow = true
 opt.scrolloff = 4
 opt.sidescrolloff = 4
-opt.mouse = "a"
 

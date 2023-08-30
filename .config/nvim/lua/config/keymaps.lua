@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
-local keymap = vim.keymap.set
-local truezen = require("true-zen")
 
--------------------------------------------------------------------------------------------------------
+local keymap = vim.keymap.set
 
 -- ~  General keymaps
 
@@ -46,10 +44,8 @@ keymap("t", "<Esc>", "<C-\\><C-n>")
 
 -- ~  Plugin keymaps
 
--- nvim-tree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>")
 
--- Telescope - see `:help telescope.builtin`
+-- Telescope
 keymap("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", { desc = "[?] Find recently opened files" })
 keymap("n", "<leader><space>", "<cmd>Telescope buffers<CR>", { desc = "[ ] Find existing buffers" })
 keymap("n", "<leader>/", function()
@@ -64,29 +60,19 @@ keymap("n", "<leader>tsh", "<cmd>Telescope help_tags<CR>", { desc = "[S]earch [H
 keymap("n", "<leader>tsw", "<cmd>Telescope grep_string<CR>", { desc = "[S]earch current [W]ord" })
 keymap("n", "<leader>tsg", "<cmd>Telescope live_grep<CR>", { desc = "[S]earch by [G]rep" })
 keymap("n", "<leader>tsd", "<cmd>Telescope diagnostics<CR>", { desc = "[S]earch [D]iagnostics" })
+keymap("n", "<leader>fb", "<cmd>Telescope file_browser<CR><ESC>", { desc = "[F]ile [B]rowser" }, { noremap = true })
 
 -- Git
-keymap("n", "<leader>gbt", "<cmd>Gitsigns toggle_current_line_blame<CR>")
+keymap("n", "<leader>gbt", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "[G]it [B]lame [T]oggle"})
 
--- ~  Diagnostic keymaps
+-- Diagnostic keymaps
 keymap("n", "[d", vim.diagnostic.goto_prev)
 keymap("n", "]d", vim.diagnostic.goto_next)
-keymap("n", "e?", "<cmd>lua vim.diagnostic.open_float()<CR>", { silent = true, })
+keymap("n", "<leader>df", "<cmd>lua vim.diagnostic.open_float()<CR>", { silent = true, })
 
--- ~  Breadcrumbs
-keymap("n", "<leader>bc", "<cmd>Navbuddy<CR>")
-
--- ~ Zen
-keymap("n", "<leader>zn", function()
-  local first = 0
-  local last = vim.api.nvim_buf_line_count(0)
-  truezen.narrow(first, last)
-end, { noremap = true })
-keymap("v", "<leader>zn", function()
-  local first = vim.fn.line("v")
-  local last = vim.fn.line(".")
-  truezen.narrow(first, last)
-end, { noremap = true })
-keymap("n", "<leader>zf", truezen.focus, { noremap = true })
-keymap("n", "<leader>zm", truezen.minimalist, { noremap = true })
-keymap("n", "<leader>za", truezen.ataraxis, { noremap = true })
+-- Zen
+keymap("n", "<leader>zn", "<cmd>TZNarrow<CR>", { noremap = true })
+keymap("v", "<leader>zn", "<cmd>'<,'>TZNarrow<CR>", { noremap = true })
+keymap("n", "<leader>zf", "<cmd>TZFocus<CR>", { noremap = true })
+keymap("n", "<leader>zm", "<cmd>TZMinimalist<CR>", { noremap = true })
+keymap("n", "<leader>za", "<cmd>TZAtaraxis<CR>", { noremap = true })
