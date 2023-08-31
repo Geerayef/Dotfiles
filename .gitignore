@@ -4,4 +4,4 @@ Dotfiles/
 .config/zsh/.zcompdump
 .config/zsh/.zsh_plugins.zsh
 .config/zsh/.p10k.zsh
-.config/nvim/plugin/packer_compiled.lua
+.config/nvim/lazy-lock.json

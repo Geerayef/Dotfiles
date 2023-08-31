@@ -54,6 +54,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
+    event = "BufEnter",
     opts = {
       show_current_context = true,
     },

@@ -135,7 +135,10 @@ return {
           }),
         }),
         window = {
-          completion = cmp.config.window.bordered({}),
+          completion = cmp.config.window.bordered({
+            scrollbar = false,
+            winhighlight = "",
+          }),
           documentation = cmp.config.window.bordered({})
         },
         sources = cmp.config.sources({
@@ -152,30 +155,32 @@ return {
         },
         formatting = {
           fields = { "kind", "abbr", "menu" },
-          format = function (entry, vim_item)
+          format = function (entry, item)
             if vim.tbl_contains({ 'path' }, entry.source.name) then
               local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
               if icon then
-                vim_item.kind = icon
-                vim_item.kind_hl_group = hl_group
+                item.kind = icon
+                item.kind_hl_group = hl_group
+                return item
               end
             end
-            local kind = lspkind.cmp_format({
+            return lspkind.cmp_format({
+              with_text = false,
               mode = "symbol",
               maxwidth = 50,
               menu = ({
                 nvim_lsp = "[LSP]",
-                luasnip = "[SNIP]",
                 nvim_lua = "[Lua]",
+                luasnip = "[SNIP]",
                 path = "[Path]",
                 buffer = "[Buffer]",
                 cmdline = "[CMD]",
               }),
-            })(entry, vim_item)
-            local strings = vim.split(kind.kind, "%s", { trimempty = true })
-            kind.kind = " " .. (strings[1] or "") .. " "
-            kind.menu = "    (" .. (strings[2] or "") .. ")"
-            return kind
+            })(entry, item)
+            -- local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            -- kind.kind = " " .. (strings[1] or "") .. " "
+            -- kind.menu = "    (" .. (strings[2] or "") .. ")"
+            -- return kind
           end,
         },
         view = ({

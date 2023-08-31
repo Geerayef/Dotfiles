@@ -51,7 +51,7 @@ opt.signcolumn = "yes"
 opt.termguicolors = true
 opt.ruler = false
 opt.wildmenu = true
-opt.pumblend = 20
+opt.pumblend = 0
 opt.wildmode = "longest:full"
 opt.wildoptions = "pum"
 

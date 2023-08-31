@@ -23,7 +23,7 @@ config.window_padding = {
   bottom = 0,
 }
 
-config.window_background_opacity = 0.925
+config.window_background_opacity = 0.95
 config.window_decorations = "NONE"
 config.adjust_window_size_when_changing_font_size = false
 
