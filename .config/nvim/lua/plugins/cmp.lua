@@ -54,6 +54,11 @@ return {
         sources = {
           { name = "buffer" }
         },
+        window = {
+          completion = cmp.config.window.bordered({
+            winhighlight = "Normal:CmpPmenu",
+          }),
+        },
         view = {
           entries = { name = "wildmenu", separator = ' | ' }
         },
@@ -70,6 +75,11 @@ return {
             { name = "cmdline" }
           }
         ),
+        window = {
+          completion = cmp.config.window.bordered({
+            winhighlight = "Normal:CmpPmenu",
+          }),
+        },
         view = {
           entries = { name = "custom" }
         }
@@ -137,7 +147,7 @@ return {
         window = {
           completion = cmp.config.window.bordered({
             scrollbar = false,
-            winhighlight = "",
+            winhighlight = "Normal:CmpPmenu",
           }),
           documentation = cmp.config.window.bordered({})
         },
