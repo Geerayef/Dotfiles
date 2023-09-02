@@ -6,11 +6,12 @@ $git_branch\
 $git_state\
 $git_status\
 $line_break\
-$python\
 $character"""
 
 right_format="""
 $cmd_duration\
+$ocaml\
+$python\
 """
 
 add_newline = true
@@ -22,9 +23,9 @@ read_only_style = "red bold"
 style = "#46D9FF bold"
 
 [character]
-success_symbol = "[❯](#46D9FF)" # green
-error_symbol = "[❯](#FF6C6B)" # red
-vimcmd_symbol = "[❮](#DA8548)" # blue
+success_symbol = "[❯](#46D9FF)"
+error_symbol = "[❯](#FF6C6B)"
+vimcmd_symbol = "[❮](#DA8548)"
 
 [git_branch]
 format = "[$branch]($style)"
@@ -48,7 +49,20 @@ style = "#202328"
 format = "[$duration]($style) "
 style = "#F9AF4F"
 
+[ocaml]
+format = '[$symbol($switch_indicator$switch_name): ($version)]($style)'
+version_format = "v${major}.${minor}" # Variables: raw, major, minor & patch
+# symbol = "🐫 "
+symbol = "🐪 "
+global_switch_indicator = ""
+local_switch_indicator = "*"
+detect_extensions = ["opam", "ml", "mli", "re", "rei"]
+detect_files = ["dune", "dune-project", "jbuild", "jbuild-ignore", ".merlin", "ocamlformat"]
+detect_folders = ["_opam", "esy.lock"]
+style = "#95C30A bold"
+disabled = false
+
 [python]
-format = "[$virtualenv]($style) "
+format = '[$virtualenv]($style) '
 style = "#98BE65"
 symbol = ""

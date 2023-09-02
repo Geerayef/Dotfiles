@@ -52,6 +52,22 @@ keymap("n", "<leader>/", function()
   require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
     winblend = 1,
     previewer = true,
+    layout_strategy = "vertical",
+    layout_config = {
+      width = 0.95,
+      height = 0.9,
+      prompt_position = "top",
+      vertical = {
+        width = 0.75,
+        height = 0.75,
+        preview_height = 0.5,
+      },
+      flex = {
+        horizontal = {
+          preview_width = 0.9,
+        },
+      },
+    },
   })
 end, { desc = "[/] Fuzzily search in current buffer]" })
 keymap("n", "<leader>tb", "<cmd>Telescope builtin<CR>", { desc = "[T]elescope [B]uiltin" })
@@ -60,7 +76,7 @@ keymap("n", "<leader>tsh", "<cmd>Telescope help_tags<CR>", { desc = "[S]earch [H
 keymap("n", "<leader>tsw", "<cmd>Telescope grep_string<CR>", { desc = "[S]earch current [W]ord" })
 keymap("n", "<leader>tsg", "<cmd>Telescope live_grep<CR>", { desc = "[S]earch by [G]rep" })
 keymap("n", "<leader>tsd", "<cmd>Telescope diagnostics<CR>", { desc = "[S]earch [D]iagnostics" })
-keymap("n", "<leader>fb", "<cmd>Telescope file_browser<CR><ESC>", { desc = "[F]ile [B]rowser" }, { noremap = true })
+keymap("n", "<leader>fb", "<cmd>Telescope file_browser<CR>", { desc = "[F]ile [B]rowser" }, { noremap = true })
 
 -- Git
 keymap("n", "<leader>gbt", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "[G]it [B]lame [T]oggle"})

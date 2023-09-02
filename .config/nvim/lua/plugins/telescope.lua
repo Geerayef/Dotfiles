@@ -63,7 +63,10 @@ return {
             themes.get_dropdown({}),
           },
           file_browser = {
-            depth = 3,
+            cwd_to_path = true,
+            grouped = true,
+            hidden = true,
+            depth = 2,
             auto_depth = false,
             hijack_netrw = true,
             use_fd = true,
