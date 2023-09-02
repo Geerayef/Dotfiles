@@ -24,10 +24,10 @@ Zus.HIGHLIGHT= {
     ZusHLSelect         = "%#ZusHLVisual#",
     ZusHLReplace        = "%#ZusHLVisual#",
     ZusHLTerminal       = "%#ZusHLVisual#",
-    ZusLSPError         = "ZusLSPError",
-    ZusLSPWarn          = "ZusLSPWarn",
-    ZusLSPHint          = "ZusLSPHint",
-    ZusLSPInfo          = "ZusLSPInfo",
+    ZusLSPError         = "%#ZusLSPError#",
+    ZusLSPWarn          = "%#ZusLSPWarn#",
+    ZusLSPHint          = "%#ZusLSPHint#",
+    ZusLSPInfo          = "%#ZusLSPInfo#",
 }
 
 Zus.diagnostic_icons = {
@@ -45,7 +45,7 @@ local statusline_fg = Color.from_hex(palette.fg2)
 -- ~  Helper functions
 
 local get_diagnostic_stats = function()
-    local error_count, warning_count, info_count, hint_count
+    local error_count, warn_count, info_count, hint_count
     local diagnostics = vim.diagnostic.get(0)
     local count = { 0, 0, 0, 0 }
     for _, diagnostic in ipairs(diagnostics) do
@@ -54,14 +54,14 @@ local get_diagnostic_stats = function()
         end
     end
     error_count = count[vim.diagnostic.severity.ERROR]
-    warning_count = count[vim.diagnostic.severity.WARN]
+    warn_count = count[vim.diagnostic.severity.WARN]
     info_count = count[vim.diagnostic.severity.INFO]
     hint_count = count[vim.diagnostic.severity.HINT]
-    return error_count, warning_count, info_count, hint_count
+    return error_count, warn_count, info_count, hint_count
 end
 
 Diagnostics = function()
-    local signs = { error = " ", warn = " ", hint = " ", info = " " }
+    local signs = { error = "  ", warn = "  ", hint = "  ", info = "  " }
     local error, warn, info, hint = get_diagnostic_stats()
     local result = (error > 0 and signs.error .. error or "")
         .. (warn > 0 and signs.warn .. warn or "")
@@ -71,9 +71,16 @@ Diagnostics = function()
     return result
 end
 
-Git_branch = function ()
-    local branch = vim.fn.FugitiveStatusline()
-    return branch
+Git_branch = function()
+    local branch_name = vim.fn.FugitiveStatusline()
+    local clean_name = string.match(branch_name, "%(([a-zA-Z0-9]+)%)")
+    local git_icon = " "
+
+    if clean_name == nil then
+        return ""
+    end
+
+    return git_icon .. clean_name
 end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
@@ -83,14 +90,14 @@ end
 Zus.components = {}
 local zc = Zus.components
 
-zc.start_spacing        = "%(| %)"
-zc.end_spacing          = "%( |%)"
-zc.mode                 = "%-8.(%{%v:lua.F.NvimMode()%}%)"
-zc.file_name            = "%-0.(%t%)"
+zc.start_spacing        = "%-2.(| %)"
+zc.end_spacing          = "%2.( |%)"
+zc.mode                 = "%16.(%{%v:lua.F.NvimMode()%}%)"
+zc.file_name            = "%-24.(%t%)"
 zc.file_status          = "%(%-3.m - %-4.r%)"
-zc.git_status           = "%(%{get(b:,'gitsigns_status','')}%)"
-zc.git_branch           = "%(%{%v:lua.Git_branch()%}%)"
-zc.lsp_diagnostics      = "%(%{%v:lua.Diagnostics()%}%)"
+zc.git_status           = "%10.(%{get(b:,'gitsigns_status','')}%)"
+zc.git_branch           = "%8.(%{%v:lua.Git_branch()%}%)"
+zc.lsp_diagnostics      = "%16.(%{%v:lua.Diagnostics()%}%)"
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
@@ -101,7 +108,7 @@ local zs = Zus.sections
 
 Zus.sections.left  = zc.start_spacing .. zc.file_name .. "%<"
 Zus.sections.mid   = "%=" .. zc.mode .. "%="
-Zus.sections.right = zc.git_status .. zc.git_branch .. zc.lsp_diagnostics .. zc.end_spacing
+Zus.sections.right = zc.git_status .. " " .. zc.git_branch .. zc.lsp_diagnostics .. zc.end_spacing
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
