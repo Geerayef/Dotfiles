@@ -489,17 +489,156 @@ schemes:
       - { index: 16, color: '0xff966c' }
       - { index: 17, color: '0xc53b53' }
     
-    
+  ### Nightfox ###
+  Nightfox: &Nightfox
+    primary:
+      background: '0x192330'
+      foreground: '0xcdcecf'
+    normal:
+      black:   '0x393b44'
+      red:     '0xc94f6d'
+      green:   '0x81b29a'
+      yellow:  '0xdbc074'
+      blue:    '0x719cd6'
+      magenta: '0x9d79d6'
+      cyan:    '0x63cdcf'
+      white:   '0xdfdfe0'
+    bright:
+      black:   '0x575860'
+      red:     '0xd16983'
+      green:   '0x8ebaa4'
+      yellow:  '0xe0c989'
+      blue:    '0x86abdc'
+      magenta: '0xbaa1e2'
+      cyan:    '0x7ad5d6'
+      white:   '0xe4e4e5'
+    indexed_colors:
+      - { index: 16, color: '0xf4a261' }
+      - { index: 17, color: '0xd67ad2' }
+
+  ### Duskfox ###
+  Duskfox: &Duskfox
+    primary:
+      background: '0x232136'
+      foreground: '0xe0def4'
+    normal:
+      black:   '0x393552'
+      red:     '0xeb6f92'
+      green:   '0xa3be8c'
+      yellow:  '0xf6c177'
+      blue:    '0x569fba'
+      magenta: '0xc4a7e7'
+      cyan:    '0x9ccfd8'
+      white:   '0xe0def4'
+    bright:
+      black:   '0x47407d'
+      red:     '0xf083a2'
+      green:   '0xb1d196'
+      yellow:  '0xf9cb8c'
+      blue:    '0x65b1cd'
+      magenta: '0xccb1ed'
+      cyan:    '0xa6dae3'
+      white:   '0xe2e0f7'
+    indexed_colors:
+      - { index: 16, color: '0xea9a97' }
+      - { index: 17, color: '0xeb98c3' }
+
+  ### Carbonfox ###
+  Carbonfox: &Carbonfox
+    primary:
+      background: '0x161616'
+      foreground: '0xf2f4f8'
+    normal:
+      black:   '0x282828'
+      red:     '0xee5396'
+      green:   '0x25be6a'
+      yellow:  '0x08bdba'
+      blue:    '0x78a9ff'
+      magenta: '0xbe95ff'
+      cyan:    '0x33b1ff'
+      white:   '0xdfdfe0'
+    bright:
+      black:   '0x484848'
+      red:     '0xf16da6'
+      green:   '0x46c880'
+      yellow:  '0x2dc7c4'
+      blue:    '0x8cb6ff'
+      magenta: '0xc8a5ff'
+      cyan:    '0x52bdff'
+      white:   '0xe4e4e5'
+    indexed_colors:
+      - { index: 16, color: '0x3ddbd9' }
+      - { index: 17, color: '0xff7eb6' }
+
+  ### Terafox ###
+  Terafox: &Terafox
+    primary:
+      background: '0x152528'
+      foreground: '0xe6eaea'
+    normal:
+      black:   '0x2f3239'
+      red:     '0xe85c51'
+      green:   '0x7aa4a1'
+      yellow:  '0xfda47f'
+      blue:    '0x5a93aa'
+      magenta: '0xad5c7c'
+      cyan:    '0xa1cdd8'
+      white:   '0xebebeb'
+    bright:
+      black:   '0x4e5157'
+      red:     '0xeb746b'
+      green:   '0x8eb2af'
+      yellow:  '0xfdb292'
+      blue:    '0x73a3b7'
+      magenta: '0xb97490'
+      cyan:    '0xafd4de'
+      white:   '0xeeeeee'
+    indexed_colors:
+      - { index: 16, color: '0xff8349' }
+      - { index: 17, color: '0xcb7985' }
+
+  ### Nordfox ###
+  Nordfox: &Nordfox
+    primary:
+      background: '0x2e3440'
+      foreground: '0xcdcecf'
+    normal:
+      black:   '0x3b4252'
+      red:     '0xbf616a'
+      green:   '0xa3be8c'
+      yellow:  '0xebcb8b'
+      blue:    '0x81a1c1'
+      magenta: '0xb48ead'
+      cyan:    '0x88c0d0'
+      white:   '0xe5e9f0'
+    bright:
+      black:   '0x465780'
+      red:     '0xd06f79'
+      green:   '0xb1d196'
+      yellow:  '0xf0d399'
+      blue:    '0x8cafd2'
+      magenta: '0xc895bf'
+      cyan:    '0x93ccdc'
+      white:   '0xe7ecf4'
+    indexed_colors:
+      - { index: 16, color: '0xc9826b' }
+      - { index: 17, color: '0xbf88bc' }
+
 #  ~ MyThemes
 
-#1. *DoomOne
-#2. *Dracula
-#3. *AyuDark
-#4. *AyuMirage
-#5. *TokyoNight
-#6. *TokyoNightMoon
+#1.  *DoomOne
+#2.  *Dracula
+#3.  *AyuDark
+#4.  *AyuMirage
+#5.  *TokyoNight
+#6.  *TokyoNightMoon
+#7.  *Nightfox
+#8.  *Duskfox
+#9.  *Carbonfox
+#10. *Terafox
+#11. *Nordfox
 
-colors: *AyuMirage
+colors: *Duskfox
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
@@ -548,7 +687,7 @@ colors: *AyuMirage
 cursor:
   style:
     shape: Block
-    blinking: On
+    blinking: Off
 
   # Vi mode cursor style
   #vi_mode_style: 

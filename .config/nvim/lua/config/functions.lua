@@ -2,27 +2,56 @@ local api = vim.api
 
 -- #  ~ Custom, callable functions
 
-M = {}
+F = {}
 
-M.NvimMode = function()
-  local mode_map = {
-    ['n'] = 'NORMAL',
-    ['i'] = 'INSERT',
-    ['R'] = 'REPLACE',
-    ['v'] = 'VISUAL',
-    ['V'] = 'V-LINE',
-    ['^V'] = 'V-BLOCK',
-    ['c'] = 'COMMAND',
-    ['s'] = 'SELECT',
-    ['S'] = 'S-LINE',
-    ['^S'] = 'S-BLOCK',
-    ['t'] = 'TERMINAL',
+F.NvimMode = function()
+  local n = 'NORMAL'  -- ''
+  local v = 'VISUAL'  -- ''
+  local i = 'INSERT'  -- ''
+  local c = 'COMMAND' -- ''
+  local r = 'REPLACE'
+  local s = 'SELECT'
+  local t = 'TERMINAL'
+  local modes = {
+      ['n']     = n,
+      ['no']    = n,
+      ['nov']   = n,
+      ['noV']   = n,
+      ['no\22'] = n,
+      ['niI']   = n,
+      ['niR']   = n,
+      ['niV']   = n,
+      ['nt']    = n,
+      ['ntT']   = n,
+      ['v']     = v,
+      ['vs']    = v,
+      ['V']     = v,
+      ['Vs']    = v,
+      ['\22']   = v,
+      ['\22s']  = v,
+      ['s']     = s,
+      ['S']     = s,
+      ['\19']   = i,
+      ['i']     = i,
+      ['ic']    = i,
+      ['ix']    = i,
+      ['R']     = r,
+      ['Rc']    = r,
+      ['Rx']    = r,
+      ['Rv']    = r,
+      ['Rvc']   = r,
+      ['Rvx']   = r,
+      ['c']     = c,
+      ['cv']    = c,
+      ['ce']    = c,
+      ['r']     = r,
+      ['!']     = '󰩌',
+      ['t']     = t,
   }
-
-  return mode_map[api.nvim_get_mode().mode] or '[Unknown]'
+  return modes[vim.fn.mode()] or '[Unknown]'
 end
 
-M.disable_builtin = function ()
+F.disable_builtin = function ()
   vim.g.loaded_netrw = 1
   vim.g.loaded_netrwPlugin = 1
   vim.g.loaded_netrwSettings = 1
@@ -45,4 +74,4 @@ M.disable_builtin = function ()
   vim.g.loaded_rrhelper = 1
 end
 
-return M
+return F

@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-M.disable_builtin()
+F.disable_builtin()
 
 opt.shell = "/usr/bin/zsh"
 
@@ -40,7 +40,7 @@ opt.cursorline = true
 opt.cursorlineopt = "number"
 opt.number = true
 opt.relativenumber = true
-opt.laststatus = 0
+opt.laststatus = 3
 opt.showtabline = 0
 opt.title = false
 opt.showcmd = false

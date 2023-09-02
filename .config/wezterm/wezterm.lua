@@ -33,15 +33,15 @@ config.adjust_window_size_when_changing_font_size = false
 -- ayu / Ayu / Dark (Gogh) / Mirage [(Gogh)]
 -- Tokyo Night [(Gogh)] / Moon / Storm [(Gogh)]
 -- tokyonight / -storm / _storm / _moon / _night
+-- nightfox / duskfox / terafox / carbonfox / nordfox
 -- Sublette
 -- Rouge 2
 -- Palenight (Gogh)
--- nord / fox / Nord (Gogh)
 -- Kasugano (terminal.sexy)
 -- Trim Yer Beard (terminal.sexy)
 -- VWbug (terminal.sexy)
 
-local theme = "Rouge 2"
+local theme = "duskfox"
 config.color_scheme = theme
 
 -- ~  Font
