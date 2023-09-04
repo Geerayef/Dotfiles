@@ -48,7 +48,7 @@ F.NvimMode = function()
       ['!']     = '󰩌',
       ['t']     = t,
   }
-  return modes[vim.fn.mode()] or '[Unknown]'
+  return modes[vim.api.nvim_get_mode().mode] or '[Unknown]'
 end
 
 F.disable_builtin = function ()

@@ -27,11 +27,11 @@ return {
               ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
             },
           },
+          initial_mode = "insert",
           selection_strategy = "reset",
           sorting_strategy = "ascending",
           scroll_strategy = "cycle",
           color_devicons = true,
-          winblend = 1,
           layout_strategy = "horizontal",
           layout_config = {
             width = 0.95,
@@ -42,14 +42,13 @@ return {
                 if cols > 200 then
                   return math.floor(cols * 0.4)
                 else
-                  return math.floor(cols * 0.6)
+                  return math.floor(cols * 0.5)
                 end
               end,
             },
             vertical = {
               width = 0.9,
-              height = 0.95,
-              preview_height = 0.5,
+              height = 0.85,
             },
             flex = {
               horizontal = {
@@ -58,19 +57,44 @@ return {
             },
           },
         },
+        pickers = {
+          current_buffer_fuzzy_find = {
+            preview = true,
+            skip_empty_lines = true,
+            layout_strategy = "vertical",
+            layout_config = {
+              prompt_position = "top",
+              vertical = {
+                width = 0.75,
+                height = 0.9,
+                preview_height = 0.5,
+              },
+            },
+          },
+          find_files = {
+            find_command = vim.fn.executable "fdfind" == 1 and { "fdfind", "--strip-cwd-prefix", "--type", "f" } or nil,
+          },
+          buffers = {
+            sort_lastused = true,
+            sort_mru = true,
+          },
+        },
         extensions = {
           ["ui-select"] = {
             themes.get_dropdown({}),
           },
           file_browser = {
+            initial_mode = "normal",
             cwd_to_path = true,
             grouped = true,
             hidden = true,
             depth = 2,
             auto_depth = false,
+            display_stat = { date = false, size = false },
             hijack_netrw = true,
             use_fd = true,
             git_status = true,
+            quiet = true,
             mappings = {
               ["i"] = {
                 ["<A-c>"] = fb_actions.create,
@@ -106,15 +130,6 @@ return {
                 ["#"] = actions.toggle_selection,
               },
             },
-          },
-        },
-        pickers = {
-          find_files = {
-            find_command = vim.fn.executable "fdfind" == 1 and { "fdfind", "--strip-cwd-prefix", "--type", "f" } or nil,
-          },
-          buffers = {
-            sort_lastused = true,
-            sort_mru = true,
           },
         },
       })

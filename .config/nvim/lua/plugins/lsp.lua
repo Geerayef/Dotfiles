@@ -1,5 +1,4 @@
 return {
-  -- ~  Neovim LSP
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -8,54 +7,18 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
     },
+
     opts = {
-      -- ~  vim.diagnostic.config()
-      diagnostics = {
-        underline = true,
-        virtual_text = {
-          spacing = 4,
-          severity = nil,
-          source = "if_many",
-          format = nil,
-          prefix = "●",
-        },
-        signs = true,
-        float = {
-          source = "if_many",
-          wrap_at = 25,
-          format = function(d)
-            if not d.code and not d.user_data then
-              return d.message
-            end
-
-            local t = vim.deepcopy(d)
-            local code = d.code
-            if not code then
-              if not d.user_data.lsp then
-                return d.message
-              end
-
-              code = d.user_data.lsp.code
-            end
-            if code then
-              t.message = string.format("%s [%s]", t.message, code):gsub("1. ", "")
-            end
-            return t.message
-          end,
-        },
-        severity_sort = true,
-        update_in_insert = false,
-      },
+      diagnostics = require("config.diagnostics"),
       inlay_hints = { enabled = false },
       autoformat = false,
-      -- ~  Global capabilities
+
       capabilites = {},
-      -- ~  LSP Servers
+
       servers = {
         bashls = {
           bashIde = {
             globPattern = "**/*@(.sh|.inc|.bash|.command|.zsh|.zshrc|.zshenv)",
-            enableSourceErrorDiagnostics = true
           }
         },
         clangd = {},
@@ -101,6 +64,7 @@ return {
         rust_analyzer = {},
       },
     },
+
     config = function(_, opts)
       local has_lspconfig, lspconfig = pcall(require, "lspconfig")
       if not has_lspconfig then return end
@@ -111,14 +75,14 @@ return {
       local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
       if not has_cmp then return end
 
+      vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
+
       local lsp_attach = function(client, bufnr)
         K.LspKeymaps(client, bufnr)
         vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
           vim.lsp.buf.format()
         end, { desc = "Format current buffer with LSP" })
       end
-      
-      vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
       local capabilities = vim.tbl_deep_extend(
         "force",
@@ -142,9 +106,19 @@ return {
         end,
       })
 
+      lspconfig.ocamllsp.setup({
+        cmd = { "ocamllsp" },
+        filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
+        root_dir = lspconfig.util.root_pattern("*.opam", "ocamlformat", "esy.json", "package.json", ".git", "dune-project", "dune-workspace"),
+        on_attach = lsp_attach,
+        capabilities = capabilities
+      })
+
     end
   },
+
   -- ~ Mason
+
   {
     "williamboman/mason.nvim",
     cmd = "Mason",

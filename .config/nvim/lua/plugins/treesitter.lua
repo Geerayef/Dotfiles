@@ -9,7 +9,13 @@ return {
       treesitter.setup({
         highlight = { enable = true },
         autotag = { enable = true },
-        indent = { enable = true, disable = { "python" } },
+        indent = {
+          enable = true,
+          disable = {
+            "python",
+            "ocaml"
+          }
+        },
         incremental_selection = {
           enable = false,
           keymaps = {
@@ -23,8 +29,9 @@ return {
           "c",
           "lua",
           "luadoc",
-          "rust",
+          "ocaml",
           "python",
+          "rust",
           "vim",
           "yaml",
         },

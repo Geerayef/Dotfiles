@@ -48,28 +48,7 @@ keymap("t", "<Esc>", "<C-\\><C-n>")
 -- Telescope
 keymap("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", { desc = "[?] Find recently opened files" })
 keymap("n", "<leader><space>", "<cmd>Telescope buffers<CR>", { desc = "[ ] Find existing buffers" })
-keymap("n", "<leader>/", function()
-  require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
-    winblend = 1,
-    previewer = true,
-    layout_strategy = "vertical",
-    layout_config = {
-      width = 0.95,
-      height = 0.9,
-      prompt_position = "top",
-      vertical = {
-        width = 0.75,
-        height = 0.75,
-        preview_height = 0.5,
-      },
-      flex = {
-        horizontal = {
-          preview_width = 0.9,
-        },
-      },
-    },
-  })
-end, { desc = "[/] Fuzzily search in current buffer]" })
+keymap("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "[/] Fuzzily search in current buffer]" })
 keymap("n", "<leader>tb", "<cmd>Telescope builtin<CR>", { desc = "[T]elescope [B]uiltin" })
 keymap("n", "<leader>tsf", "<cmd>Telescope find_files<CR>", { desc = "[S]earch [F]iles" })
 keymap("n", "<leader>tsh", "<cmd>Telescope help_tags<CR>", { desc = "[S]earch [H]elp" })
@@ -92,3 +71,9 @@ keymap("v", "<leader>zn", "<cmd>'<,'>TZNarrow<CR>", { noremap = true })
 keymap("n", "<leader>zf", "<cmd>TZFocus<CR>", { noremap = true })
 keymap("n", "<leader>zm", "<cmd>TZMinimalist<CR>", { noremap = true })
 keymap("n", "<leader>za", "<cmd>TZAtaraxis<CR>", { noremap = true })
+
+-- Tmux
+keymap("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { noremap = true })
+keymap("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { noremap = true })
+keymap("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", { noremap = true })
+keymap("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", { noremap = true })

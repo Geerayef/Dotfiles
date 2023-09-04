@@ -17,13 +17,13 @@ local Color = require('nightfox.lib.color')
 Zus.HIGHLIGHT= {
     ZusHL               = "%#ZusHL#",
     ZusHLMode           = "%#ZusHLMode#",
-    ZusHLNormal         = "%#ZusHLNormal#",
-    ZusHLVisual         = "%#ZusHLVisual#",
-    ZusHLInsert         = "%#ZusHLInsert#",
-    ZusHLCommand        = "%#ZusHLCommand#",
-    ZusHLSelect         = "%#ZusHLVisual#",
-    ZusHLReplace        = "%#ZusHLVisual#",
-    ZusHLTerminal       = "%#ZusHLVisual#",
+    -- ZusHLNormal         = "%#ZusHLNormal#",
+    -- ZusHLVisual         = "%#ZusHLVisual#",
+    -- ZusHLInsert         = "%#ZusHLInsert#",
+    -- ZusHLCommand        = "%#ZusHLCommand#",
+    -- ZusHLSelect         = "%#ZusHLVisual#",
+    -- ZusHLReplace        = "%#ZusHLVisual#",
+    -- ZusHLTerminal       = "%#ZusHLVisual#",
     ZusLSPError         = "%#ZusLSPError#",
     ZusLSPWarn          = "%#ZusLSPWarn#",
     ZusLSPHint          = "%#ZusLSPHint#",
@@ -61,13 +61,15 @@ local get_diagnostic_stats = function()
 end
 
 Diagnostics = function()
-    local signs = { error = "  ", warn = "  ", hint = "  ", info = "  " }
+    local zdi = Zus.diagnostic_icons
     local error, warn, info, hint = get_diagnostic_stats()
-    local result = (error > 0 and signs.error .. error or "")
-        .. (warn > 0 and signs.warn .. warn or "")
-        .. (hint > 0 and signs.hint .. hint or "")
-        .. (info > 0 and signs.info .. info or "")
-
+    local result = (error > 0 and zdi.error .. error or "")
+        .. (warn > 0 and zdi.warn .. warn or "")
+        .. (hint > 0 and zdi.hint .. hint or "")
+        .. (info > 0 and zdi.info .. info or "")
+    if #result == 0 then
+        return " "
+    end
     return result
 end
 
@@ -77,10 +79,20 @@ Git_branch = function()
     local git_icon = " "
 
     if clean_name == nil then
-        return ""
+        return " "
     end
 
     return git_icon .. clean_name
+end
+
+Git_status = function()
+    local status = vim.b.gitsigns_status
+    if status == nil then
+        return " "
+    elseif status == "" then
+        return " "
+    end
+    return "[" .. status .. "]"
 end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
@@ -90,14 +102,14 @@ end
 Zus.components = {}
 local zc = Zus.components
 
-zc.start_spacing        = "%-2.(| %)"
-zc.end_spacing          = "%2.( |%)"
-zc.mode                 = "%16.(%{%v:lua.F.NvimMode()%}%)"
-zc.file_name            = "%-24.(%t%)"
-zc.file_status          = "%(%-3.m - %-4.r%)"
-zc.git_status           = "%10.(%{get(b:,'gitsigns_status','')}%)"
-zc.git_branch           = "%8.(%{%v:lua.Git_branch()%}%)"
-zc.lsp_diagnostics      = "%16.(%{%v:lua.Diagnostics()%}%)"
+zc.start_spacing        = "| "
+zc.end_spacing          = " |"
+zc.mode                 = "%8.{%v:lua.F.NvimMode()%}"
+zc.file_name            = "%-24.t"
+zc.file_status          = "%-8.(%-3.m %-4.r%)"
+zc.git_branch           = "%8.{%v:lua.Git_branch()%}"
+zc.git_status           = "%12.{%v:lua.Git_status()%}"
+zc.lsp_diagnostics      = "%16.{%v:lua.Diagnostics()%}"
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
@@ -106,9 +118,9 @@ zc.lsp_diagnostics      = "%16.(%{%v:lua.Diagnostics()%}%)"
 Zus.sections = {}
 local zs = Zus.sections
 
-Zus.sections.left  = zc.start_spacing .. zc.file_name .. "%<"
-Zus.sections.mid   = "%=" .. zc.mode .. "%="
-Zus.sections.right = zc.git_status .. " " .. zc.git_branch .. zc.lsp_diagnostics .. zc.end_spacing
+zs.left  = "%(" .. zc.start_spacing .. zc.file_name .. zc.file_status .. "%)"
+zs.mid   = "%=%(" .. zc.mode .. "%)"
+zs.right = "%=%(" .. zc.git_branch .. zc.git_status .. zc.lsp_diagnostics  .. "%)" .. zc.end_spacing
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
@@ -120,5 +132,6 @@ vim.opt.statusline = string.format("%s%s%s%s",
 )
 
 vim.cmd([[hi ZusHL guifg=statusline_fg guibg=statusline_bg]])
+vim.cmd([[hi ZusHLMode guifg=#ab1000 guibg=#ffff00]])
 
 return Zus

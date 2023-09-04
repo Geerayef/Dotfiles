@@ -15,20 +15,20 @@ return {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     opts = function()
-        local npairs = require("nvim-autopairs.completion.cmp")
-        local cmp = require("cmp")
-        cmp.event:on(
-          "confirm_done",
-          npairs.on_confirm_done()
-        )
-        return {
-          check_ts = true,
-          ts_config = {
-            lua = { "string" },
-            java = false,
-          }
+      local npairs = require("nvim-autopairs.completion.cmp")
+      local cmp = require("cmp")
+      cmp.event:on(
+        "confirm_done",
+        npairs.on_confirm_done()
+      )
+      return {
+        check_ts = true,
+        ts_config = {
+          lua = { "string" },
+          java = false,
         }
-      end
+      }
+    end
   },
   {
     "numToStr/Comment.nvim",
@@ -63,4 +63,8 @@ return {
     "nvim-tree/nvim-web-devicons",
     lazy = true,
   },
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false
+  }
 }
