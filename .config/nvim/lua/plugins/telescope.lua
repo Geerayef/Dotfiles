@@ -72,7 +72,8 @@ return {
             },
           },
           find_files = {
-            find_command = vim.fn.executable "fdfind" == 1 and { "fdfind", "--strip-cwd-prefix", "--type", "f" } or nil,
+            hidden = true,
+            find_command = vim.fn.executable "fd" == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
           },
           buffers = {
             sort_lastused = true,

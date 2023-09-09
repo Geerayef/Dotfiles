@@ -5,7 +5,7 @@ export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
 export FZF_BASE="/usr/bin/fzf"
-export STARSHIP_CONFIG=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}/starship.toml
+export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
 
 # General settings
 export HISTCONTROL=ignoreboth:erasedups

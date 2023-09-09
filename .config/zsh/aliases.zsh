@@ -1,15 +1,22 @@
 # ~  General
 
 alias C="clear"
-alias nv="nvim"
-alias codi="$(which codium)"
-
-alias dot="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
-
 alias l.="ls -A | egrep '^\.'"
 alias la="ls -a"
 alias ll="ls -la"
 
+# List installed desktops
+alias xd="ls -al /usr/share/xsessions"
+alias xdw="ls -al /usr/share/wayland-sessions"
+
+# ~  Apps
+
+alias nv="nvim"
+alias codi="$(which codium)"
+
+# ~  Git
+
+alias dot="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
 alias gs="git status ."
 alias ga="git add"
 alias ga.="git add ."
@@ -25,11 +32,9 @@ alias gps="git push --set-upstream"
 alias gb="git branch"
 alias gl="git log"
 
-# List installed desktops
-alias xd="ls /usr/share/xsessions"
-alias xdw="ls /usr/share/wayland-sessions"
+# ~  Aliases
 
-# ~  Aliases: apt
+# ~  apt
 
 alias ad="sudo apt update"
 alias ag="sudo apt upgrade"
@@ -61,7 +66,7 @@ alias agchk="sudo apt-get check"
 alias agsrc="sudo apt-get source"
 alias agdl="sudo apt-get download"
 
-# ~  Aliases: dnf
+# ~  dnf
 
 alias dnfu="sudo dnf upgrade --refresh"
 alias dnfi="sudo dnf install"
@@ -74,3 +79,10 @@ alias dnfs="sudo dnf search"
 alias dnfl="sudo dnf list"
 alias dfnli="sudo dnf list installed"
 alias dnfgl="sudo dnf grouplist"
+
+# ~  pacman
+
+alias pi="sudo pacman -S"
+alias pu="sudo pacman -Syu"
+alias pr="sudo pacman -R"
+alias ps="sudo pacman -Q"

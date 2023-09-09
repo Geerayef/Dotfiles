@@ -102,9 +102,9 @@ end
 Zus.components = {}
 local zc = Zus.components
 
-zc.start_spacing        = "| "
+zc.start_spacing        = "| %<"
 zc.end_spacing          = " |"
-zc.mode                 = "%8.{%v:lua.F.NvimMode()%}"
+zc.mode                 = "%10.{%v:lua.F.NvimMode()%}"
 zc.file_name            = "%-24.t"
 zc.file_status          = "%-8.(%-3.m %-4.r%)"
 zc.git_branch           = "%8.{%v:lua.Git_branch()%}"
@@ -132,6 +132,5 @@ vim.opt.statusline = string.format("%s%s%s%s",
 )
 
 vim.cmd([[hi ZusHL guifg=statusline_fg guibg=statusline_bg]])
-vim.cmd([[hi ZusHLMode guifg=#ab1000 guibg=#ffff00]])
 
 return Zus
