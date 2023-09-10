@@ -50,6 +50,7 @@ return {
   },
   {
     "Pocco81/true-zen.nvim",
+    event = "BufReadPost",
     opts = {},
   },
   {
