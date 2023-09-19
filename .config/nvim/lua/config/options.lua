@@ -27,28 +27,21 @@ opt.complete:remove("i")
 opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.virtualedit = "block"
 
--- ~  Search
-opt.grepprg = "rg --vimgrep"
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = true
-opt.incsearch = true
-
 -- ~  UI
 opt.guicursor = ""
 opt.cursorline = true
 opt.cursorlineopt = "number"
+opt.termguicolors = true
 opt.number = true
 opt.relativenumber = true
 opt.laststatus = 3
-opt.showtabline = 0
+opt.showtabline = 1
 opt.title = false
 opt.showcmd = false
 opt.showmode = false
 opt.cmdheight = 1
 opt.switchbuf = "useopen,uselast"
 opt.signcolumn = "yes"
-opt.termguicolors = true
 opt.ruler = false
 opt.wildmenu = true
 opt.pumblend = 0
@@ -64,4 +57,11 @@ opt.splitright = true
 opt.splitbelow = true
 opt.scrolloff = 4
 opt.sidescrolloff = 4
+
+-- ~  Search
+opt.grepprg = "rg --vimgrep"
+opt.ignorecase = true
+opt.smartcase = true
+opt.hlsearch = true
+opt.incsearch = true
 

@@ -16,11 +16,11 @@ return {
       capabilites = {},
 
       servers = {
-        bashls = {
-          bashIde = {
-            globPattern = "**/*@(.sh|.inc|.bash|.command|.zsh|.zshrc|.zshenv)",
-          }
-        },
+        -- bashls = {
+        --   bashIde = {
+        --     globPattern = "**/*@(.sh|.inc|.bash|.command|.zsh|.zshrc|.zshenv)",
+        --   }
+        -- },
         clangd = {},
         lua_ls = {
           Lua = {
@@ -50,17 +50,17 @@ return {
             }
           }
         },
-        pylsp = {
-          pylsp = {
-            plugins = {
-              ruff = {
-                enabled = true,
-                extendSelect = { "I" },
-                -- config = "/home/novakovic/.config/ruff/pyproject.toml"
-              },
-            }
-          }
-        },
+        -- pylsp = {
+        --   pylsp = {
+        --     plugins = {
+        --       ruff = {
+        --         enabled = true,
+        --         extendSelect = { "I" },
+        --         -- config = "/home/novakovic/.config/ruff/pyproject.toml"
+        --       },
+        --     }
+        --   }
+        -- },
         rust_analyzer = {},
       },
     },
