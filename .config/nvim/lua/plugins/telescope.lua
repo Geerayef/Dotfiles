@@ -91,11 +91,11 @@ return {
             hidden = true,
             depth = 2,
             auto_depth = false,
-            display_stat = { date = false, size = false },
             hijack_netrw = true,
             use_fd = true,
             git_status = true,
             quiet = true,
+            display_stat = { date = true, mode = true },
             mappings = {
               ["i"] = {
                 ["<A-c>"] = fb_actions.create,

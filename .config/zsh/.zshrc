@@ -5,11 +5,11 @@
 antidote_dir=${ZDOTDIR:-~/.config/zsh}/.antidote/
 plugins=${ZDOTDIR:-~/.config/zsh}/.zsh_plugins.txt
 static=${ZDOTDIR:-~/.config/zsh}/.zsh_plugins.zsh
+fpath+=$antidote_dir
 
 [[ -e $antidote_dir ]] || git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
 [[ -f $plugins ]] || touch $plugins
 
-fpath+=$antidote_dir
 autoload -Uz $fpath[-1]/antidote
 
 if [[ ! $static -nt $plugins ]]; then
@@ -20,8 +20,19 @@ source $static
 
 unset antidote_dir plugins static
 
-autoload -Uz promptinit && promptinit
+# -------------------------------------------------------------------------------- #
+
+# ~  ZSH locations
+
+fpath+=${ZDOTDIR:-~/.config/zsh}/completions/
 # autoload -Uz compinit && compinit
+
+# -------------------------------------------------------------------------------- #
+
+# ~  Source
+
+source $ZDOTDIR/functions.zsh
+source $ZDOTDIR/aliases.zsh
 
 # -------------------------------------------------------------------------------- #
 
@@ -39,13 +50,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group ',' '.'
 # Tmux style popup instead of default fzf
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-
-# -------------------------------------------------------------------------------- #
-
-# ~  Source
-
-source $ZDOTDIR/functions.zsh
-source $ZDOTDIR/aliases.zsh
 
 # -------------------------------------------------------------------------------- #
 
@@ -90,4 +94,5 @@ fi
 
 zle -N zle-line-init
 
+autoload -Uz promptinit && promptinit
 eval "$(starship init zsh)"

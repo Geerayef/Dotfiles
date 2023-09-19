@@ -8,12 +8,12 @@ if [[ -d $HOME/Downloads/Fonts ]] then
   echo "~~~~~ Found ~/Downloads/Fonts/. Continue\n"
 else
   mkdir -p $DOWNLOAD_FONT_DIR
-  echo "~~~~~ Created ~/Downloads/Fonts/}\n"
+  echo "~~~~~ Created ~/Downloads/Fonts/\n"
 fi
 
 echo "~~~~~ Downloading Fira Code, JetBrains to ~/Downloads/Fonts"
-curl --proto '=https' -sSLZO --output-dir $DOWNLOAD_FONT_DIR 'https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip'
-curl --proto '=https' -sSLZO --output-dir $DOWNLOAD_FONT_DIR 'https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip'
+curl --proto '=https' -sSLZO --output-dir $DOWNLOAD_FONT_DIR 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip'
+curl --proto '=https' -sSLZO --output-dir $DOWNLOAD_FONT_DIR 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip'
 echo "~~~~~ Done: Download\n"
 
 echo "~~~~~ ls -a ~/Downloads/Fonts/"

@@ -67,19 +67,19 @@ window:
 
 font:
   normal:
-    family: FiraCode Nerd Font Mono
-    style: Retina
+    family: JetBrainsMono Nerd Font Mono
+    style: Regular
 
   bold:
-    family: FiraCode Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
     style: Bold
 
   italic:
-    family: FiraCode Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
     style: Light
 
   bold_italic:
-    family: FiraCode Nerd Font Mono
+    family: JetBrainsMono Nerd Font Mono
     style: Medium
 
   size: 16.0

@@ -47,15 +47,20 @@ config.color_scheme = theme
 -- ~  Font
 
 config.harfbuzz_features = {"zero" , "ss01", "cv05"}
-config.font_dirs = { "/usr/share/fonts/FiraCodeNF" }
+config.font_dirs = {
+    "/usr/share/fonts/JetBrainsNF/",
+    "/usr/share/fonts/FiraCodeNF/",
+}
 config.font = wezterm.font_with_fallback {
+    {
+        family = "JetBrainsMonoNerdFontMono",
+    },
     {
         family = "FiraCodeNerdFontMono",
     },
-    "JetBrains Mono",
 }
 config.font_size = 16
-config.line_height = 1.1
+config.line_height = 1
 
 ------------------------------------------------------------
 
