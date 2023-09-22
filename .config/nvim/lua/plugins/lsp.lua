@@ -16,12 +16,11 @@ return {
       capabilites = {},
 
       servers = {
-        -- bashls = {
-        --   bashIde = {
-        --     globPattern = "**/*@(.sh|.inc|.bash|.command|.zsh|.zshrc|.zshenv)",
-        --   }
-        -- },
-        clangd = {},
+        bashls = {
+          bashIde = {
+            globPattern = "**/*@(.sh|.inc|.bash|.command|.zsh|.zshrc|.zshenv)",
+          }
+        },
         lua_ls = {
           Lua = {
             completion = {
@@ -50,18 +49,17 @@ return {
             }
           }
         },
-        -- pylsp = {
-        --   pylsp = {
-        --     plugins = {
-        --       ruff = {
-        --         enabled = true,
-        --         extendSelect = { "I" },
-        --         -- config = "/home/novakovic/.config/ruff/pyproject.toml"
-        --       },
-        --     }
-        --   }
-        -- },
-        rust_analyzer = {},
+        pylsp = {
+          pylsp = {
+            plugins = {
+              ruff = {
+                enabled = true,
+                extendSelect = { "I" },
+                -- config = "/home/novakovic/.config/ruff/pyproject.toml"
+              },
+            }
+          }
+        },
       },
     },
 
@@ -106,12 +104,54 @@ return {
         end,
       })
 
+      -- ~  Local (on machine) LSP settings
+
+      -- OCaml
       lspconfig.ocamllsp.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
         cmd = { "ocamllsp" },
         filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
-        root_dir = lspconfig.util.root_pattern("*.opam", "ocamlformat", "esy.json", "package.json", ".git", "dune-project", "dune-workspace"),
+        root_dir = lspconfig.util.root_pattern(
+          "*.opam"
+          ,"ocamlformat"
+          ,"esy.json"
+          ,"package.json"
+          ,".git"
+          ,"dune-project"
+          ,"dune-workspace"
+        ),
+      })
+
+      -- Rust
+      lspconfig.rust_analyzer.setup({
         on_attach = lsp_attach,
-        capabilities = capabilities
+        capabilities = capabilities,
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = {
+              command = "clippy",
+            },
+          },
+        },
+      })
+
+      -- Clangd
+      lspconfig.clangd.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        cmd = { "/usr/bin/clangd" },
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+        root_dir = lspconfig.util.root_pattern(
+          '.clangd'
+          ,'.clang-tidy'
+          ,'.clang-format'
+          ,'compile_commands.json'
+          ,'compile_flags.txt'
+          ,'configure.ac'
+          ,'.git'
+          ),
+        single_file_support = true,
       })
 
     end
@@ -131,5 +171,26 @@ return {
         }
       },
     },
-  }
+  },
+
+  -- ~  Rust tools
+  {
+    "simrat39/rust-tools.nvim",
+    event = "BufReadPost",
+    config = function ()
+      local rt = require("rust-tools")
+
+      rt.setup({
+        server = {
+          on_attach = function(client, bufnr)
+            vim.keymap.set("n", "<leader>rh", rt.hover_actions.hover_actions, { buffer = bufnr })
+            K.LspKeymaps(client, bufnr)
+            vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+              vim.lsp.buf.format()
+            end, { desc = "Format current buffer with LSP" })
+          end
+        },
+      })
+    end
+  },
 }

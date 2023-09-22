@@ -50,12 +50,12 @@ return {
   },
   {
     "Pocco81/true-zen.nvim",
-    event = "BufReadPost",
+    event = "VeryLazy",
     opts = {},
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufEnter",
+    event = "BufReadPost",
     opts = {
       show_current_context = false,
     },
@@ -66,6 +66,6 @@ return {
   },
   {
     "christoomey/vim-tmux-navigator",
-    lazy = false
-  }
+    event = "VeryLazy",
+  },
 }

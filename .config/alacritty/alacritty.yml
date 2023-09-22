@@ -67,19 +67,19 @@ window:
 
 font:
   normal:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMonoNerdFontMono
     style: Regular
 
   bold:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMonoNerdFontMono
     style: Bold
 
   italic:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMonoNerdFontMono
     style: Light
 
   bold_italic:
-    family: JetBrainsMono Nerd Font Mono
+    family: JetBrainsMonoNerdFontMono
     style: Medium
 
   size: 16.0

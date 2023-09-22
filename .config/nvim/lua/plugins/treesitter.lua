@@ -26,6 +26,7 @@ return {
           },
         },
         ensure_installed = {
+          "bash",
           "c",
           "lua",
           "luadoc",
