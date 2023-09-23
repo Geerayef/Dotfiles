@@ -1,11 +1,16 @@
 # ~  General
 
 alias C="clear"
-alias ls="exa -a --color=always --group-directories-first"
-alias la="exa -aG --color=always --group-directories-first"
-alias ll="exa -laG --color=always --group-directories-first"
-alias lT="exa -aT -L 2 --color=always --group-directories-first"
-alias l.='exa -a | egrep "^\."'
+if test -e "$(command -v exa)"
+  alias ls="exa -a --color=always --group-directories-first"
+  alias la="exa -aG --color=always --group-directories-first"
+  alias ll="exa -laG --color=always --group-directories-first"
+  alias lT="exa -aT -L 2 --color=always --group-directories-first"
+  alias l.='exa -a | egrep "^\."'
+end
+alias l.="ls -A | egrep '^\.' --group-directories-first"
+alias la="ls -a --group-directories-first"
+alias ll="ls -la --group-directories-first"
 
 # List installed desktops
 alias xd="ls -al /usr/share/xsessions"

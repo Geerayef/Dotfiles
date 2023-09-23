@@ -1,6 +1,14 @@
 # ~  General
 
 alias C="clear"
+if [[ -e "$(command -v exa)" ]] then
+  alias ls="exa -a --color=always --group-directories-first"
+  alias la="exa -aG --color=always --group-directories-first"
+  alias ll="exa -laG --color=always --group-directories-first"
+  alias lT="exa -aT -L 2 --color=always --group-directories-first"
+  alias l.='exa -a | egrep "^\."'
+fi
+
 alias l.="ls -A | egrep '^\.'"
 alias la="ls -a"
 alias ll="ls -la"
