@@ -1,5 +1,3 @@
-# -------------------------------------------------------------------------------- #
-
 # ~  Antidote setup
 
 antidote_dir=${ZDOTDIR:-~/.config/zsh}/.antidote/
@@ -22,37 +20,6 @@ unset antidote_dir plugins static
 
 # -------------------------------------------------------------------------------- #
 
-# ~  ZSH locations
-
-fpath+=${ZDOTDIR:-~/.config/zsh}/completions/
-# autoload -Uz compinit && compinit
-
-# -------------------------------------------------------------------------------- #
-
-# ~  Source
-
-source $ZDOTDIR/functions.zsh
-source $ZDOTDIR/aliases.zsh
-
-# -------------------------------------------------------------------------------- #
-
-# ~  Plugin settings
-
-# Disable sort when completing `git checkout`
-zstyle ':completion:*:git-checkout:*' sort false
-# Set descriptions format to enable group support
-zstyle ':completion:*:descriptions' format '[%d]'
-# Set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# Preview directory's content with exa when completing cd
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-# Switch group using `,` and `.`
-zstyle ':fzf-tab:*' switch-group ',' '.'
-# Tmux style popup instead of default fzf
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-
-# -------------------------------------------------------------------------------- #
-
 # ~  General settings
 
 bindkey -v
@@ -60,7 +27,30 @@ bindkey -v
 unsetopt SHARE_HISTORY
 setopt GLOB_DOTS
 setopt COMBINING_CHARS
-DISABLE_AUTO_UPDATE="true"
+
+autoload -Uz promptinit && promptinit
+# autoload -Uz compinit && compinit # Done by belak/zsh-utils/completions
+
+# -------------------------------------------------------------------------------- #
+
+# ~  Source
+
+source $ZDOTDIR/functions.zsh
+source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/env.zsh
+fpath+=${ZDOTDIR:-~/.config/zsh}/completions/
+
+# -------------------------------------------------------------------------------- #
+
+# ~  Plugin settings
+
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:*' switch-group ',' '.'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':zsh-utils:plugins:history' use-xdg-basedirs
 
 # -------------------------------------------------------------------------------- #
 
@@ -68,7 +58,6 @@ DISABLE_AUTO_UPDATE="true"
 
 if [[ -d "$HOME/miniconda3" ]] then
 # >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/home/tibor/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
@@ -93,6 +82,4 @@ fi
 # ~  Prompt
 
 zle -N zle-line-init
-
-autoload -Uz promptinit && promptinit
 eval "$(starship init zsh)"

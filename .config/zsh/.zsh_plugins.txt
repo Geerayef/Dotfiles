@@ -6,9 +6,9 @@ zsh-users/zsh-completions path:src kind:fpath
 belak/zsh-utils path:editor
 belak/zsh-utils path:history
 belak/zsh-utils path:utility
-sorin-ionescu/prezto path:modules/directory
 Aloxaf/fzf-tab
 joshskidmore/zsh-fzf-history-search
+sorin-ionescu/prezto path:modules/directory
 
 ### Deferred Plugins
 

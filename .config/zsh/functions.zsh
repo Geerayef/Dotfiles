@@ -1,3 +1,6 @@
+# ~  zsh vi mode: Static block cursor
+zle-line-init() { echo -ne "\e[2 q" }
+
 ex()
 {
   if [ -f $1 ] ; then
@@ -29,6 +32,12 @@ check_conda()
   echo $info
 }
 
-# ~  zsh vi mode: Static block cursor
-zle-line-init() { echo -ne "\e[2 q" }
+check () { command -v "$1" >/dev/null }
+
+# Find arguments of the function passed to f() using fzf e.g. f mv
+f ()
+{
+    sels=( "${(@f)$(fd "${fd_default[@]}" "${@:2}"| fzf)}" )
+    test -n "$sels" && print -z -- "$1 ${sels[@]:q:q}"
+}
 

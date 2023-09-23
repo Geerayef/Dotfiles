@@ -89,7 +89,7 @@ return {
             cwd_to_path = true,
             grouped = true,
             hidden = true,
-            depth = 2,
+            depth = 1,
             auto_depth = false,
             hijack_netrw = true,
             use_fd = true,
