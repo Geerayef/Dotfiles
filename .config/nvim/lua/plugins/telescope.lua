@@ -1,5 +1,4 @@
 return {
-  -- ~  Telescope
   {
     "nvim-telescope/telescope.nvim",
     priority = 100,
@@ -151,7 +150,4 @@ return {
   {
     "nvim-telescope/telescope-ui-select.nvim",
   },
-  -- {
-  --   "nvim-telescope/telescope-hop.nvim",
-  -- },
 }

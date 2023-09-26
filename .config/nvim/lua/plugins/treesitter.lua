@@ -1,5 +1,4 @@
 return {
-  -- ~  TreeSitter
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -94,8 +93,6 @@ return {
       })
     end
   },
-
-  -- ~  TreeSitter text objects
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     event = {

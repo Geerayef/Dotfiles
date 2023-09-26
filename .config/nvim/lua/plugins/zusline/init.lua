@@ -5,7 +5,7 @@ return {
     config = function ()
       local status, zus = pcall(require, "plugins.zusline.zus")
       if not status then
-        print("~~~~~ [ERROR]: No zus.lua")
+        print("~~~~~ [ERROR]: The file zus.lua could not be found.")
         return
       end
       zus.setup({})
@@ -17,7 +17,7 @@ return {
     config = function ()
       local status, tab = pcall(require, "plugins.zusline.tab")
       if not status then
-        print("~~~~~ [ERROR]: No tab.lua")
+        print("~~~~~ [ERROR]: The file tab.lua could not be found.")
         return
       end
       tab.setup({

@@ -49,7 +49,7 @@ return {
         return vim.api.nvim_replace_termcodes(str, true, true, true)
       end
 
-      -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+      -- Use buffer source for `/` and `?` (if you enable `native_menu`, this won't work anymore).
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
@@ -87,10 +87,10 @@ return {
       })
 
       return {
+        -- Disable completion in comments
         enabled = function()
-          -- disable completion in comments
           local context = require 'cmp.config.context'
-          -- keep command mode completion enabled when cursor is in a comment
+          -- Keep command mode completion enabled when cursor is in a comment
           if vim.api.nvim_get_mode().mode == 'c' then
             return true
           else
@@ -188,10 +188,6 @@ return {
                 cmdline = "[CMD]",
               }),
             })(entry, item)
-            -- local strings = vim.split(kind.kind, "%s", { trimempty = true })
-            -- kind.kind = " " .. (strings[1] or "") .. " "
-            -- kind.menu = "    (" .. (strings[2] or "") .. ")"
-            -- return kind
           end,
         },
         view = ({
