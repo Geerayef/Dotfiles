@@ -28,10 +28,10 @@ rm -r $DOWNLOAD_FONT_DIR/*NL*.ttf
 echo "~~~~~ Removed unused fonts: *NL*.ttf\n"
 
 if [ -d /usr/share/fonts/JetBrainsNF ] ; then
-  mv $DOWNLOAD_FONT_DIR/JetBrainsMonoNerdFont*.ttf /usr/share/fonts/JetBrainsNF
+  sudo mv $DOWNLOAD_FONT_DIR/JetBrainsMonoNerdFont*.ttf /usr/share/fonts/JetBrainsNF
   echo "~~~~~ Move JetBrains to /usr/share/fonts/JetBrainsNF\n"
 else
-  sudo sudo mkdir /usr/share/fonts/JetBrainsNF
+  sudo mkdir /usr/share/fonts/JetBrainsNF
   echo "~~~~~ Created /usr/share/fonts/JetBrainsNF"
   sudo mv $DOWNLOAD_FONT_DIR/JetBrainsMonoNerdFont*.ttf /usr/share/fonts/JetBrainsNF
   echo "~~~~~ Moved JetBrains to /usr/share/fonts/JetBrainsNF\n"

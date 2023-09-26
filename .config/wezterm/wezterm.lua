@@ -9,7 +9,7 @@ end
 
 -- ~ APPEARANCE ~ --
 
------------------------------------------------------------
+------------------------------------------------------------
 
 -- ~  Window UI
 
@@ -17,8 +17,8 @@ config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.window_padding = {
-  left = 8,
-  right = 8,
+  left = 0,
+  right = 0,
   top = 0,
   bottom = 0,
 }
@@ -46,25 +46,25 @@ config.color_scheme = theme
 
 -- ~  Font
 
-config.harfbuzz_features = {"zero" , "ss01", "cv05"}
+config.harfbuzz_features = { "zero" , "ss01", "cv05" }
 config.font_dirs = {
     "/usr/share/fonts/JetBrainsNF/",
     "/usr/share/fonts/FiraCodeNF/",
 }
 config.font = wezterm.font_with_fallback {
     {
-        family = "JetBrainsMonoNerdFontMono",
+        family = "FiraCode Nerd Font Propo Retina",
     },
     {
-        family = "FiraCodeNerdFontMono",
+        family = "JetBrainsMono Nerd Font Propo",
     },
 }
-config.font_size = 16
-config.line_height = 1
+config.font_size = 18
+config.line_height = 1.2
 
 ------------------------------------------------------------
 
--- # BEHAVIOUR # --
+-- ~ BEHAVIOUR ~ --
 
 ------------------------------------------------------------
 
@@ -73,4 +73,3 @@ config.default_cursor_style = "SteadyBlock"
 config.force_reverse_video_cursor = true
 
 return config
-

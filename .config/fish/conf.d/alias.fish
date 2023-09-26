@@ -11,6 +11,7 @@ end
 alias l.="ls -A | egrep '^\.' --group-directories-first"
 alias la="ls -a --group-directories-first"
 alias ll="ls -la --group-directories-first"
+alias dl="dirh"
 
 # List installed desktops
 alias xd="ls -al /usr/share/xsessions"

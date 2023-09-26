@@ -1,8 +1,8 @@
-local api = vim.api
-
--- #  ~ Custom, callable functions
+-- ~  Functions used globally
 
 F = {}
+
+-- ~ -------------------------------------------------------------------------------- ~ --
 
 F.NvimMode = function()
   local n = 'normal'  -- ''
@@ -51,6 +51,8 @@ F.NvimMode = function()
   return modes[vim.api.nvim_get_mode().mode] or '[Unknown]'
 end
 
+-- ~ -------------------------------------------------------------------------------- ~ --
+
 F.disable_builtin = function ()
   vim.g.loaded_netrw = 1
   vim.g.loaded_netrwPlugin = 1
@@ -73,5 +75,7 @@ F.disable_builtin = function ()
   vim.g.loaded_logiPat = 1
   vim.g.loaded_rrhelper = 1
 end
+
+-- ~ -------------------------------------------------------------------------------- ~ --
 
 return F
