@@ -36,7 +36,7 @@ window:
 
   decorations: none
 
-  opacity: 0.925
+  opacity: 0.97
 
   startup_mode: Windowed
 
@@ -624,7 +624,7 @@ schemes:
       - { index: 16, color: '0xc9826b' }
       - { index: 17, color: '0xbf88bc' }
 
-#  ~ MyThemes
+#  ~ Themes
 
 #1.  *DoomOne
 #2.  *Dracula
@@ -638,7 +638,7 @@ schemes:
 #10. *Terafox
 #11. *Nordfox
 
-colors: *Duskfox
+colors: *Carbonfox
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
@@ -710,8 +710,8 @@ live_config_reload: true
 
 # Default:
 #   - (Linux/BSD/macOS) `$SHELL` or the user's login shell, if `$SHELL` is unset
-shell:
-  program: "/usr/bin/fish"
+# shell:
+#   program: "/usr/bin/fish"
 #  args:
 #    - --login
 

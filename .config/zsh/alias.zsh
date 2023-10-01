@@ -87,6 +87,7 @@ alias dnfs="sudo dnf search"
 alias dnfl="sudo dnf list"
 alias dfnli="sudo dnf list installed"
 alias dnfgl="sudo dnf grouplist"
+alias dnfh="dnf help"
 
 # ~  pacman
 

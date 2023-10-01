@@ -35,8 +35,8 @@ autoload -Uz promptinit && promptinit
 
 # ~  Source
 
-source $ZDOTDIR/functions.zsh
-source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/function.zsh
+source $ZDOTDIR/alias.zsh
 source $ZDOTDIR/env.zsh
 fpath+=${ZDOTDIR:-~/.config/zsh}/completions/
 

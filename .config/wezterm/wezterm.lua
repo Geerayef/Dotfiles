@@ -5,11 +5,10 @@ if wezterm.config_builder then
     config = wezterm.config_builder()
 end
 
-------------------------------------------------------------
+-- ~ ------------------------------------------------------- ~ --
 
--- ~ APPEARANCE ~ --
+-- ~  APPEARANCE
 
-------------------------------------------------------------
 
 -- ~  Window UI
 
@@ -17,13 +16,13 @@ config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.window_padding = {
-  left = 0,
-  right = 0,
+  left = 8,
+  right = 4,
   top = 0,
   bottom = 0,
 }
 
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.97
 config.window_decorations = "NONE"
 config.adjust_window_size_when_changing_font_size = false
 
@@ -34,14 +33,11 @@ config.adjust_window_size_when_changing_font_size = false
 -- Tokyo Night [(Gogh)] / Moon / Storm [(Gogh)]
 -- tokyonight / -storm / _storm / _moon / _night
 -- nightfox / duskfox / terafox / carbonfox / nordfox
--- Sublette
--- Rouge 2
--- Palenight (Gogh)
 -- Kasugano (terminal.sexy)
 -- Trim Yer Beard (terminal.sexy)
 -- VWbug (terminal.sexy)
 
-local theme = "duskfox"
+local theme = "Kasugano (terminal.sexy)"
 config.color_scheme = theme
 
 -- ~  Font
@@ -53,20 +49,19 @@ config.font_dirs = {
 }
 config.font = wezterm.font_with_fallback {
     {
-        family = "FiraCode Nerd Font Propo Retina",
-    },
-    {
         family = "JetBrainsMono Nerd Font Propo",
     },
+    {
+        family = "FiraCode Nerd Font Propo",
+    },
 }
-config.font_size = 18
+config.font_size = 16
 config.line_height = 1.2
 
-------------------------------------------------------------
+-- ~ ------------------------------------------------------- ~ --
 
--- ~ BEHAVIOUR ~ --
+-- ~ BEHAVIOUR
 
-------------------------------------------------------------
 
 -- ~  Cursor
 config.default_cursor_style = "SteadyBlock"

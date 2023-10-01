@@ -1,19 +1,18 @@
 # ~  General
 
 alias C="clear"
-if test -e "$(command -v exa)"
+if [[ -e "$(command -v exa)" ]] then
   alias ls="exa -a --color=always --group-directories-first"
   alias la="exa -aG --color=always --group-directories-first"
   alias ll="exa -laG --color=always --group-directories-first"
   alias lT="exa -aT -L 2 --color=always --group-directories-first"
-  alias l.='exa -a | grep -E "^\."'
-end
-alias l.="ls -A | grep -E '^\.' --group-directories-first"
-alias la="ls -a --group-directories-first"
-alias ll="ls -la --group-directories-first"
-alias dl="dirh"
+  alias l.='exa -a | egrep "^\."'
+fi
 
-alias grep="grep --color=always"
+alias l.="ls -A | egrep '^\.'"
+alias la="ls -a"
+alias ll="ls -la"
+
 # List installed desktops
 alias xd="ls -al /usr/share/xsessions"
 alias xdw="ls -al /usr/share/wayland-sessions"
@@ -25,7 +24,7 @@ alias codi="$(which codium)"
 
 # ~  Git
 
-alias dot='/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME'
+alias dot="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
 alias gs="git status ."
 alias ga="git add"
 alias ga.="git add ."
@@ -40,6 +39,8 @@ alias gpl="git pull --rebase"
 alias gps="git push --set-upstream"
 alias gb="git branch"
 alias gl="git log"
+
+# ~  Aliases
 
 # ~  apt
 

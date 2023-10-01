@@ -5,5 +5,4 @@ require("config.functions")
 require("config.autocmds")
 require("config.options")
 
-vim.cmd("colorscheme nightfox")
-
+vim.cmd("colorscheme terafox")

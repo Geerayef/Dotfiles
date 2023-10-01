@@ -49,17 +49,6 @@ return {
             }
           }
         },
-        pylsp = {
-          pylsp = {
-            plugins = {
-              ruff = {
-                enabled = true,
-                extendSelect = { "I" },
-                -- config = "/home/novakovic/.config/ruff/pyproject.toml"
-              },
-            }
-          }
-        },
       },
     },
 
@@ -104,7 +93,7 @@ return {
         end,
       })
 
-      -- ~  Local (on machine) LSP settings
+      -- ~  Local LSP settings
 
       -- OCaml
       lspconfig.ocamllsp.setup({
@@ -152,6 +141,35 @@ return {
           ,'.git'
           ),
         single_file_support = true,
+      })
+
+      -- Python
+      lspconfig.pylsp.setup({
+        settings = {
+          pylsp = {
+            configurationSources = { 'flake8' } ,
+            plugins = {
+              ruff = {
+                enabled = true,
+                extendSelect = { "I" },
+                lineLength = 128,
+                config = "/home/novakovic/.config/ruff/pyproject.toml"
+              },
+              flake8 = {
+                enabled = true,
+              },
+              pycodestyle = {
+                enabled = false,
+              },
+              mccabe = {
+                enabled = false,
+              },
+              pyflakes = {
+                enabled = false,
+              },
+            }
+          }
+        }
       })
 
     end

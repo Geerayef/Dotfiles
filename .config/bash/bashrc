@@ -1,0 +1,16 @@
+### ~  My Bash settings  ~ ###
+
+echo "Sourced from /etc/bashrc"
+
+settings="$BASHDOTDIR/settings"
+
+# ~  Environment variables
+source $settings/env.sh
+
+# ~  PATH
+source $settings/path.sh
+
+# ~  Aliases
+source $settings/alias.sh
+
+eval "$(starship init bash)"

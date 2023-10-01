@@ -24,26 +24,6 @@ export CONDA_AUTO_ACTIVATE_BASE=false
 
 # -------------------------------------------------------------------------------- #
 
-# ~ Path
-
-[[ -d "$HOME/.bin" ]] && export PATH="$HOME/.bin:$PATH"
-
-[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
-
-[[ -d "$HOME/.local/share/nvim/mason/" ]] && export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
-
-[[ -d "$HOME/Software/Neovim/bin" ]] && export PATH="$HOME/Software/Neovim/bin:$PATH"
-
-[[ -d "$HOME/Scripts/" ]] && export PATH="$HOME/Scripts/:$PATH"
-
-[[ -d "$HOME/linuxbrew/" ]] && export PATH="$HOME/linuxbrew/.linuxbrew/bin/" && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-[[ -d "$ANDROID_HOME" ]] && export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
-
-[[ -d "$JAVA_HOME" ]] && export PATH="$JAVA_HOME:$PATH"
- 
-# -------------------------------------------------------------------------------- #
-
 # ~  Developer Environment
 
 # Rust: Cargo
@@ -53,7 +33,7 @@ export CONDA_AUTO_ACTIVATE_BASE=false
 [[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env"
 
 # OCaml: opam
-[[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh"  > /dev/null 2> /dev/null
+[[ ! -r "$HOME/.opam/opam-init/init.sh" ]] || source "$HOME/.opam/opam-init/init.sh"  > /dev/null 2> /dev/null
 
 # Python: pyenv
 if [[ -e $HOME/.pyenv ]] then
@@ -63,5 +43,3 @@ if [[ -e $HOME/.pyenv ]] then
     eval "$(pyenv init -)"
 )
 fi
-
-# -------------------------------------------------------------------------------- #

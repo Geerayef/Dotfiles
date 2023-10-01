@@ -1,29 +1,31 @@
 # ~  Add path
 
 if test -d "$HOME/.bin"
-    set -x PATH "$HOME/.bin" $PATH
+  set -x PATH "$HOME/.bin" $PATH
 end
 
 if test -d "$HOME/.local/bin"
-    set -x PATH "$HOME/.local/bin" $PATH
+  set -x PATH "$HOME/.local/bin" $PATH
 end
 
 if test -d "$HOME/.local/share/nvim/mason/"
-    set -x PATH "$HOME/.local/share/nvim/mason/bin" $PATH
+  set -x PATH "$HOME/.local/share/nvim/mason/bin" $PATH
 end
 
 if test -d "$HOME/Software/Neovim/bin"
-    set -x PATH "$HOME/Software/Neovim/bin" $PATH
+  set -x PATH "$HOME/Software/Neovim/bin" $PATH
 end
 
 if test -d "$HOME/Scripts/"
-    set -x PATH "$HOME/Scripts/" $PATH
+  set -x PATH "$HOME/Scripts/" $PATH
 end
 
 # ~  Developer Environment
 
 # Rust: Cargo
-fish_add_path "$HOME/.cargo/bin"
+if test -d "$HOME/.cargo/"
+  fish_add_path "$HOME/.cargo/bin"
+end
 
 # Haskell: ghcup
 if test -d "$HOME/.ghcup"
@@ -40,6 +42,6 @@ end
 if test -e "$HOME/.pyenv"
   set -gx PYENV_ROOT "$HOME/.pyenv"
   command -v pyenv >/dev/null
-  or set -gx PATH "$PYENV_ROOT/bin" $PATH
+  or set -gx PATH $PATH "$PYENV_ROOT/bin"
   eval "$(pyenv init -)"
 end
