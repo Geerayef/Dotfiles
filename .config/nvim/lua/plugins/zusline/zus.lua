@@ -142,7 +142,9 @@ function Zus.setup(user_options)
     zs.right
   )
 
-  vim.cmd([[hi ZusHL guifg=statusline_fg guibg=statusline_bg]])
+-- ~  Highlights
+  -- vim.cmd([[hi ZusHL guifg=statusline_fg guibg=statusline_bg]])
+  vim.cmd([[highlight link ZusHL Normal]])
 end
 
 return Zus

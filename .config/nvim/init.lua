@@ -5,4 +5,5 @@ require("config.functions")
 require("config.autocmds")
 require("config.options")
 
-vim.cmd("colorscheme terafox")
+-- uncomment lazy & priority
+vim.cmd("colorscheme darkrose")

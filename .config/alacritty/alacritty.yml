@@ -624,6 +624,36 @@ schemes:
       - { index: 16, color: '0xc9826b' }
       - { index: 17, color: '0xbf88bc' }
 
+  ### astromouse (terminal.sexy) ###
+  astromouse: &astromouse
+    colors:
+    # Default colors
+    primary:
+      background: '0x000000'
+      foreground: '0xffffff'
+
+    # Normal colors
+    normal:
+      black:   '0x1c1c1c'
+      red:     '0xd770af'
+      green:   '0x9acc79'
+      yellow:  '0xd0d26b'
+      blue:    '0x77b6c5'
+      magenta: '0xa488d9'
+      cyan:    '0x7fcab3'
+      white:   '0x8d8d8d'
+
+    # Bright colors
+    bright:
+      black:   '0x3d3a3a'
+      red:     '0xd28abf'
+      green:   '0x8fb676'
+      yellow:  '0xc8bc45'
+      blue:    '0x8fa7b9'
+      magenta: '0xbd89de'
+      cyan:    '0x6ec2a8'
+      white:   '0xdad3d3'
+
 #  ~ Themes
 
 #1.  *DoomOne
@@ -637,8 +667,9 @@ schemes:
 #9.  *Carbonfox
 #10. *Terafox
 #11. *Nordfox
+#12. *astromouse
 
-colors: *Carbonfox
+colors: *astromouse
 
 #######################################
 ##       END OF COLOR SCHEMES        ##

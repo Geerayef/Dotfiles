@@ -56,8 +56,11 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPost",
+    main = "ibl",
     opts = {
-      show_current_context = false,
+      indent = {
+        char = "│"
+      }
     },
   },
   {

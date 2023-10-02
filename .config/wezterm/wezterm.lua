@@ -29,15 +29,24 @@ config.adjust_window_size_when_changing_font_size = false
 -- ~  Theme
 
 -- Legend: [Optional] / variant
--- ayu / Ayu / Dark (Gogh) / Mirage [(Gogh)]
+
+-- - Blueish/Pale themes:
+-- ayu / Ayu Dark (Gogh) / Mirage [(Gogh)]
 -- Tokyo Night [(Gogh)] / Moon / Storm [(Gogh)]
 -- tokyonight / -storm / _storm / _moon / _night
 -- nightfox / duskfox / terafox / carbonfox / nordfox
 -- Kasugano (terminal.sexy)
+
+-- - Red/Green -ish themes:
 -- Trim Yer Beard (terminal.sexy)
 -- VWbug (terminal.sexy)
 
-local theme = "Kasugano (terminal.sexy)"
+-- - Dark/Black themes:
+-- astromouse (terminal.sexy)
+-- Adventure
+-- Ayu
+
+local theme = "astromouse (terminal.sexy)"
 config.color_scheme = theme
 
 -- ~  Font

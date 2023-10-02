@@ -201,7 +201,6 @@ return {
       rt.setup({
         server = {
           on_attach = function(client, bufnr)
-            vim.keymap.set("n", "<leader>rh", rt.hover_actions.hover_actions, { buffer = bufnr })
             K.LspKeymaps(client, bufnr)
             vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
               vim.lsp.buf.format()

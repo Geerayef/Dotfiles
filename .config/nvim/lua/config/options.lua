@@ -28,6 +28,7 @@ opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.virtualedit = "block"
 
 -- ~  UI
+opt.background = "dark"
 opt.guicursor = ""
 opt.cursorline = true
 opt.cursorlineopt = "number"

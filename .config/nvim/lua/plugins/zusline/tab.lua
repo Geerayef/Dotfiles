@@ -26,7 +26,7 @@ ZusT.options = {
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
--- ~  Helper functions
+-- ~  Main tabline-string builder
 
 local fn = vim.fn
 
@@ -108,7 +108,7 @@ function ZusT.setup(user_options)
     return tabline(ZusT.options)
   end
 
-  vim.o.tabline = "%!v:lua.ZusTabline()"
+  vim.opt.tabline = "%!v:lua.ZusTabline()"
 end
 
 return ZusT
