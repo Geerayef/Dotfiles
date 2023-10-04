@@ -1,3 +1,4 @@
+-- # Colorschemes: Light to dark
 return {
   -- ~  NightFox
   -- nightfox / duskfox / nordfox / terafox / carbonfox
@@ -39,19 +40,6 @@ return {
     },
   },
 
-  -- ~  Darkrose
-  {
-    "water-sucks/darkrose.nvim",
-    lazy = false,
-    priority = 1000,
-  },
-
-  -- ~  Midnight
-  { "dasupradyumna/midnight.nvim",
-    -- lazy = false,
-    -- priority = 1000
-  },
-
   -- ~  Oxocarbon
   {
     "nyoom-engineering/oxocarbon.nvim",
@@ -59,28 +47,37 @@ return {
     -- priority = 1000,
   },
 
-  -- ~  Neodark
+  -- ~  Neodark/er
   {
     "VDuchauffour/neodark.nvim",
     -- lazy = false,
     -- priority = 1000,
-    config = function ()
-      local status, neodark = pcall(require, "neodark")
-      if not status then return end
-
-      neodark.setup({
-        theme_style = "neodarker"
-      })
-    end
+    -- config = function ()
+    --   require("neodark").setup({
+    --     theme_style = "neodarker"
+    --   })
+    -- end
   },
 
-  -- ~  Nord
+  -- ~  Midnight
   {
-    "shaunsingh/nord.nvim",
+    "dasupradyumna/midnight.nvim",
+    lazy = false,
+    priority = 1000,
+  },
+
+  -- ~  Noir
+  {
+    "dzfrias/noir.nvim",
     -- lazy = false,
     -- priority = 1000,
-    -- vim.g.nord_borders = true,
-    -- vim.g.nord_italic = false
+  },
+
+  -- ~  Darkrose
+  {
+    "water-sucks/darkrose.nvim",
+    -- lazy = false,
+    -- priority = 1000,
   },
 
 }
