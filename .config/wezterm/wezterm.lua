@@ -16,13 +16,13 @@ config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.window_padding = {
-  left = 8,
-  right = 4,
+  left = 0,
+  right = 2,
   top = 0,
-  bottom = 0,
+  bottom = 2,
 }
 
-config.window_background_opacity = 0.97
+config.window_background_opacity = 0.5
 config.window_decorations = "NONE"
 config.adjust_window_size_when_changing_font_size = false
 
