@@ -13,13 +13,14 @@ end
 -- ~  Window UI
 
 config.enable_tab_bar = true
+config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.window_padding = {
-  left = 0,
-  right = 2,
+  left = 10,
+  right = 0,
   top = 0,
-  bottom = 2,
+  bottom = 20,
 }
 
 config.window_background_opacity = 0.5
@@ -30,18 +31,18 @@ config.adjust_window_size_when_changing_font_size = false
 
 -- Legend: [Optional] / variant
 
--- - Blueish/Pale themes:
+-- Blueish/Pale themes:
 -- ayu / Ayu Dark (Gogh) / Mirage [(Gogh)]
 -- Tokyo Night [(Gogh)] / Moon / Storm [(Gogh)]
 -- tokyonight / -storm / _storm / _moon / _night
 -- nightfox / duskfox / terafox / carbonfox / nordfox
 -- Kasugano (terminal.sexy)
 
--- - Red/Green -ish themes:
+-- Red/Green -ish themes:
 -- Trim Yer Beard (terminal.sexy)
 -- VWbug (terminal.sexy)
 
--- - Dark/Black themes:
+-- Dark/Black themes:
 -- astromouse (terminal.sexy)
 -- Adventure
 -- Ayu

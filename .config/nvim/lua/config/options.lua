@@ -1,67 +1,67 @@
-local opt = vim.opt
+local o = vim.opt
 
 F.disable_builtin()
 
-opt.shell = "/usr/bin/zsh"
+o.shell = "/usr/bin/fish"
 
 -- ~  File
 vim.cmd("syntax enable")
 vim.cmd("filetype indent on")
-opt.fileformats = "unix"
-opt.undofile = true
-opt.formatoptions:append("j")
-opt.nrformats:remove("octal")
+o.fileformats = "unix"
+o.undofile = true
+o.formatoptions:append("j")
+o.nrformats:remove("octal")
 
 -- ~  Edit
-opt.tabstop = 4
-opt.softtabstop = -1
-opt.shiftwidth = 4
-opt.expandtab = true
-opt.smarttab = true
-opt.autoindent = true
-opt.smartindent = true
-opt.breakindent = true
-opt.wrap = true
-opt.backspace:append("indent,eol,start")
-opt.complete:remove("i")
-opt.completeopt = "menu,menuone,noinsert,noselect"
-opt.virtualedit = "block"
+o.tabstop = 4
+o.softtabstop = -1
+o.shiftwidth = 4
+o.expandtab = true
+o.smarttab = true
+o.autoindent = true
+o.smartindent = true
+o.breakindent = true
+o.wrap = true
+o.backspace:append("indent,eol,start")
+o.complete:remove("i")
+o.completeopt = "menu,menuone,noinsert,noselect"
+o.virtualedit = "block"
 
 -- ~  UI
-opt.background = "dark"
-opt.guicursor = ""
-opt.cursorline = true
-opt.cursorlineopt = "number"
-opt.termguicolors = true
-opt.number = true
-opt.relativenumber = true
-opt.laststatus = 3
-opt.showtabline = 1
-opt.title = false
-opt.showcmd = false
-opt.showmode = false
-opt.cmdheight = 1
-opt.switchbuf = "useopen,uselast"
-opt.signcolumn = "yes"
-opt.ruler = false
-opt.wildmenu = true
-opt.pumblend = 0
-opt.wildmode = "longest:full"
-opt.wildoptions = "pum"
+o.background = "dark"
+o.guicursor = ""
+o.cursorline = true
+o.cursorlineopt = "number"
+o.termguicolors = true
+o.number = true
+o.relativenumber = true
+o.laststatus = 3
+o.showtabline = 1
+o.title = false
+o.showcmd = false
+o.showmode = false
+o.cmdheight = 1
+o.switchbuf = "useopen,uselast"
+o.signcolumn = "yes"
+o.ruler = false
+o.wildmenu = true
+o.pumblend = 0
+o.wildmode = "longest:full"
+o.wildoptions = "pum"
 
 -- ~  Behaviour
-opt.ttyfast = true
-opt.lazyredraw = true
-opt.updatetime = 300
-opt.belloff = "all"
-opt.splitright = true
-opt.splitbelow = true
-opt.scrolloff = 4
-opt.sidescrolloff = 4
+o.ttyfast = true
+o.lazyredraw = true
+o.updatetime = 300
+o.belloff = "all"
+o.splitright = true
+o.splitbelow = true
+o.scrolloff = 4
+o.sidescrolloff = 4
 
 -- ~  Search
-opt.grepprg = "rg --vimgrep"
-opt.ignorecase = true
-opt.smartcase = true
-opt.hlsearch = true
-opt.incsearch = true
+o.grepprg = "rg --vimgrep"
+o.ignorecase = true
+o.smartcase = true
+o.hlsearch = true
+o.incsearch = true

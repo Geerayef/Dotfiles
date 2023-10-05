@@ -1,0 +1,139 @@
+* {
+  font-family:'JetBrainsMono Nerd Font Mono', 'tabler-icons';
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+window#waybar {
+  background: transparent;
+  color: #dcd7ba;
+}
+
+tooltip {
+  background: #000000;
+  border-radius: 8px;
+  font-size: 12pt;
+}
+
+tooltip label {
+  padding: 8px;
+}
+
+#workspaces {
+  background: #000000;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-size: 20pt;
+  padding-top: 20px;
+  padding-bottom: 0px;
+}
+
+#workspaces button {
+  color: #dcd7ba;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#workspaces button.focused {
+  color: #7e9cd8;
+}
+
+#workspaces button.active {
+  color: #7e9cd8;
+}
+
+#workspaces button.urgent {
+  color: #e6c384;
+}
+
+#workspaces button:hover {
+  background: #1f1f28;
+  border-color: #1f1f28;
+  color: #7e9cd8;
+}
+
+#network.icon {
+  background: #000000;
+  font-size: 24pt;
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+#network {
+  background: #000000;
+  font-size: 12pt;
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+#wireplumber.icon {
+  font-size: 24pt;
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+#wireplumber {
+  background: #000000;
+  font-size: 12pt;
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+#clock {
+  background: #000000;
+  color: #dcd7ba;
+  font-size: 12pt;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#custom-calendar-icon {
+  background: #000000;
+  font-size: 24px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+#clock.date {
+  background: #000000;
+  color: #dcd7ba;
+  font-size: 12pt;
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+#custom-time-icon {
+  background: #000000;
+  font-size: 24px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+#clock.time {
+  background: #000000;
+  color: #dcd7ba;
+  font-size: 12pt;
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+#battery {
+  background: #000000;
+  color: #98bb6c;
+  font-size: 24pt;
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+#battery.percentage {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  color: #dcd7ba;
+  font-size: 12pt;
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+#custom-separator {
+  background: #000000;
+}

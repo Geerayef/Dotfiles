@@ -30,7 +30,7 @@ window:
 
   padding:
     x: 4
-    y: 4
+    y: 2
 
   dynamic_padding: true
 

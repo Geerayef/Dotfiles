@@ -1,0 +1,139 @@
+{
+    "layer": "top",
+    "position": "left",
+    "height": 200,
+    "mode": "dock",
+    "modules-center": [
+        "hyprland/workspaces",
+
+        "custom/separator",
+
+        "network#icon",
+        "network",
+
+        "custom/separator",
+
+        "wireplumber#icon",
+        "wireplumber",
+
+        "custom/separator",
+
+        "custom/calendar-icon",
+        "clock",
+        "clock#date",
+        "custom/time-icon",
+        "clock#time",
+
+        "custom/separator",
+
+        "battery",
+        "battery#percentage",
+    ],
+    // ⚠, , , , , , , , , , , , , , , , , , 
+    // , , , , , , , , 
+    // , , , 
+    // , , , , 
+
+    // -------------------------------------------------------------------------------- //
+
+    "hyprland/workspaces": {
+        "active-onlt": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "urgent": "",
+            "active": "",
+            "default": ""
+        }
+    },
+
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+    },
+
+    // -------------------------------------------------------------------------------- //
+
+    // ~  Battery
+    "battery": {
+        "tooltip": false,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}",
+        "format-warning": "<span foreground='#98bb6c'>{icon}</span>",
+        "format-critical": "<span foreground='#e46876'>{icon}</span>",
+        "format-charging": "<span foreground='#98bb6c'></span>",
+        "format-plugged": "<span foreground='#98bb6c'></span>",
+        "format-full": "<span foreground='#98bb6c'></span>",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#percentage": {
+        "tooltip": false,
+        "format": "{capacity}",
+    },
+
+    // -------------------------------------------------------------------------------- //
+
+    // ~  Time & Date
+    "custom/calendar-icon": {
+        "format": "",
+        "tooltip": false
+    },
+    "clock": {
+        "format": "{:%a}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "clock#date": {
+        "format": "{:%d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "custom/time-icon": {
+        "format": "",
+        "tooltip": false
+    },
+    "clock#time": {
+        "format": "{:%H\n%M}"
+    },
+
+    // -------------------------------------------------------------------------------- //
+
+    // ~  Network
+    "network#icon": {
+        "format": "",
+        "format-disconnected": "",
+    },
+    "network": {
+        "interval": 60,
+        "format-wifi": "{signalStrength}",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "format-ethernet": "{ipaddr}/{cidr}",
+        "format-linked": "{ifname} (No IP)",
+        "tooltip-format": "{ifname} via {gwaddr}",
+    },
+
+    // -------------------------------------------------------------------------------- //
+
+    // ~  Sound
+    "wireplumber": {
+        "tooltip": false,
+        "format": "{volume}",
+        "format-muted": "",
+    },
+    "wireplumber#icon": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-muted": "",
+        "format-icons": ["", "", ""],
+    },
+
+    // -------------------------------------------------------------------------------- //
+
+    // ~  Separator
+    "custom/separator": {
+        "format": " — ",
+    },
+}
+

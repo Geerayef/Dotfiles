@@ -1,7 +1,9 @@
--- # Colorschemes: Light to dark
+-- ~  Order: Light -> Dark
+-- ~  Cannot use 'highlight Normal guibg=#000000' for themes before '~ Dark enough'
+
 return {
   -- ~  NightFox
-  -- nightfox / duskfox / nordfox / terafox / carbonfox
+  -- nightfox / duskfox / terafox / carbonfox
   {
     "EdenEast/nightfox.nvim",
     -- lazy = false,
@@ -59,7 +61,9 @@ return {
     -- end
   },
 
-  -- ~  Midnight
+  -- ~  Dark enough
+
+  -- ~  Midnight: punchy syntax
   {
     "dasupradyumna/midnight.nvim",
     lazy = false,
