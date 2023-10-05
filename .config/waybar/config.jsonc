@@ -108,7 +108,7 @@
     "network": {
         "interval": 60,
         "format-wifi": "{signalStrength}",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "format-alt": "{ipaddr}",
         "format-ethernet": "{ipaddr}/{cidr}",
         "format-linked": "{ifname} (No IP)",
         "tooltip-format": "{ifname} via {gwaddr}",

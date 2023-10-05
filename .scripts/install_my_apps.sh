@@ -1,6 +1,8 @@
 #!/bin/env bash
 
-MY_APPS='alacritty wezterm fish zsh starship neovim fd ripgrep fzf git curl clang bat exa'
+# Alternatives
+# brightnessctl: brillo
+MY_APPS='alacritty wezterm fish zsh starship neovim fd ripgrep fzf git curl clang bat exa brightnessctl wireplumber'
 MY_SHELL=$(echo $SHELL)
 echo "~~~~~ Using $MY_SHELL"
 
