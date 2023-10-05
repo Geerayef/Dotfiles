@@ -112,18 +112,18 @@ return {
         ),
       })
 
-      -- Rust
-      lspconfig.rust_analyzer.setup({
-        on_attach = lsp_attach,
-        capabilities = capabilities,
-        settings = {
-          ["rust-analyzer"] = {
-            checkOnSave = {
-              command = "clippy",
-            },
-          },
-        },
-      })
+      -- Rust: Rust-tools
+      -- lspconfig.rust_analyzer.setup({
+      --   on_attach = lsp_attach,
+      --   capabilities = capabilities,
+      --   settings = {
+      --     ["rust-analyzer"] = {
+      --       checkOnSave = {
+      --         command = "clippy",
+      --       },
+      --     },
+      --   },
+      -- })
 
       -- Clangd
       lspconfig.clangd.setup({
