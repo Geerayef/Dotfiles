@@ -6,6 +6,6 @@ require("config.autocmds")
 require("config.options")
 
 -- uncomment lazy & priority
-vim.cmd("colorscheme noir")
+vim.cmd("colorscheme midnight")
 vim.cmd("highlight Normal guibg=#000000")
 vim.cmd("highlight SignColumn guibg=#000000")

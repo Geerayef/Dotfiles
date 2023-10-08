@@ -1,4 +1,5 @@
-#!/usr/bin/zsh
+#!/usr/bin/env bash
+
 if [[ -e ~/.ssh/ ]] ; then
     git clone --bare git@github.com:Tibor5/Dotfiles.git $HOME/Dotfiles
 else

@@ -7,25 +7,43 @@ end
 
 -- ~ ------------------------------------------------------- ~ --
 
--- ~  APPEARANCE
-
+-- ~ APPEARANCE ~ --
 
 -- ~  Window UI
 
+config.window_background_opacity = 0.5
+config.window_decorations = "RESIZE"
+config.adjust_window_size_when_changing_font_size = false
+config.use_resize_increments = true
+config.enable_scroll_bar = false
+config.window_padding = {
+  left   = '4pt',
+  right  = '0pt',
+  top    = '0pt',
+  bottom = '0pt',
+}
 config.enable_tab_bar = true
 config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
-config.window_padding = {
-  left = 10,
-  right = 0,
-  top = 0,
-  bottom = 20,
+config.show_new_tab_button_in_tab_bar = false
+config.colors = {
+  tab_bar = {
+    background = '#000000',
+    active_tab = {
+      bg_color = '#010101',
+      fg_color = '#ffffff',
+      intensity = 'Bold',
+      underline = 'None',
+      italic = false,
+      strikethrough = false,
+    },
+    inactive_tab = {
+      bg_color = '#0f0f0f',
+      fg_color = '#909090',
+    },
+  }
 }
-
-config.window_background_opacity = 0.5
-config.window_decorations = "NONE"
-config.adjust_window_size_when_changing_font_size = false
 
 -- ~  Theme
 
@@ -39,13 +57,10 @@ config.adjust_window_size_when_changing_font_size = false
 -- Kasugano (terminal.sexy)
 
 -- Red/Green -ish themes:
--- Trim Yer Beard (terminal.sexy)
--- VWbug (terminal.sexy)
+-- Trim Yer Beard (terminal.sexy) / VWbug (terminal.sexy)
 
 -- Dark/Black themes:
--- astromouse (terminal.sexy)
--- Adventure
--- Ayu
+-- astromouse (terminal.sexy) / Adventure / Ayu
 
 local theme = "astromouse (terminal.sexy)"
 config.color_scheme = theme
@@ -66,12 +81,13 @@ config.font = wezterm.font_with_fallback {
     },
 }
 config.font_size = 16
-config.line_height = 1.2
+config.line_height = 1
 
 -- ~ ------------------------------------------------------- ~ --
 
--- ~ BEHAVIOUR
+-- ~ BEHAVIOUR ~ --
 
+config.enable_wayland = true
 
 -- ~  Cursor
 config.default_cursor_style = "SteadyBlock"

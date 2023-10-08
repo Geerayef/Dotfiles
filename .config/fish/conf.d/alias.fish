@@ -21,7 +21,9 @@ alias xdw="ls -al /usr/share/wayland-sessions"
 # ~  Apps
 
 alias nv="nvim"
-alias codi="$(which codium)"
+if test -e "$(command -v codium)"
+  alias codi="$(which codium)"
+end
 
 # ~  Git
 

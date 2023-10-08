@@ -2,37 +2,31 @@
     "layer": "top",
     "position": "left",
     "height": 200,
-    "mode": "dock",
     "modules-center": [
         "hyprland/workspaces",
-
         "custom/separator",
-
         "network#icon",
         "network",
-
         "custom/separator",
-
         "wireplumber#icon",
         "wireplumber",
-
         "custom/separator",
-
         "custom/calendar-icon",
         "clock",
         "clock#date",
         "custom/time-icon",
         "clock#time",
-
+        // "custom/separator",
+        // "custom/wlogout",
         "custom/separator",
-
         "battery",
         "battery#percentage",
     ],
-    // ⚠, , , , , , , , , , , , , , , , , , 
-    // , , , , , , , , 
-    // , , , 
-    // , , , , 
+    // ⚠                                        
+    // 
+    //                 
+    //       
+    //         
 
     // -------------------------------------------------------------------------------- //
 
@@ -91,7 +85,7 @@
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "custom/time-icon": {
-        "format": "",
+        "format": "",
         "tooltip": false
     },
     "clock#time": {
@@ -106,7 +100,7 @@
         "format-disconnected": "",
     },
     "network": {
-        "interval": 60,
+        "interval": 10,
         "format-wifi": "{signalStrength}",
         "format-alt": "{ipaddr}",
         "format-ethernet": "{ipaddr}/{cidr}",
@@ -131,9 +125,18 @@
 
     // -------------------------------------------------------------------------------- //
 
+    // ~  Wlogout
+    "custom/wlogout": {
+        "on-click": "wlogout",
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": "",
+    },
+
+    // -------------------------------------------------------------------------------- //
+
     // ~  Separator
     "custom/separator": {
-        "format": " — ",
+        "format": "⎯",
     },
 }
-

@@ -10,3 +10,12 @@ autocmd("TextYankPost", {
   pattern = "*",
 })
 
+autocmd('FileType', {
+  pattern = 'sh',
+  callback = function ()
+    vim.lsp.start({
+      name = 'bash-language-server',
+      cmd = { 'bash-language-server', 'start' },
+    })
+  end,
+})

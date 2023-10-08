@@ -18,7 +18,7 @@ return {
       servers = {
         bashls = {
           bashIde = {
-            globPattern = "**/*@(.sh|.inc|.bash|.command|.zsh|.zshrc|.zshenv)",
+            globPattern = "**/*@(.sh|.inc|.bash|.command|.zsh|.zshrc|.zshenv|.profile)",
           }
         },
         lua_ls = {
@@ -32,7 +32,7 @@ return {
               neededFileStatus = "Opened"
             },
             runtime = {
-              version = "LuaJIT"
+              version = "Lua 5.1",
             },
             workspace = {
               library = {
@@ -112,7 +112,7 @@ return {
         ),
       })
 
-      -- Rust: Rust-tools
+      -- Rust: Uses Rust-tools instead
       -- lspconfig.rust_analyzer.setup({
       --   on_attach = lsp_attach,
       --   capabilities = capabilities,

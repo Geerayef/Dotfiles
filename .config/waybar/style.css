@@ -1,47 +1,48 @@
 * {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-  border-radius: 8px;
-  font-family:'JetBrainsMono Nerd Font Mono', 'tabler-icons';
-  padding: 0.2em
+  font-family: JetBrainsMono Nerd Font Mono, FiraCode Nerd Font Mono;
+  font-style: normal;
+  font-weight: 500;
+  padding: 0.1em
 }
 
 window#waybar {
+  border-radius: 10px;
   background: transparent;
-  color: #dcd7ba;
+  color: #ffffff;
 }
 
 tooltip {
   background: #000000;
-  border-radius: 8px;
-  font-size: 12pt;
+  border-radius: 10px;
+  font-size: 18pt;
 }
 
 tooltip label {
-  padding: 8px;
+  padding: 1em;
 }
 
 #workspaces {
   background: #000000;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top: 1px solid white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   font-size: 20pt;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 0px;
 }
 
 #workspaces button {
-  color: #dcd7ba;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  color: #5b5251;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #workspaces button.focused {
-  color: #7e9cd8;
+  color: #98bb6c;
 }
 
 #workspaces button.active {
-  color: #7e9cd8;
+  color: #98bb6c;
 }
 
 #workspaces button.urgent {
@@ -56,42 +57,42 @@ tooltip label {
 
 #network.icon {
   background: #000000;
-  font-size: 24pt;
+  font-size: 28pt;
   padding-top: 10px;
   padding-bottom: 0px;
 }
 
 #network {
   background: #000000;
-  font-size: 12pt;
+  font-size: 14pt;
   padding-top: 0px;
   padding-bottom: 10px;
 }
 
 #wireplumber.icon {
-  font-size: 24pt;
+  font-size: 28pt;
   padding-top: 10px;
   padding-bottom: 0px;
 }
 
 #wireplumber {
   background: #000000;
-  font-size: 12pt;
+  font-size: 14pt;
   padding-top: 0px;
-  padding-bottom: 10px;
-}
-
-#clock {
-  background: #000000;
-  color: #dcd7ba;
-  font-size: 12pt;
-  padding-top: 10px;
   padding-bottom: 10px;
 }
 
 #custom-calendar-icon {
   background: #000000;
-  font-size: 24px;
+  font-size: 30px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+#clock {
+  background: #000000;
+  color: #dcd7ba;
+  font-size: 14pt;
   padding-top: 10px;
   padding-bottom: 0px;
 }
@@ -99,14 +100,14 @@ tooltip label {
 #clock.date {
   background: #000000;
   color: #dcd7ba;
-  font-size: 12pt;
+  font-size: 14pt;
   padding-top: 0px;
   padding-bottom: 10px;
 }
 
 #custom-time-icon {
   background: #000000;
-  font-size: 24px;
+  font-size: 30px;
   padding-top: 10px;
   padding-bottom: 0px;
 }
@@ -114,7 +115,7 @@ tooltip label {
 #clock.time {
   background: #000000;
   color: #dcd7ba;
-  font-size: 12pt;
+  font-size: 14pt;
   padding-top: 0px;
   padding-bottom: 10px;
 }
@@ -122,18 +123,26 @@ tooltip label {
 #battery {
   background: #000000;
   color: #98bb6c;
-  font-size: 24pt;
-  padding-top: 10px;
+  font-size: 30pt;
+  padding-top: 0px;
   padding-bottom: 0px;
 }
 
 #battery.percentage {
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom: 1px solid white;
   color: #dcd7ba;
   font-size: 12pt;
   padding-top: 0px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
+}
+
+#custom-wlogout {
+  background: #000000;
+  font-size: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #custom-separator {
