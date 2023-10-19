@@ -1,7 +1,7 @@
 require("config.keymaps")
-require("lazyTim")
 require("config.lsp_keymaps")
 require("config.functions")
+require("lazyTim")
 require("config.autocmds")
 require("config.options")
 

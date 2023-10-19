@@ -17,3 +17,4 @@ set -x SUDO_EDITOR "$(which nvim)"
 set -x VISUAL "$(which nvim)"
 set -x CONDA_AUTO_ACTIVATE_BASE false
 set -x MANPAGER "nvim +Man!"
+set -gx GDK_BACKEND wayland

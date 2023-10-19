@@ -36,7 +36,7 @@ window:
 
   decorations: none
 
-  opacity: 0.5
+  opacity: 1
 
   startup_mode: Windowed
 
@@ -76,7 +76,7 @@ font:
 
   italic:
     family: JetBrainsMonoNerdFontMono
-    style: Extralight Italic
+    style: Light
 
   bold_italic:
     family: JetBrainsMonoNerdFontMono

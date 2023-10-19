@@ -16,11 +16,6 @@ return {
       capabilites = {},
 
       servers = {
-        bashls = {
-          bashIde = {
-            globPattern = "**/*@(.sh|.inc|.bash|.command|.zsh|.zshrc|.zshenv|.profile)",
-          }
-        },
         lua_ls = {
           Lua = {
             completion = {
@@ -28,11 +23,11 @@ return {
               displayContext = 3
             },
             diagnostics = {
-              globals = { "vim" },
+              globals = { "vim" , "jit" },
               neededFileStatus = "Opened"
             },
             runtime = {
-              version = "Lua 5.1",
+              version = "LuaJIT",
             },
             workspace = {
               library = {
@@ -102,7 +97,9 @@ return {
         cmd = { "ocamllsp" },
         filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
         root_dir = lspconfig.util.root_pattern(
-          "*.opam"
+          "*.ml"
+          ,"*.mli"
+          ,"*.opam"
           ,"ocamlformat"
           ,"esy.json"
           ,"package.json"

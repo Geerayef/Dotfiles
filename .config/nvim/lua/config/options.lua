@@ -1,12 +1,14 @@
 local o = vim.opt
+local cmd = vim.cmd
 
 F.disable_builtin()
 
 o.shell = "/usr/bin/fish"
+o.compatible = false
 
 -- ~  File
-vim.cmd("syntax enable")
-vim.cmd("filetype indent on")
+cmd.syntax("on")
+cmd.filetype("plugin", "indent", "on")
 o.fileformats = "unix"
 o.undofile = true
 o.formatoptions:append("j")
@@ -40,7 +42,8 @@ o.showtabline = 1
 o.title = false
 o.showcmd = false
 o.showmode = false
-o.cmdheight = 1
+o.showmatch = true
+o.cmdheight = 0
 o.switchbuf = "useopen,uselast"
 o.signcolumn = "yes"
 o.ruler = false
@@ -60,7 +63,7 @@ o.scrolloff = 4
 o.sidescrolloff = 4
 
 -- ~  Search
-o.grepprg = "rg --vimgrep"
+o.grepprg = "rg"
 o.ignorecase = true
 o.smartcase = true
 o.hlsearch = true

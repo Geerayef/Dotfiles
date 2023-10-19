@@ -23,7 +23,7 @@ tooltip label {
 
 #workspaces {
   background: #000000;
-  border-top: 1px solid white;
+  border-top: 2px solid white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   font-size: 20pt;
@@ -55,6 +55,12 @@ tooltip label {
   color: #7e9cd8;
 }
 
+#language {
+  background: #000000;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 #network.icon {
   background: #000000;
   font-size: 28pt;
@@ -84,6 +90,7 @@ tooltip label {
 
 #custom-calendar-icon {
   background: #000000;
+  color: #98bb6c;
   font-size: 30px;
   padding-top: 10px;
   padding-bottom: 0px;
@@ -107,6 +114,7 @@ tooltip label {
 
 #custom-time-icon {
   background: #000000;
+  color: #98bb6c;
   font-size: 30px;
   padding-top: 10px;
   padding-bottom: 0px;
@@ -131,7 +139,7 @@ tooltip label {
 #battery.percentage {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
   color: #dcd7ba;
   font-size: 12pt;
   padding-top: 0px;

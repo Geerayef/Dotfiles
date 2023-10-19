@@ -52,9 +52,7 @@ return {
       -- Use buffer source for `/` and `?` (if you enable `native_menu`, this won't work anymore).
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" }
-        },
+        sources = { { name = "buffer" } },
         window = {
           completion = cmp.config.window.bordered({
             winhighlight = "Normal:CmpPmenu",
@@ -69,35 +67,19 @@ return {
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources(
-          {
-            { name = "path" }
-          },
-          {
-            { name = "cmdline" }
-          }
+          { { name = "path" }, },
+          { { name = "cmdline" }, }
         ),
         window = {
           completion = cmp.config.window.bordered({
             winhighlight = "Normal:CmpPmenu",
           }),
         },
-        view = {
-          entries = { name = "custom" }
-        }
+        view = { entries = { name = "custom" } }
       })
 
       return {
-        -- Disable completion in comments
-        enabled = function()
-          local context = require 'cmp.config.context'
-          -- Keep command mode completion enabled when cursor is in a comment
-          if vim.api.nvim_get_mode().mode == 'c' then
-            return true
-          else
-            return not context.in_treesitter_capture("comment")
-              and not context.in_syntax_group("Comment")
-          end
-        end,
+        enabled = true,
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -152,15 +134,18 @@ return {
           }),
           documentation = cmp.config.window.bordered({})
         },
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "nvim_lsp_signature_help" },
-          { name = "nvim_lua" },
-          { name = "luasnip" },
-          { name = "path" },
+        sources = cmp.config.sources(
+          {
+            { name = "nvim_lsp" },
+            { name = "nvim_lsp_signature_help" },
+          },
+          {
+            { name = "path" },
+            { name = "cmdline" },
+          },
           { name = "buffer" },
-          { name = "cmdline" },
-        }),
+          { name = "luasnip" }
+        ),
         completion = {
           keyword_length = 2,
         },

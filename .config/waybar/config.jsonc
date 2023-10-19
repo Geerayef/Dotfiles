@@ -5,12 +5,12 @@
     "modules-center": [
         "hyprland/workspaces",
         "custom/separator",
-        "network#icon",
+        // "network#icon",
         "network",
         "custom/separator",
-        "wireplumber#icon",
-        "wireplumber",
-        "custom/separator",
+        // "wireplumber#icon",
+        // "wireplumber",
+        // "custom/separator",
         "custom/calendar-icon",
         "clock",
         "clock#date",
@@ -19,17 +19,20 @@
         // "custom/separator",
         // "custom/wlogout",
         "custom/separator",
+        "hyprland/language",
+        "custom/separator",
         "battery",
         "battery#percentage",
     ],
     // ⚠                                        
-    // 
+    // 
     //                 
     //       
     //         
 
     // -------------------------------------------------------------------------------- //
 
+    // ~  Hyprland
     "hyprland/workspaces": {
         "active-onlt": true,
         "all-outputs": true,
@@ -40,17 +43,18 @@
             "default": ""
         }
     },
-
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "en",
+        "format-rs": "srb",
+        "keyboard-name": ""
     },
 
     // -------------------------------------------------------------------------------- //
 
     // ~  Battery
     "battery": {
+        "interval": 60,
         "tooltip": false,
         "states": {
             "warning": 30,
@@ -67,6 +71,7 @@
     "battery#percentage": {
         "tooltip": false,
         "format": "{capacity}",
+        "interval": 60,
     },
 
     // -------------------------------------------------------------------------------- //
@@ -100,11 +105,15 @@
         "format-disconnected": "",
     },
     "network": {
-        "interval": 10,
+        "interval": 60,
+        "format": "",
         "format-wifi": "{signalStrength}",
-        "format-alt": "{ipaddr}",
-        "format-ethernet": "{ipaddr}/{cidr}",
-        "format-linked": "{ifname} (No IP)",
+        "format-disconnected": "",
+        "format-ethernet": "{signalStrength}",
+        "format-linked": "{signalStrength}",
+        // "format-alt": "{ipaddr}",
+        // "format-ethernet": "{ipaddr}/{cidr}",
+        // "format-linked": "{ifname} (No IP)",
         "tooltip-format": "{ifname} via {gwaddr}",
     },
 
