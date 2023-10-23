@@ -11,7 +11,6 @@ end
 alias l.="ls -A | grep -E '^\.' --group-directories-first"
 alias la="ls -a --group-directories-first"
 alias ll="ls -la --group-directories-first"
-alias dl="dirh"
 
 alias grep="grep --color=always"
 # List installed desktops
