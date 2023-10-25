@@ -7,11 +7,11 @@ if [[ -e "$(command -v exa)" ]] then
   alias ll="exa -laG --color=always --group-directories-first"
   alias lT="exa -aT -L 2 --color=always --group-directories-first"
   alias l.='exa -a | egrep "^\."'
+else
+  alias l.="ls -A | egrep '^\.'"
+  alias la="ls -a"
+  alias ll="ls -la"
 fi
-
-alias l.="ls -A | egrep '^\.'"
-alias la="ls -a"
-alias ll="ls -la"
 
 # List installed desktops
 alias xd="ls -al /usr/share/xsessions"
@@ -20,7 +20,10 @@ alias xdw="ls -al /usr/share/wayland-sessions"
 # ~  Apps
 
 alias nv="nvim"
-alias codi="$(which codium)"
+
+if [[ -e "$(command -v codium)" ]]; then
+  alias codi="$(which codium)"
+fi
 
 # ~  Git
 

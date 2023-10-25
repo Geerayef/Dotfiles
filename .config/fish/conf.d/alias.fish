@@ -7,10 +7,11 @@ if test -e "$(command -v exa)"
   alias ll="exa -laG --color=always --group-directories-first"
   alias lT="exa -aT -L 2 --color=always --group-directories-first"
   alias l.='exa -a | grep -E "^\."'
+else
+  alias l.="ls -A | grep -E '^\.' --group-directories-first"
+  alias la="ls -a --group-directories-first"
+  alias ll="ls -la --group-directories-first"
 end
-alias l.="ls -A | grep -E '^\.' --group-directories-first"
-alias la="ls -a --group-directories-first"
-alias ll="ls -la --group-directories-first"
 
 alias grep="grep --color=always"
 # List installed desktops
