@@ -3,9 +3,11 @@
 # Locations
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
-export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-$HOME/.local/state}
+export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
+export XDG_DATA_DIRS="${XDG_STATE_HOME:-$HOME/.local/state}/nix/profiles/profile/share:$XDG_DATA_DIRS"
 export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
+export BASHDOTDIR=${BASHDOTDIR:-${XDG_CONFIG_HOME}/bash}
 export FZF_BASE="/usr/bin/fzf"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 export RUFF_CACHE_DIR="$HOME/.cache/ruff"

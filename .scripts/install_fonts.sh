@@ -1,10 +1,10 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 echo "~~~~~ Fonts setup"
 echo "~~~~~ Using GitHub: ryanoasis/nerd-fonts"
 
 DOWNLOAD_FONT_DIR=$HOME/Downloads/Fonts
-if [[ -d $HOME/Downloads/Fonts ]] then
+if [ -d $HOME/Downloads/Fonts ] ; then
   echo "~~~~~ Found ~/Downloads/Fonts/. Continue\n"
 else
   mkdir -p $DOWNLOAD_FONT_DIR

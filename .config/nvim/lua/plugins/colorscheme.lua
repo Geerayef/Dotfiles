@@ -70,13 +70,6 @@ return {
     priority = 1000,
   },
 
-  -- ~  Noir
-  {
-    "dzfrias/noir.nvim",
-    -- lazy = false,
-    -- priority = 1000,
-  },
-
   -- ~  Darkrose
   {
     "water-sucks/darkrose.nvim",

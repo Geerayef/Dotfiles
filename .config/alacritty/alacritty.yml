@@ -36,7 +36,7 @@ window:
 
   decorations: none
 
-  opacity: 1
+  opacity: 0.9
 
   startup_mode: Windowed
 
@@ -67,22 +67,22 @@ window:
 
 font:
   normal:
-    family: JetBrainsMonoNerdFontMono
+    family: FiraCode Nerd Font Mono
     style: Regular
 
   bold:
-    family: JetBrainsMonoNerdFontMono
+    family: FiraCode Nerd Font Mono
     style: Bold
 
   italic:
-    family: JetBrainsMonoNerdFontMono
+    family: FiraCode Nerd Font Mono
     style: Light
 
   bold_italic:
-    family: JetBrainsMonoNerdFontMono
+    family: FiraCode Nerd Font Mono
     style: Medium
 
-  size: 16.0
+  size: 18.0
 
   # Spacing
   offset:
@@ -412,8 +412,8 @@ schemes:
   ### Tokyo Night ###
   TokyoNight: &TokyoNight
     primary:
-      background: '0x1a1b26'
-      foreground: '0xc0caf5'
+      background: '#1a1b26'
+      foreground: '#c0caf5'
     cursor:
       text: CellBackground
       cursor: '#F9AF4F'
@@ -428,32 +428,32 @@ schemes:
         background: '#282a36'
         foreground: '#f8f8f2'
     normal:
-      black:   '0x15161e'
-      red:     '0xf7768e'
-      green:   '0x9ece6a'
-      yellow:  '0xe0af68'
-      blue:    '0x7aa2f7'
-      magenta: '0xbb9af7'
-      cyan:    '0x7dcfff'
-      white:   '0xa9b1d6'
+      black:   '#15161e'
+      red:     '#f7768e'
+      green:   '#9ece6a'
+      yellow:  '#e0af68'
+      blue:    '#7aa2f7'
+      magenta: '#bb9af7'
+      cyan:    '#7dcfff'
+      white:   '#a9b1d6'
     bright:
-      black:   '0x414868'
-      red:     '0xf7768e'
-      green:   '0x9ece6a'
-      yellow:  '0xe0af68'
-      blue:    '0x7aa2f7'
-      magenta: '0xbb9af7'
-      cyan:    '0x7dcfff'
-      white:   '0xc0caf5'
+      black:   '#414868'
+      red:     '#f7768e'
+      green:   '#9ece6a'
+      yellow:  '#e0af68'
+      blue:    '#7aa2f7'
+      magenta: '#bb9af7'
+      cyan:    '#7dcfff'
+      white:   '#c0caf5'
     indexed_colors:
-      - { index: 16, color: '0xff9e64' }
-      - { index: 17, color: '0xdb4b4b' }
+      - { index: 16, color: '#ff9e64' }
+      - { index: 17, color: '#db4b4b' }
 
   ### Tokyo Night Moon ###
   TokyoNightMoon: &TokyoNightMoon
     primary:
-      background: '0x222436'
-      foreground: '0xc8d3f5'
+      background: '#222436'
+      foreground: '#c8d3f5'
     cursor:
       text: CellBackground
       cursor: '#528bff'
@@ -468,191 +468,191 @@ schemes:
         background: '#282a36'
         foreground: '#f8f8f2'
     normal:
-      black:   '0x1b1d2b'
-      red:     '0xff757f'
-      green:   '0xc3e88d'
-      yellow:  '0xffc777'
-      blue:    '0x82aaff'
-      magenta: '0xc099ff'
-      cyan:    '0x86e1fc'
-      white:   '0x828bb8'
+      black:   '#1b1d2b'
+      red:     '#ff757f'
+      green:   '#c3e88d'
+      yellow:  '#ffc777'
+      blue:    '#82aaff'
+      magenta: '#c099ff'
+      cyan:    '#86e1fc'
+      white:   '#828bb8'
     bright:
-      black:   '0x444a73'
-      red:     '0xff757f'
-      green:   '0xc3e88d'
-      yellow:  '0xffc777'
-      blue:    '0x82aaff'
-      magenta: '0xc099ff'
-      cyan:    '0x86e1fc'
-      white:   '0xc8d3f5'
+      black:   '#444a73'
+      red:     '#ff757f'
+      green:   '#c3e88d'
+      yellow:  '#ffc777'
+      blue:    '#82aaff'
+      magenta: '#c099ff'
+      cyan:    '#86e1fc'
+      white:   '#c8d3f5'
     indexed_colors:
-      - { index: 16, color: '0xff966c' }
-      - { index: 17, color: '0xc53b53' }
+      - { index: 16, color: '#ff966c' }
+      - { index: 17, color: '#c53b53' }
     
   ### Nightfox ###
   Nightfox: &Nightfox
     primary:
-      background: '0x192330'
-      foreground: '0xcdcecf'
+      background: '#192330'
+      foreground: '#cdcecf'
     normal:
-      black:   '0x393b44'
-      red:     '0xc94f6d'
-      green:   '0x81b29a'
-      yellow:  '0xdbc074'
-      blue:    '0x719cd6'
-      magenta: '0x9d79d6'
-      cyan:    '0x63cdcf'
-      white:   '0xdfdfe0'
+      black:   '#393b44'
+      red:     '#c94f6d'
+      green:   '#81b29a'
+      yellow:  '#dbc074'
+      blue:    '#719cd6'
+      magenta: '#9d79d6'
+      cyan:    '#63cdcf'
+      white:   '#dfdfe0'
     bright:
-      black:   '0x575860'
-      red:     '0xd16983'
-      green:   '0x8ebaa4'
-      yellow:  '0xe0c989'
-      blue:    '0x86abdc'
-      magenta: '0xbaa1e2'
-      cyan:    '0x7ad5d6'
-      white:   '0xe4e4e5'
+      black:   '#575860'
+      red:     '#d16983'
+      green:   '#8ebaa4'
+      yellow:  '#e0c989'
+      blue:    '#86abdc'
+      magenta: '#baa1e2'
+      cyan:    '#7ad5d6'
+      white:   '#e4e4e5'
     indexed_colors:
-      - { index: 16, color: '0xf4a261' }
-      - { index: 17, color: '0xd67ad2' }
+      - { index: 16, color: '#f4a261' }
+      - { index: 17, color: '#d67ad2' }
 
   ### Duskfox ###
   Duskfox: &Duskfox
     primary:
-      background: '0x232136'
-      foreground: '0xe0def4'
+      background: '#232136'
+      foreground: '#e0def4'
     normal:
-      black:   '0x393552'
-      red:     '0xeb6f92'
-      green:   '0xa3be8c'
-      yellow:  '0xf6c177'
-      blue:    '0x569fba'
-      magenta: '0xc4a7e7'
-      cyan:    '0x9ccfd8'
-      white:   '0xe0def4'
+      black:   '#393552'
+      red:     '#eb6f92'
+      green:   '#a3be8c'
+      yellow:  '#f6c177'
+      blue:    '#569fba'
+      magenta: '#c4a7e7'
+      cyan:    '#9ccfd8'
+      white:   '#e0def4'
     bright:
-      black:   '0x47407d'
-      red:     '0xf083a2'
-      green:   '0xb1d196'
-      yellow:  '0xf9cb8c'
-      blue:    '0x65b1cd'
-      magenta: '0xccb1ed'
-      cyan:    '0xa6dae3'
-      white:   '0xe2e0f7'
+      black:   '#47407d'
+      red:     '#f083a2'
+      green:   '#b1d196'
+      yellow:  '#f9cb8c'
+      blue:    '#65b1cd'
+      magenta: '#ccb1ed'
+      cyan:    '#a6dae3'
+      white:   '#e2e0f7'
     indexed_colors:
-      - { index: 16, color: '0xea9a97' }
-      - { index: 17, color: '0xeb98c3' }
+      - { index: 16, color: '#ea9a97' }
+      - { index: 17, color: '#eb98c3' }
 
   ### Carbonfox ###
   Carbonfox: &Carbonfox
     primary:
-      background: '0x161616'
-      foreground: '0xf2f4f8'
+      background: '#161616'
+      foreground: '#f2f4f8'
     normal:
-      black:   '0x282828'
-      red:     '0xee5396'
-      green:   '0x25be6a'
-      yellow:  '0x08bdba'
-      blue:    '0x78a9ff'
-      magenta: '0xbe95ff'
-      cyan:    '0x33b1ff'
-      white:   '0xdfdfe0'
+      black:   '#282828'
+      red:     '#ee5396'
+      green:   '#25be6a'
+      yellow:  '#08bdba'
+      blue:    '#78a9ff'
+      magenta: '#be95ff'
+      cyan:    '#33b1ff'
+      white:   '#dfdfe0'
     bright:
-      black:   '0x484848'
-      red:     '0xf16da6'
-      green:   '0x46c880'
-      yellow:  '0x2dc7c4'
-      blue:    '0x8cb6ff'
-      magenta: '0xc8a5ff'
-      cyan:    '0x52bdff'
-      white:   '0xe4e4e5'
+      black:   '#484848'
+      red:     '#f16da6'
+      green:   '#46c880'
+      yellow:  '#2dc7c4'
+      blue:    '#8cb6ff'
+      magenta: '#c8a5ff'
+      cyan:    '#52bdff'
+      white:   '#e4e4e5'
     indexed_colors:
-      - { index: 16, color: '0x3ddbd9' }
-      - { index: 17, color: '0xff7eb6' }
+      - { index: 16, color: '#3ddbd9' }
+      - { index: 17, color: '#ff7eb6' }
 
   ### Terafox ###
   Terafox: &Terafox
     primary:
-      background: '0x152528'
-      foreground: '0xe6eaea'
+      background: '#152528'
+      foreground: '#e6eaea'
     normal:
-      black:   '0x2f3239'
-      red:     '0xe85c51'
-      green:   '0x7aa4a1'
-      yellow:  '0xfda47f'
-      blue:    '0x5a93aa'
-      magenta: '0xad5c7c'
-      cyan:    '0xa1cdd8'
-      white:   '0xebebeb'
+      black:   '#2f3239'
+      red:     '#e85c51'
+      green:   '#7aa4a1'
+      yellow:  '#fda47f'
+      blue:    '#5a93aa'
+      magenta: '#ad5c7c'
+      cyan:    '#a1cdd8'
+      white:   '#ebebeb'
     bright:
-      black:   '0x4e5157'
-      red:     '0xeb746b'
-      green:   '0x8eb2af'
-      yellow:  '0xfdb292'
-      blue:    '0x73a3b7'
-      magenta: '0xb97490'
-      cyan:    '0xafd4de'
-      white:   '0xeeeeee'
+      black:   '#4e5157'
+      red:     '#eb746b'
+      green:   '#8eb2af'
+      yellow:  '#fdb292'
+      blue:    '#73a3b7'
+      magenta: '#b97490'
+      cyan:    '#afd4de'
+      white:   '#eeeeee'
     indexed_colors:
-      - { index: 16, color: '0xff8349' }
-      - { index: 17, color: '0xcb7985' }
+      - { index: 16, color: '#ff8349' }
+      - { index: 17, color: '#cb7985' }
 
   ### Nordfox ###
   Nordfox: &Nordfox
     primary:
-      background: '0x2e3440'
-      foreground: '0xcdcecf'
+      background: '#2e3440'
+      foreground: '#cdcecf'
     normal:
-      black:   '0x3b4252'
-      red:     '0xbf616a'
-      green:   '0xa3be8c'
-      yellow:  '0xebcb8b'
-      blue:    '0x81a1c1'
-      magenta: '0xb48ead'
-      cyan:    '0x88c0d0'
-      white:   '0xe5e9f0'
+      black:   '#3b4252'
+      red:     '#bf616a'
+      green:   '#a3be8c'
+      yellow:  '#ebcb8b'
+      blue:    '#81a1c1'
+      magenta: '#b48ead'
+      cyan:    '#88c0d0'
+      white:   '#e5e9f0'
     bright:
-      black:   '0x465780'
-      red:     '0xd06f79'
-      green:   '0xb1d196'
-      yellow:  '0xf0d399'
-      blue:    '0x8cafd2'
-      magenta: '0xc895bf'
-      cyan:    '0x93ccdc'
-      white:   '0xe7ecf4'
+      black:   '#465780'
+      red:     '#d06f79'
+      green:   '#b1d196'
+      yellow:  '#f0d399'
+      blue:    '#8cafd2'
+      magenta: '#c895bf'
+      cyan:    '#93ccdc'
+      white:   '#e7ecf4'
     indexed_colors:
-      - { index: 16, color: '0xc9826b' }
-      - { index: 17, color: '0xbf88bc' }
+      - { index: 16, color: '#c9826b' }
+      - { index: 17, color: '#bf88bc' }
 
   ### astromouse (terminal.sexy) ###
   astromouse: &astromouse
     colors:
     # Default colors
     primary:
-      background: '0x000000'
-      foreground: '0xffffff'
+      background: '#000000'
+      foreground: '#FFFFFF'
 
     # Normal colors
     normal:
-      black:   '0x1c1c1c'
-      red:     '0xd770af'
-      green:   '0x9acc79'
-      yellow:  '0xd0d26b'
-      blue:    '0x77b6c5'
-      magenta: '0xa488d9'
-      cyan:    '0x7fcab3'
-      white:   '0x8d8d8d'
+      black:   '#1C1C1C'
+      red:     '#D770AF'
+      green:   '#9ACC79'
+      yellow:  '#D0D26B'
+      blue:    '#77B6C5'
+      magenta: '#A488D9'
+      cyan:    '#7FCAB3'
+      white:   '#8D8D8D'
 
     # Bright colors
     bright:
-      black:   '0x3d3a3a'
-      red:     '0xd28abf'
-      green:   '0x8fb676'
-      yellow:  '0xc8bc45'
-      blue:    '0x8fa7b9'
-      magenta: '0xbd89de'
-      cyan:    '0x6ec2a8'
-      white:   '0xdad3d3'
+      black:   '#3D3A3A'
+      red:     '#D28ABF'
+      green:   '#8FB676'
+      yellow:  '#C8BC45'
+      blue:    '#8FA7B9'
+      magenta: '#BD89DE'
+      cyan:    '#6EC2A8'
+      white:   '#DAD3D3'
 
 #  ~ Themes
 

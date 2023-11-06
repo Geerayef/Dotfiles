@@ -1,7 +1,7 @@
 # ~  General
 
 alias C="clear"
-if [[ -e "$(command -v exa)" ]] then
+if [[ -e "$(command -v exa)" ]] ; then
   alias ls="exa -a --color=always --group-directories-first"
   alias la="exa -aG --color=always --group-directories-first"
   alias ll="exa -laG --color=always --group-directories-first"
@@ -94,7 +94,8 @@ alias dnfh="dnf help"
 
 # ~  pacman
 
-alias pi="sudo pacman -S"
+alias pi="sudo pacman -S --needed"
 alias pu="sudo pacman -Syu"
 alias pr="sudo pacman -R"
-alias ps="sudo pacman -Q"
+alias pq="sudo pacman -Q"
+alias ps="sudo pacman -Ss"

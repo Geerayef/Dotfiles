@@ -2,11 +2,11 @@
 
 alias C="clear"
 if test -e "$(command -v exa)"
-  alias ls="exa -a --color=always --group-directories-first"
-  alias la="exa -aG --color=always --group-directories-first"
-  alias ll="exa -laG --color=always --group-directories-first"
-  alias lT="exa -aT -L 2 --color=always --group-directories-first"
-  alias l.='exa -a | grep -E "^\."'
+  alias ls="eza -a --color=always --group-directories-first"
+  alias la="eza -aG --color=always --group-directories-first"
+  alias ll="eza -la --color=always --group-directories-first"
+  alias lT="eza -aT -L 2 --color=always --group-directories-first"
+  alias l.='eza -a | grep -E "^\."'
 else
   alias l.="ls -A | grep -E '^\.' --group-directories-first"
   alias la="ls -a --group-directories-first"
@@ -21,6 +21,7 @@ alias xdw="ls -al /usr/share/wayland-sessions"
 # ~  Apps
 
 alias nv="nvim"
+
 if test -e "$(command -v codium)"
   alias codi="$(which codium)"
 end
@@ -40,6 +41,7 @@ alias gf="git fetch"
 alias gm="git merge"
 alias gpl="git pull --rebase"
 alias gps="git push --set-upstream"
+alias gch="git checkout"
 alias gb="git branch"
 alias gl="git log"
 
@@ -92,7 +94,8 @@ alias dnfh="dnf help"
 
 # ~  pacman
 
-alias pi="sudo pacman -S"
+alias pi="sudo pacman -S --needed"
 alias pu="sudo pacman -Syu"
 alias pr="sudo pacman -R"
-alias ps="sudo pacman -Q"
+alias pq="sudo pacman -Q"
+alias ps="sudo pacman -Ss"

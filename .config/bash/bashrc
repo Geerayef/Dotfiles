@@ -1,6 +1,6 @@
 ### ~  My Bash settings  ~ ###
 
-echo "Sourced from /etc/bashrc"
+# ~ ! Sourced from /etc/bash.bashrc
 
 settings="$BASHDOTDIR/settings"
 

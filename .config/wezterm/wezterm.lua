@@ -11,7 +11,7 @@ end
 
 -- ~  Window UI
 
-config.window_background_opacity = 1
+config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
 config.adjust_window_size_when_changing_font_size = false
 config.use_resize_increments = true
@@ -74,13 +74,13 @@ config.font_dirs = {
 }
 config.font = wezterm.font_with_fallback {
     {
-        family = "JetBrainsMono Nerd Font Propo",
+        family = "FiraCode Nerd Font Mono",
     },
     {
-        family = "FiraCode Nerd Font Propo",
+        family = "JetBrainsMono Nerd Font Propo",
     },
 }
-config.font_size = 16
+config.font_size = 18
 config.line_height = 1
 
 -- ~ ------------------------------------------------------- ~ --
