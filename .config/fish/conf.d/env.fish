@@ -18,6 +18,6 @@ set -gx EDITOR $(which nvim)
 set -gx SUDO_EDITOR $(which nvim)
 set -gx VISUAL $(which nvim)
 set -gx CONDA_AUTO_ACTIVATE_BASE false
-set -gx PAGER "nvim -R"
+set -gx PAGER "nvim -R -u $XDG_CONFIG_HOME/nvim/small.lua"
 set -gx MANPAGER "nvim +Man!"
 set -gx GDK_BACKEND wayland

@@ -7,8 +7,6 @@ Zus = {}
 -- ~  Imports
 
 require("config.functions")
-local palette = require("nightfox.palette").load("nightfox")
-local Color = require('nightfox.lib.color')
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
@@ -32,7 +30,7 @@ Zus.options = {
 
 Zus.HIGHLIGHT = {
   ZusHL               = "%#ZusHL#",
-  ZusHLMode           = "%#ZusHLMode#",
+  -- ZusHLMode           = "%#ZusHLMode#",
   -- ZusHLNormal         = "%#ZusHLNormal#",
   -- ZusHLVisual         = "%#ZusHLVisual#",
   -- ZusHLInsert         = "%#ZusHLInsert#",
@@ -40,14 +38,21 @@ Zus.HIGHLIGHT = {
   -- ZusHLSelect         = "%#ZusHLVisual#",
   -- ZusHLReplace        = "%#ZusHLVisual#",
   -- ZusHLTerminal       = "%#ZusHLVisual#",
-  ZusLSPError         = "%#ZusLSPError#",
-  ZusLSPWarn          = "%#ZusLSPWarn#",
-  ZusLSPHint          = "%#ZusLSPHint#",
-  ZusLSPInfo          = "%#ZusLSPInfo#",
+  -- ZusLSPError         = "%#ZusLSPError#",
+  -- ZusLSPWarn          = "%#ZusLSPWarn#",
+  -- ZusLSPHint          = "%#ZusLSPHint#",
+  -- ZusLSPInfo          = "%#ZusLSPInfo#",
 }
 
-local statusline_bg = Color.from_hex(palette.bg0)
-local statusline_fg = Color.from_hex(palette.fg2)
+-- local status_nightfox, Color = pcall(require, "nightfox.lib.color")
+-- if status_nightfox then
+--   local status_nightfox_palette, Palette = pcall(require, "nightfox.palette")
+--   if status_nightfox_palette then
+--     Palette.load("nightfox")
+--     STATUSLINE_BG = Color.from_hex(Palette.bg0)
+--     STATUSLINE_FG = Color.from_hex(Palette.fg2)
+--   end
+-- end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 

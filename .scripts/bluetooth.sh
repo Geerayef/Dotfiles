@@ -1,11 +1,23 @@
 #!/usr/bin/env bash
 
-# Constants
-divider="---------"
-goback="Back"
+# ~  Dependencies
 
-# Checks if bluetooth controller is powered on
-power_on() {
+# bluetoothctl (package: bluez)
+# tofi
+
+# ~ -------------------------------------------------------------------------------- ~ #
+
+# ~  Global variables
+
+DIVIDER="--------------------"
+BACK="Back"
+
+# ~ -------------------------------------------------------------------------------- ~ #
+
+# ~  Functions
+
+# - Power
+status_powered() {
     if bluetoothctl show | grep -q "Powered: yes"; then
         return 0
     else
@@ -13,9 +25,8 @@ power_on() {
     fi
 }
 
-# Toggles power state
 toggle_power() {
-    if power_on; then
+    if status_powered; then
         bluetoothctl power off
         show_menu
     else
@@ -27,8 +38,9 @@ toggle_power() {
     fi
 }
 
-# Checks if controller is scanning for new devices
-scan_on() {
+# - Scan
+# Echoes
+status_scaning() {
     if bluetoothctl show | grep -q "Discovering: yes"; then
         echo "Scan: on"
         return 0
@@ -38,9 +50,8 @@ scan_on() {
     fi
 }
 
-# Toggles scanning state
 toggle_scan() {
-    if scan_on; then
+    if status_scaning; then
         kill $(pgrep -f "bluetoothctl scan on")
         bluetoothctl scan off
         show_menu
@@ -52,8 +63,9 @@ toggle_scan() {
     fi
 }
 
-# Checks if controller is able to pair to devices
-pairable_on() {
+# - Pairable
+# Echoes
+status_pairable() {
     if bluetoothctl show | grep -q "Pairable: yes"; then
         echo "Pairable: on"
         return 0
@@ -63,9 +75,8 @@ pairable_on() {
     fi
 }
 
-# Toggles pairable state
 toggle_pairable() {
-    if pairable_on; then
+    if status_pairable; then
         bluetoothctl pairable off
         show_menu
     else
@@ -74,8 +85,9 @@ toggle_pairable() {
     fi
 }
 
-# Checks if controller is discoverable by other devices
-discoverable_on() {
+# - Discoverable
+# Echoes
+status_discoverable() {
     if bluetoothctl show | grep -q "Discoverable: yes"; then
         echo "Discoverable: on"
         return 0
@@ -85,9 +97,8 @@ discoverable_on() {
     fi
 }
 
-# Toggles discoverable state
 toggle_discoverable() {
-    if discoverable_on; then
+    if status_discoverable; then
         bluetoothctl discoverable off
         show_menu
     else
@@ -96,8 +107,8 @@ toggle_discoverable() {
     fi
 }
 
-# Checks if a device is connected
-device_connected() {
+# - Connect
+status_connected() {
     device_info=$(bluetoothctl info "$1")
     if echo "$device_info" | grep -q "Connected: yes"; then
         return 0
@@ -106,9 +117,8 @@ device_connected() {
     fi
 }
 
-# Toggles device connection
-toggle_connection() {
-    if device_connected "$1"; then
+toggle_connect() {
+    if status_connected "$1"; then
         bluetoothctl disconnect "$1"
         device_menu "$device"
     else
@@ -117,8 +127,9 @@ toggle_connection() {
     fi
 }
 
-# Checks if a device is paired
-device_paired() {
+# - Pair
+# Echoes
+status_paired() {
     device_info=$(bluetoothctl info "$1")
     if echo "$device_info" | grep -q "Paired: yes"; then
         echo "Paired: yes"
@@ -129,9 +140,8 @@ device_paired() {
     fi
 }
 
-# Toggles device paired state
-toggle_paired() {
-    if device_paired "$1"; then
+toggle_pair() {
+    if status_paired "$1"; then
         bluetoothctl remove "$1"
         device_menu "$device"
     else
@@ -140,7 +150,8 @@ toggle_paired() {
     fi
 }
 
-# Checks if a device is trusted
+# - Trusted
+# Echoes
 device_trusted() {
     device_info=$(bluetoothctl info "$1")
     if echo "$device_info" | grep -q "Trusted: yes"; then
@@ -152,7 +163,6 @@ device_trusted() {
     fi
 }
 
-# Toggles device connection
 toggle_trust() {
     if device_trusted "$1"; then
         bluetoothctl untrust "$1"
@@ -163,23 +173,20 @@ toggle_trust() {
     fi
 }
 
-# Prints a short string with the current bluetooth status
-# Useful for status bars like polybar, etc.
+# ~ -------------------------------------------------------------------------------- ~ #
+
+# ~  Main
+
 print_status() {
-    if power_on; then
+    if status_powered; then
         printf ''
 
         paired_devices_cmd="devices Paired"
-        # Check if an outdated version of bluetoothctl is used to preserve backwards compatibility
-        if (( $(echo "$(bluetoothctl version | cut -d ' ' -f 2) < 5.65" | bc -l) )); then
-            paired_devices_cmd="paired-devices"
-        fi
-
         mapfile -t paired_devices < <(bluetoothctl $paired_devices_cmd | grep Device | cut -d ' ' -f 2)
-        counter=0
 
+        counter=0
         for device in "${paired_devices[@]}"; do
-            if device_connected "$device"; then
+            if status_connected "$device"; then
                 device_alias=$(bluetoothctl info "$device" | grep "Alias" | cut -d ' ' -f 2-)
 
                 if [ $counter -gt 0 ]; then
@@ -197,75 +204,61 @@ print_status() {
     fi
 }
 
-# A submenu for a specific device that allows connecting, pairing, and trusting
 device_menu() {
     device=$1
 
-    # Get device name and mac address
     device_name=$(echo "$device" | cut -d ' ' -f 3-)
     mac=$(echo "$device" | cut -d ' ' -f 2)
 
-    # Build options
-    if device_connected "$mac"; then
+    if status_connected "$mac"; then
         connected="Connected: yes"
     else
         connected="Connected: no"
     fi
-    paired=$(device_paired "$mac")
+    paired=$(status_paired "$mac")
     trusted=$(device_trusted "$mac")
-    options="$connected\n$paired\n$trusted\n$divider\n$goback\nExit"
+    options="Connected:\n$connected\nPaired:\n$paired\nTrusted:\n$trusted\n$DIVIDER\n$BACK\nExit"
 
-    # Open rofi menu, read chosen option
-    chosen="$(echo -e "$options" | $rofi_command "$device_name")"
+    chosen="$(echo -e "$options" | $tofi_cmd "$device_name")"
 
-    # Match chosen option to command
     case "$chosen" in
-        "" | "$divider")
+        "" | "$DIVIDER")
             echo "No option chosen."
             ;;
         "$connected")
-            toggle_connection "$mac"
+            toggle_connect "$mac"
             ;;
         "$paired")
-            toggle_paired "$mac"
+            toggle_pair "$mac"
             ;;
         "$trusted")
             toggle_trust "$mac"
             ;;
-        "$goback")
+        "$BACK")
             show_menu
             ;;
     esac
 }
 
-# Opens a rofi menu with current bluetooth status and options to connect
 show_menu() {
-    # Get menu options
-    if power_on; then
+    if status_powered; then
         power="Power: on"
-
-        # Human-readable names of devices, one per line
-        # If scan is off, will only list paired devices
         devices=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3-)
 
-        # Get controller flags
-        scan=$(scan_on)
-        pairable=$(pairable_on)
-        discoverable=$(discoverable_on)
+        scan=$(status_scaning)
+        pairable=$(status_pairable)
+        discoverable=$(status_discoverable)
 
-        # Options passed to rofi
-        options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
+        options="Devices:\n$devices\n$DIVIDER\n$power\n$scan\n$pairable\n$discoverable\nExit"
     else
         power="Power: off"
         options="$power\nExit"
     fi
 
-    # Open rofi menu, read chosen option
-    chosen="$(echo -e "$options" | $rofi_command "Bluetooth")"
+    chosen="$(echo -e "$options" | $tofi_cmd)"
 
-    # Match chosen option to command
     case "$chosen" in
-        "" | "$divider")
+        "" | "$DIVIDER")
             echo "No option chosen."
             ;;
         "$power")
@@ -282,14 +275,16 @@ show_menu() {
             ;;
         *)
             device=$(bluetoothctl devices | grep "$chosen")
-            # Open a submenu if a device is selected
             if [[ $device ]]; then device_menu "$device"; fi
             ;;
     esac
 }
 
-# rofi command to pipe into, can add any options here
-rofi_command="rofi -dmenu $* -p -theme ~/.config/rofi/styles/combo_vertical_image.rasi"
+tofi_cmd="tofi $* --config $XDG_CONFIG_HOME/tofi/bluetooth"
+
+# ~ -------------------------------------------------------------------------------- ~ #
+
+# ~  Entry
 
 case "$1" in
     --status)

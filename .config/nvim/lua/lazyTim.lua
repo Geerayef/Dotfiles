@@ -12,9 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local status, lazy = pcall(require, "lazy")
-if not status then
-  return
-end
+if not status then return end
 
 local opts = {
   root = vim.fn.stdpath("data") .. "/lazy",
@@ -35,7 +33,7 @@ local opts = {
     filter = true,
   },
   dev = {
-    path = "~/projects",
+    path = "~/Programming",
     patterns = {},
     fallback = false,
   },
@@ -67,22 +65,17 @@ local opts = {
       source = " ",
       start = "",
       task = "✔ ",
-      list = {
-        "●",
-        "➜",
-        "★",
-        "‒",
-      },
+      list = { "●", "➜", "★", "‒", },
     },
     browser = nil,
     throttle = 20,
     custom_keys = {
-      ["<localleader>l"] = function(plugin)
+      ["<leader>l"] = function(plugin)
         require("lazy.util").float_term({ "lazygit", "log" }, {
           cwd = plugin.dir,
         })
       end,
-      ["<localleader>t"] = function(plugin)
+      ["<leader>t"] = function(plugin)
         require("lazy.util").float_term(nil, {
           cwd = plugin.dir,
         })
@@ -91,8 +84,7 @@ local opts = {
   },
   diff = {
     -- diff command <d> can be one of:
-    -- * browser: opens the github compare view. Note that this is always mapped to <K> as well,
-    --   so you can have a different command for diff <d>
+    -- * Browser: GitHub compare view - mapped to <K>
     -- * git: will run git diff and open a buffer with filetype git
     -- * terminal_git: will open a pseudo terminal with git diff
     -- * diffview.nvim: will open Diffview to show the diff
@@ -109,9 +101,7 @@ local opts = {
     notify = false,
   },
   performance = {
-    cache = {
-      enabled = true,
-    },
+    cache = { enabled = true, },
     reset_packpath = true,
     rtp = {
       reset = true,
@@ -123,7 +113,7 @@ local opts = {
         "netrwPlugin",
         "tarPlugin",
         "tohtml",
-        "tutor",
+        -- "tutor",
         "zipPlugin",
       },
     },
@@ -135,9 +125,7 @@ local opts = {
     skip_if_doc_exists = true,
   },
   state = vim.fn.stdpath("state") .. "/lazy/state.json",
-  build = {
-    warn_on_override = true,
-  },
+  build = { warn_on_override = true, },
 }
 
 lazy.setup("plugins", opts)

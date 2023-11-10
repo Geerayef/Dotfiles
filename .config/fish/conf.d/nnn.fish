@@ -2,7 +2,7 @@
 
 set -gx NNN_PLUG ''
 set -gx NNN_COLORS ''
-set -gx NNN_PAGER 'nvim -R'
+set -gx NNN_PAGER 'nvim -R -u $XDG_CONFIG_HOME/nvim/small.lua'
 set -gx NNN_FIFO '/tmp/nnn.fifo'
 
 # To cd on quit only on ^G, remove the "-x" from both lines below, without changing the paths.
