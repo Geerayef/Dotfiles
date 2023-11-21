@@ -1,11 +1,23 @@
 # ~  nnn
 
-set -gx NNN_PLUG ''
-set -gx NNN_COLORS ''
-set -gx NNN_PAGER 'nvim -R -u $XDG_CONFIG_HOME/nvim/small.lua'
-set -gx NNN_FIFO '/tmp/nnn.fifo'
+set -g BLK "0B"
+set -g CHR "0B"
+set -g DIR "04"
+set -g EXE "06"
+set -g REG "00"
+set -g HARDLINK "06"
+set -g SYMLINK "06"
+set -g MISSING "00"
+set -g ORPHAN "09"
+set -g FIFO "06"
+set -g SOCK "0B"
+set -g OTHER "06"
 
-# To cd on quit only on ^G, remove the "-x" from both lines below, without changing the paths.
+set -gx NNN_PLUG ""
+set -gx NNN_FIFO "/tmp/nnn.fifo"
+set -gx NNN_FCOLORS "$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
+
+# cd-on-quit only on ^G? Remove "-x"
 if test -n "$XDG_CONFIG_HOME"
   set -x NNN_TMPFILE "$XDG_CONFIG_HOME/nnn/.lastd"
 else
@@ -14,7 +26,7 @@ end
 
 # ~ -------------------------------------------------------------------------------- ~ #
 
-# ~ Functions
+# ~  Functions
 
 
 # CD on quit

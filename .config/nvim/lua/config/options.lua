@@ -4,10 +4,10 @@ local cmd = vim.cmd
 F.disable_builtin()
 
 o.shell = "/usr/bin/fish"
-o.compatible = false
+-- o.compatible = false
 
 -- ~  File
-cmd.syntax("on")
+-- cmd.syntax("on")
 cmd.filetype("plugin", "indent", "on")
 o.fileformats = "unix"
 o.undofile = true

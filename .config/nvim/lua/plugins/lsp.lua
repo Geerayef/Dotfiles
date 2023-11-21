@@ -7,7 +7,6 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
     },
-
     opts = {
       diagnostics = require("config.diagnostics"),
       inlay_hints = { enabled = false },
@@ -26,9 +25,7 @@ return {
               globals = { "vim" , "jit" },
               neededFileStatus = "Opened"
             },
-            runtime = {
-              version = "LuaJIT",
-            },
+            runtime = { version = "LuaJIT" },
             workspace = {
               library = {
                 vim.env.VIMRUNTIME,
@@ -169,11 +166,24 @@ return {
         }
       })
 
+      -- Bash
+      lspconfig.bashls.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        cmd = { "bash-language-server", "start" },
+        filetypes = { "sh", "bash" },
+        settings = {
+          bashIde = {
+            globPattern = "*@(.sh|.inc|.bash|.command)"
+          }
+        },
+        single_file_support = true,
+      })
+
     end
   },
 
   -- ~ Mason
-
   {
     "williamboman/mason.nvim",
     cmd = "Mason",

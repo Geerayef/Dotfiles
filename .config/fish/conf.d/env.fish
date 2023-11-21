@@ -4,7 +4,6 @@ set -gx XDG_CACHE_HOME "$HOME/.cache"
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -gx XDG_STATE_HOME "$HOME/.local/state"
 set -gx XDG_DATA_HOME "$HOME/.local/share"
-# set -gxa XDG_DATA_DIRS "$XDG_STATE_HOME/nix/profiles/profile/share" $XDG_DATA_DIRS
 set -gx ZDOTDIR "$XDG_CONFIG_HOME/zsh"
 set -gx BASHDOTDIR "$XDG_CONFIG_HOME/bash"
 set -gx FZF_BASE "/usr/bin/fzf"
@@ -18,6 +17,6 @@ set -gx EDITOR $(which nvim)
 set -gx SUDO_EDITOR $(which nvim)
 set -gx VISUAL $(which nvim)
 set -gx CONDA_AUTO_ACTIVATE_BASE false
-set -gx PAGER "nvim -R -u $XDG_CONFIG_HOME/nvim/small.lua"
+set -gx PAGER "bat | nvimpager -- --noplugin -u $XDG_CONFIG_HOME/nvim/small.lua"
 set -gx MANPAGER "nvim +Man!"
 set -gx GDK_BACKEND wayland

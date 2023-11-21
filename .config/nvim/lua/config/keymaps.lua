@@ -4,8 +4,8 @@ local keymap = vim.keymap.set
 
 -- ~  General keymaps
 
-keymap("v", "J", ":m '>+1<CR>gv=gv")
-keymap("v", "K", ":m '<-2<CR>gv=gv")
+keymap("v", "J", ":m '>+1<CR>gv=gv", { noremap = true })
+keymap("v", "K", ":m '<-2<CR>gv=gv", { noremap = true })
 keymap("n", "<C-d>", "10<C-d>", { noremap = true })
 keymap("n", "<C-u>", "10<C-u>", { noremap = true })
 
@@ -13,7 +13,7 @@ keymap("n", "<C-u>", "10<C-u>", { noremap = true })
 keymap("n", "<leader>bd", "<cmd>bdelete<CR>")
 
 -- Search
-keymap("n", "<leader>nh", ":nohl<CR>")
+keymap("n", "<leader>nh", "<cmd>nohl<CR>")
 keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
 
@@ -28,12 +28,12 @@ keymap("v", "<leader>y", '"+y')
 keymap("n", "<leader>spv", "<C-w>v")
 keymap("n", "<leader>sph", "<C-w>s")
 keymap("n", "<leader>spe", "<C-w>=")
-keymap("n", "<leader>spx", ":close<CR>")
+keymap("n", "<leader>spx", "<cmd>close<CR>")
 
 -- Tabs
 keymap("n", "<leader>to", "<cmd>tabnew<CR>")
-keymap("n", "<leader>tn", "<cmd>tabn<CR>")
-keymap("n", "<leader>tp", "<cmd>tabp<CR>")
+keymap("n", "<leader>tn", "<cmd>tabnext<CR>")
+keymap("n", "<leader>tp", "<cmd>tabprevious<CR>")
 keymap("n", "<leader>tml", "<cmd>tabmove +1<CR>")
 keymap("n", "<leader>tmr", "<cmd>tabmove -1<CR>")
 
@@ -43,7 +43,6 @@ keymap("t", "<Esc>", "<C-\\><C-n>")
 -------------------------------------------------------------------------------------------------------
 
 -- ~  Plugin keymaps
-
 
 -- Telescope
 keymap("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", { desc = "[?] Find recently opened files" })

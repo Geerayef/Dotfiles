@@ -28,13 +28,13 @@ status_powered() {
 toggle_power() {
     if status_powered; then
         bluetoothctl power off
-        show_menu
+        main_menu
     else
-        if rfkill list bluetooth | grep -q 'blocked: yes'; then
+        if rfkill list bluetooth | grep -q "blocked: yes"; then
             rfkill unblock bluetooth && sleep 3
         fi
         bluetoothctl power on
-        show_menu
+        main_menu
     fi
 }
 
@@ -54,12 +54,12 @@ toggle_scan() {
     if status_scaning; then
         kill $(pgrep -f "bluetoothctl scan on")
         bluetoothctl scan off
-        show_menu
+        main_menu
     else
         bluetoothctl scan on &
         echo "Scanning..."
         sleep 5
-        show_menu
+        main_menu
     fi
 }
 
@@ -78,10 +78,10 @@ status_pairable() {
 toggle_pairable() {
     if status_pairable; then
         bluetoothctl pairable off
-        show_menu
+        main_menu
     else
         bluetoothctl pairable on
-        show_menu
+        main_menu
     fi
 }
 
@@ -100,10 +100,10 @@ status_discoverable() {
 toggle_discoverable() {
     if status_discoverable; then
         bluetoothctl discoverable off
-        show_menu
+        main_menu
     else
         bluetoothctl discoverable on
-        show_menu
+        main_menu
     fi
 }
 
@@ -182,7 +182,7 @@ print_status() {
         printf ''
 
         paired_devices_cmd="devices Paired"
-        mapfile -t paired_devices < <(bluetoothctl $paired_devices_cmd | grep Device | cut -d ' ' -f 2)
+        mapfile -t paired_devices < <(bluetoothctl "$paired_devices_cmd" | grep Device | cut -d ' ' -f 2)
 
         counter=0
         for device in "${paired_devices[@]}"; do
@@ -206,10 +206,7 @@ print_status() {
 
 device_menu() {
     device=$1
-
-    device_name=$(echo "$device" | cut -d ' ' -f 3-)
     mac=$(echo "$device" | cut -d ' ' -f 2)
-
     if status_connected "$mac"; then
         connected="Connected: yes"
     else
@@ -217,9 +214,8 @@ device_menu() {
     fi
     paired=$(status_paired "$mac")
     trusted=$(device_trusted "$mac")
-    options="Connected:\n$connected\nPaired:\n$paired\nTrusted:\n$trusted\n$DIVIDER\n$BACK\nExit"
-
-    chosen="$(echo -e "$options" | $tofi_cmd "$device_name")"
+    options="$connected\n$paired\n$trusted\n$DIVIDER\n$BACK\nExit"
+    chosen="$(echo -e "$options" | $tofi_cmd)"
 
     case "$chosen" in
         "" | "$DIVIDER")
@@ -235,12 +231,12 @@ device_menu() {
             toggle_trust "$mac"
             ;;
         "$BACK")
-            show_menu
+            main_menu
             ;;
     esac
 }
 
-show_menu() {
+main_menu() {
     if status_powered; then
         power="Power: on"
         devices=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3-)
@@ -249,7 +245,7 @@ show_menu() {
         pairable=$(status_pairable)
         discoverable=$(status_discoverable)
 
-        options="Devices:\n$devices\n$DIVIDER\n$power\n$scan\n$pairable\n$discoverable\nExit"
+        options="$devices\n$DIVIDER\n$power\n$scan\n$pairable\n$discoverable\nExit"
     else
         power="Power: off"
         options="$power\nExit"
@@ -275,12 +271,12 @@ show_menu() {
             ;;
         *)
             device=$(bluetoothctl devices | grep "$chosen")
-            if [[ $device ]]; then device_menu "$device"; fi
+            if [[ $device ]] ; then device_menu "$device"; fi
             ;;
     esac
 }
 
-tofi_cmd="tofi $* --config $XDG_CONFIG_HOME/tofi/bluetooth"
+tofi_cmd="tofi $* --config $XDG_CONFIG_HOME/tofi/interactive --placeholder-text=Bluetooth"
 
 # ~ -------------------------------------------------------------------------------- ~ #
 
@@ -291,6 +287,6 @@ case "$1" in
         print_status
         ;;
     *)
-        show_menu
+        main_menu
         ;;
 esac

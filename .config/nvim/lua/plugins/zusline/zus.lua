@@ -44,16 +44,6 @@ Zus.HIGHLIGHT = {
   -- ZusLSPInfo          = "%#ZusLSPInfo#",
 }
 
--- local status_nightfox, Color = pcall(require, "nightfox.lib.color")
--- if status_nightfox then
---   local status_nightfox_palette, Palette = pcall(require, "nightfox.palette")
---   if status_nightfox_palette then
---     Palette.load("nightfox")
---     STATUSLINE_BG = Color.from_hex(Palette.bg0)
---     STATUSLINE_FG = Color.from_hex(Palette.fg2)
---   end
--- end
-
 -- ~ -------------------------------------------------------------------------------- ~ --
 
 -- ~  Helper functions
@@ -147,8 +137,7 @@ function Zus.setup(user_options)
     zs.right
   )
 
--- ~  Highlights
-  -- vim.cmd([[hi ZusHL guifg=statusline_fg guibg=statusline_bg]])
+  -- ~  Highlights
   vim.cmd([[highlight link ZusHL Normal]])
 end
 

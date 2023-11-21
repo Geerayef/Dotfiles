@@ -1,7 +1,12 @@
 return {
   {
     dir = "plugins.zusline.zus",
+    name = "zusline",
     event = "BufEnter",
+    dependencies = {
+      "tpope/vim-fugitive",
+      "lewis6991/gitsigns.nvim",
+    },
     config = function ()
       local status, zus = pcall(require, "plugins.zusline.zus")
       if not status then
@@ -13,6 +18,7 @@ return {
   },
   {
     dir = "plugins.zusline.tab",
+    name = "zustab",
     event = "BufEnter",
     config = function ()
       local status, tab = pcall(require, "plugins.zusline.tab")

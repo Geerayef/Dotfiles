@@ -1,2 +1,4 @@
---style "numbers,changes,grid,header"
---theme Dracula
+--style="numbers,changes,grid,header"
+--theme=Dracula
+--color=always
+--paging=always

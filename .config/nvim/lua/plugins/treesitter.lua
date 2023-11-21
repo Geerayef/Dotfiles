@@ -7,14 +7,23 @@ return {
       local treesitter = require("nvim-treesitter.configs")
 
       treesitter.setup({
-        highlight = { enable = false },
+        highlight = {
+          enable = true,
+          disable = function(_, buf)
+            local max_filesize = 100 * 1024
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+              return true
+            end
+          end,
+          -- Runs both `:h syntax` and tree-sitter. Set to `true` if depending on 'syntax'.
+          -- boolean || []
+          additional_vim_regex_highlighting = false,
+        },
         autotag = { enable = true },
         indent = {
           enable = true,
-          disable = {
-            "python",
-            "ocaml"
-          }
+          disable = { "python", "ocaml" }
         },
         incremental_selection = {
           enable = false,
@@ -27,13 +36,13 @@ return {
         },
         ensure_installed = {
           "bash",
-          "c",
+          "fish",
           "lua",
           "luadoc",
+          "c",
           "ocaml",
           "python",
           "rust",
-          "vim",
           "yaml",
         },
         autoinstall = true,
@@ -95,12 +104,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    event = {
-      "BufReadPost",
-      "BufNewFile",
-    },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
 }

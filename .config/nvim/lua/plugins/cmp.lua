@@ -4,7 +4,8 @@ return {
     build = (not jit.os:find("Windows"))
       and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
       or nil,
-    event = "InsertEnter",
+    lazy = true,
+    event = { "InsertEnter", },
     dependencies = {
       "rafamadriz/friendly-snippets",
       config = function()
@@ -30,7 +31,8 @@ return {
   {
     "hrsh7th/nvim-cmp",
     version = false,
-    event = "InsertEnter",
+    lazy = true,
+    event = { "InsertEnter", },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",

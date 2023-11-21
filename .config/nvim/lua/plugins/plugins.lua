@@ -4,12 +4,16 @@ return {
     "nvim-lua/plenary.nvim",
   },
   {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
+  },
+  {
     "tpope/vim-sleuth",
     event = "BufReadPost",
   },
   {
     "tpope/vim-surround",
-    event = "BufEnter",
+    event = "InsertEnter",
   },
   {
     'windwp/nvim-autopairs',
@@ -50,8 +54,8 @@ return {
   },
   {
     "Pocco81/true-zen.nvim",
-    event = "VeryLazy",
-    opts = {},
+    lazy = true,
+    event = { "VeryLazy", "BufEnter" },
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -62,13 +66,5 @@ return {
         char = "│"
       }
     },
-  },
-  {
-    "nvim-tree/nvim-web-devicons",
-    lazy = true,
-  },
-  {
-    "christoomey/vim-tmux-navigator",
-    event = "VeryLazy",
   },
 }

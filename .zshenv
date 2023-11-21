@@ -22,6 +22,7 @@ export TERM="alacritty"
 export EDITOR="$(which nvim)"
 export SUDO_EDITOR="$(which nvim)"
 export VISUAL="$(which nvim)"
+export MANPAGER="nvim +Man!"
 export CONDA_AUTO_ACTIVATE_BASE=false
 
 # -------------------------------------------------------------------------------- #
