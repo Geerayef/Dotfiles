@@ -6,3 +6,4 @@ Dotfiles/
 .config/zsh/.p10k.zsh
 .config/nvim/lazy-lock.json
 .config/tmux/plugins
+.config/nnn/.selection
