@@ -9,13 +9,13 @@ keymap("n", "q", "<cmd>q!<CR>")
 -- ~  Options
 
 local o = vim.opt
-local cmd = vim.cmd
+-- local cmd = vim.cmd
 
 o.shell = "/usr/bin/fish"
 
 --  File
-cmd.syntax("on")
-cmd.filetype("plugin", "indent", "on")
+-- cmd.syntax("on")
+-- cmd.filetype("plugin", "indent", "on")
 o.fileformats = "unix"
 
 --  Edit
@@ -27,7 +27,7 @@ o.background = "dark"
 o.guicursor = ""
 o.signcolumn = "no"
 o.cursorline = true
-o.cursorlineopt = "number"
+o.cursorlineopt = "line"
 o.termguicolors = true
 o.laststatus = 0
 o.showtabline = 0
@@ -38,6 +38,7 @@ o.showmatch = true
 o.cmdheight = 1
 o.ruler = false
 o.wildmenu = true
+o.number = false
 
 --  Behaviour
 o.ttyfast = true
@@ -46,8 +47,8 @@ o.updatetime = 300
 o.belloff = "all"
 o.splitright = true
 o.splitbelow = true
-o.scrolloff = 10
-o.sidescrolloff = 10
+o.scrolloff = 1
+o.sidescrolloff = 1
 
 --  Search
 o.grepprg = "rg"
@@ -57,7 +58,7 @@ o.hlsearch = true
 o.incsearch = true
 
 --  Color
-vim.cmd("colorscheme slate")
+vim.cmd("colorscheme habamax")
 vim.cmd("highlight Comment gui=none")
-vim.cmd("highlight Normal guibg=#000000")
-vim.cmd("highlight SignColumn guibg=#000000")
+vim.cmd("highlight Normal guibg=#080C10")
+vim.cmd("highlight SignColumn guibg=#080C10")

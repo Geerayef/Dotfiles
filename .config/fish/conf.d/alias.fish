@@ -2,11 +2,11 @@
 
 alias C="clear"
 if test -e "$(command -v exa)"
-  alias ls="eza -a --color=always --group-directories-first"
-  alias la="eza -aG --color=always --group-directories-first"
-  alias ll="eza -la --color=always --group-directories-first"
-  alias lT="eza -aT -L 2 --color=always --group-directories-first"
-  alias l.='eza -a | grep -E "^\."'
+  alias ls="eza -a --color=always --icons=always --group-directories-first"
+  alias la="eza -aG --color=always --icons=always --group-directories-first"
+  alias ll="eza -la --color=always --icons=always --group-directories-first"
+  alias lT="eza -aT -L 2 --color=always --icons=always --group-directories-first"
+  alias l.='eza -a --color=always --icons=always --group-directories-first | grep -E "^\."'
 else
   alias l.="ls -A | grep -E '^\.' --group-directories-first"
   alias la="ls -a --group-directories-first"

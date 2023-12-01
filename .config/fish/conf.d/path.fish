@@ -1,47 +1,44 @@
-# ~  Add path
+# ~  $HOME paths
 
 if test -d "$HOME/.bin"
-  set -x PATH "$HOME/.bin" $PATH
+    fish_add_path "$HOME/.bin"
 end
 
 if test -d "$HOME/.local/bin"
-  set -x PATH "$HOME/.local/bin" $PATH
-end
-
-if test -d "$HOME/.local/share/nvim/mason/"
-  set -x PATH "$HOME/.local/share/nvim/mason/bin" $PATH
+    fish_add_path "$HOME/.local/bin"
 end
 
 if test -d "$HOME/Software/Neovim/bin"
-  set -x PATH "$HOME/Software/Neovim/bin" $PATH
+    fish_add_path "$HOME/Software/Neovim/bin"
 end
 
-if test -d "$HOME/.scripts/"
-  set -x PATH "$HOME/.scripts" $PATH
+if test -d "$HOME/.scripts"
+    fish_add_path "$HOME/.scripts"
 end
 
 # ~  Developer Environment
 
-# Rust: Cargo
+# Cargo
 if test -d "$HOME/.cargo"
-  fish_add_path "$HOME/.cargo/bin"
+    fish_add_path "$HOME/.cargo/bin"
 end
 
-# Haskell: ghcup
+# ghcup
 if test -d "$HOME/.ghcup"
-  fish_add_path "$HOME/.ghcup/bin"
+    fish_add_path "$HOME/.ghcup/bin"
 end
 
-# OCaml: opam
+# opam
 if test -d "$HOME/.opam"
-  and test -r "$HOME/.opam/opam-init/init.fish"
-  source "$HOME/.opam/opam-init/init.fish"
+    and test -r "$HOME/.opam/opam-init/init.fish"
+    fish_add_path "$HOME/.opam/default/bin"
+    source "$HOME/.opam/opam-init/init.fish" > /dev/null 2> /dev/null
 end
 
-# Python: pyenv
+# pyenv
 if test -e "$HOME/.pyenv"
-  set -gx PYENV_ROOT "$HOME/.pyenv"
-  command -v pyenv >/dev/null
-  or set -gx PATH $PATH "$PYENV_ROOT/bin"
-  eval "$(pyenv init -)"
+    set -gx PYENV_ROOT "$HOME/.pyenv"
+    command -v pyenv >/dev/null
+    or fish_add_path "$PYENV_ROOT/bin"
+    eval "$(pyenv init -)"
 end

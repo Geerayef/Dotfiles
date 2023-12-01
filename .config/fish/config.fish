@@ -4,9 +4,9 @@ if status is-interactive
   end
 
   set -gx FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --marker="*"'
-  set fzf_fd_opts . --hidden
-  set fzf_preview_file_cmd bat --color=always --style "numbers,changes,grid,header" --theme Dracula
-  set fzf_preview_dir_cmd eza -laG --color=always --group-directories-first
+  set -x fzf_fd_opts . --hidden
+  set -x fzf_preview_file_cmd bat
+  set -x fzf_preview_dir_cmd eza -aT -L 1 --color=always --icons=always --group-directories-first
 
 end
 
@@ -14,8 +14,7 @@ end
 
 # ~  Source
 
-# opam
-source /home/tibor/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
+# pyenv init - | source
 
 # ~ -------------------------------------------------------------------------------- ~ #
 

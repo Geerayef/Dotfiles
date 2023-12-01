@@ -1,23 +1,25 @@
 # ~  nnn
 
-set -g BLK "0B"
-set -g CHR "0B"
-set -g DIR "04"
-set -g EXE "06"
-set -g REG "00"
-set -g HARDLINK "06"
-set -g SYMLINK "06"
-set -g MISSING "00"
-set -g ORPHAN "09"
-set -g FIFO "06"
-set -g SOCK "0B"
-set -g OTHER "06"
+set -l BLK "0B"
+set -l CHR "0B"
+set -l DIR "B4" # 90
+set -l EXE "31"
+set -l REG "FB"
+set -l HRDL "7C"
+set -l SYML "D0"
+set -l MISS "00"
+set -l ORPH "09"
+set -l FIFO "06"
+set -l SOCK "0B"
+set -l OTHR "4B"
 
-set -gx NNN_PLUG ""
 set -gx NNN_FIFO "/tmp/nnn.fifo"
-set -gx NNN_FCOLORS "$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
+set -gx NNN_TERMINAL "$TERM"
+set -gx NNN_PAGER "bat"
+set -gx NNN_OPTS "deH" 
+set -gx NNN_PLUG "p:-preview-tui"
+set -gx NNN_FCOLORS "$BLK$CHR$DIR$EXE$REG$HRDL$SYML$MISS$ORPH$FIFO$SOCK$OTHR"
 
-# cd-on-quit only on ^G? Remove "-x"
 if test -n "$XDG_CONFIG_HOME"
   set -x NNN_TMPFILE "$XDG_CONFIG_HOME/nnn/.lastd"
 else
@@ -28,11 +30,10 @@ end
 
 # ~  Functions
 
-
 # CD on quit
 
-function n --wraps nnn --description 'CD to current directory on exit'
-  # Block nesting of nnn in subshells
+function n --wraps nnn --description "CD to current directory on exit"
+  # Stop nesting nnn in subshells
   if test -n "$NNNLVL" -a "$NNNLVL" -ge 1
     echo "nnn is already running"
     return
@@ -45,7 +46,7 @@ function n --wraps nnn --description 'CD to current directory on exit'
   # stty lnext undef
 
   # nnn alias
-  command nnn -edH $argv
+  command nnn $argv
 
   if test -e $NNN_TMPFILE
     source $NNN_TMPFILE

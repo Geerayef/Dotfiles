@@ -8,23 +8,6 @@ function Bar.apply_to_config(config)
   config.tab_bar_at_bottom = true
   config.show_new_tab_button_in_tab_bar = false
   config.status_update_interval = 1000
-  config.colors = {
-    tab_bar = {
-      background = "#080C10",
-      active_tab = {
-        bg_color = "#010101",
-        fg_color = "#B5BDC5",
-        intensity = "Bold",
-        underline = "None",
-        italic = false,
-        strikethrough = false,
-      },
-      inactive_tab = {
-        bg_color = "#0F0F0F",
-        fg_color = "#909090",
-      },
-    }
-  }
   wezterm.on("update-status",
     function(window, pane)
       local stat = window:active_workspace()
@@ -58,7 +41,7 @@ function Bar.apply_to_config(config)
       window:set_right_status(wezterm.format({
         { Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
         { Text = " | " },
-        { Foreground = { Color = "#e0af68" } },
+        { Foreground = { Color = "#E0AF68" } },
         { Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
         "ResetAttributes",
         { Text = " | " },

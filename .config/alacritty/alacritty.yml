@@ -29,14 +29,14 @@ window:
     y: 0
 
   padding:
-    x: 4
-    y: 2
+    x: 0
+    y: 0
 
   dynamic_padding: true
 
   decorations: none
 
-  opacity: 0.9
+  opacity: 0.8
 
   startup_mode: Windowed
 
@@ -252,87 +252,87 @@ schemes:
   ### Doom One ###
   DoomOne: &DoomOne
     primary:
-      background: '#282c34'
-      foreground: '#bbc2cf'
+      background: '#282C34'
+      foreground: '#BBC2CF'
     cursor:
       text: CellBackground
-      cursor: '#528bff'
+      cursor: '#528BFF'
     selection:
       text: CellForeground
-      background: '#3e4451'
+      background: '#3E4451'
     normal:
-      black:   '#1c1f24'
-      red:     '#ff6c6b'
-      green:   '#98be65'
-      yellow:  '#da8548'
-      blue:    '#51afef'
-      magenta: '#c678dd'
-      cyan:    '#5699af'
+      black:   '#1C1F24'
+      red:     '#FF6C6B'
+      green:   '#98BE65'
+      yellow:  '#DA8548'
+      blue:    '#51AFEF'
+      magenta: '#C678DD'
+      cyan:    '#5699AF'
       white:   '#202328'
     bright:
-      black:   '#5b6268'
-      red:     '#da8548'
-      green:   '#4db5bd'
-      yellow:  '#ecbe7b'
-      blue:    '#b257a0'   # Or 23071d      
-      magenta: '#a9a1e1'
-      cyan:    '#46d9ff'
-      white:   '#dfdfdf'
+      black:   '#5B6268'
+      red:     '#DA8548'
+      green:   '#4DB5BD'
+      yellow:  '#ECBE7B'
+      blue:    '#B257A0' # 23071D      
+      magenta: '#A9A1E1'
+      cyan:    '#46D9FF'
+      white:   '#DFDFDF'
 
   ### Dracula ###
   Dracula: &Dracula
     primary:
-      background: '#282a36'
-      foreground: '#f8f8f2'
+      background: '#282A36'
+      foreground: '#F8F8F2'
     cursor:
       text: CellBackground
-      cursor: '#528bff'
+      cursor: '#528BFF'
     vi_mode_cursor:
       text: CellBackground
       cursor: CellForeground
     search:
       matches:
-        foreground: '#44475a'
-        background: '#50fa7b'
+        foreground: '#44475A'
+        background: '#50FA7B'
       focused_match:
-        foreground: '#44475a'
-        background: '#ffb86c'
+        foreground: '#44475A'
+        background: '#FFB86C'
       footer_bar:
-        background: '#282a36'
-        foreground: '#f8f8f2'
+        background: '#282A36'
+        foreground: '#F8F8F2'
     line_indicator:
       foreground: None
       background: None
     selection:
       text: CellForeground
-      background: '#44475a'
+      background: '#44475A'
     normal:
       black:   '#000000'
-      red:     '#ff5555'
-      green:   '#50fa7b'
-      yellow:  '#f1fa8c'
-      blue:    '#bd93f9'
-      magenta: '#ff79c6'
-      cyan:    '#8be9fd'
-      white:   '#bfbfbf'
+      red:     '#FF5555'
+      green:   '#50FA7B'
+      yellow:  '#F1FA8C'
+      blue:    '#BD93F9'
+      magenta: '#FF79C6'
+      cyan:    '#8BE9FD'
+      white:   '#BFBFBF'
     bright:
-      black:   '#4d4d4d'
-      red:     '#ff6e67'
+      black:   '#4D4D4D'
+      red:     '#FF6E67'
       green:   '#5AF78E'
-      yellow:  '#f4f99d'
-      blue:    '#caa9fa'
-      magenta: '#ff92d0'
-      cyan:    '#9aedfe'
-      white:   '#e6e6e6'
+      yellow:  '#F4F99D'
+      blue:    '#CAA9FA'
+      magenta: '#FF92D0'
+      cyan:    '#9AEDFE'
+      white:   '#E6E6E6'
     dim:
-      black:   '#14151b'
-      red:     '#ff2222'
+      black:   '#14151B'
+      red:     '#FF2222'
       green:   '#1EF956'
-      yellow:  '#ebf85b'
-      blue:    '#4d5b86'
-      magenta: '#ff46b0'
-      cyan:    '#59dffc'
-      white:   '#e6e6d1'
+      yellow:  '#EBF85B'
+      blue:    '#4D5B86'
+      magenta: '#FF46B0'
+      cyan:    '#59DFFC'
+      white:   '#E6E6D1'
 
   ### Ayu dark ###
   AyuDark: &AyuDark
@@ -341,288 +341,288 @@ schemes:
       foreground: '#B3B1AD'
     cursor:
       text: CellBackground
-      cursor: '#528bff'
+      cursor: '#528BFF'
     search:
       matches:
-        foreground: '#44475a'
-        background: '#50fa7b'
+        foreground: '#44475A'
+        background: '#50FA7B'
       focused_match:
-        foreground: '#44475a'
-        background: '#ffb86c'
+        foreground: '#44475A'
+        background: '#FFB86C'
       footer_bar:
-        background: '#282a36'
-        foreground: '#f8f8f2'
+        background: '#282A36'
+        foreground: '#F8F8F2'
     normal:
-      black: '#01060E'
-      red: '#EA6C73'
-      green: '#91B362'
-      yellow: '#F9AF4F'
-      blue: '#53BDFA'
+      black:   '#01060E'
+      red:     '#EA6C73'
+      green:   '#91B362'
+      yellow:  '#F9AF4F'
+      blue:    '#53BDFA'
       magenta: '#FAE994'
-      cyan: '#90E1C6'
-      white: '#C7C7C7'
+      cyan:    '#90E1C6'
+      white:   '#C7C7C7'
     bright:
-      black: '#686868'
-      red: '#F07178'
-      green: '#C2D94C'
-      yellow: '#FFB454'
-      blue: '#59C2FF'
+      black:   '#686868'
+      red:     '#F07178'
+      green:   '#C2D94C'
+      yellow:  '#FFB454'
+      blue:    '#59C2FF'
       magenta: '#FFEE99'
-      cyan: '#95E6CB'
-      white: '#FFFFFF'
+      cyan:    '#95E6CB'
+      white:   '#FFFFFF'
 
   ### Ayu mirage ###
   AyuMirage: &AyuMirage
     primary:
-      background: '#1f2430'
-      foreground: '#cbccc6'
-      bright_foreground: '#f28779'
+      background: '#1F2430'
+      foreground: '#CBCCC6'
+      bright_foreground: '#F28779'
     cursor:
       text: CellBackground
-      cursor: '#528bff'
+      cursor: '#528BFF'
     search:
       matches:
-        foreground: '#44475a'
-        background: '#50fa7b'
+        foreground: '#44475A'
+        background: '#50FA7B'
       focused_match:
-        foreground: '#44475a'
-        background: '#ffb86c'
+        foreground: '#44475A'
+        background: '#FFB86C'
       footer_bar:
-        background: '#282a36'
-        foreground: '#f8f8f2'
+        background: '#282A36'
+        foreground: '#F8F8F2'
     normal:
-      black:   '#212733' #
-      red:     '#f08778' #
-      green:   '#53bf97' #
-      yellow:  '#fdcc60' #
-      blue:    '#60b8d6' # 
-      magenta: '#ec7171' #
-      cyan:    '#98e6ca' #
-      white:   '#fafafa' #
+      black:   '#212733'
+      red:     '#F08778'
+      green:   '#53BF97'
+      yellow:  '#FDCC60'
+      blue:    '#60B8D6'
+      magenta: '#EC7171'
+      cyan:    '#98E6CA'
+      white:   '#FAFAFA'
     bright:
-      black: '#686868'
-      red: '#f58c7d'
-      green: '#58c49c'
-      yellow: '#ffd165'
-      blue: '#65bddb'
-      magenta: '#f17676'
-      cyan: '#9debcf'
-      white: '#ffffff'
+      black:   '#686868'
+      red:     '#F58C7D'
+      green:   '#58C49C'
+      yellow:  '#FFD165'
+      blue:    '#65BDDB'
+      magenta: '#F17676'
+      cyan:    '#9DEBCF'
+      white:   '#FFFFFF'
 
   ### Tokyo Night ###
   TokyoNight: &TokyoNight
     primary:
-      background: '#1a1b26'
-      foreground: '#c0caf5'
+      background: '#1A1B26'
+      foreground: '#C0CAF5'
     cursor:
       text: CellBackground
       cursor: '#F9AF4F'
     search:
       matches:
-        foreground: '#44475a'
-        background: '#50fa7b'
+        foreground: '#44475A'
+        background: '#50FA7B'
       focused_match:
-        foreground: '#44475a'
-        background: '#ffb86c'
+        foreground: '#44475A'
+        background: '#FFB86C'
       footer_bar:
-        background: '#282a36'
-        foreground: '#f8f8f2'
+        background: '#282A36'
+        foreground: '#F8F8F2'
     normal:
-      black:   '#15161e'
-      red:     '#f7768e'
-      green:   '#9ece6a'
-      yellow:  '#e0af68'
-      blue:    '#7aa2f7'
-      magenta: '#bb9af7'
-      cyan:    '#7dcfff'
-      white:   '#a9b1d6'
+      black:   '#15161E'
+      red:     '#F7768E'
+      green:   '#9ECE6A'
+      yellow:  '#E0AF68'
+      blue:    '#7AA2F7'
+      magenta: '#BB9AF7'
+      cyan:    '#7DCFFF'
+      white:   '#A9B1D6'
     bright:
       black:   '#414868'
-      red:     '#f7768e'
-      green:   '#9ece6a'
-      yellow:  '#e0af68'
-      blue:    '#7aa2f7'
-      magenta: '#bb9af7'
-      cyan:    '#7dcfff'
-      white:   '#c0caf5'
+      red:     '#F7768E'
+      green:   '#9ECE6A'
+      yellow:  '#E0AF68'
+      blue:    '#7AA2F7'
+      magenta: '#BB9AF7'
+      cyan:    '#7DCFFF'
+      white:   '#C0CAF5'
     indexed_colors:
-      - { index: 16, color: '#ff9e64' }
-      - { index: 17, color: '#db4b4b' }
+      - { index: 16, color: '#FF9E64' }
+      - { index: 17, color: '#DB4B4B' }
 
   ### Tokyo Night Moon ###
   TokyoNightMoon: &TokyoNightMoon
     primary:
       background: '#222436'
-      foreground: '#c8d3f5'
+      foreground: '#C8D3F5'
     cursor:
       text: CellBackground
-      cursor: '#528bff'
+      cursor: '#528BFF'
     search:
       matches:
-        foreground: '#44475a'
-        background: '#50fa7b'
+        foreground: '#44475A'
+        background: '#50FA7B'
       focused_match:
-        foreground: '#44475a'
-        background: '#ffb86c'
+        foreground: '#44475A'
+        background: '#FFB86C'
       footer_bar:
-        background: '#282a36'
-        foreground: '#f8f8f2'
+        background: '#282A36'
+        foreground: '#F8F8F2'
     normal:
-      black:   '#1b1d2b'
-      red:     '#ff757f'
-      green:   '#c3e88d'
-      yellow:  '#ffc777'
-      blue:    '#82aaff'
-      magenta: '#c099ff'
-      cyan:    '#86e1fc'
-      white:   '#828bb8'
+      black:   '#1B1D2B'
+      red:     '#FF757F'
+      green:   '#C3E88D'
+      yellow:  '#FFC777'
+      blue:    '#82AAFF'
+      magenta: '#C099FF'
+      cyan:    '#86E1FC'
+      white:   '#828BB8'
     bright:
-      black:   '#444a73'
-      red:     '#ff757f'
-      green:   '#c3e88d'
-      yellow:  '#ffc777'
-      blue:    '#82aaff'
-      magenta: '#c099ff'
-      cyan:    '#86e1fc'
-      white:   '#c8d3f5'
+      black:   '#444A73'
+      red:     '#FF757F'
+      green:   '#C3E88D'
+      yellow:  '#FFC777'
+      blue:    '#82AAFF'
+      magenta: '#C099FF'
+      cyan:    '#86E1FC'
+      white:   '#C8D3F5'
     indexed_colors:
-      - { index: 16, color: '#ff966c' }
-      - { index: 17, color: '#c53b53' }
+      - { index: 16, color: '#FF966C' }
+      - { index: 17, color: '#C53B53' }
     
   ### Nightfox ###
   Nightfox: &Nightfox
     primary:
       background: '#192330'
-      foreground: '#cdcecf'
+      foreground: '#CDCECF'
     normal:
-      black:   '#393b44'
-      red:     '#c94f6d'
-      green:   '#81b29a'
-      yellow:  '#dbc074'
-      blue:    '#719cd6'
-      magenta: '#9d79d6'
-      cyan:    '#63cdcf'
-      white:   '#dfdfe0'
+      black:   '#393B44'
+      red:     '#C94F6D'
+      green:   '#81B29A'
+      yellow:  '#DBC074'
+      blue:    '#719CD6'
+      magenta: '#9D79D6'
+      cyan:    '#63CDCF'
+      white:   '#DFDFE0'
     bright:
       black:   '#575860'
-      red:     '#d16983'
-      green:   '#8ebaa4'
-      yellow:  '#e0c989'
-      blue:    '#86abdc'
-      magenta: '#baa1e2'
-      cyan:    '#7ad5d6'
-      white:   '#e4e4e5'
+      red:     '#D16983'
+      green:   '#8EBAA4'
+      yellow:  '#E0C989'
+      blue:    '#86ABDC'
+      magenta: '#BAA1E2'
+      cyan:    '#7AD5D6'
+      white:   '#E4E4E5'
     indexed_colors:
-      - { index: 16, color: '#f4a261' }
-      - { index: 17, color: '#d67ad2' }
+      - { index: 16, color: '#F4A261' }
+      - { index: 17, color: '#D67AD2' }
 
   ### Duskfox ###
   Duskfox: &Duskfox
     primary:
       background: '#232136'
-      foreground: '#e0def4'
+      foreground: '#E0DEF4'
     normal:
       black:   '#393552'
-      red:     '#eb6f92'
-      green:   '#a3be8c'
-      yellow:  '#f6c177'
-      blue:    '#569fba'
-      magenta: '#c4a7e7'
-      cyan:    '#9ccfd8'
-      white:   '#e0def4'
+      red:     '#EB6F92'
+      green:   '#A3BE8C'
+      yellow:  '#F6C177'
+      blue:    '#569FBA'
+      magenta: '#C4A7E7'
+      cyan:    '#9CCFD8'
+      white:   '#E0DEF4'
     bright:
-      black:   '#47407d'
-      red:     '#f083a2'
-      green:   '#b1d196'
-      yellow:  '#f9cb8c'
-      blue:    '#65b1cd'
-      magenta: '#ccb1ed'
-      cyan:    '#a6dae3'
-      white:   '#e2e0f7'
+      black:   '#47407D'
+      red:     '#F083A2'
+      green:   '#B1D196'
+      yellow:  '#F9CB8C'
+      blue:    '#65B1CD'
+      magenta: '#CCB1ED'
+      cyan:    '#A6DAE3'
+      white:   '#E2E0F7'
     indexed_colors:
-      - { index: 16, color: '#ea9a97' }
-      - { index: 17, color: '#eb98c3' }
+      - { index: 16, color: '#EA9A97' }
+      - { index: 17, color: '#EB98C3' }
 
   ### Carbonfox ###
   Carbonfox: &Carbonfox
     primary:
       background: '#161616'
-      foreground: '#f2f4f8'
+      foreground: '#F2F4F8'
     normal:
       black:   '#282828'
-      red:     '#ee5396'
-      green:   '#25be6a'
-      yellow:  '#08bdba'
-      blue:    '#78a9ff'
-      magenta: '#be95ff'
-      cyan:    '#33b1ff'
-      white:   '#dfdfe0'
+      red:     '#EE5396'
+      green:   '#25BE6A'
+      yellow:  '#08BDBA'
+      blue:    '#78A9FF'
+      magenta: '#BE95FF'
+      cyan:    '#33B1FF'
+      white:   '#DFDFE0'
     bright:
       black:   '#484848'
-      red:     '#f16da6'
-      green:   '#46c880'
-      yellow:  '#2dc7c4'
-      blue:    '#8cb6ff'
-      magenta: '#c8a5ff'
-      cyan:    '#52bdff'
-      white:   '#e4e4e5'
+      red:     '#F16DA6'
+      green:   '#46C880'
+      yellow:  '#2DC7C4'
+      blue:    '#8CB6FF'
+      magenta: '#C8A5FF'
+      cyan:    '#52BDFF'
+      white:   '#E4E4E5'
     indexed_colors:
-      - { index: 16, color: '#3ddbd9' }
-      - { index: 17, color: '#ff7eb6' }
+      - { index: 16, color: '#3DDBD9' }
+      - { index: 17, color: '#FF7EB6' }
 
   ### Terafox ###
   Terafox: &Terafox
     primary:
       background: '#152528'
-      foreground: '#e6eaea'
+      foreground: '#E6EAEA'
     normal:
-      black:   '#2f3239'
-      red:     '#e85c51'
-      green:   '#7aa4a1'
-      yellow:  '#fda47f'
-      blue:    '#5a93aa'
-      magenta: '#ad5c7c'
-      cyan:    '#a1cdd8'
-      white:   '#ebebeb'
+      black:   '#2F3239'
+      red:     '#E85C51'
+      green:   '#7AA4A1'
+      yellow:  '#FDA47F'
+      blue:    '#5A93AA'
+      magenta: '#AD5C7C'
+      cyan:    '#A1CDD8'
+      white:   '#EBEBEB'
     bright:
-      black:   '#4e5157'
-      red:     '#eb746b'
-      green:   '#8eb2af'
-      yellow:  '#fdb292'
-      blue:    '#73a3b7'
-      magenta: '#b97490'
-      cyan:    '#afd4de'
-      white:   '#eeeeee'
+      black:   '#4E5157'
+      red:     '#EB746B'
+      green:   '#8EB2AF'
+      yellow:  '#FDB292'
+      blue:    '#73A3B7'
+      magenta: '#B97490'
+      cyan:    '#AFD4DE'
+      white:   '#EEEEEE'
     indexed_colors:
-      - { index: 16, color: '#ff8349' }
-      - { index: 17, color: '#cb7985' }
+      - { index: 16, color: '#FF8349' }
+      - { index: 17, color: '#CB7985' }
 
   ### Nordfox ###
   Nordfox: &Nordfox
     primary:
-      background: '#2e3440'
-      foreground: '#cdcecf'
+      background: '#2E3440'
+      foreground: '#CDCECF'
     normal:
-      black:   '#3b4252'
-      red:     '#bf616a'
-      green:   '#a3be8c'
-      yellow:  '#ebcb8b'
-      blue:    '#81a1c1'
-      magenta: '#b48ead'
-      cyan:    '#88c0d0'
-      white:   '#e5e9f0'
+      black:   '#3B4252'
+      red:     '#BF616A'
+      green:   '#A3BE8C'
+      yellow:  '#EBCB8B'
+      blue:    '#81A1C1'
+      magenta: '#B48EAD'
+      cyan:    '#88C0D0'
+      white:   '#E5E9F0'
     bright:
       black:   '#465780'
-      red:     '#d06f79'
-      green:   '#b1d196'
-      yellow:  '#f0d399'
-      blue:    '#8cafd2'
-      magenta: '#c895bf'
-      cyan:    '#93ccdc'
-      white:   '#e7ecf4'
+      red:     '#D06F79'
+      green:   '#B1D196'
+      yellow:  '#F0D399'
+      blue:    '#8CAFD2'
+      magenta: '#C895BF'
+      cyan:    '#93CCDC'
+      white:   '#E7ECF4'
     indexed_colors:
-      - { index: 16, color: '#c9826b' }
-      - { index: 17, color: '#bf88bc' }
+      - { index: 16, color: '#C9826B' }
+      - { index: 17, color: '#BF88BC' }
 
   ### astromouse (terminal.sexy) ###
   astromouse: &astromouse
@@ -669,7 +669,7 @@ schemes:
 #11. *Nordfox
 #12. *astromouse
 
-colors: *astromouse
+colors: *AyuDark
 
 #######################################
 ##       END OF COLOR SCHEMES        ##

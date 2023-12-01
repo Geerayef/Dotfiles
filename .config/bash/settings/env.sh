@@ -17,11 +17,13 @@ if [[ -d $HOME/Software/AndroidStudio ]] ; then
 fi
 
 # General settings
+neovim="$(which nvim)"
+export TERM="wezterm"
+export EDITOR="$neovim"
+export SUDO_EDITOR="$neovim"
+export VISUAL="$HOME/.scripts/nnn/edit_detached.fish"
+export PAGER="nvimpager -- --noplugin -R -u $XDG_CONFIG_HOME/nvim/small.lua"
 export HISTCONTROL=ignoreboth:erasedups
-export TERM="alacritty"
-export EDITOR="$(which nvim)"
-export SUDO_EDITOR="$(which nvim)"
-export VISUAL="$(which nvim)"
 export CONDA_AUTO_ACTIVATE_BASE=false
 
 # -------------------------------------------------------------------------------- #
