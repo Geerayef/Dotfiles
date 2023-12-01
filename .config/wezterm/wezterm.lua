@@ -60,15 +60,14 @@ config.color_scheme = theme
 
 config.harfbuzz_features = { "zero" , "ss01", "cv05" }
 config.font_dirs = {
-    "/usr/share/fonts/JetBrainsNF/",
     "/usr/share/fonts/FiraCodeNF/",
-    "/usr/share/fonts/gnu-free/"
+    "/usr/share/fonts/JetBrainsNF/"
 }
 config.font = wezterm.font_with_fallback {
-  "FiraCode Nerd Font Mono",
-  "FiraCode Nerd Font Propo",
-  "JetBrains Mono Nerd Font Mono",
-  "JetBrains Mono Nerd Font Propo"
+    { family = "FiraCode Nerd Font Mono" },
+    { family = "FiraCode Nerd Font Propo" },
+    { family = "JetBrainsMono Nerd Font Mono" },
+    { family = "JetBrainsMono Nerd Font Propo" }
 }
 config.font_size = 18
 config.line_height = 1

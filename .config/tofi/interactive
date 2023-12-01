@@ -1,0 +1,28 @@
+font-size = 18
+font = /usr/share/fonts/FiraCodeNF/FiraCodeNerdFontPropo-Retina.ttf
+hint-font = false
+text-color = #F9FBFF
+selection-color = #D9C990
+selection-match-color = #FFFF00
+
+prompt-text = ""
+placeholder-text = ""
+num-results = 20
+result-spacing = 5
+
+width = 20%
+height = 50%
+outline-width = 0
+border-width = 2
+corner-radius = 10
+padding-left = 2%
+padding-bottom = 0
+padding-top = 2%
+padding-right = 0
+
+background-color = #000000FF
+border-color = #D9C990
+
+hide-cursor = true
+
+late-keyboard-init = true

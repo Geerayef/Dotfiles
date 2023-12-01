@@ -21,9 +21,9 @@ set -gx NNN_PLUG "p:-preview-tui"
 set -gx NNN_FCOLORS "$BLK$CHR$DIR$EXE$REG$HRDL$SYML$MISS$ORPH$FIFO$SOCK$OTHR"
 
 if test -n "$XDG_CONFIG_HOME"
-  set -x NNN_TMPFILE "$XDG_CONFIG_HOME/nnn/.lastd"
+    set -x NNN_TMPFILE "$XDG_CONFIG_HOME/nnn/.lastd"
 else
-  set -x NNN_TMPFILE "$HOME/.config/nnn/.lastd"
+    set -x NNN_TMPFILE "$HOME/.config/nnn/.lastd"
 end
 
 # ~ -------------------------------------------------------------------------------- ~ #
@@ -33,23 +33,23 @@ end
 # CD on quit
 
 function n --wraps nnn --description "CD to current directory on exit"
-  # Stop nesting nnn in subshells
-  if test -n "$NNNLVL" -a "$NNNLVL" -ge 1
-    echo "nnn is already running"
-    return
-  end
+    # Don't nest nnn in subshells
+    if test -n "$NNNLVL" -a "$NNNLVL" -ge 1
+        echo "nnn is already running"
+        return
+    end
 
-  # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-  stty start undef
-  stty stop undef
-  # stty lwrap undef
-  # stty lnext undef
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    stty start undef
+    stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
 
-  # nnn alias
-  command nnn $argv
+    # nnn alias
+    command nnn $argv
 
-  if test -e $NNN_TMPFILE
-    source $NNN_TMPFILE
-    rm $NNN_TMPFILE
-  end
+    if test -e $NNN_TMPFILE
+        source $NNN_TMPFILE
+        rm $NNN_TMPFILE
+    end
 end

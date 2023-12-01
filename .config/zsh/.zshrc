@@ -1,11 +1,17 @@
+# ~  fpath
+
+fpath+=${ZDOTDIR:-~/.config/zsh}/completions/
+
+# -------------------------------------------------------------------------------- #
+
 # ~  Antidote setup
 
 antidote_dir=${ZDOTDIR:-~/.config/zsh}/.antidote/
 plugins=${ZDOTDIR:-~/.config/zsh}/.zsh_plugins.txt
 static=${ZDOTDIR:-~/.config/zsh}/.zsh_plugins.zsh
-fpath+=$antidote_dir
 
 [[ -e $antidote_dir ]] || git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
+fpath+=$antidote_dir
 [[ -f $plugins ]] || touch $plugins
 
 autoload -Uz $fpath[-1]/antidote
@@ -38,7 +44,6 @@ autoload -Uz promptinit && promptinit
 source $ZDOTDIR/function.zsh
 source $ZDOTDIR/alias.zsh
 source $ZDOTDIR/env.zsh
-fpath+=${ZDOTDIR:-~/.config/zsh}/completions/
 
 # -------------------------------------------------------------------------------- #
 
