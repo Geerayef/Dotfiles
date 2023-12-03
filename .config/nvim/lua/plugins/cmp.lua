@@ -140,12 +140,12 @@ return {
           {
             { name = "nvim_lsp" },
             { name = "nvim_lsp_signature_help" },
+            { name = "buffer" }
           },
           {
             { name = "path" },
-            { name = "cmdline" },
+            { name = "cmdline" }
           },
-          { name = "buffer" },
           { name = "luasnip" }
         ),
         completion = {

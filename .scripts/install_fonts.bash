@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "~~~~~ Fonts setup"
-echo "~~~~~ Using GitHub: ryanoasis/nerd-fonts"
+echo "~~~~~ Using GitHub: ryanoasis/nerd-fonts\n"
 
 DOWNLOAD_FONT_DIR=$HOME/Downloads/Fonts
 if [ -d $HOME/Downloads/Fonts ] ; then
@@ -11,21 +11,17 @@ else
   echo "~~~~~ Created ~/Downloads/Fonts/\n"
 fi
 
-echo "~~~~~ Downloading Fira Code, JetBrains to ~/Downloads/Fonts"
-curl --proto '=https' -sSLZO --output-dir $DOWNLOAD_FONT_DIR 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip'
-curl --proto '=https' -sSLZO --output-dir $DOWNLOAD_FONT_DIR 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip'
+echo "~~~~~ Downloading Fira Code, JetBrains to ~/Downloads/Fonts\n"
+
+curl --proto '=https' -# -sSLZO --output-dir $DOWNLOAD_FONT_DIR 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip'
+
+curl --proto '=https' -# -sSLZO --output-dir $DOWNLOAD_FONT_DIR 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.zip'
 echo "~~~~~ Done: Download\n"
 
-echo "~~~~~ ls -a ~/Downloads/Fonts/"
-ls -a ~/Downloads/Fonts/
-
-echo "~~~~~ Unzipping..."
+echo "~~~~~ Unzipping...\n"
 unzip -d $DOWNLOAD_FONT_DIR $DOWNLOAD_FONT_DIR/JetBrainsMono.zip
 unzip -d $DOWNLOAD_FONT_DIR $DOWNLOAD_FONT_DIR/FiraCode.zip
 echo "~~~~~ Done: Unzip\n"
-
-rm -r $DOWNLOAD_FONT_DIR/*NL*.ttf
-echo "~~~~~ Removed unused fonts: *NL*.ttf\n"
 
 if [ -d /usr/share/fonts/JetBrainsNF ] ; then
   sudo mv $DOWNLOAD_FONT_DIR/JetBrainsMonoNerdFont*.ttf /usr/share/fonts/JetBrainsNF
@@ -48,4 +44,4 @@ else
 fi
 
 fc-cache -v
-echo "~~~~~ Fonts are set."
+echo "\n~~~~~ Fonts are set."

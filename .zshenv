@@ -6,10 +6,10 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-$HOME/.local/state}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 export XDG_DATA_DIRS="${XDG_STATE_HOME:-$HOME/.local/state}/nix/profiles/profile/share:$XDG_DATA_DIRS"
-export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
-export BASHDOTDIR=${BASHDOTDIR:-${XDG_CONFIG_HOME}/bash}
 export FZF_BASE="/usr/bin/fzf"
 export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
+export BASHDOTDIR=${BASHDOTDIR:-${XDG_CONFIG_HOME}/bash}
 export RUFF_CACHE_DIR="$HOME/.cache/ruff"
 if [[ -d $HOME/Software/AndroidStudio ]] then
     export ANDROID_HOME="$HOME/Software/AndroidStudio/sdk"
@@ -24,6 +24,7 @@ export SUDO_EDITOR="$neovim"
 export VISUAL="$HOME/.scripts/nnn/edit_detached.fish"
 export PAGER="nvimpager -- --noplugin -R -u $XDG_CONFIG_HOME/nvim/small.lua"
 export MANPAGER="nvim +Man!"
+export MOZ_ENABLE_WAYLAND=1
 export HISTCONTROL=ignoreboth:erasedups
 export CONDA_AUTO_ACTIVATE_BASE=false
 
@@ -35,11 +36,9 @@ export CONDA_AUTO_ACTIVATE_BASE=false
 
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 
-[[ -d "$HOME/.local/share/nvim/mason/" ]] && export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
-
 [[ -d "$HOME/Software/Neovim/bin" ]] && export PATH="$HOME/Software/Neovim/bin:$PATH"
 
-[[ -d "$HOME/Scripts/" ]] && export PATH="$HOME/Scripts/:$PATH"
+[[ -d "$HOME/.scripts/" ]] && export PATH="$HOME/.scripts/:$PATH"
 
 [[ -d "$HOME/linuxbrew/" ]] && export PATH="$HOME/linuxbrew/.linuxbrew/bin/" && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 

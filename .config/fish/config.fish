@@ -3,11 +3,12 @@ if status is-interactive
         fish_vi_key_bindings
     end
 
+    fish_ssh_agent
+
     set -gx FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --scroll-off=5 --height=90% --preview-window=wrap --marker="*"'
     set -x fzf_fd_opts . --hidden
     set -x fzf_preview_file_cmd bat
-    set -x fzf_preview_dir_cmd eza -aT -L 1 --color=always --icons=always --group-directories-first
-
+    set -x fzf_preview_dir_cmd lt
 end
 
 # ~ -------------------------------------------------------------------------------- ~ #

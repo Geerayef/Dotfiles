@@ -2,6 +2,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
 -- ~  Highlight on yank
+
 local highlight_group = augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
   callback = function()
@@ -16,17 +17,19 @@ autocmd("TextYankPost", {
 -- ~  CMP
 
 local cmp = require("cmp")
-local default_cmp_src = cmp.config.sources(
-  {
-    { name = "nvim_lsp" },
-    { name = "nvim_lsp_signature_help" },
-  },
-  {
-    { name = "path" },
-    { name = "cmdline" },
-    { name = "luasnip" }
-  }
-)
+local default_cmp_src = cmp.config.sources()
+-- (
+  -- {
+  --   { name = "nvim_lsp" },
+  --   { name = "nvim_lsp_signature_help" },
+  --   { name = "buffer"}
+  -- },
+  -- {
+  --   { name = "path" },
+  --   { name = "cmdline" },
+  -- },
+  -- { name = "luasnip" }
+-- )
 
 -- ~  Add treesitter only to buffers < 100kB
 autocmd("BufReadPre", {

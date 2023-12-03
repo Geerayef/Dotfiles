@@ -6,12 +6,14 @@ if [[ -e "$(command -v eza)" ]] then
     alias la="eza -aG --color=always --icons=always --group-directories-first"
     alias ll="eza -la --color=always --icons=always --group-directories-first"
     alias lT="eza -aT -L 2 --color=always --icons=always --group-directories-first"
+    alias lt="eza -aT -L 1 --color=always --icons=always --group-directories-first"
     alias l.='eza -a --color=always --icons=always --group-directories-first | grep -E "^\."'
 elif [[ -e "$(command -v exa)" ]] then
     alias ls="exa -a --color=always --icons=always --group-directories-first"
     alias la="exa -aG --color=always --icons=always --group-directories-first"
     alias ll="exa -la --color=always --icons=always --group-directories-first"
     alias lT="exa -aT -L 2 --color=always --icons=always --group-directories-first"
+    alias lt="exa -aT -L 1 --color=always --icons=always --group-directories-first"
     alias l.='exa -a --color=always --icons=always --group-directories-first | grep -E "^\."'
 else
     alias l.="ls -A | grep -E '^\.' --group-directories-first"
