@@ -103,7 +103,7 @@ end
 Zus.components = {}
 local zc = Zus.components
 
-zc.start_spacing        = "| %<"
+zc.start_spacing        = "| "
 zc.end_spacing          = " |"
 zc.mode                 = "%8.{%v:lua.F.NvimMode()%}"
 zc.file_name            = "%-24.t"
@@ -120,7 +120,7 @@ Zus.sections = {}
 local zs = Zus.sections
 
 zs.left  = "%(" .. zc.start_spacing .. zc.file_name .. zc.file_status .. "%)"
-zs.mid   = "%=%(" .. zc.mode .. "%)"
+zs.mid   = "%=%(" .. zc.mode .. "%<" .. "%)"
 zs.right = "%=%(" .. zc.git_branch .. zc.git_status .. zc.lsp_diagnostics  .. "%)" .. zc.end_spacing
 
 -- ~ -------------------------------------------------------------------------------- ~ --

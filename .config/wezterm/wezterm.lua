@@ -36,7 +36,7 @@ config.window_padding = {
   bottom = '0pt',
 }
 config.inactive_pane_hsb = {
-  saturation = 0.25,
+  saturation = 0.90,
   brightness = 0.5
 }
 

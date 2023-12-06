@@ -14,9 +14,9 @@ ENVVARS=(
     "NNN_SCOPE=${NNN_SCOPE:-0}"                              # use scope
     "NNN_PISTOL=${NNN_PISTOL:-0}"                            # use pistol
     "NNN_ICONLOOKUP=${NNN_ICONLOOKUP:-0}"                    # use .iconlookup
-    "NNN_PAGER=${NNN_PAGER:-less -P?n -R -C}"                # pager options
-    # "NNN_BATTHEME=${NNN_BATTHEME:-ansi}"                     # bat theme
-    # "NNN_BATSTYLE=${NNN_BATSTYLE:-numbers}"                  # bat style
+    # "NNN_PAGER=${NNN_PAGER:-less -P?n -R -C}"                # pager options
+    # "NNN_BATTHEME=${NNN_BATTHEME:-ansi}"                   # bat theme
+    # "NNN_BATSTYLE=${NNN_BATSTYLE:-numbers}"                # bat style
     "NNN_PREVIEWWIDTH=${NNN_PREVIEWWIDTH:-1920}"             # width of generated preview images
     "NNN_PREVIEWHEIGHT=${NNN_PREVIEWHEIGHT:-1080}"           # height of generated preview images
     "NNN_PREVIEWDIR=${NNN_PREVIEWDIR:-$TMPDIR/nnn/previews}" # location of generated preview images
@@ -94,11 +94,6 @@ start_preview() {
 
 toggle_preview() {
     export "${ENVVARS[@]}"
-    if exists QuickLook.exe; then
-        QLPATH="QuickLook.exe"
-    elif exists Bridge.exe; then
-        QLPATH="Bridge.exe"
-    fi
     if pidkill "$FIFOPID"; then
         [ -p "$NNN_PPIPE" ] && printf "0" > "$NNN_PPIPE"
         pidkill "$PREVIEWPID"
@@ -126,8 +121,7 @@ fifo_pager() {
         exec > "$FIFOPATH"
         if [ "$cmd" = "pager" ]; then
             if exists bat; then
-                bat --terminal-width="$cols" --decorations=always --color=always "$@" &
-                # --paging=never --style="$NNN_BATSTYLE" --theme="$NNN_BATTHEME"
+                bat --terminal-width="$cols" "$@" &
             else
                 $NNN_PAGER "$@" &
             fi
@@ -221,8 +215,9 @@ handle_ext() {
                 fifo_pager atool -l "$1"
             elif exists bsdtar; then
                 fifo_pager bsdtar -tvf "$1"
-                fi ;;
-            *) if [ "$3" = "bin" ]; then
+            fi ;;
+        *)
+            if [ "$3" = "bin" ]; then
                 fifo_pager print_bin_info "$1"
             else
                 fifo_pager pager "$1"
@@ -249,9 +244,9 @@ preview_file() {
             # shellcheck disable=SC2012
             ls -F --group-directories-first | head -n "$((lines - 3))" | "$(dirname "$0")"/.iconlookup -l "$cols" -B "$BSTR" -b " "
         elif exists eza; then
-            eza -laT -L 1 --color=always --group-directories-first
+            eza -laT -L 1 --color=always --icons=always --group-directories-first
         elif exists exa; then
-            exa -la --group-directories-first --colour=always
+            exa -laT -L 1 --colour=always --icons=always --group-directories-first 
         elif exists tree; then
             fifo_pager tree --filelimit "$(find . -maxdepth 1 | wc -l)" -L 3 -C -F --dirsfirst --noreport
         else
@@ -277,34 +272,39 @@ generate_preview() {
             audio) ffmpeg -i "$3" -filter_complex "scale=iw*min(1\,min($NNN_PREVIEWWIDTH/iw\,ih)):-1" "$NNN_PREVIEWDIR/$3.jpg" -y ;;
             epub) gnome-epub-thumbnailer "$3" "$NNN_PREVIEWDIR/$3.jpg" ;;
             font) fontpreview -i "$3" -o "$NNN_PREVIEWDIR/$3.jpg" ;;
-            gif) if [ -p "$FIFO_UEBERZUG" ] && exists convert; then
-                frameprefix="$NNN_PREVIEWDIR/$3/${3##*/}"
-                if [ ! -d "$NNN_PREVIEWDIR/$3" ]; then
-                    mkdir -p "$NNN_PREVIEWDIR/$3"
-                    convert -coalesce -resize "$NNN_PREVIEWWIDTH"x"$NNN_PREVIEWHEIGHT"\> "$3" "$frameprefix.jpg" ||
-                        MAGICK_TMPDIR="/tmp" convert -coalesce -resize "$NNN_PREVIEWWIDTH"x"$NNN_PREVIEWHEIGHT"\> "$3" "$frameprefix.jpg"
+            gif) 
+                if [ -p "$FIFO_UEBERZUG" ] && exists convert; then
+                    frameprefix="$NNN_PREVIEWDIR/$3/${3##*/}"
+                    if [ ! -d "$NNN_PREVIEWDIR/$3" ]; then
+                        mkdir -p "$NNN_PREVIEWDIR/$3"
+                        convert -coalesce -resize "$NNN_PREVIEWWIDTH"x"$NNN_PREVIEWHEIGHT"\> "$3" "$frameprefix.jpg" ||
+                            MAGICK_TMPDIR="/tmp" convert -coalesce -resize "$NNN_PREVIEWWIDTH"x"$NNN_PREVIEWHEIGHT"\> "$3" "$frameprefix.jpg"
+                    fi
+                    frames=$(($(find "$NNN_PREVIEWDIR/$3" | wc -l) - 2))
+                    [ $frames -lt 0 ] && return
+                    while true; do
+                        for i in $(seq 0 $frames); do
+                            image_preview "$1" "$2" "$frameprefix-$i.jpg"
+                            sleep 0.1
+                        done
+                    done &
+                    printf "%s" "$!" > "$PREVIEWPID"
+                    return
+                elif [ -n "$NNN_PREVIEWVIDEO" ]; then
+                    video_preview "$1" "$2" "$3" && return
+                else
+                    image_preview "$1" "$2" "$3" && return
                 fi
-                frames=$(($(find "$NNN_PREVIEWDIR/$3" | wc -l) - 2))
-                [ $frames -lt 0 ] && return
-                while true; do
-                    for i in $(seq 0 $frames); do
-                        image_preview "$1" "$2" "$frameprefix-$i.jpg"
-                        sleep 0.1
-                    done
-                done &
-                printf "%s" "$!" > "$PREVIEWPID"
-                return
-            elif [ -n "$NNN_PREVIEWVIDEO" ]; then
-                video_preview "$1" "$2" "$3" && return
-            else
-                image_preview "$1" "$2" "$3" && return
-                fi ;;
-            image) if exists convert; then
-                convert "$3" -flatten -resize "$NNN_PREVIEWWIDTH"x"$NNN_PREVIEWHEIGHT"\> "$NNN_PREVIEWDIR/$3.jpg"
-            else
-                image_preview "$1" "$2" "$3" && return
-                fi ;;
-            office) libreoffice --convert-to jpg "$3" --outdir "$NNN_PREVIEWDIR/${3%/*}"
+                ;;
+            image)
+                if exists convert; then
+                    convert "$3" -flatten -resize "$NNN_PREVIEWWIDTH"x"$NNN_PREVIEWHEIGHT"\> "$NNN_PREVIEWDIR/$3.jpg"
+                else
+                    image_preview "$1" "$2" "$3" && return
+                fi
+                ;;
+            office)
+                libreoffice --convert-to jpg "$3" --outdir "$NNN_PREVIEWDIR/${3%/*}"
                 filename="$(printf "%s" "${3##*/}" | cut -d. -f1)"
                 mv "$NNN_PREVIEWDIR/${3%/*}/$filename.jpg" "$NNN_PREVIEWDIR/$3.jpg" ;;
             pdf) pdftoppm -jpeg -f 1 -singlefile "$3" "$NNN_PREVIEWDIR/$3" ;;
@@ -405,8 +405,6 @@ if [ "$PREVIEW_MODE" -eq 1 ] 2>/dev/null; then
 else
     if [ ! -r "$NNN_FIFO" ]; then
         prompt "No FIFO available! (\$NNN_FIFO='$NNN_FIFO')\nPlease read Usage in '$0'."
-    elif [ "$KITTY_WINDOW_ID" ] && [ -z "$TMUX" ] && [ -z "$KITTY_LISTEN_ON" ]; then
-        prompt "\$KITTY_LISTEN_ON not set!\nPlease read Usage in '$0'."
     else
         toggle_preview "$1" &
     fi

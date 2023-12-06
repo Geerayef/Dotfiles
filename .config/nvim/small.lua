@@ -2,20 +2,19 @@
 
 vim.g.mapleader = " "
 local keymap = vim.keymap.set
-keymap("n", "q", "<cmd>q!<CR>")
+keymap("n", "q", "<cmd>q!<CR>", { noremap = true })
+keymap("v", "q", "<cmd>q!<CR>", { noremap = true })
 
 -- ---------------------------------------- --
 
 -- ~  Options
 
 local o = vim.opt
--- local cmd = vim.cmd
-
-o.shell = "/usr/bin/fish"
+local cmd = vim.cmd
 
 --  File
--- cmd.syntax("on")
--- cmd.filetype("plugin", "indent", "on")
+cmd.syntax("on")
+cmd.filetype("indent", "on")
 o.fileformats = "unix"
 
 --  Edit
@@ -58,7 +57,7 @@ o.hlsearch = true
 o.incsearch = true
 
 --  Color
-vim.cmd("colorscheme habamax")
+vim.cmd("colorscheme default")
 vim.cmd("highlight Comment gui=none")
 vim.cmd("highlight Normal guibg=#080C10")
 vim.cmd("highlight SignColumn guibg=#080C10")

@@ -15,9 +15,9 @@ set -l OTHR "4B"
 
 set -gx NNN_FIFO "/tmp/nnn.fifo"
 set -gx NNN_TERMINAL "$TERM"
-set -gx NNN_PAGER "bat"
-set -gx NNN_OPTS "deH" 
-set -gx NNN_PLUG "p:-preview-tui"
+set -gx NNN_PAGER "$PAGER"
+set -gx NNN_OPTS "dEH" 
+set -gx NNN_PLUG "p:-preview_tui_custom.bash"
 set -gx NNN_FCOLORS "$BLK$CHR$DIR$EXE$REG$HRDL$SYML$MISS$ORPH$FIFO$SOCK$OTHR"
 
 if test -n "$XDG_CONFIG_HOME"
