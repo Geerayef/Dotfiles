@@ -21,5 +21,6 @@ set -gx VISUAL "$HOME/.scripts/nnn/edit_detached.fish"
 set -gx PAGER "nvimpager -a -- -u $XDG_CONFIG_HOME/nvim/small.lua"
 set -gx MANPAGER "nvim +Man!"
 set -gx GDK_BACKEND "wayland"
+set -gx SYSTEM_PACKAGE_MANAGER "pacman"
 set -gx MOZ_ENABLE_WAYLAND 1
 set -gx CONDA_AUTO_ACTIVATE_BASE false
