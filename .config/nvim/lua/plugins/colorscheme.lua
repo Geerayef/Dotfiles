@@ -1,6 +1,3 @@
--- ~  Order: Light -> Dark
--- ~  Cannot use 'highlight Normal guibg=#000000' for themes before '~ Dark enough'
-
 return {
   -- ~  NightFox
   -- nightfox / duskfox / terafox / carbonfox
@@ -43,27 +40,21 @@ return {
   -- },
 
   -- ~  Oxocarbon
-  -- {
-  --   "nyoom-engineering/oxocarbon.nvim",
-  --   -- lazy = false,
-  --   -- priority = 1000,
-  -- },
+  {
+    "nyoom-engineering/oxocarbon.nvim",
+    lazy = false,
+    priority = 1000,
+  },
 
   -- ~  Neodark/er
-  -- {
-  --   "VDuchauffour/neodark.nvim",
-  --   -- lazy = false,
-  --   -- priority = 1000,
-  --   -- config = function ()
-  --   --   require("neodark").setup({
-  --   --     theme_style = "neodarker"
-  --   --   })
-  --   -- end
-  -- },
+  {
+    "VDuchauffour/neodark.nvim",
+    lazy = false,
+    priority = 1000,
+    -- opts = { theme_style = "neodarker" }
+  },
 
-  -- ~  Dark enough
-
-  -- ~  Midnight: punchy syntax
+  -- ~  Midnight
   {
     "dasupradyumna/midnight.nvim",
     lazy = false,
@@ -76,5 +67,4 @@ return {
   --   -- lazy = false,
   --   -- priority = 1000,
   -- },
-
 }

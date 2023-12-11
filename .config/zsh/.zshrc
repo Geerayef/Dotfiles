@@ -16,12 +16,11 @@ fpath+=$antidote_dir
 
 autoload -Uz $fpath[-1]/antidote
 
-if [[ ! $static -nt $plugins ]]; then
+if [[ ! $static -nt $plugins ]] ; then
     ( antidote bundle <$plugins >$static )
 fi
 
 source $static
-
 unset antidote_dir plugins static
 
 # -------------------------------------------------------------------------------- #
@@ -43,7 +42,6 @@ autoload -Uz promptinit && promptinit
 
 source $ZDOTDIR/function.zsh
 source $ZDOTDIR/alias.zsh
-source $ZDOTDIR/env.zsh
 
 # -------------------------------------------------------------------------------- #
 
@@ -61,13 +59,13 @@ zstyle ':zsh-utils:plugins:history' use-xdg-basedirs
 
 # ~  Conda
 
-if [[ -d "$HOME/miniconda3" ]] then
+if [[ -d "$HOME/miniconda3" ]] ; then
 # >>> conda initialize >>>
     __conda_setup="$('/home/tibor/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
+    if [[ $? -eq 0 ]] ; then
         eval "$__conda_setup"
     else
-        if [ -f "/home/tibor/miniconda3/etc/profile.d/conda.sh" ]; then
+        if [[ -f "/home/tibor/miniconda3/etc/profile.d/conda.sh" ]] ; then
             . "/home/tibor/miniconda3/etc/profile.d/conda.sh"
         else
             export PATH="/home/tibor/miniconda3/bin:$PATH"
@@ -75,10 +73,9 @@ if [[ -d "$HOME/miniconda3" ]] then
     fi
     unset __conda_setup
 # <<< conda initialize <<<
-
     currconda=$(check_conda)
-    if [[ $currconda == "tf" ]]; then
-        source $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
+    if [[ $currconda == "tf" ]] ; then
+        . $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
     fi
 fi
 

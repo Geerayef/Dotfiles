@@ -1,5 +1,5 @@
 --style="numbers,changes,grid"
 --theme=Dracula
 --color=always
---paging=always
+--paging=auto
 --pager="$PAGER"

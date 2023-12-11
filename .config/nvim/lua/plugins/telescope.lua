@@ -23,7 +23,7 @@ return {
             i = {
               ["<C-k>"] = actions.move_selection_previous,
               ["<C-j>"] = actions.move_selection_next,
-              ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
             },
           },
           initial_mode = "insert",
@@ -38,22 +38,12 @@ return {
             prompt_position = "top",
             horizontal = {
               preview_width = function(_, cols, _)
-                if cols > 200 then
-                  return math.floor(cols * 0.4)
-                else
-                  return math.floor(cols * 0.5)
-                end
+                if cols > 200 then return math.floor(cols * 0.4)
+                else return math.floor(cols * 0.5) end
               end,
             },
-            vertical = {
-              width = 0.9,
-              height = 0.85,
-            },
-            flex = {
-              horizontal = {
-                preview_width = 0.9,
-              },
-            },
+            vertical = { width = 0.9, height = 0.85 },
+            -- flex = { horizontal = { preview_width = 0.9 } }
           },
         },
         pickers = {
@@ -62,10 +52,10 @@ return {
             skip_empty_lines = true,
             layout_strategy = "vertical",
             layout_config = {
-              prompt_position = "top",
+              prompt_position = "bottom",
               vertical = {
                 width = 0.75,
-                height = 0.9,
+                height = 0.5,
                 preview_height = 0.5,
               },
             },
@@ -74,15 +64,10 @@ return {
             hidden = true,
             find_command = vim.fn.executable "fd" == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
           },
-          buffers = {
-            sort_lastused = true,
-            sort_mru = true,
-          },
+          buffers = { sort_lastused = true, sort_mru = true },
         },
         extensions = {
-          ["ui-select"] = {
-            themes.get_dropdown({}),
-          },
+          ["ui-select"] = { themes.get_dropdown({}) },
           file_browser = {
             initial_mode = "normal",
             cwd_to_path = true,
@@ -134,9 +119,9 @@ return {
         },
       })
 
-      _ = require("telescope").load_extension "fzf"
-      _ = require("telescope").load_extension "file_browser"
-      _ = require("telescope").load_extension "ui-select"
+      _ = require("telescope").load_extension("fzf")
+      _ = require("telescope").load_extension("file_browser")
+      _ = require("telescope").load_extension("ui-select")
     end
   },
   {
@@ -149,5 +134,6 @@ return {
   },
   {
     "nvim-telescope/telescope-ui-select.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" }
   },
 }

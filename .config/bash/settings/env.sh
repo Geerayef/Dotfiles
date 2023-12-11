@@ -17,14 +17,16 @@ if [[ -d $HOME/Software/AndroidStudio ]] ; then
 fi
 
 # General settings
+export HISTCONTROL=ignoreboth:erasedups
 neovim="$(which nvim)"
 export TERM="wezterm"
 export EDITOR="$neovim"
 export SUDO_EDITOR="$neovim"
 export VISUAL="$HOME/.scripts/nnn/edit_detached.fish"
 export PAGER="nvimpager -- --noplugin -R -u $XDG_CONFIG_HOME/nvim/small.lua"
+export MANPAGER="nvim +Man!"
+export SYSTEM_PACKAGE_MANAGER="pacman"
 export MOZ_ENABLE_WAYLAND=1
-# export HISTCONTROL=ignoreboth:erasedups
 export CONDA_AUTO_ACTIVATE_BASE=false
 
 # -------------------------------------------------------------------------------- #
@@ -32,13 +34,21 @@ export CONDA_AUTO_ACTIVATE_BASE=false
 # ~  Developer Environment
 
 # Rust: Cargo
-[[ -d "$HOME/.cargo/" ]] && source "$HOME/.cargo/env"
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
 # Haskell: ghcup
 [[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env"
 
 # OCaml: opam
-[[ ! -r "$HOME/.opam/opam-init/init.sh" ]] || source "$HOME/.opam/opam-init/init.sh"  > /dev/null 2> /dev/null
+if [[ "$SHELL" = "zsh" ]] ; then
+    [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
+elif [[ "$SHELL" = "bash" ]] ; then
+    [[ ! -r "$HOME/.opam/opam-init/init.sh" ]] || source "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null
+else
+    if [[ "$SHELL" = "fish" ]]; then
+        echo "~~~~~ Why is your {Z, BA}SH env getting sourced if your SHELL = fish?"
+    fi
+fi
 
 # Python: pyenv
 if [[ -e $HOME/.pyenv ]] ; then

@@ -5,12 +5,13 @@
 settings="$BASHDOTDIR/settings"
 
 # ~  Environment variables
-source $settings/env.bash
+source "$settings/env.sh"
 
 # ~  PATH
-source $settings/path.bash
+source "$settings/path.sh"
 
 # ~  Aliases
-source $settings/alias.bash
+source "$settings/alias.sh"
 
+# ~  Prompt
 eval "$(starship init bash)"

@@ -1,5 +1,4 @@
 return {
-  -- ~  This file contains various plugins with little to no setup
   {
     "nvim-lua/plenary.nvim",
   },
@@ -21,10 +20,7 @@ return {
     opts = function()
       local npairs = require("nvim-autopairs.completion.cmp")
       local cmp = require("cmp")
-      cmp.event:on(
-        "confirm_done",
-        npairs.on_confirm_done()
-      )
+      cmp.event:on("confirm_done", npairs.on_confirm_done())
       return {
         check_ts = true,
         ts_config = {
@@ -38,18 +34,9 @@ return {
     "numToStr/Comment.nvim",
     event = "BufReadPost",
     opts = {
-      opleader = {
-        line = "gc",
-        block = "gb",
-      },
-      mappings = {
-        basic = true,
-        extra = true,
-      },
-      toggler = {
-        line = "gcc",
-        block = "gbc",
-      },
+      opleader = { line = "gc", block = "gb" },
+      mappings = { basic = true, extra = true },
+      toggler = { line = "gcc", block = "gbc" },
     }
   },
   {
@@ -61,10 +48,6 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPost",
     main = "ibl",
-    opts = {
-      indent = {
-        char = "│"
-      }
-    },
+    opts = { indent = { char = "│" } }
   },
 }

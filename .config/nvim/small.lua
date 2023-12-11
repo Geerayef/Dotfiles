@@ -14,7 +14,7 @@ local cmd = vim.cmd
 
 --  File
 cmd.syntax("on")
-cmd.filetype("indent", "on")
+cmd.filetype("plugin", "indent", "on")
 o.fileformats = "unix"
 
 --  Edit
@@ -26,7 +26,7 @@ o.background = "dark"
 o.guicursor = ""
 o.signcolumn = "no"
 o.cursorline = true
-o.cursorlineopt = "line"
+o.cursorlineopt = "number"
 o.termguicolors = true
 o.laststatus = 0
 o.showtabline = 0
@@ -57,7 +57,8 @@ o.hlsearch = true
 o.incsearch = true
 
 --  Color
-vim.cmd("colorscheme default")
+-- lunaperche slate elflord
+vim.cmd("colorscheme elflord")
 vim.cmd("highlight Comment gui=none")
-vim.cmd("highlight Normal guibg=#080C10")
-vim.cmd("highlight SignColumn guibg=#080C10")
+-- vim.cmd("highlight Normal guibg=#080C10")
+-- vim.cmd("highlight SignColumn guibg=#080C10")

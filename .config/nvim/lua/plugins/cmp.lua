@@ -1,16 +1,12 @@
 return {
   {
     "L3MON4D3/LuaSnip",
-    build = (not jit.os:find("Windows"))
-      and "echo 'NOTE: jsregexp is optional, so not a big deal if it fails to build'; make install_jsregexp"
-      or nil,
+    build = (not jit.os:find("Windows")) and "echo 'NOTE: jsregexp is optional'; make install_jsregexp" or nil,
     lazy = true,
-    event = { "InsertEnter", },
+    event = { "InsertEnter" },
     dependencies = {
       "rafamadriz/friendly-snippets",
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
+      config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
     },
     opts = {
       history = true,
@@ -19,12 +15,12 @@ return {
     keys = {
       {
         "<tab>",
-        function()
-          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-        end,
-        expr = true, silent = true, mode = "i",
+        function() return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>" end,
+        expr = true,
+        silent = true,
+        mode = "i",
       },
-      { "<tab>", function() require("luasnip").jump(1) end, mode = "s" },
+      { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
       { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     },
   },
@@ -32,17 +28,17 @@ return {
     "hrsh7th/nvim-cmp",
     version = false,
     lazy = true,
-    event = { "InsertEnter", },
+    event = { "BufReadPost", "InsertEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
       "saadparwaiz1/cmp_luasnip",
       "onsails/lspkind.nvim",
     },
     opts = function()
-      vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
       local cmp = require("cmp")
       local lspkind = require("lspkind")
       local luasnip = require("luasnip")
@@ -51,73 +47,44 @@ return {
         return vim.api.nvim_replace_termcodes(str, true, true, true)
       end
 
-      -- Use buffer source for `/` and `?` (if you enable `native_menu`, this won't work anymore).
+      -- "buffer" source for '/', '?'. "cmdline" and "path" source for ':'
+      -- NOTE: If you enable 'native_menu', this won't work anymore
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = { { name = "buffer" } },
-        window = {
-          completion = cmp.config.window.bordered({
-            winhighlight = "Normal:CmpPmenu",
-          }),
-        },
-        view = {
-          entries = { name = "wildmenu", separator = ' | ' }
-        },
+        view = { entries = { name = "wildmenu", separator = ' | ' } },
       })
-
-      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources(
-          { { name = "path" }, },
-          { { name = "cmdline" }, }
+          { { name = "cmdline" }, },
+          { { name = "path" }, }
         ),
-        window = {
-          completion = cmp.config.window.bordered({
-            winhighlight = "Normal:CmpPmenu",
-          }),
-        },
         view = { entries = { name = "custom" } }
       })
 
       return {
         enabled = true,
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
+        snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
         mapping = cmp.mapping.preset.insert({
           ["<C-j>"] = cmp.mapping({
             c = function()
-              if cmp.visible() then
-                cmp.select_next_item()
-              else
-                vim.api.nvim_feedkeys(t("<Down>"), "n", true)
-              end
+              if cmp.visible() then cmp.select_next_item()
+              else vim.api.nvim_feedkeys(t("<Down>"), "n", true) end
             end,
             i = function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item()
-              else
-                fallback()
-              end
+              if cmp.visible() then cmp.select_next_item()
+              else fallback() end
             end
           }),
           ["<C-k>"] = cmp.mapping({
             c = function()
-              if cmp.visible() then
-                cmp.select_prev_item()
-              else
-                vim.api.nvim_feedkeys(t("<Up>"), "n", true)
-              end
+              if cmp.visible() then cmp.select_prev_item()
+              else vim.api.nvim_feedkeys(t("<Up>"), "n", true) end
             end,
             i = function(fallback)
-              if cmp.visible() then
-                cmp.select_prev_item()
-              else
-                fallback()
-              end
+              if cmp.visible() then cmp.select_prev_item()
+              else fallback() end
             end
           }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -132,30 +99,30 @@ return {
         window = {
           completion = cmp.config.window.bordered({
             scrollbar = false,
-            winhighlight = "Normal:CmpPmenu",
+            -- winhighlight = "Normal:Pmenu"
           }),
-          documentation = cmp.config.window.bordered({})
+          documentation = cmp.config.window.bordered()
         },
         sources = cmp.config.sources(
-          {
-            { name = "nvim_lsp" },
-            { name = "nvim_lsp_signature_help" },
-            { name = "buffer" }
-          },
-          {
-            { name = "path" },
-            { name = "cmdline" }
-          },
-          { name = "luasnip" }
+            {
+              { name = "nvim_lsp" },
+              { name = "nvim_lsp_signature_help" },
+              { name = "treesitter" }
+            },
+            {
+              { name = "buffer" },
+              { name = "cmdline" },
+              { name = "path" }
+            },
+            { { name = "nvim_lua" } },
+            { { name = "luasnip" } }
         ),
-        completion = {
-          keyword_length = 2,
-        },
+        completion = { keyword_length = 2, },
         formatting = {
           fields = { "kind", "abbr", "menu" },
-          format = function (entry, item)
-            if vim.tbl_contains({ 'path' }, entry.source.name) then
-              local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
+          format = function(entry, item)
+            if vim.tbl_contains({ "path" }, entry.source.name) then
+              local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
               if icon then
                 item.kind = icon
                 item.kind_hl_group = hl_group
@@ -177,9 +144,7 @@ return {
             })(entry, item)
           end,
         },
-        view = ({
-          entries = { name = "custom", selection_order = "near_cursor" }
-        })
+        view = { entries = { name = "custom", selection_order = "near_cursor" } }
       }
     end,
   },

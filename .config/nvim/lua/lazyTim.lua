@@ -20,7 +20,8 @@ local opts = {
     lazy = false,
     version = nil,
     cond = nil,
-    -- version = "*", -- enable this to try installing the latest stable versions of plugins
+    -- enable this to try installing the latest stable versions of plugins
+    -- version = "*"
   },
   -- leave nil when passing the spec as the first argument to setup()
   spec = nil,
@@ -113,7 +114,7 @@ local opts = {
         "netrwPlugin",
         "tarPlugin",
         "tohtml",
-        -- "tutor",
+        "tutor",
         "zipPlugin",
       },
     },

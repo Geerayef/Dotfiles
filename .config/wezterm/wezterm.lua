@@ -30,14 +30,14 @@ config.adjust_window_size_when_changing_font_size = false
 config.use_resize_increments = true
 config.enable_scroll_bar = false
 config.window_padding = {
-  left   = '0pt',
-  right  = '0pt',
-  top    = '0pt',
-  bottom = '0pt',
+    left   = '0pt',
+    right  = '0pt',
+    top    = '0pt',
+    bottom = '0pt',
 }
 config.inactive_pane_hsb = {
-  saturation = 0.90,
-  brightness = 0.5
+    saturation = 0.90,
+    brightness = 0.5
 }
 
 --  Themes: [Optional] / variant
@@ -58,23 +58,19 @@ config.color_scheme = theme
 
 --  Font
 
-config.harfbuzz_features = { "zero" , "ss01", "cv05" }
+config.harfbuzz_features = { "zero", "ss01", "cv05" }
 config.font_dirs = {
     "/usr/share/fonts/FiraCodeNF",
     "/usr/share/fonts/JetBrainsNF",
     "/usr/share/fonts/TTF"
 }
 config.font = wezterm.font_with_fallback {
-    { family = "FiraCode Nerd Font" },
-    { family = "FiraCode Nerd Font Mono" },
-    { family = "FiraCode Nerd Font Propo" },
-    { family = "JetBrainsMono Nerd Font" },
-    { family = "JetBrainsMono Nerd Font Mono" },
-    { family = "JetBrainsMono Nerd Font Propo" },
-    { family = "JetBrainsMono" },
-    { family = "JetBrainsMonoNL" },
-    { family = "Symbols Nerd Font" },
-    { family = "Symbols Nerd Font Mono" }
+    "FiraCode Nerd Font Mono",
+    "FiraCode Nerd Font Propo",
+    "JetBrainsMono Nerd Font Mono",
+    "JetBrainsMono Nerd Font Propo",
+    "Symbols Nerd Font Mono",
+    "JetBrainsMonoNL",
 }
 config.font_size = 18
 config.line_height = 1

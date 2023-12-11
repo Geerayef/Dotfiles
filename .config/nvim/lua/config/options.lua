@@ -7,7 +7,7 @@ o.shell = "/usr/bin/fish"
 -- o.compatible = false
 
 -- ~  File
--- cmd.syntax("on")
+cmd.syntax("on")
 cmd.filetype("plugin", "indent", "on")
 o.fileformats = "unix"
 o.undofile = true
@@ -24,7 +24,6 @@ o.autoindent = true
 o.smartindent = true
 o.breakindent = true
 o.wrap = true
-o.backspace:append("indent,eol,start")
 o.complete:remove("i")
 o.completeopt = "menu,menuone,noinsert,noselect"
 o.virtualedit = "block"
@@ -49,7 +48,7 @@ o.signcolumn = "yes"
 o.ruler = false
 o.wildmenu = true
 o.pumblend = 0
-o.wildmode = "longest:full"
+o.wildmode = "longest,full"
 o.wildoptions = "pum"
 
 -- ~  Behaviour
