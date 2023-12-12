@@ -1,7 +1,7 @@
 # ~  Environment variables
 
-if [[ -r "/home/tibor/.config/bash/settings/env.sh" ]] ; then
-    source ./.config/bash/settings/env.sh
+if [[ -r /home/tibor/.config/bash/settings/env.bash ]] ; then
+    . ./.config/bash/settings/env.bash
 else
     # Locations
     export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
@@ -21,7 +21,7 @@ else
 
     # General settings
     export HISTCONTROL=ignoreboth:erasedups
-    neovim="$(which nvim)"
+    [[ "$(command -v nvim)" ]] && neovim="$(which nvim)"
     export TERM="wezterm"
     export EDITOR="$neovim"
     export SUDO_EDITOR="$neovim"
@@ -54,8 +54,8 @@ fi
 
 # ~ Path
 
-if [[ -r "$XDG_CONFIG_HOME/bash/settings/path.sh" ]] ; then
-    source $XDG_CONFIG_HOME/bash/settings/path.sh
+if [[ -r $XDG_CONFIG_HOME/bash/settings/path.bash ]] ; then
+    . $XDG_CONFIG_HOME/bash/settings/path.bash
 else
     [[ -d "$HOME/.bin" ]] && export PATH="$HOME/.bin:$PATH"
     [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"

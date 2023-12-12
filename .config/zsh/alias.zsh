@@ -32,7 +32,7 @@ else
     # ~  Apps
 
     alias nv="nvim"
-    if [[ -e "$(command -v codium)" ]] ; then alias codi="$(which codium)"; fi
+    [[ -e "$(command -v codium)" ]] && alias codi="$(which codium)"
 
     # ~  Git
 
@@ -55,7 +55,7 @@ else
 
     # ~  Package managers
 
-    if [[ "$SYSTEM_PACKAGE_MANAGER" = "apt" ]] ; then
+    if [[ "$SYSTEM_PACKAGE_MANAGER" = apt ]] ; then
         # ~  apt
         alias ad="sudo apt update"
         alias ag="sudo apt upgrade"
@@ -85,7 +85,7 @@ else
         alias agchk="sudo apt-get check"
         alias agsrc="sudo apt-get source"
         alias agdl="sudo apt-get download"
-    elif [[ "$SYSTEM_PACKAGE_MANAGER" = "dnf" ]] ; then
+    elif [[ "$SYSTEM_PACKAGE_MANAGER" = dnf ]] ; then
         # ~  dnf
         alias dnfu="sudo dnf upgrade --refresh"
         alias dnfi="sudo dnf install"
@@ -99,7 +99,7 @@ else
         alias dfnli="sudo dnf list installed"
         alias dnfgl="sudo dnf grouplist"
         alias dnfh="dnf help"
-    elif [[ "$SYSTEM_PACKAGE_MANAGER" = "pacman" ]] ; then
+    elif [[ "$SYSTEM_PACKAGE_MANAGER" = pacman ]] ; then
         # ~  pacman
         alias pi="sudo pacman -S --needed"
         alias pu="sudo pacman -Syu"
@@ -107,6 +107,6 @@ else
         alias pq="sudo pacman -Q"
         alias ps="sudo pacman -Ss"
     else
-        echo "Please set the SYSTEM_PACKAGE_MANAGER environment variable to the name of the package manager used by the system. [ apt / dnf / pacman ]"
+        echo "Please set the SYSTEM_PACKAGE_MANAGER environment variable to the name of the package manager used by the system. [ e.g. apt / dnf / pacman ]"
     fi
 fi

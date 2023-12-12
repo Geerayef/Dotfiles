@@ -1,0 +1,2 @@
+export HISTFILE="$BASHDOTDIR/history"
+echo $HISTFILE

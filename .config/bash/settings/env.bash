@@ -18,7 +18,12 @@ fi
 
 # General settings
 export HISTCONTROL=ignoreboth:erasedups
-neovim="$(which nvim)"
+if [[ -n "${BASH_VERSION}" || "$SHELL" = bash ]] ; then
+    export HISTFILE="$BASHDOTDIR/history"
+else
+    if [[ -n "${ZSH_NAME}" || "$SHELL" = zsh ]] ; then export HISTFILE="$ZDOTDIR/history"; fi
+fi
+[[ -e "$(command -v nvim)" ]] && neovim="$(which nvim)"
 export TERM="wezterm"
 export EDITOR="$neovim"
 export SUDO_EDITOR="$neovim"
@@ -33,28 +38,26 @@ export CONDA_AUTO_ACTIVATE_BASE=false
 
 # ~  Developer Environment
 
-# Rust: Cargo
-[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
-
-# Haskell: ghcup
-[[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env"
-
-# OCaml: opam
-if [[ "$SHELL" = "zsh" ]] ; then
-    [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
-elif [[ "$SHELL" = "bash" ]] ; then
-    [[ ! -r "$HOME/.opam/opam-init/init.sh" ]] || source "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null
-else
-    if [[ "$SHELL" = "fish" ]]; then
-        echo "~~~~~ Why is your {Z, BA}SH env getting sourced if your SHELL = fish?"
+# shellcheck disable=SC1091
+{
+    # Rust: Cargo
+    [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+    # Haskell: ghcup
+    [[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env"
+    # OCaml: opam
+    if [[ "$SHELL" = "zsh" ]] ; then
+        [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
+    elif [[ "$SHELL" = "bash" ]] ; then
+        [[ ! -r "$HOME/.opam/opam-init/init.sh" ]] || source "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null
+    else
+        if [[ "$SHELL" = "fish" ]] ; then echo "~~~~~ Why is your {Z, BA}SH env getting sourced if your SHELL = fish?"; fi
     fi
-fi
-
-# Python: pyenv
-if [[ -e $HOME/.pyenv ]] ; then
-(
-    export PYENV_ROOT="$HOME/.pyenv"
-    command -v pyenv >/dev/null || export PATH="$PATH:$PYENV_ROOT/bin"
-    eval "$(pyenv init -)"
-)
-fi
+    # Python: pyenv
+    if [[ -e $HOME/.pyenv ]] ; then
+        (
+        export PYENV_ROOT="$HOME/.pyenv"
+        command -v pyenv >/dev/null || export PATH="$PATH:$PYENV_ROOT/bin"
+        eval "$(pyenv init -)"
+    )
+    fi
+}
