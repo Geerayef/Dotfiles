@@ -4,7 +4,6 @@ set -gx XDG_CACHE_HOME "$HOME/.cache"
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -gx XDG_STATE_HOME "$HOME/.local/state"
 set -gx XDG_DATA_HOME "$HOME/.local/share"
-# set -gx XDG_DATA_DIRS "$HOME/.nix-profile/share" $XDG_DATA_DIRS
 set -gx FZF_BASE "/usr/bin/fzf"
 set -gx STARSHIP_CONFIG "$XDG_CONFIG_HOME/starship/starship.toml"
 set -gx ZDOTDIR "$XDG_CONFIG_HOME/zsh"
@@ -18,9 +17,12 @@ set -gx TERM "wezterm"
 set -gx EDITOR "$neovim"
 set -gx SUDO_EDITOR "$neovim"
 set -gx VISUAL "$HOME/.scripts/nnn/edit_detached.fish"
-set -gx PAGER "nvimpager -a -- -u $XDG_CONFIG_HOME/nvim/small.lua"
+set -gx NO_AT_BRIDGE 1
+set -gx PAGER "nvimpager"
 set -gx MANPAGER "nvim +Man!"
 set -gx SYSTEM_PACKAGE_MANAGER "pacman"
 set -gx MOZ_ENABLE_WAYLAND 1
 set -gx CONDA_AUTO_ACTIVATE_BASE false
-
+# GTK
+set -gx GTK_THEME "/usr/share/themes/Kripton"
+set -gx GTK2_RC_FILES "/usr/share/themes/Raleigh/gtk-2.0/gtkrc"

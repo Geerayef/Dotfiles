@@ -1,4 +1,4 @@
--- ~  Functions used globally
+-- ~  Global functions
 
 F = {}
 

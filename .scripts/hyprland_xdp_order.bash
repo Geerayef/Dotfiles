@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
+sleep 2
 killall -e xdg-desktop-portal-hyprland
 killall -e xdg-desktop-portal-gtk
-killall -e xdg-desktop-portal
+killall xdg-desktop-portal
 /usr/lib/xdg-desktop-portal-hyprland &
-sleep 2
-/usr/lib/xdg-desktop-portal-gtk &
-sleep 2
-/usr/lib/xdg-desktop-portal &
-sleep 4
+sleep 5

@@ -5,7 +5,7 @@ if test -d "$HOME/.bin"
 end
 
 if test -d "$HOME/.local/bin"
-    fish_add_path -a"$HOME/.local/bin"
+    fish_add_path -a "$HOME/.local/bin"
 end
 
 if test -d "$HOME/Software/Neovim/bin"

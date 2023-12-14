@@ -1,9 +1,12 @@
 -- ~  Keymaps
 
 vim.g.mapleader = " "
+
 local keymap = vim.keymap.set
-keymap("n", "q", "<cmd>q!<CR>", { noremap = true })
-keymap("v", "q", "<cmd>q!<CR>", { noremap = true })
+keymap("x", "<leader>P", '"_dP', { noremap = true })
+keymap("n", "<leader>y", '"+y' , { noremap = true })
+keymap("n", "<leader>Y", '"+Y' , { noremap = true })
+keymap("v", "<leader>y", '"+y' , { noremap = true })
 
 -- ---------------------------------------- --
 
@@ -14,19 +17,16 @@ local cmd = vim.cmd
 
 --  File
 cmd.syntax("on")
-cmd.filetype("plugin", "indent", "on")
-o.fileformats = "unix"
 
 --  Edit
 o.virtualedit = "block"
-o.expandtab = true
 
 --  UI
 o.background = "dark"
 o.guicursor = ""
 o.signcolumn = "no"
 o.cursorline = true
-o.cursorlineopt = "number"
+-- o.cursorlineopt = "number"
 o.termguicolors = true
 o.laststatus = 0
 o.showtabline = 0
@@ -37,7 +37,8 @@ o.showmatch = true
 o.cmdheight = 1
 o.ruler = false
 o.wildmenu = true
-o.number = false
+o.number = true
+o.relativenumber = true
 
 --  Behaviour
 o.ttyfast = true
@@ -46,7 +47,7 @@ o.updatetime = 300
 o.belloff = "all"
 o.splitright = true
 o.splitbelow = true
-o.scrolloff = 1
+o.scrolloff = 2
 o.sidescrolloff = 1
 
 --  Search
@@ -59,6 +60,6 @@ o.incsearch = true
 --  Color
 -- lunaperche slate elflord
 vim.cmd("colorscheme elflord")
-vim.cmd("highlight Comment gui=none")
+-- vim.cmd("highlight Comment gui=none")
 -- vim.cmd("highlight Normal guibg=#080C10")
 -- vim.cmd("highlight SignColumn guibg=#080C10")

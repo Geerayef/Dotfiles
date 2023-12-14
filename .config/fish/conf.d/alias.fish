@@ -23,8 +23,8 @@ end
 
 alias grep="grep --color=always"
 # List installed desktops
-alias xd="ls -al /usr/share/xsessions"
-alias xdw="ls -al /usr/share/wayland-sessions"
+alias lidx="ls -al /usr/share/xsessions"
+alias lidw="ls -al /usr/share/wayland-sessions"
 
 # ~  Apps
 
