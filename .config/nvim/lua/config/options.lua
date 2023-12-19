@@ -4,7 +4,7 @@ local cmd = vim.cmd
 F.disable_builtin()
 
 o.shell = "/usr/bin/fish"
--- o.compatible = false
+o.shortmess:append('I')
 
 -- ~  File
 cmd.syntax("on")
@@ -29,27 +29,28 @@ o.completeopt = "menu,menuone,noinsert,noselect"
 o.virtualedit = "block"
 
 -- ~  UI
+o.termguicolors = true
 o.background = "dark"
 o.guicursor = ""
 o.cursorline = true
 o.cursorlineopt = "number"
-o.termguicolors = true
 o.number = true
 o.relativenumber = true
-o.laststatus = 3
 o.showtabline = 1
 o.title = false
+o.laststatus = 3
 o.showcmd = false
+o.cmdheight = 0
 o.showmode = false
 o.showmatch = true
-o.cmdheight = 0
 o.switchbuf = "useopen,uselast"
 o.signcolumn = "yes"
 o.ruler = false
-o.wildmenu = true
 o.pumblend = 0
+o.wildmenu = true
 o.wildmode = "longest,full"
 o.wildoptions = "pum"
+o.list = true
 
 -- ~  Behaviour
 o.ttyfast = true
@@ -62,8 +63,23 @@ o.scrolloff = 4
 o.sidescrolloff = 4
 
 -- ~  Search
-o.grepprg = "rg"
+o.grepprg = "rg --vimgrep --no-heading --smart-case"
 o.ignorecase = true
 o.smartcase = true
 o.hlsearch = true
 o.incsearch = true
+
+-- ~  Chars
+o.listchars = {
+  tab      = "→ ",
+  nbsp     = "␣",
+  trail    = "·",
+}
+o.fillchars = {
+  fold      = "·",
+  foldopen  = "",
+  foldclose = "",
+  foldsep   = " ",
+  diff      = "╱",
+  eob       = " ",
+}

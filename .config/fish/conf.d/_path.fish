@@ -32,7 +32,7 @@ end
 if test -d "$HOME/.opam"
     and test -r "$HOME/.opam/opam-init/init.fish"
     fish_add_path -a "$HOME/.opam/default/bin"
-    source "$HOME/.opam/opam-init/init.fish" > /dev/null 2> /dev/null
+    source "$HOME/.opam/opam-init/init.fish" >/dev/null 2>/dev/null
 end
 
 # pyenv

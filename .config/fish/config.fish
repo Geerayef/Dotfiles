@@ -1,4 +1,11 @@
-function fish_greeting; end
+function fish_greeting
+end
+
+if status --is-login
+    if test (tty) = /dev/tty1
+        exec Hyprland
+    end
+end
 
 if status is-interactive
     function fish_user_key_bindings
@@ -11,4 +18,3 @@ if status is-interactive
     # ~  Prompt
     starship init fish | source
 end
-

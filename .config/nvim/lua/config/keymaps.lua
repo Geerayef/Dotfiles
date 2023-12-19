@@ -50,12 +50,12 @@ keymap("t", "<Esc>", "<C-\\><C-n>", { desc = "Terminal mode: Escape" })
 keymap("n", "<leader>?", "<cmd>Telescope oldfiles<CR>"     , noremap, { desc = "[?] Recent files" })
 keymap("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", noremap, { desc = "[/] Search buffer" })
 keymap("n", "<leader>fb", "<cmd>Telescope file_browser<CR>", noremap, { desc = "[F]ile [B]rowser" })
-keymap("n", "<leader>tb", "<cmd>Telescope builtin<CR>"     , noremap, { desc = "[T]elescope [B]uiltin" })
-keymap("n", "<leader>tsf", "<cmd>Telescope find_files<CR>" , noremap, { desc = "[T]elescope [S]earch [F]iles" })
-keymap("n", "<leader>tsh", "<cmd>Telescope help_tags<CR>"  , noremap, { desc = "[T]elescope [S]earch [H]elp" })
-keymap("n", "<leader>tsw", "<cmd>Telescope grep_string<CR>", noremap, { desc = "[T]elescope [S]earch [W]ord" })
-keymap("n", "<leader>tsg", "<cmd>Telescope live_grep<CR>"  , noremap, { desc = "[T]elescope [S]earch [G]rep" })
-keymap("n", "<leader>tsd", "<cmd>Telescope diagnostics<CR>", noremap, { desc = "[T]elescope [S]earch [D]iagnostics" })
+keymap("n", "<leader>tb", "<cmd>Telescope builtin<CR>"     , noremap, { desc = "Telescope [B]uiltin" })
+keymap("n", "<leader>sf", "<cmd>Telescope find_files<CR>" , noremap, { desc = "Telescope [S]earch [F]iles" })
+keymap("n", "<leader>sh", "<cmd>Telescope help_tags<CR>"  , noremap, { desc = "Telescope [S]earch [H]elp" })
+keymap("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", noremap, { desc = "Telescope [S]earch [W]ord" })
+keymap("n", "<leader>sg", "<cmd>Telescope live_grep<CR>"  , noremap, { desc = "Telescope [S]earch [G]rep" })
+keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", noremap, { desc = "Telescope [S]earch [D]iagnostics" })
 keymap("n", "<leader><space>", "<cmd>Telescope buffers<CR>", noremap, { desc = "[ ] Opened buffers" })
 
 -- Gitsigns
@@ -78,3 +78,30 @@ keymap("n", "<leader>za", "<cmd>TZAtaraxis<CR>"   , noremap, { desc = "[Z]en [A]
 -- keymap("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>",  opt_noremap, { desc = "Tmux Navigate Down" })
 -- keymap("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>",    opt_noremap, { desc = "Tmux Navigate Up" })
 -- keymap("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", opt_noremap, { desc = "Tmux Navigate Right" })
+
+-------------------------------------------------------------------------------------------------------
+
+-- ~  LSP keymaps
+
+Keymaps = {}
+
+Keymaps.LSP = function(_, bufnr)
+  local lspbuf = vim.lsp.buf
+  keymap("n", "<leader>rn", lspbuf.rename, { buffer = bufnr, desc = "[R]e[n]ame" })
+  keymap("n", "<leader>ca", lspbuf.code_action, { buffer = bufnr, desc = "[C]ode [A]ction" })
+  keymap("n", "<leader>gd", lspbuf.definition, { buffer = bufnr, desc = "[G]oto [d]efinition" })
+  keymap("n", "<leader>gD", lspbuf.declaration, { buffer = bufnr, desc = "[G]oto [D]eclaration" })
+  keymap("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", { buffer = bufnr, desc = "[G]oto [R]eferences" })
+  keymap("n", "<leader>gi", lspbuf.implementation, { buffer = bufnr, desc = "[G]oto [I]mplementation" })
+  keymap("n", "<leader>D" , lspbuf.type_definition, { buffer = bufnr, desc = "Type [D]efinition" })
+  keymap("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>", { buffer = bufnr, desc = "[D]ocument [S]ymbols" })
+  keymap("n", "<leader>ws", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { buffer = bufnr, desc = "[W]orkspace [S]ymbols" })
+  keymap("n", "<leader>waf", lspbuf.add_workspace_folder, { buffer = bufnr, desc = "[W]orkspace [A]dd [F]older" })
+  keymap("n", "<leader>wrf", lspbuf.remove_workspace_folder, { buffer = bufnr, desc = "[W]orkspace [R]emove [F]older" })
+  keymap("n", "<leader>wlf", "<cmd>lua = print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", { buffer = bufnr, desc = "[W]orkspace [L]ist [F]olders" })
+  -- See `:help K` for why this keymap
+  keymap("n", "K", lspbuf.hover, { buffer = bufnr, desc = "Hover Documentation" })
+  keymap("n", "<C-k>", lspbuf.signature_help, { buffer = bufnr, desc = "Signature Documentation" })
+end
+
+return Keymaps

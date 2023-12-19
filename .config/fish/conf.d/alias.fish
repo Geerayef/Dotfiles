@@ -29,7 +29,9 @@ alias lidw="ls -al /usr/share/wayland-sessions"
 # ~  Apps
 
 alias nv="nvim"
-if test -e "$(command -v codium)"; alias codi="$(which codium)"; end
+if test -e "$(command -v codium)"
+    alias codi="$(which codium)"
+end
 
 # ~  Git
 
@@ -98,12 +100,11 @@ else if test $SYSTEM_PACKAGE_MANAGER = dnf
     alias dnfh="dnf help"
 else if test $SYSTEM_PACKAGE_MANAGER = pacman
     # - pacman
-    alias pi="sudo pacman -S --needed"
+    alias pi="sudo pacman -Sy --needed"
     alias pu="sudo pacman -Syu"
-    alias pr="sudo pacman -R"
+    alias pr="sudo pacman -Rs"
     alias pq="sudo pacman -Q"
-    alias ps="sudo pacman -Ss"
+    alias ps="sudo pacman -Sys"
 else
     echo "Please set the SYSTEM_PACKAGE_MANAGER environment variable to the name of the package manager used by the system. [ apt / dnf / pacman ]"
 end
-

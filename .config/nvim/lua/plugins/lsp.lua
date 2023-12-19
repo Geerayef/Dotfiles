@@ -45,7 +45,7 @@ return {
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
       local lsp_attach = function(client, bufnr)
-        K.LspKeymaps(client, bufnr)
+        Keymaps.LSP(client, bufnr)
         -- Format
         vim.api.nvim_buf_create_user_command(bufnr, "FormatLSP", function(_)
           vim.lsp.buf.format()
@@ -127,13 +127,13 @@ return {
         cmd = { "/usr/bin/clangd" },
         filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
         root_dir = lspconfig.util.root_pattern(
-          '.clangd'
-          , '.clang-tidy'
-          , '.clang-format'
-          , 'compile_commands.json'
-          , 'compile_flags.txt'
-          , 'configure.ac'
-          , '.git'
+          ".clangd"
+          , ".clang-tidy"
+          , ".clang-format"
+          , "compile_commands.json"
+          , "compile_flags.txt"
+          , "configure.ac"
+          , ".git"
         ),
         on_attach = lsp_attach,
         capabilities = capabilities,
@@ -153,7 +153,7 @@ return {
       -- lspconfig.pylsp.setup({
       --   settings = {
       --     pylsp = {
-      --       configurationSources = { 'flake8' } ,
+      --       configurationSources = { "flake8" } ,
       --       plugins = {
       --         ruff = {
       --           enabled = true,
@@ -193,6 +193,10 @@ return {
     "williamboman/mason.nvim",
     cmd = "Mason",
     opts = {
+      registries = {
+        "github:nvim-java/mason-registry",
+        "github:mason-org/mason-registry",
+      },
       ui = {
         icons = {
           package_installed = "✓",
@@ -211,7 +215,7 @@ return {
   --     rt.setup({
   --       server = {
   --         on_attach = function(client, bufnr)
-  --           K.LspKeymaps(client, bufnr)
+  --           Keymaps.LSP(client, bufnr)
   --           vim.api.nvim_buf_create_user_command(bufnr, "FormatLSP", function(_)
   --             vim.lsp.buf.format()
   --           end, { desc = "Format current buffer with LSP" })

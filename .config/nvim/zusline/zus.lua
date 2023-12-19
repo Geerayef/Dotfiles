@@ -1,4 +1,4 @@
--- #  Zus - Statusline
+-- #  Zus statusline
 
 Zus = {}
 
@@ -6,7 +6,6 @@ Zus = {}
 
 -- ~  Imports
 
-require("config.functions")
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
@@ -64,7 +63,7 @@ local get_diagnostic_stats = function()
   return error_count, warn_count, info_count, hint_count
 end
 
-Diagnostics = function()
+_G.Diagnostics = function()
   local zdi = Zus.options.icons.diagnostics
   local error, warn, info, hint = get_diagnostic_stats()
   local result = (error > 0 and zdi.error .. error or "")
@@ -77,16 +76,26 @@ Diagnostics = function()
   return result
 end
 
-Git_branch = function()
-  local branch_name = vim.fn.FugitiveStatusline()
-  local clean_name = string.match(branch_name, "%(([a-zA-Z0-9]+)%)")
+local path_branches = {}
+_G.Git_branch = function(path)
+  path = vim.fs.normalize(path or vim.api.nvim_buf_get_name(0))
+  local dir = vim.fs.dirname(path)
+  if not dir then return '' end
+  local branch = path_branches[dir]
+  if branch then return Zus.options.icons.git.git_branch .. branch end
+  vim.fn.system( { 'git', '-C', dir, 'rev-parse', '--abbrev-ref', 'HEAD' },
+    { stderr = false },
+    function(err, _) path_branches[dir] = err.stdout:gsub('\n.*', '') end
+  )
+  return ''
 
-  if clean_name == nil then return " " end
-
-  return Zus.options.icons.git.git_branch .. clean_name
+  -- local status_fugitive = vim.g.FugitiveStatusline()
+  -- local branch_name = string.match(status_fugitive, "%(([a-zA-Z0-9]+)%)")
+  -- if branch_name == nil then return " " end
+  -- return Zus.options.icons.git.git_branch .. branch_name
 end
 
-Git_status = function()
+_G.Git_status = function()
   local status = vim.b.gitsigns_status
   if status == nil then
     return " "
@@ -103,14 +112,14 @@ end
 Zus.components = {}
 local zc = Zus.components
 
-zc.start_spacing        = "| "
-zc.end_spacing          = " |"
-zc.mode                 = "%8.{%v:lua.F.NvimMode()%}"
-zc.file_name            = "%-24.t"
-zc.file_status          = "%-8.(%-3.m %-4.r%)"
-zc.git_branch           = "%8.{%v:lua.Git_branch()%}"
-zc.git_status           = "%12.{%v:lua.Git_status()%}"
-zc.lsp_diagnostics      = "%16.{%v:lua.Diagnostics()%}"
+zc.start_spacing   = "| "
+zc.end_spacing     = " |"
+zc.mode            = "%8.{%v:lua.F.NvimMode()%}"
+zc.file_name       = "%-24.t"
+zc.file_status     = "%-8.(%-3.m %-4.r%)"
+zc.git_branch      = "%8.{%v:lua.Git_branch()%}"
+zc.git_status      = "%12.{%v:lua.Git_status()%}"
+zc.lsp_diagnostics = "%16.{%v:lua.Diagnostics()%}"
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
@@ -127,8 +136,8 @@ zs.right = "%=%(" .. zc.git_branch .. zc.git_status .. zc.lsp_diagnostics  .. "%
 
 -- ~  Setup
 
-function Zus.setup(user_options)
-  Zus.options = vim.tbl_extend('force', Zus.options, user_options)
+Zus.setup = function (user_options)
+  Zus.options = vim.tbl_extend("force", Zus.options, user_options)
 
   vim.opt.statusline = string.format("%s%s%s%s",
     Zus.HIGHLIGHT.ZusHL,
@@ -137,8 +146,7 @@ function Zus.setup(user_options)
     zs.right
   )
 
-  -- ~  Highlights
-  vim.cmd([[highlight link ZusHL Normal]])
+  vim.cmd("highlight link ZusHL Normal")
 end
 
 return Zus

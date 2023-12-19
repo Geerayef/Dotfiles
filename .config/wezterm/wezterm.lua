@@ -24,36 +24,24 @@ Colors.apply_to_config(config)
 
 --  Window UI
 
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.95
 config.window_decorations = "RESIZE"
 config.adjust_window_size_when_changing_font_size = false
 config.use_resize_increments = true
 config.enable_scroll_bar = false
-config.window_padding = {
-    left   = '0pt',
-    right  = '0pt',
-    top    = '0pt',
-    bottom = '0pt',
-}
-config.inactive_pane_hsb = {
-    saturation = 0.90,
-    brightness = 0.5
-}
+config.window_padding = { left   = '0pt', right  = '0pt', top    = '0pt', bottom = '0pt' }
+config.inactive_pane_hsb = { saturation = 0.90, brightness = 0.5 }
 
---  Themes: [Optional] / variant
-
--- PALE
--- ayu / Ayu Dark (Gogh) / Mirage [(Gogh)]
--- Tokyo Night [(Gogh)] / Moon / Storm [(Gogh)]
--- tokyonight / -storm / _storm / _moon / _night
+--  Themes
+-- [Optional] / variant
+-- ayu / Ayu / Ayu Dark (Gogh) / Mirage [(Gogh)]
+-- Tokyo Night [(Gogh)] / Moon / Storm [(Gogh)] / tokyonight / -storm / _storm / _moon / _night
 -- nightfox / duskfox / terafox / carbonfox / nordfox
 -- Kasugano (terminal.sexy)
--- SEPIA
 -- Trim Yer Beard (terminal.sexy) / VWbug (terminal.sexy)
--- BLACK
--- astromouse (terminal.sexy) / Adventure / Ayu
+-- astromouse (terminal.sexy)
 
-local theme = "Ayu Dark (Gogh)"
+local theme = "astromouse (terminal.sexy)"
 config.color_scheme = theme
 
 --  Font
@@ -79,7 +67,7 @@ config.line_height = 1
 --  Cursor
 
 config.default_cursor_style = "SteadyBlock"
-config.force_reverse_video_cursor = false
+config.force_reverse_video_cursor = true
 
 -- ~ ------------------------------------------------------- ~ --
 

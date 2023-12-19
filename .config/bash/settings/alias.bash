@@ -100,9 +100,9 @@ elif [[ "$SYSTEM_PACKAGE_MANAGER" = pacman ]] ; then
     # ~  pacman
     alias pi="sudo pacman -S --needed"
     alias pu="sudo pacman -Syu"
-    alias pr="sudo pacman -R"
+    alias pr="sudo pacman -Rs"
     alias pq="sudo pacman -Q"
-    alias ps="sudo pacman -Ss"
+    alias ps="sudo pacman -Sys"
 else
     echo "Please set the SYSTEM_PACKAGE_MANAGER environment variable to the name of the package manager used by the system. [ apt / dnf / pacman ]"
 fi

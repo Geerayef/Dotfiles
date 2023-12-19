@@ -1,6 +1,6 @@
 # ~  Environment variables
 
-if [[ -r /home/tibor/.config/bash/settings/env.bash ]] ; then
+if [[ -n $BASHDOTDIR || -r $HOME/.config/bash/settings/env.bash ]]; then
     . ./.config/bash/settings/env.bash
 else
     # Locations
@@ -26,7 +26,7 @@ else
     export EDITOR="$neovim"
     export SUDO_EDITOR="$neovim"
     export VISUAL="$HOME/.scripts/nnn/edit_detached.fish"
-    export PAGER="nvimpager -- --noplugin -R -u $XDG_CONFIG_HOME/nvim/small.lua"
+    export PAGER="nvimpager -a"
     export MANPAGER="nvim +Man!"
     export SYSTEM_PACKAGE_MANAGER="pacman"
     export MOZ_ENABLE_WAYLAND=1
@@ -54,8 +54,8 @@ fi
 
 # ~ Path
 
-if [[ -r $XDG_CONFIG_HOME/bash/settings/path.bash ]] ; then
-    . $XDG_CONFIG_HOME/bash/settings/path.bash
+if [[ -n $BASHDOTDIR || -r $XDG_CONFIG_HOME/bash/settings/path.bash ]] ; then
+    . ./.config/bash/settings/path.bash
 else
     [[ -d "$HOME/.bin" ]] && export PATH="$HOME/.bin:$PATH"
     [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"

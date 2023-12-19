@@ -1,4 +1,4 @@
--- #  Zus - Tabline
+-- #  Zus tabline
 
 ZusT = {}
 
@@ -6,17 +6,16 @@ ZusT = {}
 
 -- ~  Imports
 
-require("config.functions")
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
 -- ~  Options
 
 ZusT.options = {
-  show_name = true,
+  show_icons = false,
   show_index = true,
+  show_name = true,
   show_modified_status = true,
-  show_icon = false,
   fnamemodify = ":t",
   brackets = { "[", "]" },
   unnamed_buffer_label = "",
@@ -26,34 +25,32 @@ ZusT.options = {
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
--- ~  Main tabline-string builder
+-- ~  Tabline string builder
 
-local fn = vim.fn
-
-local function tabline(options)
+local build_tabline = function (options)
+  local fn = vim.fn
   local tab = ""
+
   for index = 1, fn.tabpagenr("$") do
     local winnr = fn.tabpagewinnr(index)
     local buflist = fn.tabpagebuflist(index)
     local bufnr = buflist[winnr]
     local bufname = fn.bufname(bufnr)
     local bufmodified = fn.getbufvar(bufnr, "&mod")
-
+    local icon = ""
     tab = tab .. "%" .. index .. "T"
+
     if index == fn.tabpagenr() then
       tab = tab .. "%#TabLineSel#"
     else
-      tab = tab .. "%#ZusHL#"
+      tab = tab .. Zus.HIGHLIGHT.ZusHL
     end
 
     tab = tab .. " "
 
-    if options.show_index then
-      tab = tab .. index .. "."
-    end
+    if options.show_index then tab = tab .. index .. "." end
 
-    local icon = ""
-    if options.show_icon and ZusT.has_devicons then
+    if options.show_icons and ZusT.has_devicons then
       local ext = fn.fnamemodify(bufname, ':e')
       icon = ZusT.devicons.get_icon(bufname, ext, { default = true }) .. " "
     end
@@ -67,8 +64,7 @@ local function tabline(options)
         tab = tab .. options.unnamed_buffer_label
       end
 
-      if
-        options.inactive_tab_max_length
+      if options.inactive_tab_max_length
         and options.inactive_tab_max_length > 0
         and index ~= fn.tabpagenr()
       then
@@ -81,8 +77,7 @@ local function tabline(options)
       tab = tab .. options.brackets[2]
     end
 
-    if
-      bufmodified == 1
+    if bufmodified == 1
       and options.show_modified_status
       and options.symbol_modified ~= nil
     then
@@ -91,8 +86,6 @@ local function tabline(options)
 
     tab = tab .. " "
   end
-
-  tab = tab .. "%#ZusHL#"
   return tab
 end
 
@@ -100,15 +93,11 @@ end
 
 -- ~  Setup
 
-function ZusT.setup(user_options)
+ZusT.setup = function (user_options)
   ZusT.options = vim.tbl_extend("force", ZusT.options, user_options)
   ZusT.has_devicons, ZusT.devicons = pcall(require, "nvim-web-devicons")
 
-  function ZusTabline()
-    return tabline(ZusT.options)
-  end
-
-  vim.opt.tabline = "%!v:lua.ZusTabline()"
+  vim.opt.tabline = string.format("%s", build_tabline(user_options))
 end
 
 return ZusT

@@ -12,14 +12,9 @@ return {
       history = true,
       delete_check_events = "TextChanged",
     },
-    keys = {
-      {
-        "<tab>",
+    keys = { { "<tab>",
         function() return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>" end,
-        expr = true,
-        silent = true,
-        mode = "i",
-      },
+        expr = true, silent = true, mode = "i" },
       { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
       { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     },
@@ -104,18 +99,22 @@ return {
           documentation = cmp.config.window.bordered()
         },
         sources = cmp.config.sources(
-            {
-              { name = "nvim_lsp" },
-              { name = "nvim_lsp_signature_help" },
-              { name = "treesitter" }
-            },
-            {
-              { name = "buffer" },
-              { name = "cmdline" },
-              { name = "path" }
-            },
-            { { name = "nvim_lua" } },
-            { { name = "luasnip" } }
+          {
+            { name = "nvim_lsp" },
+            { name = "nvim_lsp_signature_help" }
+          },
+          {
+            { name = "buffer" },
+            { name = "treesitter" }
+          },
+          {
+            { name = "cmdline" },
+            { name = "path" }
+          },
+          {
+            { name = "nvim_lua" },
+            { name = "luasnip" }
+          }
         ),
         completion = { keyword_length = 2, },
         formatting = {

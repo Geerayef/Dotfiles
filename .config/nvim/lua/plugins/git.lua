@@ -1,17 +1,18 @@
 return {
   {
     "tpope/vim-fugitive",
-    event = "VeryLazy",
+    event = { "BufWritePost", "BufReadPre" }
   },
   {
     "lewis6991/gitsigns.nvim",
-    event = "VeryLazy",
+    event = "BufReadPre",
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("gitsigns").setup({
         signs = {
           add = { text = "+" },
           change = { text = "~" },
-          delete = { text = "X" },
+          delete = { text = "x" },
           topdelete = { text = "^" },
           changedelete = { text = "¬" },
           untracked = { text = "?" },

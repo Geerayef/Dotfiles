@@ -26,7 +26,6 @@ o.background = "dark"
 o.guicursor = ""
 o.signcolumn = "no"
 o.cursorline = true
--- o.cursorlineopt = "number"
 o.termguicolors = true
 o.laststatus = 0
 o.showtabline = 0
@@ -38,28 +37,20 @@ o.cmdheight = 1
 o.ruler = false
 o.wildmenu = true
 o.number = true
-o.relativenumber = true
 
 --  Behaviour
 o.ttyfast = true
 o.lazyredraw = true
 o.updatetime = 300
 o.belloff = "all"
-o.splitright = true
-o.splitbelow = true
 o.scrolloff = 2
-o.sidescrolloff = 1
 
 --  Search
-o.grepprg = "rg"
+o.grepprg = "rg --vimgrep --no-heading --smart-case"
 o.ignorecase = true
 o.smartcase = true
 o.hlsearch = true
 o.incsearch = true
 
 --  Color
--- lunaperche slate elflord
-vim.cmd("colorscheme elflord")
--- vim.cmd("highlight Comment gui=none")
--- vim.cmd("highlight Normal guibg=#080C10")
--- vim.cmd("highlight SignColumn guibg=#080C10")
+vim.cmd.colorscheme("habamax")

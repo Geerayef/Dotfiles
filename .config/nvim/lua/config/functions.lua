@@ -54,7 +54,6 @@ end
 -- ~ -------------------------------------------------------------------------------- ~ --
 
 F.disable_builtin = function ()
-  local vim = vim
   local g = vim.g
   g.loaded_netrw = 1
   g.loaded_netrwPlugin = 1
@@ -77,6 +76,11 @@ F.disable_builtin = function ()
   g.loaded_matchparen = 1
   g.loaded_logiPat = 1
   g.loaded_rrhelper = 1
+  g.loaded_sql_completion = 1
+
+  g.loaded_perl_provider = 0
+  g.loaded_ruby_provider = 0
+  g.loaded_node_provider = 0
 end
 
 -- ~ -------------------------------------------------------------------------------- ~ --

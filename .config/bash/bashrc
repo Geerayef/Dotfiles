@@ -1,15 +1,14 @@
 # ~  Bash
+# Sourced from /etc/profile.d/bashdotdir.sh
 
-# ~ Sourced from /etc/profile.d/bashdotdir.sh
-
-# ~  Bash shell options
-. "$BASHDOTDIR/settings/options.bash"
 # ~  Environment variables
 . "$BASHDOTDIR/settings/env.bash"
 # ~  PATH
 . "$BASHDOTDIR/settings/path.bash"
 # ~  Aliases
 . "$BASHDOTDIR/settings/alias.bash"
+# ~  Bash shell options
+. "$BASHDOTDIR/settings/options.bash"
 
 # ~  Prompt
 eval "$(starship init bash)"

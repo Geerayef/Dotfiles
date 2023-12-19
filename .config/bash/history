@@ -1,2 +1,21 @@
 export HISTFILE="$BASHDOTDIR/history"
 echo $HISTFILE
+la
+C
+export HISTFILE="$BASHDOTDIR/history"
+type la
+lT
+lt
+la
+echo $HISTFILE
+ll
+cat $HISTFILE
+env
+C
+fzf
+fzf --help
+fzf -f
+fzf -f dot
+fzf --ansi --color=dark
+fzf --ansi --color=dark -h
+fzf --ansi --color=dark --layout=reverse --inline-info

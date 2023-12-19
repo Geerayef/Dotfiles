@@ -28,11 +28,12 @@ export TERM="wezterm"
 export EDITOR="$neovim"
 export SUDO_EDITOR="$neovim"
 export VISUAL="$HOME/.scripts/nnn/edit_detached.fish"
-export PAGER="nvimpager -p"
+export PAGER="nvimpager -a"
 export MANPAGER="nvim +Man!"
 export SYSTEM_PACKAGE_MANAGER="pacman"
 export MOZ_ENABLE_WAYLAND=1
 export CONDA_AUTO_ACTIVATE_BASE=false
+export FZF_DEFAULT_OPTS='--cycle --layout=reverse --border --scroll-off=5 --height=45% --preview-window=wrap --marker="*"'
 
 # -------------------------------------------------------------------------------- #
 

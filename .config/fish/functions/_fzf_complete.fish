@@ -58,20 +58,20 @@ function __fzf_complete -d 'fzf completion and print selection back to commandli
 
         set -l query
         string join -- \n $complist \
-        | eval (__fzfcmd) (string escape --no-quoted -- $initial_query) --print-query (__fzf_complete_opts) \
-        | cut -f1 \
-        | while read -l r
+            | eval (__fzfcmd) (string escape --no-quoted -- $initial_query) --print-query (__fzf_complete_opts) \
+            | cut -f1 \
+            | while read -l r
             # first line is the user entered query
             if test -z "$query"
                 set query $r
-            # rest of lines are selected candidates
+                # rest of lines are selected candidates
             else
                 set result $result $r
             end
-          end
+        end
 
         # exit if user canceled
-        if test -z "$query" ;and test -z "$result"
+        if test -z "$query"; and test -z "$result"
             commandline -f repaint
             return
         end
@@ -90,7 +90,7 @@ function __fzf_complete -d 'fzf completion and print selection back to commandli
                 commandline -t -- (string escape -- $r)
             case '"'
                 if string match '*"*' -- $r >/dev/null
-                    commandline -t --  (string escape -- $r)
+                    commandline -t -- (string escape -- $r)
                 else
                     commandline -t -- '"'$r'"'
                 end
@@ -125,7 +125,7 @@ function __fzf_complete_opts_preview
     echo --with-nth=1 --preview-window=right:wrap --preview="fish\ '$file'\ __fzf_complete_preview\ '{1}'\ '{2..}'"
 end
 
-test "$argv[1]" = "__fzf_complete_preview"; and __fzf_complete_preview $argv[2..3]
+test "$argv[1]" = __fzf_complete_preview; and __fzf_complete_preview $argv[2..3]
 
 function __fzf_complete_opts_0 -d 'basic single selection with tab accept'
     __fzf_complete_opts_common

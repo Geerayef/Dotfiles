@@ -3,43 +3,32 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = "BufReadPre",
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     config = function()
-      local treesitter = require("nvim-treesitter.configs")
+      local ts = require("nvim-treesitter.configs")
 
-      treesitter.setup({
+      ts.setup({
+        ensure_installed = { "bash", "fish", "lua", "luadoc", "c", "ocaml", "python", "rust", "yaml" },
+        auto_install = true,
         highlight = {
           enable = true,
-          -- disable = function(_, buf)
-          --   local max_filesize = 100 * 1024
-          --   local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-          --   if ok and stats and stats.size > max_filesize then return true end
-          -- end,
+          disable = function(_, buf)
+            local max_filesize = 100 * 1024
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            return ok and stats and stats.size > max_filesize
+          end,
           additional_vim_regex_highlighting = false,
         },
-        autotag = { enable = true },
-        autopairs = { enable = true },
-        indent = { enable = true, disable = { "python", "ocaml" } },
+        indent = { enable = true, disable = { "python", "yaml" } },
         incremental_selection = {
-          enable = false,
+          enable = true,
           keymaps = {
             init_selection = "<C-space>",
-            node_incremental = "<C-space>",
-            scope_incremental = "<C-s>",
-            node_decremental = "<C-backspace>",
+            -- node_incremental = false,
+            -- scope_incremental = "<C-s>",
+            -- node_decremental = "<C-S><space>",
           },
         },
-        ensure_installed = {
-          "bash",
-          "fish",
-          "lua",
-          "luadoc",
-          "c",
-          "ocaml",
-          "python",
-          "rust",
-          "yaml",
-        },
-        autoinstall = true,
         textobjects = {
           select = {
             enable = true,
@@ -92,9 +81,9 @@ return {
       })
     end
   },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    event = { "BufReadPost", "BufNewFile" },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-  }
+  -- {
+  --   "nvim-treesitter/nvim-treesitter-textobjects",
+  --   event = { "BufReadPost", "BufNewFile" },
+  --   dependencies = { "nvim-treesitter/nvim-treesitter" },
+  -- }
 }
