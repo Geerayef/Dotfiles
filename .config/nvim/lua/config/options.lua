@@ -41,6 +41,7 @@ o.title = false
 o.laststatus = 3
 o.showcmd = false
 o.cmdheight = 0
+o.showcmdloc = "statusline"
 o.showmode = false
 o.showmatch = true
 o.switchbuf = "useopen,uselast"

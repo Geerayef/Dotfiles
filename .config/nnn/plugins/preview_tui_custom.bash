@@ -1,43 +1,43 @@
 #!/usr/bin/env bash
 
-# NOTE: Needs "NNN_FIFO" to work
+# NOTE: Needs "$NNN_FIFO" to work
 # Previews are shown in: tmux / wezterm / $NNN_TERMINAL (additional arguments are supported)
 # If "NNN_PREVIEWIMGPROG" else "iTerm2 image protocol"
 
 # ~  Configurable environment variables
 
-NNN_SPLIT=${NNN_SPLIT:-}                                     # permanent split direction
-NNN_TERMINAL=${NNN_TERMINAL:-}                               # external terminal to be used
-NNN_SPLITSIZE=${NNN_SPLITSIZE:-50}                           # previewer split size percentage
-TMPDIR=${TMPDIR:-/tmp}                                       # location of temporary files
+NNN_SPLIT=${NNN_SPLIT:-}
+NNN_TERMINAL=${NNN_TERMINAL:-}
+NNN_SPLITSIZE=${NNN_SPLITSIZE:-50}
+TMPDIR=${TMPDIR:-/tmp}
 ENVVARS=(
-    "NNN_SCOPE=${NNN_SCOPE:-0}"                              # use scope
-    "NNN_PISTOL=${NNN_PISTOL:-0}"                            # use pistol
-    "NNN_ICONLOOKUP=${NNN_ICONLOOKUP:-0}"                    # use .iconlookup
-    # "NNN_PAGER=${NNN_PAGER:-less -P?n -R -C}"                # pager options
-    # "NNN_BATTHEME=${NNN_BATTHEME:-ansi}"                   # bat theme
-    # "NNN_BATSTYLE=${NNN_BATSTYLE:-numbers}"                # bat style
-    "NNN_PREVIEWWIDTH=${NNN_PREVIEWWIDTH:-1920}"             # width of generated preview images
-    "NNN_PREVIEWHEIGHT=${NNN_PREVIEWHEIGHT:-1080}"           # height of generated preview images
-    "NNN_PREVIEWDIR=${NNN_PREVIEWDIR:-$TMPDIR/nnn/previews}" # location of generated preview images
-    "NNN_PREVIEWIMGPROG=${NNN_PREVIEWIMGPROG:-}"             # program used to preview images
-    "NNN_PREVIEWVIDEO=${NNN_PREVIEWVIDEO:-}"                 # mpv backend used to preview video
+    "NNN_SCOPE=${NNN_SCOPE:-0}"
+    "NNN_PISTOL=${NNN_PISTOL:-0}"
+    "NNN_ICONLOOKUP=${NNN_ICONLOOKUP:-0}"
+    "NNN_PAGER=${NNN_PAGER:-less -P?n -R -C}"
+    "NNN_BATTHEME=${NNN_BATTHEME:-ansi}"
+    "NNN_BATSTYLE=${NNN_BATSTYLE:-numbers}"
+    "NNN_PREVIEWWIDTH=${NNN_PREVIEWWIDTH:-1920}"
+    "NNN_PREVIEWHEIGHT=${NNN_PREVIEWHEIGHT:-1080}"
+    "NNN_PREVIEWDIR=${NNN_PREVIEWDIR:-$TMPDIR/nnn/previews}"
+    "NNN_PREVIEWIMGPROG=${NNN_PREVIEWIMGPROG:-}"
+    "NNN_PREVIEWVIDEO=${NNN_PREVIEWVIDEO:-}"
 )
 
 # ~  Non-configurable environment variables
 
 NNN_PARENT=${NNN_FIFO#*.}
-[ "$NNN_PARENT" -eq "$NNN_PARENT" ] 2>/dev/null || NNN_PARENT="" # Make empty if non-numeric
+[ "$NNN_PARENT" -eq "$NNN_PARENT" ] 2>/dev/null || NNN_PARENT=""
 ENVVARS+=(
-"PWD=$PWD"
-"PATH=$PATH"
-"NNN_FIFO=$NNN_FIFO"
-"FIFOPID=$TMPDIR/nnn-preview-tui-fifopid.$NNN_PARENT"
-"FIFOPATH=$TMPDIR/nnn-preview-tui-fifo.$NNN_PARENT"
-"PREVIEWPID=$TMPDIR/nnn-preview-tui-previewpid.$NNN_PARENT"
-"CURSEL=$TMPDIR/nnn-preview-tui-selection.$NNN_PARENT"
-"FIFO_UEBERZUG=$TMPDIR/nnn-preview-tui-ueberzug-fifo.$NNN_PARENT"
-"POSOFFSET=$TMPDIR/nnn-preview-tui-posoffset"
+    "PWD=$PWD"
+    "PATH=$PATH"
+    "NNN_FIFO=$NNN_FIFO"
+    "FIFOPID=$TMPDIR/nnn-preview-tui-fifopid.$NNN_PARENT"
+    "FIFOPATH=$TMPDIR/nnn-preview-tui-fifo.$NNN_PARENT"
+    "PREVIEWPID=$TMPDIR/nnn-preview-tui-previewpid.$NNN_PARENT"
+    "CURSEL=$TMPDIR/nnn-preview-tui-selection.$NNN_PARENT"
+    "FIFO_UEBERZUG=$TMPDIR/nnn-preview-tui-ueberzug-fifo.$NNN_PARENT"
+    "POSOFFSET=$TMPDIR/nnn-preview-tui-posoffset"
 )
 
 trap '' PIPE
@@ -97,7 +97,6 @@ toggle_preview() {
     if pidkill "$FIFOPID"; then
         [ -p "$NNN_PPIPE" ] && printf "0" > "$NNN_PPIPE"
         pidkill "$PREVIEWPID"
-        pkill -f "tail --follow $FIFO_UEBERZUG"
         if [ -n "$QLPATH" ] && stat "$1"; then
             f="$(wslpath -w "$1")" && "$QLPATH" "$f" &
         fi
@@ -110,13 +109,10 @@ toggle_preview() {
 fifo_pager() {
     cmd="$1"
     shift
-
     # We use a FIFO to access $NNN_PAGER PID in jobs control
     mkfifo "$FIFOPATH" || return
-
     $NNN_PAGER < "$FIFOPATH" &
     printf "%s" "$!" > "$PREVIEWPID"
-
     (
         exec > "$FIFOPATH"
         if [ "$cmd" = "pager" ]; then
@@ -129,7 +125,6 @@ fifo_pager() {
             "$cmd" "$@" &
         fi
     )
-
     rm "$FIFOPATH"
 }
 
@@ -244,9 +239,9 @@ preview_file() {
             # shellcheck disable=SC2012
             ls -F --group-directories-first | head -n "$((lines - 3))" | "$(dirname "$0")"/.iconlookup -l "$cols" -B "$BSTR" -b " "
         elif exists eza; then
-            eza -laT -L 1 --color=always --icons=always --group-directories-first
+            eza -laT -L 1 --color=always --icons=always --group-directories-first --no-permissions --no-user
         elif exists exa; then
-            exa -laT -L 1 --colour=always --icons=always --group-directories-first 
+            exa -laT -L 1 --colour=always --icons=always --group-directories-first --no-permissions --no-user
         elif exists tree; then
             fifo_pager tree --filelimit "$(find . -maxdepth 1 | wc -l)" -L 3 -C -F --dirsfirst --noreport
         else
@@ -273,24 +268,7 @@ generate_preview() {
             epub) gnome-epub-thumbnailer "$3" "$NNN_PREVIEWDIR/$3.jpg" ;;
             font) fontpreview -i "$3" -o "$NNN_PREVIEWDIR/$3.jpg" ;;
             gif) 
-                if [ -p "$FIFO_UEBERZUG" ] && exists convert; then
-                    frameprefix="$NNN_PREVIEWDIR/$3/${3##*/}"
-                    if [ ! -d "$NNN_PREVIEWDIR/$3" ]; then
-                        mkdir -p "$NNN_PREVIEWDIR/$3"
-                        convert -coalesce -resize "$NNN_PREVIEWWIDTH"x"$NNN_PREVIEWHEIGHT"\> "$3" "$frameprefix.jpg" ||
-                            MAGICK_TMPDIR="/tmp" convert -coalesce -resize "$NNN_PREVIEWWIDTH"x"$NNN_PREVIEWHEIGHT"\> "$3" "$frameprefix.jpg"
-                    fi
-                    frames=$(($(find "$NNN_PREVIEWDIR/$3" | wc -l) - 2))
-                    [ $frames -lt 0 ] && return
-                    while true; do
-                        for i in $(seq 0 $frames); do
-                            image_preview "$1" "$2" "$frameprefix-$i.jpg"
-                            sleep 0.1
-                        done
-                    done &
-                    printf "%s" "$!" > "$PREVIEWPID"
-                    return
-                elif [ -n "$NNN_PREVIEWVIDEO" ]; then
+                if [ -n "$NNN_PREVIEWVIDEO" ]; then
                     video_preview "$1" "$2" "$3" && return
                 else
                     image_preview "$1" "$2" "$3" && return
@@ -324,14 +302,8 @@ image_preview() {
     exec >/dev/tty
     if [ "$NNN_TERMINAL" = "wezterm" ] && [[ "$NNN_PREVIEWIMGPROG" == +(|imgcat) ]]; then
         wezterm imgcat "$3" &
-    elif exists ueberzug && [[ "$NNN_PREVIEWIMGPROG" == +(|ueberzug) ]]; then
-        ueberzug_layer "$1" "$2" "$3" && return
     elif exists catimg && [[ "$NNN_PREVIEWIMGPROG" == +(|catimg) ]]; then
         catimg "$3" &
-    elif exists viu && [[ "$NNN_PREVIEWIMGPROG" == +(|viu) ]]; then
-        viu -t "$3" &
-    elif exists chafa && [[ "$NNN_PREVIEWIMGPROG" == +(|chafa) ]]; then
-        chafa "$3" &
     elif exists img2sixel && [[ "$NNN_PREVIEWIMGPROG" == +(|img2sixel) ]]; then
         img2sixel -g "$3" &
     else
@@ -351,23 +323,9 @@ video_preview() {
     printf "%s" "$!" > "$PREVIEWPID"
 }
 
-ueberzug_layer() {
-    [ -f "$POSOFFSET" ] && read -r x y < "$POSOFFSET"
-    printf '{"action": "add", "identifier": "nnn_ueberzug", "x": %d, "y": %d, "width": "%d", "height": "%d", "scaler": "fit_contain", "path": "%s"}\n'\
-        "${x:-0}" "${y:-0}" "$1" "$2" "$3" > "$FIFO_UEBERZUG"
-}
-
-ueberzug_remove() {
-    printf '{"action": "remove", "identifier": "nnn_ueberzug"}\n' > "$FIFO_UEBERZUG"
-}
-
 winch_handler() {
     clear
     pidkill "$PREVIEWPID"
-    if [ -p "$FIFO_UEBERZUG" ]; then
-        pkill -f "tail --follow $FIFO_UEBERZUG"
-        tail --follow "$FIFO_UEBERZUG" | ueberzug layer --silent --parser json &
-    fi
     preview_file "$(cat "$CURSEL")"
 }
 
@@ -375,7 +333,6 @@ preview_fifo() {
     while read -r selection; do
         if [ -n "$selection" ]; then
             pidkill "$PREVIEWPID"
-            [ -p "$FIFO_UEBERZUG" ] && ueberzug_remove
             [ "$selection" = "close" ] && break
             preview_file "$selection"
             printf "%s" "$selection" > "$CURSEL"
@@ -387,11 +344,6 @@ preview_fifo() {
 }
 
 if [ "$PREVIEW_MODE" -eq 1 ] 2>/dev/null; then
-    if exists ueberzug && [ "$NNN_TERMINAL" != "kitty" ] && [[ "$NNN_PREVIEWIMGPROG" == +(|ueberzug) ]]; then
-        mkfifo "$FIFO_UEBERZUG"
-        tail --follow "$FIFO_UEBERZUG" | ueberzug layer --silent --parser json &
-    fi
-
     preview_file "$PWD/$1"
     preview_fifo & WAITPID=$!
     printf "%s" "$!" > "$FIFOPID"

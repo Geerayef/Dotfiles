@@ -2,7 +2,7 @@
 
 set -l BLK 0B
 set -l CHR 0B
-set -l DIR B4 # 90
+set -l DIR 90 # B4 90
 set -l EXE 31
 set -l REG FB
 set -l HRDL 7C

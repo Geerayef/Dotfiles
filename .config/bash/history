@@ -19,3 +19,23 @@ fzf -f dot
 fzf --ansi --color=dark
 fzf --ansi --color=dark -h
 fzf --ansi --color=dark --layout=reverse --inline-info
+cat $HISTFILE
+env
+fzf
+fzf --help
+fzf -f
+fzf -f dot
+fzf --ansi --color=dark
+fzf --ansi --color=dark -h
+fzf --ansi --color=dark --layout=reverse --inline-info
+cd Documents/
+/usr/share/emacs
+-
+C
+/usr/share/themes/
+echo $PWD
+~+
+~-
+~-
+la .cache
+la

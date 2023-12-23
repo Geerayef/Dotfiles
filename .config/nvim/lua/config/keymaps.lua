@@ -36,8 +36,8 @@ keymap("n", "<leader>spx", "<cmd>close<CR>", { desc = "[S]plit [X] close" })
 keymap("n", "<leader>to", "<cmd>tabnew<CR>"     , { desc = "[T]ab [O]pen" })
 keymap("n", "<leader>tn", "<cmd>tabnext<CR>"    , { desc = "[T]ab [N]ext" })
 keymap("n", "<leader>tp", "<cmd>tabprevious<CR>", { desc = "[T]ab [P]revious" })
-keymap("n", "<leader>tml", "<cmd>tabmove +1<CR>", { desc = "[T]ab [M]ove [L]eft" })
-keymap("n", "<leader>tmr", "<cmd>tabmove -1<CR>", { desc = "[T]ab [M]ove [R]ight" })
+keymap("n", "<leader>tmr", "<cmd>tabmove +1<CR>", { desc = "[T]ab [M]ove [L]eft" })
+keymap("n", "<leader>tml", "<cmd>tabmove -1<CR>", { desc = "[T]ab [M]ove [R]ight" })
 
 -- Terminal
 keymap("t", "<Esc>", "<C-\\><C-n>", { desc = "Terminal mode: Escape" })

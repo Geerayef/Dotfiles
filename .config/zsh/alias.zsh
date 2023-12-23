@@ -1,6 +1,6 @@
 # ~  General
 
-if [[ -r "$BASHDOTDIR/settings/alias.sh" ]] ; then
+if [[ -n $BASHDOTDIR && -r "$BASHDOTDIR/settings/alias.sh" ]] ; then
     source "$BASHDOTDIR/settings/alias.sh"
 else
     alias C="clear"
