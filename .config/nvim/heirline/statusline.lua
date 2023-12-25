@@ -6,9 +6,7 @@ local Cond = require("heirline.conditions")
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
-local set_offset = function (offset, component)
-  return "%" .. offset .. ".(" .. component .. "%)"
-end
+local set_offset = function (offset, component) return "%" .. offset .. ".(" .. component .. "%)" end
 
 local offset = {
   filestatus_group = -7,
@@ -28,9 +26,7 @@ local offset = {
 
 -- ~  File
 
-local FileNameBlock = {
-  init = function (self) self.filename = vim.api.nvim_buf_get_name(0) end
-}
+local FileNameBlock = { init = function (self) self.filename = vim.api.nvim_buf_get_name(0) end }
 
 local FileIcon = {
   init = function (self)
@@ -138,9 +134,7 @@ local Mode = {
     local mode = self.mode:sub(1, 1)
     return { fg = self.mode_colors[mode], bold = true }
   end,
-  update = {
-    "ModeChanged",
-    pattern = "*:*",
+  update = { "ModeChanged", pattern = "*:*",
     callback = vim.schedule_wrap(function () vim.cmd.redrawstatus() end)
   }
 }
@@ -192,16 +186,7 @@ local Git = {
 
 local Diagnostics = {
   condition = Cond.has_diagnostics,
-  static = {
-    error_icon = "  ",
-    warn_icon  = "  ",
-    info_icon  = "  ",
-    hint_icon  = "  ",
-    -- error_icon = vim.fn.sign_getdefined("DiagnosticSignError")[1].text,
-    -- warn_icon = vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text,
-    -- info_icon = vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text,
-    -- hint_icon = vim.fn.sign_getdefined("DiagnosticSignHint")[1].text,
-  },
+  static = { error_icon = "  ", warn_icon  = "  ", info_icon  = "  ", hint_icon  = "  " },
   init = function(self)
     self.error = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
     self.warn = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
@@ -265,10 +250,7 @@ local MacroRec = {
   condition = function() return vim.fn.reg_recording() ~= "" and vim.o.cmdheight == 0 end,
   provider = " ",
   hl = { fg = "orange", bold = true },
-  {
-    provider = function() return vim.fn.reg_recording() end,
-    hl = { fg = "green", bold = true },
-  },
+  { provider = function() return vim.fn.reg_recording() end, hl = { fg = "green", bold = true } },
   update = { "RecordingEnter", "RecordingLeave" }
 }
 
@@ -278,10 +260,7 @@ local Ruler = { provider = "%4L" }
 
 -- ~  Commands
 
-local ShowCmd = {
-  condition = function () return vim.o.cmdheight == 0 end,
-  provider = ":%3.5(%S%)"
-}
+local ShowCmd = { condition = function () return vim.o.cmdheight == 0 end, provider = ":%3.5(%S%)" }
 
 local Align = { provider = "%=" }
 local Space = { provider = " " }

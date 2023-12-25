@@ -64,7 +64,9 @@ o.scrolloff = 4
 o.sidescrolloff = 4
 
 -- ~  Search
-o.grepprg = "rg --vimgrep --no-heading --smart-case"
+if vim.fn.executable('rg') == 1 then
+  o.grepprg = "rg --vimgrep --no-heading --smart-case"
+end
 o.ignorecase = true
 o.smartcase = true
 o.hlsearch = true
@@ -72,9 +74,9 @@ o.incsearch = true
 
 -- ~  Chars
 o.listchars = {
-  tab      = "→ ",
-  nbsp     = "␣",
-  trail    = "·",
+  tab   = "→ ",
+  nbsp  = "␣",
+  trail = "·",
 }
 o.fillchars = {
   fold      = "·",

@@ -41,14 +41,18 @@ O.ViModes = {
 
 O.Icons = {
   mode = "",
-  git_branch = " ",
+  git_branch = "",
   error = " ",
   warn = " ",
   info = " ",
   hint = " ",
   added = " ",
   modified = "󰝤 ",
-  removed = " "
+  modified_simple = "~ ",
+  removed = " ",
+  lock = "",
+  touched = "●",
+  recording = "",
 }
 
 return O

@@ -33,6 +33,9 @@ return {
       },
     },
     config = function(_, opts)
+      -- Setup nvim-java before everything
+      require("java").setup()
+
       local has_lspconfig, lspconfig = pcall(require, "lspconfig")
       if not has_lspconfig then return end
 
@@ -68,18 +71,12 @@ return {
         has_cmp and cmp_nvim_lsp.default_capabilities() or {},
         opts.capabilities or {}
       )
-
       capabilities.textDocument.completion.completionItem.snippetSupport = true
       capabilities.textDocument.completion.completionItem.resolveSupport = {
-        properties = {
-          "documentation",
-          "detail",
-          "additionalTextEdits"
-        }
+        properties = { "documentation", "detail", "additionalTextEdits" }
       }
 
       mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(opts.servers) })
-
       mason_lspconfig.setup_handlers({ function(server_name)
         lspconfig[server_name].setup({
           capabilities = capabilities,
@@ -110,17 +107,25 @@ return {
       })
 
       -- Rust
-      -- lspconfig.rust_analyzer.setup({
-      --   on_attach = lsp_attach,
-      --   capabilities = capabilities,
-      --   settings = {
-      --     ["rust-analyzer"] = {
-      --       checkOnSave = {
-      --         command = "clippy",
-      --       },
-      --     },
-      --   },
-      -- })
+      lspconfig.rust_analyzer.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        settings = {
+          ["rust-analyzer"] = {
+            checkOnSave = {
+              command = "clippy",
+            },
+          },
+        },
+      })
+
+      -- Java
+      lspconfig.jdtls.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        filetypes = { "java" },
+        single_file_support = true,
+      })
 
       -- Clangd
       lspconfig.clangd.setup({
@@ -150,33 +155,6 @@ return {
           }
         }
       })
-      -- lspconfig.pylsp.setup({
-      --   settings = {
-      --     pylsp = {
-      --       configurationSources = { "flake8" } ,
-      --       plugins = {
-      --         ruff = {
-      --           enabled = true,
-      --           extendSelect = { "I" },
-      --           lineLength = 128,
-      --           config = "/home/novakovic/.config/ruff/pyproject.toml"
-      --         },
-      --         flake8 = {
-      --           enabled = true,
-      --         },
-      --         pycodestyle = {
-      --           enabled = false,
-      --         },
-      --         mccabe = {
-      --           enabled = false,
-      --         },
-      --         pyflakes = {
-      --           enabled = false,
-      --         },
-      --       }
-      --     }
-      --   }
-      -- })
 
       -- Bash
       lspconfig.bashls.setup({
@@ -206,22 +184,4 @@ return {
       },
     },
   },
-  -- {
-  --   "simrat39/rust-tools.nvim",
-  --   event = { "VeryLazy", "BufReadPost" },
-  --   config = function()
-  --     local rt = require("rust-tools")
-  --
-  --     rt.setup({
-  --       server = {
-  --         on_attach = function(client, bufnr)
-  --           Keymaps.LSP(client, bufnr)
-  --           vim.api.nvim_buf_create_user_command(bufnr, "FormatLSP", function(_)
-  --             vim.lsp.buf.format()
-  --           end, { desc = "Format current buffer with LSP" })
-  --         end
-  --       },
-  --     })
-  --   end
-  -- },
 }
