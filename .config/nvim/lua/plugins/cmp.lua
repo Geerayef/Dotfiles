@@ -104,7 +104,6 @@ return {
             { name = "nvim_lsp_signature_help" }
           },
           {
-            { name = "buffer" },
             { name = "treesitter" }
           },
           {
@@ -113,7 +112,8 @@ return {
           },
           {
             { name = "nvim_lua" },
-            { name = "luasnip" }
+            { name = "luasnip" },
+            { name = "buffer" },
           }
         ),
         completion = { keyword_length = 2, },
@@ -129,7 +129,7 @@ return {
               end
             end
             return lspkind.cmp_format({
-              with_text = false,
+              -- with_text = false,
               mode = "symbol",
               maxwidth = 50,
               menu = ({

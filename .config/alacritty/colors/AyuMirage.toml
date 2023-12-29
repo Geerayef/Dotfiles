@@ -1,0 +1,33 @@
+# 4. Ayu mirage
+[colors.primary]
+background = "#1F2430"
+foreground = "#CBCCC6"
+bright_foreground = "#F28779"
+[colors.cursor]
+text = "CellBackground"
+cursor = "#528BFF"
+[colors.search]
+matches = { foreground = "#44475A", background = "#50FA7B" }
+focused_match = { foreground = "#44475A", background = "#FFB86C" }
+[colors.footer_bar]
+background = "#282A36"
+foreground = "#F8F8F2"
+[colors.normal]
+black   = "#212733"
+red     = "#F08778"
+green   = "#53BF97"
+yellow  = "#FDCC60"
+blue    = "#60B8D6"
+magenta = "#EC7171"
+cyan    = "#98E6CA"
+white   = "#FAFAFA"
+[colors.bright]
+black   = "#686868"
+red     = "#F58C7D"
+green   = "#58C49C"
+yellow  = "#FFD165"
+blue    = "#65BDDB"
+magenta = "#F17676"
+cyan    = "#9DEBCF"
+white   = "#FFFFFF"
+

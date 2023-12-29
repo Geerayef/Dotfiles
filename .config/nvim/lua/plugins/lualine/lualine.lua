@@ -5,7 +5,7 @@ local Icons = require("nvim-web-devicons")
 
 local static = {}
 
-local get_icon = function ()
+local get_ftype_icon = function ()
   local full_filename = vim.api.nvim_buf_get_name(0)
   local filename = vim.fn.fnamemodify(full_filename, ":t")
   local extension = vim.fn.fnamemodify(filename, ":e")
@@ -105,7 +105,7 @@ status_c({
 })
 
 status_c({
-  function() return get_icon() end,
+  function() return get_ftype_icon() end,
   cond = condition.is_buf_empty,
   color = { fg = static.ftype_icon_color },
   padding = { left = 1, right = 0 }
@@ -134,6 +134,7 @@ status_c({ function() return "%=" end })
 
 status_x({
   "diff",
+  cond = condition.is_git_repo,
   source = function ()
     local gitsigns = vim.b.gitsigns_status_dict
     if gitsigns then
@@ -201,9 +202,9 @@ tab_x({
   filetype_names = {
     TelescopePrompt = "Telescope",
     dashboard = "Dashboard",
-    packer = "Packer",
     fzf = "FZF",
     alpha = "Alpha",
+    packer = "Packer",
     lazy = "Lazy"
   },
   use_mode_colors = true,

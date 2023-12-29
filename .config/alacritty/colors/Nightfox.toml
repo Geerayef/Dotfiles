@@ -1,0 +1,26 @@
+# 7. Nightfox
+[colors.primary]
+background = "#192330"
+foreground = "#CDCECF"
+[colors.normal]
+black   = "#393B44"
+red     = "#C94F6D"
+green   = "#81B29A"
+yellow  = "#DBC074"
+blue    = "#719CD6"
+magenta = "#9D79D6"
+cyan    = "#63CDCF"
+white   = "#DFDFE0"
+[colors.bright]
+black   = "#575860"
+red     = "#D16983"
+green   = "#8EBAA4"
+yellow  = "#E0C989"
+blue    = "#86ABDC"
+magenta = "#BAA1E2"
+cyan    = "#7AD5D6"
+white   = "#E4E4E5"
+[colors.indexed_colors]
+{ index = 16, color = "#F4A261" }
+{ index = 17, color = "#D67AD2" }
+

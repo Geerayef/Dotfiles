@@ -1,0 +1,35 @@
+# 5. Tokyo Night
+[colors.primary]
+background = "#1A1B26"
+foreground = "#C0CAF5"
+[colors.cursor]
+text   = "CellBackground"
+cursor = "#F9AF4F"
+[colors.search]
+matches       = { foreground = "#44475A", background = "#50FA7B" }
+focused_match = { foreground = "#44475A", background = "#FFB86C" }
+[colors.footer_bar]
+background = "#282A36"
+foreground = "#F8F8F2"
+[colors.normal]
+black   = "#15161E"
+red     = "#F7768E"
+green   = "#9ECE6A"
+yellow  = "#E0AF68"
+blue    = "#7AA2F7"
+magenta = "#BB9AF7"
+cyan    = "#7DCFFF"
+white   = "#A9B1D6"
+[colors.bright]
+black   = "#414868"
+red     = "#F7768E"
+green   = "#9ECE6A"
+yellow  = "#E0AF68"
+blue    = "#7AA2F7"
+magenta = "#BB9AF7"
+cyan    = "#7DCFFF"
+white   = "#C0CAF5"
+[colors.indexed_colors]
+{ index = 16, color = "#FF9E64" }
+{ index = 17, color = "#DB4B4B" }
+

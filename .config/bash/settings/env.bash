@@ -13,7 +13,6 @@ export RUFF_CACHE_DIR="$HOME/.cache/ruff"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 
 # General settings
-export HISTCONTROL=ignoreboth:erasedups
 [[ -n "${BASH_VERSION}" || "$SHELL" = bash ]] && export HISTFILE="$BASHDOTDIR/history"
 [[ -n "${ZSH_NAME}" || "$SHELL" = zsh ]] && export HISTFILE="$ZDOTDIR/history"
 [[ -e "$(command -v nvim)" ]] && neovim="$(which nvim)"
@@ -21,7 +20,7 @@ export TERM="wezterm"
 export EDITOR="$neovim"
 export SUDO_EDITOR="$neovim"
 export VISUAL="$HOME/.scripts/nnn/edit_detached.fish"
-export PAGER="nvimpager -a"
+export PAGER="nvimpager -p"
 export MANPAGER="nvim +Man!"
 export SYSTEM_PACKAGE_MANAGER="pacman"
 export MOZ_ENABLE_WAYLAND=1

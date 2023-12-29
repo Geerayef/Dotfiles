@@ -1,0 +1,56 @@
+# 2. Dracula
+# Dracula: &Dracula
+colors:
+  primary:
+    background: "#282A36"
+    foreground: "#F8F8F2"
+  cursor:
+    text: CellBackground
+    cursor: "#528BFF"
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+  search:
+    matches:
+      foreground: "#44475A"
+      background: "#50FA7B"
+    focused_match:
+      foreground: "#44475A"
+      background: "#FFB86C"
+    footer_bar:
+      background: "#282A36"
+      foreground: "#F8F8F2"
+  line_indicator:
+    foreground: None
+    background: None
+  selection:
+    text: CellForeground
+    background: "#44475A"
+  normal:
+    black:   "#000000"
+    red:     "#FF5555"
+    green:   "#50FA7B"
+    yellow:  "#F1FA8C"
+    blue:    "#BD93F9"
+    magenta: "#FF79C6"
+    cyan:    "#8BE9FD"
+    white:   "#BFBFBF"
+  bright:
+    black:   "#4D4D4D"
+    red:     "#FF6E67"
+    green:   "#5AF78E"
+    yellow:  "#F4F99D"
+    blue:    "#CAA9FA"
+    magenta: "#FF92D0"
+    cyan:    "#9AEDFE"
+    white:   "#E6E6E6"
+  dim:
+    black:   "#14151B"
+    red:     "#FF2222"
+    green:   "#1EF956"
+    yellow:  "#EBF85B"
+    blue:    "#4D5B86"
+    magenta: "#FF46B0"
+    cyan:    "#59DFFC"
+    white:   "#E6E6D1"
+

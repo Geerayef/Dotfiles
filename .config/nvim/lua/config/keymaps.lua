@@ -51,11 +51,11 @@ keymap("n", "<leader>?", "<cmd>Telescope oldfiles<CR>"     , noremap, { desc = "
 keymap("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", noremap, { desc = "[/] Search buffer" })
 keymap("n", "<leader>fb", "<cmd>Telescope file_browser<CR>", noremap, { desc = "[F]ile [B]rowser" })
 keymap("n", "<leader>tb", "<cmd>Telescope builtin<CR>"     , noremap, { desc = "Telescope [B]uiltin" })
-keymap("n", "<leader>sf", "<cmd>Telescope find_files<CR>" , noremap, { desc = "Telescope [S]earch [F]iles" })
-keymap("n", "<leader>sh", "<cmd>Telescope help_tags<CR>"  , noremap, { desc = "Telescope [S]earch [H]elp" })
-keymap("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", noremap, { desc = "Telescope [S]earch [W]ord" })
-keymap("n", "<leader>sg", "<cmd>Telescope live_grep<CR>"  , noremap, { desc = "Telescope [S]earch [G]rep" })
-keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", noremap, { desc = "Telescope [S]earch [D]iagnostics" })
+keymap("n", "<leader>sf", "<cmd>Telescope find_files<CR>"  , noremap, { desc = "Telescope [S]earch [F]iles" })
+keymap("n", "<leader>sh", "<cmd>Telescope help_tags<CR>"   , noremap, { desc = "Telescope [S]earch [H]elp" })
+keymap("n", "<leader>sw", "<cmd>Telescope grep_string<CR>" , noremap, { desc = "Telescope [S]earch [W]ord" })
+keymap("n", "<leader>sg", "<cmd>Telescope live_grep<CR>"   , noremap, { desc = "Telescope [S]earch [G]rep" })
+keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>" , noremap, { desc = "Telescope [S]earch [D]iagnostics" })
 keymap("n", "<leader><space>", "<cmd>Telescope buffers<CR>", noremap, { desc = "[ ] Opened buffers" })
 
 -- Gitsigns
@@ -85,7 +85,7 @@ keymap("n", "<leader>za", "<cmd>TZAtaraxis<CR>"   , noremap, { desc = "[Z]en [A]
 
 Keymaps = {}
 
-Keymaps.LSP = function(_, bufnr)
+Keymaps.LSP = function(client, bufnr)
   local lspbuf = vim.lsp.buf
   keymap("n", "<leader>rn", lspbuf.rename, { buffer = bufnr, desc = "[R]e[n]ame" })
   keymap("n", "<leader>ca", lspbuf.code_action, { buffer = bufnr, desc = "[C]ode [A]ction" })
@@ -99,7 +99,6 @@ Keymaps.LSP = function(_, bufnr)
   keymap("n", "<leader>waf", lspbuf.add_workspace_folder, { buffer = bufnr, desc = "[W]orkspace [A]dd [F]older" })
   keymap("n", "<leader>wrf", lspbuf.remove_workspace_folder, { buffer = bufnr, desc = "[W]orkspace [R]emove [F]older" })
   keymap("n", "<leader>wlf", "<cmd>lua = print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", { buffer = bufnr, desc = "[W]orkspace [L]ist [F]olders" })
-  -- See `:help K` for why this keymap
   keymap("n", "K", lspbuf.hover, { buffer = bufnr, desc = "Hover Documentation" })
   keymap("n", "<C-k>", lspbuf.signature_help, { buffer = bufnr, desc = "Signature Documentation" })
 end

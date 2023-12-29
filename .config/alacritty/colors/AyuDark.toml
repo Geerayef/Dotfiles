@@ -1,0 +1,32 @@
+# 3. Ayu dark
+[colors.primary]
+background = "#0A0E14"
+foreground = "#B3B1AD"
+[colors.cursor]
+text    = "CellBackground"
+cursor  = "#528BFF"
+[colors.search]
+matches       = { foreground = "#44475A", background = "#50FA7B" }
+focused_match = { foreground = "#44475A", background = "#FFB86C" }
+[colors.footer_bar]
+background = "#282A36"
+foreground = "#F8F8F2"
+[colors.normal]
+black   = "#01060E"
+red     = "#EA6C73"
+green   = "#91B362"
+yellow  = "#F9AF4F"
+blue    = "#53BDFA"
+magenta = "#FAE994"
+cyan    = "#90E1C6"
+white   = "#C7C7C7"
+[colors.bright]
+black   = "#686868"
+red     = "#F07178"
+green   = "#C2D94C"
+yellow  = "#FFB454"
+blue    = "#59C2FF"
+magenta = "#FFEE99"
+cyan    = "#95E6CB"
+white   = "#FFFFFF"
+

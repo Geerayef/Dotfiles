@@ -8,10 +8,9 @@ return {
       local ts = require("nvim-treesitter.configs")
 
       ts.setup({
-        ensure_installed = { "bash", "fish", "lua", "luadoc", "c", "ocaml", "python", "rust", "yaml" },
+        ensure_installed = { "bash", "fish", "lua", "luadoc", "c", "ocaml", "python", "rust", "yaml", "toml" },
         auto_install = true,
         highlight = {
-          enable = true,
           disable = function(_, buf)
             local max_filesize = 100 * 1024
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))

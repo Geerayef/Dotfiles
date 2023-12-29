@@ -2,11 +2,29 @@ local wezterm = require("wezterm")
 local Bar = {}
 
 function Bar.apply_to_config(config)
+  local kanagawa = require("colors.kanagawa")
   config.enable_tab_bar = true
   config.use_fancy_tab_bar = false
   config.hide_tab_bar_if_only_one_tab = false
   config.tab_bar_at_bottom = true
   config.show_new_tab_button_in_tab_bar = false
+  config.colors = {
+    tab_bar = {
+      background = kanagawa.background,
+      active_tab = {
+        bg_color = kanagawa.brights[1],
+        fg_color = kanagawa.background,
+        intensity = "Bold",
+        underline = "None",
+        italic = false,
+        strikethrough = false,
+      },
+      inactive_tab = {
+        bg_color = kanagawa.background,
+        fg_color = kanagawa.foreground,
+      },
+    }
+  }
   config.status_update_interval = 1000
   wezterm.on("update-status",
     function(window, pane)
@@ -20,24 +38,18 @@ function Bar.apply_to_config(config)
         stat = "LDR "
         stat_color = "#BB9AF7"
       end
-
-      local basename = function(s)
-        return string.gsub(s, "(.*[/\\])(.*)", "%2")
-      end
-
+      local basename = function(s) return string.gsub(s, "(.*[/\\])(.*)", "%2") end
       local cwd = pane:get_current_working_dir()
       cwd = cwd and basename(cwd) or ""
       local cmd = pane:get_foreground_process_name()
       cmd = cmd and basename(cmd) or ""
       local time = wezterm.strftime("%H:%M")
-
       window:set_left_status(wezterm.format({
         { Foreground = { Color = stat_color } },
         { Text = "| " },
         { Text = wezterm.nerdfonts.oct_table .. "  " .. stat },
         { Text = " |" },
       }))
-
       window:set_right_status(wezterm.format({
         { Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
         { Text = " | " },

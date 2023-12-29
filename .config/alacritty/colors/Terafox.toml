@@ -1,0 +1,26 @@
+# 9. Terafox
+[colors.primary]
+background = "#152528"
+foreground = "#E6EAEA"
+[colors.normal]
+black   = "#2F3239"
+red     = "#E85C51"
+green   = "#7AA4A1"
+yellow  = "#FDA47F"
+blue    = "#5A93AA"
+magenta = "#AD5C7C"
+cyan    = "#A1CDD8"
+white   = "#EBEBEB"
+[colors.bright]
+black   = "#4E5157"
+red     = "#EB746B"
+green   = "#8EB2AF"
+yellow  = "#FDB292"
+blue    = "#73A3B7"
+magenta = "#B97490"
+cyan    = "#AFD4DE"
+white   = "#EEEEEE"
+[colors.indexed_colors]
+{ index = 16, color = "#FF8349" }
+{ index = 17, color = "#CB7985" }
+

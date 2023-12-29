@@ -67,6 +67,11 @@ return {
           buffers = { sort_lastused = true, sort_mru = true },
         },
         extensions = {
+          fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+          },
           ["ui-select"] = { themes.get_dropdown({}) },
           file_browser = {
             initial_mode = "normal",

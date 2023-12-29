@@ -22,7 +22,6 @@ else
 fi
 
 alias grep="grep --color=always"
-# List installed desktops
 alias lidx="ls -al /usr/share/xsessions"
 alias lidw="ls -al /usr/share/wayland-sessions"
 

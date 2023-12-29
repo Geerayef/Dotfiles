@@ -1,0 +1,26 @@
+# 7. Duskfox
+[colors.primary]
+background = "#232136"
+foreground = "#E0DEF4"
+[colors.normal]
+black   = "#393552"
+red     = "#EB6F92"
+green   = "#A3BE8C"
+yellow  = "#F6C177"
+blue    = "#569FBA"
+magenta = "#C4A7E7"
+cyan    = "#9CCFD8"
+white   = "#E0DEF4"
+[colors.bright]
+black   = "#47407D"
+red     = "#F083A2"
+green   = "#B1D196"
+yellow  = "#F9CB8C"
+blue    = "#65B1CD"
+magenta = "#CCB1ED"
+cyan    = "#A6DAE3"
+white   = "#E2E0F7"
+[colors.indexed_colors]
+{ index = 16, color = "#EA9A97" }
+{ index = 17, color = "#EB98C3" }
+

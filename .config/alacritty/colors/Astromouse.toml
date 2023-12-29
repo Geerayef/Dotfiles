@@ -1,0 +1,23 @@
+# 11. astromouse (terminal.sexy)
+[colors.primary]
+background = "#000000"
+foreground = "#FFFFFF"
+[colors.normal]
+black   = "#1C1C1C"
+red     = "#D770AF"
+green   = "#9ACC79"
+yellow  = "#D0D26B"
+blue    = "#77B6C5"
+magenta = "#A488D9"
+cyan    = "#7FCAB3"
+white   = "#8D8D8D"
+[colors.bright]
+black   = "#3D3A3A"
+red     = "#D28ABF"
+green   = "#8FB676"
+yellow  = "#C8BC45"
+blue    = "#8FA7B9"
+magenta = "#BD89DE"
+cyan    = "#6EC2A8"
+white   = "#DAD3D3"
+

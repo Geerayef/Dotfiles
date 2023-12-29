@@ -4,4 +4,4 @@
 # Set Bash config location and soruce it.
 
 [[ -d /home/tibor/.config/bash ]] && export BASHDOTDIR="/home/tibor/.config/bash"
-[[ -r $BASHDOTDIR/rc.bash ]] && . $BASHDOTDIR/rc.bash
+[[ -r $BASHDOTDIR/bashrc ]] && . $BASHDOTDIR/bashrc

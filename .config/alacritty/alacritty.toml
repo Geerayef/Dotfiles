@@ -1,0 +1,39 @@
+import = [ "~/.config/alacritty/colors/KanagawaDragon.toml" ]
+#shell = { program = "/bin/fish", args = ["",] }
+#working_directory = ""
+live_config_reload = true
+#ipc_socket = true
+
+[env]
+TERM = "alacritty"
+
+[window]
+dimensions                = { columns = 0, lines = 0 }
+position                  = "None"
+padding                   = { x = 2, y = 0 }
+dynamic_padding           = true
+decorations               = "None"
+opacity                   = 0.8
+startup_mode              = "Windowed"
+title                     = "Alacritty"
+dynamic_title             = false
+class                     = { instance = "Alacritty", general = "Alacritty" }
+decorations_theme_variant = "None"
+resize_increments         = false
+
+#[scrolling]
+#history    = 10000
+#multiplier = 3
+
+[font]
+normal              = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
+bold                = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
+italic              = { family = "JetBrainsMono Nerd Font Mono", style = "LightItalic" }
+bold_italic         = { family = "JetBrainsMono Nerd Font Mono", style = "BoldItalic" }
+size                = 18.0
+offset              = { x = 0, y = 0 }
+glyph_offset        = { x = 0, y = 0 }
+builtin_box_drawing = true
+
+[colors]
+draw_bold_text_with_bright_colors = true

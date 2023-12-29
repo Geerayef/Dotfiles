@@ -1,0 +1,31 @@
+# 1. Doom One
+# DoomOne: &DoomOne
+colors:
+  primary:
+    background: "#282C34"
+    foreground: "#BBC2CF"
+  cursor:
+    text: CellBackground
+    cursor: "#528BFF"
+  selection:
+    text: CellForeground
+    background: "#3E4451"
+  normal:
+    black:   "#1C1F24"
+    red:     "#FF6C6B"
+    green:   "#98BE65"
+    yellow:  "#DA8548"
+    blue:    "#51AFEF"
+    magenta: "#C678DD"
+    cyan:    "#5699AF"
+    white:   "#202328"
+  bright:
+    black:   "#5B6268"
+    red:     "#DA8548"
+    green:   "#4DB5BD"
+    yellow:  "#ECBE7B"
+    blue:    "#B257A0" # 23071D
+    magenta: "#A9A1E1"
+    cyan:    "#46D9FF"
+    white:   "#DFDFDF"
+
