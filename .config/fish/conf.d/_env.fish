@@ -14,13 +14,13 @@ set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gcr/ssh"
 # ~  General
 
 test -e "$(command -v nvim)" && set -l neovim $(which nvim)
-set -gx TERM "wezterm"
+set -gx TERM wezterm
 set -gx EDITOR "$neovim"
 set -gx SUDO_EDITOR "$neovim"
 set -gx VISUAL "$HOME/.scripts/nnn/edit_detached.fish"
 set -gx PAGER "nvimpager -a"
 set -gx MANPAGER "nvim +Man!"
-set -gx SYSTEM_PACKAGE_MANAGER "pacman"
+set -gx SYSTEM_PACKAGE_MANAGER pacman
 set -gx MOZ_ENABLE_WAYLAND 1
 set -gx CONDA_AUTO_ACTIVATE_BASE false
 set -gx GTK_THEME Kripton
