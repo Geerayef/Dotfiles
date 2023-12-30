@@ -1,35 +1,20 @@
 #!/usr/bin/env bash
 
-# ~  Set up the Bash dot directory
+# ~  Create a script that exports BASHDOTDIR=$XDG_CONFIG_HOME/bash and sources it on Bash login.
 # Run as sudo.
-# This script defines the location for user's bash config in XDG_CONFIG_HOME.
 
-if [ -d /etc/profile.d ]; then
-    if [ -f /etc/profile.d/bashdotdir.sh ]; then
-        source /etc/profile.d/bashdotdir.sh
-    else
-        sudo touch /etc/profile.d/bashdotdir.sh
-    fi
-fi
+[[ ! -d /etc/profile.d ]] && mkdir /etc/profile.d
+[[ ! -f /etc/profile.d/bashdotdir.sh ]] && touch /etc/profile.d/bashdotdir.sh
 
-bashdotdir="
-# ~  Bash dot directory
+bashdotdir=$(cat << EOF
+# shellcheck shell=bash
 
-# Sourced from: /etc/profile
-# Located in: /etc/profile.d/
-# This script defines the location for user bash configs in XDG_CONFIG_HOME
+# /etc/profile.d/bashdotdir.sh
+# Set Bash config location and source it.
 
-BASHDOTDIR=\"\${HOME:-/home/\${USER}}/.config/bash/\n
-\n
-if [ -d \"\$\BASHDOTDIR\" ]; then\n
-    source \$BASHDOTDIR/bashrc\n
-else\n
-    mkdir -p \$BASHDOTDIR\n
-    [[ -e \"\$BASHDOTDIR/bashrc\" ]] && source \$BASHDOTDIR/bashrc\n
-fi\n
-\n
-export BASHDOTDIR\n
-"
+[[ -d /home/tibor/.config/bash ]] && export BASHDOTDIR="/home/tibor/.config/bash"
+[[ -r $BASHDOTDIR/bashrc ]] && . "$BASHDOTDIR/bashrc"
+EOF
+)
 
-echo $bashdotdir
-echo $bashdotdir > /etc/profile.d/bashdotdir.sh
+echo "$bashdotdir" > /etc/profile.d/bashdotdir.sh

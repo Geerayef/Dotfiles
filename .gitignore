@@ -7,3 +7,4 @@ Dotfiles/
 .config/nvim/lazy-lock.json
 .config/tmux/plugins
 .config/nnn/.selection
+.config/bash/history
