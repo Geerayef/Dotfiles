@@ -7,25 +7,15 @@ return {
     config = function()
       local status, telescope = pcall(require, "telescope")
       if not status then return end
-
       local fb_status, fb_actions = pcall(require, "telescope._extensions.file_browser.actions")
       if not fb_status then return end
-
       local actions_setup, actions = pcall(require, "telescope.actions")
       if not actions_setup then return end
-
       local themes_setup, themes = pcall(require, "telescope.themes")
       if not themes_setup then return end
-
       telescope.setup({
         defaults = {
-          mappings = {
-            i = {
-              ["<C-k>"] = actions.move_selection_previous,
-              ["<C-j>"] = actions.move_selection_next,
-              -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-            },
-          },
+          mappings = { i = { ["<C-k>"] = actions.move_selection_previous, ["<C-j>"] = actions.move_selection_next } },
           initial_mode = "insert",
           selection_strategy = "reset",
           sorting_strategy = "ascending",
@@ -36,14 +26,11 @@ return {
             width = 0.95,
             height = 0.85,
             prompt_position = "top",
-            horizontal = {
-              preview_width = function(_, cols, _)
-                if cols > 200 then return math.floor(cols * 0.4)
-                else return math.floor(cols * 0.5) end
-              end,
+            horizontal = { preview_width = function(_, cols, _)
+                if cols > 200 then return math.floor(cols * 0.4) else return math.floor(cols * 0.5) end
+              end
             },
-            vertical = { width = 0.9, height = 0.85 },
-            -- flex = { horizontal = { preview_width = 0.9 } }
+            vertical = { width = 0.9, height = 0.8 },
           },
         },
         pickers = {
@@ -51,27 +38,13 @@ return {
             preview = true,
             skip_empty_lines = true,
             layout_strategy = "vertical",
-            layout_config = {
-              prompt_position = "bottom",
-              vertical = {
-                width = 0.75,
-                height = 0.5,
-                preview_height = 0.5,
-              },
-            },
+            layout_config = { prompt_position = "bottom", vertical = { width = 0.75, height = 0.5, preview_height = 0.5 } },
           },
-          find_files = {
-            hidden = true,
-            find_command = vim.fn.executable "fd" == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
-          },
-          buffers = { sort_lastused = true, sort_mru = true },
+          find_files = { hidden = true, find_command = vim.fn.executable("fd") == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil },
+          buffers = { sort_lastused = true, sort_mru = true }
         },
         extensions = {
-          fzf = {
-            fuzzy = true,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-          },
+          fzf = { fuzzy = true, override_generic_sorter = true, override_file_sorter = true },
           ["ui-select"] = { themes.get_dropdown({}) },
           file_browser = {
             initial_mode = "normal",
@@ -82,9 +55,9 @@ return {
             auto_depth = false,
             hijack_netrw = true,
             use_fd = true,
-            git_status = true,
+            git_status = false,
             quiet = true,
-            display_stat = { date = true, mode = true },
+            display_stat = { date = false, mode = true },
             mappings = {
               ["i"] = {
                 ["<A-c>"] = fb_actions.create,
@@ -101,7 +74,7 @@ return {
                 ["<C-f>"] = fb_actions.toggle_browser,
                 ["<C-h>"] = fb_actions.toggle_hidden,
                 ["<C-s>"] = fb_actions.toggle_all,
-                ["<bs>"] = fb_actions.backspace,
+                ["<bs>"] = fb_actions.backspace
               },
               ["n"] = {
                 ["<A-c>"] = fb_actions.create,
@@ -117,28 +90,18 @@ return {
                 ["f"] = fb_actions.toggle_browser,
                 ["h"] = fb_actions.toggle_hidden,
                 ["s"] = fb_actions.toggle_all,
-                ["#"] = actions.toggle_selection,
-              },
-            },
-          },
-        },
+                ["#"] = actions.toggle_selection
+              }
+            }
+          }
+        }
       })
-
       _ = require("telescope").load_extension("fzf")
       _ = require("telescope").load_extension("file_browser")
       _ = require("telescope").load_extension("ui-select")
     end
   },
-  {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" }
-  },
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make"
-  },
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" }
-  },
+  { "nvim-telescope/telescope-fzf-native.nvim"  , build = "make" },
+  { "nvim-telescope/telescope-ui-select.nvim"   , dependencies = { "nvim-telescope/telescope.nvim" } },
+  { "nvim-telescope/telescope-file-browser.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
 }

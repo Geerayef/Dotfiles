@@ -25,18 +25,18 @@ function Bar.apply_to_config(config)
       },
     }
   }
-  config.status_update_interval = 1000
+  config.status_update_interval = 2000
   wezterm.on("update-status",
     function(window, pane)
       local stat = window:active_workspace()
-      local stat_color = "#F7768E"
+      local stat_color = kanagawa.indexed[16]
       if window:active_key_table() then
         stat = window:active_key_table()
-        stat_color = "#7DCFFF"
+        stat_color = kanagawa.brights[7]
       end
       if window:leader_is_active() then
         stat = "LDR "
-        stat_color = "#BB9AF7"
+        stat_color = kanagawa.ansi[5]
       end
       local basename = function(s) return string.gsub(s, "(.*[/\\])(.*)", "%2") end
       local cwd = pane:get_current_working_dir()
@@ -53,7 +53,7 @@ function Bar.apply_to_config(config)
       window:set_right_status(wezterm.format({
         { Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
         { Text = " | " },
-        { Foreground = { Color = "#E0AF68" } },
+        { Foreground = { Color = kanagawa.brights[4] } },
         { Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
         "ResetAttributes",
         { Text = " | " },

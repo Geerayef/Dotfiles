@@ -10,7 +10,7 @@ TERM = "alacritty"
 [window]
 dimensions                = { columns = 0, lines = 0 }
 position                  = "None"
-padding                   = { x = 2, y = 0 }
+padding                   = { x = 0, y = 0 }
 dynamic_padding           = true
 decorations               = "None"
 opacity                   = 0.8
@@ -26,7 +26,7 @@ resize_increments         = false
 #multiplier = 3
 
 [font]
-normal              = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
+normal              = { family = "JetBrainsMono Nerd Font Mono", style = "Medium" }
 bold                = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
 italic              = { family = "JetBrainsMono Nerd Font Mono", style = "LightItalic" }
 bold_italic         = { family = "JetBrainsMono Nerd Font Mono", style = "BoldItalic" }

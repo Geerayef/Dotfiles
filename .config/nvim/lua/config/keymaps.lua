@@ -3,11 +3,12 @@ vim.g.mapleader = " "
 local keymap = vim.keymap.set
 local noremap = { noremap = true }
 local silent = { silent = true }
+local bufopts = { noremap = true, silent = true }
 
 -- ~  General keymaps
 
-keymap("v", "J", ":m '>+1<CR>gv=gv", noremap)
-keymap("v", "K", ":m '<-2<CR>gv=gv", noremap)
+keymap("v", "J", ":m '>+1<CR>gv=gv", bufopts)
+keymap("v", "K", ":m '<-2<CR>gv=gv", bufopts)
 keymap("n", "<C-d>", "10<C-d>", noremap)
 keymap("n", "<C-u>", "10<C-u>", noremap)
 
@@ -30,7 +31,7 @@ keymap("v", "<leader>y", '"+y')
 keymap("n", "<leader>sv", "<C-w>v", { desc = "[S]plit [V]ertically" })
 keymap("n", "<leader>sh", "<C-w>s", { desc = "[S]plit [H]orizontally" })
 keymap("n", "<leader>se", "<C-w>=", { desc = "[S]plit [E]qualize sizes" })
-keymap("n", "<leader>spx", "<cmd>close<CR>", { desc = "[S]plit [X] close" })
+keymap("n", "<leader>sx", "<cmd>close<CR>", { desc = "[S]plit [X] close" })
 
 -- Tabs
 keymap("n", "<leader>to", "<cmd>tabnew<CR>"     , { desc = "[T]ab [O]pen" })

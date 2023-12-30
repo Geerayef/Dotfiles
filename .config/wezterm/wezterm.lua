@@ -47,16 +47,14 @@ config.harfbuzz_features = { "zero", "ss01", "cv05" }
 config.font_dirs = {
     "/usr/share/fonts/FiraCodeNF",
     "/usr/share/fonts/JetBrainsNF",
-    "/usr/share/fonts/TTF"
+    "/usr/share/fonts/TTF",
 }
 config.font = wezterm.font_with_fallback {
-    { family = "FiraCode Nerd Font Mono Retina" },
-    { family = "FiraCode Nerd Font Propo Retina" },
+    { family = "Hasklug Nerd Font Mono Medium" },
+    { family = "FiraCode Nerd Font Mono Medium" },
     { family = "JetBrainsMono Nerd Font Mono" },
-    { family = "JetBrainsMono Nerd Font Propo" },
     { family = "Symbols Nerd Font" },
     { family = "Symbols Nerd Font Mono" },
-    { family = "JetBrainsMonoNL" },
 }
 config.font_size = 18
 config.line_height = 1
@@ -77,6 +75,7 @@ config.default_workspace = "home"
 --  General
 
 config.enable_wayland = false
+config.front_end = "OpenGL"
 config.animation_fps = 1
 config.scrollback_lines = 6000
 config.audible_bell = "Disabled"

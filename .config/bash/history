@@ -39,3 +39,4 @@ echo $PWD
 ~-
 la .cache
 la
+ps xz
