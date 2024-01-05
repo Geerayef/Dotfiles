@@ -1,5 +1,4 @@
-function fish_greeting
-end
+function fish_greeting; end
 
 if status --is-login
     if test (tty) = /dev/tty1

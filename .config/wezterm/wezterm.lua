@@ -30,18 +30,15 @@ config.window_padding = { left = "0pt", right = "0pt", top = "0pt", bottom = "0p
 config.inactive_pane_hsb = { saturation = 0.90, brightness = 0.5 }
 
 --  Themes
--- [Optional] / variant
--- ayu / Ayu / Ayu Dark (Gogh) / Mirage [(Gogh)]
--- Tokyo Night [(Gogh)] / Moon / Storm [(Gogh)] / tokyonight / -storm / _storm / _moon / _night
--- nightfox / duskfox / terafox / carbonfox / nordfox
--- Kasugano (terminal.sexy)
+-- ayu / Ayu Dark (Gogh) / Mirage (Gogh)
+-- Tokyo Night (Gogh) / tokyonight / _night
+-- terafox / carbonfox / Kasugano (terminal.sexy)
 -- Trim Yer Beard (terminal.sexy) / VWbug (terminal.sexy)
 -- astromouse (terminal.sexy)
 
-local theme = "astromouse (terminal.sexy)"
-config.color_scheme = theme
+config.color_scheme = "Ayu Dark (Gogh)"
 
---  Font
+-- Font
 
 config.harfbuzz_features = { "zero", "ss01", "cv05" }
 config.font_dirs = {
@@ -50,29 +47,29 @@ config.font_dirs = {
     "/usr/share/fonts/TTF",
 }
 config.font = wezterm.font_with_fallback {
-    { family = "Hasklug Nerd Font Mono Medium" },
     { family = "FiraCode Nerd Font Mono Medium" },
     { family = "JetBrainsMono Nerd Font Mono" },
+    { family = "Hasklug Nerd Font Mono Medium" },
     { family = "Symbols Nerd Font" },
     { family = "Symbols Nerd Font Mono" },
 }
-config.font_size = 18
+config.font_size = 16
 config.line_height = 1
 
---  Cursor
+-- Cursor
 
 config.default_cursor_style = "SteadyBlock"
 config.force_reverse_video_cursor = true
 
 -- ~ ----------------------------------------------------------------- ~ --
 
--- ~ BEHAVIOUR
+-- ~  BEHAVIOUR
 
---  Workspace
+-- Workspace
 
 config.default_workspace = "home"
 
---  General
+-- General
 
 config.enable_wayland = false
 config.front_end = "OpenGL"

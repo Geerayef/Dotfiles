@@ -6,6 +6,3 @@ require("lazyTim")
 require("config.autocmds")
 
 vim.cmd.colorscheme("kanagawa")
--- vim.cmd.highlight("Comment gui=none")
--- vim.cmd.highlight("Normal guibg=#080C10")
--- vim.cmd.highlight("SignColumn guibg=#080C10")

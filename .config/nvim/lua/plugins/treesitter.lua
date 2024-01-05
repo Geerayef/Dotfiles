@@ -3,13 +3,15 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = "BufReadPre",
-    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects", "nushell/tree-sitter-nu" },
     config = function()
-      local ts = require("nvim-treesitter.configs")
+      local has_ts, ts = pcall(require, "nvim-treesitter.configs")
+      if not has_ts then return end
       ts.setup({
         ensure_installed = { "bash", "fish", "lua", "luadoc", "c", "ocaml", "python", "rust", "yaml", "toml" },
         auto_install = true,
         highlight = {
+          enable = true,
           disable = function(_, buf)
             local max_filesize = 100 * 1024
             local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -40,9 +42,10 @@ return {
           lsp_interop = {
             enable = true,
             border = "single",
-            peek_definition_code = { ["<leader>pfd"] = "@function.outer", ["<leader>pcd"] = "@class.outer" } }
+            peek_definition_code = { ["<leader>pfd"] = "@function.outer", ["<leader>pcd"] = "@class.outer" }
+          }
         }
       })
     end
-  },
+  }
 }

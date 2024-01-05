@@ -1,22 +1,24 @@
-local kanagawa = require("kanagawa.colors").setup({ theme = "dragon" })
+local has_kanagawa, kanagawa = pcall(require, "kanagawa.colors")
+if not has_kanagawa then print("~~~~~ [INFO]: kanagawa not found.") end
+kanagawa = kanagawa.setup({ theme = "dragon" })
 local palette = kanagawa.palette
 local theme = kanagawa.theme
-local Icons = require("nvim-web-devicons")
-
+local kanagawaline = require("colors.kanagawa.kanagawaline").setup(theme)
+local icons = require("nvim-web-devicons")
 local static = {}
 
 local get_ftype_icon = function ()
   local full_filename = vim.api.nvim_buf_get_name(0)
   local filename = vim.fn.fnamemodify(full_filename, ":t")
   local extension = vim.fn.fnamemodify(filename, ":e")
-  static.ftype_icon, static.ftype_icon_color = Icons.get_icon_color(filename, extension, { default = true })
+  static.ftype_icon, static.ftype_icon_color = icons.get_icon_color(filename, extension, { default = true })
   return static.ftype_icon and static.ftype_icon .. ""
 end
 
 local condition = {
-  is_buf_empty = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
-  win_width_ge = function(width) return vim.fn.winwidth(0) > width end,
-  is_git_repo = function()
+  is_buf_empty = function () return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
+  is_win_wider = function (width) return vim.fn.winwidth(0) > width end,
+  is_git_repo = function ()
     local filepath = vim.fn.expand("%:p:h")
     local gitdir = vim.fn.finddir(".git", filepath .. ";")
     return gitdir and #gitdir > 0 and #gitdir < #filepath
@@ -55,47 +57,29 @@ local config = {
     component_separators = "",
     section_separators = "",
     always_divide_middle = true,
-    theme = {
-      normal = { c = { fg = theme.ui.fg, bg = "Normal", gui = "bold" } },
-      inactive = { c = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 } },
-    },
+    theme = kanagawaline
   },
   sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
+    lualine_a = {}, lualine_b = {}, lualine_c = {}, lualine_x = {}, lualine_y = {}, lualine_z = {}
   },
   inactive_sections = {
-    lualine_a = { "filename" },
-    lualine_b = { "location" },
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
+    lualine_a = {}, lualine_b = {}, lualine_c = {}, lualine_x = {}, lualine_y = {}, lualine_z = {}
   },
   tabline = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
+    lualine_a = {}, lualine_b = {}, lualine_c = {}, lualine_x = {}, lualine_y = {}, lualine_z = {}
   }
 }
 
 local status_c = function (component) table.insert(config.sections.lualine_c, component) end
 local status_x = function (component) table.insert(config.sections.lualine_x, component) end
 local tab_c = function (component) table.insert(config.tabline.lualine_c, component) end
-local tab_x = function (component) table.insert(config.tabline.lualine_x, component) end
+-- local tab_x = function (component) table.insert(config.tabline.lualine_x, component) end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
 
 -- ~  Status line
--- ~  Left
 
+-- ~  Left
 status_c({ function() return "| " end, color = { fg = palette.dragonWhite }, padding = { left = 0 } })
 
 status_c({
@@ -125,34 +109,25 @@ status_c({
 })
 
 -- ~  --------------------------------------------------------------------------------  ~ --
--- ~  Mid
 
+-- ~  Mid
 status_c({ function() return "%=" end })
 
 -- ~  --------------------------------------------------------------------------------  ~ --
--- ~  Right
 
+-- ~  Right
 status_x({
   "diff",
   cond = condition.is_git_repo,
   source = function ()
-    local gitsigns = vim.b.gitsigns_status_dict
-    if gitsigns then
-      return {
-        added = gitsigns.added,
-        modified = gitsigns.changed,
-        removed = gitsigns.removed
-      }
-    end
+    local g = vim.b.gitsigns_status_dict
+    if g then return { added = g.added, modified = g.changed, removed = g.removed } end
   end,
   symbols = { added = O.Icons.added, modified = O.Icons.modified_simple, removed = O.Icons.removed },
   colored = true,
   diff_color = {
-    -- palette.autumnGreen
     added = { fg = theme.vcs.added },
-    -- palette.surimiOrange
     modified = { fg = theme.vcs.changed },
-    -- palette.samuraiRed
     removed = { fg = theme.vcs.removed }
   }
 })
@@ -162,10 +137,8 @@ status_x({
   sources = { "nvim_lsp", "nvim_diagnostic" },
   symbols = { error = O.Icons.error, warn = O.Icons.warn, info = O.Icons.info, hint = O.Icons.hint },
   diagnostics_color = {
-    error = { fg = theme.diag.error },
-    warn = { fg =  theme.diag.warning },
-    info = { fg =  theme.diag.info },
-    hint = { fg =  theme.diag.hint }
+    error = { fg = theme.diag.error }, warn = { fg =  theme.diag.warning },
+    info = { fg =  theme.diag.info }, hint = { fg =  theme.diag.hint }
   }
 })
 
@@ -177,25 +150,9 @@ status_x({ function() return " |" end, color = { fg = palette.dragonWhite }, pad
 
 -- ~  Tab line
 
--- tab_c({
---   "tabs",
---   cond = function () vim.opt.showtabline = 1; return vim.fn.tabpagenr("$") > 1 end,
---   tab_max_length = 20,
---   max_length = vim.o.columns / 2,
---   mode = 0,
---   path = 0,
---   show_modified_status = false,
---   use_mode_colors = true,
---   symbols = { modified = " " .. O.Icons.touched },
---   padding = 1,
---   separator = "|"
--- })
-
-tab_x({
+tab_c({
   "buffers",
   cond = function () vim.opt.showtabline = 1; return vim.fn.tabpagenr("$") > 1 end,
-  show_filename_only = true,
-  hide_filename_extension = false,
   show_modified_status = false,
   mode = 1,
   max_length = vim.o.columns / 2,
@@ -205,15 +162,12 @@ tab_x({
     fzf = "FZF",
     alpha = "Alpha",
     packer = "Packer",
-    lazy = "Lazy"
+    lazy = "Lazy",
+    fugitive = "Fugitive"
   },
   use_mode_colors = true,
-  buffers_color = { active = "lualine_c_normal", inactive = "lualine_c_inactive" },
-  symbols = {
-    modified = " ●",
-    alternate_file = "#",
-    directory =  "",
-  },
+  buffers_color = { active = "lualine_b_normal", inactive = "lualine_b_inactive" },
+  symbols = { modified = " ●", alternate_file = "# ", directory =  " " }
 })
 
 -- ~  --------------------------------------------------------------------------------  ~ --

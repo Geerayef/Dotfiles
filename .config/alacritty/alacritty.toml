@@ -1,5 +1,6 @@
 import = [ "~/.config/alacritty/colors/KanagawaDragon.toml" ]
-#shell = { program = "/bin/fish", args = ["",] }
+shell = { program = "/usr/bin/nu" }
+# args = ["",] 
 #working_directory = ""
 live_config_reload = true
 #ipc_socket = true
@@ -26,14 +27,22 @@ resize_increments         = false
 #multiplier = 3
 
 [font]
-normal              = { family = "JetBrainsMono Nerd Font Mono", style = "Medium" }
-bold                = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
-italic              = { family = "JetBrainsMono Nerd Font Mono", style = "LightItalic" }
-bold_italic         = { family = "JetBrainsMono Nerd Font Mono", style = "BoldItalic" }
-size                = 18.0
+normal              = { family = "Hasklug Nerd Font Mono", style = "Medium" }
+bold                = { family = "Hasklug Nerd Font Mono", style = "Bold" }
+italic              = { family = "Hasklug Nerd Font Mono", style = "LightItalic" }
+bold_italic         = { family = "Hasklug Nerd Font Mono", style = "BoldItalic" }
+size                = 16.0
 offset              = { x = 0, y = 0 }
 glyph_offset        = { x = 0, y = 0 }
 builtin_box_drawing = true
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
+vi_mode_style = "None"
+blink_interval = 750
+blink_timeout = 0
+unfocused_hollow = true
+#thickness = 0.15
 
 [colors]
 draw_bold_text_with_bright_colors = true

@@ -2,13 +2,24 @@
 
 F = {}
 
--- ~ -------------------------------------------------------------------------------- ~ --
+-- ~  --------------------------------------------------------------------------------  ~ --
 
-F.NvimMode = function()
-  local n = "normal"  -- ""
-  local v = "visual"  -- ""
-  local i = "insert"  -- ""
-  local c = "command" -- ""
+F.GetViMode = function(show_icons)
+  local n
+  local v
+  local i
+  local c
+  if show_icons then
+    n = ""
+    v = ""
+    i = ""
+    c = ""
+  else
+    n = "normal"  -- ""
+    v = "visual"  -- ""
+    i = "insert"  -- ""
+    c = "command" -- ""
+  end
   local r = "replace"
   local s = "select"
   local t = "terminal"
@@ -85,7 +96,7 @@ F.disable_builtin = function ()
   g.loaded_node_provider = 0
 end
 
--- ~ -------------------------------------------------------------------------------- ~ --
+-- ~  --------------------------------------------------------------------------------  ~ --
 
 F.IsBigBuff = function(bufnr)
   -- 100 KB
@@ -98,28 +109,15 @@ F.IsBigBuff = function(bufnr)
   end
 end
 
--- ~ -------------------------------------------------------------------------------- ~ --
+-- ~  --------------------------------------------------------------------------------  ~ --
 
-F.heirline_get_highlight_colors = function (util)
-  return {
-    bright_bg = util.get_highlight("Folded").bg,
-    bright_fg = util.get_highlight("Folded").fg,
-    dark_red = util.get_highlight("DiffDelete").bg,
-    red = util.get_highlight("DiagnosticError").fg,
-    green = util.get_highlight("String").fg,
-    blue = util.get_highlight("Function").fg,
-    gray = util.get_highlight("NonText").fg,
-    orange = util.get_highlight("Constant").fg,
-    purple = util.get_highlight("Statement").fg,
-    cyan = util.get_highlight("Special").fg,
-    diag_warn = util.get_highlight("DiagnosticWarn").fg,
-    diag_error = util.get_highlight("DiagnosticError").fg,
-    diag_hint = util.get_highlight("DiagnosticHint").fg,
-    diag_info = util.get_highlight("DiagnosticInfo").fg,
-    git_del = util.get_highlight("diffDeleted").fg,
-    git_add = util.get_highlight("diffAdded").fg,
-    git_change = util.get_highlight("diffChanged").fg,
-  }
+---@param mapargs table
+---@return table
+F.KeymapArgs = function (mapargs)
+  local default = { noremap = true, silent = false, desc = "" }
+  return vim.tbl_deep_extend("force", default, mapargs)
 end
+
+-- ~  --------------------------------------------------------------------------------  ~ --
 
 return F

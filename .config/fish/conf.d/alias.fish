@@ -55,7 +55,6 @@ alias gl="git log"
 # ~  Package managers
 
 if test $SYSTEM_PACKAGE_MANAGER = apt
-    # - apt
     alias ad="sudo apt update"
     alias ag="sudo apt upgrade"
     alias auu="sudo apt update && sudo apt upgrade"
@@ -69,7 +68,6 @@ if test $SYSTEM_PACKAGE_MANAGER = apt
     alias as="sudo apt search"
     alias ash="sudo apt show"
     alias al="sudo apt list"
-    # - apt-get
     alias agd="sudo apt-get update"
     alias agg="sudo apt-get upgrade"
     alias aguu="sudo apt-get update && sudo apt-get upgrade"
@@ -85,7 +83,6 @@ if test $SYSTEM_PACKAGE_MANAGER = apt
     alias agsrc="sudo apt-get source"
     alias agdl="sudo apt-get download"
 else if test $SYSTEM_PACKAGE_MANAGER = dnf
-    # - dnf
     alias dnfu="sudo dnf upgrade --refresh"
     alias dnfi="sudo dnf install"
     alias dnfgi="sudo dnf groupinstall"
@@ -99,12 +96,11 @@ else if test $SYSTEM_PACKAGE_MANAGER = dnf
     alias dnfgl="sudo dnf grouplist"
     alias dnfh="dnf help"
 else if test $SYSTEM_PACKAGE_MANAGER = pacman
-    # - pacman
     alias pi="sudo pacman -Sy --needed"
     alias pu="sudo pacman -Syu"
     alias pr="sudo pacman -Rs"
     alias pq="sudo pacman -Q"
     alias ps="sudo pacman -Sys"
 else
-    echo "Please set the SYSTEM_PACKAGE_MANAGER environment variable to the name of the package manager used by the system. [ apt / dnf / pacman ]"
+    echo "Please set the SYSTEM_PACKAGE_MANAGER environment variable to the name of your system package manager."
 end

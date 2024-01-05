@@ -5,17 +5,23 @@ return {
     dependencies = {
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp"
     },
     opts = {
       diagnostics = require("config.diagnostics"),
       inlay_hints = { enabled = false },
       autoformat = false,
       capabilities = {
-        textDocument = { completion = { completionItem = {
-          snippetSupport = true,
-          resolveSupport = { properties = { "documentation", "detail", "additionalTextEdits" } },
-        } } } },
+        textDocument = {
+          codelens = { enable = true },
+          completion = {
+            completionItem = {
+              snippetSupport = true,
+              resolveSupport = { properties = { "documentation", "detail", "additionalTextEdits" } },
+            }
+          }
+        }
+      },
       servers = {
         lua_ls = {
           Lua = {
@@ -50,7 +56,7 @@ return {
         Keymaps.LSP(client, bufnr)
         vim.api.nvim_buf_create_user_command(bufnr, "FormatLSP", function(_)
           vim.lsp.buf.format()
-        end, { desc = "Format current buffer with LSP" })
+        end, { desc = "Format current buffer with LSP." })
         if client.resolved_capabilities.code_lens then
           local codelens = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
           vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
@@ -81,6 +87,8 @@ return {
 
       -- OCaml
       lspconfig.ocamllsp.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
         cmd = { "ocamllsp" },
         filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
         root_dir = lspconfig.util.root_pattern(
@@ -94,25 +102,19 @@ return {
           , "dune-project"
           , "dune-workspace"
         ),
-        on_attach = lsp_attach,
-        capabilities = capabilities
       })
 
       -- Rust
       lspconfig.rust_analyzer.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        settings = {
-          ["rust-analyzer"] = {
-            checkOnSave = {
-              command = "clippy",
-            },
-          },
-        },
+        settings = { ["rust-analyzer"] = { checkOnSave = { command = "clippy" } } }
       })
 
       -- Clangd
       lspconfig.clangd.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
         cmd = { "/usr/bin/clangd" },
         filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
         root_dir = lspconfig.util.root_pattern(
@@ -124,20 +126,14 @@ return {
           , "configure.ac"
           , ".git"
         ),
-        on_attach = lsp_attach,
-        capabilities = capabilities,
-        single_file_support = true,
+        single_file_support = true
       })
 
       -- Python
       lspconfig.ruff_lsp.setup({
         on_attach = lsp_attach,
-        init_options = {
-          settings = {
-            -- Ruff cli args
-            args = {}
-          }
-        }
+        capabilities = capabilities,
+        init_options = { settings = { args = {} } }
       })
 
       -- Bash
