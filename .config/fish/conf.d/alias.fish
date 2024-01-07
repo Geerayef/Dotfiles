@@ -50,7 +50,7 @@ alias gpl="git pull --rebase"
 alias gps="git push --set-upstream"
 alias gch="git checkout"
 alias gb="git branch"
-alias gl="git log"
+alias gl='git log --pretty="%h » ¦ « %aN » ¦ « %s » ¦ « %aD"'
 
 # ~  Package managers
 

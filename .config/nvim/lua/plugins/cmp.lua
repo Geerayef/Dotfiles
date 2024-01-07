@@ -23,7 +23,7 @@ return {
     "hrsh7th/nvim-cmp",
     version = false,
     lazy = true,
-    event = { "BufReadPost", "InsertEnter" },
+    event = { "BufReadPost", "InsertEnter", "UiEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",

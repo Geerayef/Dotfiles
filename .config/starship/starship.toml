@@ -20,24 +20,13 @@ scan_timeout = 10
 [directory]
 read_only = " "
 read_only_style = "red bold"
-style = "#46D9FF bold"
+style = "#FFA066 bold"
 
 [character]
-# success_symbol = "[❯](#46D9FF)"
-# error_symbol = "[❯](#FF6C6B)"
-# vimcmd_symbol = "[❮](#DA8548)"
-success_symbol = "[λ](#46D9FF)"
-error_symbol = "[λ](#FF6C6B)"
-vimcmd_symbol = "[λ](#DA8548)"
-# success_symbol = "[Λ](#46D9FF)"
-# error_symbol = "[Λ](#FF6C6B)"
-# vimcmd_symbol = "[Λ](#DA8548)"
-# success_symbol = "[](#46D9FF)"
-# error_symbol = "[](#FF6C6B)"
-# vimcmd_symbol = "[](#DA8548)"
-# success_symbol = "[⟫](#46D9FF)"
-# error_symbol   = "[⟫](#FF6C6B)"
-# vimcmd_symbol  = "[⟪](#DA8548)"
+# [❯] [❮] / [λ] / [⟫] [⟪] / [] []
+success_symbol = "[❯](#FFA066)"
+error_symbol   = "[❯](#938AA9)"
+vimcmd_symbol  = "[❮](#C5C9C5)"
 
 [git_branch]
 format = "[$branch]($style)"
@@ -63,8 +52,8 @@ style = "#F9AF4F"
 
 [ocaml]
 format = '[$symbol($switch_indicator$switch_name): ($version)]($style)'
-version_format = "v${major}.${minor}" # Variables: raw, major, minor & patch
-# symbol = "🐫 "
+# raw, major, minor, patch
+version_format = "v${major}.${minor}"
 symbol = "🐪 "
 global_switch_indicator = ""
 local_switch_indicator = "*"

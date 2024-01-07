@@ -1,6 +1,5 @@
 import = [ "~/.config/alacritty/colors/KanagawaDragon.toml" ]
-shell = { program = "/usr/bin/nu" }
-# args = ["",] 
+shell = { program = "/usr/bin/nu", args = ["--stdin",] }
 #working_directory = ""
 live_config_reload = true
 #ipc_socket = true
@@ -14,7 +13,7 @@ position                  = "None"
 padding                   = { x = 0, y = 0 }
 dynamic_padding           = true
 decorations               = "None"
-opacity                   = 0.8
+opacity                   = 0.9
 startup_mode              = "Windowed"
 title                     = "Alacritty"
 dynamic_title             = false

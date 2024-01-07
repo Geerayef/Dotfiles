@@ -25,10 +25,10 @@ keymap("n", "<leader>Y", '"+Y')
 keymap("v", "<leader>y", '"+y')
 
 -- Window Splitting
-keymap("n", "<leader>sv", "<C-w>v", F.KeymapArgs({ desc = "[S]plit [V]ertically" }))
-keymap("n", "<leader>sh", "<C-w>s", F.KeymapArgs({ desc = "[S]plit [H]orizontally" }))
-keymap("n", "<leader>se", "<C-w>=", F.KeymapArgs({ desc = "[S]plit [E]qualize sizes" }))
-keymap("n", "<leader>sx", "<cmd>close<CR>", F.KeymapArgs({ desc = "[S]plit [X] close" }))
+keymap("n", "<leader>spv", "<C-w>v", F.KeymapArgs({ desc = "[S]plit [V]ertically" }))
+keymap("n", "<leader>sph", "<C-w>s", F.KeymapArgs({ desc = "[S]plit [H]orizontally" }))
+keymap("n", "<leader>spe", "<C-w>=", F.KeymapArgs({ desc = "[S]plit [E]qualize sizes" }))
+keymap("n", "<leader>spx", "<cmd>close<CR>", F.KeymapArgs({ desc = "[S]plit [X] close" }))
 
 -- Tabs
 keymap("n", "<leader>to", "<cmd>tabnew<CR>"     , F.KeymapArgs({ desc = "[T]ab [O]pen" }))
@@ -47,7 +47,7 @@ keymap("t", "<Esc>", "<C-\\><C-n>", { desc = "Terminal mode: Escape" })
 -- Telescope
 keymap("n", "<leader>?", "<cmd>Telescope oldfiles<CR>"     , F.KeymapArgs({ desc = "[?] Recent files" }))
 keymap("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", F.KeymapArgs({ desc = "[/] Search buffer" }))
-keymap("n", "<leader>fb", "<cmd>Telescope file_browser<CR>", F.KeymapArgs({ desc = "[F]ile [B]rowser" }))
+keymap("n", "<leader>f", "<cmd>Telescope file_browser<CR>", F.KeymapArgs({ desc = "Telescope [F]ile Browser" }))
 keymap("n", "<leader>tb", "<cmd>Telescope builtin<CR>"     , F.KeymapArgs({ desc = "Telescope [B]uiltin" }))
 keymap("n", "<leader>sf", "<cmd>Telescope find_files<CR>"  , F.KeymapArgs({ desc = "Telescope [S]earch [F]iles" }))
 keymap("n", "<leader>sh", "<cmd>Telescope help_tags<CR>"   , F.KeymapArgs({ desc = "Telescope [S]earch [H]elp" }))
@@ -56,19 +56,17 @@ keymap("n", "<leader>sg", "<cmd>Telescope live_grep<CR>"   , F.KeymapArgs({ desc
 keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>" , F.KeymapArgs({ desc = "Telescope [S]earch [D]iagnostics" }))
 keymap("n", "<leader><space>", "<cmd>Telescope buffers<CR>", F.KeymapArgs({ desc = "[ ] Opened buffers" }))
 
--- Git
 -- Gitsigns
 keymap("n", "<leader>glb", "<cmd>Gitsigns toggle_current_line_blame<CR>", F.KeymapArgs({ desc = "[G]it [L]ine [B]lame"}))
 -- Fugitive
 keymap("n", "<leader>G",   "<cmd>Git<CR>",  F.KeymapArgs({ desc = "[G]it [s]tatus." }))
-keymap("n", "<leader>ga",  "<cmd>Git add .<CR>", F.KeymapArgs({ desc = "[G]it [a]dd." }))
+keymap("n", "<leader>gab",  "<cmd>Git add %<CR>", F.KeymapArgs({ desc = "[G]it [a]dd." }))
 keymap("n", "<leader>gpl", "<cmd>Git pull<CR>", F.KeymapArgs({ desc = "[G]it [p]u[l]l." }))
 keymap("n", "<leader>gps", "<cmd>Git push<CR>", F.KeymapArgs({ desc = "[G]it [p]u[s]h." }))
 
 -- Diagnostic keymaps
 keymap("n", "<leader>dn", vim.diagnostic.goto_next, F.KeymapArgs({ desc = "[D]iagnostic [N]ext" }))
 keymap("n", "<leader>dp", vim.diagnostic.goto_prev, F.KeymapArgs({ desc = "[D]iagnostic [P]reivous" }))
-keymap("n", "<leader>df", "<cmd>lua vim.diagnostic.open_float()<CR>", F.KeymapArgs({ desc = "[D]iagnostic [F]loat" }))
 
 -- Zen
 keymap("n", "<leader>zn", "<cmd>TZNarrow<CR>"     , F.KeymapArgs({ desc = "[Z]en [N]arrow" }))
@@ -76,12 +74,6 @@ keymap("v", "<leader>zn", "<cmd>'<,'>TZNarrow<CR>", F.KeymapArgs({ desc = "[Z]en
 keymap("n", "<leader>zf", "<cmd>TZFocus<CR>"      , F.KeymapArgs({ desc = "[Z]en [F]ocus" }))
 keymap("n", "<leader>zm", "<cmd>TZMinimalist<CR>" , F.KeymapArgs({ desc = "[Z]en [M]inimalist" }))
 keymap("n", "<leader>za", "<cmd>TZAtaraxis<CR>"   , F.KeymapArgs({ desc = "[Z]en [A]taraxis" }))
-
--- Tmux
--- keymap("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>",  F.KeymapArgs({ desc = "Tmux Navigate Left" }))
--- keymap("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>",  F.KeymapArgs({ desc = "Tmux Navigate Down" }))
--- keymap("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>",    F.KeymapArgs({ desc = "Tmux Navigate Up" }))
--- keymap("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", F.KeymapArgs({ desc = "Tmux Navigate Right" }))
 
 -------------------------------------------------------------------------------------------------------
 
