@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local Bar = {}
+local nf = wezterm.nerdfonts
 
 function Bar.apply_to_config(config)
   local kanagawa = require("colors.kanagawa")
@@ -39,32 +40,39 @@ function Bar.apply_to_config(config)
       stat = "LDR "
       stat_color = kanagawa.ansi[5]
     end
-    local cwd = pane:get_current_working_dir()
-    cwd = cwd and basename(cwd) or ""
-    local cmd = pane:get_foreground_process_name()
-    cmd = cmd and basename(cmd) or ""
+    local cwd = true and basename(pane:get_current_working_dir()) or ""
+    local cmd = true and basename(pane:get_foreground_process_name()) or ""
     local time = wezterm.strftime("%H:%M")
-    local battery = ""
-    for _, b in ipairs(wezterm.battery_info()) do
-      battery = string.format('%.0f%%', b.state_of_charge * 100)
+    local battery_percentage = ""
+    for _, b in ipairs(wezterm.battery_info()) do battery_percentage = string.format('%.0f', b.state_of_charge * 100) end
+    local battery_percent_value = tonumber(battery_percentage)
+    local battery_icon = ""
+    if battery_percent_value <= 25 then
+      battery_icon = nf.fa_battery_empty
+    elseif battery_percent_value > 25 and battery_percent_value <=50 then
+      battery_icon = nf.fa_battery_quarter
+    elseif battery_percent_value > 50 and battery_percent_value <= 75 then
+      battery_icon = nf.fa_battery_half
+    elseif battery_percent_value > 75 and battery_percent_value <= 100 then
+      battery_icon = nf.fa_battery_full
     end
     window:set_left_status(wezterm.format({
       { Foreground = { Color = stat_color } },
       { Text = "| " },
-      { Text = wezterm.nerdfonts.oct_table .. "  " .. stat },
+      { Text = nf.oct_table .. "  " .. stat },
       { Text = " |" },
     }))
     window:set_right_status(wezterm.format({
-      { Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
+      { Text = nf.md_folder .. "  " .. cwd },
       { Text = " | " },
       { Foreground = { Color = kanagawa.brights[4] } },
-      { Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
+      { Text = nf.fa_code .. "  " .. cmd },
       "ResetAttributes",
       { Text = " | " },
-      { Text = wezterm.nerdfonts.md_clock .. "  " .. time },
+      { Text = nf.md_clock .. "  " .. time },
       { Text = " | " },
       { Foreground = { Color = kanagawa.brights[4] } },
-      { Text = wezterm.nerdfonts.fa_battery_half .. "  " .. battery },
+      { Text = battery_icon .. "  " .. battery_percentage .. "%" },
       "ResetAttributes",
       { Text = " |" }
     }))
