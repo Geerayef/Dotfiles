@@ -101,5 +101,5 @@ return {
   winterBlue = "#252535",
   winterGreen = "#2B3328",
   winterRed = "#43242B",
-  winterYellow = "#49443C"
+  winterYellow = "#49443C",
 }

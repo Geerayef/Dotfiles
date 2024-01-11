@@ -9,8 +9,10 @@ $line_break\
 $character"""
 
 right_format="""
+$time
 $cmd_duration\
 $ocaml\
+$lua\
 $python\
 """
 
@@ -51,70 +53,114 @@ format = "[$duration]($style) "
 style = "#F9AF4F"
 
 [ocaml]
+disabled = false
 format = '[$symbol($switch_indicator$switch_name): ($version)]($style)'
-# raw, major, minor, patch
 version_format = "v${major}.${minor}"
 symbol = "🐪 "
 global_switch_indicator = ""
 local_switch_indicator = "*"
 detect_extensions = ["opam", "ml", "mli", "re", "rei"]
-detect_files = ["dune", "dune-project", "jbuild", "jbuild-ignore", ".merlin", "ocamlformat"]
+detect_files = ["dune", "dune-project", "jbuild", "jbuild-ignore", ".merlin", ".ocamlformat"]
 detect_folders = ["_opam", "esy.lock"]
 style = "#95C30A bold"
-disabled = false
 
 [python]
 format = '[$virtualenv]($style) '
 style = "#98BE65"
 symbol = ""
 
+[lua]
+disabled = false
+format = '[$symbol($version)]($style)'
+symbol = "🌙"
+version_format = "v${raw}"
+style = "bold blue"
+detect_extensions = ["lua"]
+detect_files = ["init.lua", ".lua-version"]
+detect_folders = ["lua", "ftplugin", "after", "nvim"]
+lua_binary = "lua"
+
+[time]
+disabled = true
+format = '[$time]($style)'
+time_format = "%R"
+style = "#FFA066 bold"
+
+[dart]
+disabled = true
+[deno]
+disabled = true
+[fill]
+disabled = true
+[singularity]
+disabled = true
+[solidity]
+disabled = true
+[spack]
+disabled = true
+[zig]
+disabled = true
+[vcsh]
+disabled = true
+[buf]
+disabled = true
+[bun]
+disabled = true
+[azure]
+disabled = true
+[daml]
+disabled = true
 [cobol]
-disable = true
+disabled = true
 [dotnet]
-disable = true
+disabled = true
 [elixir]
-disable = true
+disabled = true
 [elm]
-disable = true
+disabled = true
 [erlang]
-disable = true
+disabled = true
 [helm]
-disable = true
+disabled = true
 [java]
-disable = true
+disabled = true
 [julia]
-disable = true
+disabled = true
 [kotlin]
-disable = true
+disabled = true
 [nim]
-disable = true
+disabled = true
 [perl]
-disable = true
+disabled = true
 [php]
-disable = true
+disabled = true
 [pulumi]
-disable = true
+disabled = true
 [purescript]
-disable = true
+disabled = true
 [red]
-disable = true
+disabled = true
 [ruby]
-disable = true
+disabled = true
 [swift]
-disable = true
+disabled = true
 [terraform]
-disable = true
+disabled = true
 [vlang]
-disable = true
+disabled = true
 [vagrant]
-disable = true
+disabled = true
 [nix_shell]
-disable = true
+disabled = true
 [aws]
-disable = true
+disabled = true
+[guix_shell]
+disabled = true
 [gcloud]
-disable = true
+disabled = true
 [openstack]
-disable = true
+disabled = true
 [crystal]
-disable = true
+disabled = true
+[nodejs]
+disabled = true

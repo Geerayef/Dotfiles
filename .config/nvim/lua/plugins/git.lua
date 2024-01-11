@@ -1,7 +1,7 @@
 return {
   {
     "tpope/vim-fugitive",
-    event = { "BufWritePost", "BufReadPre" }
+    event = { "BufWritePost", "BufReadPre" },
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -16,8 +16,8 @@ return {
           topdelete = { text = "^" },
           changedelete = { text = "¬" },
           untracked = { text = "?" },
-        }
+        },
       })
-    end
-  }
+    end,
+  },
 }

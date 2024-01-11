@@ -15,58 +15,58 @@ F.GetViMode = function(show_icons)
     i = ""
     c = ""
   else
-    n = "normal"  -- ""
-    v = "visual"  -- ""
-    i = "insert"  -- ""
+    n = "normal" -- ""
+    v = "visual" -- ""
+    i = "insert" -- ""
     c = "command" -- ""
   end
   local r = "replace"
   local s = "select"
   local t = "terminal"
   local modes = {
-    ["n"]     = n,
-    ["no"]    = n,
-    ["nov"]   = n,
-    ["noV"]   = n,
+    ["n"] = n,
+    ["no"] = n,
+    ["nov"] = n,
+    ["noV"] = n,
     ["no\22"] = n,
-    ["niI"]   = n,
-    ["niR"]   = n,
-    ["niV"]   = n,
-    ["nt"]    = n,
-    ["ntT"]   = n,
-    ["v"]     = v,
-    ["vs"]    = v,
-    ["V"]     = v,
-    ["Vs"]    = v,
-    ["\22"]   = v,
-    ["\22s"]  = v,
-    ["s"]     = s,
-    ["S"]     = s,
-    ["\19"]   = i,
-    ["i"]     = i,
-    ["ic"]    = i,
-    ["ix"]    = i,
-    ["R"]     = r,
-    ["Rc"]    = r,
-    ["Rx"]    = r,
-    ["Rv"]    = r,
-    ["Rvc"]   = r,
-    ["Rvx"]   = r,
-    ["c"]     = c,
-    ["cv"]    = c,
-    ["ce"]    = c,
-    ["r"]     = r,
-    ["rm"]    = r,
-    ["r?"]    = "?",
-    ["!"]     = "󰩌",
-    ["t"]     = t,
+    ["niI"] = n,
+    ["niR"] = n,
+    ["niV"] = n,
+    ["nt"] = n,
+    ["ntT"] = n,
+    ["v"] = v,
+    ["vs"] = v,
+    ["V"] = v,
+    ["Vs"] = v,
+    ["\22"] = v,
+    ["\22s"] = v,
+    ["s"] = s,
+    ["S"] = s,
+    ["\19"] = i,
+    ["i"] = i,
+    ["ic"] = i,
+    ["ix"] = i,
+    ["R"] = r,
+    ["Rc"] = r,
+    ["Rx"] = r,
+    ["Rv"] = r,
+    ["Rvc"] = r,
+    ["Rvx"] = r,
+    ["c"] = c,
+    ["cv"] = c,
+    ["ce"] = c,
+    ["r"] = r,
+    ["rm"] = r,
+    ["r?"] = "?",
+    ["!"] = "󰩌",
+    ["t"] = t,
   }
   return modes[vim.api.nvim_get_mode().mode] or "[Unknown]"
 end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
-F.disable_builtin = function ()
+F.disable_builtin = function()
   local g = vim.g
   g.loaded_netrw = 1
   g.loaded_netrwPlugin = 1
@@ -113,7 +113,7 @@ end
 
 ---@param mapargs table
 ---@return table
-F.KeymapArgs = function (mapargs)
+F.KeymapArgs = function(mapargs)
   local default = { noremap = true, silent = false, desc = "" }
   return vim.tbl_deep_extend("force", default, mapargs)
 end

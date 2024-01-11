@@ -4,7 +4,7 @@ local cmd = vim.cmd
 F.disable_builtin()
 
 o.shell = "/usr/bin/fish"
-o.shortmess:append('I')
+o.shortmess:append("I")
 
 -- ~  File
 cmd.syntax("on")
@@ -64,9 +64,7 @@ o.scrolloff = 4
 o.sidescrolloff = 4
 
 -- ~  Search
-if vim.fn.executable('rg') == 1 then
-  o.grepprg = "rg --vimgrep --no-heading --smart-case"
-end
+if vim.fn.executable("rg") == 1 then o.grepprg = "rg --vimgrep --no-heading --smart-case" end
 o.ignorecase = true
 o.smartcase = true
 o.hlsearch = true
@@ -74,15 +72,15 @@ o.incsearch = true
 
 -- ~  Chars
 o.listchars = {
-  tab   = "→ ",
-  nbsp  = "␣",
+  tab = "→ ",
+  nbsp = "␣",
   trail = "·",
 }
 o.fillchars = {
-  fold      = "·",
-  foldopen  = "",
+  fold = "·",
+  foldopen = "",
   foldclose = "",
-  foldsep   = " ",
-  diff      = "╱",
-  eob       = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
 }

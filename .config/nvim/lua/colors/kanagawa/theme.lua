@@ -4,13 +4,13 @@ return {
     hint = "#6A9589",
     info = "#658594",
     ok = "#98BB6C",
-    warning = "#FF9E3B"
+    warning = "#FF9E3B",
   },
   diff = {
     add = "#2B3328",
     change = "#252535",
     delete = "#43242B",
-    text = "#49443C"
+    text = "#49443C",
   },
   syn = {
     comment = "#737C73",
@@ -31,7 +31,7 @@ return {
     statement = "#8992A7",
     string = "#8A9A7B",
     type = "#8EA4A2",
-    variable = "none"
+    variable = "none",
   },
   term = {
     "#0D0C0C",
@@ -51,7 +51,7 @@ return {
     "#7AA89F",
     "#C5C9C5",
     "#B6927B",
-    "#B98D7B"
+    "#B98D7B",
   },
   ui = {
     bg = "#181616",
@@ -71,7 +71,7 @@ return {
       bg = "#0D0C0C",
       bg_border = "#0D0C0C",
       fg = "#C8C093",
-      fg_border = "#54546D"
+      fg_border = "#54546D",
     },
     nontext = "#625E5A",
     pmenu = {
@@ -80,14 +80,14 @@ return {
       bg_sel = "#2D4F67",
       bg_thumb = "#2D4F67",
       fg = "#DCD7BA",
-      fg_sel = "none"
+      fg_sel = "none",
     },
     special = "#7A8382",
-    whitespace = "#625E5A"
+    whitespace = "#625E5A",
   },
   vcs = {
     added = "#76946A",
     changed = "#DCA561",
-    removed = "#C34043"
-  }
+    removed = "#C34043",
+  },
 }

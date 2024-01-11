@@ -17,6 +17,10 @@ local cmd = vim.cmd
 
 --  File
 cmd.syntax("on")
+cmd.filetype("plugin", "indent", "on")
+vim.cmd{ cmd = "set", args = { "filetype=help" } }
+o.fileformats = "unix"
+o.undofile = false
 
 --  Edit
 o.virtualedit = "block"

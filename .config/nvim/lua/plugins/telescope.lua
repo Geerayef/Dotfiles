@@ -26,9 +26,14 @@ return {
             width = 0.95,
             height = 0.85,
             prompt_position = "top",
-            horizontal = { preview_width = function(_, cols, _)
-                if cols > 200 then return math.floor(cols * 0.4) else return math.floor(cols * 0.5) end
-              end
+            horizontal = {
+              preview_width = function(_, cols, _)
+                if cols > 200 then
+                  return math.floor(cols * 0.4)
+                else
+                  return math.floor(cols * 0.5)
+                end
+              end,
             },
             vertical = { width = 0.9, height = 0.8 },
           },
@@ -38,14 +43,20 @@ return {
             preview = true,
             skip_empty_lines = true,
             layout_strategy = "vertical",
-            layout_config = { prompt_position = "bottom", vertical = { width = 0.75, height = 0.5, preview_height = 0.5 } },
+            layout_config = {
+              prompt_position = "bottom",
+              vertical = { width = 0.75, height = 0.5, preview_height = 0.4 },
+            },
           },
-          find_files = { hidden = true, find_command = vim.fn.executable("fd") == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil },
-          buffers = { sort_lastused = true, sort_mru = true }
+          find_files = {
+            hidden = true,
+            find_command = vim.fn.executable("fd") == 1 and { "fd", "--strip-cwd-prefix", "--type", "f" } or nil,
+          },
+          buffers = { sort_lastused = true, sort_mru = true },
         },
         extensions = {
-          fzf = { fuzzy = true, override_generic_sorter = true, override_file_sorter = true },
           ["ui-select"] = { themes.get_dropdown({}) },
+          fzf = { fuzzy = true, override_generic_sorter = true, override_file_sorter = true },
           file_browser = {
             initial_mode = "normal",
             cwd_to_path = true,
@@ -57,7 +68,7 @@ return {
             use_fd = true,
             git_status = false,
             quiet = true,
-            display_stat = { date = false, mode = true },
+            display_stat = { mode = true, date = false },
             mappings = {
               ["i"] = {
                 ["<A-c>"] = fb_actions.create,
@@ -74,7 +85,7 @@ return {
                 ["<C-f>"] = fb_actions.toggle_browser,
                 ["<C-h>"] = fb_actions.toggle_hidden,
                 ["<C-s>"] = fb_actions.toggle_all,
-                ["<bs>"] = fb_actions.backspace
+                ["<bs>"] = fb_actions.backspace,
               },
               ["n"] = {
                 ["<A-c>"] = fb_actions.create,
@@ -90,18 +101,18 @@ return {
                 ["f"] = fb_actions.toggle_browser,
                 ["h"] = fb_actions.toggle_hidden,
                 ["s"] = fb_actions.toggle_all,
-                ["#"] = actions.toggle_selection
-              }
-            }
-          }
-        }
+                ["#"] = actions.toggle_selection,
+              },
+            },
+          },
+        },
       })
       _ = require("telescope").load_extension("fzf")
-      _ = require("telescope").load_extension("file_browser")
       _ = require("telescope").load_extension("ui-select")
-    end
+      _ = require("telescope").load_extension("file_browser")
+    end,
   },
-  { "nvim-telescope/telescope-fzf-native.nvim"  , build = "make" },
-  { "nvim-telescope/telescope-ui-select.nvim"   , dependencies = { "nvim-telescope/telescope.nvim" } },
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  { "nvim-telescope/telescope-ui-select.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
   { "nvim-telescope/telescope-file-browser.nvim", dependencies = { "nvim-telescope/telescope.nvim" } },
 }

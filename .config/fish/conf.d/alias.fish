@@ -1,28 +1,28 @@
 # ~  General
 
 alias C="clear"
+alias grep="grep --color=always"
 if test -e "$(command -v eza)"
     alias ls="eza -a --color=always --icons=always --group-directories-first"
     alias la="eza -aG --color=always --icons=always --group-directories-first"
     alias ll="eza -la --color=always --icons=always --group-directories-first"
     alias lT="eza -aT -L 2 --color=always --icons=always --group-directories-first"
     alias lt="eza -aT -L 1 --color=always --icons=always --group-directories-first"
-    alias l.='eza -a --color=always --icons=always --group-directories-first | grep -E "^\."'
+    alias l.="eza -af --color=always --icons=always --group-directories-first"
 else if test -e "$(command -v exa)"
     alias ls="exa -a --color=always --icons=always --group-directories-first"
     alias la="exa -aG --color=always --icons=always --group-directories-first"
     alias ll="exa -la --color=always --icons=always --group-directories-first"
     alias lT="exa -aT -L 2 --color=always --icons=always --group-directories-first"
     alias lt="exa -aT -L 1 --color=always --icons=always --group-directories-first"
-    alias l.='exa -a --color=always --icons=always --group-directories-first | grep -E "^\."'
+    alias l.="exa -af --color=always --icons=always --group-directories-first"
 else
+    alias ls="ls -a --color=always --group-directories-first"
     alias l.="ls -A | grep -E '^\.' --group-directories-first"
-    alias la="ls -a --group-directories-first"
-    alias ll="ls -la --group-directories-first"
+    alias la="ls -a --color=always --group-directories-first"
+    alias ll="ls -la --color=always --group-directories-first"
 end
 
-alias grep="grep --color=always"
-# List installed desktops
 alias lidx="ls -al /usr/share/xsessions"
 alias lidw="ls -al /usr/share/wayland-sessions"
 

@@ -13,10 +13,13 @@ local path_to_jar = path_to_jdtls .. "/plugins/org.eclipse.equinox.launcher_1.6.
 -- ~  CMP capabilities
 
 local cmp = require("cmp_nvim_lsp")
-local capabilities = { workspace = { configuration = true },
-  textDocument = { completion = { completionItem = { snippetSupport = true } } }
+local capabilities = {
+  workspace = { configuration = true },
+  textDocument = { completion = { completionItem = { snippetSupport = true } } },
 }
-capabilities = vim.tbl_deep_extend( "force", {},
+capabilities = vim.tbl_deep_extend(
+  "force",
+  {},
   vim.lsp.protocol.make_client_capabilities(),
   cmp.default_capabilities(capabilities) or {},
   capabilities or {}
@@ -24,7 +27,7 @@ capabilities = vim.tbl_deep_extend( "force", {},
 
 -- ~  Keymap
 
-local keymap = function (mode, rhs, lhs, bufopts, desc)
+local keymap = function(mode, rhs, lhs, bufopts, desc)
   bufopts.desc = desc
   vim.keymap.set(mode, rhs, lhs, bufopts)
 end
@@ -35,20 +38,23 @@ local lsp_attach = function(client, bufnr)
   jdtls_setup.add_commands()
 
   Keymaps.LSP(client, bufnr)
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   -- Java extensions provided by jdtls
   keymap("n", "<leader>oi", jdtls.organize_imports, bufopts, "Organize imports")
   keymap("n", "<leader>ev", jdtls.extract_variable, bufopts, "Extract variable")
   keymap("n", "<leader>ec", jdtls.extract_constant, bufopts, "Extract constant")
-  keymap("v", "<leader>em", '<cmd>lua require("jdtls").extract_method(true)<CR>', bufopts, "Extract method" )
+  keymap("v", "<leader>em", '<cmd>lua require("jdtls").extract_method(true)<CR>', bufopts, "Extract method")
 
-  vim.api.nvim_buf_create_user_command(bufnr, "FormatLSP", function(_)
-    vim.lsp.buf.format()
-  end, { desc = "Format current buffer with LSP" })
-  require("lsp_signature").on_attach({ bind = true, padding = "",
-    handler_opts = { border = "rounded" },
-    hint_prefix = "󱄑 "
-  }, bufnr)
+  vim.api.nvim_buf_create_user_command(
+    bufnr,
+    "FormatLSP",
+    function(_) vim.lsp.buf.format() end,
+    { desc = "Format current buffer with LSP" }
+  )
+  require("lsp_signature").on_attach(
+    { bind = true, padding = "", handler_opts = { border = "rounded" }, hint_prefix = "󱄑 " },
+    bufnr
+  )
 end
 
 -- ~  Config
@@ -80,7 +86,7 @@ local config = {
           "org.junit.jupiter.api.Assertions.*",
           "java.util.Objects.requireNonNull",
           "java.util.Objects.requireNonNullElse",
-          "org.mockito.Mockito.*"
+          "org.mockito.Mockito.*",
         },
         filteredTypes = { "com.sun.*", "io.micrometer.shaded.*", "java.awt.*", "jdk.*", "sun.*" },
       },
@@ -92,7 +98,7 @@ local config = {
       },
       -- And search for `interface RuntimeOption`
       -- configuration = { runtimes = { { name = "Java-21", path =  "/path/to/jvm" } } }
-    }
+    },
   },
   cmd = {
     "java",
@@ -103,16 +109,20 @@ local config = {
     "-Dlog.level=ALL",
     "-Xmx4g",
     "--add-modules=ALL-SYSTEM",
-    "--add-opens", "java.base/java.util=ALL-UNNAMED",
-    "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+    "--add-opens",
+    "java.base/java.util=ALL-UNNAMED",
+    "--add-opens",
+    "java.base/java.lang=ALL-UNNAMED",
     "-javaagent:" .. lombok_path,
     -- vim.fn.glob("/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
-    "-jar", path_to_jar,
+    "-jar",
+    path_to_jar,
     -- "/usr/share/java/jdtls/config_linux",
-    "-configuration", path_to_config,
-    "-data", workspace_folder,
+    "-configuration",
+    path_to_config,
+    "-data",
+    workspace_folder,
   },
 }
 
 jdtls.start_or_attach(config)
-

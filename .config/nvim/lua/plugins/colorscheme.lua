@@ -30,7 +30,7 @@ return {
     "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
-    config = function ()
+    config = function()
       require("kanagawa").setup({
         compile = true,
         undercurl = true,
@@ -64,7 +64,7 @@ return {
         theme = "dragon",
         background = { dark = "dragon", light = "lotus" },
       })
-    end
+    end,
   },
 
   -- ~  Oxocarbon

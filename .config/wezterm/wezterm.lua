@@ -21,7 +21,7 @@ Keys.apply_to_config(config)
 
 --  Window UI
 
-config.window_background_opacity = 0.95
+config.window_background_opacity = 1
 config.window_decorations = "RESIZE"
 config.adjust_window_size_when_changing_font_size = false
 config.use_resize_increments = true

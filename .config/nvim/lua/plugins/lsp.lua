@@ -5,7 +5,7 @@ return {
     dependencies = {
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp"
+      "hrsh7th/cmp-nvim-lsp",
     },
     opts = {
       diagnostics = require("config.diagnostics"),
@@ -18,9 +18,9 @@ return {
             completionItem = {
               snippetSupport = true,
               resolveSupport = { properties = { "documentation", "detail", "additionalTextEdits" } },
-            }
-          }
-        }
+            },
+          },
+        },
       },
       servers = {
         lua_ls = {
@@ -34,10 +34,10 @@ return {
                 [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                 [vim.fn.stdpath("config") .. "/lua"] = true,
               },
-              checkThirdParty = false
+              checkThirdParty = false,
             },
             telemetry = { enable = false },
-            hint = { enable = true, setType = true }
+            hint = { enable = true, setType = true },
           },
         },
       },
@@ -54,9 +54,12 @@ return {
 
       local lsp_attach = function(client, bufnr)
         Keymaps.LSP(client, bufnr)
-        vim.api.nvim_buf_create_user_command(bufnr, "FormatLSP", function(_)
-          vim.lsp.buf.format()
-        end, { desc = "Format current buffer with LSP." })
+        vim.api.nvim_buf_create_user_command(
+          bufnr,
+          "FormatLSP",
+          function(_) vim.lsp.buf.format() end,
+          { desc = "Format current buffer with LSP." }
+        )
         if client.resolved_capabilities.code_lens then
           local codelens = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
           vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
@@ -75,13 +78,15 @@ return {
         opts.capabilities or {}
       )
       mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(opts.servers) })
-      mason_lspconfig.setup_handlers({ function(server_name)
-        lspconfig[server_name].setup({
-          capabilities = capabilities,
-          on_attach = lsp_attach,
-          settings = opts.servers[server_name],
-        })
-      end })
+      mason_lspconfig.setup_handlers({
+        function(server_name)
+          lspconfig[server_name].setup({
+            capabilities = capabilities,
+            on_attach = lsp_attach,
+            settings = opts.servers[server_name],
+          })
+        end,
+      })
 
       -- ~  Local LSP settings
 
@@ -92,15 +97,15 @@ return {
         cmd = { "ocamllsp" },
         filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
         root_dir = lspconfig.util.root_pattern(
-          "*.ml"
-          , "*.mli"
-          , "*.opam"
-          , "ocamlformat"
-          , "esy.json"
-          , "package.json"
-          , ".git"
-          , "dune-project"
-          , "dune-workspace"
+          "*.ml",
+          "*.mli",
+          "*.opam",
+          "ocamlformat",
+          "esy.json",
+          "package.json",
+          ".git",
+          "dune-project",
+          "dune-workspace"
         ),
       })
 
@@ -108,7 +113,7 @@ return {
       lspconfig.rust_analyzer.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        settings = { ["rust-analyzer"] = { checkOnSave = { command = "clippy" } } }
+        settings = { ["rust-analyzer"] = { checkOnSave = { command = "clippy" } } },
       })
 
       -- Clangd
@@ -118,22 +123,22 @@ return {
         cmd = { "/usr/bin/clangd" },
         filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
         root_dir = lspconfig.util.root_pattern(
-          ".clangd"
-          , ".clang-tidy"
-          , ".clang-format"
-          , "compile_commands.json"
-          , "compile_flags.txt"
-          , "configure.ac"
-          , ".git"
+          ".clangd",
+          ".clang-tidy",
+          ".clang-format",
+          "compile_commands.json",
+          "compile_flags.txt",
+          "configure.ac",
+          ".git"
         ),
-        single_file_support = true
+        single_file_support = true,
       })
 
       -- Python
       lspconfig.ruff_lsp.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        init_options = { settings = { args = {} } }
+        init_options = { settings = { args = {} } },
       })
 
       -- Bash
@@ -145,7 +150,7 @@ return {
         capabilities = capabilities,
         single_file_support = true,
       })
-    end
+    end,
   },
   {
     "williamboman/mason.nvim",

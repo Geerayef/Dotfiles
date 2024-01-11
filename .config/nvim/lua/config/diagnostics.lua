@@ -30,12 +30,10 @@ return {
         code = d.user_data.lsp.code
       end
 
-      if code then
-        t.message = string.format("%s [%s]", t.message, code):gsub("1. ", "")
-      end
+      if code then t.message = string.format("%s [%s]", t.message, code):gsub("1. ", "") end
 
       return t.message
     end,
-    border = _border
-  }
+    border = _border,
+  },
 }
