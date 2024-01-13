@@ -20,7 +20,10 @@ blue    = "#73A3B7"
 magenta = "#B97490"
 cyan    = "#AFD4DE"
 white   = "#EEEEEE"
-[colors.indexed_colors]
-{ index = 16, color = "#FF8349" }
-{ index = 17, color = "#CB7985" }
+[[colors.indexed_colors]]
+index = 16
+color = "#FF8349"
+[[colors.indexed_colors]]
+index = 17
+color = "#CB7985"
 

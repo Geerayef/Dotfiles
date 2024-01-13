@@ -67,6 +67,13 @@ return {
     end,
   },
 
+  -- ~  Material
+  -- {
+  --    "marko-cerovac/material.nvim",
+  --    lazy = false,
+  --    priority = 1000,
+  -- },
+
   -- ~  Oxocarbon
   -- {
   --   "nyoom-engineering/oxocarbon.nvim",

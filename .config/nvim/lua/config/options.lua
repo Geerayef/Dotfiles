@@ -10,6 +10,7 @@ o.shortmess:append("I")
 cmd.syntax("on")
 cmd.filetype("plugin", "indent", "on")
 o.fileformats = "unix"
+o.fileencoding = "utf-8"
 o.undofile = true
 o.formatoptions:append("j")
 o.nrformats:remove("octal")
@@ -62,6 +63,7 @@ o.splitright = true
 o.splitbelow = true
 o.scrolloff = 4
 o.sidescrolloff = 4
+o.foldenable = true
 
 -- ~  Search
 if vim.fn.executable("rg") == 1 then o.grepprg = "rg --vimgrep --no-heading --smart-case" end

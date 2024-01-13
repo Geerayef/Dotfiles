@@ -4,9 +4,9 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap.set
 keymap("x", "<leader>P", '"_dP', { noremap = true })
-keymap("n", "<leader>y", '"+y' , { noremap = true })
-keymap("n", "<leader>Y", '"+Y' , { noremap = true })
-keymap("v", "<leader>y", '"+y' , { noremap = true })
+keymap("n", "<leader>y", '"+y', { noremap = true })
+keymap("n", "<leader>Y", '"+Y', { noremap = true })
+keymap("v", "<leader>y", '"+y', { noremap = true })
 
 -- ---------------------------------------- --
 
@@ -18,7 +18,7 @@ local cmd = vim.cmd
 --  File
 cmd.syntax("on")
 cmd.filetype("plugin", "indent", "on")
-vim.cmd{ cmd = "set", args = { "filetype=help" } }
+vim.cmd({ cmd = "set", args = { "filetype=help" } })
 o.fileformats = "unix"
 o.undofile = false
 
