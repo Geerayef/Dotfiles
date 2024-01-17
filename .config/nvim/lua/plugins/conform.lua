@@ -16,12 +16,12 @@ return {
       python = { "ruff_format" },
       ocaml = { "ocamlformat" },
       fish = { "fish_indent" },
-      sh = { "shellcheck" },
-      bash = { "shellcheck" },
+      bash = { "shfmt" },
+      sh = { "shfmt" },
     },
     format_on_save = { timeout_ms = 500, lsp_fallback = true },
     formatters = {
-      -- shfmt = { prepend_args = { "-i", "2" } },
+      shfmt = { prepend_args = { "-i", "2", "-s" } },
     },
   },
 }

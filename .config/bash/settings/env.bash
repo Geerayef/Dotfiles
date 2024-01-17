@@ -13,8 +13,8 @@ export RUFF_CACHE_DIR="$HOME/.cache/ruff"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 
 # General settings
-[[ -n "${BASH_VERSION}" || "$SHELL" = bash ]] && export HISTFILE="$BASHDOTDIR/history"
-[[ -n "${ZSH_NAME}" || "$SHELL" = zsh ]] && export HISTFILE="$ZDOTDIR/history"
+[[ -n ${BASH_VERSION} || $SHELL == bash ]] && export HISTFILE="$BASHDOTDIR/history"
+[[ -n ${ZSH_NAME} || $SHELL == zsh ]] && export HISTFILE="$ZDOTDIR/history"
 [[ -e "$(command -v nvim)" ]] && neovim="$(which nvim)"
 export TERM="wezterm"
 export EDITOR="$neovim"
@@ -33,24 +33,24 @@ export FZF_DEFAULT_OPTS='--scheme=path --cycle --layout=reverse --border --scrol
 
 # shellcheck disable=SC1091
 {
-    # Rust: Cargo
-    [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
-    # Haskell: ghcup
-    [[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env"
-    # OCaml: opam
-    if [[ "$SHELL" = "zsh" ]] ; then
-        [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
-    elif [[ "$SHELL" = "bash" ]] ; then
-        [[ ! -r "$HOME/.opam/opam-init/init.sh" ]] || source "$HOME/.opam/opam-init/init.sh" > /dev/null 2> /dev/null
-    else
-        if [[ "$SHELL" = "fish" ]] ; then echo "~~~~~ Why is your {Z, BA}SH env getting sourced if your SHELL = fish?"; fi
-    fi
-    # Python: pyenv
-    if [[ -e $HOME/.pyenv ]] ; then
-        (
-        export PYENV_ROOT="$HOME/.pyenv"
-        command -v pyenv >/dev/null || export PATH="$PATH:$PYENV_ROOT/bin"
-        eval "$(pyenv init -)"
+  # Rust: Cargo
+  [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+  # Haskell: ghcup
+  [[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env"
+  # OCaml: opam
+  if [[ $SHELL == "zsh" ]]; then
+    [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" >/dev/null 2>/dev/null
+  elif [[ $SHELL == "bash" ]]; then
+    [[ ! -r "$HOME/.opam/opam-init/init.sh" ]] || source "$HOME/.opam/opam-init/init.sh" >/dev/null 2>/dev/null
+  else
+    if [[ $SHELL == "fish" ]]; then echo "~~~~~ Why is your {Z, BA}SH env getting sourced if your SHELL = fish?"; fi
+  fi
+  # Python: pyenv
+  if [[ -e $HOME/.pyenv ]]; then
+    (
+      export PYENV_ROOT="$HOME/.pyenv"
+      command -v pyenv >/dev/null || export PATH="$PATH:$PYENV_ROOT/bin"
+      eval "$(pyenv init -)"
     )
-    fi
+  fi
 }

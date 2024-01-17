@@ -10,6 +10,6 @@
 
 [[ -d "$HOME/linuxbrew/" ]] && export PATH="$HOME/linuxbrew/.linuxbrew/bin/" && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-[[ -d "$ANDROID_HOME" ]] && export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
+[[ -d $ANDROID_HOME ]] && export PATH="$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH"
 
-[[ -d "$JAVA_HOME" ]] && export PATH="$JAVA_HOME:$PATH"
+[[ -d $JAVA_HOME ]] && export PATH="$JAVA_HOME:$PATH"

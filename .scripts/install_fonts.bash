@@ -8,7 +8,7 @@ printf "~~~~~ GitHub: ryanoasis/nerd-fonts\n"
 # ~  Variables
 
 DOWNLOAD_FONT_DIR=$HOME/Downloads/Fonts
-if [[ -d $HOME/Downloads/Fonts ]] ; then
+if [[ -d $HOME/Downloads/Fonts ]]; then
   printf "~~~~~ Found ~/Downloads/Fonts/. Continue\n"
 else
   mkdir -p "$DOWNLOAD_FONT_DIR"
@@ -41,13 +41,13 @@ printf "~~~~~ Done: Download.\n"
 # -------------------------------------------------------------------------------- #
 
 printf "~~~~~ [INFO]: Uncompressing...\n"
-tar -xf "$DOWNLOAD_FONT_DIR/FiraCode.tar.xz"      -C "$DOWNLOAD_FONT_DIR"
+tar -xf "$DOWNLOAD_FONT_DIR/FiraCode.tar.xz" -C "$DOWNLOAD_FONT_DIR"
 tar -xf "$DOWNLOAD_FONT_DIR/JetBrainsMono.tar.xz" -C "$DOWNLOAD_FONT_DIR"
-tar -xf "$DOWNLOAD_FONT_DIR/Hasklig.tar.xz"       -C "$DOWNLOAD_FONT_DIR"
-tar -xf "$DOWNLOAD_FONT_DIR/Iosevka.tar.xz"       -C "$DOWNLOAD_FONT_DIR"
+tar -xf "$DOWNLOAD_FONT_DIR/Hasklig.tar.xz" -C "$DOWNLOAD_FONT_DIR"
+tar -xf "$DOWNLOAD_FONT_DIR/Iosevka.tar.xz" -C "$DOWNLOAD_FONT_DIR"
 printf "~~~~~ Done: Uncompress.\n"
 
-if [[ -d /usr/share/fonts/JetBrainsNF ]] ; then
+if [[ -d /usr/share/fonts/JetBrainsNF ]]; then
   sudo mv "$DOWNLOAD_FONT_DIR/JetBrainsMono*.ttf" /usr/share/fonts/JetBrainsNF
   printf "~~~~~ [INFO] Moved JetBrains to /usr/share/fonts/JetBrainsNF\n"
 else
@@ -57,7 +57,7 @@ else
   printf "~~~~~ [INFO] Moved JetBrains to /usr/share/fonts/JetBrainsNF\n"
 fi
 
-if [[ -d /usr/share/fonts/FiraCodeNF ]] ; then
+if [[ -d /usr/share/fonts/FiraCodeNF ]]; then
   sudo mv "$DOWNLOAD_FONT_DIR/FiraCode*.ttf" /usr/share/fonts/FiraCodeNF
   printf "~~~~~ [INFO] Moved FiraCode to /usr/share/fonts/FiraCodeNF\n"
 else
@@ -70,7 +70,7 @@ fi
 [[ ! -d /usr/share/fonts/TTF ]] && sudo mkdir /usr/share/fonts/TTF
 printf "~~~~~ [INFO] Created /usr/share/fonts/TTF"
 
-if [[ -d /usr/share/fonts/TTF/Hasklug ]] ; then
+if [[ -d /usr/share/fonts/TTF/Hasklug ]]; then
   sudo mv "$DOWNLOAD_FONT_DIR/Hasklug*.otf" /usr/share/fonts/TTF/Hasklug
   printf "~~~~~ [INFO] Moved Hasklug to /usr/share/fonts/TTF/Hasklug\n"
 else
@@ -80,7 +80,7 @@ else
   printf "~~~~~ [INFO] Moved Hasklug to /usr/share/fonts/TTF/Hasklug\n"
 fi
 
-if [[ -d /usr/share/fonts/TTF/Iosevka ]] ; then
+if [[ -d /usr/share/fonts/TTF/Iosevka ]]; then
   sudo mv "$DOWNLOAD_FONT_DIR/Iosevka*.ttf" /usr/share/fonts/TTF/Iosevka
   printf "~~~~~ [INFO] Moved Iosevka to /usr/share/fonts/TTF/Iosevka\n"
 else

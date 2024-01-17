@@ -6,7 +6,8 @@
 [[ ! -d /etc/profile.d ]] && mkdir /etc/profile.d
 [[ ! -f /etc/profile.d/bashdotdir.sh ]] && touch /etc/profile.d/bashdotdir.sh
 
-bashdotdir=$(cat << EOF
+bashdotdir=$(
+  cat <<EOF
 # shellcheck shell=bash
 
 # /etc/profile.d/bashdotdir.sh
@@ -17,4 +18,4 @@ bashdotdir=$(cat << EOF
 EOF
 )
 
-echo "$bashdotdir" > /etc/profile.d/bashdotdir.sh
+echo "$bashdotdir" >/etc/profile.d/bashdotdir.sh
