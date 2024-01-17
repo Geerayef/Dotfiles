@@ -45,7 +45,7 @@ exists() { type "$1" >/dev/null 2>&1 ;}
 pkill() { command pkill "$@" >/dev/null 2>&1 ;}
 prompt() { clear; printf "%b" "$@"; cfg=$(stty -g); stty raw -echo; head -c 1; stty "$cfg" ;}
 pidkill() {
-    if [ -f "$1" ]; then
+    if [[ -f "$1" ]]; then
         PID="$(cat "$1" 2>/dev/null)" || return 1
         kill "$PID" >/dev/null 2>&1
         RET=$?
@@ -56,19 +56,19 @@ pidkill() {
 }
 
 start_preview() {
-    if [ -e "${TMUX%%,*}" ] && tmux -V | grep -q '[ -][3456789]\.'; then
+    if [[ -e "${TMUX%%,*}" ]] && tmux -V | grep -q '[ -][3456789]\.'; then
         NNN_TERMINAL=tmux
         exists mpv && tmux display -p '#{client_termfeatures}' | grep -q 'sixel' && ENVVARS+=("NNN_PREVIEWVIDEO=sixel")
-    elif [ -n "$WEZTERM_PANE" ]; then
+    elif [[ -n "$WEZTERM_PANE" ]]; then
         NNN_TERMINAL=wezterm
         exists mpv && ENVVARS+=("NNN_PREVIEWVIDEO=kitty")
     else
         NNN_TERMINAL="${NNN_TERMINAL:-alacritty}"
     fi
 
-    if [ -z "$NNN_SPLIT" ] && [ $(($(tput lines) * 2)) -gt "$(tput cols)" ]; then
+    if [[ -z "$NNN_SPLIT" ]] && [[ $(($(tput lines) * 2)) -gt "$(tput cols)" ]]; then
         NNN_SPLIT='h'
-    elif [ "$NNN_SPLIT" != 'h' ]; then
+    elif [[ "$NNN_SPLIT" != 'h' ]]; then
         NNN_SPLIT='v'
     fi
 
@@ -77,17 +77,18 @@ start_preview() {
         tmux)
             # tmux splits are inverted
             ENVVARS=("${ENVVARS[@]/#/-e}")
-            if [ "$NNN_SPLIT" = "v" ]; then split="h"; else split="v"; fi
+            if [[ "$NNN_SPLIT" = "v" ]]; then split="h"; else split="v"; fi
             tmux split-window -l"$NNN_SPLITSIZE"% "${ENVVARS[@]}" -d"$split" -p"$NNN_SPLITSIZE" "$0" "$1"
             ;;
         wezterm)
             export "${ENVVARS[@]}"
-            if [ "$NNN_SPLIT" = "v" ]; then split="--horizontal"; else split="--bottom"; fi
+            if [[ "$NNN_SPLIT" = "v" ]]; then split="--horizontal"; else split="--bottom"; fi
             wezterm cli split-pane --cwd "$PWD" $split --percent "$NNN_SPLITSIZE" "$0" "$1" >/dev/null
             wezterm cli activate-pane-direction Prev
             ;;
         alacritty)
-            alacritty "$1" >/dev/null
+            if [[ "$NNN_SPLIT" = "v" ]]; then split="h"; else split="v"; fi
+            if exists tmux; then tmux split-window -l"NNN_SPLITSIZE" -d"$split" -p"$NNN_SPLITSIZE" alacritty "$1" >/dev/null ; fi
             ;;
     esac
 }
@@ -95,13 +96,13 @@ start_preview() {
 toggle_preview() {
     export "${ENVVARS[@]}"
     if pidkill "$FIFOPID"; then
-        [ -p "$NNN_PPIPE" ] && printf "0" > "$NNN_PPIPE"
+        [[ -p "$NNN_PPIPE" ]] && printf "0" > "$NNN_PPIPE"
         pidkill "$PREVIEWPID"
-        if [ -n "$QLPATH" ] && stat "$1"; then
+        if [[ -n "$QLPATH" ]] && stat "$1"; then
             f="$(wslpath -w "$1")" && "$QLPATH" "$f" &
         fi
     else
-        [ -p "$NNN_PPIPE" ] && printf "1" > "$NNN_PPIPE"
+        [[ -p "$NNN_PPIPE" ]] && printf "1" > "$NNN_PPIPE"
         start_preview "$1" "$QLPATH"
     fi
 }
@@ -115,7 +116,7 @@ fifo_pager() {
     printf "%s" "$!" > "$PREVIEWPID"
     (
         exec > "$FIFOPATH"
-        if [ "$cmd" = "pager" ]; then
+        if [[ "$cmd" = "pager" ]] ; then
             if exists bat; then
                 bat --terminal-width="$cols" "$@" &
             else
@@ -212,7 +213,7 @@ handle_ext() {
                 fifo_pager bsdtar -tvf "$1"
             fi ;;
         *)
-            if [ "$3" = "bin" ]; then
+            if [[ "$3" = "bin" ]] ; then
                 fifo_pager print_bin_info "$1"
             else
                 fifo_pager pager "$1"
@@ -227,15 +228,15 @@ preview_file() {
     encoding="$(file -bL --mime-encoding -- "$1")"
     mimetype="$(file -bL --mime-type -- "$1")"
     ext="${1##*.}"
-    [ -n "$ext" ] && ext="$(printf "%s" "${ext}" | tr '[:upper:]' '[:lower:]')"
+    [[ -n "$ext" ]] && ext="$(printf "%s" "${ext}" | tr '[:upper:]' '[:lower:]')"
     lines=$(tput lines)
     cols=$(tput cols)
 
     # Otherwise, falling back to the defaults.
-    if [ -d "$1" ]; then
+    if [[ -d "$1" ]]; then
         cd "$1" || return
-        if [ "$NNN_ICONLOOKUP" -ne 0 ] && [ -f "$(dirname "$0")"/.iconlookup ]; then
-            [ "$NNN_SPLIT" = v ] && BSTR="\n"
+        if [[ "$NNN_ICONLOOKUP" -ne 0 ]] && [[ -f "$(dirname "$0")"/.iconlookup ]]; then
+            [[ "$NNN_SPLIT" = v ]] && BSTR="\n"
             # shellcheck disable=SC2012
             ls -F --group-directories-first | head -n "$((lines - 3))" | "$(dirname "$0")"/.iconlookup -l "$cols" -B "$BSTR" -b " "
         elif exists eza; then
@@ -248,7 +249,7 @@ preview_file() {
             fifo_pager ls -laF --group-directories-first --color=always
         fi
         cd ..
-    elif [ "${encoding#*)}" = "binary" ]; then
+    elif [[ "${encoding#*)}" = "binary" ]]; then
         handle_mime "$1" "$mimetype" "$ext" "bin"
     else
         handle_mime "$1" "$mimetype" "$ext"
@@ -256,19 +257,19 @@ preview_file() {
 }
 
 generate_preview() {
-    if [ -n "$QLPATH" ] && stat "$3"; then
+    if [[ -n "$QLPATH" ]] && stat "$3"; then
         f="$(wslpath -w "$3")" && "$QLPATH" "$f" &
-    elif [ -n "$NNN_PREVIEWVIDEO" ] && [[ "$4" == +(gif|video) ]]; then
-        [ "$4" = "video" ] && args=(--start=10% --length=4) || args=()
+    elif [[ -n "$NNN_PREVIEWVIDEO" ]] && [[ "$4" == +(gif|video) ]]; then
+        [[ "$4" = "video" ]] && args=(--start=10% --length=4) || args=()
         video_preview "$1" "$2" "$3" "${args[@]}" && return
-    elif [ ! -f "$NNN_PREVIEWDIR/$3.jpg" ] || [ -n "$(find -L "$3" -newer "$NNN_PREVIEWDIR/$3.jpg")" ]; then
+    elif [[ ! -f "$NNN_PREVIEWDIR/$3.jpg" ]] || [[ -n "$(find -L "$3" -newer "$NNN_PREVIEWDIR/$3.jpg")" ]]; then
         mkdir -p "$NNN_PREVIEWDIR/${3%/*}"
         case $4 in
             audio) ffmpeg -i "$3" -filter_complex "scale=iw*min(1\,min($NNN_PREVIEWWIDTH/iw\,ih)):-1" "$NNN_PREVIEWDIR/$3.jpg" -y ;;
             epub) gnome-epub-thumbnailer "$3" "$NNN_PREVIEWDIR/$3.jpg" ;;
             font) fontpreview -i "$3" -o "$NNN_PREVIEWDIR/$3.jpg" ;;
             gif) 
-                if [ -n "$NNN_PREVIEWVIDEO" ]; then
+                if [[ -n "$NNN_PREVIEWVIDEO" ]]; then
                     video_preview "$1" "$2" "$3" && return
                 else
                     image_preview "$1" "$2" "$3" && return
@@ -290,7 +291,7 @@ generate_preview() {
             video) video_preview "$1" "$2" "$3" && return ;;
         esac
     fi
-    if [ -f "$NNN_PREVIEWDIR/$3.jpg" ]; then
+    if [[ -f "$NNN_PREVIEWDIR/$3.jpg" ]]; then
         image_preview "$1" "$2" "$NNN_PREVIEWDIR/$3.jpg"
     else
         fifo_pager print_bin_info "$3"
@@ -300,7 +301,7 @@ generate_preview() {
 image_preview() {
     clear
     exec >/dev/tty
-    if [ "$NNN_TERMINAL" = "wezterm" ] && [[ "$NNN_PREVIEWIMGPROG" == +(|imgcat) ]]; then
+    if [[ "$NNN_TERMINAL" = "wezterm" ]] && [[ "$NNN_PREVIEWIMGPROG" == +(|imgcat) ]]; then
         wezterm imgcat "$3" &
     elif exists catimg && [[ "$NNN_PREVIEWIMGPROG" == +(|catimg) ]]; then
         catimg "$3" &
@@ -315,7 +316,7 @@ image_preview() {
 video_preview() {
     clear
     exec >/dev/tty
-    if [ -n "$NNN_PREVIEWVIDEO" ]; then
+    if [[ -n "$NNN_PREVIEWVIDEO" ]]; then
         mpv --no-config --really-quiet --vo="$NNN_PREVIEWVIDEO" --profile=sw-fast --loop-file --no-audio "$4" "$3" &
     else
         ffmpegthumbnailer -m -s0 -i "$3" -o "$NNN_PREVIEWDIR/$3.jpg" || rm "$NNN_PREVIEWDIR/$3.jpg" &
@@ -331,9 +332,9 @@ winch_handler() {
 
 preview_fifo() {
     while read -r selection; do
-        if [ -n "$selection" ]; then
+        if [[ -n "$selection" ]] ; then
             pidkill "$PREVIEWPID"
-            [ "$selection" = "close" ] && break
+            [[ "$selection" = "close" ]] && break
             preview_file "$selection"
             printf "%s" "$selection" > "$CURSEL"
         fi
@@ -343,7 +344,7 @@ preview_fifo() {
     pkill -P "$$"
 }
 
-if [ "$PREVIEW_MODE" -eq 1 ] 2>/dev/null; then
+if [[ "$PREVIEW_MODE" -eq 1 ]] 2>/dev/null; then
     preview_file "$PWD/$1"
     preview_fifo & WAITPID=$!
     printf "%s" "$!" > "$FIFOPID"
@@ -355,7 +356,7 @@ if [ "$PREVIEW_MODE" -eq 1 ] 2>/dev/null; then
     done
     exit 0
 else
-    if [ ! -r "$NNN_FIFO" ]; then
+    if [[ ! -r "$NNN_FIFO" ]]; then
         prompt "No FIFO available! (\$NNN_FIFO='$NNN_FIFO')\nPlease read Usage in '$0'."
     else
         toggle_preview "$1" &

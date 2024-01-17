@@ -17,6 +17,7 @@ return {
       ocaml = { "ocamlformat" },
       fish = { "fish_indent" },
       sh = { "shellcheck" },
+      bash = { "shellcheck" },
     },
     format_on_save = { timeout_ms = 500, lsp_fallback = true },
     formatters = {

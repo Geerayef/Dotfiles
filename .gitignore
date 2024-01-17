@@ -8,3 +8,4 @@ Dotfiles/
 .config/tmux/plugins
 .config/nnn/.selection
 .config/bash/history
+.config/btop/btop.log

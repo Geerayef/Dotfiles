@@ -14,7 +14,7 @@ set -l SOCK 0B
 set -l OTHR 4B
 
 set -gx NNN_FIFO "/tmp/nnn.fifo"
-set -gx NNN_TERMINAL "$TERM"
+# set -gx NNN_TERMINAL "$TERM"
 set -gx NNN_PAGER "$PAGER"
 set -gx NNN_OPTS dEH
 set -gx NNN_PLUG "p:-preview_tui_custom.bash"
