@@ -71,7 +71,7 @@ symbol = ""
 
 [lua]
 disabled = false
-format = '[$symbol($version)]($style)'
+format = '[$symbol ($version)]($style)'
 symbol = "🌙"
 version_format = "v${raw}"
 style = "bold blue"

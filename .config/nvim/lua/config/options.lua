@@ -50,8 +50,8 @@ o.signcolumn = "yes"
 o.ruler = false
 o.pumblend = 0
 o.wildmenu = true
-o.wildmode = "longest,full"
-o.wildoptions = "pum"
+o.wildmode = "longest:full"
+o.wildoptions = "fuzzy,pum"
 o.list = true
 
 -- ~  Behaviour

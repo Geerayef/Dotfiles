@@ -1,5 +1,5 @@
 local has_kanagawa, kanagawa = pcall(require, "kanagawa.colors")
-if not has_kanagawa then print("~~~~~ [INFO]: kanagawa not found.") end
+if not has_kanagawa then vim.notify("~~~~~ [INFO]: kanagawa not found.") end
 kanagawa = kanagawa.setup({ theme = "dragon" })
 local palette = kanagawa.palette
 local theme = kanagawa.theme
@@ -87,7 +87,7 @@ local config = {
 
 local status_c = function(component) table.insert(config.sections.lualine_c, component) end
 local status_x = function(component) table.insert(config.sections.lualine_x, component) end
-local tab_c = function(component) table.insert(config.tabline.lualine_c, component) end
+-- local tab_c = function(component) table.insert(config.tabline.lualine_c, component) end
 local tab_x = function(component) table.insert(config.tabline.lualine_x, component) end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
@@ -173,29 +173,6 @@ tab_x({
   tabs_color = { active = "lualine_b_normal", inactive = "lualine_b_inactive" },
   show_modified_status = true,
   symbols = { modified = " ●" },
-})
-
-tab_c({
-  "buffers",
-  cond = function()
-    vim.opt.showtabline = 1
-    return vim.fn.tabpagenr("$") > 1
-  end,
-  show_modified_status = false,
-  mode = 1,
-  max_length = vim.o.columns / 2,
-  filetype_names = {
-    TelescopePrompt = "Telescope",
-    dashboard = "Dashboard",
-    fzf = "FZF",
-    alpha = "Alpha",
-    packer = "Packer",
-    lazy = "Lazy",
-    fugitive = "Fugitive",
-  },
-
-  buffers_color = { active = "lualine_b_normal", inactive = "lualine_b_inactive" },
-  symbols = { modified = " ●", alternate_file = "# ", directory = " " },
 })
 
 -- ~  --------------------------------------------------------------------------------  ~ --

@@ -1,7 +1,6 @@
--- ~  OCaml merlin integration
+-- ~  OCaml Merlin integration
 
 local keymap = vim.api.nvim_buf_set_keymap
-
 keymap(
   0,
   "n",
@@ -16,3 +15,5 @@ local merlin_path = vim.g.opamshare .. "/merlin/vim"
 vim.opt.rtp:append(ocp_indent_path)
 vim.opt.rtp:append(merlin_path)
 vim.cmd({ cmd = "helptags", args = { vim.g.opamshare .. "/merlin/vim/doc" } })
+
+vim.opt.shiftwidth = 2

@@ -1,9 +1,7 @@
 local wezterm = require("wezterm")
 local config = {}
 
-if wezterm.config_builder then
-    config = wezterm.config_builder()
-end
+if wezterm.config_builder then config = wezterm.config_builder() end
 
 -- ~ ----------------------------------------------------------------- ~ --
 
@@ -42,17 +40,17 @@ config.color_scheme = "Ayu Dark (Gogh)"
 
 config.harfbuzz_features = { "zero", "ss01", "cv05" }
 config.font_dirs = {
-    "/usr/share/fonts/FiraCodeNF",
-    "/usr/share/fonts/JetBrainsNF",
-    "/usr/share/fonts/TTF",
+  "/usr/share/fonts/FiraCodeNF",
+  "/usr/share/fonts/JetBrainsNF",
+  "/usr/share/fonts/TTF",
 }
-config.font = wezterm.font_with_fallback {
-    { family = "FiraCode Nerd Font Mono Medium" },
-    { family = "JetBrainsMono Nerd Font Mono" },
-    { family = "Hasklug Nerd Font Mono Medium" },
-    { family = "Symbols Nerd Font" },
-    { family = "Symbols Nerd Font Mono" },
-}
+config.font = wezterm.font_with_fallback({
+  { family = "FiraCode Nerd Font Mono Medium" },
+  { family = "JetBrainsMono Nerd Font Mono" },
+  { family = "Hasklug Nerd Font Mono Medium" },
+  { family = "Symbols Nerd Font" },
+  { family = "Symbols Nerd Font Mono" },
+})
 config.font_size = 16
 config.line_height = 1
 

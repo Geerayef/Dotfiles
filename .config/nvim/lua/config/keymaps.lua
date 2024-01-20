@@ -44,17 +44,23 @@ keymap("t", "<Esc>", "<C-\\><C-n>", { desc = "Terminal mode: Escape" })
 
 -- ~  Plugin keymaps
 
+-- Arena
+keymap("n", "<leader><space>", "<cmd>ArenaToggle<CR>", F.KeymapArgs({ desc = "[ ] Arena buffers" }))
+
+-- Oil
+keymap("n", "<leader>f", "<cmd>Oil<CR>", F.KeymapArgs({ desc = "Oil [F]ile Browser" }))
+
 -- Telescope
 keymap("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", F.KeymapArgs({ desc = "[?] Recent files" }))
 keymap("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", F.KeymapArgs({ desc = "[/] Search buffer" }))
-keymap("n", "<leader>f", "<cmd>Telescope file_browser<CR>", F.KeymapArgs({ desc = "Telescope [F]ile Browser" }))
-keymap("n", "<leader>tb", "<cmd>Telescope builtin<CR>", F.KeymapArgs({ desc = "Telescope [B]uiltin" }))
+-- keymap("n", "<leader>f", "<cmd>Telescope file_browser<CR>", F.KeymapArgs({ desc = "Telescope [F]ile Browser" }))
+keymap("n", "<leader>tb", "<cmd>Telescope builtin<CR>", F.KeymapArgs({ desc = "[T]elescope [B]uiltin" }))
 keymap("n", "<leader>sf", "<cmd>Telescope find_files<CR>", F.KeymapArgs({ desc = "Telescope [S]earch [F]iles" }))
 keymap("n", "<leader>sh", "<cmd>Telescope help_tags<CR>", F.KeymapArgs({ desc = "Telescope [S]earch [H]elp" }))
 keymap("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", F.KeymapArgs({ desc = "Telescope [S]earch [W]ord" }))
 keymap("n", "<leader>sg", "<cmd>Telescope live_grep<CR>", F.KeymapArgs({ desc = "Telescope [S]earch [G]rep" }))
 keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", F.KeymapArgs({ desc = "Telescope [S]earch [D]iagnostics" }))
-keymap("n", "<leader><space>", "<cmd>Telescope buffers<CR>", F.KeymapArgs({ desc = "[ ] Opened buffers" }))
+-- keymap("n", "<leader><space>", "<cmd>Telescope buffers<CR>", F.KeymapArgs({ desc = "[ ] Opened buffers" }))
 
 -- Gitsigns
 keymap(
@@ -64,10 +70,10 @@ keymap(
   F.KeymapArgs({ desc = "[G]it [L]ine [B]lame" })
 )
 -- Fugitive
-keymap("n", "<leader>G", "<cmd>Git<CR>", F.KeymapArgs({ desc = "[G]it [s]tatus." }))
-keymap("n", "<leader>gab", "<cmd>Git add %<CR>", F.KeymapArgs({ desc = "[G]it [a]dd." }))
-keymap("n", "<leader>gpl", "<cmd>Git pull<CR>", F.KeymapArgs({ desc = "[G]it [p]u[l]l." }))
-keymap("n", "<leader>gps", "<cmd>Git push<CR>", F.KeymapArgs({ desc = "[G]it [p]u[s]h." }))
+keymap("n", "<leader>G", "<cmd>Git<CR>", F.KeymapArgs({ desc = "[G]it [s]tatus" }))
+keymap("n", "<leader>gab", "<cmd>Git add %<CR>", F.KeymapArgs({ desc = "[G]it [a]dd [b]uffer" }))
+keymap("n", "<leader>gpl", "<cmd>Git pull<CR>", F.KeymapArgs({ desc = "[G]it [p]u[l]l" }))
+keymap("n", "<leader>gps", "<cmd>Git push<CR>", F.KeymapArgs({ desc = "[G]it [p]u[s]h" }))
 
 -- Diagnostic keymaps
 keymap("n", "<leader>dn", vim.diagnostic.goto_next, F.KeymapArgs({ desc = "[D]iagnostic [N]ext" }))
@@ -118,5 +124,21 @@ Keymaps.LSP = function(_, bufnr)
   keymap("n", "K", lspbuf.hover, { buffer = bufnr, desc = "Hover Documentation" })
   keymap("n", "<C-k>", lspbuf.signature_help, { buffer = bufnr, desc = "Signature Documentation" })
 end
+
+Keymaps.TS = {
+  init_selection = "<C-space>",
+  scope_incremental = "<C-space>",
+  node_decremental = "<C-S><space>",
+  ["fo"] = "@function.outer",
+  ["fi"] = "@function.inner",
+  ["co"] = "@class.outer",
+  ["ci"] = "@class.inner",
+  goto_next_start = { ["]f"] = "@function.outer", ["]]"] = "@class.outer" },
+  goto_next_end = { ["]F"] = "@function.outer", ["]["] = "@class.outer" },
+  goto_previous_start = { ["[f"] = "@function.outer", ["[["] = "@class.outer" },
+  goto_previous_end = { ["[F"] = "@function.outer", ["[]"] = "@class.outer" },
+  swap_next = { ["<leader>snp"] = "@parameter.inner" },
+  swap_previous = { ["<leader>spp"] = "@parameter.inner" },
+}
 
 return Keymaps
