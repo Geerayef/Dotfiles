@@ -1,7 +1,7 @@
 local M = {}
-local kanagawaline = {}
 
 M.setup = function(theme)
+  local kanagawaline = {}
   kanagawaline.normal = {
     a = { bg = theme.syn.fun, fg = theme.ui.bg_m3 },
     b = { bg = theme.diff.change, fg = theme.syn.fun },

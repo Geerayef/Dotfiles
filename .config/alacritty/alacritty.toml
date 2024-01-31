@@ -5,7 +5,7 @@ live_config_reload = true
 #ipc_socket = true
 
 [env]
-TERM = "alacritty"
+CURRENT_TERM = "alacritty"
 
 [window]
 dimensions                = { columns = 0, lines = 0 }
@@ -26,11 +26,11 @@ resize_increments         = false
 #multiplier = 3
 
 [font]
-normal              = { family = "Hasklug Nerd Font Mono", style = "Medium" }
+normal              = { family = "Hasklug Nerd Font Mono", style = "Regular" }
 bold                = { family = "Hasklug Nerd Font Mono", style = "Bold" }
 italic              = { family = "Hasklug Nerd Font Mono", style = "LightItalic" }
 bold_italic         = { family = "Hasklug Nerd Font Mono", style = "BoldItalic" }
-size                = 16.0
+size                = 14.0
 offset              = { x = 0, y = 0 }
 glyph_offset        = { x = 0, y = 0 }
 builtin_box_drawing = true

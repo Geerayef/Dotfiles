@@ -1,7 +1,7 @@
 local o = vim.opt
 local cmd = vim.cmd
 
-F.disable_builtin()
+F.DisableBuiltin()
 
 o.shell = "/usr/bin/fish"
 o.shortmess:append("I")

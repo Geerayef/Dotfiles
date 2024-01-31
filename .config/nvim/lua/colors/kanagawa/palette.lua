@@ -7,7 +7,7 @@ return {
   carpYellow = "#E6C384",
   crystalBlue = "#7E9CD8",
   dragonAqua = "#8EA4A2",
-  dragonAsh = "#737c73",
+  dragonAsh = "#737C73",
   dragonBlack0 = "#0D0C0C",
   dragonBlack1 = "#12120F",
   dragonBlack2 = "#1D1C19",

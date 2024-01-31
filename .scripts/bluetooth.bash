@@ -56,7 +56,7 @@ toggle_scan() {
     bluetoothctl scan off
     main_menu
   else
-    bluetoothctl scan on &
+    bluetoothctl scan on
     echo "Scanning..."
     sleep 5
     main_menu

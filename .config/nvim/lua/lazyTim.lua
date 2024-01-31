@@ -10,16 +10,11 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-
-local status, lazy = pcall(require, "lazy")
-if not status then return end
-
 local opts = {
   defaults = { version = "*" },
-  dev = { path = "~/Programming", patterns = {}, fallback = false },
+  dev = { path = "~/Software", patterns = {}, fallback = false },
   checker = { enabled = false },
   change_detection = { notify = false },
   performance = { rtp = { disabled_plugins = { "tutor" } } },
 }
-
-lazy.setup("plugins", opts)
+require("lazy").setup("plugins", opts)

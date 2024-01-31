@@ -53,14 +53,12 @@ keymap("n", "<leader>f", "<cmd>Oil<CR>", F.KeymapArgs({ desc = "Oil [F]ile Brows
 -- Telescope
 keymap("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", F.KeymapArgs({ desc = "[?] Recent files" }))
 keymap("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", F.KeymapArgs({ desc = "[/] Search buffer" }))
--- keymap("n", "<leader>f", "<cmd>Telescope file_browser<CR>", F.KeymapArgs({ desc = "Telescope [F]ile Browser" }))
 keymap("n", "<leader>tb", "<cmd>Telescope builtin<CR>", F.KeymapArgs({ desc = "[T]elescope [B]uiltin" }))
-keymap("n", "<leader>sf", "<cmd>Telescope find_files<CR>", F.KeymapArgs({ desc = "Telescope [S]earch [F]iles" }))
+keymap("n", "<leader>sf", "<cmd>Telescope fd<CR>", F.KeymapArgs({ desc = "Telescope [S]earch [F]iles" }))
 keymap("n", "<leader>sh", "<cmd>Telescope help_tags<CR>", F.KeymapArgs({ desc = "Telescope [S]earch [H]elp" }))
 keymap("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", F.KeymapArgs({ desc = "Telescope [S]earch [W]ord" }))
 keymap("n", "<leader>sg", "<cmd>Telescope live_grep<CR>", F.KeymapArgs({ desc = "Telescope [S]earch [G]rep" }))
 keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", F.KeymapArgs({ desc = "Telescope [S]earch [D]iagnostics" }))
--- keymap("n", "<leader><space>", "<cmd>Telescope buffers<CR>", F.KeymapArgs({ desc = "[ ] Opened buffers" }))
 
 -- Gitsigns
 keymap(
@@ -70,7 +68,7 @@ keymap(
   F.KeymapArgs({ desc = "[G]it [L]ine [B]lame" })
 )
 -- Fugitive
-keymap("n", "<leader>G", "<cmd>Git<CR>", F.KeymapArgs({ desc = "[G]it [s]tatus" }))
+keymap("n", "<leader>gs", "<cmd>Git<CR>", F.KeymapArgs({ desc = "[G]it [s]tatus" }))
 keymap("n", "<leader>gab", "<cmd>Git add %<CR>", F.KeymapArgs({ desc = "[G]it [a]dd [b]uffer" }))
 keymap("n", "<leader>gpl", "<cmd>Git pull<CR>", F.KeymapArgs({ desc = "[G]it [p]u[l]l" }))
 keymap("n", "<leader>gps", "<cmd>Git push<CR>", F.KeymapArgs({ desc = "[G]it [p]u[s]h" }))

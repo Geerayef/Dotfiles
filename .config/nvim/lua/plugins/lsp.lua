@@ -2,11 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
-    },
+    dependencies = { "mason.nvim", "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp" },
     opts = {
       diagnostics = require("config.diagnostics"),
       inlay_hints = { enabled = false },
@@ -43,15 +39,10 @@ return {
       },
     },
     config = function(_, opts)
-      local has_lspconfig, lspconfig = pcall(require, "lspconfig")
-      if not has_lspconfig then return end
-      local has_mlspcfg, mason_lspconfig = pcall(require, "mason-lspconfig")
-      if not has_mlspcfg then return end
+      local lspconfig = require("lspconfig")
+      local mason_lspconfig = require("mason-lspconfig")
       local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-      if not has_cmp then return end
-
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
-
       local lsp_attach = function(client, bufnr)
         Keymaps.LSP(client, bufnr)
         vim.api.nvim_buf_create_user_command(
@@ -60,7 +51,7 @@ return {
           function(_) vim.lsp.buf.format() end,
           { desc = "Format current buffer with LSP." }
         )
-        if client.resolved_capabilities.code_lens then
+        if client.server_capabilities.code_lens then
           local codelens = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
           vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
             group = codelens,
@@ -69,7 +60,6 @@ return {
           })
         end
       end
-
       local capabilities = vim.tbl_deep_extend(
         "force",
         {},

@@ -1,5 +1,6 @@
 return {
   "stevearc/oil.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     default_file_explorer = true,
     columns = { "icon" },
@@ -10,7 +11,7 @@ return {
       cursorcolumn = false,
       foldcolumn = "0",
       spell = false,
-      list = false,
+      list = true,
       conceallevel = 3,
       concealcursor = "nvic",
     },
@@ -18,7 +19,7 @@ return {
     skip_confirm_for_simple_edits = false,
     prompt_save_on_select_new_entry = true,
     cleanup_delay_ms = 2000,
-    lsp_rename_autosave = true, -- unmodified
+    lsp_rename_autosave = true, -- unmodified / bool
     constrain_cursor = "name", -- bool / name / editable
     keymaps = {
       ["?"] = "actions.show_help",
@@ -27,6 +28,8 @@ return {
       ["<C-x>"] = "actions.select_split",
       ["<C-t>"] = "actions.select_tab",
       ["<C-p>"] = "actions.preview",
+      ["<C-b>"] = "actions.preview_scroll_up",
+      ["<C-f>"] = "actions.preview_scroll_down",
       ["<C-c>"] = "actions.close",
       ["<C-r>"] = "actions.refresh",
       ["-"] = "actions.parent",
@@ -38,7 +41,7 @@ return {
       ["g."] = "actions.toggle_hidden",
       ["g\\"] = "actions.toggle_trash",
     },
-    use_default_keymaps = true,
+    use_default_keymaps = false,
     view_options = {
       show_hidden = true,
       is_hidden_file = function(name, _) return vim.startswith(name, ".") end,

@@ -23,6 +23,8 @@ F.GetViMode = function(show_icons)
   local r = "replace"
   local s = "select"
   local t = "terminal"
+  local sh = "shell"
+  local p = "prompt"
   local modes = {
     ["n"] = n,
     ["no"] = n,
@@ -55,10 +57,10 @@ F.GetViMode = function(show_icons)
     ["c"] = c,
     ["cv"] = c,
     ["ce"] = c,
-    ["r"] = r,
-    ["rm"] = r,
-    ["r?"] = "?",
-    ["!"] = "󰩌",
+    ["r"] = p,
+    ["rm"] = p,
+    ["r?"] = p,
+    ["!"] = sh,
     ["t"] = t,
   }
   return modes[vim.api.nvim_get_mode().mode] or "[Unknown]"
@@ -66,7 +68,7 @@ end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
-F.disable_builtin = function()
+F.DisableBuiltin = function()
   local g = vim.g
   g.loaded_netrw = 1
   g.loaded_netrwPlugin = 1
@@ -98,6 +100,8 @@ end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
 
+---@param bufnr number -- Buffer number
+---@return boolean
 F.IsBigBuff = function(bufnr)
   local max_filesize = 1024 * 1024
   local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
@@ -112,6 +116,24 @@ F.KeymapArgs = function(mapargs)
   local default = { noremap = true, silent = false, desc = "" }
   return vim.tbl_deep_extend("force", default, mapargs)
 end
+
+-- ~  --------------------------------------------------------------------------------  ~ --
+
+---@return boolean
+F.IsBufEmpty = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end
+
+-- ~  --------------------------------------------------------------------------------  ~ --
+
+---@return boolean
+F.IsGitRepo = function()
+  local filepath = vim.fn.expand("%:p:h")
+  local gitdir = vim.fn.finddir(".git", filepath .. ";")
+  return gitdir and #gitdir > 0 and #gitdir < #filepath
+end
+
+-- ~  --------------------------------------------------------------------------------  ~ --
+
+F.Inspect = function(el) vim.cmd("lua = print(vim.inspect(" .. el .. "))") end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
 

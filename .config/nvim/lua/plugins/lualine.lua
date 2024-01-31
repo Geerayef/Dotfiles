@@ -1,0 +1,88 @@
+return {
+  "nvim-lualine/lualine.nvim",
+  event = "UIEnter",
+  init = function()
+    vim.g.lualine_laststatus = vim.o.laststatus
+    if vim.fn.argc(-1) > 0 then
+      vim.o.statusline = " "
+    else
+      vim.o.laststatus = 0
+    end
+  end,
+  opts = function()
+    local lualine_require = require("lualine_require")
+    lualine_require.require = require
+    local palette = require("colors.kanagawa.palette")
+    local theme = require("colors.kanagawa.theme")
+    local kanagawaline = require("colors.kanagawa.kanagawaline").setup(theme)
+    local Icons = O.Icons
+    return {
+      options = {
+        component_separators = "",
+        section_separators = "",
+        always_divide_middle = true,
+        theme = kanagawaline,
+        globalstatus = true,
+        disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
+      },
+      sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {
+          { function() return "| " end, color = { fg = palette.dragonWhite }, padding = { left = 0 } },
+          {
+            "mode",
+            fmt = function() return Icons.mode end,
+            padding = { right = 1 },
+            color = function() return { fg = palette.dragonTeal } end,
+          },
+          { "filetype", icon_only = true, padding = { left = 1, right = 0 } },
+          {
+            "filename",
+            cond = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
+            path = 0,
+            color = { fg = palette.dragonBlue },
+            symbols = { modified = Icons.touched, readonly = Icons.lock, unnamed = "[No Name]", newfile = "[New]" },
+          },
+          { function() return "%=" end },
+        },
+        lualine_x = {
+          {
+            "diff",
+            cond = function()
+              local filepath = vim.fn.expand("%:p:h")
+              local gitdir = vim.fn.finddir(".git", filepath .. ";")
+              return gitdir and #gitdir > 0 and #gitdir < #filepath
+            end,
+            source = function()
+              local g = vim.b.gitsigns_status_dict
+              if g then return { added = g.added, modified = g.changed, removed = g.removed } end
+            end,
+            symbols = { added = Icons.added, modified = Icons.modified_simple, removed = Icons.removed },
+            colored = true,
+            diff_color = {
+              added = { fg = theme.vcs.added },
+              modified = { fg = theme.vcs.changed },
+              removed = { fg = theme.vcs.removed },
+            },
+          },
+          {
+            "diagnostics",
+            sources = { "nvim_lsp", "nvim_diagnostic" },
+            symbols = { error = Icons.error, warn = Icons.warn, info = Icons.info, hint = Icons.hint },
+            diagnostics_color = {
+              error = { fg = theme.diag.error },
+              warn = { fg = theme.diag.warning },
+              info = { fg = theme.diag.info },
+              hint = { fg = theme.diag.hint },
+            },
+          },
+          { "branch", icon = Icons.git_branch, color = { fg = palette.dragonGreen } },
+          { function() return " |" end, color = { fg = palette.dragonWhite }, padding = { right = 0 } },
+        },
+        lualine_y = {},
+        lualine_z = {},
+      },
+    }
+  end,
+}
