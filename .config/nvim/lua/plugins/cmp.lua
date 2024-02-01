@@ -43,40 +43,38 @@ return {
         end,
         snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
         mapping = cmp.mapping.preset.insert({
-          -- ["<C-j>"] = cmp.mapping({
-          --   c = function()
-          --     if cmp.visible() then
-          --       cmp.select_next_item()
-          --     else
-          --       vim.api.nvim_feedkeys(t("<Down>"), "n", true)
-          --     end
-          --   end,
-          --   i = function(fallback)
-          --     if cmp.visible() then
-          --       cmp.select_next_item()
-          --     else
-          --       fallback()
-          --     end
-          --   end,
-          -- }),
-          -- ["<C-k>"] = cmp.mapping({
-          --   c = function()
-          --     if cmp.visible() then
-          --       cmp.select_prev_item()
-          --     else
-          --       vim.api.nvim_feedkeys(t("<Up>"), "n", true)
-          --     end
-          --   end,
-          --   i = function(fallback)
-          --     if cmp.visible() then
-          --       cmp.select_prev_item()
-          --     else
-          --       fallback()
-          --     end
-          --   end,
-          -- }),
-          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-j>"] = cmp.mapping({
+            c = function()
+              if cmp.visible() then
+                cmp.select_next_item()
+              else
+                vim.api.nvim_feedkeys(t("<Down>"), "n", true)
+              end
+            end,
+            i = function(fallback)
+              if cmp.visible() then
+                cmp.select_next_item()
+              else
+                fallback()
+              end
+            end,
+          }),
+          ["<C-k>"] = cmp.mapping({
+            c = function()
+              if cmp.visible() then
+                cmp.select_prev_item()
+              else
+                vim.api.nvim_feedkeys(t("<Up>"), "n", true)
+              end
+            end,
+            i = function(fallback)
+              if cmp.visible() then
+                cmp.select_prev_item()
+              else
+                fallback()
+              end
+            end,
+          }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),

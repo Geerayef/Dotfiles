@@ -14,10 +14,10 @@ set -l SOCK 0B
 set -l OTHR 4B
 
 set -gx NNN_FIFO "/tmp/nnn.fifo"
-# set -gx NNN_TERMINAL "$TERM"
-set -gx NNN_PAGER "$PAGER"
+set -gx NNN_TERMINAL "$TERM"
+set -gx NNN_PAGER bat --style="plain"
+set -gx NNN_PLUG "p:-preview.bash"
 set -gx NNN_OPTS dEH
-set -gx NNN_PLUG "p:-preview_tui_custom.bash"
 set -gx NNN_FCOLORS "$BLK$CHR$DIR$EXE$REG$HRDL$SYML$MISS$ORPH$FIFO$SOCK$OTHR"
 
 if test -n "$XDG_CONFIG_HOME"
@@ -45,7 +45,6 @@ function n --wraps nnn --description "CD to current directory on exit"
     # stty lwrap undef
     # stty lnext undef
 
-    # nnn alias
     command nnn $argv
 
     if test -e $NNN_TMPFILE

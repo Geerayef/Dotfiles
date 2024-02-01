@@ -27,14 +27,14 @@ capabilities = vim.tbl_deep_extend(
 
 -- ~  Keymap
 
-local keymap = function(mode, rhs, lhs, bufopts, desc)
+local function keymap(mode, rhs, lhs, bufopts, desc)
   bufopts.desc = desc
   vim.keymap.set(mode, rhs, lhs, bufopts)
 end
 
 -- ~  LSP Attach
 
-local lsp_attach = function(client, bufnr)
+local function lsp_attach(client, bufnr)
   jdtls_setup.add_commands()
 
   Keymaps.LSP(client, bufnr)

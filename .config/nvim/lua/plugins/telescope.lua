@@ -2,7 +2,6 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     cmd = { "Telescope" },
-    -- branch = "0.1.x",
     version = false,
     dependencies = {
       {
@@ -31,11 +30,7 @@ return {
             prompt_position = "top",
             horizontal = {
               preview_width = function(_, cols, _)
-                if cols > 200 then
-                  return math.floor(cols * 0.4)
-                else
-                  return math.floor(cols * 0.5)
-                end
+                return cols > 200 and math.floor(cols * 0.4) or math.floor(cols * 0.5)
               end,
             },
           },
@@ -51,7 +46,7 @@ return {
           find_files = {
             previewer = false,
             layout_strategy = "vertical",
-            layout_config = { height = 0.8, width = 0.5 },
+            layout_config = { height = 0.5, width = 0.5 },
             hidden = true,
             find_command = function()
               if vim.fn.executable("fd") == 1 then return { "fd", "--strip-cwd-prefix", "--type", "f" } end
@@ -60,7 +55,7 @@ return {
           fd = {
             previewer = false,
             layout_strategy = "vertical",
-            layout_config = { height = 0.8, width = 0.5 },
+            layout_config = { height = 0.5, width = 0.5 },
             hidden = true,
             find_command = function()
               if vim.fn.executable("fd") == 1 then return { "fd", "--strip-cwd-prefix", "--type", "f" } end
@@ -68,15 +63,15 @@ return {
           },
           buffers = {
             previewer = false,
+            theme = "dropdown",
             initial_mode = "normal",
-            layout_strategy = "vertical",
-            layout_config = { height = 0.8, width = 0.4 },
+            layout_config = { height = 0.4, width = 0.4 },
             sort_lastused = true,
             sort_mru = true,
           },
           oldfiles = { previewer = false, layout_strategy = "vertical", layout_config = { height = 0.8, width = 0.5 } },
           colorscheme = { enable_preview = true },
-          help_tags = { layout_config = { height = 0.4, width = 0.9 } },
+          help_tags = { layout_config = { height = 0.5, width = 0.9 } },
           diagnostics = { theme = "ivy", layout_config = { height = 0.5 } },
         },
         extensions = {
@@ -84,6 +79,8 @@ return {
           fzf = { fuzzy = true, override_generic_sorter = true, override_file_sorter = true },
         },
       })
+      telescope.load_extension("ui-select")
+      telescope.load_extension("fzf")
     end,
   },
 }

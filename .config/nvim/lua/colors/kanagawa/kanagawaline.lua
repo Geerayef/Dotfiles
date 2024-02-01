@@ -1,6 +1,6 @@
 local M = {}
 
-M.setup = function(theme)
+function M.setup(theme)
   local kanagawaline = {}
   kanagawaline.normal = {
     a = { bg = theme.syn.fun, fg = theme.ui.bg_m3 },

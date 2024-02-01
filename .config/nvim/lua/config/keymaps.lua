@@ -49,6 +49,7 @@ keymap("n", "<leader><space>", "<cmd>ArenaToggle<CR>", F.KeymapArgs({ desc = "[ 
 
 -- Oil
 keymap("n", "<leader>f", "<cmd>Oil<CR>", F.KeymapArgs({ desc = "Oil [F]ile Browser" }))
+keymap("n", "<leader>of", "<cmd>Oil --float<CR>", F.KeymapArgs({ desc = "[O]il [F]loat" }))
 
 -- Telescope
 keymap("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", F.KeymapArgs({ desc = "[?] Recent files" }))
@@ -90,7 +91,7 @@ keymap("n", "<leader>za", "<cmd>TZAtaraxis<CR>", F.KeymapArgs({ desc = "[Z]en [A
 
 Keymaps = {}
 
-Keymaps.LSP = function(_, bufnr)
+function Keymaps.LSP(_, bufnr)
   local lspbuf = vim.lsp.buf
   keymap("n", "<leader>rn", lspbuf.rename, { buffer = bufnr, desc = "[R]e[n]ame" })
   keymap("n", "<leader>ca", lspbuf.code_action, { buffer = bufnr, desc = "[C]ode [A]ction" })

@@ -43,7 +43,7 @@ return {
       local mason_lspconfig = require("mason-lspconfig")
       local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
-      local lsp_attach = function(client, bufnr)
+      local function lsp_attach(client, bufnr)
         Keymaps.LSP(client, bufnr)
         vim.api.nvim_buf_create_user_command(
           bufnr,

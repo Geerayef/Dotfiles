@@ -61,6 +61,7 @@ o.updatetime = 300
 o.belloff = "all"
 o.splitright = true
 o.splitbelow = true
+o.scroll = 10
 o.scrolloff = 4
 o.sidescrolloff = 4
 o.foldenable = true

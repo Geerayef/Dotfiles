@@ -1,7 +1,7 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = false, priority = 900 },
   { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "tpope/vim-sleuth", event = "VeryLazy" },
+  { "tpope/vim-sleuth", event = { "BufReadPost", "VeryLazy" } },
   { "tpope/vim-surround", event = { "InsertEnter", "BufNewFile" } },
   { "Pocco81/true-zen.nvim", lazy = true, event = "BufAdd" },
   {
@@ -23,13 +23,13 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "InsertEnter",
+    event = { "WinEnter", "InsertEnter" },
     main = "ibl",
     opts = { indent = { char = "│" } },
   },
   {
     "folke/flash.nvim",
-    event = "InsertEnter",
+    event = { "WinEnter", "InsertEnter" },
     opts = {
       label = { current = false, uppercase = false, after = false, before = true },
       modes = {

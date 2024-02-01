@@ -1,6 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = "UIEnter",
+  dependencies = { "lewis6991/gitsigns.nvim" },
   init = function()
     vim.g.lualine_laststatus = vim.o.laststatus
     if vim.fn.argc(-1) > 0 then
@@ -41,7 +42,7 @@ return {
             "filename",
             cond = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
             path = 0,
-            color = { fg = palette.dragonBlue },
+            color = { fg = palette.dragonAqua },
             symbols = { modified = Icons.touched, readonly = Icons.lock, unnamed = "[No Name]", newfile = "[New]" },
           },
           { function() return "%=" end },
