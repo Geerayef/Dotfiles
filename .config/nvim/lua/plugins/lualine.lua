@@ -16,7 +16,7 @@ return {
     local palette = require("colors.kanagawa.palette")
     local theme = require("colors.kanagawa.theme")
     local kanagawaline = require("colors.kanagawa.kanagawaline").setup(theme)
-    local Icons = O.Icons
+    local Icons = require("config.objects").Icons
     return {
       options = {
         component_separators = "",
@@ -59,7 +59,7 @@ return {
               local g = vim.b.gitsigns_status_dict
               if g then return { added = g.added, modified = g.changed, removed = g.removed } end
             end,
-            symbols = { added = Icons.added, modified = Icons.modified_simple, removed = Icons.removed },
+            symbols = { added = Icons.git.added, modified = Icons.git.modified_simple, removed = Icons.git.removed },
             colored = true,
             diff_color = {
               added = { fg = theme.vcs.added },
@@ -70,7 +70,12 @@ return {
           {
             "diagnostics",
             sources = { "nvim_lsp", "nvim_diagnostic" },
-            symbols = { error = Icons.error, warn = Icons.warn, info = Icons.info, hint = Icons.hint },
+            symbols = {
+              error = Icons.diagnostics.error,
+              warn = Icons.diagnostics.warn,
+              info = Icons.diagnostics.info,
+              hint = Icons.diagnostics.hint,
+            },
             diagnostics_color = {
               error = { fg = theme.diag.error },
               warn = { fg = theme.diag.warning },
@@ -78,7 +83,7 @@ return {
               hint = { fg = theme.diag.hint },
             },
           },
-          { "branch", icon = Icons.git_branch, color = { fg = palette.dragonGreen } },
+          { "branch", icon = Icons.git.branch, color = { fg = palette.dragonGreen } },
           { function() return " |" end, color = { fg = palette.dragonWhite }, padding = { right = 0 } },
         },
         lualine_y = {},

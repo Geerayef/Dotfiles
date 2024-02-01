@@ -9,9 +9,6 @@ local path_to_jdtls = mason_packages .. "/jdtls"
 local path_to_config = path_to_jdtls .. "/config_linux"
 local lombok_path = path_to_jdtls .. "/lombok.jar"
 local path_to_jar = path_to_jdtls .. "/plugins/org.eclipse.equinox.launcher_1.6.600.v20231106-1826.jar"
-
--- ~  CMP capabilities
-
 local cmp = require("cmp_nvim_lsp")
 local capabilities = {
   workspace = { configuration = true },
@@ -25,32 +22,13 @@ capabilities = vim.tbl_deep_extend(
   capabilities or {}
 )
 
--- ~  Keymap
-
-local function keymap(mode, rhs, lhs, bufopts, desc)
-  bufopts.desc = desc
-  vim.keymap.set(mode, rhs, lhs, bufopts)
-end
-
 -- ~  LSP Attach
 
 local function lsp_attach(client, bufnr)
   jdtls_setup.add_commands()
-
-  Keymaps.LSP(client, bufnr)
-  local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  -- Java extensions provided by jdtls
-  keymap("n", "<leader>oi", jdtls.organize_imports, bufopts, "Organize imports")
-  keymap("n", "<leader>ev", jdtls.extract_variable, bufopts, "Extract variable")
-  keymap("n", "<leader>ec", jdtls.extract_constant, bufopts, "Extract constant")
-  keymap("v", "<leader>em", '<cmd>lua require("jdtls").extract_method(true)<CR>', bufopts, "Extract method")
-
-  vim.api.nvim_buf_create_user_command(
-    bufnr,
-    "FormatLSP",
-    function(_) vim.lsp.buf.format() end,
-    { desc = "Format current buffer with LSP" }
-  )
+  Key.LSP(client, bufnr)
+  Key.JDTLS()
+  F.LspAttach(client, bufnr)
   require("lsp_signature").on_attach(
     { bind = true, padding = "", handler_opts = { border = "rounded" }, hint_prefix = "󱄑 " },
     bufnr

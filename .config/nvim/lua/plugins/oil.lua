@@ -1,6 +1,7 @@
 return {
   "stevearc/oil.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  lazy = false,
+  priority = 800,
   opts = {
     default_file_explorer = true,
     columns = { "icon" },
@@ -43,17 +44,17 @@ return {
         return conf
       end,
     },
-    -- preview = {
-    --   -- max_width = 0.5,
-    --   -- min_width = 0.2,
-    --   -- width = nil,
-    --   -- max_height = 0.8,
-    --   -- min_height = 0.4,
-    --   -- height = nil,
-    --   border = "rounded",
-    --   win_options = { winblend = 0 },
-    --   update_on_cursor_moved = true,
-    -- },
+    preview = {
+      --   max_width = 0.5,
+      --   min_width = 0.2,
+      --   width = nil,
+      --   max_height = 0.8,
+      --   min_height = 0.4,
+      --   height = nil,
+      border = "rounded",
+      --   win_options = { winblend = 0 },
+      --   update_on_cursor_moved = true,
+    },
     -- progress = {
     --   max_width = 0.6,
     --   min_width = 0.3,

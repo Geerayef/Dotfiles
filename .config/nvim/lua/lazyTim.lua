@@ -12,9 +12,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 local opts = {
   defaults = { version = "*" },
-  dev = { path = "~/Software", patterns = {}, fallback = false },
+  dev = { path = "~/Software" },
   checker = { enabled = false },
   change_detection = { notify = false },
-  performance = { rtp = { disabled_plugins = { "tutor" } } },
+  performance = {
+    rtp = {
+      disabled_plugins = { "tutor", "gzip", "matchit", "matchparen", "netrwPlugin", "tarPlugin", "tohtml", "zipPlugin" },
+    },
+  },
+  ui = { border = "single", title = "Lazy" },
 }
 require("lazy").setup("plugins", opts)

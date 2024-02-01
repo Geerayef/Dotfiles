@@ -1,6 +1,24 @@
--- ~  Global functions
-
 F = {}
+
+-- ~  --------------------------------------------------------------------------------  ~ --
+
+function F.LspAttach(client, bufnr)
+  Key.LSP(client, bufnr)
+  vim.api.nvim_buf_create_user_command(
+    bufnr,
+    "FormatLSP",
+    function(_) vim.lsp.buf.format() end,
+    { desc = "Format current buffer with LSP." }
+  )
+  if client.server_capabilities.code_lens then
+    local codelens = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
+    vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
+      group = codelens,
+      callback = function() vim.lsp.codelens.refresh() end,
+      buffer = bufnr,
+    })
+  end
+end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
 
@@ -15,10 +33,10 @@ function F.GetViMode(use_mode_icons)
     i = ""
     c = ""
   else
-    n = "normal" -- ""
-    v = "visual" -- ""
-    i = "insert" -- ""
-    c = "command" -- ""
+    n = "normal"
+    v = "visual"
+    i = "insert"
+    c = "command"
   end
   local r = "replace"
   local s = "select"
@@ -96,11 +114,14 @@ end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
 
----@param mapargs table
----@return table
-function F.KeymapArgs(mapargs)
-  local default = { noremap = true, silent = false, desc = "" }
-  return vim.tbl_deep_extend("force", default, mapargs)
+---@param mode string|table
+---@param rhs string
+---@param lhs string|function
+---@param bopt table
+---@param desc string
+function F.Keymap(mode, rhs, lhs, bopt, desc)
+  bopt.desc = desc
+  vim.keymap.set(mode, rhs, lhs, bopt)
 end
 
 -- ~  --------------------------------------------------------------------------------  ~ --

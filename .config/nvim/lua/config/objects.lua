@@ -1,6 +1,6 @@
 O = {}
 
----@return string # Currently active Vi mode
+---@return string # Mapping: mode sig -> name
 O.ViModes = {
   ["n"] = "normal",
   ["no"] = "normal",
@@ -43,15 +43,23 @@ O.ViModes = {
 ---@return string # Icon
 O.Icons = {
   mode = "",
-  git_branch = "",
-  error = " ",
-  warn = " ",
-  info = " ",
-  hint = " ",
-  added = " ",
-  modified = "󰝤 ",
-  modified_simple = "~ ",
-  removed = " ",
+  normal = "",
+  visual = "",
+  insert = "",
+  command = "",
+  git = {
+    branch = "",
+    added = " ",
+    modified = "󰝤 ",
+    modified_simple = "~ ",
+    removed = " ",
+  },
+  diagnostics = {
+    error = " ",
+    warn = " ",
+    info = " ",
+    hint = " ",
+  },
   lock = "",
   touched = "●",
   recording = "",

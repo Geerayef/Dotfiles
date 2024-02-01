@@ -25,7 +25,7 @@ read_only_style = "red bold"
 style = "#FFA066 bold"
 
 [character]
-# [❯] [❮] / [λ] / [⟫] [⟪] / [] []
+# [❯] [❮] / [λ] / [⟫] [⟪] / [] [] / [],
 success_symbol = "[❯](#FFA066)"
 error_symbol   = "[❯](#938AA9)"
 vimcmd_symbol  = "[❮](#C5C9C5)"
