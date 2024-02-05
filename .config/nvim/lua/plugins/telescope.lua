@@ -6,10 +6,9 @@ return {
     dependencies = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
-        lazy = true,
         build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
       },
-      { "nvim-telescope/telescope-ui-select.nvim", lazy = true },
+      { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
       local telescope = require("telescope")
@@ -43,28 +42,18 @@ return {
             layout_config = { prompt_position = "bottom", height = 0.5, width = 0.8 },
             skip_empty_lines = true,
           },
-          find_files = {
-            previewer = false,
-            layout_strategy = "vertical",
-            layout_config = { height = 0.5, width = 0.5 },
-            hidden = true,
-            find_command = function()
-              if vim.fn.executable("fd") == 1 then return { "fd", "--strip-cwd-prefix", "--type", "f" } end
-            end,
-          },
           fd = {
+            theme = "dropdown",
             previewer = false,
-            layout_strategy = "vertical",
-            layout_config = { height = 0.5, width = 0.5 },
+            layout_config = { height = 0.4, width = 0.4 },
             hidden = true,
             find_command = function()
               if vim.fn.executable("fd") == 1 then return { "fd", "--strip-cwd-prefix", "--type", "f" } end
             end,
           },
           buffers = {
-            previewer = false,
             theme = "dropdown",
-            initial_mode = "normal",
+            previewer = false,
             layout_config = { height = 0.4, width = 0.4 },
             sort_lastused = true,
             sort_mru = true,

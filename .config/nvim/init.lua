@@ -1,8 +1,8 @@
-require("config.functions")
-require("config.keymaps")
 require("config.options")
+require("config.functions")
+F.DisableBuiltin()
+require("config.keymaps")
 require("lazyTim")
 require("config.autocmds")
 
-vim.cmd.colorscheme("kanagawa")
-vim.cmd.highlight("LazyNormal guibg=Normal")
+vim.cmd.colorscheme("material-deep-ocean")

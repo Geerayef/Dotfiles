@@ -12,7 +12,7 @@ Bar.apply_to_config = function(config)
   config.status_update_interval = 30000
   config.colors = {
     tab_bar = {
-      background = kanagawa.background,
+      background = kanagawa.split,
       active_tab = {
         bg_color = kanagawa.brights[3],
         fg_color = kanagawa.background,
@@ -52,8 +52,8 @@ Bar.apply_to_config = function(config)
       battery_icon = nf.fa_battery_full
     end
     window:set_left_status(wezterm.format({
-      { Foreground = { Color = stat_color } },
       { Text = "| " },
+      { Foreground = { Color = stat_color } },
       { Text = nf.oct_table .. "  " .. stat },
       { Text = " |" },
     }))

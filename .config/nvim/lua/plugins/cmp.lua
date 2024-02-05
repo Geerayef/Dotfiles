@@ -50,7 +50,7 @@ return {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources(
           { { name = "path", max_item_count = 10 } },
-          { { name = "cmdline", max_item_count = 20 } }
+          { { name = "cmdline", keyword_length = 0, max_item_count = 20 } }
         ),
         view = { entries = { name = "custom" } },
       })

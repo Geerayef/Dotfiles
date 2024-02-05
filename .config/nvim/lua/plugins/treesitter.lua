@@ -13,7 +13,20 @@ return {
     local to = ts.textobjects
     local is = ts.incremental_selection
     return {
-      ensure_installed = { "bash", "fish", "lua", "luadoc", "c", "ocaml", "python", "rust", "yaml", "toml", "nu" },
+      ensure_installed = {
+        "commonlisp",
+        "bash",
+        "fish",
+        "lua",
+        "luadoc",
+        "c",
+        "cpp",
+        "ocaml",
+        "python",
+        "rust",
+        "yaml",
+        "toml",
+      },
       auto_install = false,
       highlight = { enable = true, disable = function(_, buf) return F.IsBigBuff(buf) end },
       indent = { enable = true, disable = { "python" } },

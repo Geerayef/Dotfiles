@@ -1,15 +1,9 @@
 local wezterm = require("wezterm")
 local config = {}
-
 if wezterm.config_builder then config = wezterm.config_builder() end
-
--- ~ ----------------------------------------------------------------- ~ --
-
--- ~  Source
 
 Bar = require("bar")
 Bar.apply_to_config(config)
-
 Keys = require("keymaps")
 Keys.apply_to_config(config)
 
@@ -28,21 +22,19 @@ config.window_padding = { left = "0pt", right = "0pt", top = "0pt", bottom = "0p
 config.inactive_pane_hsb = { saturation = 1, brightness = 0.8 }
 
 --  Themes
+
 -- ayu / Ayu Dark (Gogh) / Mirage (Gogh) / Nightlion V2 (Gogh) / niji / Nocturnal Winter
 -- Tokyo Night (Gogh) / tokyonight(_night) / Kanagawa (Gogh) / terafox /
 -- carbonfox / Kasugano (terminal.sexy) / neobones_dark / Neutron (Gogh)
 -- Trim Yer Beard (terminal.sexy) / VWbug (terminal.sexy) / N0Tch2K (Gogh)
 -- astromouse (terminal.sexy)
-config.color_scheme = "Nightlion V2 (Gogh)"
+config.color_scheme = "Neutron (Gogh)"
 
 -- Font
 
+config.freetype_load_flags = "NO_HINTING"
 config.harfbuzz_features = { "zero", "ss01", "cv05" }
-config.font_dirs = {
-  "/usr/share/fonts/FiraCodeNF",
-  "/usr/share/fonts/JetBrainsNF",
-  "/usr/share/fonts/TTF",
-}
+config.font_dirs = { "/usr/share/fonts/FiraCodeNF", "/usr/share/fonts/JetBrainsNF", "/usr/share/fonts/TTF" }
 config.font = wezterm.font_with_fallback({
   { family = "Iosevka Nerd Font Mono Regular" },
   { family = "JetBrainsMonoNL Nerd Font Mono Regular" },
@@ -51,7 +43,7 @@ config.font = wezterm.font_with_fallback({
   { family = "Symbols Nerd Font" },
   { family = "Symbols Nerd Font Mono" },
 })
-config.font_size = 16
+config.font_size = 14
 config.line_height = 1
 
 -- Cursor
@@ -67,13 +59,20 @@ config.force_reverse_video_cursor = true
 
 config.default_workspace = "home"
 
+-- Performance
+
+config.line_quad_cache_size = 160 -- >= sum(#lines in panes in a tab) | < : Harms performance. [1024]
+config.line_state_cache_size = 160 -- As above. [1024]
+config.line_to_ele_shape_cache_size = 512 -- As above. [1024]
+config.shape_cache_size = 512 -- >= #(different attributed runs on the screen). [1024]
+
 -- General
 
 config.enable_wayland = false
 config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 config.animation_fps = 1
-config.scrollback_lines = 6000
+config.scrollback_lines = 2000
 config.audible_bell = "Disabled"
 config.window_close_confirmation = "AlwaysPrompt"
 config.set_environment_variables = { CURRENT_TERM = "wezterm" }

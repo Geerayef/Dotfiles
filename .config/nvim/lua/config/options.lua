@@ -1,8 +1,6 @@
 local o = vim.opt
 local cmd = vim.cmd
 
-F.DisableBuiltin()
-
 o.shell = "/usr/bin/fish"
 o.shortmess:append("I")
 
@@ -32,7 +30,7 @@ o.virtualedit = "block"
 -- ~  UI
 o.termguicolors = true
 o.background = "dark"
-o.guicursor = ""
+o.guicursor = "a:block-blinkon0"
 o.cursorline = true
 o.cursorlineopt = "number"
 o.number = true
@@ -45,7 +43,7 @@ o.cmdheight = 0
 o.showcmdloc = "statusline"
 o.showmode = false
 o.showmatch = true
-o.switchbuf = "useopen,uselast"
+o.switchbuf = "useopen,uselast,usetab"
 o.signcolumn = "yes"
 o.ruler = false
 o.pumblend = 0

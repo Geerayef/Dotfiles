@@ -1,7 +1,5 @@
 return {
   "stevearc/oil.nvim",
-  lazy = false,
-  priority = 800,
   opts = {
     default_file_explorer = true,
     columns = { "icon" },
@@ -12,7 +10,7 @@ return {
     prompt_save_on_select_new_entry = true,
     cleanup_delay_ms = 2000,
     lsp_rename_autosave = true,
-    constrain_cursor = "name", -- bool / name / editable
+    constrain_cursor = "name",
     use_default_keymaps = false,
     keymaps = {
       ["?"] = "actions.show_help",
@@ -36,35 +34,13 @@ return {
     },
     view_options = { show_hidden = true, is_hidden_file = function(name, _) return vim.startswith(name, ".") end },
     float = {
-      padding = 4,
-      max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.4),
+      padding = 8,
+      max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.3),
       max_height = math.floor(vim.api.nvim_win_get_height(0) * 0.4),
       override = function(conf)
         conf.style = "minimal"
         return conf
       end,
     },
-    preview = {
-      --   max_width = 0.5,
-      --   min_width = 0.2,
-      --   width = nil,
-      --   max_height = 0.8,
-      --   min_height = 0.4,
-      --   height = nil,
-      border = "rounded",
-      --   win_options = { winblend = 0 },
-      --   update_on_cursor_moved = true,
-    },
-    -- progress = {
-    --   max_width = 0.6,
-    --   min_width = 0.3,
-    --   width = nil,
-    --   max_height = 0.4,
-    --   min_height = 0.2,
-    --   height = nil,
-    --   border = "rounded",
-    --   minimized_border = "none",
-    --   win_options = { winblend = 0 },
-    -- },
   },
 }

@@ -18,11 +18,7 @@ return {
   --   "folke/tokyonight.nvim",
   --   lazy = false,
   --   priority = 1000,
-  --   opts = {
-  --     style = "night",
-  --     lualine_bold = true,
-  --     styles = { keywords = { italic = false } },
-  --   },
+  --   opts = { style = "night", lualine_bold = true },
   -- },
 
   -- ~  Kanagawa
@@ -49,8 +45,8 @@ return {
             FloatBorder = { bg = "none" },
             FloatTitle = { bg = "none" },
             NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-            LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
             MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            -- LazyNormal = { bg = "none", fg = theme.ui.fg_dim },
             -- TelescopeTitle = { fg = theme.ui.special, bold = true },
             -- TelescopePromptNormal = { bg = theme.ui.bg_dim },
             -- TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
@@ -68,11 +64,11 @@ return {
   },
 
   -- ~  Material
-  -- {
-  --    "marko-cerovac/material.nvim",
-  --    lazy = false,
-  --    priority = 1000,
-  -- },
+  {
+    "marko-cerovac/material.nvim",
+    lazy = false,
+    priority = 1000,
+  },
 
   -- ~  Oxocarbon
   -- {

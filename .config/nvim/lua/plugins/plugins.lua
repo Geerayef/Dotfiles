@@ -2,7 +2,7 @@ return {
   { "nvim-lua/plenary.nvim", lazy = false, priority = 900 },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-sleuth", event = { "BufReadPost" } },
-  { "tpope/vim-surround", event = { "InsertEnter", "BufNewFile" } },
+  { "tpope/vim-surround", event = { "InsertEnter", "BufNewFile", "BufAdd" } },
   { "Pocco81/true-zen.nvim", lazy = true, event = "BufAdd" },
   {
     "windwp/nvim-autopairs",
@@ -16,7 +16,7 @@ return {
   {
     "numToStr/Comment.nvim",
     lazy = true,
-    event = "InsertEnter",
+    event = { "BufAdd", "CursorMovedI" },
     opts = {
       opleader = { line = "gc", block = "gb" },
       mappings = { basic = true, extra = true },
@@ -26,17 +26,35 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     lazy = true,
-    event = "InsertEnter",
+    event = { "BufAdd", "BufNewFile", "BufReadPost" },
     main = "ibl",
     opts = { indent = { char = "│" } },
   },
   {
     "folke/flash.nvim",
     lazy = true,
-    event = "InsertEnter",
+    event = { "CursorMovedI", "BufAdd" },
     opts = {
       label = { current = false, uppercase = false, after = false, before = true },
       modes = { char = { jump_labels = true, label = { exclude = "hjkliadc" } } },
+    },
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+    cmd = "ColorizerToggle",
+    keys = { { "<leader>ct", "<cmd>ColorizerToggle<CR>", desc = "[C]olorizer [T]oggle" } },
+    opts = {
+      ["*"] = {
+        RGB = true,
+        RRGGBB = true,
+        RRGGBBAA = true,
+        names = true,
+        rgb_fn = false,
+        hsl_fn = false,
+        css = false,
+        css_fn = false,
+        mode = "background",
+      },
     },
   },
 }

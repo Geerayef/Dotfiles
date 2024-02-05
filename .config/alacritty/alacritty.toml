@@ -13,7 +13,7 @@ position                  = "None"
 padding                   = { x = 0, y = 0 }
 dynamic_padding           = true
 decorations               = "None"
-opacity                   = 1
+opacity                   = 0.7
 startup_mode              = "Windowed"
 title                     = "Alacritty"
 dynamic_title             = false
@@ -21,16 +21,16 @@ class                     = { instance = "Alacritty", general = "Alacritty" }
 decorations_theme_variant = "None"
 resize_increments         = false
 
-#[scrolling]
-#history    = 10000
+[scrolling]
+history    = 2000
 #multiplier = 3
 
 [font]
-normal              = { family = "Iosevka Nerd Font Mono", style = "Regular" }
-bold                = { family = "Iosevka Nerd Font Mono", style = "Bold" }
-italic              = { family = "Iosevka Nerd Font Mono", style = "LightItalic" }
-bold_italic         = { family = "Iosevka Nerd Font Mono", style = "BoldItalic" }
-size                = 16.0
+normal              = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Regular" }
+bold                = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Bold" }
+italic              = { family = "JetBrainsMonoNL Nerd Font Mono", style = "LightItalic" }
+bold_italic         = { family = "JetBrainsMonoNL Nerd Font Mono", style = "BoldItalic" }
+size                = 14.0
 offset              = { x = 0, y = 0 }
 glyph_offset        = { x = 0, y = 0 }
 builtin_box_drawing = true

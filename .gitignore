@@ -9,3 +9,11 @@ Dotfiles/
 .config/nnn/.selection
 .config/bash/history
 .config/btop/btop.log
+.config/emacs/places
+.config/emacs/recentf
+.config/emacs/history
+.config/emacs/custom.el
+.config/emacs/eln-cache/
+.config/emacs/eln-cache/*
+.config/emacs/auto-save-list/
+.config/emacs/auto-save-list/*
