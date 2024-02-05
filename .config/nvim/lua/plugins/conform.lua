@@ -13,7 +13,7 @@ return {
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "ruff_format" },
+      python = { "ruff format" },
       ocaml = { "ocamlformat" },
       fish = { "fish_indent" },
       bash = { "shfmt" },
