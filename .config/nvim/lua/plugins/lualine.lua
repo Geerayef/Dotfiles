@@ -46,17 +46,6 @@ return {
             symbols = { modified = Icons.touched, readonly = Icons.lock, unnamed = "[No Name]", newfile = "[New]" },
           },
           { function() return "%=" end },
-          {
-            "buffers",
-            icons_enabled = false,
-            max_length = vim.o.columns / 2,
-            mode = 4,
-            hide_filename_extension = true,
-            show_modified_status = false,
-            use_mode_colors = true,
-            filetype_names = { TelescopePrompt = "Telescope", fzf = "FZF", lazy = "Lazy" },
-          },
-          { function() return "%=" end },
         },
         lualine_x = {
           {
