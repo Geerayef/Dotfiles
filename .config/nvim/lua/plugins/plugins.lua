@@ -31,15 +31,6 @@ return {
     opts = { indent = { char = "│" } },
   },
   {
-    "folke/flash.nvim",
-    lazy = true,
-    event = { "CursorMovedI", "BufAdd" },
-    opts = {
-      label = { current = false, uppercase = false, after = false, before = true },
-      modes = { char = { jump_labels = true, label = { exclude = "hjkliadc" } } },
-    },
-  },
-  {
     "norcalli/nvim-colorizer.lua",
     cmd = "ColorizerToggle",
     keys = { { "<leader>ct", "<cmd>ColorizerToggle<CR>", desc = "[C]olorizer [T]oggle" } },

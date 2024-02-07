@@ -1,8 +1,12 @@
 ;;; early-init.el --- Elpaca  -*- lexical-binding: t; -*-
 
+;;; Commentary:
+
+;;; Code:
+
 (setq package-enable-at-startup nil)
 (setq user-emacs-directory "~/.config/emacs")
-(setq crafted-emacs-home "~/.config/emacs/crafted")
+(setq-default crafted-emacs-home "~/.config/emacs/crafted")
 
 (defvar elpaca-installer-version 0.6)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
@@ -49,3 +53,6 @@
   (elpaca-use-package-mode)
   (setq elpaca-use-package-by-default t))
 (elpaca-wait)
+
+(provide 'early-init)
+;;; early-init.el ends here

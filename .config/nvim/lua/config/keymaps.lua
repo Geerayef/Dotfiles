@@ -1,10 +1,10 @@
 vim.g.mapleader = " "
 
----@param mode string|table
----@param r string
----@param l string|function
----@param bo table
----@param desc string
+---@param mode string|table Mode[s]
+---@param r string Right side of mapping
+---@param l string|function Left side of mapping
+---@param bo table Buffer options
+---@param desc string Mapping description
 local function keymap(mode, r, l, bo, desc)
   bo.desc = desc
   vim.keymap.set(mode, r, l, bo)
@@ -20,7 +20,6 @@ keymap("n", "<C-d>", "10<C-d>", bopt, "Scroll down 10 lines")
 keymap("n", "<C-u>", "10<C-u>", bopt, "Scroll up 10 lines")
 
 -- Buffers
-keymap("n", "<leader>B", ":buffer", { silent = false }, "[B]uffer")
 keymap("n", "<leader>bd", "<cmd>bdelete<CR>", bopt, "[b]uffer [d]elete")
 
 -- Search
@@ -36,11 +35,11 @@ keymap("n", "<leader>Y", '"+Y', bopt, "Yank to system clipboard")
 keymap("v", "<leader>y", '"+y', bopt, "Yank to system clipboard")
 
 -- Tabs
-keymap("n", "<leader>to", "<cmd>tabnew<CR>", bopt, "[T]ab [O]pen")
-keymap("n", "<leader>tn", "<cmd>tabnext<CR>", bopt, "[T]ab [N]ext")
-keymap("n", "<leader>tp", "<cmd>tabprevious<CR>", bopt, "[T]ab [P]revious")
-keymap("n", "<leader>tmr", "<cmd>tabmove +1<CR>", bopt, "[T]ab [M]ove [L]eft")
-keymap("n", "<leader>tml", "<cmd>tabmove -1<CR>", bopt, "[T]ab [M]ove [R]ight")
+keymap("n", "<leader>to", "<cmd>tabnew<CR>", bopt, "[t]ab [o]pen")
+keymap("n", "<leader>tn", "<cmd>tabnext<CR>", bopt, "[t]ab [n]ext")
+keymap("n", "<leader>tp", "<cmd>tabprevious<CR>", bopt, "[t]ab [p]revious")
+keymap("n", "<leader>tmr", "<cmd>tabmove +1<CR>", bopt, "[t]ab [m]ove [l]eft")
+keymap("n", "<leader>tml", "<cmd>tabmove -1<CR>", bopt, "[t]ab [m]ove [r]ight")
 
 -- Terminal
 keymap("t", "<Esc>", "<C-\\><C-n>", bopt, "Terminal mode: Escape")
@@ -63,12 +62,12 @@ keymap("n", "<leader>of", "<cmd>Oil --float<CR>", bopt, "[o]il [f]loat")
 -- Telescope
 keymap("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", bopt, "[?] Recent files")
 keymap("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", bopt, "[/] Search buffer")
-keymap("n", "<leader>sb", "<cmd>Telescope buffers<CR>", bopt, "Telescope [b]uffers")
 keymap("n", "<leader>tsb", "<cmd>Telescope builtin<CR>", bopt, "[t]ele[s]cope [b]uiltin")
 keymap("n", "<leader>sf", "<cmd>Telescope fd<CR>", bopt, "Telescope [s]earch [f]iles")
+keymap("n", "<leader>sb", "<cmd>Telescope buffers<CR>", bopt, "Telescope [s]earch [b]uffers")
 keymap("n", "<leader>sh", "<cmd>Telescope help_tags<CR>", bopt, "Telescope [s]earch [h]elp")
-keymap("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", bopt, "Telescope [s]earch [w]ord")
 keymap("n", "<leader>sg", "<cmd>Telescope live_grep<CR>", bopt, "Telescope [s]earch [g]rep")
+keymap("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", bopt, "Telescope [s]earch [w]ord")
 keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", bopt, "Telescope [s]earch [d]iagnostics")
 
 -- Gitsigns

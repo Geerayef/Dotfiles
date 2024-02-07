@@ -23,12 +23,11 @@ config.inactive_pane_hsb = { saturation = 1, brightness = 0.8 }
 
 --  Themes
 
--- ayu / Ayu Dark (Gogh) / Mirage (Gogh) / Nightlion V2 (Gogh) / niji / Nocturnal Winter
--- Tokyo Night (Gogh) / tokyonight(_night) / Kanagawa (Gogh) / terafox /
--- carbonfox / Kasugano (terminal.sexy) / neobones_dark / Neutron (Gogh)
+-- ayu / Ayu Dark (Gogh) / Mirage (Gogh) / Nocturnal Winter / Tokyo Night (Gogh) / tokyonight
+-- Kanagawa (Gogh) / terafox / carbonfox / Kasugano (terminal.sexy) / neobones_dark / Neutron (Gogh)
 -- Trim Yer Beard (terminal.sexy) / VWbug (terminal.sexy) / N0Tch2K (Gogh)
 -- astromouse (terminal.sexy)
-config.color_scheme = "Neutron (Gogh)"
+config.color_scheme = "ayu"
 
 -- Font
 
@@ -49,7 +48,8 @@ config.line_height = 1
 -- Cursor
 
 config.default_cursor_style = "SteadyBlock"
-config.force_reverse_video_cursor = true
+config.force_reverse_video_cursor = false
+config.colors.cursor_fg = "#000000"
 
 -- ~ ----------------------------------------------------------------- ~ --
 
@@ -61,15 +61,15 @@ config.default_workspace = "home"
 
 -- Performance
 
-config.line_quad_cache_size = 160 -- >= sum(#lines in panes in a tab) | < : Harms performance. [1024]
-config.line_state_cache_size = 160 -- As above. [1024]
+config.line_quad_cache_size = 512 -- >= sum(#lines in panes in a tab) | < : Harms performance. [1024]
+config.line_state_cache_size = 512 -- As above. [1024]
 config.line_to_ele_shape_cache_size = 512 -- As above. [1024]
 config.shape_cache_size = 512 -- >= #(different attributed runs on the screen). [1024]
 
 -- General
 
 config.enable_wayland = false
-config.front_end = "WebGpu"
+-- config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 config.animation_fps = 1
 config.scrollback_lines = 2000

@@ -34,11 +34,21 @@ return {
     },
     view_options = { show_hidden = true, is_hidden_file = function(name, _) return vim.startswith(name, ".") end },
     float = {
-      padding = 8,
+      padding = 2,
       max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.3),
       max_height = math.floor(vim.api.nvim_win_get_height(0) * 0.4),
       override = function(conf)
         conf.style = "minimal"
+        conf.border = {
+          { "╭", "Normal" },
+          { "─", "Normal" },
+          { "╮", "Normal" },
+          { "│", "Normal" },
+          { "╯", "Normal" },
+          { "─", "Normal" },
+          { "╰", "Normal" },
+          { "│", "Normal" },
+        }
         return conf
       end,
     },

@@ -17,7 +17,7 @@ return {
       linehl = false,
       word_diff = false,
       watch_gitdir = { follow_files = true },
-      auto_attach = true,
+      -- auto_attach = false,
       attach_to_untracked = false,
       current_line_blame = false,
       current_line_blame_opts = {

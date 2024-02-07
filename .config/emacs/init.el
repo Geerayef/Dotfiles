@@ -1,5 +1,8 @@
 ;;; init.el --- Init -*- lexical-binding: t; -*-
 
+;;; Commentary:
+
+;;; Code:
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
@@ -18,7 +21,7 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(set-face-attribute 'default t :font "Iosevka Nerd Font Mono" :height 160)
+(set-face-attribute 'default t :font "Iosevka Nerd Font Mono" :height 140)
 (electric-pair-mode t)
 (show-paren-mode 1)
 (setq-default indent-tabs-mode nil)
@@ -33,9 +36,8 @@
 
 ;; ~  Packages
 
-;; (add-to-list 'package-selected-packages 'all-the-icons 'helpful 'breadcrumb)
 (require 'crafted-ui-packages)
-;; (require 'crafted-ide-packages)
+(require 'crafted-ide-packages)
 (require 'crafted-completion-packages)
 (require 'crafted-lisp-packages)
 ;; (require 'crafted-writing-packages)
@@ -50,9 +52,14 @@
 
 (require 'crafted-ui-config)
 (require 'crafted-defaults-config)
-;; (require 'crafted-ide-config)
+(require 'crafted-ide-config)
 (require 'crafted-completion-config)
 (require 'crafted-lisp-config)
 ;; (require 'crafted-writing-config)
 ;; (require 'crafted-org-config)
+
 (load-theme 'modus-vivendi)
+
+
+(provide 'init.el)
+;;; init.el ends here

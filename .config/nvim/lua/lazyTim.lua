@@ -20,6 +20,6 @@ local opts = {
       disabled_plugins = { "tutor", "gzip", "matchit", "matchparen", "netrwPlugin", "tarPlugin", "tohtml", "zipPlugin" },
     },
   },
-  ui = { border = "single", title = "Lazy" },
+  ui = { title = "Lazy" }, --,border = "single",
 }
 require("lazy").setup("plugins", opts)
