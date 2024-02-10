@@ -52,11 +52,11 @@ status_scaning() {
 
 toggle_scan() {
   if status_scaning; then
-    kill $(pgrep -f "bluetoothctl scan on")
+    kill $(pgrep -f "bluetoothd")
     bluetoothctl scan off
     main_menu
   else
-    bluetoothctl scan on
+    bluetoothctl scan bredr
     echo "Scanning..."
     sleep 5
     main_menu

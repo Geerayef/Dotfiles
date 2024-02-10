@@ -69,9 +69,10 @@ config.shape_cache_size = 512 -- >= #(different attributed runs on the screen). 
 -- General
 
 config.enable_wayland = false
--- config.front_end = "WebGpu"
+config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 config.animation_fps = 1
+config.max_fps = 60
 config.scrollback_lines = 2000
 config.audible_bell = "Disabled"
 config.window_close_confirmation = "AlwaysPrompt"

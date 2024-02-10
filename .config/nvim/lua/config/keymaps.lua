@@ -72,11 +72,13 @@ keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", bopt, "Telescope [s]
 
 -- Gitsigns
 keymap("n", "<leader>glb", "<cmd>Gitsigns toggle_current_line_blame<CR>", bopt, "[G]it [L]ine [B]lame")
+-- Neogit
+keymap("n", "<leader>G", "<cmd>Neogit<CR>", bopt, "[G]it")
 -- Fugitive
-keymap("n", "<leader>gs", "<cmd>Git<CR>", bopt, "[g]it [s]tatus")
-keymap("n", "<leader>gab", "<cmd>Git add %<CR>", bopt, "[g]it [a]dd [b]uffer")
-keymap("n", "<leader>gpl", "<cmd>Git pull<CR>", bopt, "[g]it [p]u[l]l")
-keymap("n", "<leader>gps", "<cmd>Git push<CR>", bopt, "[g]it [p]u[s]h")
+-- keymap("n", "<leader>gs", "<cmd>Git<CR>", bopt, "[g]it [s]tatus")
+-- keymap("n", "<leader>gab", "<cmd>Git add %<CR>", bopt, "[g]it [a]dd [b]uffer")
+-- keymap("n", "<leader>gpl", "<cmd>Git pull<CR>", bopt, "[g]it [p]u[l]l")
+-- keymap("n", "<leader>gps", "<cmd>Git push<CR>", bopt, "[g]it [p]u[s]h")
 
 -- Zen
 keymap("n", "<leader>zn", "<cmd>TZNarrow<CR>", bopt, "[z]en [n]arrow")
