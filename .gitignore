@@ -5,7 +5,10 @@ Dotfiles/
 .config/zsh/.zsh_plugins.zsh
 .config/zsh/.p10k.zsh
 .config/nvim/lazy-lock.json
-.config/tmux/plugins
+.config/tmux/plugins/tmux-sensible
+.config/tmux/plugins/tmux-yank
+.config/tmux/plugins/tpm
+.config/tmux/plugins/vim-tmux-navigator
 .config/nnn/.selection
 .config/bash/history
 .config/btop/btop.log
