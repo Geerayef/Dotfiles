@@ -1,0 +1,12 @@
+# --> duskfox
+thm_bg="#232136" # background
+thm_fg="#e0def4" # foreground
+thm_black="#191726" # active_tab_foreground
+thm_gray="#393552" # color0
+thm_red="#eb6f92" # color1
+thm_green="#a3be8c" # color2
+thm_yellow="#f6c177" # color3
+thm_blue="#569fba" # color4
+thm_pink="#c4a7e7" # color5
+thm_cyan="#9ccfd8" # color6
+thm_orange="#eb98c3" # color17

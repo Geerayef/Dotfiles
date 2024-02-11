@@ -106,8 +106,32 @@ return {
           ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
         }),
         window = {
-          completion = cmp.config.window.bordered({ scrollbar = false }),
-          documentation = cmp.config.window.bordered(),
+          completion = cmp.config.window.bordered({
+            scrollbar = false,
+            border = {
+              { "╭", "Normal" },
+              { "─", "Normal" },
+              { "╮", "Normal" },
+              { "│", "Normal" },
+              { "╯", "Normal" },
+              { "─", "Normal" },
+              { "╰", "Normal" },
+              { "│", "Normal" },
+            },
+          }),
+          documentation = cmp.config.window.bordered({
+            scrollbar = false,
+            border = {
+              { "╭", "Normal" },
+              { "─", "Normal" },
+              { "╮", "Normal" },
+              { "│", "Normal" },
+              { "╯", "Normal" },
+              { "─", "Normal" },
+              { "╰", "Normal" },
+              { "│", "Normal" },
+            },
+          }),
         },
         sources = cmp.config.sources(
           { { name = "nvim_lsp", keyword_length = 1, max_item_count = 10, priority = 900 } },

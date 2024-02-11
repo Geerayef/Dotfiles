@@ -1,0 +1,12 @@
+# --> nightfox
+thm_bg="#192330" # background
+thm_fg="#cdcecf" # foreground
+thm_black="#131a24" # active_tab_foreground
+thm_gray="#393b44" # color0
+thm_red="#c94f6d" # color1
+thm_green="#81b29a" # color2
+thm_yellow="#dbc074" # color3
+thm_blue="#719cd6" # color4
+thm_pink="#9d79d6" # color5
+thm_cyan="#63cdcf" # color6
+thm_orange="#d67ad2" # color17

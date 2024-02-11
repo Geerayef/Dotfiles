@@ -1,0 +1,12 @@
+# Carbonfox
+thm_bg="#161616" # background
+thm_fg="#f2f4f8" # foreground
+thm_black="#0c0c0c" # active_tab_foreground
+thm_gray="#282828" # color0
+thm_red="#ee5396" # color1
+thm_green="#25be6a" # color2
+thm_yellow="#08bdba" # color3
+thm_blue="#78a9ff" # color4
+thm_pink="#be95ff" # color5
+thm_cyan="#33b1ff" # color6
+thm_orange="#ff7eb6" # color17

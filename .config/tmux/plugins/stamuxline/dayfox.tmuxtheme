@@ -1,0 +1,12 @@
+# --> dayfox
+thm_bg="#f6f2ee" # background
+thm_fg="#3d2b5a" # foreground
+thm_black="#e4dcd4" # active_tab_foreground
+thm_gray="#352c24" # color0
+thm_red="#a5222f" # color1
+thm_green="#396847" # color2
+thm_yellow="#ac5402" # color3
+thm_blue="#2848a9" # color4
+thm_pink="#6e33ce" # color5
+thm_cyan="#287980" # color6
+thm_orange="#a440b5" # color17

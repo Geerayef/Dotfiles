@@ -1,0 +1,12 @@
+# Nordfox
+thm_bg="#2e3440" # background
+thm_fg="#cdcecf" # foreground
+thm_black="#232831" # active_tab_foreground
+thm_gray="#3b4252" # color0
+thm_red="#bf616a" # color1
+thm_green="#a3be8c" # color2
+thm_yellow="#ebcb8b" # color3
+thm_blue="#81a1c1" # color4
+thm_pink="#b48ead" # color5
+thm_cyan="#88c0d0" # color6
+thm_orange="#bf88bc" # color17
