@@ -1,7 +1,6 @@
 return {
   "nvim-lualine/lualine.nvim",
   event = "UIEnter",
-  dependencies = { "lewis6991/gitsigns.nvim" },
   init = function()
     vim.g.lualine_laststatus = vim.o.laststatus
     if vim.fn.argc(-1) > 0 then
@@ -10,14 +9,14 @@ return {
       vim.o.laststatus = 0
     end
   end,
-  opts = function()
+  config = function()
     local lualine_require = require("lualine_require")
     lualine_require.require = require
     local palette = require("colors.kanagawa.palette")
     local theme = require("colors.kanagawa.theme")
     local kanagawaline = require("colors.kanagawa.kanagawaline").setup(theme)
-    local Icons = require("config.objects").Icons
-    return {
+    local Icons = require("util.objects").Icons
+    require("lualine").setup({
       options = {
         component_separators = "",
         section_separators = "",
@@ -89,6 +88,6 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-    }
+    })
   end,
 }

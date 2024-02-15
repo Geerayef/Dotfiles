@@ -1,15 +1,18 @@
 local wezterm = require("wezterm")
-local Bar = {}
 local nf = wezterm.nerdfonts
+local fmt = wezterm.format
+local fmttimestr = wezterm.strftime
+local Bar = {}
 
 Bar.apply_to_config = function(config)
   local kanagawa = require("colors.kanagawa")
+  config.tab_max_width = 8
   config.enable_tab_bar = true
   config.use_fancy_tab_bar = false
   config.hide_tab_bar_if_only_one_tab = false
   config.tab_bar_at_bottom = true
   config.show_new_tab_button_in_tab_bar = false
-  config.status_update_interval = 30000
+  config.status_update_interval = 3000
   config.colors = {
     tab_bar = {
       background = kanagawa.split,
@@ -35,33 +38,22 @@ Bar.apply_to_config = function(config)
       stat = "LDR "
       stat_color = kanagawa.ansi[5]
     end
-    local time = wezterm.strftime("%H:%M")
+    local time = fmttimestr("%H:%M")
     local battery_percentage = ""
     for _, b in ipairs(wezterm.battery_info()) do
-      battery_percentage = string.format("%.0f", b.state_of_charge * 100)
+      battery_percentage = string.format("%.0f%%", b.state_of_charge * 100)
     end
-    local battery_percent_value = tonumber(battery_percentage)
-    local battery_icon = ""
-    if battery_percent_value <= 25 then
-      battery_icon = nf.fa_battery_empty
-    elseif battery_percent_value > 25 and battery_percent_value <= 50 then
-      battery_icon = nf.fa_battery_quarter
-    elseif battery_percent_value > 50 and battery_percent_value <= 75 then
-      battery_icon = nf.fa_battery_half
-    elseif battery_percent_value > 75 and battery_percent_value <= 100 then
-      battery_icon = nf.fa_battery_full
-    end
-    window:set_left_status(wezterm.format({
+    window:set_left_status(fmt({
       { Text = "| " },
       { Foreground = { Color = stat_color } },
       { Text = nf.oct_table .. "  " .. stat },
       { Text = " |" },
     }))
-    window:set_right_status(wezterm.format({
+    window:set_right_status(fmt({
       { Text = nf.md_clock .. "  " .. time },
       { Text = " | " },
       { Foreground = { Color = kanagawa.brights[4] } },
-      { Text = battery_icon .. "  " .. battery_percentage .. "%" },
+      { Text = nf.fa_battery_half .. "  " .. battery_percentage },
       "ResetAttributes",
       { Text = " |" },
     }))

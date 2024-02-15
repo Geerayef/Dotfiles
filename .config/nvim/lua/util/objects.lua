@@ -1,5 +1,16 @@
 O = {}
 
+O.Border = {
+  { "╭", "Normal" },
+  { "─", "Normal" },
+  { "╮", "Normal" },
+  { "│", "Normal" },
+  { "╯", "Normal" },
+  { "─", "Normal" },
+  { "╰", "Normal" },
+  { "│", "Normal" },
+}
+
 ---@return string # Mapping: mode sig -> name
 O.ViModes = {
   ["n"] = "normal",

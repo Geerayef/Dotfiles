@@ -2,6 +2,7 @@
 
 alias C="clear"
 alias grep="grep --color=always"
+alias tlmgr="/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 if test -e "$(command -v eza)"
     alias ls="eza -a --color=always --icons=always --group-directories-first"
     alias la="eza -aG --color=always --icons=always --group-directories-first"
@@ -28,7 +29,8 @@ alias lidw="ls -al /usr/share/wayland-sessions"
 
 # ~  Apps
 
-alias nv="nvim"
+alias v="nvim"
+alias nv="$HOME/Software/neovim/nvim-linux64/bin/nvim"
 if test -e "$(command -v codium)"
     alias codi="$(which codium)"
 end

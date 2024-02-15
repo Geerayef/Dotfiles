@@ -1,3 +1,4 @@
+local border = require("util.objects").Border
 return {
   {
     "williamboman/mason.nvim",
@@ -5,19 +6,21 @@ return {
     cmd = "Mason",
     opts = {
       registries = { "github:mason-org/mason-registry" },
-      ui = { icons = { package_installed = "✓", package_pending = "➜", package_uninstalled = "✗" } },
+      ui = {
+        icons = { package_installed = "✓", package_pending = "➜", package_uninstalled = "✗" },
+        border = border,
+        width = 0.7,
+        height = 0.5,
+      },
     },
   },
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPost", "BufNewFile" },
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
-    },
+    dependencies = { "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp" },
     opts = {
-      diagnostics = require("config.diagnostics"),
-      inlay_hints = { enabled = false },
+      diagnostics = require("core.diagnostics"),
+      inlay_hints = { enabled = true },
       autoformat = false,
       capabilities = {
         textDocument = {
@@ -41,7 +44,7 @@ return {
                 vim.env.VIMRUNTIME,
                 [vim.fn.expand("$VIMRUNTIME/lua")] = true,
                 [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                [vim.fn.stdpath("config") .. "/lua"] = true,
+                [vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua"] = true,
               },
               maxPreload = 2000,
               preloadFileSize = 1000,
@@ -84,7 +87,6 @@ return {
       lspconfig.ocamllsp.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        cmd = { "ocamllsp" },
         filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
         root_dir = lspconfig.util.root_pattern(
           "*.ml",
@@ -95,9 +97,9 @@ return {
           "ocamlformat",
           "esy.json",
           "package.json",
-          ".git",
           "dune-project",
-          "dune-workspace"
+          "dune-workspace",
+          ".git"
         ),
       })
 
@@ -105,14 +107,21 @@ return {
       lspconfig.rust_analyzer.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        settings = { ["rust-analyzer"] = { checkOnSave = { command = "clippy" } } },
+        root_dir = lspconfig.util.root_pattern("*.rs", "mod.rs", "Cargo.toml"),
+        settings = {
+          ["rust-analyzer"] = {
+            imports = { prefix = "self", granularity = { group = "module" } },
+            checkOnSave = { command = "clippy" },
+            cargo = { buildScripts = { enable = true } },
+            procMacro = { enable = true },
+          },
+        },
       })
 
       -- Clangd
       lspconfig.clangd.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        cmd = { "/usr/bin/clangd" },
         filetypes = { "c", "h", "cpp", "chh", "objc", "objcpp", "cuda", "proto" },
         root_dir = lspconfig.util.root_pattern(
           ".clangd",
@@ -124,22 +133,48 @@ return {
           ".git"
         ),
         single_file_support = true,
+        cmd = { "/usr/bin/clangd" },
       })
 
       -- Python
-      lspconfig.ruff_lsp.setup({
-        on_attach = lsp_attach,
-        capabilities = capabilities,
-        init_options = { settings = { args = {} } },
-      })
+      lspconfig.ruff_lsp.setup({ on_attach = lsp_attach, capabilities = capabilities, filetypes = { "python" } })
+      -- init_options = { settings = { args = {} } },
+
       -- Bash
       lspconfig.bashls.setup({
-        cmd = { "bash-language-server", "start" },
-        filetypes = { "sh", "bash" },
-        settings = { bashIde = { globPattern = "*@(.sh|.inc|.bash|.command)" } },
         on_attach = lsp_attach,
         capabilities = capabilities,
+        filetypes = { "sh", "bash" },
+        settings = { bashIde = { globPattern = "*@(.sh|.inc|.bash|.command)" } },
         single_file_support = true,
+        cmd = { "bash-language-server", "start" },
+      })
+
+      -- Texlab
+      lspconfig.texlab.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern(".latexmkrc"),
+        settings = {
+          texlab = {
+            rootDirectory = nil,
+            build = {
+              executable = "latexmk",
+              args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+              onSave = false,
+              forwardSearchAfter = false,
+            },
+            auxDirectory = ".",
+            forwardSearch = { executable = nil, args = {} },
+            chktex = { onOpenAndSave = false, onEdit = false },
+            diagnosticsDelay = 300,
+            latexFormatter = "latexindent",
+            latexindent = { ["local"] = nil, modifyLineBreaks = false },
+            bibtexFormatter = "texlab",
+            formatterLineLength = 80,
+          },
+        },
+        cmd = { "texlab" },
       })
     end,
   },

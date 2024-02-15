@@ -7,7 +7,7 @@ return {
     -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
     { "<C-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
   },
-  event = { "CursorMovedI", "BufAdd" },
+  event = { "BufAdd", "CursorMoved", "CursorMovedI" },
   opts = {
     labels = "asdfghjklqwertyuiopzxcvbnm",
     label = {
@@ -36,7 +36,7 @@ return {
         function(win) return not vim.api.nvim_win_get_config(win).focusable end,
       },
       trigger = "",
-      max_length = false, ---@type number|false
+      max_length = false, ---@type number | false
     },
     jump = {
       jumplist = true,
@@ -63,11 +63,10 @@ return {
         enabled = true,
         highlight = { backdrop = false },
         jump = { history = true, register = true, nohlsearch = true },
-        search = {
-          -- `forward` will be automatically set to the search direction
-          -- `mode` is always set to `search`
-          -- `incremental` is set to `true` when `incsearch` is enabled
-        },
+        -- `forward` will be automatically set to the search direction
+        -- `mode` is always set to `search`
+        -- `incremental` is set to `true` when `incsearch` is enabled
+        search = {},
       },
       char = {
         enabled = true,

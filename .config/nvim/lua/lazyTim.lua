@@ -1,3 +1,4 @@
+local border = require("util.objects").Border
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -20,6 +21,6 @@ local opts = {
       disabled_plugins = { "tutor", "gzip", "matchit", "matchparen", "netrwPlugin", "tarPlugin", "tohtml", "zipPlugin" },
     },
   },
-  ui = { title = "Lazy" }, --,border = "single",
+  ui = { title = "Lazy", border = border },
 }
 require("lazy").setup("plugins", opts)

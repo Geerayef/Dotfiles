@@ -1,12 +1,11 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = false, priority = 900 },
   { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "tpope/vim-sleuth", event = { "BufReadPost" } },
-  { "tpope/vim-surround", event = { "InsertEnter", "BufNewFile", "BufAdd" } },
+  { "tpope/vim-sleuth", lazy = true, event = { "BufAdd", "BufReadPost" } },
+  { "tpope/vim-surround", lazy = true, event = { "BufAdd", "BufNewFile", "CursorMoved" } },
   { "Pocco81/true-zen.nvim", lazy = true, event = "BufAdd" },
   {
     "windwp/nvim-autopairs",
-    lazy = true,
     event = "InsertEnter",
     opts = function()
       require("cmp").event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
@@ -15,8 +14,7 @@ return {
   },
   {
     "numToStr/Comment.nvim",
-    lazy = true,
-    event = { "BufAdd", "CursorMovedI" },
+    event = { "BufAdd", "CursorMoved", "CursorMovedI" },
     opts = {
       opleader = { line = "gc", block = "gb" },
       mappings = { basic = true, extra = true },
@@ -25,7 +23,6 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    lazy = true,
     event = { "BufAdd", "BufNewFile", "BufReadPost" },
     main = "ibl",
     opts = { indent = { char = "│" } },

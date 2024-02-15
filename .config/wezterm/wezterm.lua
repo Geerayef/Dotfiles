@@ -53,15 +53,15 @@ config.colors.cursor_fg = "#000000"
 config.default_workspace = "home"
 
 -- Performance
-config.line_quad_cache_size = 512 -- >= sum(#lines in panes in a tab) | < : Harms performance. [1024]
-config.line_state_cache_size = 512 -- As above. [1024]
-config.line_to_ele_shape_cache_size = 512 -- As above. [1024]
-config.shape_cache_size = 512 -- >= #(different attributed runs on the screen). [1024]
+config.line_quad_cache_size = 1024 -- >= sum(#lines in panes in a tab) | < : Harms performance. [1024]
+config.line_state_cache_size = 1024 -- As above. [1024]
+config.line_to_ele_shape_cache_size = 1024 -- As above. [1024]
+config.shape_cache_size = 1024 -- >= #(different attributed runs on the screen). [1024]
 
 -- General
 config.enable_wayland = false
-config.front_end = "WebGpu"
-config.webgpu_power_preference = "HighPerformance"
+-- config.front_end = "WebGpu"
+-- config.webgpu_power_preference = "HighPerformance"
 config.animation_fps = 1
 config.max_fps = 60
 config.scrollback_lines = 2000

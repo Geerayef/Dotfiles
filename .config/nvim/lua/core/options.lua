@@ -1,8 +1,7 @@
 local o = vim.opt
 local cmd = vim.cmd
 
-o.shell = "/usr/bin/fish"
-o.shortmess:append("I")
+o.shortmess:append("Is")
 
 -- ~  File
 cmd.syntax("on")
@@ -10,8 +9,6 @@ cmd.filetype("plugin", "indent", "on")
 o.fileformats = "unix"
 o.fileencoding = "utf-8"
 o.undofile = true
-o.formatoptions:append("j")
-o.nrformats:remove("octal")
 
 -- ~  Edit
 o.tabstop = 4
@@ -53,9 +50,8 @@ o.wildoptions = "fuzzy,pum"
 o.list = true
 
 -- ~  Behaviour
-o.ttyfast = true
-o.lazyredraw = true
-o.updatetime = 300
+o.lazyredraw = false
+o.updatetime = 200
 o.belloff = "all"
 o.splitright = true
 o.splitbelow = true

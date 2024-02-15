@@ -1,8 +1,9 @@
+local border = require("util.objects").Border
 return {
   "nvim-treesitter/nvim-treesitter",
   version = false,
   build = ":TSUpdate",
-  event = { "WinEnter", "VeryLazy" },
+  event = { "FileType" },
   init = function(plugin)
     require("lazy.core.loader").add_to_rtp(plugin)
     require("nvim-treesitter.query_predicates")
@@ -14,21 +15,28 @@ return {
     local is = ts.incremental_selection
     return {
       ensure_installed = {
-        "commonlisp",
-        "bash",
-        "fish",
         "lua",
         "luadoc",
+        "vim",
+        "vimdoc",
+        "bash",
+        "fish",
         "c",
         "cpp",
         "ocaml",
         "python",
         "rust",
+        "scheme",
+        "commonlisp",
         "yaml",
         "toml",
       },
       auto_install = false,
-      highlight = { enable = true, disable = function(_, buf) return F.IsBigBuff(buf) end },
+      highlight = {
+        enable = true,
+        disable = function(ft, buf) return F.IsBigBuff(buf) or ft == "latex" or vim.fn.win_gettype() == "command" end,
+        additional_vim_regex_highlighting = { "markdown" },
+      },
       indent = { enable = true, disable = { "python" } },
       incremental_selection = { enable = true, keymaps = is },
       textobjects = {
@@ -41,8 +49,8 @@ return {
           goto_previous_start = to.move.goto_previous_start,
           goto_previous_end = to.move.goto_previous_end,
         },
-        swap = { enable = true, swap_next = to.swap.swap_next, swap_previous = to.swap.swap_previous },
-        lsp_interop = { enable = true, border = "single", peek_definition_code = to.lsp_interop },
+        swap = { enable = true, swap_next = to.swap.next, swap_previous = to.swap.previous },
+        lsp_interop = { enable = true, border = border, peek_definition_code = to.lsp_interop },
       },
     }
   end,

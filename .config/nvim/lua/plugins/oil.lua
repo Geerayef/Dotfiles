@@ -1,3 +1,4 @@
+local border = require("util.objects").Border
 return {
   "stevearc/oil.nvim",
   opts = {
@@ -16,6 +17,7 @@ return {
       ["?"] = "actions.show_help",
       ["~"] = "actions.open_cwd",
       ["@"] = "actions.cd",
+      ["gH"] = "actions.open({/home/tibor/})",
       ["gs"] = "actions.change_sort",
       ["gx"] = "actions.open_external",
       ["g."] = "actions.toggle_hidden",
@@ -39,16 +41,7 @@ return {
       max_height = math.floor(vim.api.nvim_win_get_height(0) * 0.4),
       override = function(conf)
         conf.style = "minimal"
-        conf.border = {
-          { "╭", "Normal" },
-          { "─", "Normal" },
-          { "╮", "Normal" },
-          { "│", "Normal" },
-          { "╯", "Normal" },
-          { "─", "Normal" },
-          { "╰", "Normal" },
-          { "│", "Normal" },
-        }
+        conf.border = border
         return conf
       end,
     },

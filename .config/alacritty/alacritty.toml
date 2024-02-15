@@ -1,4 +1,4 @@
-import = [ "~/.config/alacritty/colors/KanagawaDragon.toml" ]
+import = [ "~/.config/alacritty/colors/AyuDark.toml" ]
 #shell = { program = "/usr/bin/nu", args = ["--stdin",] }
 #working_directory = ""
 live_config_reload = true

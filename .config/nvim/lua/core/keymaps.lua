@@ -14,8 +14,8 @@ local bopt = { noremap = true, silent = true, desc = "" }
 
 -- ~  General keymaps
 
-keymap("x", "J", ":m '>+1<CR>gv=gv", bopt, "Move selected line[s] down")
-keymap("x", "K", ":m '<-2<CR>gv=gv", bopt, "Move selected line[s] up")
+keymap("x", "J", ":'<,'>m '>+1<CR>gv=gv", bopt, "Move selected line[s] down")
+keymap("x", "K", ":'<,'>m '<-2<CR>gv=gv", bopt, "Move selected line[s] up")
 keymap("n", "<C-d>", "10<C-d>", bopt, "Scroll down 10 lines")
 keymap("n", "<C-u>", "10<C-u>", bopt, "Scroll up 10 lines")
 
@@ -28,11 +28,11 @@ keymap("n", "n", "nzzzv", bopt, "Vertically center cursor after jumping to the n
 keymap("n", "N", "Nzzzv", bopt, "Vertically center cursor after jumping to the previous search result")
 
 -- Copy/Yank/Paste
-keymap("n", "x", '"_x', bopt, "Cut next character without saving to buffer")
-keymap("x", "<leader>P", '"_dP', bopt, "Past from system clipboard")
-keymap("n", "<leader>y", '"+y', bopt, "Yank to system clipboard")
-keymap("n", "<leader>Y", '"+Y', bopt, "Yank to system clipboard")
-keymap("v", "<leader>y", '"+y', bopt, "Yank to system clipboard")
+keymap("n", "x", "\"_x", bopt, "Cut next character without saving to buffer")
+keymap("x", "<leader>P", "\"_dP", bopt, "Past from system clipboard")
+keymap("n", "<leader>y", "\"+y", bopt, "Yank to system clipboard")
+keymap("n", "<leader>Y", "\"+Y", bopt, "Yank to system clipboard")
+keymap("v", "<leader>y", "\"+y", bopt, "Yank to system clipboard")
 
 -- Tabs
 keymap("n", "<leader>to", "<cmd>tabnew<CR>", bopt, "[t]ab [o]pen")
@@ -71,14 +71,35 @@ keymap("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", bopt, "Telescope [s]
 keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", bopt, "Telescope [s]earch [d]iagnostics")
 
 -- Gitsigns
-keymap("n", "<leader>glb", "<cmd>Gitsigns toggle_current_line_blame<CR>", bopt, "[G]it [L]ine [B]lame")
+keymap("n", "<leader>glb", "<cmd>Gitsigns toggle_current_line_blame<CR>", bopt, "[g]it [l]ine [b]lame")
+keymap("n", "<leader>hs", "<cmd>Gitsign stage_hunk<CR>", bopt, "[h]unk [s]tage")
+keymap("n", "<leader>hr", "<cmd>Gitsign reset_hunk<CR>", bopt, "[h]unk [r]eset")
+keymap("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>", bopt, "[h]unk [S]tage buffer")
+keymap("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>", bopt, "[h]unk [u]ndo stage")
+keymap("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>", bopt, "[h]unk [R]eset buffer")
+keymap("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>", bopt, "[h]unk [p]review")
+keymap("n", "<leader>hbt", "<cmd>Gitsigns toggle_current_line_blame<CR>", bopt, "[h]unk [b]lame [t]oggle")
+keymap("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>", bopt, "[h]unk [d]iff")
+keymap("n", "<leader>hdt", "<cmd>Gitsigns toggle_deleted<CR>", bopt, "[h]unk [d]eleted [t]oggle")
+keymap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", bopt, "Select [i]n [h]unk")
+
 -- Neogit
-keymap("n", "<leader>G", "<cmd>Neogit<CR>", bopt, "[G]it")
+keymap("n", "<leader>G", "<cmd>Neogit<CR>", bopt, "Neo[G]it")
+
 -- Fugitive
 -- keymap("n", "<leader>gs", "<cmd>Git<CR>", bopt, "[g]it [s]tatus")
 -- keymap("n", "<leader>gab", "<cmd>Git add %<CR>", bopt, "[g]it [a]dd [b]uffer")
 -- keymap("n", "<leader>gpl", "<cmd>Git pull<CR>", bopt, "[g]it [p]u[l]l")
 -- keymap("n", "<leader>gps", "<cmd>Git push<CR>", bopt, "[g]it [p]u[s]h")
+
+-- Conform
+keymap(
+  "n",
+  "<leader>F",
+  function() require("conform").format({ async = true, lsp_fallback = true }) end,
+  bopt,
+  "[F]ormat current buffer"
+)
 
 -- Zen
 keymap("n", "<leader>zn", "<cmd>TZNarrow<CR>", bopt, "[z]en [n]arrow")
@@ -103,13 +124,7 @@ function Key.LSP(_, bufnr)
   keymap("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", { buffer = bufnr }, "[g]oto [i]mplementation")
   keymap("n", "<leader>D", lspbuf.type_definition, { buffer = bufnr }, "Type [D]efinition")
   keymap("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>", { buffer = bufnr }, "[d]ocument [s]ymbols")
-  keymap(
-    "n",
-    "<leader>ws",
-    "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",
-    { buffer = bufnr },
-    "[w]orkspace [s]ymbols"
-  )
+  keymap("n", "<leader>ws", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { buffer = bufnr }, "[w]orkspace [s]ymbols")
   keymap("n", "<leader>waf", lspbuf.add_workspace_folder, { buffer = bufnr }, "[w]orkspace [a]dd [f]older")
   keymap("n", "<leader>wrf", lspbuf.remove_workspace_folder, { buffer = bufnr }, "[w]orkspace [r]emove [f]older")
   keymap(
@@ -143,19 +158,19 @@ Key.TS = {
       goto_previous_end = { ["]F"] = "@function.outer", ["[]"] = "@class.outer" },
     },
     swap = {
-      swap_next = { ["<leader>snp"] = "@parameter.inner" },
-      swap_previous = { ["<leader>spp"] = "@parameter.inner" },
+      next = { ["<M-C-L>"] = "@parameter.inner" },
+      previous = { ["<M-C-H>"] = "@parameter.inner" },
     },
-    lsp_interop = { ["<leader>pfd"] = "@function.outer", ["<leader>pcd"] = "@class.outer" },
+    lsp_interop = { ["<C-k>"] = "@function.outer", ["<C-K>"] = "@class.outer" },
   },
 }
 
 -- Java extensions provided by jdtls
 function Key.JDTLS()
-  keymap("n", "<leader>oi", '<cmd>lua require("jdtls").organize_imports<CR>', {}, "[o]rganize [i]mports")
-  keymap("n", "<leader>ev", '<cmd>lua require("jdtls").extract_variable<CR>', {}, "[e]xtract [v]ariable")
-  keymap("n", "<leader>ec", '<cmd>lua require("jdtls").extract_constant<CR>', {}, "[e]xtract [c]onstant")
-  keymap("v", "<leader>em", '<cmd>lua require("jdtls").extract_method(true)<CR>', {}, "[e]xtract [m]ethod")
+  keymap("n", "<leader>oi", "<cmd>lua require(\"jdtls\").organize_imports<CR>", {}, "[o]rganize [i]mports")
+  keymap("n", "<leader>ev", "<cmd>lua require(\"jdtls\").extract_variable<CR>", {}, "[e]xtract [v]ariable")
+  keymap("n", "<leader>ec", "<cmd>lua require(\"jdtls\").extract_constant<CR>", {}, "[e]xtract [c]onstant")
+  keymap("v", "<leader>em", "<cmd>lua require(\"jdtls\").extract_method(true)<CR>", {}, "[e]xtract [m]ethod")
 end
 
 return Key

@@ -1,15 +1,6 @@
-local _border = {
-  { "╭", "Normal" },
-  { "─", "Normal" },
-  { "╮", "Normal" },
-  { "│", "Normal" },
-  { "╯", "Normal" },
-  { "─", "Normal" },
-  { "╰", "Normal" },
-  { "│", "Normal" },
-}
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = _border })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = _border })
+local border = require("util.objects").Border
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
 
 return {
   underline = true,
@@ -37,6 +28,6 @@ return {
       if code then t.message = string.format("%s [%s]", t.message, code):gsub("1. ", "") end
       return t.message
     end,
-    border = _border,
+    border = border,
   },
 }
