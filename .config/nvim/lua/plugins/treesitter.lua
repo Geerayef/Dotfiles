@@ -30,6 +30,8 @@ return {
         "commonlisp",
         "yaml",
         "toml",
+        "typescript",
+        "javascript",
       },
       auto_install = false,
       highlight = {

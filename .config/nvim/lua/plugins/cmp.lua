@@ -112,11 +112,11 @@ return {
         },
         sources = cmp.config.sources(
           { { name = "nvim_lsp", keyword_length = 1, max_item_count = 10, priority = 900 } },
-          { { name = "nvim_lua", keyword_length = 1, max_item_count = 10, priority = 800 } },
-          { { name = "luasnip", keyword_length = 2, max_item_count = 10, priority = 850 } },
           { { name = "nvim_lsp_signature_help", keyword_length = 1, max_item_count = 10, priority = 850 } },
+          { { name = "luasnip", keyword_length = 3, max_item_count = 10, priority = 850 } },
+          { { name = "nvim_lua", keyword_length = 2, max_item_count = 10, priority = 800 } },
           { { name = "buffer", keyword_length = 3, max_item_count = 10, priority = 500 } },
-          { { name = "path", keyword_length = 2, max_item_count = 10, priority = 450 } },
+          { { name = "path", keyword_length = 3, max_item_count = 10, priority = 450 } },
           { { name = "treesitter", keyword_length = 2, max_item_count = 10, priority = 425 } },
           { { name = "vimtex", keyword_length = 2, max_item_count = 10, priority = 400 } }
         ),

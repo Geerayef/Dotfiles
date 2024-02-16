@@ -24,6 +24,7 @@ return {
       autoformat = false,
       capabilities = {
         textDocument = {
+          documentFormattingProvider = false,
           codelens = { enable = true },
           completion = {
             completionItem = {
@@ -74,8 +75,8 @@ return {
       mason_lspcfg.setup_handlers({
         function(server_name)
           lspconfig[server_name].setup({
-            capabilities = capabilities,
             on_attach = lsp_attach,
+            capabilities = capabilities,
             settings = opts.servers[server_name],
           })
         end,
@@ -101,13 +102,15 @@ return {
           "dune-workspace",
           ".git"
         ),
+        cmd = { "ocamllsp" },
       })
 
       -- Rust
       lspconfig.rust_analyzer.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        root_dir = lspconfig.util.root_pattern("*.rs", "mod.rs", "Cargo.toml"),
+        filetypes = { "rust" },
+        root_dir = lspconfig.util.root_pattern("Cargo.toml", "rust-project.json"),
         settings = {
           ["rust-analyzer"] = {
             imports = { prefix = "self", granularity = { group = "module" } },
@@ -116,6 +119,7 @@ return {
             procMacro = { enable = true },
           },
         },
+        cmd = { "rust-analyzer" },
       })
 
       -- Clangd
@@ -137,7 +141,14 @@ return {
       })
 
       -- Python
-      lspconfig.ruff_lsp.setup({ on_attach = lsp_attach, capabilities = capabilities, filetypes = { "python" } })
+      lspconfig.ruff_lsp.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        filetypes = { "python" },
+        root_dir = lspconfig.util.root_pattern("*.py", "__init__.py", ".git"),
+        single_file_support = true,
+        cmd = { "ruff-lsp" },
+      })
       -- init_options = { settings = { args = {} } },
 
       -- Bash
@@ -145,6 +156,7 @@ return {
         on_attach = lsp_attach,
         capabilities = capabilities,
         filetypes = { "sh", "bash" },
+        root_dir = lspconfig.util.root_pattern(".git"),
         settings = { bashIde = { globPattern = "*@(.sh|.inc|.bash|.command)" } },
         single_file_support = true,
         cmd = { "bash-language-server", "start" },
@@ -154,6 +166,7 @@ return {
       lspconfig.texlab.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
+        filetypes = { "tex", "plaintex", "bib" },
         root_dir = lspconfig.util.root_pattern(".latexmkrc"),
         settings = {
           texlab = {
@@ -174,7 +187,29 @@ return {
             formatterLineLength = 80,
           },
         },
+        single_file_support = true,
         cmd = { "texlab" },
+      })
+
+      -- Type/Java Script
+      lspconfig.tsserver.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        init_options = { preferences = { disableSuggestions = true }, hostInfo = "neovim" },
+        root_dir = lspconfig.util.root_pattern("package.json", "node_modules", "jsconfig.json", "tsconfig.json", ".git"),
+        filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+        single_file_support = true,
+        cmd = { "typescript-language-server", "--stdio" },
+      })
+
+      -- Biome
+      lspconfig.biome.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        filetypes = { "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescript.tsx", "typescriptreact" },
+        root_dir = lspconfig.util.root_pattern("biome.json"),
+        single_file_support = false,
+        cmd = { "biome", "lsp-proxy" },
       })
     end,
   },

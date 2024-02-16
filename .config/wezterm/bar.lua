@@ -1,11 +1,11 @@
-local wezterm = require("wezterm")
+local wezterm = require("wezterm_alt")
 local nf = wezterm.nerdfonts
 local fmt = wezterm.format
 local fmttimestr = wezterm.strftime
 local Bar = {}
 
 Bar.apply_to_config = function(config)
-  local kanagawa = require("colors.kanagawa")
+  local kanagawa = require("kanagawa")
   config.tab_max_width = 8
   config.enable_tab_bar = true
   config.use_fancy_tab_bar = false

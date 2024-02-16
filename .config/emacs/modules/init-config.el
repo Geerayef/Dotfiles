@@ -21,18 +21,13 @@
 
 (customize-set-variable 'load-prefer-newer t)
 
-(if (boundp 'crafted-emacs-home)
-    (message "crafted-emacs-home value set by user: %s" crafted-emacs-home)
-  (defvar crafted-emacs-home nil))
+(if (boundp 'modules-home)
+    (message "Value of modules-home set to: %s" modules-home)
+  (defvar modules-home nil))
 
-(unless crafted-emacs-home
-  (error "%s\n%s"
-         "The value for crafted-emacs-home is not set"
-         "Please set this value to the location where crafted-emacs is installed"))
-
-(let ((modules (expand-file-name "modules/" crafted-emacs-home)))
+(let ((modules (expand-file-name "./" modules-home)))
   (when (file-directory-p modules)
-    (message "Adding modules to load-path: %s" modules)
+    (message "Add modules to load-path: %s" modules)
     (add-to-list 'load-path modules)))
 
 (let ((custom-modules (expand-file-name "custom-modules" user-emacs-directory)))

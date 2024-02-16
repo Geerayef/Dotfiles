@@ -30,7 +30,7 @@ alias lidw="ls -al /usr/share/wayland-sessions"
 # ~  Apps
 
 alias v="nvim"
-alias nv="$HOME/Software/neovim/nvim-linux64/bin/nvim"
+alias nv="$HOME/software/neovim/nvim-linux64/bin/nvim"
 if test -e "$(command -v codium)"
     alias codi="$(which codium)"
 end

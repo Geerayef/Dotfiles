@@ -4,7 +4,7 @@
 
 (setq package-enable-at-startup nil)
 (setq-default user-emacs-directory "~/.config/emacs")
-(setq-default crafted-emacs-home "~/.config/emacs/")
+(setq-default modules-home "~/.config/emacs/modules")
 
 (defvar elpaca-installer-version 0.6)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
@@ -43,7 +43,7 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
-(load (expand-file-name "modules/package-config" crafted-emacs-home))
+(load (expand-file-name "package-config" modules-home))
 
 (setq crafted-package-system 'elpaca)
 (setq crafted-package-installer #'elpaca-try)

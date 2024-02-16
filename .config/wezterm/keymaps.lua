@@ -1,4 +1,4 @@
-local wezterm = require("wezterm")
+local wezterm = require("wezterm_alt")
 local act = wezterm.action
 local fmt = wezterm.format
 local callback = wezterm.action_callback

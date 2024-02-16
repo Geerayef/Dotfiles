@@ -32,7 +32,6 @@
 (blink-cursor-mode 0)
 
 ;; Edit
-;; (global-display-line-numbers-mode 1)
 (custom-set-variables
   '(display-line-numbers-type 'relative))
 (setq crafted-ui-display-line-numbers t)
@@ -43,7 +42,7 @@
 (setq-default tab-width 4)
 
 ;; Crafted Emacs init
-(load (expand-file-name "modules/init-config" crafted-emacs-home))
+(load (expand-file-name "init-config" modules-home))
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 

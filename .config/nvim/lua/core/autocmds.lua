@@ -3,17 +3,13 @@ local augroup = vim.api.nvim_create_augroup
 
 -- ~  Highlight on yank
 
-local hl_group = augroup("YankHighlight", { clear = true })
-autocmd("TextYankPost", {
-  callback = function() vim.highlight.on_yank() end,
-  group = hl_group,
-  pattern = "*",
-})
+local yankhl = augroup("YankHighlight", { clear = true })
+autocmd("TextYankPost", { callback = function() vim.highlight.on_yank() end, group = yankhl, pattern = "*" })
 
 -- ~  Improve performance in large files
 
 local group = vim.api.nvim_create_augroup("LargeFileAutocmds", {})
-local old_eventignore = vim.o.eventignore
+local old_eventignore
 local largefile_opened = false
 
 vim.api.nvim_create_autocmd({ "BufReadPre" }, {
@@ -35,7 +31,7 @@ vim.api.nvim_create_autocmd({ "BufReadPre" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+vim.api.nvim_create_autocmd("BufWinEnter", {
   group = group,
   callback = function()
     if largefile_opened then
@@ -45,7 +41,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
+vim.api.nvim_create_autocmd("BufEnter", {
   group = group,
   callback = function(ev)
     local byte_size = vim.api.nvim_buf_get_offset(ev.buf, vim.api.nvim_buf_line_count(ev.buf))

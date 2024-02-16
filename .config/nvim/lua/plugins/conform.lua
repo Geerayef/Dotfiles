@@ -19,8 +19,25 @@ return {
       fish = { "fish_indent" },
       bash = { "shfmt" },
       sh = { "shfmt" },
+      json = { "biome" },
+      javascript = { "biome" },
+      typescript = { "biome" },
     },
     format_on_save = { timeout_ms = 500, lsp_fallback = true },
-    formatters = { shfmt = { prepend_args = { "-i", "2", "-s" } } },
+    formatters = {
+      shfmt = { prepend_args = { "-i", "2", "-s" } },
+      biome = {
+        command = "biome",
+        stdin = true,
+        -- args = {
+        --   "check",
+        --   "--apply-unsafe",
+        --   "--formatter-enabled=true",
+        --   "--organize-imports-enabled=true",
+        --   "--skip-errors",
+        --   "$FILENAME",
+        -- },
+      },
+    },
   },
 }
