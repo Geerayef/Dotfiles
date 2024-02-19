@@ -125,10 +125,6 @@ return {
       stat_color = kanagawa.ansi[5]
     end
     local time = fmttimestr("%H:%M")
-    local battery_percentage = ""
-    for _, b in ipairs(W.battery_info()) do
-      battery_percentage = string.format("%.0f%%", b.state_of_charge * 100)
-    end
     window:set_left_status(fmt({
       { Text = "| " },
       { Foreground = { Color = stat_color } },
@@ -136,12 +132,10 @@ return {
       { Text = " |" },
     }))
     window:set_right_status(fmt({
+      { Text = "| " },
       { Text = nf.md_clock .. "  " .. time },
-      { Text = " | " },
-      { Foreground = { Color = kanagawa.brights[4] } },
-      { Text = nf.fa_battery_half .. "  " .. battery_percentage },
-      "ResetAttributes",
       { Text = " |" },
+      { Foreground = { Color = kanagawa.brights[4] } },
     }))
   end),
 }

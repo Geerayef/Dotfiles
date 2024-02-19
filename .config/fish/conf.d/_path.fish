@@ -8,12 +8,20 @@ if test -d "$HOME/.local/bin"
     fish_add_path -a "$HOME/.local/bin"
 end
 
-if test -d "$HOME/Software/Neovim/bin"
-    fish_add_path -a "$HOME/Software/Neovim/bin"
+if test -d "$HOME/.local/bin/share/pnpm"
+    fish_add_path -a "$HOME/.local/share/pnpm"
+end
+
+if test -d "$HOME/software/neovim/bin"
+    fish_add_path -a "$HOME/software/neovim/bin"
 end
 
 if test -d "$HOME/.scripts"
     fish_add_path -a "$HOME/.scripts"
+end
+
+if test -d "$XDG_CONFIG_HOME/emacs/bin"
+    fish_add_path -a "$XDG_CONFIG_HOME/emacs/bin"
 end
 
 # ~  Developer Environment

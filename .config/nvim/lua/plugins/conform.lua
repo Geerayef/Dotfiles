@@ -2,14 +2,14 @@ return {
   "stevearc/conform.nvim",
   event = { "BufWritePre" },
   cmd = { "ConformInfo" },
-  -- keys = {
-  --   {
-  --     "<leader>F",
-  --     function() require("conform").format({ async = true, lsp_fallback = true }) end,
-  --     mode = "n",
-  --     desc = "[F]ormat current buffer",
-  --   },
-  -- },
+  keys = {
+    {
+      "<leader>F",
+      function() require("conform").format({ async = true, lsp_fallback = true }) end,
+      mode = "n",
+      desc = "[F]ormat current buffer",
+    },
+  },
   opts = {
     formatters_by_ft = {
       c = { "clang-format" },
@@ -20,6 +20,7 @@ return {
       bash = { "shfmt" },
       sh = { "shfmt" },
       json = { "biome" },
+      jsonc = { "biome" },
       javascript = { "biome" },
       typescript = { "biome" },
     },
@@ -29,14 +30,7 @@ return {
       biome = {
         command = "biome",
         stdin = true,
-        -- args = {
-        --   "check",
-        --   "--apply-unsafe",
-        --   "--formatter-enabled=true",
-        --   "--organize-imports-enabled=true",
-        --   "--skip-errors",
-        --   "$FILENAME",
-        -- },
+        prepend_args = { "check", "--use-server", "--apply-unsafe", "$FILENAME" },
       },
     },
   },

@@ -93,13 +93,13 @@ keymap("n", "<leader>G", "<cmd>Neogit<CR>", bopt, "Neo[G]it")
 -- keymap("n", "<leader>gps", "<cmd>Git push<CR>", bopt, "[g]it [p]u[s]h")
 
 -- Conform
-keymap(
-  "n",
-  "<leader>F",
-  function() require("conform").format({ async = true, lsp_fallback = true }) end,
-  bopt,
-  "[F]ormat current buffer"
-)
+-- keymap(
+--   "n",
+--   "<leader>F",
+--   function() require("conform").format({ async = true, lsp_fallback = true }) end,
+--   bopt,
+--   "[F]ormat current buffer"
+-- )
 
 -- Zen
 keymap("n", "<leader>zn", "<cmd>TZNarrow<CR>", bopt, "[z]en [n]arrow")

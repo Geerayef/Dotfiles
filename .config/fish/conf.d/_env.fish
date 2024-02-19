@@ -18,7 +18,7 @@ set -gx TERM wezterm
 set -gx EDITOR "$neovim"
 set -gx SUDO_EDITOR "$neovim"
 set -gx VISUAL "$HOME/.scripts/nnn/edit_detached.fish"
-set -gx PAGER "nvimpager -p"
+set -gx PAGER nvimpager -p
 set -gx MANPAGER "nvim +Man!"
 set -gx SYSTEM_PACKAGE_MANAGER pacman
 set -gx MOZ_ENABLE_WAYLAND 1

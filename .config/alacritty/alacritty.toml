@@ -1,8 +1,8 @@
 import = [ "~/.config/alacritty/colors/AyuDark.toml" ]
-#shell = { program = "/usr/bin/nu", args = ["--stdin",] }
-#working_directory = ""
+shell = { program = "/usr/bin/elvish" }
+# working_directory = ""
 live_config_reload = true
-#ipc_socket = true
+# ipc_socket = true
 
 [env]
 CURRENT_TERM = "alacritty"
@@ -13,7 +13,7 @@ position                  = "None"
 padding                   = { x = 0, y = 0 }
 dynamic_padding           = true
 decorations               = "None"
-opacity                   = 1
+opacity                   = 0.9
 startup_mode              = "Windowed"
 title                     = "Alacritty"
 dynamic_title             = false
@@ -22,13 +22,13 @@ decorations_theme_variant = "None"
 resize_increments         = false
 
 [scrolling]
-history    = 2000
+history    = 4000
 #multiplier = 3
 
 [font]
 normal              = { family = "Iosevka Nerd Font Mono", style = "Regular" }
-bold                = { family = "Iosevka Nerd Font Mono", style = "Bold" }
-italic              = { family = "Iosevka Nerd Font Mono", style = "LightItalic" }
+bold                = { family = "Iosevka Nerd Font Mono", style = "Heavy" }
+italic              = { family = "Iosevka Nerd Font Mono", style = "Oblique" }
 bold_italic         = { family = "Iosevka Nerd Font Mono", style = "BoldItalic" }
 size                = 14.0
 offset              = { x = 0, y = 0 }
@@ -38,7 +38,7 @@ builtin_box_drawing = true
 [cursor]
 style = { shape = "Block", blinking = "Off" }
 vi_mode_style = "None"
-blink_interval = 750
+blink_interval = 0
 blink_timeout = 0
 unfocused_hollow = true
 #thickness = 0.15

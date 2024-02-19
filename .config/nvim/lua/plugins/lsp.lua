@@ -86,6 +86,7 @@ return {
 
       -- OCaml
       lspconfig.ocamllsp.setup({
+        autostart = false,
         on_attach = lsp_attach,
         capabilities = capabilities,
         filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
@@ -206,10 +207,28 @@ return {
       lspconfig.biome.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        filetypes = { "javascript", "javascriptreact", "json", "jsonc", "typescript", "typescript.tsx", "typescriptreact" },
+        filetypes = {
+          "javascript",
+          "jsx",
+          "javascriptreact",
+          "json",
+          "jsonc",
+          "typescript",
+          "typescript.tsx",
+          "typescriptreact",
+        },
         root_dir = lspconfig.util.root_pattern("biome.json"),
         single_file_support = false,
         cmd = { "biome", "lsp-proxy" },
+      })
+
+      -- Svelte
+      lspconfig.svelte.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern("biome.json", "svelte.config.js", ".git"),
+        filetypes = { "svelte", "css", "html", "javascript", "typescript" },
+        single_file_support = true,
       })
     end,
   },
