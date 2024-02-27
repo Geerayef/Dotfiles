@@ -9,12 +9,12 @@ $line_break\
 $character"""
 
 right_format="""
-$time
+$time\
+$line_break\
 $cmd_duration\
 $ocaml\
 $lua\
-$python\
-"""
+$python"""
 
 add_newline = true
 scan_timeout = 10
@@ -45,6 +45,7 @@ deleted = "x"
 stashed = "≡"
 
 [git_state]
+disabled = false
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "#202328"
 
@@ -53,7 +54,6 @@ format = "[$duration]($style) "
 style = "#F9AF4F"
 
 [ocaml]
-disabled = false
 format = '[$symbol($switch_indicator$switch_name): ($version)]($style)'
 version_format = "v${major}.${minor}"
 symbol = "🐪 "
@@ -70,7 +70,6 @@ style = "#98BE65"
 symbol = ""
 
 [lua]
-disabled = false
 format = '[$symbol ($version)]($style)'
 symbol = "🌙"
 version_format = "v${raw}"

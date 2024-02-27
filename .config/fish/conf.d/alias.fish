@@ -31,6 +31,7 @@ alias lidw="ls -al /usr/share/wayland-sessions"
 
 alias v="nvim"
 alias nv="$HOME/software/neovim/nvim-linux64/bin/nvim"
+alias npm="pnpm"
 if test -e "$(command -v codium)"
     alias codi="$(which codium)"
 end
@@ -98,7 +99,7 @@ else if test $SYSTEM_PACKAGE_MANAGER = dnf
     alias dnfgl="sudo dnf grouplist"
     alias dnfh="dnf help"
 else if test $SYSTEM_PACKAGE_MANAGER = pacman
-    alias pi="sudo pacman -Sy --needed"
+    alias pi="sudo pacman -Syu --needed"
     alias pu="sudo pacman -Syu"
     alias pr="sudo pacman -Rs"
     alias pq="sudo pacman -Q"

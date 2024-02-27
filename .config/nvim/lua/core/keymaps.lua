@@ -16,8 +16,8 @@ local bopt = { noremap = true, silent = true, desc = "" }
 
 keymap("x", "J", ":'<,'>m '>+1<CR>gv=gv", bopt, "Move selected line[s] down")
 keymap("x", "K", ":'<,'>m '<-2<CR>gv=gv", bopt, "Move selected line[s] up")
-keymap("n", "<C-d>", "10<C-d>", bopt, "Scroll down 10 lines")
-keymap("n", "<C-u>", "10<C-u>", bopt, "Scroll up 10 lines")
+keymap("n", "<C-d>", "10j", bopt, "Scroll down 10 lines")
+keymap("n", "<C-u>", "10k", bopt, "Scroll up 10 lines")
 
 -- Buffers
 keymap("n", "<leader>bd", "<cmd>bdelete<CR>", bopt, "[b]uffer [d]elete")
@@ -71,16 +71,15 @@ keymap("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", bopt, "Telescope [s]
 keymap("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", bopt, "Telescope [s]earch [d]iagnostics")
 
 -- Gitsigns
-keymap("n", "<leader>glb", "<cmd>Gitsigns toggle_current_line_blame<CR>", bopt, "[g]it [l]ine [b]lame")
-keymap("n", "<leader>hs", "<cmd>Gitsign stage_hunk<CR>", bopt, "[h]unk [s]tage")
-keymap("n", "<leader>hr", "<cmd>Gitsign reset_hunk<CR>", bopt, "[h]unk [r]eset")
+keymap("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>", bopt, "[h]unk [s]tage")
+keymap("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>", bopt, "[h]unk [r]eset")
 keymap("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>", bopt, "[h]unk [S]tage buffer")
 keymap("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>", bopt, "[h]unk [u]ndo stage")
 keymap("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>", bopt, "[h]unk [R]eset buffer")
 keymap("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>", bopt, "[h]unk [p]review")
-keymap("n", "<leader>hbt", "<cmd>Gitsigns toggle_current_line_blame<CR>", bopt, "[h]unk [b]lame [t]oggle")
 keymap("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>", bopt, "[h]unk [d]iff")
-keymap("n", "<leader>hdt", "<cmd>Gitsigns toggle_deleted<CR>", bopt, "[h]unk [d]eleted [t]oggle")
+keymap("n", "<leader>hbl", "<cmd>Gitsigns toggle_current_line_blame<CR>", bopt, "[h]unk [b]lame [l]ine")
+keymap("n", "<leader>htd", "<cmd>Gitsigns toggle_deleted<CR>", bopt, "[h]unk [t]oggle [d]eleted")
 keymap({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", bopt, "Select [i]n [h]unk")
 
 -- Neogit

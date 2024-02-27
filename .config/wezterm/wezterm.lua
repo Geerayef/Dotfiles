@@ -1,10 +1,9 @@
 local W = require("wezterm")
-local colorscheme = "ayu"
 local act = W.action
 local fmt = W.format
 local nf = W.nerdfonts
-local fmttimestr = W.strftime
-local kanagawa = require("kanagawa")
+local fmtime = W.strftime
+local kngw = require("kanagawa")
 local function map(key, action) return { key = key, mods = "LEADER", action = action } end
 
 return {
@@ -17,20 +16,20 @@ return {
   enable_scroll_bar = false,
   inactive_pane_hsb = { saturation = 1, brightness = 0.8 },
   -- Colorscheme
-  color_scheme = colorscheme,
+  color_scheme = "ayu",
   colors = {
     cursor_fg = "#000000",
     tab_bar = {
-      background = kanagawa.split,
+      background = kngw.split,
       active_tab = {
-        bg_color = kanagawa.brights[3],
-        fg_color = kanagawa.background,
+        bg_color = kngw.brights[3],
+        fg_color = kngw.background,
         intensity = "Bold",
         underline = "None",
         italic = false,
         strikethrough = false,
       },
-      inactive_tab = { bg_color = kanagawa.background, fg_color = kanagawa.foreground },
+      inactive_tab = { bg_color = kngw.background, fg_color = kngw.foreground },
     },
   },
   default_cursor_style = "SteadyBlock",
@@ -114,17 +113,17 @@ return {
   show_new_tab_button_in_tab_bar = false,
   status_update_interval = 3000,
   W.on("update-status", function(window, _)
-    local stat_color = kanagawa.indexed[16]
+    local stat_color = kngw.indexed[16]
     local stat = window:active_workspace()
     if window:active_key_table() then
       stat = window:active_key_table()
-      stat_color = kanagawa.brights[7]
+      stat_color = kngw.brights[7]
     end
     if window:leader_is_active() then
       stat = "LDR "
-      stat_color = kanagawa.ansi[5]
+      stat_color = kngw.ansi[5]
     end
-    local time = fmttimestr("%H:%M")
+    local time = fmtime("%H:%M")
     window:set_left_status(fmt({
       { Text = "| " },
       { Foreground = { Color = stat_color } },
@@ -135,7 +134,7 @@ return {
       { Text = "| " },
       { Text = nf.md_clock .. "  " .. time },
       { Text = " |" },
-      { Foreground = { Color = kanagawa.brights[4] } },
+      { Foreground = { Color = kngw.brights[4] } },
     }))
   end),
 }

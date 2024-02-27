@@ -60,6 +60,7 @@ return {
     },
     config = function(_, opts)
       local lspconfig = require("lspconfig")
+      require("lspconfig.ui.windows").default_options.border = border
       local mason_lspcfg = require("mason-lspconfig")
       local has_cmp, lspcmp = pcall(require, "cmp_nvim_lsp")
       local lsp_attach = F.LspAttach

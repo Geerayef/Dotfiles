@@ -25,8 +25,8 @@ return {
     views = {
       messages = { view = "popup" },
       split = { enter = true },
-      vsplit = { enter = true },
-      virtualtext = { format = { "󰝤 {message}" } },
+      vsplit = { enter = true, size = "30%" },
+      virtualtext = { format = { "   󰝤 {message}" } },
       mini = { win_options = { winblend = 100 } },
       notify = { backend = "mini" },
       popup = { border = { style = border } },

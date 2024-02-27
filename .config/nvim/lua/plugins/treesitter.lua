@@ -31,7 +31,10 @@ return {
         "yaml",
         "toml",
         "typescript",
+        "tsx",
         "javascript",
+        "svelte",
+        "html",
       },
       auto_install = false,
       highlight = {
