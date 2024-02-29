@@ -3,7 +3,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   version = false,
   build = ":TSUpdate",
-  event = { "FileType" },
+  event = { "BufAdd", "WinEnter" },
   init = function(plugin)
     require("lazy.core.loader").add_to_rtp(plugin)
     require("nvim-treesitter.query_predicates")
@@ -31,7 +31,6 @@ return {
         "yaml",
         "toml",
         "typescript",
-        "tsx",
         "javascript",
         "svelte",
         "html",

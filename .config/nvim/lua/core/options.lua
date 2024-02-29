@@ -1,11 +1,12 @@
 local o = vim.opt
 local cmd = vim.cmd
 
+o.shell = "/usr/bin/fish"
 o.shortmess:append("Is")
 
 -- ~  File
 cmd.syntax("on")
-cmd.filetype("plugin", "indent", "on")
+cmd.filetype({ args = { "plugin", "indent", "on" } })
 o.fileformats = "unix"
 o.fileencoding = "utf-8"
 o.undofile = true

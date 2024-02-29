@@ -1,4 +1,4 @@
-import = [ "~/.config/alacritty/colors/AyuDark.toml" ]
+import = [ "~/.config/alacritty/colors/Oxocarbon.toml" ]
 shell = { program = "/usr/bin/elvish" }
 # working_directory = ""
 live_config_reload = true

@@ -1,5 +1,5 @@
 vim.loader.enable()
+local Tim = require("lazyTim")
 require("core")
-require("lazyTim")
-
-vim.cmd.colorscheme("material-deep-ocean")
+require("lazy").setup("plugins", Tim)
+vim.cmd.colorscheme("neodarker")

@@ -57,4 +57,4 @@ o.hlsearch = true
 o.incsearch = true
 
 --  Color
-vim.cmd.colorscheme("quiet")
+vim.cmd.colorscheme("habamax")

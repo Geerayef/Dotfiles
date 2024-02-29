@@ -3,8 +3,8 @@ return {
   { "nvim-lua/plenary.nvim", lazy = false, priority = 900 },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-sleuth", lazy = true, event = { "BufAdd", "BufReadPost" } },
-  { "tpope/vim-surround", lazy = true, event = { "BufAdd", "BufNewFile", "CursorMoved" } },
-  { "Pocco81/true-zen.nvim", lazy = true, event = "BufAdd" },
+  { "tpope/vim-surround", lazy = true, event = { "BufAdd", "BufNewFile", "CursorMovedI" } },
+  { "Pocco81/true-zen.nvim", event = "BufAdd" },
   {
     "dzfrias/arena.nvim",
     event = { "BufAdd" },
@@ -28,7 +28,7 @@ return {
   },
   {
     "numToStr/Comment.nvim",
-    event = { "BufAdd", "CursorMoved", "CursorMovedI" },
+    event = { "BufAdd", "CursorMovedI" },
     opts = {
       opleader = { line = "gc", block = "gb" },
       mappings = { basic = true, extra = true },
@@ -37,7 +37,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = { "BufAdd", "BufNewFile", "BufReadPost" },
+    event = { "BufAdd", "BufNewFile" },
     main = "ibl",
     opts = { indent = { char = "│" } },
   },

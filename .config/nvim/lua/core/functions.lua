@@ -87,28 +87,41 @@ end
 -- ~ -------------------------------------------------------------------------------- ~ --
 
 function F.DisableBuiltin()
-  vim.g.loaded_netrw = 1
-  vim.g.loaded_netrwPlugin = 1
-  vim.g.loaded_netrwFileHandlers = 1
-  vim.g.loaded_netrwSettings = 1
-  vim.g.loaded_zip = 1
-  vim.g.loaded_gzip = 1
-  vim.g.loaded_zipPlugin = 1
-  vim.g.loaded_tar = 1
-  vim.g.loaded_tarPlugin = 1
-  vim.g.loaded_getscript = 1
-  vim.g.loaded_getscriptPlugin = 1
-  vim.g.loaded_vimball = 1
-  vim.g.loaded_vimballPlugin = 1
-  vim.g.loaded_2html_plugin = 1
-  vim.g.loaded_matchit = 1
-  vim.g.loaded_matchparen = 1
-  vim.g.loaded_logiPat = 1
-  vim.g.loaded_rrhelper = 1
-  vim.g.loaded_sql_completion = 1
-  vim.g.loaded_perl_provider = 0
-  vim.g.loaded_ruby_provider = 0
-  vim.g.loaded_node_provider = 0
+  local default_plugins = {
+    "2html_plugin",
+    "getscript",
+    "getscriptPlugin",
+    "gzip",
+    "logipat",
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "matchit",
+    "tar",
+    "tarPlugin",
+    "rrhelper",
+    "spellfile_plugin",
+    "vimball",
+    "vimballPlugin",
+    "zip",
+    "zipPlugin",
+    "tutor",
+    "rplugin",
+    "syntax",
+    "synmenu",
+    "optwin",
+    "compiler",
+    "bugreport",
+    "ftplugin",
+  }
+  local default_providers = { "node", "perl", "ruby" }
+  for _, plugin in pairs(default_plugins) do
+    vim.g[("loaded_" .. plugin)] = 1
+  end
+  for _, provider in ipairs(default_providers) do
+    vim.g[("loaded_" .. provider .. "_provider")] = 0
+  end
 end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
