@@ -1,0 +1,6 @@
+layout {
+    pane
+    pane size=1 borderless=false {
+        plugin location="zellij:compact-bar"
+    }
+}

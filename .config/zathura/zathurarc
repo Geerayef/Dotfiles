@@ -1,7 +1,6 @@
 set window-title-basename       "true"
 set selection-clipboard         "clipboard"
 set show-hidden                 "true"
-set show-hidden                 "false"
 set adjust-open                 "best-fit"
 set pages-per-row               1
 set font "JetBrainsMono Nerd Font Propo 18"
@@ -20,12 +19,13 @@ set statusbar-basename          "true"
 set statusbar-home-tilde        "true"
 set statusbar-page-percent      "true"
 
-# ~  Colors
-
+# Colors
 set render-loading              "true"
 set recolor                     "true"
-# set recolor-keephue             "true"
+set recolor-keephue             "true"
+set recolor-reverse-video       "true"
 
-# include themes/catpuccin-mocha
+include themes/catpuccin-mocha
+# include themes/solarized-dark
 # include themes/dracula
-include themes/lighthaus
+# include themes/lighthaus

@@ -14,7 +14,7 @@ return {
     formatters_by_ft = {
       c = { "clang-format" },
       lua = { "stylua" },
-      python = { "ruff format" },
+      python = { "ruff_fix", "ruff_format" },
       ocaml = { "ocamlformat" },
       fish = { "fish_indent" },
       bash = { "beautysh" },

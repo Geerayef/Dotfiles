@@ -147,7 +147,7 @@ return {
         on_attach = lsp_attach,
         capabilities = capabilities,
         filetypes = { "python" },
-        root_dir = lspconfig.util.root_pattern("*.py", "__init__.py", ".git"),
+        root_dir = lspconfig.util.root_pattern("*.py", "__init__.py", ".git", "ruff.toml"),
         single_file_support = true,
         cmd = { "ruff-lsp" },
       })
@@ -186,7 +186,7 @@ return {
             latexFormatter = "latexindent",
             latexindent = { ["local"] = nil, modifyLineBreaks = false },
             bibtexFormatter = "texlab",
-            formatterLineLength = 80,
+            formatterLineLength = 96,
           },
         },
         single_file_support = true,

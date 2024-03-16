@@ -27,7 +27,7 @@ return {
       split = { enter = true },
       vsplit = { enter = true, size = "30%" },
       virtualtext = { format = { "   󰝤 {message}" } },
-      mini = { win_options = { winblend = 100 } },
+      mini = { win_options = { winblend = 90 } },
       notify = { backend = "mini" },
       popup = { border = { style = border } },
     },

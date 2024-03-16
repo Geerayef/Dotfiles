@@ -1,5 +1,6 @@
 local border = require("util.objects").Border
 return {
+  { "mfussenegger/nvim-jdtls", ft = "java" },
   { "nvim-lua/plenary.nvim", lazy = false, priority = 900 },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-sleuth", lazy = true, event = { "BufAdd", "BufReadPost" } },
