@@ -5,7 +5,7 @@
 (util/recursive-add-to-load-path modules-dir)
 
 ;; ~  UI
-(require 'mod-doom-themes)
+(require 'mod-theme)
 (require 'mod-all-the-icons)
 (require 'mod-nerd-icons)
 (require 'mod-nano-modeline)
@@ -16,10 +16,14 @@
 ;; ~  Editing
 ;; ~  Formatting
 ;; ~  Linting
+(require 'mod-flycheck)
 ;; ~  TreeSitter
+(require 'mod-treesitter)
 ;; ~  Eglot
+(require 'mod-eglot)
 
 ;; ~  Languages
+(require 'mod-lang)
 
 ;; ~  Navigation
 

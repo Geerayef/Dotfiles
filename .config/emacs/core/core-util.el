@@ -11,12 +11,9 @@
                  (not (string-prefix-p "." f)))
         (util/recursive-add-to-load-path name)))))
 
-(defun util/load-custom-themes ()
-  "Load themes listed in `custom-enabled-themes'."
-  (dolist (theme custom-enabled-themes)
-    (unless (custom-theme-p theme)
-      (load-theme theme)))
-  (custom-set-variables `(custom-enabled-themes (quote ,custom-enabled-themes))))
+(defun util/load-theme (theme)
+  "Load the THEME."
+  (load-theme theme))
 
 (provide 'core-util)
 ;;; core-util.el ends here

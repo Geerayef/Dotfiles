@@ -15,8 +15,6 @@
         vertico-scroll-margin 0
         vertico-resize t))
 
-(elpaca-wait)
-
 ;; (use-package emacs
 ;;   :init
 ;;   ;; Add prompt indicator to `completing-read-multiple'.

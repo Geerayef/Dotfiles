@@ -3,18 +3,14 @@
 ;;; Code:
 
 ;; Startup
-(setq inhibit-startup-screen t)
-(setq inhibit-startup-message t)
-(setq initial-scratch-message nil)
-
-;; Bars
-(menu-bar-mode nil)
-(tool-bar-mode nil)
-(scroll-bar-mode nil)
+(setq inhibit-startup-screen t
+      inhibit-startup-message t
+      inhibit-startup-echo-area-message user-login-name
+      initial-scratch-message nil)
 
 ;; Dialogs
-(setq use-dialog-box nil)
-(setq use-file-dialog nil)
+(setq use-dialog-box nil
+      use-file-dialog nil)
 
 ;; Cursor
 (blink-cursor-mode -1)
@@ -23,21 +19,31 @@
   (add-to-list 'default-frame-alist no-border)
   (add-to-list 'initial-frame-alist no-border))
 
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                 (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+
+(when (fboundp 'pixel-scroll-precision-mode)
+  (pixel-scroll-precision-mode))
+
 (setq visible-bell nil)
 
 ;; ~  -------------------------------------------------------------------------------- ~ ;;
 
 ;; ~ Font
 
-(add-hook 'after-init-hook (lambda () (set-face-attribute 'default nil
-                                                          :family "Iosevka Nerd Font Mono"
-                                                          :height 140
-                                                          :weight 'regular)))
+(add-hook 'elpaca-after-init-hook (lambda ()
+                                    (set-face-attribute 'default nil
+                                                        :family "Iosevka Nerd Font Mono"
+                                                        :height 140
+                                                        :weight 'regular)))
 
-(add-hook 'after-init-hook (lambda () (set-face-attribute 'line-number-current-line nil
-                                                          :foreground "yellow"
-                                                          :slant 'normal
-                                                          :weight 'heavy)))
+(add-hook 'elpaca-after-init-hook (lambda ()
+                                    (set-face-attribute 'line-number-current-line nil
+                                                        :foreground "yellow"
+                                                        :slant 'normal
+                                                        :weight 'heavy)))
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 

@@ -43,7 +43,11 @@
   (elpaca-use-package-mode)
   (setq elpaca-use-package-by-default t))
 
+(elpaca 'use-package)
+
 (elpaca-wait)
+
+(setq use-package-always-defer t)
 
 (provide 'pacatim)
 ;;; pacatim.el ends here

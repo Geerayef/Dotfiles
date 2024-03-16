@@ -10,13 +10,10 @@
         doom-ayu-dark-brighter-comments t
         doom-ayu-dark-comment-bg nil)
   (doom-themes-visual-bell-config)
-  (load-theme 'doom-ayu-dark t)
   ;; (doom-themes-neotree-config)
   ;; (setq doom-themes-treemacs-theme "doom-atom")
   ;; (doom-themes-treemacs-config)
   (doom-themes-org-config))
-
-(elpaca-wait)
 
 (provide 'doom-themes)
 ;;; doom-themes.el ends here

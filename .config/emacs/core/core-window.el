@@ -17,7 +17,8 @@
       scroll-margin 4
       scroll-conservatively 101
       fast-but-imprecise-scrolling t
-      scroll-preserve-screen-position t)
+      scroll-preserve-screen-position t
+      frame-inhibit-implied-resize t)
 
 (setq-default
   window-resize-pixelwise t

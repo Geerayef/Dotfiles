@@ -3,21 +3,20 @@
 ;;; Code:
 
 ;; Indent
-(setq-default
-  electric-indent-inhibit t
-  indent-tabs-mode nil
-  tab-width 4)
+(setq-default electric-indent-inhibit t
+              indent-tabs-mode nil
+              tab-width 4)
 
-(setq-default
-  bidi-paragraph-direction 'left-to-right
-  bidi-inhibit-bpa t)
+(setq-default bidi-paragraph-direction 'left-to-right
+              bidi-inhibit-bpa t)
 
-(add-hook 'elpaca-after-init-hook 'show-paren-mode)
-(add-hook 'elpaca-after-init-hook 'electric-pair-mode)
-(add-hook 'elpaca-after-init-hook 'delete-selection-mode)
+(add-hook 'after-init-hook 'show-paren-mode)
+(add-hook 'after-init-hook 'electric-pair-mode)
+(add-hook 'after-init-hook 'delete-selection-mode)
 
 (setq-default word-wrap t
               truncate-lines t)
+
 (setq truncate-partial-width-windows nil
       sentence-end-double-space nil
       require-final-newline t)

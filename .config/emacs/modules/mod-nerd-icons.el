@@ -12,7 +12,6 @@
     (nerd-icons-install-fonts)))
 
 (use-package nerd-icons-completion
-  :demand t
   :hook
   (marginalia-mode . nerd-icons-completion-marginalia-setup)
   :config
@@ -89,8 +88,6 @@
 (use-package nerd-icons-ibuffer
   :hook
   (ibuffer-mode . nerd-icons-ibuffer-mode))
-
-(elpaca-wait)
 
 (provide 'mod-nerd-icons)
 ;;; mod-nerd-icons.el ends here

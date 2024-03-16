@@ -10,7 +10,5 @@
   :init
   (marginalia-mode))
 
-(elpaca-wait)
-
 (provide 'marginalia)
 ;;; marginalia.el ends here

@@ -2,10 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq tab-always-indent 'complete)
-(setq completion-cycle-threshold 1
-(setq completions-detailed t)
-(setq 'xref-show-definitions-function
+(setq tab-always-indent 'complete
+      completion-cycle-threshold 1
+      completions-detailed t)
+(setq xref-show-definitions-function
       #'xref-show-definitions-completing-read)
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;

@@ -2,6 +2,21 @@
 ;;; Commentary:
 ;;; Code:
 
+(setq user-full-name "Tibor Novakovic")
+
+;; ~  -------------------------------------------------------------------------------- ~ ;;
+
+(require 'core-eln)
+(require 'core-backups)
+(require 'core-util)
+(require 'core-ui)
+(require 'core-window)
+(require 'core-editor)
+(require 'core-global-keymaps)
+(require 'core-modules)
+
+;; ~  -------------------------------------------------------------------------------- ~ ;;
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Kill ring
@@ -9,7 +24,7 @@
       kill-ring-max 1000)
 
 ;; Repeat
-(add-hook 'after-init-hook repeat-mode)
+(add-hook 'after-init-hook 'repeat-mode)
 
 ;; Dired
 (setq dired-auto-revert-buffer t)
@@ -19,8 +34,8 @@
 (add-hook 'after-init-hook 'so-long-enable)
 
 ;; Buffers
-(setq switch-to-buffer-in-dedicated-window 'pop)
-(setq switch-to-buffer-obey-display-actions t)
+(setq switch-to-buffer-in-dedicated-window 'pop
+      switch-to-buffer-obey-display-actions t)
 
 ;; Manual
 (setq Man-notify-method 'aggressive)
@@ -32,18 +47,6 @@
 ;; (customize-set-variable 'ibuffer-movement-cycle nil)
 ;; The number of hours before a buffer is considered "old" by ibuffer.
 ;; (customize-set-variable 'ibuffer-old-time 24)
-
-;; ~  -------------------------------------------------------------------------------- ~ ;;
-
-(require 'core-eln)
-(require 'core-backups)
-(require 'core-util)
-(require 'core-ui)
-(require 'core-window)
-(require 'core-editor)
-(require 'core-global-keymaps)
-;; (require 'core-theme)
-(require 'core-modules)
 
 (provide 'core-init)
 ;;; core-init.el ends here

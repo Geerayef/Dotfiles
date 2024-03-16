@@ -23,7 +23,7 @@
   ;; ~  --------------------------------------------------------------------------------  ~ ;;
   ;; M-g bindings in `goto-map'
   ("M-g e" . consult-compile-error)
-  ("M-g d" . consult-flycheck)
+  ("M-g f" . consult-flycheck)
   ("M-g g" . consult-goto-line)             ;; orig. goto-line
   ("M-g M-g" . consult-goto-line)           ;; orig. goto-line
   ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
@@ -42,12 +42,11 @@
   ("M-s u" . consult-focus-lines)
   ("M-s e" . consult-isearch-history)
   ;; ~  --------------------------------------------------------------------------------  ~ ;;
-  ("C-s" . consult-isearch)
   ("M-y" . consult-yank-pop)                ;; orig. yank-pop
   ;; M-# bindings for fast register access
   ("M-#" . consult-register-load)
   ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
-  ("C-M-#" . consult-register))
+  ("C-M-#" . consult-register)
   ;; ~  --------------------------------------------------------------------------------  ~ ;;
   ;; Isearch integration
   :map isearch-mode-map
@@ -58,6 +57,7 @@
   :map minibuffer-local-map
   ("M-s" . consult-history)                 ;; orig. next-matching-history-element
   ("M-r" . consult-history)                 ;; orig. previous-matching-history-element
+  )
   ;; ~  --------------------------------------------------------------------------------  ~ ;;
   :hook
   (completion-list-mode . consult-preview-at-point-mode)
@@ -65,22 +65,23 @@
   :init
   (advice-add #'register-preview :override #'consult-register-window)
   (setq register-preview-delay 0.5
-     register-preview-function #'consult-register-format)
+        register-preview-function #'consult-register-format)
   (setq xref-show-xrefs-function #'consult-xref
-     xref-show-definitions-function #'consult-xref)
+        xref-show-definitions-function #'consult-xref)
   (setq completion-in-region-function #'consult-completion-in-region)
   ;; ~  --------------------------------------------------------------------------------  ~ ;;
-  :config
+  :custom
   (setq consult-preview-key 'any)
   (consult-customize
-  consult-theme :preview-key '(:debounce 0.2 any)
-  consult-ripgrep consult-git-grep consult-grep
-  consult-bookmark consult-recent-file consult-xref
-  consult--source-bookmark consult--source-file-register
-  consult--source-recent-file consult--source-project-recent-file
-  :preview-key '(:debounce 0.4 "M-."))
-  (setq consult-fd-args "fd --hidden --color=never --type f --type d"
-     consult-narrow-key "C-+"))
+    consult-theme :preview-key '(:debounce 0.2 any)
+    consult-ripgrep consult-git-grep consult-grep
+    consult-bookmark consult-recent-file consult-xref
+    consult--source-bookmark consult--source-file-register
+    consult--source-recent-file consult--source-project-recent-file
+    :preview-key '(:debounce 0.4 "M-."))
+  (setq consult-fd-args '("fd" "--hidden" "--ignore-case" "--exclude .git" "--color=never" "--type f" "--no-ignore")
+        consult-ripgrep-args (concat consult-ripgrep-args " --hidden")
+        consult-narrow-key "<"))
 
 ;; Optionally make narrowing help available in the minibuffer.
 ;; You may want to use `embark-prefix-help-command' or which-key instead.
@@ -100,20 +101,19 @@
 ;;;; 5. No project support
 ;; (setq consult-project-function nil)
 
-(elpaca-wait)
-
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 
 (use-package affe
-             :config
-             (defun affe-orderless-regexp-compiler (input _type _ignorecase)
-               (setq input (cdr (orderless-compile input)))
-               (cons input (apply-partially #'orderless--highlight input t)))
-             (setq affe-regexp-compiler #'affe-orderless-regexp-compiler)
-             (consult-customize
-               affe-grep :preview-key "M-."))
-
-(elpaca-wait)
+  :after orderless
+  :config
+  (defun affe-orderless-regexp-compiler (input _type _ignorecase)
+    (setq input (cdr (orderless-compile input)))
+    (cons input (apply-partially #'orderless--highlight input t)))
+  (setq affe-regexp-compiler #'affe-orderless-regexp-compiler
+        affe-regexp-function #'orderless-pattern-compiler
+        affe-highlight-function #'orderless-highlight-matches)
+  (consult-customize
+    affe-grep :preview-key "M-."))
 
 (use-package consult-eglot :ensure t)
 

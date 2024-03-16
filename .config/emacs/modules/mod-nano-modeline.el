@@ -23,7 +23,5 @@
   (org-capture-mode     . nano-modeline-org-capture-mode)
   (org-agenda-mode      . nano-modeline-org-agenda-mode))
 
-(elpaca-wait)
-
 (provide 'mod-nano-modeline)
 ;;; mod-nano-modeline.el ends here

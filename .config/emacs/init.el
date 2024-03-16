@@ -2,32 +2,43 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ~  Performance
-(setq process-adaptive-read-buffering nil)
-(setq read-process-output-max (* 8 1024 1024))
-(add-hook 'elpaca-after-init-hook (lambda ()
-                                    (setq gc-cons-threshold (* 16 1024 1024)
-                                          gc-cons-percentage 0.1)))
-
 ;; ~  Load path
-(add-to-list 'load-path "/usr/share/emacs/site-lisp")
+;; (add-to-list 'load-path "/usr/share/emacs/site-lisp")
 (add-to-list 'load-path core-dir)
 
+;; ~  Performance
+(setq read-process-output-max (* 4 1024 1024)
+      process-adaptive-read-buffering nil)
+
+;; ~  Custom file
+(add-hook 'elpaca-after-init-hook (lambda ()
+                                    (when (file-exists-p custom-file)
+                                      (load custom-file))))
+
+;; ~  --------------------------------------------------------------------------------  ~ ;;
+
 ;; ~  Elpaca
-(add-hook 'elpaca-after-init-hook (lambda () (load custom-file 'noerror)))
 (require 'pacatim)
+;; ~  GC
+(use-package diminish :ensure t)
+(use-package gcmh
+             :ensure t
+             :config
+             (setq gcmh-high-cons-threshold (* 128 1024 1024))
+             (add-hook 'elpaca-after-init-hook (lambda ()
+                                                 (gcmh-mode)
+                                                 (diminish 'gcmh-mode))))
+(setq jit-lock-defer-time 0)
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 
-(require 'core-init)
-;; (require 'completion)
-;; (require 'lisp)
-;; (require 'ui)
-;; (require 'dev)
-;; (require 'writing)
-;; (require 'org)
+(let
+  ((debug-on-error t)
+   (debug-on-quit t)
+   (file-name-handler-alist nil))
+  ;; Load everything
+  (require 'core-init)
+  (require 'elpaca)
+  (elpaca-wait))
 
-;; ~  --------------------------------------------------------------------------------  ~ ;;
-
-(provide 'init.el)
 ;;; init.el ends here
