@@ -53,7 +53,7 @@ keymap("n", "<leader>dp", vim.diagnostic.goto_prev, bopt, "[d]iagnostic [p]revio
 -- ~  Plugin keymaps
 
 -- Arena
-keymap("n", "<leader><space>", "<cmd>ArenaToggle<CR>", bopt, "[ ] Arena buffers")
+-- keymap("n", "<leader><space>", "<cmd>ArenaToggle<CR>", bopt, "[ ] Arena buffers")
 
 -- Oil
 keymap("n", "<leader>f", "<cmd>Oil<CR>", bopt, "Oil [f]ile browser")
@@ -62,9 +62,9 @@ keymap("n", "<leader>of", "<cmd>Oil --float<CR>", bopt, "[o]il [f]loat")
 -- Telescope
 keymap("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", bopt, "[?] Recent files")
 keymap("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", bopt, "[/] Search buffer")
-keymap("n", "<leader>tsb", "<cmd>Telescope builtin<CR>", bopt, "[t]ele[s]cope [b]uiltin")
+keymap("n", "<leader>tb", "<cmd>Telescope builtin<CR>", bopt, "[t]elescope [b]uiltin")
 keymap("n", "<leader>sf", "<cmd>Telescope fd<CR>", bopt, "Telescope [s]earch [f]iles")
-keymap("n", "<leader>sb", "<cmd>Telescope buffers<CR>", bopt, "Telescope [s]earch [b]uffers")
+keymap("n", "<leader> ", "<cmd>Telescope buffers<CR>", bopt, "Telescope [s]earch [b]uffers")
 keymap("n", "<leader>sh", "<cmd>Telescope help_tags<CR>", bopt, "Telescope [s]earch [h]elp")
 keymap("n", "<leader>sg", "<cmd>Telescope live_grep<CR>", bopt, "Telescope [s]earch [g]rep")
 keymap("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", bopt, "Telescope [s]earch [w]ord")

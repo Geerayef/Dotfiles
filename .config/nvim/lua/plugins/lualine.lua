@@ -23,19 +23,21 @@ return {
         always_divide_middle = true,
         theme = kanagawaline,
         globalstatus = true,
-        disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
+        disabled_filetypes = { statusline = {} },
       },
       sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {
-          { function() return "| " end, color = { fg = palette.dragonWhite }, padding = { left = 0 } },
+        lualine_a = {
+          { function() return "| " end, color = { fg = palette.dragonWhite, bg = "Normal" }, padding = { left = 0 } },
           {
             "mode",
-            fmt = function() return Icons.mode end,
+            fmt = function() return " " .. Icons.mode .. " " .. F.GetViMode(false) end,
             padding = { right = 1 },
-            color = function() return { fg = palette.dragonTeal } end,
+            color = function() return { fg = palette.dragonBlack0 } end,
           },
+        },
+        lualine_b = {},
+        lualine_c = {
+          { function() return " |" end, color = { fg = palette.dragonWhite }, padding = { left = 0 } },
           { "filetype", icon_only = true, padding = { left = 1, right = 0 } },
           {
             "filename",

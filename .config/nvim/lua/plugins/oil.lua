@@ -1,4 +1,3 @@
-local border = require("util.objects").Border
 return {
   "stevearc/oil.nvim",
   opts = {
@@ -10,14 +9,13 @@ return {
     skip_confirm_for_simple_edits = false,
     prompt_save_on_select_new_entry = true,
     cleanup_delay_ms = 2000,
-    lsp_rename_autosave = true,
+    lsp_file_methods = { timeout_ms = 1000, autosave_changes = true },
     constrain_cursor = "name",
     use_default_keymaps = false,
     keymaps = {
       ["?"] = "actions.show_help",
       ["~"] = "actions.open_cwd",
       ["@"] = "actions.cd",
-      ["gH"] = "actions.open({/home/tibor/})",
       ["gs"] = "actions.change_sort",
       ["gx"] = "actions.open_external",
       ["g."] = "actions.toggle_hidden",
@@ -41,7 +39,7 @@ return {
       max_height = math.floor(vim.api.nvim_win_get_height(0) * 0.4),
       override = function(conf)
         conf.style = "minimal"
-        conf.border = border
+        conf.border = require("util.objects").Border
         return conf
       end,
     },

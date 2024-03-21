@@ -12,12 +12,7 @@
 	"exclusionRules": [],
 	"grabBackFocus": true,
 	"keyLayout": 2,
-	"keyMappings": [
-		"#!no-check",
-		"unmap /",
-		"map <c-/> enterFindMode",
-		""
-	],
+	"keyMappings": ["#!no-check", "unmap /", "map <c-/> enterFindMode", ""],
 	"linkHintCharacters": "asdghjklqwertyuiopzxcvbnm",
 	"notifyUpdate": false,
 	"searchEngines": [

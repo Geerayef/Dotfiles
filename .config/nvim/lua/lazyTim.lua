@@ -13,7 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 return {
   defaults = { version = "*" },
-  dev = { path = "~/Software" },
+  dev = { path = "~/dev" },
   checker = { enabled = false },
   change_detection = { notify = false },
   ui = { title = "Lazy", border = border },

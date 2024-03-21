@@ -92,10 +92,10 @@ return {
   -- Workspace
   default_workspace = "home",
   -- Performance
-  enable_wayland = true,
+  enable_wayland = false,
   animation_fps = 1,
   max_fps = 60,
-  front_end = "WebGpu",
+  front_end = "OpenGL",
   scrollback_lines = 2000,
   audible_bell = "Disabled",
   set_environment_variables = { CURRENT_TERM = "wezterm" },
