@@ -1,8 +1,8 @@
 import = [ "~/.config/alacritty/colors/Oxocarbon.toml" ]
-shell = { program = "/usr/bin/elvish" }
-# working_directory = ""
+#shell = { program = "/usr/bin/elvish" }
+#working_directory = ""
 live_config_reload = true
-# ipc_socket = true
+#ipc_socket = true
 
 [env]
 CURRENT_TERM = "alacritty"
@@ -28,7 +28,7 @@ history    = 4000
 [font]
 normal              = { family = "Iosevka Nerd Font Mono", style = "Regular" }
 bold                = { family = "Iosevka Nerd Font Mono", style = "Heavy" }
-italic              = { family = "Iosevka Nerd Font Mono", style = "Oblique" }
+italic              = { family = "Iosevka Nerd Font Mono", style = "Light" }
 bold_italic         = { family = "Iosevka Nerd Font Mono", style = "BoldItalic" }
 size                = 14.0
 offset              = { x = 0, y = 0 }
@@ -38,8 +38,8 @@ builtin_box_drawing = true
 [cursor]
 style = { shape = "Block", blinking = "Off" }
 vi_mode_style = "None"
-blink_interval = 0
-blink_timeout = 0
+#blink_interval = 0
+#blink_timeout = 0
 unfocused_hollow = true
 #thickness = 0.15
 

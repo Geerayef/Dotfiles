@@ -6,6 +6,24 @@ local fmtime = W.strftime
 local kngw = require("kanagawa")
 local function map(key, action) return { key = key, mods = "LEADER", action = action } end
 
+local function tab_title(tab_info)
+  local title = tab_info.tab_title
+  if title and #title > 0 then return title end
+  -- return tab_info.active_pane.title
+  return "Wezzy"
+end
+
+W.on("format-tab-title", function(tab)
+  local title = tab_title(tab)
+  if tab.is_active then
+    return {
+      { Background = { Color = kngw.brights[6] } },
+      { Text = " " .. title .. " " },
+    }
+  end
+  return title
+end)
+
 W.on("update-status", function(window, _)
   local stat_color = kngw.indexed[16]
   local stat = window:active_workspace()
@@ -83,7 +101,6 @@ return {
     { family = "Iosevka Nerd Font Mono" },
     { family = "JetBrainsMonoNL Nerd Font Mono" },
     { family = "FiraCode Nerd Font Mono" },
-    { family = "Hasklug Nerd Font Mono Medium" },
     { family = "Symbols Nerd Font" },
     { family = "Symbols Nerd Font Mono" },
   }),

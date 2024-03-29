@@ -2,17 +2,33 @@
 ;;; Commentary:
 ;;; Code:
 
+;; eln
+(when (boundp 'native-comp-eln-load-path)
+  (startup-redirect-eln-cache (expand-file-name "eln/" cache-dir))
+  (add-to-list 'native-comp-eln-load-path (expand-file-name "eln/" cache-dir))
+  (setq native-comp-async-report-warnings-errors init-file-debug
+        native-comp-warning-on-missing-source init-file-debug)
+  ;; REVIEW: To be obsolete
+  (unless (boundp 'native-comp-deferred-compilation-deny-list)
+    (defvaralias 'native-comp-deferred-compilation-deny-list 'native-comp-jit-compilation-deny-list))
+  (define-advice comp-effective-async-max-jobs (:before (&rest _) set-default-cpus)
+    "Default to 1/4 of cores in interactive sessions and all of them otherwise."
+    (and (null comp-num-cpus)
+         (zerop native-comp-async-jobs-number)
+         (setq comp-num-cpus
+               (max 1 (/ (num-processors) (if noninteractive 1 4)))))))
+
 ;; History
-(setq savehist-file (expand-file-name "savehist" cache-dir)
-      savehist-additional-variables '(kill-ring search-ring regexp-search-ring)
-      savehist-save-minibuffer-history t 
-      savehist-autosave-interval nil)
+(setq-default savehist-file (expand-file-name "savehist" cache-dir)
+			  savehist-additional-variables '(kill-ring search-ring regexp-search-ring)
+			  savehist-save-minibuffer-history t
+			  savehist-autosave-interval nil)
 (savehist-mode 1)
 (setq history-length t
       history-delete-duplicates t)
 
 ;; Save place
-(setq save-place-file (expand-file-name "saveplace" cache-dir))
+(setq-default save-place-file (expand-file-name "saveplace" cache-dir))
 (save-place-mode 1)
 
 ;; Backup
@@ -40,12 +56,12 @@
             (list ".*" auto-save-list-file-prefix t)))
 
 ;; Auto revert
-(setq global-auto-revert-mode t
-      global-auto-revert-non-file-buffers t
-      auto-revert-verbose t
-      auto-revert-use-notify nil
-      auto-revert-stop-on-user-input nil
-      revert-without-query (list "."))
+(setq-default global-auto-revert-mode t
+			  global-auto-revert-non-file-buffers t
+			  auto-revert-verbose t
+			  auto-revert-use-notify nil
+			  auto-revert-stop-on-user-input nil
+			  revert-without-query (list "."))
 
 ;; Recent files
 (require 'recentf)
@@ -70,9 +86,9 @@
 (recentf-mode +1)
 
 ;; Bookmarks
-(setq bookmark-default-file (expand-file-name "bookmarks" cache-dir))
-(setq bookmark-save-flag 1)
-(setq bookmark-set-no-overwrite t)
+(setq-default bookmark-default-file (expand-file-name "bookmarks" cache-dir))
+(setq-default bookmark-save-flag 1)
+(setq-default bookmark-set-no-overwrite t)
 
 (provide 'core-backups)
 ;;; core-backups.el ends here

@@ -1,3 +1,4 @@
+local border = require("util.objects").Border
 return {
   "stevearc/oil.nvim",
   opts = {
@@ -32,16 +33,22 @@ return {
       ["<C-c>"] = "actions.close",
       ["<C-r>"] = "actions.refresh",
     },
-    view_options = { show_hidden = true, is_hidden_file = function(name, _) return vim.startswith(name, ".") end },
+    view_options = {
+      show_hidden = true,
+      is_hidden_file = function(name, _) return vim.startswith(name, ".") end,
+      natural_order = false,
+      sort = { { "type", "asc" }, { "name", "asc" } },
+    },
     float = {
       padding = 2,
-      max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.3),
-      max_height = math.floor(vim.api.nvim_win_get_height(0) * 0.4),
+      max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.4),
+      max_height = math.floor(vim.api.nvim_win_get_height(0) * 0.35),
+      border = border,
       override = function(conf)
         conf.style = "minimal"
-        conf.border = require("util.objects").Border
         return conf
       end,
     },
+    preview = { border = border },
   },
 }

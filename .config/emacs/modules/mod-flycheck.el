@@ -4,22 +4,26 @@
 
 (use-package flycheck
   :ensure t
-  :hook (prog-mode . flycheck-mode)
+  :custom
+  (flycheck-check-syntax-automatically '(mode-enabled save idle-buffer-switch))
+  (flycheck-emacs-lisp-load-path 'inherit)
+  (flycheck-buffer-switch-check-intermediate-buffers t)
+  (flycheck-idle-change-delay 1.0)
+  (flycheck-display-errors-delay 0.25)
+  (flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list)
   :config
-  (setq flycheck-check-syntax-automatically '(mode-enabled save idle-buffer-switch))
-  (setq flycheck-buffer-switch-check-intermediate-buffers t)
-  (setq flycheck-display-errors-delay 0.25)
-  ;; We change the double arrow to be a triangle because it looks cleaner.
-  ;; (when (fboundp 'define-fringe-bitmap)
-  ;;   (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
-  ;;     [16 48 112 240 112 48 16] nil nil 'center))
-  ;; Don't display flycheck errors in the minibuffer
-  ;; (setq flycheck-display-errors-function 'ignore)
-  ;; When we use the error list, we want to make sure shackle puts it somewhere
-  ;; better.
-  ;; (add-shackle-rule! '(flycheck-error-list-mode :noselect t :align 'below :size 7))
-  ;; (add-winner-boring-buffer! "*Flycheck errors*"))
-  )
+  ;; Change double arrow to triangle.
+  (when (fboundp 'define-fringe-bitmap)
+    (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
+      [16 48 112 240 112 48 16] nil nil 'center))
+  :init
+  (global-flycheck-mode))
+
+(use-package flycheck-package
+  :ensure t
+  :after (flycheck package-lint)
+  :init
+  (flycheck-package-setup))
 
 (provide 'mod-flycheck)
 ;;; mod-flycheck.el ends here

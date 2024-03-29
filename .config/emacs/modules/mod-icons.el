@@ -1,17 +1,30 @@
-;;;; mod-nerd-icons.el --- Nerd icons configuration -*- lexical-binding: t; -*-
+;;;; mod-icons.el --- Nerd icons configuration -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
+;; ~  All the icons
+(use-package memoize :ensure t :demand t)
+(use-package all-the-icons
+  :ensure t
+  :after memoize
+  :if window-system
+  :custom
+  (all-the-icons-scale-factor 1.0)
+  (all-the-icons-default-adjust -0.2))
+
+;; ~  Nerd icons
 (use-package nerd-icons
+  :ensure t
   :custom
   (nerd-icons-scale-factor 0.9)
-  (nerd-icons-default-adjust -0.2)
+  (nerd-icons-default-adjust -0.1)
   :config
   (when (and (display-graphic-p nil)
              (not (member "Symbols Nerd Font Mono" (font-family-list))))
     (nerd-icons-install-fonts)))
 
 (use-package nerd-icons-completion
+  :ensure t
   :hook
   (marginalia-mode . nerd-icons-completion-marginalia-setup)
   :config
@@ -78,16 +91,16 @@
 ;; Disable for now, as having it enabled causes dired to not reliably select the
 ;; current buffer when opening dired for directory of current buffer.
 ;; (use-package nerd-icons-dired
-;;   :straight (nerd-icons-dired :type git :host github
-;;                               :repo "rainstormstudio/nerd-icons-dired")
+;;   :ensure (:host github :repo "rainstormstudio/nerd-icons-dired")
 ;;   :hook
 ;;   (dired-mode . nerd-icons-dired-mode)
 ;;   :custom
 ;;   (nerd-icons-dired-v-adjust 0.01))
 
 (use-package nerd-icons-ibuffer
+  :ensure t
   :hook
   (ibuffer-mode . nerd-icons-ibuffer-mode))
 
-(provide 'mod-nerd-icons)
-;;; mod-nerd-icons.el ends here
+(provide 'mod-icons)
+;;; mod-icons.el ends here
