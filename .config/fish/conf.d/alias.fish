@@ -31,7 +31,6 @@ alias lidw="ls -al /usr/share/wayland-sessions"
 alias v="nvim"
 alias nv="$HOME/software/neovim/nvim-linux64/bin/nvim"
 alias npm="pnpm"
-alias tlmgr="/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode"
 if test -e "$(command -v codium)"
     alias codi="$(which codium)"
 end
@@ -101,7 +100,7 @@ else if test $SYSTEM_PACKAGE_MANAGER = dnf
 else if test $SYSTEM_PACKAGE_MANAGER = pacman
     alias pi="sudo pacman -S --needed"
     alias pu="sudo pacman -Syu"
-    alias pr="sudo pacman -Rs"
+    alias pr="sudo pacman -Rnsu"
     alias pq="sudo pacman -Q"
     alias ps="sudo pacman -Sys"
 else

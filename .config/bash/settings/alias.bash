@@ -94,9 +94,9 @@ elif [[ $SYSTEM_PACKAGE_MANAGER == dnf ]]; then
   alias dnfgl="sudo dnf grouplist"
   alias dnfh="dnf help"
 elif [[ $SYSTEM_PACKAGE_MANAGER == pacman ]]; then
-  alias pi="sudo pacman -Syu --needed"
+  alias pi="sudo pacman -S --needed"
   alias pu="sudo pacman -Syu"
-  alias pr="sudo pacman -Rs"
+  alias pr="sudo pacman -Rnsu"
   alias pq="sudo pacman -Q"
   alias ps="sudo pacman -Sys"
 else

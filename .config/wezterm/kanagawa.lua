@@ -1,4 +1,4 @@
-local kanagawa = {
+return {
   foreground = "#DCD7BA",
   background = "#0D0C0C",
   cursor_bg = "#C8C093",
@@ -33,5 +33,3 @@ local kanagawa = {
     [17] = "#FF5D62",
   },
 }
-
-return kanagawa

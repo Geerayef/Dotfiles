@@ -1,9 +1,9 @@
 font-size = 18
-font = /usr/share/fonts/FiraCodeNF/FiraCodeNerdFontPropo-Retina.ttf
+font = /usr/share/fonts/IosevkaNF/Term/IosevkaTermNerdFontPropo-Regular.ttf
 hint-font = false
-text-color = #F9FBFF
-selection-color = #D9C990
-selection-match-color = #FFFF00
+text-color = #585B70
+selection-color = #F9E2AF
+selection-match-color = #CBA6F7
 
 prompt-text = ""
 placeholder-text = "Search:"
@@ -20,8 +20,8 @@ padding-bottom = 0
 padding-top = 2%
 padding-right = 0
 
-background-color = #000000FF
-border-color = #D9C990
+background-color = #11111BFF
+border-color = #F9E2AF
 
 hide-cursor = true
 

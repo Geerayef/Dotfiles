@@ -1,0 +1,33 @@
+return {
+  foreground = "#E6E1CF",
+  background = "#0F1419",
+  cursor_bg = "#F29718",
+  cursor_fg = "#E6E1CF",
+  cursor_border = "#F29718",
+  selection_bg = "#253340",
+  selection_fg = "#E6E1CF",
+  ansi = {
+    "#000000",
+    "#FF3333",
+    "#B8CC52",
+    "#E7C547",
+    "#36A3D9",
+    "#F07178",
+    "#95E6CB",
+    "#FFFFFF",
+  },
+  brights = {
+    "#323232",
+    "#FF6565",
+    "#EAFE84",
+    "#FFF779",
+    "#68D5FF",
+    "#FFA3AA",
+    "#C7FFFD",
+    "#FFFFFF",
+  },
+  indexed = {
+    [16] = "#FFA3AA",
+    [17] = "#FF6565",
+  },
+}
