@@ -6,6 +6,8 @@ local nf = W.nerdfonts
 local fmtime = W.strftime
 local mayu = require("ayu")
 
+-- ~  Globals
+
 if G.tab_titles == nil then G.tab_titles = {} end
 
 if G.process_icons == nil then
@@ -31,6 +33,16 @@ if G.process_icons == nil then
     ["curl"] = nf.md_flattr,
     ["gh"] = nf.dev_github_badge,
     ["node"] = nf.dev_nodejs_small,
+  }
+end
+
+if G.font_dirs == nil then
+  G.font_dirs = {
+    "/usr/share/fonts/FiraCodeNF",
+    "/usr/share/fonts/JetBrainsNF",
+    "/usr/share/fonts/IosevkaNF",
+    "/usr/share/fonts/IosevkaNF/Term",
+    "/usr/share/fonts/TTF",
   }
 end
 
@@ -75,10 +87,7 @@ if W.config_builder then C = W.config_builder() end
 
 -- ~  Events
 
-W.on("format-tab-title", function(tab)
-  local title = " " .. get_process(tab) .. " "
-  return title
-end)
+W.on("format-tab-title", function(tab) return " " .. get_process(tab) .. " " end)
 
 W.on("update-status", function(window, _)
   local stat_color = mayu.indexed[16]
@@ -148,43 +157,41 @@ C.colors = {
 }
 
 -- Font
--- C.unicode_version = 14
--- C.bold_brightens_ansi_colors = true
--- C.allow_square_glyphs_to_overflow_width = "Always"
--- C.custom_block_glyphs = true
--- C.anti_alias_custom_block_glyphs = false
--- C.freetype_load_flags = "DEFAULT"
--- C.freetype_load_target = "Light"
--- C.freetype_render_target = "HorizontalLcd"
-C.harfbuzz_features = { "calt=1", "clig=1", "liga=1", "zero", "ss01", "cv05" }
-C.font_dirs = {
-  "/usr/share/fonts/FiraCodeNF",
-  "/usr/share/fonts/JetBrainsNF",
-  "/usr/share/fonts/IosevkaNF",
-  "/usr/share/fonts/IosevkaNF/Term",
-}
+C.unicode_version = 14
+C.bold_brightens_ansi_colors = true
+C.allow_square_glyphs_to_overflow_width = "Always"
+C.custom_block_glyphs = true
+C.anti_alias_custom_block_glyphs = false
+C.freetype_load_flags = "DEFAULT"
+C.freetype_load_target = "Light"
+C.freetype_render_target = "HorizontalLcd"
+C.harfbuzz_features = { "calt=1", "clig=1", "liga=1", "ss10" }
+C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
-  { family = "IosevkaTerm Nerd Font Mono" },
+  { family = "IosevkaTerm Nerd Font Mono Medium" },
   { family = "Iosevka Nerd Font Mono" },
-  { family = "FiraCode Nerd Font Mono" },
+  { family = "FiraCode Nerd Font Mono", harfbuzz_features = { "zero", "ss01", "cv05" } },
   { family = "JetBrainsMonoNL Nerd Font Mono" },
   { family = "Symbols Nerd Font" },
   { family = "Symbols Nerd Font Mono" },
 })
 C.font_size = 16
 C.line_height = 1
+
 -- Workspace
 C.default_workspace = "home"
+
 -- Performance
 C.enable_wayland = false
 C.animation_fps = 1
 C.max_fps = 60
 C.front_end = "OpenGL"
+C.webgpu_force_fallback_adapter = true
 C.scrollback_lines = 2000
 C.audible_bell = "Disabled"
 C.set_environment_variables = { CURRENT_TERM = "wezterm" }
 C.check_for_updates = false
--- ~ -------------------------------------------------------------------------------- ~ --
+
 -- Keys
 C.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 }
 C.keys = {
