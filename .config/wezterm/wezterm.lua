@@ -168,7 +168,7 @@ C.freetype_render_target = "HorizontalLcd"
 C.harfbuzz_features = { "calt=1", "clig=1", "liga=1", "ss10" }
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
-  { family = "IosevkaTerm Nerd Font Mono Medium" },
+  { family = "IosevkaTerm Nerd Font Mono" },
   { family = "Iosevka Nerd Font Mono" },
   { family = "FiraCode Nerd Font Mono", harfbuzz_features = { "zero", "ss01", "cv05" } },
   { family = "JetBrainsMonoNL Nerd Font Mono" },

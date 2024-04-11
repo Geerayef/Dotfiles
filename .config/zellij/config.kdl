@@ -1,16 +1,12 @@
 keybinds clear-defaults=true {
-    unbind "Alt H";
-    unbind "Alt J";
-    unbind "Alt K";
-    unbind "Alt L";
     shared_except "locked" {
         bind "Alt g" { SwitchToMode "Locked"; }
         bind "Alt q" { Quit; }
         bind "Alt n" { NewPane; }
-        bind "Alt H" { MoveFocus "Left"; }
-        bind "Alt J" { MoveFocus "Down"; }
-        bind "Alt K" { MoveFocus "Up"; }
-        bind "Alt L" { MoveFocus "Right"; }
+        bind "Alt H" { SwitchToMode "Pane"; MoveFocus "Left"; SwitchToMode "Normal"; }
+        bind "Alt J" { SwitchToMode "Pane"; MoveFocus "Down"; SwitchToMode "Normal"; }
+        bind "Alt K" { SwitchToMode "Pane"; MoveFocus "Up"; SwitchToMode "Normal"; }
+        bind "Alt L" { SwitchToMode "Pane"; MoveFocus "Right"; SwitchToMode "Normal"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt [" { PreviousSwapLayout; }
@@ -175,9 +171,9 @@ keybinds clear-defaults=true {
     shared_except "tab" "locked" {
         bind "Alt t" { SwitchToMode "Tab"; }
     }
-    shared_except "move" "locked" {
-        bind "Alt h" { SwitchToMode "Move"; }
-    }
+    // shared_except "move" "locked" {
+    //     bind "Alt h" { SwitchToMode "Move"; }
+    // }
     shared_except "tmux" "locked" {
         bind "Alt b" { SwitchToMode "Tmux"; }
     }
@@ -197,15 +193,15 @@ keybinds clear-defaults=true {
 
 plugins {
     // tab-bar { path "tab-bar"; }
-    status-bar { path "status-bar"; }
+    // status-bar { path "status-bar"; }
     // strider { path "strider"; }
     // compact-bar { path "compact-bar"; }
-    session-manager { path "session-manager"; }
+    // session-manager { path "session-manager"; }
 }
 
 on_force_close "detach" // | quit
 default_shell "fish" // $SHELL | "shellname"
-// default_cwd ""
+default_cwd "/home/tibor/"
 
 // ~  UI
 ui {
@@ -224,7 +220,7 @@ serialize_pane_viewport false
 
 // ~  Layout
 layout_dir "/home/tibor/.config/zellij/layouts"
-default_layout "compact" // | default
+default_layout "default" // compact | default
 auto_layout true
 
 // ~  Theme

@@ -12,10 +12,10 @@ if status is-interactive
     end
 
     # ~  Source
-    # pyenv init - | source
+    #pyenv init - | source
 
     # ~  Theme
-    # fish_config theme save "Catppuccin Mocha"
+    #fish_config theme save ayu_dark
 
     # ~  Prompt
     starship init fish | source

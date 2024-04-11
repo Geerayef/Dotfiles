@@ -22,20 +22,20 @@ scan_timeout = 10
 [directory]
 read_only = " "
 read_only_style = "red bold"
-style = "#FFA066 bold"
+style = "#FAB387 bold"
 
 [character]
 # [❯] [❮] / [λ] / [⟫] [⟪] / [] [] / [],
-success_symbol = "[❯](#FFA066)"
-error_symbol   = "[❯](#938AA9)"
-vimcmd_symbol  = "[❮](#C5C9C5)"
+success_symbol = "[❯](#A6E3A1)"
+error_symbol   = "[❯](#F38BA8)"
+vimcmd_symbol  = "[❮](#74C7EC)"
 
 [git_branch]
 format = "[$branch]($style)"
-style = "#4DB5BD"
+style = "#89DCEB"
 
 [git_status]
-format = "[[([*](#4DB5BD) \\[($conflicted )($untracked )($modified )($staged )($renamed )$deleted\\])](#ECBE7B) ($ahead_behind $stashed)](cyan)"
+format = "[[([*](#89DCEB) \\[($conflicted )($untracked )($modified )($staged )($renamed )$deleted\\])](#F9E2AF) ($ahead_behind $stashed)](cyan)"
 conflicted = "!"
 untracked = "?"
 modified = "~"
@@ -47,11 +47,11 @@ stashed = "≡"
 [git_state]
 disabled = false
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "#202328"
+style = "#313244"
 
 [cmd_duration]
 format = "[$duration]($style) "
-style = "#F9AF4F"
+style = "#A6E3A1"
 
 [ocaml]
 format = '[$symbol($switch_indicator$switch_name): ($version)]($style)'
@@ -66,7 +66,7 @@ style = "#95C30A bold"
 
 [python]
 format = '[$virtualenv]($style) '
-style = "#98BE65"
+style = "#94E2D5"
 symbol = ""
 
 [lua]

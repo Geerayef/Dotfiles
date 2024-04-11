@@ -24,6 +24,7 @@ o.wrap = true
 o.complete:remove("i")
 o.completeopt = "menu,menuone,noinsert,noselect"
 o.virtualedit = "block"
+o.backspace = "indent,eol,start"
 
 -- ~  UI
 o.termguicolors = true

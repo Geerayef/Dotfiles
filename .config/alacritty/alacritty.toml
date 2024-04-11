@@ -1,5 +1,5 @@
 import = [ "~/.config/alacritty/colors/Oxocarbon.toml" ]
-#shell = { program = "/usr/bin/elvish" }
+shell = { program = "/usr/bin/fish", args = ["-c", "zellij attach home"] }
 #working_directory = ""
 live_config_reload = true
 #ipc_socket = true
@@ -26,10 +26,10 @@ history    = 4000
 #multiplier = 3
 
 [font]
-normal              = { family = "Iosevka Nerd Font Mono", style = "Regular" }
-bold                = { family = "Iosevka Nerd Font Mono", style = "Heavy" }
-italic              = { family = "Iosevka Nerd Font Mono", style = "Light" }
-bold_italic         = { family = "Iosevka Nerd Font Mono", style = "BoldItalic" }
+normal              = { family = "IosevkaTerm Nerd Font Mono", style = "Regular" }
+bold                = { family = "IosevkaTerm Nerd Font Mono", style = "Heavy" }
+italic              = { family = "IosevkaTerm Nerd Font Mono", style = "Light" }
+bold_italic         = { family = "IosevkaTerm Nerd Font Mono", style = "BoldItalic" }
 size                = 14.0
 offset              = { x = 0, y = 0 }
 glyph_offset        = { x = 0, y = 0 }

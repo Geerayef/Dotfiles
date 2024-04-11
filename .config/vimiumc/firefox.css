@@ -1,6 +1,8 @@
 /* #ui */
+
 * {
   font-family: "Iosevka Nerd Font Mono";
+  padding: 1em;
   overflow: hidden;
 }
 .LH {
@@ -21,20 +23,18 @@
   content: "";
   z-index: -1;
 }
-.D .LH {
+.D > .LH {
   border-color: rgb(0, 0, 0);
   color: #000000;
   font-weight: bold;
   font-size: 18px;
 }
-/* hints matching chars */
 .MC {
   color: #cc5200;
 }
 .D .MC {
   color: #e92626;
 }
-/* bottom hud */
 .HUD {
   bottom: 1em;
   left: 1em;
@@ -44,7 +44,7 @@
   height: auto;
   line-height: auto;
   text-transform: lowercase;
-  color: #838686;
+  color: #11111b;
   max-width: auto;
   min-width: unset;
   display: flex;
@@ -57,18 +57,21 @@
 .HUD:after {
   border-radius: unset;
   border: none;
-  background: rgb(247, 246, 246);
+  background: #11111b;
 }
 .HUD.D {
-  border-color: rgb(80, 83, 84);
+  background: #11111b;
 }
 .HUD.D:after {
-  background: rgb(10, 14, 20);
+  background: #11111b;
 }
+
 /* -------------------------------------------------------------------------------- */
+
 /* #omni */
+
 * {
-  font-family: "Iosevka Nerd Font Mono", monospace !important;
+  font-family: "Iosevka Nerd Font Mono";
   font-size: 18px;
   overflow: hidden;
 }
@@ -81,51 +84,54 @@ body {
 }
 body.has-dark {
   overflow: hidden;
-  border-color: rgb(80, 83, 84);
+  border-color: #11111b;
 }
 body:after {
   overflow: hidden;
   border: unset;
 }
 #bar {
-  background: rgb(247, 246, 246);
+  background: #11111b;
   border-radius: unset;
   border-bottom: unset;
-  padding: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 .has-dark #bar {
-  background: rgb(10, 14, 20);
+  background: #11111b;
 }
 #bar::before {
   content: "❯";
   display: inline-block;
-  height: 1em;
-  width: 1em;
   position: absolute;
-  padding: 0.5em;
-  top: 0.8em;
+  top: 2em;
   left: 1em;
+  padding: 0.1em;
   z-index: 300;
-  font-size: 18px;
+  color: #ffffff;
   text-align: center;
-  color: rgb(0, 0, 0);
+  font-size: 18px;
   font-weight: bold;
 }
 .has-dark #bar::before {
   color: #d4d4d4;
 }
 #input {
+  padding-top: 1em;
+  left: 2em;
+  margin: 1em;
+  padding: 1em;
   border: none;
   background: none;
   box-shadow: unset;
   font-size: 18px;
   color: #1f2731;
-  padding-left: 2em;
 }
 .has-dark #input {
   color: #ffffff;
 }
 #toolbar {
+  margin: 0.1em;
   top: 1em;
   right: 1em;
 }
@@ -176,15 +182,15 @@ body:after {
   padding: 1em;
 }
 .has-dark #list {
-  background: rgb(10, 14, 20);
+  background: #11111b;
 }
 .item {
   padding: 0.2em;
-  margin: 0.2em;
+  margin: 0.1em;
   margin-top: 0em;
   border: unset;
   border-radius: 1em;
-  height: 2.8em;
+  height: 3em;
 }
 .item::before {
   position: absolute;
@@ -236,6 +242,9 @@ body:after {
   transform-origin: 0px 0px;
   transform: scale(0.75);
 }
+.top {
+  font: "Iosevka Nerd Font Mono";
+}
 .item .top {
   color: #838686;
   position: relative;
@@ -278,10 +287,13 @@ body:after {
 .has-dark .item .bottom a match {
   color: #76808a;
 }
+
 /* -------------------------------------------------------------------------------- */
+
 /* #find */
+
 * {
-  font-family: "Iosevka Nerd Font Mono", monospace !important;
+  font-family: "Iosevka Nerd Font Mono";
   background: unset;
   font-size: 18px;
 }
