@@ -1,23 +1,10 @@
 return {
-  { "nvim-lua/plenary.nvim", lazy = false, priority = 900 },
+  { "nvim-lua/plenary.nvim", lazy = false, priority = 1000 },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-sleuth", lazy = true, event = { "BufAdd", "BufReadPost" } },
   { "tpope/vim-surround", lazy = true, event = { "BufAdd", "BufNewFile", "CursorMovedI" } },
   { "Pocco81/true-zen.nvim", event = "BufAdd" },
   { "mfussenegger/nvim-jdtls", ft = "java" },
-  -- {
-  --   "dzfrias/arena.nvim",
-  --   event = { "BufAdd" },
-  --   opts = {
-  --     max_items = 8,
-  --     always_context = { "mod.rs", "init.lua", "dune" },
-  --     ignore_current = false,
-  --     per_project = false,
-  --     window = { width = 60, height = 10, border = require("util.objects").Border, opts = {} },
-  --     keybinds = { ["<C-c>"] = function() vim.cmd("ArenaClose") end },
-  --     algorithm = { recency_factor = 1, frequency_factor = 0.5 },
-  --   },
-  -- },
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",

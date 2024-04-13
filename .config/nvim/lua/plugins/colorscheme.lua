@@ -67,7 +67,7 @@ return {
   {
     "marko-cerovac/material.nvim",
     lazy = false,
-    priority = 1000,
+    priority = 1010,
   },
 
   -- ~  Oxocarbon
@@ -78,11 +78,11 @@ return {
   -- },
 
   -- ~  Neodark/er
-  {
-    "VDuchauffour/neodark.nvim",
-    lazy = false,
-    priority = 1000,
-  },
+  -- {
+  --   "VDuchauffour/neodark.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  -- },
 
   -- ~  Midnight
   -- {
