@@ -10,6 +10,7 @@ Dotfiles/
 .config/tmux/plugins/tpm
 .config/tmux/plugins/vim-tmux-navigator
 .config/nnn/.selection
+.config/nnn/sessions/
 .config/bash/history
 .config/btop/btop.log
 .config/emacs/cache/
