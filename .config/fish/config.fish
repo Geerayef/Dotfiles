@@ -15,7 +15,7 @@ if status is-interactive
     #pyenv init - | source
 
     # ~  Theme
-    #fish_config theme save ayu_dark
+    #fish_config theme save mocha
 
     # ~  Prompt
     starship init fish | source
