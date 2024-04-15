@@ -76,13 +76,12 @@ start_preview() {
   else
     NNN_TERMINAL="$TERM"
   fi
-
+  # -----
   if [[ -z $NNN_SPLIT ]] && [[ $(($(tput lines) * 2)) -gt "$(tput cols)" ]]; then
     NNN_SPLIT='h'
   elif [[ $NNN_SPLIT != 'h' ]]; then
     NNN_SPLIT='v'
   fi
-
   ENVVARS+=("NNN_TERMINAL=$NNN_TERMINAL" "NNN_SPLIT=$NNN_SPLIT" "QLPATH=$2" "PREVIEW_MODE=1")
   case "$NNN_TERMINAL" in
   tmux)
@@ -148,7 +147,6 @@ fifo_pager() {
   rm "$FIFOPATH"
 }
 
-# Binary file: show file info inside the pager
 print_bin_info() {
   printf -- "-------- \033[1;31mBinary file\033[0m --------\n"
   if exists mediainfo; then
@@ -251,7 +249,6 @@ preview_file() {
   [[ -n $ext ]] && ext="$(printf "%s" "${ext}" | tr '[:upper:]' '[:lower:]')"
   lines=$(tput lines)
   cols=$(tput cols)
-
   # Otherwise, falling back to the defaults.
   if [[ -d $1 ]]; then
     cd "$1" || return

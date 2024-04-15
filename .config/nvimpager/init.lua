@@ -28,8 +28,8 @@ o.virtualedit = "block"
 --  UI
 o.background = "dark"
 o.guicursor = ""
+o.cursorlineopt = "number"
 o.signcolumn = "no"
-o.cursorline = true
 o.termguicolors = true
 o.laststatus = 0
 o.showtabline = 0
@@ -41,6 +41,7 @@ o.cmdheight = 1
 o.ruler = false
 o.wildmenu = true
 o.number = true
+o.relativenumber = true
 
 --  Behaviour
 o.ttyfast = true
@@ -57,4 +58,4 @@ o.hlsearch = true
 o.incsearch = true
 
 --  Color
-vim.cmd.colorscheme("habamax")
+vim.cmd.colorscheme("default")
