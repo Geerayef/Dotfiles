@@ -17,7 +17,6 @@ set -gx TERM wezterm
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 set -gx VISUAL "$HOME/.scripts/nnn/edit.fish"
-# set -gx VISUAL nvim
 set -gx PAGER nvimpager -p
 set -gx MANPAGER "nvim +Man!"
 set -gx SYSTEM_PACKAGE_MANAGER pacman

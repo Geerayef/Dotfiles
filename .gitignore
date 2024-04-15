@@ -19,4 +19,4 @@ Dotfiles/
 .config/emacs/tree-sitter/
 .config/emacs/custom.el
 .config/micro/buffers
-.config/zellij/plugins
+.config/zellij/plugin
