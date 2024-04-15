@@ -18,3 +18,4 @@ Dotfiles/
 .config/emacs/elpaca/
 .config/emacs/tree-sitter/
 .config/emacs/custom.el
+.config/micro/buffers
