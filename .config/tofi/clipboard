@@ -10,17 +10,17 @@ placeholder-text = "Search:"
 num-results = 5
 result-spacing = 5
 
-width = 75%
+width = 60%
 height = 25%
 outline-width = 0
 border-width = 2
-corner-radius = 10
+corner-radius = 0
 padding-left = 2%
 padding-bottom = 0
 padding-top = 2%
 padding-right = 0
 
-background-color = #11111BFF
+background-color = #11111B
 border-color = #F9E2AF
 
 hide-cursor = true
