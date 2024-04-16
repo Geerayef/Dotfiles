@@ -4,7 +4,7 @@ local act = W.action
 local fmt = W.format
 local nf = W.nerdfonts
 local fmtime = W.strftime
-local mayu = require("ayu")
+local ayu = require("ayu")
 
 -- ~  Globals
 
@@ -90,15 +90,15 @@ if W.config_builder then C = W.config_builder() end
 W.on("format-tab-title", function(tab) return " " .. get_process(tab) .. " " end)
 
 W.on("update-status", function(window, _)
-  local stat_color = mayu.indexed[16]
+  local stat_color = ayu.indexed[16]
   local stat = window:active_workspace()
   if window:active_key_table() then
     stat = window:active_key_table()
-    stat_color = mayu.brights[7]
+    stat_color = ayu.brights[7]
   end
   if window:leader_is_active() then
     stat = "LDR "
-    stat_color = mayu.ansi[5]
+    stat_color = ayu.ansi[5]
   end
   local time = fmtime("%H:%M")
   window:set_left_status(fmt({
@@ -109,7 +109,7 @@ W.on("update-status", function(window, _)
   }))
   window:set_right_status(fmt({
     { Text = "| " },
-    { Foreground = { Color = mayu.brights[4] } },
+    { Foreground = { Color = ayu.brights[4] } },
     { Text = nf.md_clock .. "  " .. time },
     "ResetAttributes",
     { Text = " |" },
@@ -119,11 +119,10 @@ end)
 -- ~ -------------------------------------------------------------------------------- ~ --
 
 -- Bar
-C.tab_max_width = 60
 C.enable_tab_bar = true
+C.tab_bar_at_bottom = true
 C.use_fancy_tab_bar = false
 C.hide_tab_bar_if_only_one_tab = false
-C.tab_bar_at_bottom = true
 C.show_new_tab_button_in_tab_bar = false
 C.status_update_interval = 3000
 
@@ -143,16 +142,16 @@ C.color_scheme = "ayu"
 C.colors = {
   cursor_fg = "#000000",
   tab_bar = {
-    background = mayu.background,
+    background = ayu.background,
     active_tab = {
-      bg_color = mayu.brights[5],
-      fg_color = mayu.background,
+      bg_color = ayu.brights[5],
+      fg_color = ayu.background,
       intensity = "Bold",
       underline = "None",
       italic = false,
       strikethrough = false,
     },
-    inactive_tab = { bg_color = mayu.background, fg_color = mayu.foreground },
+    inactive_tab = { bg_color = ayu.background, fg_color = ayu.foreground },
   },
 }
 
