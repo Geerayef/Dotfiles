@@ -29,8 +29,6 @@
   :hook
   ((after-init . gcmh-mode)))
 
-(setq jit-lock-defer-time 0)
-
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 
 (let ((debug-on-error t)

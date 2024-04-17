@@ -1,4 +1,4 @@
-;;;; mod-completion.el --- Completion configuration -*- lexical-binding: t; -*-
+;;;; mod-completion.el --- Completion -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

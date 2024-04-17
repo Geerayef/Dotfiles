@@ -20,7 +20,7 @@
   :demand t
   :config
   ;; (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'ef-dark t))
+  (load-theme 'ef-winter t))
 
 (provide 'mod-theme)
 ;;; mod-theme.el ends here

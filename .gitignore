@@ -13,6 +13,7 @@ Dotfiles/
 .config/nnn/sessions/
 .config/bash/history
 .config/btop/btop.log
+.config/emacs/eln-cache/
 .config/emacs/cache/
 .config/emacs/elpa/
 .config/emacs/elpaca/

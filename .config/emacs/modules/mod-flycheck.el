@@ -1,4 +1,4 @@
-;;;; mod-flycheck.el --- Lisp development configuration  -*- lexical-binding: t; -*-
+;;;; mod-flycheck.el --- Flycheck -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -13,9 +13,9 @@
   (flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list)
   :config
   ;; Change double arrow to triangle.
-  (when (fboundp 'define-fringe-bitmap)
-    (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
-      [16 48 112 240 112 48 16] nil nil 'center))
+  ;; (when (fboundp 'define-fringe-bitmap)
+  ;;   (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
+  ;;     [16 48 112 240 112 48 16] nil nil 'center))
   :init
   (global-flycheck-mode))
 

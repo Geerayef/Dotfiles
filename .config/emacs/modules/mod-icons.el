@@ -1,4 +1,4 @@
-;;;; mod-icons.el --- Nerd icons configuration -*- lexical-binding: t; -*-
+;;;; mod-icons.el --- Icons -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,13 +1,18 @@
-;;;; core-ui.el --- UI Configuration -*- lexical-binding: t; -*-
+;;;; core-ui.el --- UI -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
 ;; ~ Font
 
+(use-package jit-lock
+  :ensure nil
+  :config
+  (setq jit-lock-defer-time 0))
+
 (use-package faces
   :ensure nil
   :demand t
-  :config
+  :init
   (set-face-attribute 'default nil
                       :family "Iosevka Nerd Font Mono"
                       :height 160

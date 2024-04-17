@@ -78,5 +78,4 @@ Major modes are only selected if the major mode's associated LSP
   (require 'eglot))
 
 (provide 'mod-eglot)
-
 ;;; mod-eglot.el ends here

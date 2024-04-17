@@ -13,9 +13,10 @@ return {
   opts = {
     formatters_by_ft = {
       c = { "clang-format" },
+      ocaml = { "ocamlformat" },
+      rust = { "rustfmt" },
       lua = { "stylua" },
       python = { "ruff_fix", "ruff_format" },
-      ocaml = { "ocamlformat" },
       fish = { "fish_indent" },
       bash = { "beautysh" },
       sh = { "beautysh" },
