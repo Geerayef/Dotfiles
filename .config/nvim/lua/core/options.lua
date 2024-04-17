@@ -23,6 +23,7 @@ o.breakindent = true
 o.wrap = true
 o.complete:remove("i")
 o.completeopt = "menu,menuone,noinsert,noselect"
+o.showfulltag = true
 o.virtualedit = "block"
 o.backspace = "indent,eol,start"
 
@@ -30,10 +31,10 @@ o.backspace = "indent,eol,start"
 o.termguicolors = true
 o.background = "dark"
 o.guicursor = "a:block-blinkon0"
-o.cursorline = true
-o.cursorlineopt = "number"
 o.number = true
 o.relativenumber = true
+o.cursorline = true
+o.cursorlineopt = "number"
 o.showtabline = 1
 o.title = false
 o.laststatus = 3
@@ -47,7 +48,7 @@ o.signcolumn = "yes"
 o.ruler = false
 o.pumblend = 0
 o.wildmenu = true
-o.wildmode = "longest:full"
+o.wildmode = "list:full"
 o.wildoptions = "fuzzy,pum"
 o.list = true
 

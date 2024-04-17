@@ -1,10 +1,10 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = false, priority = 1000 },
   { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "tpope/vim-sleuth", lazy = true, event = { "BufAdd", "BufReadPost" } },
-  { "tpope/vim-surround", lazy = true, event = { "BufAdd", "BufNewFile", "CursorMovedI" } },
-  { "Pocco81/true-zen.nvim", event = "BufAdd" },
-  { "mfussenegger/nvim-jdtls", ft = "java" },
+  { "tpope/vim-sleuth", lazy = true, event = { "BufWinEnter !oil", "BufReadPre" } },
+  { "tpope/vim-surround", lazy = true, event = { "BufAdd", "CursorMovedI" } },
+  { "Pocco81/true-zen.nvim", lazy = true, event = { "BufAdd", "CursorMovedI" } },
+  { "mfussenegger/nvim-jdtls", lazy = true, ft = "java" },
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
@@ -15,7 +15,7 @@ return {
   },
   {
     "numToStr/Comment.nvim",
-    event = { "BufAdd", "CursorMovedI" },
+    event = { "BufAdd", "CursorMovedI", "BufWinEnter !oil" },
     opts = {
       opleader = { line = "gc", block = "gb" },
       mappings = { basic = true, extra = true },
@@ -24,26 +24,23 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = { "BufAdd", "BufNewFile" },
+    event = { "BufWinEnter !oil", "BufAdd", "CursorMovedI" },
     main = "ibl",
     opts = { indent = { char = "│" } },
+  },
+  {
+    "andymass/vim-matchup",
+    setup = function()
+      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      vim.g.matchup_surround_enabled = 1
+      vim.g.matchup_matchparen_deferred = 1
+      vim.g.matchup_override_vimtex = 1
+    end,
   },
   {
     "norcalli/nvim-colorizer.lua",
     cmd = "ColorizerToggle",
     keys = { { "<leader>ct", "<cmd>ColorizerToggle<CR>", desc = "[C]olorizer [T]oggle" } },
-    opts = {
-      ["*"] = {
-        RGB = true,
-        RRGGBB = true,
-        RRGGBBAA = true,
-        names = true,
-        rgb_fn = false,
-        hsl_fn = false,
-        css = false,
-        css_fn = false,
-        mode = "background",
-      },
-    },
+    opts = { ["*"] = { RGB = true, RRGGBB = true, RRGGBBAA = true, names = true, mode = "background" } },
   },
 }

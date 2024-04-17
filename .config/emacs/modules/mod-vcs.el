@@ -9,11 +9,17 @@
   (vc-handled-backends '(Git)))
 
 (use-package magit
-  :ensure t)
-
-(use-package git-gutter
   :ensure t
-  :config (global-git-gutter-mode t))
+  :hook
+  (magit-pre-refresh . diff-hl-magit-pre-refresh)
+  (magit-post-refresh . diff-hl-magit-post-refresh))
+
+(use-package diff-hl
+  :ensure t
+  :config
+  (global-diff-hl-mode)
+  (diff-hl-flydiff-mode)
+  (diff-hl-dired-mode))
 
 (provide 'mod-vcs)
 ;;; mod-vcs.el ends here

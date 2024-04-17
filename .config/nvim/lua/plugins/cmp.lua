@@ -41,17 +41,17 @@ return {
       local devicons = require("nvim-web-devicons")
       local border = require("util.objects").Border
       local t = function(str) return vim.api.nvim_replace_termcodes(str, true, true, true) end
-      -- "buffer" source for '/', '?'. "cmdline" and "path" source for ':'. NOTE: If you enable 'native_menu', this won't work anymore
+      -- Sources: "buffer" for '/', '?'. "cmdline" and "path" for ':'. 'native_menu', disables this.
       cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({ { name = "buffer", max_item_count = 10 } }),
+        sources = cmp.config.sources({ { name = "buffer" } }),
         view = { entries = { name = "wildmenu", separator = " | " } },
       })
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources(
           { { name = "path", max_item_count = 10 } },
-          { { name = "cmdline", keyword_length = 0, max_item_count = 20 } }
+          { { name = "cmdline", keyword_length = 0, max_item_count = 40 } }
         ),
         view = { entries = { name = "custom" } },
       })
@@ -63,7 +63,7 @@ return {
           elseif vim.bo.buftype == "prompt" then
             return false
           else
-            return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+            return not (context.in_treesitter_capture("comment") and context.in_syntax_group("Comment"))
           end
         end,
         snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
@@ -111,13 +111,13 @@ return {
           documentation = cmp.config.window.bordered({ scrollbar = false, border = border }),
         },
         sources = cmp.config.sources(
-          { { name = "nvim_lsp", keyword_length = 1, max_item_count = 10, priority = 900 } },
-          { { name = "nvim_lsp_signature_help", keyword_length = 1, max_item_count = 10, priority = 850 } },
-          { { name = "luasnip", keyword_length = 3, max_item_count = 10, priority = 850 } },
-          { { name = "nvim_lua", keyword_length = 2, max_item_count = 10, priority = 800 } },
-          { { name = "buffer", keyword_length = 3, max_item_count = 10, priority = 500 } },
-          { { name = "path", keyword_length = 3, max_item_count = 10, priority = 450 } },
-          { { name = "treesitter", keyword_length = 2, max_item_count = 10, priority = 425 } },
+          { { name = "nvim_lsp", keyword_length = 1, max_item_count = 10, priority = 1000 } },
+          { { name = "nvim_lsp_signature_help", keyword_length = 2, max_item_count = 10, priority = 850 } },
+          { { name = "luasnip", keyword_length = 2, max_item_count = 10, priority = 850 } },
+          { { name = "nvim_lua", keyword_length = 3, max_item_count = 10, priority = 800 } },
+          { { name = "buffer", keyword_length = 2, max_item_count = 10, priority = 800 } },
+          { { name = "path", keyword_length = 3, max_item_count = 10, priority = 550 } },
+          { { name = "treesitter", keyword_length = 2, max_item_count = 10, priority = 525 } },
           { { name = "vimtex", keyword_length = 2, max_item_count = 10, priority = 400 } }
         ),
         formatting = {

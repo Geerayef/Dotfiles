@@ -196,6 +196,7 @@
 ;; ~  Languages
 (use-package mod-lang :ensure nil)
 ;; ~  Navigation
+(use-package mod-dired :ensure nil)
 ;; ~  Version Control
 (use-package mod-vcs :ensure nil)
 ;; ~  Project Management

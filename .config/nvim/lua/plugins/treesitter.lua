@@ -36,6 +36,7 @@ return {
         "html",
       },
       auto_install = false,
+      matchup = { enable = true },
       highlight = {
         enable = true,
         disable = function(ft, buf) return F.IsBigBuff(buf) or ft == "latex" or vim.fn.win_gettype() == "command" end,
