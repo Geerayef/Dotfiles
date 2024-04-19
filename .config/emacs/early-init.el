@@ -34,4 +34,5 @@
 (when (boundp 'native-comp-eln-load-path)
   (startup-redirect-eln-cache (expand-file-name "eln/" cache-dir)))
 
+(provide 'early-init)
 ;;; early-init.el ends here

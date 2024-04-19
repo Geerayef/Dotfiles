@@ -2,32 +2,24 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ~  Load path
+(require 'early-init)
+
 (add-to-list 'load-path core-dir)
 
-;; ~  Performance
 (setq read-process-output-max (* 4 1024 1024)
       process-adaptive-read-buffering nil)
 
-;; ~  Custom file
 (when (file-exists-p custom-file)
-  (add-hook 'elpaca-after-init-hook (lambda ()
-                                      (load custom-file))))
+  (add-hook 'elpaca-after-init-hook (lambda () (load custom-file))))
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 
-;; ~  Elpaca
-
 (require 'pacatim)
-
-;; ~  GC
 
 (use-package gcmh
   :ensure t
-  :config
-  (setq gcmh-high-cons-threshold (* 128 1024 1024))
-  :hook
-  ((after-init . gcmh-mode)))
+  :config (setq gcmh-high-cons-threshold (* 128 1024 1024))
+  :hook ((after-init . gcmh-mode)))
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 

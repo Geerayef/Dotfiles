@@ -2,9 +2,22 @@
 ;;; Commentary:
 ;;; Code:
 
+;; ~  Helper functions
+(defun disable-indent-tabs () (setq indent-tabs-mode nil))
+
+(defun util/recursive-add-to-load-path (dir)
+  "Add DIR and all its sub-directories to `load-path'."
+  (add-to-list 'load-path dir)
+  (dolist (f (directory-files dir))
+    (let ((name (expand-file-name f dir)))
+      (when (and (file-directory-p name) (not (string-prefix-p "." f)))
+        (util/recursive-add-to-load-path name)))))
+
 ;; ~  Emacs settings (from C source)
 (use-package emacs
   :ensure nil
+  :hook
+  (prog-mode . disable-indent-tabs)
   :custom
   ;; UX
   (use-short-answers t)
@@ -77,9 +90,8 @@
   :custom
   (kill-do-not-save-duplicates t)
   (kill-ring-max 1000)
-  :config (indent-tabs-mode -1)
-  :hook ((fundamental-mode
-          prog-mode) . visual-line-mode))
+  :hook
+  ((fundamental-mode prog-mode) . visual-line-mode))
 
 (use-package text-mode
   :ensure nil
@@ -88,12 +100,6 @@
 ;; -------------------------------------------------------------------------------- ;;
 
 ;; ~  QoL
-
-(use-package ispell
-  :ensure nil
-  :hook
-  ((text-mode fundamental-mode) . flyspell-mode)
-  (prog-mode . flyspell-prog-mode))
 
 (use-package repeat
   :ensure nil
@@ -152,40 +158,31 @@
 
 ;; ~  File system navigation
 
-(use-package dired
-  :ensure nil
-  :custom
-  (dired-auto-revert-buffer t)
-  (dired-dwim-target t)
-  :config
-  (put 'dired-find-alternate-file 'disabled nil)
-  (setf dired-kill-when-opening-new-dired-buffer t))
+;; (use-package dired
+;;   :ensure nil
+;;   :custom
+;;   (dired-auto-revert-buffer t)
+;;   (dired-dwim-target t)
+;;   :config
+;;   (put 'dired-find-alternate-file 'disabled nil)
+;;   (setf dired-kill-when-opening-new-dired-buffer t))
 
 ;; ~  -------------------------------------------------------------------------------- ~ ;;
 
 ;; ~  Modules
 
-(use-package core-backups :ensure nil)
-(use-package core-ui :ensure nil)
-
-(defun util/recursive-add-to-load-path (dir)
-  "Add DIR and all its sub-directories to `load-path'."
-  (add-to-list 'load-path dir)
-  (dolist (f (directory-files dir))
-    (let ((name (expand-file-name f dir)))
-      (when (and (file-directory-p name)
-                 (not (string-prefix-p "." f)))
-        (util/recursive-add-to-load-path name)))))
-
 (util/recursive-add-to-load-path modules-dir)
 
+(use-package core-backups :ensure nil)
+
 ;; ~  UI
-(use-package mod-theme :ensure nil)
+(use-package mod-ui :ensure nil)
+(use-package core-ui :ensure nil)
 (use-package mod-icons :ensure nil)
-(use-package mod-nano-modeline :ensure nil)
 ;; ~  Completion
 (use-package mod-completion :ensure nil)
 ;; ~  Editing
+(use-package mod-write :ensure nil)
 ;; ~  Formatting
 ;; ~  Linting
 (use-package mod-flycheck :ensure nil)

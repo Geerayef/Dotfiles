@@ -12,17 +12,18 @@
   :ensure t
   :demand t
   :config
-  (orderless-define-completion-style +orderless-with-initialism
+  (orderless-define-completion-style orderless+initialism
     (orderless-matching-styles '(orderless-initialism orderless-literal orderless-regexp)))
-  (setq completion-styles '(orderless partial-completion substring basic)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles . (flex)))
-                                        (command (styles +orderless-with-initialism))
-                                        (variable (styles +orderless-with-initialism))
-                                        (symbol (styles +orderless-with-initialism))
-                                        (eglot (styles orderless))
-                                        (eglot-capf (styles orderless)))
-        orderless-component-separator #'orderless-escapable-split-on-space))
+  :custom
+  (completion-styles '(orderless partial-completion substring basic))
+  (completion-category-defaults '(()))
+  (completion-category-overrides '((file (styles flex))
+								       (command (styles orderless+initialism))
+								       (variable (styles orderless+initialism))
+								       (symbol (styles orderless+initialism))
+								       (eglot (styles orderless))
+								       (eglot-capf (styles orderless))))
+  (orderless-component-separator #'orderless-escapable-split-on-space))
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 
@@ -36,28 +37,18 @@
    ("C-c k" . consult-kmacro)
    ("C-c m" . consult-man)
    ("C-c i" . consult-info)
-   ;; ([remap Info-search] . consult-info)
    ;; C-x bindings in `ctl-x-map'
-   ;; orig. repeat-complex-command
    ("C-x M-:" . consult-complex-command)
-   ;; orig. switch-to-buffer
    ("C-x b" . consult-buffer)
-   ;; orig. switch-to-buffer-other-window
    ("C-x 4 b" . consult-buffer-other-window)
-   ;; orig. switch-to-buffer-other-frame
    ("C-x 5 b" . consult-buffer-other-frame)
-   ;; orig. switch-to-buffer-other-tab
    ("C-x t b" . consult-buffer-other-tab)
-   ;; orig. bookmark-jump
    ("C-x r b" . consult-bookmark)
-   ;; orig. project-switch-to-buffer
    ("C-x p b" . consult-project-buffer)
    ;; M-g bindings in `goto-map'
    ("M-g e" . consult-compile-error)
    ("M-g f" . consult-flycheck)
-   ;; orig. goto-line
    ("M-g g" . consult-goto-line)
-   ;; orig. goto-line
    ("M-g M-g" . consult-goto-line)
    ;; Alternative: consult-org-heading
    ("M-g o" . consult-outline)
@@ -76,34 +67,26 @@
    ("M-s k" . consult-keep-lines)
    ("M-s u" . consult-focus-lines)
    ("M-s e" . consult-isearch-history)
-   ;; orig. yank-pop
    ("M-y" . consult-yank-pop)
-   ;; M-# bindings for fast register access
    ("M-#" . consult-register-load)
-   ;; orig. abbrev-prefix-mark (unrelated)
    ("M-'" . consult-register-store)
    ("C-M-#" . consult-register)
    ;; Isearch integration
    :map isearch-mode-map
-   ;; orig. isearch-edit-string
    ("M-e" . consult-isearch-history)
-   ;; orig. isearch-edit-string
    ("M-s e" . consult-isearch-history)
    ;; Minibuffer history
    :map minibuffer-local-map
-   ;; orig. next-matching-history-element
    ("M-s" . consult-history)
-   ;; orig. previous-matching-history-element
    ("M-r" . consult-history))
-  :hook
-  (completion-list-mode . consult-preview-at-point-mode)
+  :hook (completion-list-mode . consult-preview-at-point-mode)
   :init
   (advice-add #'register-preview :override #'consult-register-window)
   (setq register-preview-delay 0.5
-        register-preview-function #'consult-register-format)
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
-  (setq completion-in-region-function #'consult-completion-in-region)
+        register-preview-function #'consult-register-format
+        xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref
+        completion-in-region-function #'consult-completion-in-region)
   :custom
   (setq consult-preview-key 'any)
   (consult-customize
@@ -133,9 +116,12 @@
     (setq input (cdr (orderless-compile input)))
     (cons input (apply-partially #'orderless--highlight input t)))
   (setq affe-regexp-compiler #'affe-orderless-regexp-compiler
-        affe-regexp-function #'orderless-pattern-compiler
+        affe-regexp-function #'orderless-compile
         affe-highlight-function #'orderless-highlight-matches)
-  (consult-customize affe-grep :preview-key "M-."))
+  (consult-customize affe-grep :preview-key "M-.")
+  :bind
+  (("M-s a f" . affe-find)
+   ("M-s a g" . affe-grep)))
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 
@@ -158,10 +144,7 @@
   :config
   (defun my/eglot-capf ()
     (setq-local completion-at-point-functions
-                (list (cape-capf-super
-                       #'eglot-completion-at-point
-                       #'tempel-expand
-                       #'cape-file))))
+                (list (cape-capf-super #'eglot-completion-at-point #'tempel-expand #'cape-file))))
   :hook (eglot-managed-mode . my/eglot-capf)
   :bind (("C-c p p" . completion-at-point)
          ("C-c p t" . complete-tag)
@@ -202,6 +185,8 @@
   (vertico-scroll-margin 0)
   (vertico-resize t)
   (enable-recursive-minibuffers t)
+  (add-to-list 'vertico-multiform-categories '(jinx grid (vertico-grid-annotate . 20)))
+  (vertico-multiform-mode 1)
   :init
   (fido-mode -1)
   (fido-vertical-mode -1)
@@ -214,8 +199,7 @@
 ;; ~  Corfu
 
 (use-package corfu
-  :ensure (corfu :files (:defaults "extensions/*")
-                 :includes (corfu-popupinfo))
+  :ensure (corfu :files (:defaults "extensions/*") :includes (corfu-popupinfo))
   :custom
   (corfu-cycle t)
   (corfu-auto nil)
@@ -250,10 +234,9 @@
    ("C-h B" . embark-bindings))
   :config
   (setq prefix-help-command #'embark-prefix-help-command)
-  (add-to-list 'display-buffer-alist
-			   '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none)))))
+  (add-to-list 'display-buffer-alist '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                                       nil
+                                       (window-parameters (mode-line-format . none)))))
 
 (use-package embark-consult
   :ensure t
