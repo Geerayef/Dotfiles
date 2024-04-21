@@ -5,6 +5,10 @@ local fmt = W.format
 local nf = W.nerdfonts
 local fmtime = W.strftime
 local ayu = require("ayu")
+local C = {}
+if W.config_builder then C = W.config_builder() end
+
+-- ~ -------------------------------------------------------------------------------- ~ --
 
 -- ~  Globals
 
@@ -38,13 +42,15 @@ end
 
 if G.font_dirs == nil then
   G.font_dirs = {
-    "/usr/share/fonts/FiraCodeNF",
-    "/usr/share/fonts/JetBrainsNF",
-    "/usr/share/fonts/IosevkaNF",
-    "/usr/share/fonts/IosevkaNF/Term",
+    "/usr/share/fonts/TTF/FiraCodeNF",
+    "/usr/share/fonts/TTF/JetBrainsMonoNF",
+    "/usr/share/fonts/TTF/IosevkaNF",
+    "/usr/share/fonts/TTF/RobotoMonoNF",
     "/usr/share/fonts/TTF",
   }
 end
+
+-- ~ -------------------------------------------------------------------------------- ~ --
 
 -- ~  Functions
 
@@ -78,10 +84,6 @@ local function get_process(tab)
   local process = tab.active_pane.foreground_process_name:match("([^/\\]+)$")
   return G.process_icons[process] or string.format("%s", process)
 end
-
-local C = {}
-
-if W.config_builder then C = W.config_builder() end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 

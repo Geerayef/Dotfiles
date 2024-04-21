@@ -26,4 +26,9 @@ set recolor                "true"
 set recolor-keephue        "true"
 set recolor-reverse-video  "true"
 
+#set default-fg "#B7BDBA"
+#set default-bg rgba(41,49,54,0.8)
+#set recolor-darkcolor "#B7BDBA"
+#set recolor-lightcolor rgba(41,49,54,0.0)
+
 include themes/catpuccin-mocha

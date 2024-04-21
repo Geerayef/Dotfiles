@@ -1,98 +1,77 @@
 #!/usr/bin/env bash
 
-## @download_dir: <string:path> -- Path to a system directory to which fonts will be downloaded.
-## @nerdfonts_git_url: <string:url> -- URL of the Git repository hosting font archives.
-download_fonts() {
-  local download_dir=$1
-  local nerdfonts_git_url=$2
-  printf "~~~~~ [INFO] Downloading Fira Code to %s\n" "$download_dir"
-  curl --proto '=https' -# -sSLZO --output-dir "$download_dir" "$nerdfonts_git_url/FiraCode.tar.xz"
-  printf "~~~~~ [INFO] Downloading JetBrainsMono to %s\n" "$download_dir"
-  curl --proto '=https' -# -sSLZO --output-dir "$download_dir" "$nerdfonts_git_url/JetBrainsMono.tar.xz"
-  printf "~~~~~ [INFO] Downloading Iosevka to %s\n" "$download_dir"
-  curl --proto '=https' -# -sSLZO --output-dir "$download_dir" "$nerdfonts_git_url/Iosevka.tar.xz"
-  printf "~~~~~ [INFO] Downloading IosevkaTerm to %s\n" "$download_dir"
-  curl --proto '=https' -# -sSLZO --output-dir "$download_dir" "$nerdfonts_git_url/IosevkaTerm.tar.xz"
-  printf "~~~~~ Done: Download.\n"
+## @dir_destination: <string:path> -- Path to the destination directory to which fonts will be moved.
+create_dir () {
+  local dir_destination=$1
+  [[ -d $dir_destination ]] || sudo mkdir "$dir_destination"
+  printf "~~~~~ [DONE] Create %s.\n" "$dir_destination"
 }
 
-## @download_dir: <string:path> -- Path to a system directory to which fonts will be downloaded.
-extract_fonts() {
-  local download_dir=$1
+## @dir_download: <string:path> -- Path to a directory where fonts will be downloaded.
+## @url_git_nerdfonts: <string:url> -- URL of the Git repository hosting font archives.
+## @fonts: ref <array<string>> -- Reference to array of font names to download.
+download () {
+  local dir_download=$1
+  local url_git_nerdfonts=$2
+  local -n fonts=$3
+  for name in "${fonts[@]}" ; do
+    printf "~~~~~ [INFO] Downloading %s\n" "$name"
+    curl --proto '=https' -# -sSLZO --output-dir "$dir_download" "$url_git_nerdfonts/${name}.tar.xz"
+  done
+  printf "~~~~~ [DONE] Download.\n"
+}
+
+## @dir_download: <string:path> -- Path to a directory where fonts will be downloaded.
+## @fonts: ref <array<string>> -- Reference to array of font names to download.
+extract () {
+  local dir_download=$1
+  local -n fonts=$2
   printf "~~~~~ [INFO] Extracting...\n"
-  tar -xf "$download_dir/FiraCode.tar.xz" -C "$download_dir"
-  tar -xf "$download_dir/JetBrainsMono.tar.xz" -C "$download_dir"
-  tar -xf "$download_dir/Iosevka.tar.xz" -C "$download_dir"
-  tar -xf "$download_dir/IosevkaTerm.tar.xz" -C "$download_dir"
-  printf "~~~~~ Done: Extract.\n"
+  for name in "${fonts[@]}" ; do
+    tar -xf "$dir_download/${name}.tar.xz" -C "$dir_download"
+  done
+  printf "~~~~~ [DONE] Extract.\n"
 }
 
-## @download_dir: <string:path> -- Path to a system directory to which fonts will be downloaded.
-move_fonts() {
-  local download_dir=$1
-  # Fira Code
-  if [[ -d /usr/share/fonts/FiraCodeNF ]]; then
-    sudo mv "$download_dir"/FiraCode*.ttf /usr/share/fonts/FiraCodeNF
-    printf "~~~~~ [INFO] Moved FiraCode to /usr/share/fonts/FiraCodeNF\n"
-  else
-    sudo mkdir /usr/share/fonts/FiraCodeNF
-    printf "~~~~~ [INFO] Created /usr/share/fonts/FiraCodeNF"
-    sudo mv "$download_dir"/FiraCode*.ttf /usr/share/fonts/FiraCodeNF
-    printf "~~~~~ [INFO] Moved FiraCode to /usr/share/fonts/FiraCodeNF\n"
-  fi
-  # Jet Brains Mono
-  if [[ -d /usr/share/fonts/JetBrainsNF ]]; then
-    sudo mv "$download_dir"/JetBrainsMono*.ttf /usr/share/fonts/JetBrainsNF
-    printf "~~~~~ [INFO] Moved JetBrains to /usr/share/fonts/JetBrainsNF\n"
-  else
-    sudo mkdir /usr/share/fonts/JetBrainsNF
-    printf "~~~~~ [INFO] Created /usr/share/fonts/JetBrainsNF"
-    sudo mv "$download_dir"/JetBrainsMono*.ttf /usr/share/fonts/JetBrainsNF
-    printf "~~~~~ [INFO] Moved JetBrains to /usr/share/fonts/JetBrainsNF\n"
-  fi
-  # Iosevka
-  if [[ -d /usr/share/fonts/IosevkaNF ]]; then
-    sudo mv "$download_dir"/IosevkaNerdFont*.ttf /usr/share/fonts/IosevkaNF
-    printf "~~~~~ [INFO] Moved Iosevka to /usr/share/fonts/IosevkaNF\n"
-  else
-    sudo mkdir /usr/share/fonts/IosevkaNF
-    printf "~~~~~ [INFO] Created /usr/share/fonts/IosevkaNF"
-    sudo mv "$download_dir"/IosevkaNerdFont*.ttf /usr/share/fonts/IosevkaNF
-    printf "~~~~~ [INFO] Moved Iosevka to /usr/share/fonts/IosevkaNF\n"
-  fi
-  # Iosevka Term
-  if [[ -d /usr/share/fonts/IosevkaNF/Term ]]; then
-    sudo mv "$download_dir"/IosevkaTermNerdFont*.ttf /usr/share/fonts/IosevkaNF/Term
-    printf "~~~~~ [INFO] Moved IosevkaTerm to /usr/share/fonts/IosevkaNF/Term\n"
-  else
-    sudo mkdir /usr/share/fonts/IosevkaNF/Term
-    printf "~~~~~ [INFO] Created /usr/share/fonts/IosevkaNF/Term"
-    sudo mv "$download_dir"/IosevkaTermNerdFont*.ttf /usr/share/fonts/IosevkaNF/Term
-    printf "~~~~~ [INFO] Moved IosevkaTerm to /usr/share/fonts/IosevkaNF/Term\n"
-  fi
+## @dir_download: <string:path> -- Path to a directory where fonts will be downloaded.
+## @fonts: ref <array<string>> -- Reference to array of font names to download.
+move () {
+  local dir_download=$1
+  local -n fonts=$2
+  for name in "${fonts[@]}" ; do
+    case $name in
+      "IosevkaTerm")
+        printf "~~~~~ [INFO] %s will be groupped with Iosevka.\n" "$name"
+        ;;
+      *)
+        local dir_destination="/usr/share/fonts/TTF/${name}NF"
+        create_dir "$dir_destination"
+        sudo mv "$dir_download"/"$name"*.ttf "$dir_destination"
+        printf "~~~~~ [DONE] Move %s to %s\n" "$name" "$dir_destination"
+    esac
+  done
 }
 
 # ------------------------------------------------------------------------------------------------ #
 
-main() {
+main () {
   printf "~~~~~ NerdFonts setup.\n"
   printf "~~~~~ GitHub: ryanoasis/nerd-fonts\n"
-  # ~  Variables
-  local NERDFONTS_GIT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download"
-  local DIR_FONTS_DOWNLOAD="$HOME/Downloads/Fonts"
-  if [[ -d $HOME/Downloads/Fonts ]]; then
-    printf "~~~~~ [INFO] Found ~/Downloads/Fonts. Continuing\n"
-  else
-    mkdir -p "$DIR_FONTS_DOWNLOAD"
-    printf "~~~~~ [INFO] Created ~/Downloads/Fonts.\n"
-  fi
-  # Main functions
-  download_fonts "$DIR_FONTS_DOWNLOAD" $NERDFONTS_GIT_URL
-  extract_fonts "$DIR_FONTS_DOWNLOAD"
-  move_fonts "$DIR_FONTS_DOWNLOAD"
-  # Re-cache system fonts
+
+  local url_git_nerdfonts="https://github.com/ryanoasis/nerd-fonts/releases/latest/download"
+  local dir_download_fonts="$HOME/Downloads/Fonts"
+  local font_names=("Iosevka" "IosevkaTerm" "FiraCode" "JetBrainsMono" "RobotoMono")
+
+  [[ -d "$dir_download_fonts" ]] || mkdir "$dir_download_fonts"
+  printf "~~~~~ [DONE] Create %s.\n" "$dir_download_fonts"
+
+  download "$dir_download_fonts" "$url_git_nerdfonts" font_names
+  extract "$dir_download_fonts" font_names
+  move "$dir_download_fonts" font_names
+
+  printf "~~~~~ [INFO] Caching fonts...\n"
   fc-cache -v
-  printf "\n~~~~~ Done. Fonts are set."
+  printf "\n~~~~~ [DONE] Fonts are set."
 }
 
 main

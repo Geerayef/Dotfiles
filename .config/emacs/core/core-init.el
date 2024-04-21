@@ -2,8 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ~  Helper functions
-(defun disable-indent-tabs () (setq indent-tabs-mode nil))
+;; ~  Functions
+(defun util/disable-indent-tabs ()
+  "Disable indenting with tabs."
+  (setq indent-tabs-mode nil))
 
 (defun util/recursive-add-to-load-path (dir)
   "Add DIR and all its sub-directories to `load-path'."
@@ -17,7 +19,7 @@
 (use-package emacs
   :ensure nil
   :hook
-  (prog-mode . disable-indent-tabs)
+  (prog-mode . util/disable-indent-tabs)
   :custom
   ;; UX
   (use-short-answers t)
@@ -158,14 +160,14 @@
 
 ;; ~  File system navigation
 
-;; (use-package dired
-;;   :ensure nil
-;;   :custom
-;;   (dired-auto-revert-buffer t)
-;;   (dired-dwim-target t)
-;;   :config
-;;   (put 'dired-find-alternate-file 'disabled nil)
-;;   (setf dired-kill-when-opening-new-dired-buffer t))
+(use-package dired
+  :ensure nil
+  :custom
+  (dired-auto-revert-buffer t)
+  (dired-dwim-target t)
+  :config
+  (put 'dired-find-alternate-file 'disabled nil)
+  (setf dired-kill-when-opening-new-dired-buffer t))
 
 ;; ~  -------------------------------------------------------------------------------- ~ ;;
 
@@ -177,28 +179,26 @@
 
 ;; ~  UI
 (use-package mod-ui :ensure nil)
-(use-package core-ui :ensure nil)
 (use-package mod-icons :ensure nil)
 ;; ~  Completion
 (use-package mod-completion :ensure nil)
-;; ~  Editing
+;; ~  ORG mode, text editing
 (use-package mod-write :ensure nil)
 ;; ~  Formatting
 ;; ~  Linting
 (use-package mod-flycheck :ensure nil)
-;; ~  TreeSitter
+;; ~  Treesitter
 (use-package mod-treesitter :ensure nil)
 ;; ~  Eglot
 (use-package mod-eglot :ensure nil)
-;; ~  Languages
+;; ~  Programming
 (use-package mod-lang :ensure nil)
 ;; ~  Navigation
-(use-package mod-dired :ensure nil)
+(use-package mod-nav :ensure nil)
 ;; ~  Version Control
 (use-package mod-vcs :ensure nil)
 ;; ~  Project Management
 ;; ~  Workspace Management
-;; ~  ORG mode
 
 (provide 'core-init)
 ;;; core-init.el ends here

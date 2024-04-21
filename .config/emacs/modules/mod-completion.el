@@ -130,10 +130,10 @@
 (use-package marginalia
   :ensure t
   :after vertico
-  :config
-  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
   :init
-  (marginalia-mode))
+  (marginalia-mode)
+  :config
+  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil)))
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 
@@ -141,34 +141,34 @@
 
 (use-package cape
   :ensure t
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-elisp-block)
+  (add-to-list 'completion-at-point-functions #'cape-elisp-symbol)
   :config
   (defun my/eglot-capf ()
     (setq-local completion-at-point-functions
-                (list (cape-capf-super #'eglot-completion-at-point #'tempel-expand #'cape-file))))
+                (list (cape-capf-super #'eglot-completion-at-point #'cape-file))))
   :hook (eglot-managed-mode . my/eglot-capf)
   :bind (("C-c p p" . completion-at-point)
          ("C-c p t" . complete-tag)
          ("C-c p d" . cape-dabbrev)
          ("C-c p f" . cape-file)
          ("C-c p k" . cape-keyword)
-		 ("C-c p l" . cape-line)
+         ("C-c p l" . cape-line)
          ("C-c p s" . cape-elisp-symbol)
          ("C-c p e" . cape-elisp-block)
          ("C-c p w" . cape-dict)
          ("C-c p :" . cape-emoji)
-         ("C-c p _" . cape-tex))
-  ;; ("C-c p \\" . cape-tex)
-  ;; ("C-c p ^" . cape-tex)
-  ;; ("C-c p h" . cape-history)
-  ;; ("C-c p a" . cape-abbrev)
-  ;; ("C-c p &" . cape-sgml)
-  ;; ("C-c p r" . cape-rfc1345)
-  :init
-  (add-to-list 'completion-at-point-functions #'cape-keyword)
-  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-  (add-to-list 'completion-at-point-functions #'cape-file)
-  (add-to-list 'completion-at-point-functions #'cape-elisp-block)
-  (add-to-list 'completion-at-point-functions #'cape-elisp-symbol))
+         ("C-c p _" . cape-tex)))
+;; ("C-c p \\" . cape-tex)
+;; ("C-c p ^" . cape-tex)
+;; ("C-c p h" . cape-history)
+;; ("C-c p a" . cape-abbrev)
+;; ("C-c p &" . cape-sgml)
+;; ("C-c p r" . cape-rfc1345)
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 
@@ -177,6 +177,13 @@
 (use-package vertico
   :ensure t
   :demand t
+  :init
+  (fido-mode -1)
+  (fido-vertical-mode -1)
+  (icomplete-mode -1)
+  (icomplete-vertical-mode -1)
+  (vertico-mode 1)
+  (vertico-multiform-mode 1)
   :custom
   (completion-cycle-threshold 1)
   (completions-detailed t)
@@ -185,14 +192,7 @@
   (vertico-scroll-margin 0)
   (vertico-resize t)
   (enable-recursive-minibuffers t)
-  (add-to-list 'vertico-multiform-categories '(jinx grid (vertico-grid-annotate . 20)))
-  (vertico-multiform-mode 1)
-  :init
-  (fido-mode -1)
-  (fido-vertical-mode -1)
-  (icomplete-mode -1)
-  (icomplete-vertical-mode -1)
-  (vertico-mode 1))
+  (add-to-list 'vertico-multiform-categories '(jinx grid (vertico-grid-annotate . 20))))
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 
@@ -200,6 +200,9 @@
 
 (use-package corfu
   :ensure (corfu :files (:defaults "extensions/*") :includes (corfu-popupinfo))
+  :init
+  (global-corfu-mode)
+  (corfu-popupinfo-mode)
   :custom
   (corfu-cycle t)
   (corfu-auto nil)
@@ -218,10 +221,7 @@
         ("SPC" . corfu-insert-separator)
         ("M-d" . corfu-popupinfo-toggle)
         ("M-p" . corfu-popupinfo-scroll-down)
-        ("M-n" . corfu-popupinfo-scroll-up))
-  :init
-  (global-corfu-mode)
-  (corfu-popupinfo-mode))
+        ("M-n" . corfu-popupinfo-scroll-up)))
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 
@@ -229,14 +229,14 @@
 
 (use-package embark
   :ensure t
-  :bind
-  (("C-." . embark-act)
-   ("C-h B" . embark-bindings))
   :config
   (setq prefix-help-command #'embark-prefix-help-command)
   (add-to-list 'display-buffer-alist '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
                                        nil
-                                       (window-parameters (mode-line-format . none)))))
+                                       (window-parameters (mode-line-format . none))))
+  :bind
+  (("C-." . embark-act)
+   ("C-h B" . embark-bindings)))
 
 (use-package embark-consult
   :ensure t

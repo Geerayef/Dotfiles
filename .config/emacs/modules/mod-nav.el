@@ -1,4 +1,4 @@
-;;;; mod-dired.el --- File system -*- lexical-binding: t; -*-
+;;;; mod-nav.el --- File system -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -17,5 +17,5 @@
         dired-listing-switches "-l --all --group-directories-first")
   :bind (("C-x d" . dirvish)))
 
-(provide 'mod-dired)
-;;; mod-dired.el ends here
+(provide 'mod-nav)
+;;; mod-nav.el ends here
