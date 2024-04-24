@@ -7,7 +7,7 @@ set -l EXE 96
 set -l REG 6F
 set -l HRDL E1
 set -l SYML E1
-set -l MISS 18
+set -l MISS 20
 set -l ORPH D3
 set -l FIFO 9F
 set -l SOCK E5

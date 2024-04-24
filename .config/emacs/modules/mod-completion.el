@@ -120,8 +120,9 @@
         affe-highlight-function #'orderless-highlight-matches)
   (consult-customize affe-grep :preview-key "M-.")
   :bind
-  (("M-s a f" . affe-find)
-   ("M-s a g" . affe-grep)))
+  (:map global-map
+        ("M-s a f" . affe-find)
+        ("M-s a g" . affe-grep)))
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 

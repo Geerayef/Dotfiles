@@ -19,5 +19,6 @@ Dotfiles/
 .config/emacs/elpaca/
 .config/emacs/tree-sitter/
 .config/emacs/custom.el
+.config/emacs/elgrep-data.el
 .config/micro/buffers
 .config/zellij/plugin

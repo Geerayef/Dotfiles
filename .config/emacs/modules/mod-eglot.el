@@ -20,10 +20,9 @@ The mode must be loaded, i.e. found with `fboundp'.  A mode which
                    (not (eq 'lisp-mode mode))     ; prefer sly/slime
                    (not (eq 'scheme-mode mode)))  ; prefer geiser
           (let ((hook-name (format "%s-hook" (symbol-name mode))))
-            ;; (message "~~~~~ [INFO] Adding eglot to %s." hook-name)
             (add-hook (intern hook-name) #'eglot-ensure))))))))
 
-(defun lsp-exists (mode-def)
+(defun lsp-exists-p (mode-def)
   "Return non-nil if LSP binary of MODE-DEF is found via `executable-find'."
   (let ((lsp-program (cdr mode-def)))
     ;; `lsp-program' is either a list of strings or a function object
@@ -38,23 +37,10 @@ The mode must be loaded, i.e. found with `fboundp'.  A mode which
   "Add `eglot-ensure' to major modes that offer LSP support.
 Major modes are only selected if the major mode's associated LSP
   binary is detected on the system."
-  (add-eglot-hooks (seq-filter #'lsp-exists eglot-server-programs)))
+  (add-eglot-hooks (seq-filter #'lsp-exists-p eglot-server-programs)))
 
 (use-package eglot
   :ensure nil
-  :hook
-  ((prog-mode
-    go-ts-mode
-    java-ts-mode
-    python-ts-mode
-    rust-ts-mode
-    c-ts-mode) . eglot-auto-ensure)
-  :bind (:map eglot-mode-map
-              ("C-c e a" . eglot-code-actions)
-              ("C-c e o" . eglot-code-actions-organize-imports)
-              ("C-c e r" . eglot-rename)
-              ("C-c e h" . eldoc)
-              ("C-c e g d" . xref-find-definitions))
   :config
   (setq eglot-confirm-server-initiated-edits nil
         eglot-events-buffer-size 0
@@ -62,20 +48,31 @@ Major modes are only selected if the major mode's associated LSP
         eglot-autoshutdown t)
   (fset #'jsonrpc--log-event #'ignore)
   (add-to-list 'eglot-server-programs
-               '((c-ts-mode c++-ts-mode)
-                 . ("clangd"
-                    "-j=8"
-                    "--log=error"
-                    "--malloc-trim"
-                    "--background-index"
-                    "--clang-tidy"
-                    "--cross-file-rename"
-                    "--completion-style=detailed"
-                    "--pch-storage=memory"
-                    "--header-insertion=never"
-                    "--header-insertion-decorators=0")))
-  :init
-  (require 'eglot))
+               '((c-ts-mode c++-ts-mode) . ("clangd"
+                                            "-j=8"
+                                            "--log=error"
+                                            "--malloc-trim"
+                                            "--background-index"
+                                            "--clang-tidy"
+                                            "--cross-file-rename"
+                                            "--completion-style=detailed"
+                                            "--pch-storage=memory"
+                                            "--header-insertion=never"
+                                            "--header-insertion-decorators=0")))
+  :hook
+  ((prog-mode
+    go-ts-mode
+    java-ts-mode
+    python-ts-mode
+    rust-ts-mode
+    c-ts-mode) . eglot-auto-ensure)
+  :bind
+  (:map eglot-mode-map
+        ("C-c e a" . eglot-code-actions)
+        ("C-c e o" . eglot-code-actions-organize-imports)
+        ("C-c e r" . eglot-rename)
+        ("C-c e h" . eldoc)
+        ("C-c e g d" . xref-find-definitions)))
 
 (provide 'mod-eglot)
 ;;; mod-eglot.el ends here

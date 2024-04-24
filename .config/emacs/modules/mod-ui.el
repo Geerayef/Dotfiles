@@ -9,7 +9,7 @@
   :demand t
   :config
   ;; (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'ef-winter t))
+  (load-theme 'ef-symbiosis t))
 
 (use-package nano-modeline
   :ensure t
@@ -49,7 +49,8 @@
   (indent-bars-no-descend-string t)
   (indent-bars-treesit-support t)
   (indent-bars-treesit-ignore-blank-lines-types '("module" "program" "translation_unit"))
-  (indent-bars-treesit-scope '((python function_definition class_definition for_statement if_statement with_statement while_statement)))
+  (indent-bars-treesit-scope '((python function_definition class_definition
+                                       for_statement if_statement with_statement while_statement)))
   (indent-bars-treesit-scope-min-lines 3)
   (indent-bars-treesit-wrap '((python argument_list parameters list list_comprehension
   										  dictionary dictionary_comprehension
@@ -64,12 +65,13 @@
 
 (use-package faces
   :ensure nil
-  :after (ef-themes)
-  :config
-  (set-face-attribute 'default nil :family "Iosevka Nerd Font Mono"
-                      :height 160 :weight 'regular)
-  (set-face-attribute 'line-number-current-line nil :foreground "yellow"
-                      :inherit 'default :slant 'normal :weight 'heavy))
+  :hook
+  (after-init . (lambda ()
+                  (progn
+                    (set-face-attribute 'default nil :family "Iosevka Nerd Font Mono"
+                                        :height 180 :weight 'regular)
+                    (set-face-attribute 'line-number-current-line nil :foreground "yellow"
+                                        :slant 'normal :weight 'heavy)))))
 
 ;; ~ Flash-indicate movement
 

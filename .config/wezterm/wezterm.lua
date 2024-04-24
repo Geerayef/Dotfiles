@@ -140,7 +140,7 @@ C.default_cursor_style = "SteadyBlock"
 C.force_reverse_video_cursor = false
 
 -- Colorscheme
-C.color_scheme = "ayu"
+C.color_scheme = "neobones_dark"
 C.colors = {
   cursor_fg = "#000000",
   tab_bar = {
