@@ -68,8 +68,7 @@ return {
       local capabilities = vim.tbl_deep_extend(
         "force",
         {},
-        vim.lsp.protocol.make_client_capabilities(),
-        has_cmp and lspcmp.default_capabilities() or {},
+        has_cmp and lspcmp.default_capabilities(vim.lsp.protocol.make_client_capabilities()) or {},
         opts.capabilities or {}
       )
       mason_lspcfg.setup({ ensure_installed = vim.tbl_keys(opts.servers) })
@@ -142,7 +141,24 @@ return {
         cmd = { "/usr/bin/clangd" },
       })
 
+      -- Markdown
+      lspconfig.marksman.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        filetypes = { "markdown", "markdown.mdx" },
+        root_dir = lspconfig.util.root_pattern(".git", ".marksman.toml"),
+        single_file_support = true,
+        cmd = { "marksman", "server" },
+      })
+      lspconfig.markdown_oxide.setup({
+        on_attach = lsp_attach,
+        capabilities = vim.tbl_extend("keep", capabilities, { didChangeWatchedFiles = { dynamicRegistration = true } }),
+        filetypes = { "markdown", "markdown.mdx" },
+        single_file_support = true,
+      })
+
       -- Python
+      -- init_options = { settings = { args = {} } },
       lspconfig.ruff_lsp.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
@@ -151,7 +167,6 @@ return {
         single_file_support = true,
         cmd = { "ruff-lsp" },
       })
-      -- init_options = { settings = { args = {} } },
 
       -- Bash
       lspconfig.bashls.setup({

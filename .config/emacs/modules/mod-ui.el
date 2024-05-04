@@ -8,7 +8,7 @@
   :ensure t
   :demand t
   :config
-  ;; (mapc #'disable-theme custom-enabled-themes)
+  (mapc #'disable-theme custom-enabled-themes)
   (load-theme 'ef-symbiosis t))
 
 (use-package nano-modeline
@@ -42,7 +42,7 @@
   (indent-bars-width-frac 0.1)
   (indent-bars-pad-frac 0.1)
   (indent-bars-zigzag nil)
-  (indent-bars-color '(highlight :face-bg nil :blend 0.4))
+  (indent-bars-color '(highlight :face-bg nil :blend 0.3))
   (indent-bars-color-by-depth nil)
   (indent-bars-highlight-current-depth '(:blend 0.6))
   (indent-bars-no-descend-list t)
@@ -53,8 +53,8 @@
                                        for_statement if_statement with_statement while_statement)))
   (indent-bars-treesit-scope-min-lines 3)
   (indent-bars-treesit-wrap '((python argument_list parameters list list_comprehension
-  										  dictionary dictionary_comprehension
-  										  parenthesized_expression subscript)))
+  									      dictionary dictionary_comprehension
+  									      parenthesized_expression subscript)))
   :hook (prog-mode . indent-bars-mode))
 
 ;; ~ Font
@@ -66,12 +66,11 @@
 (use-package faces
   :ensure nil
   :hook
-  (after-init . (lambda ()
-                  (progn
-                    (set-face-attribute 'default nil :family "Iosevka Nerd Font Mono"
-                                        :height 180 :weight 'regular)
-                    (set-face-attribute 'line-number-current-line nil :foreground "yellow"
-                                        :slant 'normal :weight 'heavy)))))
+  (elpaca-after-init . (lambda ()
+                         (progn (set-face-attribute 'default nil :family "IosevkaTerm Nerd Font Mono"
+                                                    :height 160 :weight 'regular)
+                                (set-face-attribute 'line-number-current-line nil :foreground "yellow"
+                                                    :slant 'normal :weight  'regular)))))
 
 ;; ~ Flash-indicate movement
 

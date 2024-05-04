@@ -19,8 +19,10 @@ o.expandtab = true
 o.smarttab = true
 o.autoindent = true
 o.smartindent = true
-o.breakindent = true
 o.wrap = true
+o.linebreak = true
+o.breakindent = true
+o.showbreak = "- "
 o.complete:remove("i")
 o.completeopt = "menu,menuone,noinsert,noselect"
 o.showfulltag = true
@@ -51,6 +53,7 @@ o.wildmenu = true
 o.wildmode = "list:full"
 o.wildoptions = "fuzzy,pum"
 o.list = true
+o.conceallevel = 2
 
 -- ~  Behaviour
 o.lazyredraw = false
@@ -71,16 +74,5 @@ o.hlsearch = true
 o.incsearch = true
 
 -- ~  Chars
-o.listchars = {
-  tab = "→ ",
-  nbsp = "␣",
-  trail = "·",
-}
-o.fillchars = {
-  fold = "·",
-  foldopen = "",
-  foldclose = "",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
-}
+o.listchars = { tab = "→ ", nbsp = "␣", trail = "·" }
+o.fillchars = { fold = "·", foldopen = "", foldclose = "", foldsep = " ", diff = "╱", eob = " " }

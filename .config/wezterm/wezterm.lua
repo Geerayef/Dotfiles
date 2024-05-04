@@ -135,12 +135,12 @@ C.window_padding = { left = "0pt", right = "0pt", top = "0pt", bottom = "0pt" }
 C.use_resize_increments = true
 C.adjust_window_size_when_changing_font_size = false
 C.enable_scroll_bar = false
-C.inactive_pane_hsb = { saturation = 1, brightness = 0.7 }
+C.inactive_pane_hsb = { saturation = 0.9, brightness = 0.8 }
 C.default_cursor_style = "SteadyBlock"
 C.force_reverse_video_cursor = false
 
 -- Colorscheme
-C.color_scheme = "neobones_dark"
+C.color_scheme = "ayu"
 C.colors = {
   cursor_fg = "#000000",
   tab_bar = {
@@ -163,14 +163,14 @@ C.bold_brightens_ansi_colors = true
 C.allow_square_glyphs_to_overflow_width = "Always"
 C.custom_block_glyphs = true
 C.anti_alias_custom_block_glyphs = false
-C.freetype_load_flags = "DEFAULT"
+C.freetype_load_flags = "NO_HINTING|NO_BITMAP|NO_AUTOHINT"
 C.freetype_load_target = "Light"
 C.freetype_render_target = "HorizontalLcd"
 C.harfbuzz_features = { "calt=1", "clig=1", "liga=1", "ss10" }
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
-  { family = "IosevkaTerm Nerd Font Mono" },
   { family = "Iosevka Nerd Font Mono" },
+  { family = "IosevkaTerm Nerd Font Mono" },
   { family = "FiraCode Nerd Font Mono", harfbuzz_features = { "zero", "ss01", "cv05" } },
   { family = "JetBrainsMonoNL Nerd Font Mono" },
   { family = "Symbols Nerd Font" },

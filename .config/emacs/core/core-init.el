@@ -19,7 +19,7 @@
 (use-package emacs
   :ensure nil
   :hook
-  (prog-mode . util/disable-indent-tabs)
+  ((prog-mode text-mode fundamental-mode) . util/disable-indent-tabs)
   :custom
   ;; UX
   (use-short-answers t)

@@ -29,6 +29,7 @@ alias lidw="ls -al /usr/share/wayland-sessions"
 # ~  Apps
 
 alias v="nvim"
+alias e="nvim (fzf)"
 alias nv="$HOME/software/neovim/nvim-linux64/bin/nvim"
 alias npm="pnpm"
 if test -e "$(command -v codium)"
@@ -38,7 +39,7 @@ end
 # ~  Git
 
 alias dot="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
-alias dotu="dot add .config/{nvim,emacs,micro,tofi,alacritty,wezterm,foot,hypr,fish,bash,nnn,btop,fontconfig,starship,zellij,vimiumc,zathura}/ .scripts/"
+alias dotu="dot add .config/{nvim,emacs,micro,tofi,alacritty,wezterm,foot,hypr,fish,bash,nnn,btop,fontconfig,starship,zellij,tmux,vimiumc,zathura}/ .scripts/"
 alias dota="dot add"
 alias dots="dot status"
 alias dotc="dot commit -m"

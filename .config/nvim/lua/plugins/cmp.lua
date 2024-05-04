@@ -111,7 +111,15 @@ return {
           documentation = cmp.config.window.bordered({ scrollbar = false, border = border }),
         },
         sources = cmp.config.sources(
-          { { name = "nvim_lsp", keyword_length = 1, max_item_count = 10, priority = 1000 } },
+          {
+            {
+              name = "nvim_lsp",
+              keyword_length = 1,
+              max_item_count = 10,
+              priority = 1000,
+              option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } },
+            },
+          },
           { { name = "nvim_lsp_signature_help", keyword_length = 2, max_item_count = 10, priority = 850 } },
           { { name = "luasnip", keyword_length = 2, max_item_count = 10, priority = 850 } },
           { { name = "nvim_lua", keyword_length = 3, max_item_count = 10, priority = 800 } },

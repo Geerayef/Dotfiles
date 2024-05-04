@@ -8,7 +8,7 @@
         (c++-mode . c++-ts-mode)
         (c-or-c++-mode . c-or-c++-ts-mode)
         (rust-mode . rust-ts-mode)
-        (elisp-mode . elisp-ts-mode)
+        ;; (emacs-lisp-mode . elisp-ts-mode)
         (lisp-mode . lisp-ts-mode)
         (clojure-mode . clojure-ts-mode)
         (scheme-mode . scheme-ts-mode)
@@ -41,13 +41,13 @@
         (lua "https://github.com/Azganoth/tree-sitter-lua")
         (bash "https://github.com/tree-sitter/tree-sitter-bash")
         (fish "https://github.com/ram02z/tree-sitter-fish")
-        (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+        (elisp "https://github.com/Wilfred/tree-sitter-elisp" "main" "src")
         (json "https://github.com/tree-sitter/tree-sitter-json")
         (toml "https://github.com/tree-sitter/tree-sitter-toml")
         (yaml "https://github.com/ikatyang/tree-sitter-yaml")
         (cmake "https://github.com/uyha/tree-sitter-cmake")
         (make "https://github.com/alemuller/tree-sitter-make")
-        (markdown "https://github.com/tree-sitter-grammars/tree-sitter-markdown" "main" "src")
+        (markdown "https://github.com/tree-sitter-grammars/tree-sitter-markdown" "split_parser" "tree-sitter-markdown/src")
         (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
         (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
         (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
@@ -55,21 +55,18 @@
         (css "https://github.com/tree-sitter/tree-sitter-css")
         (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")))
 
-;; Then install any grammar libraries not already installed:
 (dolist (lang treesit-language-source-alist)
   (unless (treesit-language-available-p (car lang))
     (treesit-install-language-grammar (car lang))))
 
 (use-package treesit
-  :ensure nil
-  :config ())
+  :ensure nil)
 
 (use-package treesit-auto
   :ensure t
-  :custom
-  (treesit-auto-install 'prompt)
   :init
   (setq treesit-auto-langs '(c cpp ocaml python rust elisp commonlisp lua bash fish yaml toml markdown javascript))
+  :custom (treesit-auto-install 'prompt)
   :config
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))

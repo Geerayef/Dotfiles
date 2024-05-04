@@ -1,3 +1,4 @@
+local border = require("util.objects").BorderSimple
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -17,6 +18,12 @@ return {
       local sorters = require("telescope.sorters")
       telescope.setup({
         defaults = {
+          border = {
+            prompt = { 1, 1, 1, 1 },
+            results = { 1, 1, 1, 1 },
+            preview = { 1, 1, 1, 1 },
+          },
+          borderchars = { prompt = border, results = border, preview = border },
           results_title = "",
           prompt_prefix = " ",
           selection_caret = " ",
@@ -49,13 +56,14 @@ return {
         },
         pickers = {
           current_buffer_fuzzy_find = {
-            prompt_title = "Search buffer",
-            previewer = false,
+            prompt_title = "Search",
             layout_strategy = "vertical",
-            layout_config = { prompt_position = "bottom", height = 0.5, width = 0.8 },
+            layout_config = { height = 0.5 },
+            previewer = false,
             skip_empty_lines = true,
           },
           fd = {
+            prompt_title = "Files",
             theme = "dropdown",
             previewer = false,
             layout_config = { height = 0.4, width = 0.4 },
@@ -68,14 +76,25 @@ return {
             theme = "dropdown",
             initial_mode = "normal",
             previewer = false,
+            disable_coordinates = true,
             layout_config = { height = 0.4, width = 0.4 },
             sort_lastused = true,
             sort_mru = true,
           },
-          oldfiles = { theme = "dropdown", previewer = false, layout_config = { height = 0.4, width = 0.4 } },
+          oldfiles = {
+            prompt_title = "Old files",
+            theme = "dropdown",
+            previewer = false,
+            layout_config = { height = 0.4, width = 0.4 },
+          },
           colorscheme = { preview_title = "", enable_preview = true },
           help_tags = { preview_title = "", layout_config = { height = 0.5, width = 0.9 } },
-          live_grep = { preview_title = "", max_results = 20, layout_config = { height = 0.5, width = 0.9 } },
+          live_grep = {
+            prompt_title = "Grep",
+            preview_title = "",
+            max_results = 20,
+            layout_config = { height = 0.5, width = 0.9 },
+          },
           grep_string = {
             preview_title = "",
             only_sort_text = true,
@@ -95,7 +114,7 @@ return {
         },
         extensions = {
           ["ui-select"] = { th.get_dropdown({}) },
-          fzf = { fuzzy = true, override_generic_sorter = true, override_file_sorter = true },
+          fzf = { fuzzy = true, override_generic_sorter = true, override_file_sorter = true, case_mode = "smart_case" },
         },
       })
       telescope.load_extension("ui-select")

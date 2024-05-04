@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(defvar eglot-server-programs)
+(defvar eglot-server-programs ())
 
 (defun add-eglot-hooks (mode-list)
   "Add `eglot-ensure' to modes in MODE-LIST.
@@ -59,20 +59,20 @@ Major modes are only selected if the major mode's associated LSP
                                             "--pch-storage=memory"
                                             "--header-insertion=never"
                                             "--header-insertion-decorators=0")))
-  :hook
-  ((prog-mode
-    go-ts-mode
-    java-ts-mode
-    python-ts-mode
-    rust-ts-mode
-    c-ts-mode) . eglot-auto-ensure)
   :bind
   (:map eglot-mode-map
         ("C-c e a" . eglot-code-actions)
         ("C-c e o" . eglot-code-actions-organize-imports)
         ("C-c e r" . eglot-rename)
         ("C-c e h" . eldoc)
-        ("C-c e g d" . xref-find-definitions)))
+        ("C-c e g d" . xref-find-definitions))
+  :hook
+  ((go-ts-mode
+    java-ts-mode
+    python-ts-mode
+    rust-ts-mode
+    c-ts-mode
+    c++-ts-mode) . eglot-ensure))
 
 (provide 'mod-eglot)
 ;;; mod-eglot.el ends here

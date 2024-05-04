@@ -1,93 +1,88 @@
 return {
-  -- ~  NightFox
-  -- {
-  --   "EdenEast/nightfox.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = {
-  --     options = {
-  --       styles = { constants = "bold" },
-  --       inverse = { match_paren = false, visual = true, search = true },
-  --       colorblind = { enable = true, severity = { deutan = 1 } }
-  --     }
-  --   }
-  -- },
-
-  -- ~  TokyoNight
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = { style = "night", lualine_bold = true },
-  -- },
-
-  -- ~  Kanagawa
-  -- {
-  --   "rebelot/kanagawa.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require("kanagawa").setup({
-  --       compile = true,
-  --       undercurl = true,
-  --       commentStyle = { italic = true },
-  --       functionStyle = {},
-  --       keywordStyle = { italic = true },
-  --       statementStyle = { bold = true },
-  --       typeStyle = {},
-  --       transparent = false,
-  --       dimInactive = false,
-  --       terminalColors = true,
-  --       overrides = function(colors)
-  --         local theme = colors.theme
-  --         return {
-  --           NormalFloat = { bg = "none" },
-  --           FloatBorder = { bg = "none" },
-  --           FloatTitle = { bg = "none" },
-  --           NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
-  --           MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-  --           -- LazyNormal = { bg = "none", fg = theme.ui.fg_dim },
-  --           -- TelescopeTitle = { fg = theme.ui.special, bold = true },
-  --           -- TelescopePromptNormal = { bg = theme.ui.bg_dim },
-  --           -- TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
-  --           -- TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
-  --           -- TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
-  --           -- TelescopePreviewNormal = { bg = theme.ui.bg_dim },
-  --           -- TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
-  --         }
-  --       end,
-  --       colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
-  --       theme = "dragon",
-  --       background = { dark = "dragon", light = "wave" },
-  --     })
-  --   end,
-  -- },
+  -- ~ ITALIC ------------------------------------------------------------------------- ~ --
 
   -- ~  Material
   {
     "marko-cerovac/material.nvim",
     lazy = false,
     priority = 1010,
+    init = function() vim.g.material_style = "deep ocean" end,
+    opts = {
+      contrast = {
+        terminal = false,
+        sidebars = false,
+        floating_windows = false,
+        cursor_line = false,
+        lsp_virtual_text = false,
+        non_current_windows = false,
+        filetypes = {},
+      },
+      styles = {
+        comments = { italic = true },
+        strings = {},
+        keywords = {},
+        functions = { bold = true },
+        variables = {},
+        operators = {},
+        types = {},
+      },
+      plugins = { "flash", "gitsigns", "indent-blankline", "neogit", "noice", "nvim-cmp", "nvim-web-devicons" },
+      disable = { colored_cursor = false, borders = false, background = false, term_colors = false, eob_lines = false },
+      high_visibility = { lighter = true, darker = true },
+      lualine_style = "stealth",
+      async_loading = true,
+      custom_colors = nil,
+      custom_highlights = {},
+    },
   },
 
-  -- ~  Oxocarbon
-  -- {
-  --   "nyoom-engineering/oxocarbon.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  -- },
-
-  -- ~  Neodark/er
-  -- {
-  --   "VDuchauffour/neodark.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  -- },
-
   -- ~  Midnight
-  -- {
-  --   "dasupradyumna/midnight.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  -- },
+  -- { "dasupradyumna/midnight.nvim", lazy = false, priority = 1010 },
+
+  -- ~  Kanagawa
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1010,
+    opts = {
+      compile = true,
+      undercurl = true,
+      commentStyle = { italic = true },
+      functionStyle = {},
+      keywordStyle = { italic = true },
+      statementStyle = { bold = true },
+      typeStyle = {},
+      transparent = false,
+      dimInactive = false,
+      terminalColors = true,
+      overrides = function(colors)
+        local t = colors.theme
+        -- local p = colors.palette
+        return {
+          NormalFloat = { bg = "none" },
+          FloatBorder = { bg = "none" },
+          FloatTitle = { bg = "none" },
+          -- NormalDark = { fg = t.ui.fg_dim, bg = t.ui.bg_m3 },
+          MasonNormal = { bg = "none", fg = t.ui.fg_dim },
+          LazyNormal = { bg = "none", fg = t.ui.fg_dim },
+          -- TelescopeTitle = { fg = p.lotusWhite3, bold = true },
+          -- TelescopePromptNormal = { fg = p.lotusWhite3 },
+          -- TelescopePromptBorder = { fg = p.lotusWhite3, bg = t.ui.bg_p1 },
+          -- TelescopeResultsNormal = { fg = p.lotusWhite3, bg = t.ui.bg_m1 },
+          -- TelescopeResultsBorder = { fg = p.lotusWhite3, bg = t.ui.bg_m1 },
+          -- TelescopePreviewNormal = { fg = p.lotusWhite3, bg = t.ui.bg_dim },
+          -- TelescopePreviewBorder = { fg = p.lotusWhite3, bg = t.ui.bg_dim },
+        }
+      end,
+      -- fg fg_dim fg_reverse bg_dim bg_gutter bg_m3 bg_m2 bg_m1
+      -- bg_p1 bg_p2 special nontext whitespace bg_search bg_visual
+      colors = { theme = { all = { ui = { bg_gutter = "none" } }, wave = { ui = { bg = "#0F1419" } } } },
+      theme = "wave",
+    },
+  },
+
+  -- ~ -------------------------------------------------------------------------------- ~ --
+
+  -- ~  Neodark/er (ayu / neobones)
+  -- { "VDuchauffour/neodark.nvim", lazy = false, priority = 1010, opts = { theme_style = "neodarker" } },
 }

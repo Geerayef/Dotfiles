@@ -62,8 +62,9 @@
   :ensure t
   :custom
   (browse-url-browser-function 'browse-url-firefox)
-  :hook ((markdown-mode . markdown-preview-mode)
-         (gfm-mode . markdown-preview-mode)))
+  ;; :hook ((markdown-mode . markdown-preview-mode)
+  ;;        (gfm-mode . markdown-preview-mode))
+  )
 
 ;; ~  Latex
 
@@ -105,7 +106,6 @@
 
 (use-package obsidian
   :ensure t
-  :demand t
   :init (global-obsidian-mode t)
   :custom
   (obsidian-specify-path "~/notes")
