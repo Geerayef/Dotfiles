@@ -42,11 +42,11 @@ end
 
 if G.font_dirs == nil then
   G.font_dirs = {
-    "/usr/share/fonts/TTF/FiraCodeNF",
-    "/usr/share/fonts/TTF/JetBrainsMonoNF",
-    "/usr/share/fonts/TTF/IosevkaNF",
-    "/usr/share/fonts/TTF/RobotoMonoNF",
-    "/usr/share/fonts/TTF",
+    "/usr/share/fonts/TTF/FiraCodeNF/",
+    "/usr/share/fonts/TTF/JetBrainsMonoNF/",
+    "/usr/share/fonts/TTF/IosevkaNF/",
+    "/usr/share/fonts/TTF/RobotoMonoNF/",
+    "/usr/share/fonts/",
   }
 end
 
