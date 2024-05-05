@@ -152,9 +152,16 @@ return {
       })
       lspconfig.markdown_oxide.setup({
         on_attach = lsp_attach,
-        capabilities = vim.tbl_extend("keep", capabilities, { didChangeWatchedFiles = { dynamicRegistration = true } }),
-        filetypes = { "markdown", "markdown.mdx" },
+        capabilities = vim.tbl_deep_extend(
+          "keep",
+          {},
+          capabilities,
+          { workspace = { didChangeWatchedFiles = { dynamicRegistration = true } } }
+        ),
+        filetypes = { "markdown" },
+        root_dir = lspconfig.util.root_pattern(".git", "*.md"),
         single_file_support = true,
+        cmd = { "markdown-oxide" },
       })
 
       -- Python
