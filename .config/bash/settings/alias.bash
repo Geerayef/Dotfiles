@@ -23,17 +23,21 @@ else
   alias ll="ls -la --color=always --group-directories-first"
 fi
 
-alias lidx="ls -al /usr/share/xsessions"
-alias lidw="ls -al /usr/share/wayland-sessions"
+alias ldx="ls -al /usr/share/xsessions"
+alias ldw="ls -al /usr/share/wayland-sessions"
 
 # ~  Apps
 
-alias nv="nvim"
-if [[ -e "$(command -v codium)" ]]; then alias codi="$(which codium)"; fi
+alias v="nvim"
+[[ -e "$(command -v codium)" ]] && alias codi="$(which codium)"
 
 # ~  Git
 
 alias dot="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
+alias dotu="dot add .config/{nvim,emacs,micro,tofi,alacritty,wezterm,foot,kitty,hypr,fish,bash,zsh,nnn,bat,btop,fontconfig,starship,zellij,tmux,vimiumc,zathura}/ .local/bin/"
+alias dota="dot add"
+alias dots="dot status"
+alias dotc="dot commit -m"
 alias gs="git status ."
 alias ga="git add"
 alias ga.="git add ."
@@ -96,9 +100,9 @@ elif [[ $SYSTEM_PACKAGE_MANAGER == dnf ]]; then
 elif [[ $SYSTEM_PACKAGE_MANAGER == pacman ]]; then
   alias pi="sudo pacman -S --needed"
   alias pu="sudo pacman -Syu"
-  alias pr="sudo pacman -Rnsu"
+  alias pr="sudo pacman -Rns"
   alias pq="sudo pacman -Q"
-  alias ps="sudo pacman -Sys"
+  alias ps="sudo pacman -Ss"
 else
   echo "Please set the SYSTEM_PACKAGE_MANAGER environment variable to the name of your system package manager."
 fi

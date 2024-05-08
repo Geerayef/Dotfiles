@@ -221,7 +221,7 @@ return {
       lspconfig.yamlls.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        filetypes = { "yaml", "yaml.docker-compose", "yaml.github", "yaml.gitlab" },
+        filetypes = { "yaml", "yaml.github", "yaml.gitlab" },
         settings = {
           yaml = {
             redhat = { telemetry = { enabled = false } },
@@ -239,6 +239,21 @@ return {
           },
         },
         cmd = { "yaml-language-server", "--stdio" },
+        single_file_support = true,
+      })
+
+      lspconfig.docker_compose_language_service.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        filetypes = { "yaml.docker-compose" },
+        root_dir = lspconfig.util.root_pattern(
+          "docker-compose.yaml",
+          "docker-compose.yml",
+          "compose.yaml",
+          "compose.yml",
+          ".git"
+        ),
+        cmd = { "docker-compose-langserver", "--stdio" },
         single_file_support = true,
       })
 

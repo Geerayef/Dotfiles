@@ -4,6 +4,7 @@ return {
     event = "BufWritePost",
     opts = {
       events = "BufWritePost",
+      linters = {},
       linters_by_ft = {
         c = { "clangtidy" },
         cpp = { "cpplint" },
@@ -12,6 +13,8 @@ return {
         zsh = { "zsh" },
         markdown = { "markdownlint" },
         yaml = { "actionlint" },
+        ["yaml.docker-compose"] = { "hadolint" },
+        docker = { "hadolint" },
         json = { "biomejs" },
         javascript = { "biomejs" },
         typescript = { "biomejs" },
