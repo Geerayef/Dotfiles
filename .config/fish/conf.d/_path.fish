@@ -6,6 +6,10 @@ if test -d "$HOME/.local/bin"
     fish_add_path -a --path "$HOME/.local/bin"
 end
 
+if test -d "$HOME/.local/share/nvim/mason/bin"
+    fish_add_path -a --path "$HOME/.local/share/nvim/mason/bin"
+end
+
 if test -d "$HOME/software/neovim/bin"
     fish_add_path -a --path "$HOME/software/neovim/bin"
 end
