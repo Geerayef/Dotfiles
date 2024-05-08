@@ -34,29 +34,7 @@ return {
           },
         },
       },
-      servers = {
-        lua_ls = {
-          Lua = {
-            completion = { enable = true, callSnippet = "Both", keywordSnippet = "Both", displayContext = 2 },
-            diagnostics = { enable = true, globals = { "vim", "jit" }, neededFileStatus = "Opened" },
-            runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
-            workspace = {
-              library = {
-                vim.env.VIMRUNTIME,
-                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                [vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua"] = true,
-              },
-              maxPreload = 2000,
-              preloadFileSize = 1000,
-              checkThirdParty = true,
-            },
-            telemetry = { enable = false },
-            hint = { enable = true, setType = true },
-            root_dir = { ".stylua.toml", "stylua.toml", "*.lua", ".git", "lua/" },
-          },
-        },
-      },
+      servers = { marksman = {} },
     },
     config = function(_, opts)
       local lspconfig = require("lspconfig")
@@ -71,16 +49,16 @@ return {
         has_cmplsp and cmplsp.default_capabilities(vim.lsp.protocol.make_client_capabilities()) or {},
         opts.capabilities or {}
       )
-      -- mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(opts.servers) })
-      -- mason_lspconfig.setup_handlers({
-      --   function(server_name)
-      --     lspconfig[server_name].setup({
-      --       on_attach = lsp_attach,
-      --       capabilities = capabilities,
-      --       settings = opts.servers[server_name],
-      --     })
-      --   end,
-      -- })
+      mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(opts.servers) })
+      mason_lspconfig.setup_handlers({
+        function(server_name)
+          lspconfig[server_name].setup({
+            on_attach = lsp_attach,
+            capabilities = capabilities,
+            settings = opts.servers[server_name],
+          })
+        end,
+      })
 
       -- ~  Local LSP settings
 
@@ -88,7 +66,28 @@ return {
       lspconfig.lua_ls.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        settings = opts.servers.lua_ls,
+        settings = {
+          Lua = {
+            completion = { enable = true, callSnippet = "Both", keywordSnippet = "Both", displayContext = 2 },
+            diagnostics = { enable = true, globals = { "vim", "jit" }, neededFileStatus = "Opened" },
+            runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
+            workspace = {
+              library = {
+                vim.env.VIMRUNTIME,
+                vim.env.MANSECT,
+                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+                [vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua"] = true,
+              },
+              maxPreload = 2000,
+              preloadFileSize = 1000,
+              checkThirdParty = true,
+            },
+            telemetry = { enable = false },
+            hint = { enable = true, setType = true },
+            root_dir = { ".stylua.toml", "stylua.toml", "*.lua", ".git", "lua/" },
+          },
+        },
       })
 
       -- OCaml
@@ -96,7 +95,7 @@ return {
         on_attach = lsp_attach,
         capabilities = capabilities,
         autostart = false,
-        filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
+        filetypes = { "ocaml", "menhir", "ocamlinterface", "ocamllex", "reason", "dune" },
         root_dir = lspconfig.util.root_pattern(
           "*.ml",
           "*.mli",
@@ -104,7 +103,6 @@ return {
           "dune",
           ".ocamlformat",
           "ocamlformat",
-          "esy.json",
           "package.json",
           "dune-project",
           "dune-workspace",
@@ -144,39 +142,39 @@ return {
           "configure.ac",
           ".git"
         ),
-        single_file_support = true,
         cmd = { "/usr/bin/clangd" },
+        single_file_support = true,
       })
 
       -- Markdown
-      -- lspconfig.marksman.setup({
-      --   on_attach = lsp_attach,
-      --   capabilities = capabilities,
-      --   filetypes = { "markdown", "markdown.mdx" },
-      --   root_dir = lspconfig.util.root_pattern(".git", ".marksman.toml"),
-      --   single_file_support = true,
-      --   cmd = { "marksman", "server" },
-      -- })
-      local capabilities_oxide = capabilities
-      capabilities_oxide.workspace = { didChangeWatchedFiles = { dynamicRegistration = true } }
-      lspconfig.markdown_oxide.setup({
+      lspconfig.marksman.setup({
         on_attach = lsp_attach,
-        capabilities = capabilities_oxide,
-        filetypes = { "markdown" },
-        root_dir = lspconfig.util.root_pattern(".git", ".obsidian", ".moxide.toml", "*.md"),
+        capabilities = capabilities,
+        filetypes = { "markdown", "markdown.mdx" },
+        root_dir = lspconfig.util.root_pattern(".git", "*.md", ".marksman.toml"),
+        cmd = { "marksman", "server" },
         single_file_support = true,
-        cmd = { "markdown-oxide" },
       })
+      -- local capabilities_oxide = capabilities
+      -- capabilities_oxide.workspace = { didChangeWatchedFiles = { dynamicRegistration = true } }
+      -- lspconfig.markdown_oxide.setup({
+      --   on_attach = lsp_attach,
+      --   capabilities = capabilities_oxide,
+      --   filetypes = { "markdown" },
+      --   root_dir = lspconfig.util.root_pattern(".git", ".obsidian", ".moxide.toml", "*.md"),
+      --   cmd = { "markdown-oxide" },
+      --   single_file_support = true,
+      -- })
 
       -- Python
-      -- init_options = { settings = { args = {} } },
       lspconfig.ruff_lsp.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
         filetypes = { "python" },
         root_dir = lspconfig.util.root_pattern("*.py", "__init__.py", ".git", "ruff.toml"),
-        single_file_support = true,
+        init_options = { settings = { args = {} } },
         cmd = { "ruff-lsp" },
+        single_file_support = true,
       })
 
       -- Bash
@@ -186,8 +184,8 @@ return {
         filetypes = { "sh", "bash" },
         root_dir = lspconfig.util.root_pattern(".git"),
         settings = { bashIde = { globPattern = "*@(.sh|.inc|.bash|.command)" } },
-        single_file_support = true,
         cmd = { "bash-language-server", "start" },
+        single_file_support = true,
       })
 
       -- Texlab
@@ -215,8 +213,8 @@ return {
             formatterLineLength = 96,
           },
         },
-        single_file_support = true,
         cmd = { "texlab" },
+        single_file_support = true,
       })
 
       -- YAML
@@ -224,8 +222,6 @@ return {
         on_attach = lsp_attach,
         capabilities = capabilities,
         filetypes = { "yaml", "yaml.docker-compose", "yaml.github", "yaml.gitlab" },
-        cmd = { "yaml-language-server", "--stdio" },
-        single_file_support = true,
         settings = {
           yaml = {
             redhat = { telemetry = { enabled = false } },
@@ -242,6 +238,8 @@ return {
             style = { flowMapping = "forbid", flowSequence = "forbid" },
           },
         },
+        cmd = { "yaml-language-server", "--stdio" },
+        single_file_support = true,
       })
 
       -- Type/Java Script
@@ -249,37 +247,28 @@ return {
         on_attach = lsp_attach,
         capabilities = capabilities,
         init_options = { preferences = { disableSuggestions = true }, hostInfo = "neovim" },
-        root_dir = lspconfig.util.root_pattern("package.json", "node_modules", "jsconfig.json", "tsconfig.json", ".git"),
         filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-        single_file_support = true,
+        root_dir = lspconfig.util.root_pattern("package.json", "node_modules", "jsconfig.json", "tsconfig.json", ".git"),
         cmd = { "typescript-language-server", "--stdio" },
+        single_file_support = true,
       })
 
       -- Biome
       lspconfig.biome.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        filetypes = {
-          "javascript",
-          "jsx",
-          "javascriptreact",
-          "json",
-          "jsonc",
-          "typescript",
-          "typescript.tsx",
-          "typescriptreact",
-        },
-        root_dir = lspconfig.util.root_pattern(".git", "package.json", "biome.json"),
-        single_file_support = false,
+        filetypes = { "javascript", "json", "jsonc", "typescript", "typescript.tsx", "astro", "svelte", "vue" },
+        root_dir = lspconfig.util.root_pattern(".git", "package.json", "biome.json", "biome.jsonc"),
         cmd = { "biome", "lsp-proxy" },
+        single_file_support = false,
       })
 
       -- Svelte
       lspconfig.svelte.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        root_dir = lspconfig.util.root_pattern("biome.json", "svelte.config.js", ".git"),
         filetypes = { "svelte", "css", "html", "javascript", "typescript" },
+        root_dir = lspconfig.util.root_pattern("biome.json", "biome.jsonc", "svelte.config.js", ".git"),
         single_file_support = true,
       })
     end,

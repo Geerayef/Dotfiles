@@ -1,7 +1,7 @@
 return {
   "stevearc/conform.nvim",
-  event = { "BufWritePre" },
-  cmd = { "ConformInfo" },
+  event = "BufWritePre",
+  cmd = "ConformInfo",
   keys = {
     {
       "<leader>F",
@@ -17,7 +17,7 @@ return {
       ocaml = { "ocamlformat" },
       rust = { "rustfmt" },
       lua = { "stylua" },
-      python = { "ruff_fix", "ruff_format" },
+      python = { "ruff_format" },
       fish = { "fish_indent" },
       sh = { "shfmt" },
       bash = { "shfmt" },
@@ -25,7 +25,7 @@ return {
       scss = { "prettier" },
       yaml = { "prettier" },
       html = { "prettier" },
-      -- markdown = { "" },
+      markdown = { "markdownlint" },
       json = { "biome" },
       jsonc = { "biome" },
       javascript = { "biome" },
@@ -35,8 +35,8 @@ return {
     formatters = {
       beautysh = { prepend_args = { "-i", "2" } },
       shfmt = { prepend_args = { "--simplify", "--indent", "2", "--binary-next-line", "--case-indent" } },
-      biome = { command = "biome", stdin = false, inherit = false, args = { "format", "$FILENAME", "--write" } },
-      prettierd = { command = "prettier", stdin = true, args = { "--stdin-filepath", "$FILENAME" } },
+      biome = { inherit = false, command = "biome", stdin = false, args = { "format", "--write", "$FILENAME" } },
+      prettier = { command = "prettier", stdin = true, args = { "--stdin-filepath", "$FILENAME" } },
     },
   },
 }

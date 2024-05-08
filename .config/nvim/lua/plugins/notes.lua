@@ -4,6 +4,7 @@ return {
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = "markdown",
     build = function() vim.fn["mkdp#util#install"]() end,
+    keys = { "<leader>mp", ft = "markdown", "<cmd>MarkdownPreviewToggle<CR>", desc = "[m]arkdown [p]review" },
     config = function()
       -- default: 0
       vim.g.mkdp_auto_start = 0
