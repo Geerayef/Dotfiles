@@ -21,6 +21,10 @@ else if test -n "$CURRENT_TERM"
             if test -e "$(command -v foot)"
                 foot -e $EDITOR $argv
             end
+        case kitty
+            if test -e "$(command -v kitty)"
+                kitty $EDITOR $argv
+            end
         case '*'
             echo "~~~~~ [INFO] Environment variable CURRENT TERM is not set."
     end

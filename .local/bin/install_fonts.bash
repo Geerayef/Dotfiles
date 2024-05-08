@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ## @dir_destination: <string:path> -- Path to the destination directory to which fonts will be moved.
-create_dir () {
+create_dir() {
   local dir_destination=$1
   [[ -d $dir_destination ]] || sudo mkdir "$dir_destination"
   printf "~~~~~ [DONE] Create %s.\n" "$dir_destination"
@@ -10,11 +10,11 @@ create_dir () {
 ## @dir_download: <string:path> -- Path to a directory where fonts will be downloaded.
 ## @url_git_nerdfonts: <string:url> -- URL of the Git repository hosting font archives.
 ## @fonts: ref <array<string>> -- Reference to array of font names to download.
-download () {
+download() {
   local dir_download=$1
   local url_git_nerdfonts=$2
   local -n fonts=$3
-  for name in "${fonts[@]}" ; do
+  for name in "${fonts[@]}"; do
     printf "~~~~~ [INFO] Downloading %s\n" "$name"
     curl --proto '=https' -# -sSLZO --output-dir "$dir_download" "$url_git_nerdfonts/${name}.tar.xz"
   done
@@ -23,11 +23,11 @@ download () {
 
 ## @dir_download: <string:path> -- Path to a directory where fonts will be downloaded.
 ## @fonts: ref <array<string>> -- Reference to array of font names to download.
-extract () {
+extract() {
   local dir_download=$1
   local -n fonts=$2
   printf "~~~~~ [INFO] Extracting...\n"
-  for name in "${fonts[@]}" ; do
+  for name in "${fonts[@]}"; do
     tar -xf "$dir_download/${name}.tar.xz" -C "$dir_download"
   done
   printf "~~~~~ [DONE] Extract.\n"
@@ -35,10 +35,10 @@ extract () {
 
 ## @dir_download: <string:path> -- Path to a directory where fonts will be downloaded.
 ## @fonts: ref <array<string>> -- Reference to array of font names to download.
-move () {
+move() {
   local dir_download=$1
   local -n fonts=$2
-  for name in "${fonts[@]}" ; do
+  for name in "${fonts[@]}"; do
     case $name in
       "IosevkaTerm")
         printf "~~~~~ [INFO] %s will be groupped with Iosevka.\n" "$name"
@@ -48,13 +48,14 @@ move () {
         create_dir "$dir_destination"
         sudo mv "$dir_download"/"$name"*.ttf "$dir_destination"
         printf "~~~~~ [DONE] Move %s to %s\n" "$name" "$dir_destination"
+        ;;
     esac
   done
 }
 
 # ------------------------------------------------------------------------------------------------ #
 
-main () {
+main() {
   printf "~~~~~ NerdFonts setup.\n"
   printf "~~~~~ GitHub: ryanoasis/nerd-fonts\n"
 
@@ -62,7 +63,7 @@ main () {
   local dir_download_fonts="$HOME/Downloads/Fonts"
   local font_names=("Iosevka" "IosevkaTerm" "FiraCode" "JetBrainsMono" "RobotoMono")
 
-  [[ -d "$dir_download_fonts" ]] || mkdir "$dir_download_fonts"
+  [[ -d $dir_download_fonts ]] || mkdir "$dir_download_fonts"
   printf "~~~~~ [DONE] Create %s.\n" "$dir_download_fonts"
 
   download "$dir_download_fonts" "$url_git_nerdfonts" font_names

@@ -1,7 +1,6 @@
 # ~  General
 
 alias C="clear"
-alias grep="grep --color=always"
 if test -e "$(command -v eza)"
     alias ls="eza -a --color=always --icons=always --group-directories-first"
     alias la="eza -aG --color=always --icons=always --group-directories-first"
@@ -23,14 +22,13 @@ else
     alias ll="ls -la --color=always --group-directories-first"
 end
 
-alias lidx="ls -al /usr/share/xsessions"
-alias lidw="ls -al /usr/share/wayland-sessions"
+alias ldx="ls -al /usr/share/xsessions"
+alias ldw="ls -al /usr/share/wayland-sessions"
 
 # ~  Apps
 
 alias v="nvim"
 alias e="nvim (fzf)"
-alias nv="$HOME/software/neovim/nvim-linux64/bin/nvim"
 alias npm="pnpm"
 if test -e "$(command -v codium)"
     alias codi="$(which codium)"
@@ -39,7 +37,7 @@ end
 # ~  Git
 
 alias dot="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
-alias dotu="dot add .config/{nvim,emacs,micro,tofi,alacritty,wezterm,foot,hypr,fish,bash,nnn,btop,fontconfig,starship,zellij,tmux,vimiumc,zathura}/ .scripts/"
+alias dotu="dot add .config/{nvim,emacs,micro,tofi,alacritty,wezterm,foot,kitty,hypr,fish,bash,nnn,btop,fontconfig,starship,zellij,tmux,vimiumc,zathura}/ .local/bin/"
 alias dota="dot add"
 alias dots="dot status"
 alias dotc="dot commit -m"
@@ -105,9 +103,9 @@ else if test $SYSTEM_PACKAGE_MANAGER = dnf
 else if test $SYSTEM_PACKAGE_MANAGER = pacman
     alias pi="sudo pacman -S --needed"
     alias pu="sudo pacman -Syu"
-    alias pr="sudo pacman -Rnsu"
+    alias pr="sudo pacman -Rns"
     alias pq="sudo pacman -Q"
-    alias ps="sudo pacman -Sys"
+    alias ps="sudo pacman -Ss"
 else
     echo "Please set the SYSTEM_PACKAGE_MANAGER environment variable to the name of your system package manager."
 end

@@ -1,21 +1,21 @@
 vim.g.mapleader = " "
 
----@param mode string|table Mode[s]
----@param r string Right side of mapping
----@param l string|function Left side of mapping
+---@param mode string|table Mode{s}
+---@param l string Left side of mapping
+---@param r string|function Right side of mapping
 ---@param bo table Buffer options
 ---@param desc string Mapping description
-local function map(mode, r, l, bo, desc)
+local function map(mode, l, r, bo, desc)
   bo.desc = desc
-  vim.keymap.set(mode, r, l, bo)
+  vim.keymap.set(mode, l, r, bo)
 end
 
 local bopt = { noremap = true, silent = true, desc = "" }
 
 -- ~  General keymaps
 
-map("x", "J", ":'<,'>m '>+1<CR>gv=gv", bopt, "Move selected line[s] down")
-map("x", "K", ":'<,'>m '<-2<CR>gv=gv", bopt, "Move selected line[s] up")
+map("x", "J", ":'<,'>m '>+1<CR>gv=gv", bopt, "Move selected line{s} down")
+map("x", "K", ":'<,'>m '<-2<CR>gv=gv", bopt, "Move selected line{s} up")
 map({ "n", "x" }, "<C-d>", "10j", bopt, "Scroll down 10 lines")
 map({ "n", "x" }, "<C-u>", "10k", bopt, "Scroll up 10 lines")
 
@@ -28,7 +28,7 @@ map("n", "n", "nzzzv", bopt, "Vertically center cursor after jumping to the next
 map("n", "N", "Nzzzv", bopt, "Vertically center cursor after jumping to the previous search result")
 
 -- Copy/Yank/Paste
-map("n", "x", "\"_x", bopt, "Cut next character without saving to buffer")
+map("n", "x", "\"_x", bopt, "Cut rightward character without saving to buffer")
 map("x", "<leader>P", "\"_dP", bopt, "Past from system clipboard")
 map("n", "<leader>y", "\"+y", bopt, "Yank to system clipboard")
 map("n", "<leader>Y", "\"+Y", bopt, "Yank to system clipboard")
@@ -52,9 +52,6 @@ map("n", "<leader>dp", vim.diagnostic.goto_prev, bopt, "[d]iagnostic [p]revious"
 
 -- ~  Plugin keymaps
 
--- Arena
--- keymap("n", "<leader><space>", "<cmd>ArenaToggle<CR>", bopt, "[ ] Arena buffers")
-
 -- Oil
 map("n", "<leader>f", "<cmd>Oil<CR>", bopt, "Oil [f]ile browser")
 map("n", "<leader>of", "<cmd>Oil --float<CR>", bopt, "[o]il [f]loat")
@@ -69,6 +66,11 @@ map("n", "<leader>sh", "<cmd>Telescope help_tags<CR>", bopt, "Telescope [s]earch
 map("n", "<leader>sg", "<cmd>Telescope live_grep<CR>", bopt, "Telescope [s]earch [g]rep")
 map("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", bopt, "Telescope [s]earch [w]ord")
 map("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", bopt, "Telescope [s]earch [d]iagnostics")
+
+-- ToDo comments
+map("n", "]t", function() require("todo-comments").jump_next() end, bopt, "Next todo comment")
+map("n", "[t", function() require("todo-comments").jump_prev() end, bopt, "Previous todo comment")
+map("n", "<leader>td", "<cmd>TodoTelescope keywords=FIX,TODO,HACK,WARN,PERF,NOTE,TEST<CR>", bopt, "Telescope [t]o[d]o")
 
 -- Gitsigns
 map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>", bopt, "[h]unk [s]tage")
@@ -90,15 +92,6 @@ map("n", "<leader>G", "<cmd>Neogit<CR>", bopt, "Neo[G]it")
 -- keymap("n", "<leader>gab", "<cmd>Git add %<CR>", bopt, "[g]it [a]dd [b]uffer")
 -- keymap("n", "<leader>gpl", "<cmd>Git pull<CR>", bopt, "[g]it [p]u[l]l")
 -- keymap("n", "<leader>gps", "<cmd>Git push<CR>", bopt, "[g]it [p]u[s]h")
-
--- Conform
--- keymap(
---   "n",
---   "<leader>F",
---   function() require("conform").format({ async = true, lsp_fallback = true }) end,
---   bopt,
---   "[F]ormat current buffer"
--- )
 
 -- Zen
 map("n", "<leader>zn", "<cmd>TZNarrow<CR>", bopt, "[z]en [n]arrow")

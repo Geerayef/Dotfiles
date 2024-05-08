@@ -67,7 +67,7 @@ o.sidescrolloff = 4
 o.foldenable = true
 
 -- ~  Search
-if vim.fn.executable("rg") == 1 then o.grepprg = "rg --vimgrep --no-heading --smart-case" end
+if vim.fn.executable("rg") == 1 then o.grepprg = "rg --vimgrep --no-heading --smart-case --trim" end
 o.ignorecase = true
 o.smartcase = true
 o.hlsearch = true

@@ -10,10 +10,6 @@ if test -d "$HOME/software/neovim/bin"
     fish_add_path -a --path "$HOME/software/neovim/bin"
 end
 
-if test -d "$HOME/.scripts"
-    fish_add_path -a --path "$HOME/.scripts"
-end
-
 # ~  Developer Environment
 
 # Cargo

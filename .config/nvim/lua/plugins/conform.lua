@@ -19,8 +19,8 @@ return {
       lua = { "stylua" },
       python = { "ruff_fix", "ruff_format" },
       fish = { "fish_indent" },
-      sh = { "beautysh" },
-      bash = { "beautysh" },
+      sh = { "shfmt" },
+      bash = { "shfmt" },
       css = { "prettier" },
       scss = { "prettier" },
       yaml = { "prettier" },
@@ -34,6 +34,7 @@ return {
     format_on_save = { timeout_ms = 500, lsp_fallback = true },
     formatters = {
       beautysh = { prepend_args = { "-i", "2" } },
+      shfmt = { prepend_args = { "--simplify", "--indent", "2", "--binary-next-line", "--case-indent" } },
       biome = { command = "biome", stdin = false, inherit = false, args = { "format", "$FILENAME", "--write" } },
       prettierd = { command = "prettier", stdin = true, args = { "--stdin-filepath", "$FILENAME" } },
     },

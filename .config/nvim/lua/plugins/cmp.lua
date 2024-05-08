@@ -8,23 +8,9 @@ return {
         "L3MON4D3/LuaSnip",
         build = (not jit.os:find("Windows")) and "echo 'NOTE: jsregexp is optional'; make install_jsregexp" or nil,
         dependencies = {
-          {
-            "rafamadriz/friendly-snippets",
-            config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
-          },
+          { "rafamadriz/friendly-snippets", config = function() require("luasnip.loaders.from_vscode").lazy_load() end },
         },
         opts = { history = true, delete_check_events = "TextChanged" },
-        keys = {
-          {
-            "<tab>",
-            function() return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>" end,
-            expr = true,
-            silent = true,
-            mode = "i",
-          },
-          { "<tab>", function() require("luasnip").jump(1) end, mode = { "i", "s" } },
-          { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
-        },
       },
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
@@ -51,7 +37,7 @@ return {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources(
           { { name = "path", max_item_count = 10 } },
-          { { name = "cmdline", keyword_length = 0, max_item_count = 40 } }
+          { { name = "cmdline", keyword_length = 0, max_item_count = 30 } }
         ),
         view = { entries = { name = "custom" } },
       })

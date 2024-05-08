@@ -218,21 +218,21 @@ device_menu() {
   chosen="$(echo -e "$options" | $tofi_cmd)"
 
   case "$chosen" in
-  "" | "$DIVIDER")
-    echo "No option chosen."
-    ;;
-  "$connected")
-    toggle_connect "$mac"
-    ;;
-  "$paired")
-    toggle_pair "$mac"
-    ;;
-  "$trusted")
-    toggle_trust "$mac"
-    ;;
-  "$BACK")
-    main_menu
-    ;;
+    "" | "$DIVIDER")
+      echo "No option chosen."
+      ;;
+    "$connected")
+      toggle_connect "$mac"
+      ;;
+    "$paired")
+      toggle_pair "$mac"
+      ;;
+    "$trusted")
+      toggle_trust "$mac"
+      ;;
+    "$BACK")
+      main_menu
+      ;;
   esac
 }
 
@@ -254,25 +254,25 @@ main_menu() {
   chosen="$(echo -e "$options" | $tofi_cmd)"
 
   case "$chosen" in
-  "" | "$DIVIDER")
-    echo "No option chosen."
-    ;;
-  "$power")
-    toggle_power
-    ;;
-  "$scan")
-    toggle_scan
-    ;;
-  "$discoverable")
-    toggle_discoverable
-    ;;
-  "$pairable")
-    toggle_pairable
-    ;;
-  *)
-    device=$(bluetoothctl devices | grep "$chosen")
-    if [[ $device ]]; then device_menu "$device"; fi
-    ;;
+    "" | "$DIVIDER")
+      echo "No option chosen."
+      ;;
+    "$power")
+      toggle_power
+      ;;
+    "$scan")
+      toggle_scan
+      ;;
+    "$discoverable")
+      toggle_discoverable
+      ;;
+    "$pairable")
+      toggle_pairable
+      ;;
+    *)
+      device=$(bluetoothctl devices | grep "$chosen")
+      if [[ $device ]]; then device_menu "$device"; fi
+      ;;
   esac
 }
 
@@ -283,10 +283,10 @@ tofi_cmd="tofi $* --config $XDG_CONFIG_HOME/tofi/interactive --placeholder-text=
 # ~  Entry
 
 case "$1" in
---status)
-  print_status
-  ;;
-*)
-  main_menu
-  ;;
+  --status)
+    print_status
+    ;;
+  *)
+    main_menu
+    ;;
 esac

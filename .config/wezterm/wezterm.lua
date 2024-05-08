@@ -188,7 +188,7 @@ C.enable_wayland = false
 C.animation_fps = 1
 C.max_fps = 60
 C.front_end = "OpenGL"
-C.webgpu_force_fallback_adapter = true
+C.webgpu_force_fallback_adapter = false
 C.scrollback_lines = 2000
 C.audible_bell = "Disabled"
 C.set_environment_variables = { CURRENT_TERM = "wezterm" }

@@ -16,12 +16,12 @@ set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gcr/ssh"
 set -gx TERM wezterm
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
-set -gx VISUAL "$HOME/.scripts/nnn/edit.fish"
+set -gx VISUAL edit.fish
 set -gx PAGER nvimpager
 set -gx MANPAGER "nvim +Man!"
 set -gx SYSTEM_PACKAGE_MANAGER pacman
 set -gx MOZ_ENABLE_WAYLAND 1
 set -gx CONDA_AUTO_ACTIVATE_BASE false
-set -gx GTK_THEME Kripton:dark
+set -gx GTK_THEME Juno-ocean:dark
 set -gx PNPM_HOME /home/tibor/.local/share/pnpm
 set -gx VK_DRIVER_FILES /usr/share/vulkan/icd.d/nvidia_icd.json

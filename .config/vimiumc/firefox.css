@@ -1,8 +1,8 @@
 /* #ui */
 
 * {
-  font-family: "Iosevka Nerd Font Mono";
-  padding: 1em;
+  font-family: "Iosevka Nerd Font Mono" !important;
+  font-size: 20px;
   overflow: hidden;
 }
 .LH {
@@ -103,10 +103,12 @@ body:after {
 #bar::before {
   content: "❯";
   display: inline-block;
+  height: 1em;
+  width: 1em;
   position: absolute;
+  padding: 0.1em;
   top: 2em;
   left: 1em;
-  padding: 0.1em;
   z-index: 300;
   color: #ffffff;
   text-align: center;
@@ -327,3 +329,4 @@ body.D {
 .D #i {
   color: #ffffff;
 }
+

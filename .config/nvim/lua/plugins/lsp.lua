@@ -61,34 +61,41 @@ return {
     config = function(_, opts)
       local lspconfig = require("lspconfig")
       require("lspconfig.ui.windows").default_options.border = border
-      local mason_lspcfg = require("mason-lspconfig")
-      local has_cmp, lspcmp = pcall(require, "cmp_nvim_lsp")
+      local mason_lspconfig = require("mason-lspconfig")
+      local has_cmplsp, cmplsp = pcall(require, "cmp_nvim_lsp")
       local lsp_attach = F.LspAttach
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
       local capabilities = vim.tbl_deep_extend(
         "force",
         {},
-        has_cmp and lspcmp.default_capabilities(vim.lsp.protocol.make_client_capabilities()) or {},
+        has_cmplsp and cmplsp.default_capabilities(vim.lsp.protocol.make_client_capabilities()) or {},
         opts.capabilities or {}
       )
-      mason_lspcfg.setup({ ensure_installed = vim.tbl_keys(opts.servers) })
-      mason_lspcfg.setup_handlers({
-        function(server_name)
-          lspconfig[server_name].setup({
-            on_attach = lsp_attach,
-            capabilities = capabilities,
-            settings = opts.servers[server_name],
-          })
-        end,
-      })
+      -- mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(opts.servers) })
+      -- mason_lspconfig.setup_handlers({
+      --   function(server_name)
+      --     lspconfig[server_name].setup({
+      --       on_attach = lsp_attach,
+      --       capabilities = capabilities,
+      --       settings = opts.servers[server_name],
+      --     })
+      --   end,
+      -- })
 
       -- ~  Local LSP settings
 
-      -- OCaml
-      lspconfig.ocamllsp.setup({
-        autostart = false,
+      -- Lua
+      lspconfig.lua_ls.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
+        settings = opts.servers.lua_ls,
+      })
+
+      -- OCaml
+      lspconfig.ocamllsp.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        autostart = false,
         filetypes = { "ocaml", "ocaml.menhir", "ocaml.interface", "ocaml.ocamllex", "reason", "dune" },
         root_dir = lspconfig.util.root_pattern(
           "*.ml",
@@ -142,24 +149,21 @@ return {
       })
 
       -- Markdown
-      lspconfig.marksman.setup({
-        on_attach = lsp_attach,
-        capabilities = capabilities,
-        filetypes = { "markdown", "markdown.mdx" },
-        root_dir = lspconfig.util.root_pattern(".git", ".marksman.toml"),
-        single_file_support = true,
-        cmd = { "marksman", "server" },
-      })
+      -- lspconfig.marksman.setup({
+      --   on_attach = lsp_attach,
+      --   capabilities = capabilities,
+      --   filetypes = { "markdown", "markdown.mdx" },
+      --   root_dir = lspconfig.util.root_pattern(".git", ".marksman.toml"),
+      --   single_file_support = true,
+      --   cmd = { "marksman", "server" },
+      -- })
+      local capabilities_oxide = capabilities
+      capabilities_oxide.workspace = { didChangeWatchedFiles = { dynamicRegistration = true } }
       lspconfig.markdown_oxide.setup({
         on_attach = lsp_attach,
-        capabilities = vim.tbl_deep_extend(
-          "keep",
-          {},
-          capabilities,
-          { workspace = { didChangeWatchedFiles = { dynamicRegistration = true } } }
-        ),
+        capabilities = capabilities_oxide,
         filetypes = { "markdown" },
-        root_dir = lspconfig.util.root_pattern(".git", "*.md"),
+        root_dir = lspconfig.util.root_pattern(".git", ".obsidian", ".moxide.toml", "*.md"),
         single_file_support = true,
         cmd = { "markdown-oxide" },
       })
@@ -215,6 +219,31 @@ return {
         cmd = { "texlab" },
       })
 
+      -- YAML
+      lspconfig.yamlls.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        filetypes = { "yaml", "yaml.docker-compose", "yaml.github", "yaml.gitlab" },
+        cmd = { "yaml-language-server", "--stdio" },
+        single_file_support = true,
+        settings = {
+          yaml = {
+            redhat = { telemetry = { enabled = false } },
+            yamlVersion = 1.2,
+            format = { enable = true, singleQuote = false, bracketSpacing = true, printWidth = 96 },
+            validate = true,
+            hover = true,
+            completion = true,
+            schemas = {},
+            schemaStore = { enable = true, url = "https://www.schemastore.org/api/json/catalog.json" },
+            editor = { tabSize = 2, formatOnType = true },
+            disableDefaultProperties = true,
+            suggest = { parentSkeletonSelectedFirst = true },
+            style = { flowMapping = "forbid", flowSequence = "forbid" },
+          },
+        },
+      })
+
       -- Type/Java Script
       lspconfig.tsserver.setup({
         on_attach = lsp_attach,
@@ -240,7 +269,7 @@ return {
           "typescript.tsx",
           "typescriptreact",
         },
-        root_dir = lspconfig.util.root_pattern("biome.json"),
+        root_dir = lspconfig.util.root_pattern(".git", "package.json", "biome.json"),
         single_file_support = false,
         cmd = { "biome", "lsp-proxy" },
       })
