@@ -47,7 +47,7 @@ return {
             height = 0.5,
             width = 0.8,
             prompt_position = "top",
-            vertical = { preview_height = 0.2, height = 0.4, width = 0.4 },
+            vertical = { preview_height = 0.0, height = 0.4, width = 0.4 },
             horizontal = {
               preview_width = function(_, cols, _) return cols > 200 and math.floor(cols * 0.4) or math.floor(cols * 0.5) end,
             },
@@ -60,10 +60,16 @@ return {
           oldfiles = { prompt_title = "Old files" },
           help_tags = {
             preview_title = "",
-            layout_config = { mirror = true, preview_cutoff = 1, preview_height = 0.6, height = 0.8, width = 0.8 },
+            layout_config = { mirror = true, preview_cutoff = 1, preview_height = 0.5, height = 0.8, width = 0.8 },
           },
           live_grep = { prompt_title = "Grep", max_results = 10, layout_config = { width = 0.8 } },
-          grep_string = { preview_title = "", only_sort_text = true, disable_coordinates = true, word_match = "-w" },
+          grep_string = {
+            preview_title = "",
+            only_sort_text = true,
+            disable_coordinates = true,
+            word_match = "-w",
+            layout_config = { width = 0.8 },
+          },
           diagnostics = { preview_title = "", theme = "ivy", initial_mode = "normal" },
           lsp_references = {
             preview_title = "",
