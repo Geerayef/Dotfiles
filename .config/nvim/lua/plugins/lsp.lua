@@ -7,7 +7,7 @@ return {
     opts = {
       registries = { "github:mason-org/mason-registry" },
       ui = {
-        icons = { package_installed = "✓", package_pending = "➜", package_uninstalled = "✗" },
+        icons = { package_installed = "✓", package_pending = "->", package_uninstalled = "x" },
         border = border,
         width = 0.7,
         height = 0.5,

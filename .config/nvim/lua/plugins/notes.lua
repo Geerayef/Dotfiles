@@ -1,10 +1,10 @@
 return {
   {
     "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = "markdown",
     build = function() vim.fn["mkdp#util#install"]() end,
-    keys = { "<leader>mp", ft = "markdown", "<cmd>MarkdownPreviewToggle<CR>", desc = "[m]arkdown [p]review" },
+    ft = { "markdown" },
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    keys = { { "<leader>mp", "<cmd>MarkdownPreview<CR>", desc = "[m]arkdown [p]review" } },
     config = function()
       -- default: 0
       vim.g.mkdp_auto_start = 0
@@ -65,7 +65,7 @@ return {
       workspaces = { { name = "notes", path = "~/notes" }, { name = "LGR", path = "~/notes/LGR" } },
       completion = { nvim_cmp = true, min_chars = 2 },
       preferred_link_style = "markdown",
-      disable_frontmatter = false,
+      disable_frontmatter = true,
       picker = { name = "telescope.nvim", mappings = { new = "<C-x>", insert_link = "<C-l>" } },
       sort_by = "path",
       sort_reversed = false,

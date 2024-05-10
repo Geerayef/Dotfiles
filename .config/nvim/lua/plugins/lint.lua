@@ -12,7 +12,7 @@ return {
         fish = { "fish" },
         zsh = { "zsh" },
         markdown = { "markdownlint" },
-        yaml = { "actionlint" },
+        yaml = { "yamllint" },
         ["yaml.docker-compose"] = { "hadolint" },
         docker = { "hadolint" },
         json = { "biomejs" },

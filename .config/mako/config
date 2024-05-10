@@ -1,20 +1,20 @@
 anchor=top-center
-layer=overlay
+layer=top
 sort=-time
 max-visible=3
 group-by=app-name,body,urgency,category,desktop-entry
-font=FiraCode Nerd Font Mono 18
-text-color=#FFFFFFFF
-width=750
-height=250
+font=Iosevka Nerd Font Mono 16
+text-color=#F5E0DC
+width=500
+height=100
 padding=10
-background-color=#212327
+background-color=#11111B
 border-size=2
+border-radius=0
 border-color=#F3EAA1
-border-radius=8
 icons=1
 max-icon-size=64
-icon-path=/usr/share/icons/Tela-black:/usr/share/icons/Tela-grey
+icon-path=/usr/share/icons/Tela-black
 progress-color=over #D8D8D4
 default-timeout=5000
 ignore-timeout=1
@@ -23,13 +23,13 @@ actions=1
 history=1
 
 [urgency=low]
-border-color=#282a36
+border-color=#B4BEFE
 
 [urgency=normal]
-border-color=#f1fa8c
+border-color=#FAB387
 
 [urgency=high]
-border-color=#ff5555
+border-color=#F38BA8
 default-timeout=0
 
 [category=mpd]
