@@ -42,14 +42,40 @@ end
 
 if G.font_dirs == nil then
   G.font_dirs = {
+    "/usr/share/fonts/TTF/",
+    "/usr/share/fonts/OTF/",
     "/usr/share/fonts/TTF/FiraCodeNF/",
     "/usr/share/fonts/TTF/JetBrainsMonoNF/",
     "/usr/share/fonts/TTF/IosevkaNF/",
     "/usr/share/fonts/TTF/RobotoMonoNF/",
-    "/usr/share/fonts/",
   }
 end
-
+if G.firacode_harfbuzz == nil then
+  G.firacode_harfbuzz = {
+    "zero",
+    "calt=1",
+    "clig=1",
+    "liga=1",
+    "dlig=1",
+    "cv01",
+    "cv02",
+    "cv04",
+    "cv08",
+    "cv29",
+    "cv30",
+    "cv31",
+    "ss01",
+    "ss02",
+    "ss05",
+    "ss09",
+  }
+end
+if G.iosevka_harfbuzz == nil then
+  G.iosevka_harfbuzz = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" }
+end
+if G.jetbrainsmono_harfbuzz == nil then
+  G.jetbrainsmono_harfbuzz = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
+end
 -- ~ -------------------------------------------------------------------------------- ~ --
 
 -- ~  Functions
@@ -167,15 +193,15 @@ C.anti_alias_custom_block_glyphs = false
 C.freetype_load_flags = "NO_HINTING|NO_BITMAP|NO_AUTOHINT"
 C.freetype_load_target = "Light"
 C.freetype_render_target = "HorizontalLcd"
-C.harfbuzz_features = { "calt=1", "clig=1", "liga=1", "ss10" }
+C.harfbuzz_features = {}
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
-  { family = "Iosevka Nerd Font Mono" },
-  { family = "IosevkaTerm Nerd Font Mono" },
-  { family = "FiraCode Nerd Font Mono", harfbuzz_features = { "zero", "ss01", "cv05" } },
-  { family = "JetBrainsMonoNL Nerd Font Mono" },
-  { family = "Symbols Nerd Font" },
-  { family = "Symbols Nerd Font Mono" },
+  { family = "IosevkaTerm Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
+  { family = "FiraCode Nerd Font Mono", harfbuzz_features = G.firacode_harfbuzz },
+  { family = "JetBrainsMono Nerd Font Mono", harfbuzz_features = G.jetbrainsmono_harfbuzz },
+  "RobotoMono Nerd Font Mono",
+  "Symbols Nerd Font",
+  "Symbols Nerd Font Mono",
 })
 C.font_size = 16
 C.line_height = 1
