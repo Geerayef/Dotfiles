@@ -1,5 +1,5 @@
 import = [ "~/.config/alacritty/colors/Oxocarbon.toml" ]
-shell = { program = "/usr/bin/fish", args = ["-c", "zellij attach home"] }
+#shell = { program = "/usr/bin/fish", args = ["-c", "zellij attach home"] }
 #working_directory = ""
 live_config_reload = true
 #ipc_socket = true
@@ -11,9 +11,9 @@ CURRENT_TERM = "alacritty"
 dimensions                = { columns = 0, lines = 0 }
 position                  = "None"
 padding                   = { x = 0, y = 0 }
-dynamic_padding           = true
+dynamic_padding           = false
 decorations               = "None"
-opacity                   = 1
+opacity                   = 0.9
 startup_mode              = "Windowed"
 title                     = "Alacritty"
 dynamic_title             = false
@@ -26,11 +26,11 @@ history    = 4000
 #multiplier = 3
 
 [font]
-normal              = { family = "IosevkaTerm Nerd Font Mono", style = "Regular" }
-bold                = { family = "IosevkaTerm Nerd Font Mono", style = "Heavy" }
-italic              = { family = "IosevkaTerm Nerd Font Mono", style = "Italic" }
-bold_italic         = { family = "IosevkaTerm Nerd Font Mono", style = "BoldItalic" }
-size                = 16.0
+normal              = { family = "Iosevka Nerd Font Mono", style = "Regular" }
+bold                = { family = "Iosevka Nerd Font Mono", style = "Bold" }
+italic              = { family = "Iosevka Nerd Font Mono", style = "Light" }
+bold_italic         = { family = "Iosevka Nerd Font Mono", style = "Medium" }
+size                = 16
 offset              = { x = 0, y = 0 }
 glyph_offset        = { x = 0, y = 0 }
 builtin_box_drawing = true
