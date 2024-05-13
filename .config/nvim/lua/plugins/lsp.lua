@@ -39,7 +39,8 @@ return {
     config = function(_, opts)
       local lspconfig = require("lspconfig")
       require("lspconfig.ui.windows").default_options.border = border
-      local mason_lspconfig = require("mason-lspconfig")
+      -- local mason_lspconfig = require("mason-lspconfig")
+      -- mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(opts.servers) })
       local has_cmplsp, cmplsp = pcall(require, "cmp_nvim_lsp")
       local lsp_attach = F.LspAttach
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
@@ -49,7 +50,6 @@ return {
         has_cmplsp and cmplsp.default_capabilities(vim.lsp.protocol.make_client_capabilities()) or {},
         opts.capabilities or {}
       )
-      -- mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(opts.servers) })
       -- mason_lspconfig.setup_handlers({
       --   function(server_name)
       --     lspconfig[server_name].setup({
@@ -88,6 +88,7 @@ return {
             root_dir = { ".stylua.toml", "stylua.toml", "*.lua", ".git", "lua/" },
           },
         },
+        single_file_support = true,
       })
 
       -- OCaml
@@ -109,6 +110,7 @@ return {
           ".git"
         ),
         cmd = { "ocamllsp" },
+        single_file_support = true,
       })
 
       -- Rust
@@ -116,7 +118,7 @@ return {
         on_attach = lsp_attach,
         capabilities = capabilities,
         filetypes = { "rust" },
-        root_dir = lspconfig.util.root_pattern("Cargo.toml", "rust-project.json"),
+        root_dir = lspconfig.util.root_pattern("*.rs", "Cargo.toml", "rust-project.json", ".git"),
         settings = {
           ["rust-analyzer"] = {
             imports = { prefix = "self", granularity = { group = "module" } },
@@ -126,6 +128,7 @@ return {
           },
         },
         cmd = { "rust-analyzer" },
+        single_file_support = true,
       })
 
       -- Clangd

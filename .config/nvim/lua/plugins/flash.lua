@@ -1,8 +1,8 @@
 return {
   "folke/flash.nvim",
   keys = {
-    { "<M-j>", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-    { "<M-t>", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+    { "<M-j>", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash [j]ump" },
+    { "<M-t>", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash [T]reesitter" },
     { "<C-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     -- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
     -- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
@@ -44,7 +44,7 @@ return {
       history = false,
       register = false,
       nohlsearch = false,
-      autojump = false,
+      autojump = true,
       inclusive = nil, ---@type boolean?
       offset = nil, ---@type number
     },
@@ -81,7 +81,7 @@ return {
         end,
         autohide = true,
         jump_labels = true,
-        label = { exclude = "hjkliadc" },
+        label = { exclude = "hjkliadco" },
         multi_line = true,
         -- e.g., { [";"] = "L", [","] = H }
         keys = { "f", "F", "t", "T", ";", "," },

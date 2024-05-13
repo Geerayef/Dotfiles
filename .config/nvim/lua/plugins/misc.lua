@@ -15,7 +15,7 @@ return {
   },
   {
     "numToStr/Comment.nvim",
-    event = { "BufEnter !oil", "CursorMovedI", "BufWinEnter !oil" },
+    event = { "BufEnter", "CursorMovedI", "BufWinEnter" },
     opts = {
       opleader = { line = "gc", block = "gb" },
       mappings = { basic = true, extra = true },
@@ -24,13 +24,13 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = { "BufEnter !oil", "CursorMovedI", "WinEnter", "BufWinEnter !oil" },
+    event = { "BufEnter", "CursorMovedI", "WinEnter", "BufWinEnter" },
     main = "ibl",
     opts = { indent = { char = "│" } },
   },
   {
     "andymass/vim-matchup",
-    event = { "BufEnter !oil", "CursorMovedI" },
+    event = { "BufEnter", "CursorMovedI" },
     setup = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
       vim.g.matchup_surround_enabled = 1

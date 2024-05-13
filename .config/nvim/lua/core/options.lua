@@ -1,12 +1,11 @@
 local o = vim.opt
-local cmd = vim.cmd
 
 o.shell = "/usr/bin/fish"
 o.shortmess:append("Is")
 
 -- ~  File
-cmd.syntax("on")
-cmd.filetype({ args = { "plugin", "indent", "on" } })
+vim.cmd.syntax("on")
+vim.cmd.filetype({ args = { "plugin", "indent", "on" } })
 o.fileformats = "unix"
 o.fileencoding = "utf-8"
 o.undofile = true
@@ -72,6 +71,7 @@ o.ignorecase = true
 o.smartcase = true
 o.hlsearch = true
 o.incsearch = true
+o.inccommand = "split"
 
 -- ~  Chars
 o.listchars = { tab = "→ ", nbsp = "␣", trail = "·" }

@@ -4,7 +4,7 @@ return {
   event = "VeryLazy",
   dependencies = {
     "MunifTanjim/nui.nvim",
-    { "rcarriga/nvim-notify", opts = { fps = 1, render = "compact", stages = "static" } },
+    { "rcarriga/nvim-notify", opts = { fps = 1, render = "minimal", stages = "static" } },
   },
   opts = {
     cmdline = { enabled = true, view = "cmdline" },
@@ -13,11 +13,11 @@ return {
       view = "mini",
       view_warn = "mini",
       view_error = "notify",
-      view_history = "popup",
+      view_history = "messages",
       view_search = "virtualtext",
     },
     notify = { enabled = true, view = "notify" },
-    popupmenu = { enabled = true, backend = "nui" },
+    popupmenu = { enabled = true, backend = "cmp" },
     commands = { history = { view = "popup" }, last = { view = "mini" } },
     lsp = {
       message = { enabled = true, view = "notify" },
@@ -30,21 +30,56 @@ return {
         ["cmp.entry.get_documentation"] = true,
       },
     },
-    health = { checker = false },
-    presets = { bottom_search = true, command_palette = false, long_message_to_split = false },
+    presets = {
+      bottom_search = true,
+      command_palette = true,
+      long_message_to_split = false,
+      inc_rename = true,
+      lsp_doc_border = true,
+    },
     routes = {
-      { view = "mini", filter = { event = "msg_showmode" } },
-      { view = "vsplit", filter = { error = true, min_height = 10 } },
-      { view = "vsplit", filter = { event = "msg_show", min_height = 10 } },
+      {
+        view = "messages",
+        filter = {
+          event = "msg_show",
+          any = { { min_height = 5 }, { min_width = 200 } },
+          ["not"] = { kind = { "confirm", "confirm_sub", "return_prompt", "quickfix", "search_count" } },
+          blocking = false,
+        },
+        opts = { stop = true },
+      },
+      {
+        view = "mini",
+        filter = {
+          event = "msg_show",
+          any = { { min_height = 5 }, { min_width = 200 } },
+          ["not"] = { kind = { "confirm", "confirm_sub", "return_prompt", "quickfix", "search_count" } },
+          blocking = true,
+        },
+      },
+      {
+        view = "mini",
+        filter = { event = "msg_showmode", any = { { min_height = 5 }, { min_width = 200 } }, blocking = true },
+      },
+      {
+        view = "mini",
+        filter = {
+          event = "msg_show",
+          any = { { find = "; after #%d+" }, { find = "; before #%d+" }, { find = "fewer lines" } },
+        },
+      },
+      { view = "split", filter = { error = true, min_height = 20 } },
+      { view = "split", filter = { event = "msg_show", min_height = 20 } },
     },
     views = {
       mini = { win_options = { winblend = 100 } },
-      popup = { border = { style = border } },
-      notify = { backend = "notify" },
+      popup = { border = { style = border }, close = { keys = { "q", "<C-c>" } } },
+      notify = { backend = "notify", replace = true, merge = true },
       messages = { view = "popup" },
-      split = { enter = true },
+      split = { enter = true, win_options = { wrap = false }, close = { keys = { "q", "<C-c>" } } },
       vsplit = { enter = true },
       virtualtext = { format = { "{message} 󰝤 " } },
     },
+    health = { checker = false },
   },
 }
