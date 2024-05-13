@@ -16,6 +16,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    version = false,
     event = { "BufReadPost", "BufNewFile" },
     dependencies = { "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp" },
     opts = {
@@ -34,7 +35,6 @@ return {
           },
         },
       },
-      servers = { marksman = {} },
     },
     config = function(_, opts)
       local lspconfig = require("lspconfig")
@@ -49,16 +49,16 @@ return {
         has_cmplsp and cmplsp.default_capabilities(vim.lsp.protocol.make_client_capabilities()) or {},
         opts.capabilities or {}
       )
-      mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(opts.servers) })
-      mason_lspconfig.setup_handlers({
-        function(server_name)
-          lspconfig[server_name].setup({
-            on_attach = lsp_attach,
-            capabilities = capabilities,
-            settings = opts.servers[server_name],
-          })
-        end,
-      })
+      -- mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(opts.servers) })
+      -- mason_lspconfig.setup_handlers({
+      --   function(server_name)
+      --     lspconfig[server_name].setup({
+      --       on_attach = lsp_attach,
+      --       capabilities = capabilities,
+      --       settings = opts.servers[server_name],
+      --     })
+      --   end,
+      -- })
 
       -- ~  Local LSP settings
 
@@ -147,24 +147,16 @@ return {
       })
 
       -- Markdown
-      lspconfig.marksman.setup({
+      local capabilities_oxide = capabilities
+      capabilities_oxide.workspace = { didChangeWatchedFiles = { dynamicRegistration = true } }
+      lspconfig.markdown_oxide.setup({
         on_attach = lsp_attach,
-        capabilities = capabilities,
-        filetypes = { "markdown", "markdown.mdx" },
-        root_dir = lspconfig.util.root_pattern(".git", "*.md", ".marksman.toml"),
-        cmd = { "marksman", "server" },
+        capabilities = capabilities_oxide,
+        filetypes = { "markdown" },
+        root_dir = lspconfig.util.root_pattern(".git", ".obsidian", ".moxide.toml", "*.md"),
+        cmd = { "markdown-oxide" },
         single_file_support = true,
       })
-      -- local capabilities_oxide = capabilities
-      -- capabilities_oxide.workspace = { didChangeWatchedFiles = { dynamicRegistration = true } }
-      -- lspconfig.markdown_oxide.setup({
-      --   on_attach = lsp_attach,
-      --   capabilities = capabilities_oxide,
-      --   filetypes = { "markdown" },
-      --   root_dir = lspconfig.util.root_pattern(".git", ".obsidian", ".moxide.toml", "*.md"),
-      --   cmd = { "markdown-oxide" },
-      --   single_file_support = true,
-      -- })
 
       -- Python
       lspconfig.ruff_lsp.setup({

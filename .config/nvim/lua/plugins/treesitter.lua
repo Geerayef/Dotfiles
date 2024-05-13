@@ -25,6 +25,7 @@ return {
         "ocaml",
         "python",
         "rust",
+        "hyprlang",
         "lua",
         "luadoc",
         "markdown",

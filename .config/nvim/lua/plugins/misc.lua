@@ -1,9 +1,9 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = false, priority = 1000 },
   { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "tpope/vim-sleuth", lazy = true, event = { "BufReadPre", "BufWinEnter !oil" } },
-  { "tpope/vim-surround", lazy = true, event = { "BufAdd", "CursorMovedI" } },
-  { "Pocco81/true-zen.nvim", lazy = true, event = { "BufAdd" } },
+  { "tpope/vim-sleuth", lazy = true, event = { "BufReadPre" } },
+  { "tpope/vim-surround", lazy = true, event = { "BufEnter", "CursorMovedI" } },
+  { "Pocco81/true-zen.nvim", lazy = true, cmd = { "TZFocus", "TZNarrow", "TZAtaraxis", "TZMinimalist" } },
   { "mfussenegger/nvim-jdtls", lazy = true, ft = "java" },
   {
     "windwp/nvim-autopairs",
@@ -15,7 +15,7 @@ return {
   },
   {
     "numToStr/Comment.nvim",
-    event = { "BufAdd", "CursorMovedI", "BufWinEnter !oil" },
+    event = { "BufEnter !oil", "CursorMovedI", "BufWinEnter !oil" },
     opts = {
       opleader = { line = "gc", block = "gb" },
       mappings = { basic = true, extra = true },
@@ -24,13 +24,13 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = { "BufAdd", "CursorMovedI", "WinEnter", "BufWinEnter !oil" },
+    event = { "BufEnter !oil", "CursorMovedI", "WinEnter", "BufWinEnter !oil" },
     main = "ibl",
     opts = { indent = { char = "│" } },
   },
   {
     "andymass/vim-matchup",
-    event = { "BufAdd", "CursorMovedI" },
+    event = { "BufEnter !oil", "CursorMovedI" },
     setup = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
       vim.g.matchup_surround_enabled = 1

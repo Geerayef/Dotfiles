@@ -2,39 +2,39 @@ return {
   -- ~ ITALIC ------------------------------------------------------------------------- ~ --
 
   -- ~  Material
-  {
-    "marko-cerovac/material.nvim",
-    lazy = false,
-    priority = 1010,
-    init = function() vim.g.material_style = "deep ocean" end,
-    opts = {
-      contrast = {
-        terminal = false,
-        sidebars = false,
-        floating_windows = false,
-        cursor_line = false,
-        lsp_virtual_text = false,
-        non_current_windows = false,
-        filetypes = {},
-      },
-      styles = {
-        comments = { italic = true },
-        strings = {},
-        keywords = {},
-        functions = { bold = true },
-        variables = {},
-        operators = {},
-        types = {},
-      },
-      plugins = { "flash", "gitsigns", "indent-blankline", "neogit", "noice", "nvim-cmp", "nvim-web-devicons" },
-      disable = { colored_cursor = false, borders = false, background = false, term_colors = false, eob_lines = false },
-      high_visibility = { lighter = true, darker = true },
-      lualine_style = "stealth",
-      async_loading = true,
-      custom_colors = nil,
-      custom_highlights = {},
-    },
-  },
+  -- {
+  --   "marko-cerovac/material.nvim",
+  --   lazy = false,
+  --   priority = 1010,
+  --   init = function() vim.g.material_style = "deep ocean" end,
+  --   opts = {
+  --     contrast = {
+  --       terminal = false,
+  --       sidebars = false,
+  --       floating_windows = false,
+  --       cursor_line = false,
+  --       lsp_virtual_text = false,
+  --       non_current_windows = false,
+  --       filetypes = {},
+  --     },
+  --     styles = {
+  --       comments = { italic = true },
+  --       strings = {},
+  --       keywords = {},
+  --       functions = { bold = true },
+  --       variables = {},
+  --       operators = {},
+  --       types = {},
+  --     },
+  --     plugins = { "flash", "gitsigns", "indent-blankline", "neogit", "noice", "nvim-cmp", "nvim-web-devicons" },
+  --     disable = { colored_cursor = false, borders = false, background = false, term_colors = false, eob_lines = false },
+  --     high_visibility = { lighter = true, darker = true },
+  --     lualine_style = "stealth",
+  --     async_loading = true,
+  --     custom_colors = nil,
+  --     custom_highlights = {},
+  --   },
+  -- },
 
   -- ~  Midnight
   -- { "dasupradyumna/midnight.nvim", lazy = false, priority = 1010 },

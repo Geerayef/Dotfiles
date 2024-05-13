@@ -11,7 +11,7 @@ return {
         python = { "ruff" },
         fish = { "fish" },
         zsh = { "zsh" },
-        markdown = { "markdownlint" },
+        markdown = {},
         yaml = { "yamllint" },
         ["yaml.docker-compose"] = { "hadolint" },
         docker = { "hadolint" },
