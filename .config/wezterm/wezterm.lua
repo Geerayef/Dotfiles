@@ -203,7 +203,7 @@ C.font = W.font_with_fallback({
   "Symbols Nerd Font",
   "Symbols Nerd Font Mono",
 })
-C.font_size = 16
+C.font_size = 18
 C.line_height = 1
 
 -- Workspace
