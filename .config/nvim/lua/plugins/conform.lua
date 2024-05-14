@@ -25,7 +25,7 @@ return {
       scss = { "prettier" },
       yaml = { "prettier" },
       html = { "prettier" },
-      markdown = { "mdformat" },
+      markdown = { "prettier" },
       json = { "biome" },
       jsonc = { "biome" },
       javascript = { "biome" },

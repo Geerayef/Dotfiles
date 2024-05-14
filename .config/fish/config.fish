@@ -10,13 +10,9 @@ if status is-interactive
     function fish_user_key_bindings
         fish_vi_key_bindings
     end
-
-    # ~  Source
     #pyenv init - | source
-
-    # ~  Theme
     #fish_config theme save mocha
-
-    # ~  Prompt
     starship init fish | source
 end
+
+source /home/tibsi/.opam/opam-init/init.fish >/dev/null 2>/dev/null; or true
