@@ -122,7 +122,7 @@ W.on("update-status", function(window, _)
   local stat = window:active_workspace()
   if window:active_key_table() then
     stat = window:active_key_table()
-    stat_color = ayu.brights[7]
+    stat_color = ayu.brights[5]
   end
   if window:leader_is_active() then
     stat = "LDR "
@@ -130,17 +130,18 @@ W.on("update-status", function(window, _)
   end
   local time = fmtime("%H:%M")
   window:set_left_status(fmt({
-    { Text = "| " },
     { Foreground = { Color = stat_color } },
+    { Text = "| " },
     { Text = nf.oct_table .. "  " .. stat },
     { Text = " |" },
+    "ResetAttributes",
   }))
   window:set_right_status(fmt({
+    { Foreground = { Color = ayu.brights[3] } },
     { Text = "| " },
-    { Foreground = { Color = ayu.brights[4] } },
     { Text = nf.md_clock .. "  " .. time },
-    "ResetAttributes",
     { Text = " |" },
+    "ResetAttributes",
   }))
 end)
 
