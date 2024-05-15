@@ -1,19 +1,11 @@
 vim.g.mapleader = " "
 
----@param mode string|table Mode{s}
----@param l string Left side of mapping
----@param r string|function Right side of mapping
----@param bo table Buffer options
----@param desc string Mapping description
-local function map(mode, l, r, bo, desc)
-  bo.desc = desc
-  vim.keymap.set(mode, l, r, bo)
-end
-
+local map = F.map
 local bopt = { noremap = true, silent = true, desc = "" }
 
 -- ~  General keymaps
 
+-- Movement
 map("x", "J", ":'<,'>m '>+1<CR>gv=gv", bopt, "Move selected line{s} down")
 map("x", "K", ":'<,'>m '<-2<CR>gv=gv", bopt, "Move selected line{s} up")
 map({ "n", "x" }, "<C-d>", "10j", bopt, "Scroll down 10 lines")
@@ -24,8 +16,8 @@ map("n", "<leader>bd", "<cmd>bdelete<CR>", bopt, "[b]uffer [d]elete")
 
 -- Search
 map("n", "<leader>nh", "<cmd>nohl<CR>", bopt, "[n]o [h]ighlights")
-map("n", "n", "nzzzv", bopt, "Vertically center cursor after jumping to the next search result")
-map("n", "N", "Nzzzv", bopt, "Vertically center cursor after jumping to the previous search result")
+map("n", "n", "nzzzv", bopt, "Vertically center on next matching search")
+map("n", "N", "Nzzzv", bopt, "Vertically center on previous matching search")
 
 -- Copy/Yank/Paste
 map("n", "x", "\"_x", bopt, "Cut rightward character without saving to buffer")
@@ -48,6 +40,12 @@ map("t", "<Esc>", "<C-\\><C-n>", bopt, "Terminal mode: Escape")
 map("n", "<leader>dn", vim.diagnostic.goto_next, bopt, "[d]iagnostic [n]ext")
 map("n", "<leader>dp", vim.diagnostic.goto_prev, bopt, "[d]iagnostic [p]revious")
 
+-- Commandline
+map({ "l", "c" }, "<M-b>", "<C-Left>", bopt, "Word leftwards")
+map({ "l", "c" }, "<M-w>", "<C-Right>", bopt, "Word rightwards")
+map({ "l", "c" }, "<M-e>", "<End>", bopt, "End of line")
+map({ "l", "c" }, "<M-a>", "<Home>", bopt, "Start of line")
+
 -------------------------------------------------------------------------------------------------------
 
 -- ~  Plugin keymaps
@@ -67,10 +65,8 @@ map("n", "<leader>sg", "<cmd>Telescope live_grep<CR>", bopt, "Telescope [s]earch
 map("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", bopt, "Telescope [s]earch [w]ord")
 map("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", bopt, "Telescope [s]earch [d]iagnostics")
 
--- ToDo comments
-map("n", "]t", function() require("todo-comments").jump_next() end, bopt, "Next todo comment")
-map("n", "[t", function() require("todo-comments").jump_prev() end, bopt, "Previous todo comment")
-map("n", "<leader>td", "<cmd>TodoTelescope keywords=FIX,TODO,HACK,WARN,PERF,NOTE,TEST<CR>", bopt, "Telescope [t]o[d]o")
+-- Neogit
+map("n", "<leader>G", "<cmd>Neogit<CR>", bopt, "Neo[G]it")
 
 -- Gitsigns
 map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>", bopt, "[h]unk [s]tage")
@@ -84,22 +80,6 @@ map("n", "<leader>hbl", "<cmd>Gitsigns toggle_current_line_blame<CR>", bopt, "[h
 map("n", "<leader>htd", "<cmd>Gitsigns toggle_deleted<CR>", bopt, "[h]unk [t]oggle [d]eleted")
 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", bopt, "Select [i]n [h]unk")
 
--- Neogit
-map("n", "<leader>G", "<cmd>Neogit<CR>", bopt, "Neo[G]it")
-
--- Fugitive
--- keymap("n", "<leader>gs", "<cmd>Git<CR>", bopt, "[g]it [s]tatus")
--- keymap("n", "<leader>gab", "<cmd>Git add %<CR>", bopt, "[g]it [a]dd [b]uffer")
--- keymap("n", "<leader>gpl", "<cmd>Git pull<CR>", bopt, "[g]it [p]u[l]l")
--- keymap("n", "<leader>gps", "<cmd>Git push<CR>", bopt, "[g]it [p]u[s]h")
-
--- Zen
-map("n", "<leader>zn", "<cmd>TZNarrow<CR>", bopt, "[z]en [n]arrow")
-map("v", "<leader>zn", "<cmd>'<,'>TZNarrow<CR>", bopt, "[z]en [n]arrow selection")
-map("n", "<leader>zf", "<cmd>TZFocus<CR>", bopt, "[z]en [f]ocus")
-map("n", "<leader>zm", "<cmd>TZMinimalist<CR>", bopt, "[z]en [m]inimalist")
-map("n", "<leader>za", "<cmd>TZAtaraxis<CR>", bopt, "[z]en [a]taraxis")
-
 -------------------------------------------------------------------------------------------------------
 
 -- ~  LSP keymaps
@@ -110,26 +90,20 @@ function Key.LSP(_, bufnr)
   local lspbuf = vim.lsp.buf
   map("n", "<leader>rn", lspbuf.rename, { buffer = bufnr }, "[r]e[n]ame")
   map("n", "<leader>ca", lspbuf.code_action, { buffer = bufnr }, "[c]ode [a]ction")
-  map("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", { buffer = bufnr }, "[g]oto [d]efinition")
   map("n", "<leader>gD", lspbuf.declaration, { buffer = bufnr }, "[g]oto [D]eclaration")
+  map("n", "<leader>D", lspbuf.type_definition, { buffer = bufnr }, "Type [D]efinition")
+  map("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", { buffer = bufnr }, "[g]oto [d]efinition")
   map("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", { buffer = bufnr }, "[g]oto [r]eferences")
   map("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", { buffer = bufnr }, "[g]oto [i]mplementation")
-  map("n", "<leader>D", lspbuf.type_definition, { buffer = bufnr }, "Type [D]efinition")
   map("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>", { buffer = bufnr }, "[d]ocument [s]ymbols")
   map("n", "<leader>ws", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", { buffer = bufnr }, "[w]orkspace [s]ymbols")
   map("n", "<leader>waf", lspbuf.add_workspace_folder, { buffer = bufnr }, "[w]orkspace [a]dd [f]older")
   map("n", "<leader>wrf", lspbuf.remove_workspace_folder, { buffer = bufnr }, "[w]orkspace [r]emove [f]older")
-  map(
-    "n",
-    "<leader>wlf",
-    "<cmd>lua = print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-    { buffer = bufnr },
-    "[w]orkspace [l]ist [f]olders"
-  )
   map("n", "K", lspbuf.hover, { buffer = bufnr }, "Hover Documentation")
   map("n", "<C-k>", lspbuf.signature_help, { buffer = bufnr }, "Signature Documentation")
 end
 
+-- TreeSitter
 Key.TS = {
   incremental_selection = { init_selection = "<C-space>", scope_incremental = "<C-space>", node_decremental = "<C-S><space>" },
   textobjects = {
@@ -145,7 +119,6 @@ Key.TS = {
   },
 }
 
--- Java extensions provided by JDTLS
 function Key.JDTLS()
   map("n", "<leader>oi", "<cmd>lua require(\"jdtls\").organize_imports<CR>", {}, "[o]rganize [i]mports")
   map("n", "<leader>ev", "<cmd>lua require(\"jdtls\").extract_variable<CR>", {}, "[e]xtract [v]ariable")

@@ -3,14 +3,6 @@ O = {}
 O.BorderSimple = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
 
 O.Border = {
-  -- { "╭", "Normal" },
-  -- { "─", "Normal" },
-  -- { "╮", "Normal" },
-  -- { "│", "Normal" },
-  -- { "╯", "Normal" },
-  -- { "─", "Normal" },
-  -- { "╰", "Normal" },
-  -- { "│", "Normal" },
   { "┌", "Normal" },
   { "─", "Normal" },
   { "┐", "Normal" },

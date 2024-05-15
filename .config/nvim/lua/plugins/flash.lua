@@ -44,7 +44,7 @@ return {
       history = false,
       register = false,
       nohlsearch = false,
-      autojump = true,
+      autojump = false,
       inclusive = nil, ---@type boolean?
       offset = nil, ---@type number
     },

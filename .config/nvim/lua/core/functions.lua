@@ -22,6 +22,18 @@ end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
 
+---@param mode string|table Mode{s}
+---@param l string Left side of mapping
+---@param r string|function Right side of mapping
+---@param bo table Buffer options
+---@param desc string Mapping description
+function F.map(mode, l, r, bo, desc)
+  bo.desc = desc
+  vim.keymap.set(mode, l, r, bo)
+end
+
+-- ~  --------------------------------------------------------------------------------  ~ --
+
 function F.GetViMode(use_mode_icons)
   local n
   local v
@@ -95,7 +107,7 @@ end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
 
----@param bufnr number -- Buffer number
+---@param bufnr number
 ---@return boolean
 function F.IsBigBuff(bufnr)
   local max_filesize = 1024 * 1024
@@ -119,12 +131,8 @@ end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
 
-function F.Inspect(el) vim.cmd("lua = print(vim.inspect(" .. el .. "))") end
-
--- ~  --------------------------------------------------------------------------------  ~ --
-
----@param devicons table -- Object `nvim-web-devicons`
----@return table<string, string> -- Filetype icon & icon color
+---@param devicons table # Object `nvim-web-devicons`
+---@return table<string, string> # Filetype icon & icon color
 function F.GetFtIcon(devicons)
   local full_filename = vim.api.nvim_buf_get_name(0)
   local filename = vim.fn.fnamemodify(full_filename, ":t")

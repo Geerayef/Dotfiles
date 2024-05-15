@@ -38,6 +38,8 @@ return {
       lsp_doc_border = true,
     },
     routes = {
+      { view = "split", filter = { error = true, min_height = 20 } },
+      { view = "split", filter = { event = "msg_show", min_height = 20 } },
       {
         view = "messages",
         filter = {
@@ -56,6 +58,7 @@ return {
           ["not"] = { kind = { "confirm", "confirm_sub", "return_prompt", "quickfix", "search_count" } },
           blocking = true,
         },
+        opts = { stop = true },
       },
       {
         view = "mini",
@@ -68,8 +71,6 @@ return {
           any = { { find = "; after #%d+" }, { find = "; before #%d+" }, { find = "fewer lines" } },
         },
       },
-      { view = "split", filter = { error = true, min_height = 20 } },
-      { view = "split", filter = { event = "msg_show", min_height = 20 } },
     },
     views = {
       mini = { win_options = { winblend = 100 } },
