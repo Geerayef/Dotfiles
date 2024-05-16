@@ -15,7 +15,10 @@ return {
   dev = { path = "~/dev" },
   checker = { enabled = false },
   change_detection = { notify = false },
-  ui = { title = "Lazy", border = require("util.objects").Border },
+  ui = {
+    title = "Lazy",
+    border = require("util.objects").Border,
+  },
   performance = {
     rtp = {
       disabled_plugins = {

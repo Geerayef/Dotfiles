@@ -69,16 +69,16 @@ map("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", bopt, "Telescope [s]ear
 map("n", "<leader>G", "<cmd>Neogit<CR>", bopt, "Neo[G]it")
 
 -- Gitsigns
-map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>", bopt, "[h]unk [s]tage")
-map("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>", bopt, "[h]unk [r]eset")
-map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>", bopt, "[h]unk [S]tage buffer")
-map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>", bopt, "[h]unk [u]ndo stage")
-map("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>", bopt, "[h]unk [R]eset buffer")
-map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>", bopt, "[h]unk [p]review")
-map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>", bopt, "[h]unk [d]iff")
-map("n", "<leader>hbl", "<cmd>Gitsigns toggle_current_line_blame<CR>", bopt, "[h]unk [b]lame [l]ine")
-map("n", "<leader>htd", "<cmd>Gitsigns toggle_deleted<CR>", bopt, "[h]unk [t]oggle [d]eleted")
-map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", bopt, "Select [i]n [h]unk")
+map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>", bopt, "Gitsigns [h]unk [s]tage")
+map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>", bopt, "Gitsigns [h]unk [S]tage buffer")
+map("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>", bopt, "Gitsigns [h]unk [r]eset")
+map("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>", bopt, "Gitsigns [h]unk [R]eset buffer")
+map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>", bopt, "Gitsigns [h]unk [u]ndo stage")
+map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>", bopt, "Gitsigns [h]unk [p]review")
+map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>", bopt, "Gitsigns [h]unk [d]iff")
+map("n", "<leader>hbl", "<cmd>Gitsigns toggle_current_line_blame<CR>", bopt, "Gitsigns [h]unk [b]lame [l]ine")
+map("n", "<leader>htd", "<cmd>Gitsigns toggle_deleted<CR>", bopt, "Gitsigns [h]unk [t]oggle [d]eleted")
+map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", bopt, "Gitsigns TreeSitter textobjects [i]n [h]unk")
 
 -------------------------------------------------------------------------------------------------------
 

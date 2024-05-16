@@ -4,16 +4,11 @@ return {
     version = false,
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
-      {
-        "L3MON4D3/LuaSnip",
-        build = (not jit.os:find("Windows")) and "echo 'NOTE: jsregexp is optional'; make install_jsregexp" or nil,
-        dependencies = {
-          { "rafamadriz/friendly-snippets", config = function() require("luasnip.loaders.from_vscode").lazy_load() end },
-        },
-        opts = { history = true, delete_check_events = "TextChanged" },
-      },
+      { "L3MON4D3/LuaSnip", build = "make install_jsregexp", opts = { delete_check_events = "TextChanged" } },
+      { "rafamadriz/friendly-snippets", config = function() require("luasnip.loaders.from_vscode").lazy_load() end },
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
@@ -22,22 +17,37 @@ return {
     },
     opts = function()
       local cmp = require("cmp")
+      local ls = require("luasnip")
       local lspkind = require("lspkind")
-      local luasnip = require("luasnip")
       local devicons = require("nvim-web-devicons")
       local border = require("util.objects").Border
       local t = function(str) return vim.api.nvim_replace_termcodes(str, true, true, true) end
       -- Sources: "buffer" for '/', '?'. "cmdline" and "path" for ':'. 'native_menu', disables this.
       cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({ { name = "buffer" } }),
+        sources = cmp.config.sources({ { name = "buffer", keyword_length = 2, max_item_count = 10 } }),
         view = { entries = { name = "wildmenu", separator = " | " } },
       })
       cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
+        mapping = cmp.mapping.preset.cmdline({
+          ["<C-j>"] = cmp.mapping({ c = function() vim.api.nvim_feedkeys(t("<Down>"), "n", true) end }),
+          ["<C-k>"] = cmp.mapping({ c = function() vim.api.nvim_feedkeys(t("<Up>"), "n", true) end }),
+          ["<C-y>"] = cmp.mapping({
+            c = function(fallback)
+              if cmp.visible() then
+                if not cmp.get_selected_entry() then cmp.select_next_item({ behavior = cmp.SelectBehavior.Select }) end
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+              elseif ls.expand_or_locally_jumpable() then
+                ls.expand_or_jump()
+              else
+                fallback()
+              end
+            end,
+          }),
+        }),
         sources = cmp.config.sources(
-          { { name = "path", max_item_count = 10 } },
-          { { name = "cmdline", keyword_length = 0, max_item_count = 30 } }
+          { { name = "path", keyword_length = 2, max_item_count = 20 } },
+          { { name = "cmdline", keyword_length = 2, max_item_count = 30 } }
         ),
         view = { entries = { name = "custom" } },
       })
@@ -52,45 +62,24 @@ return {
             return not (context.in_treesitter_capture("comment") and context.in_syntax_group("Comment"))
           end
         end,
-        snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
+        snippet = { expand = function(args) ls.lsp_expand(args.body) end },
         mapping = cmp.mapping.preset.insert({
-          ["<C-j>"] = cmp.mapping({
-            c = function()
-              if cmp.visible() then
-                cmp.select_next_item()
-              else
-                vim.api.nvim_feedkeys(t("<Down>"), "n", true)
-              end
-            end,
-            i = function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item()
-              else
-                fallback()
-              end
-            end,
-          }),
-          ["<C-k>"] = cmp.mapping({
-            c = function()
-              if cmp.visible() then
-                cmp.select_prev_item()
-              else
-                vim.api.nvim_feedkeys(t("<Up>"), "n", true)
-              end
-            end,
-            i = function(fallback)
-              if cmp.visible() then
-                cmp.select_prev_item()
-              else
-                fallback()
-              end
-            end,
-          }),
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+          ["<C-y>"] = cmp.mapping({
+            i = function(fallback)
+              if cmp.visible() then
+                if not cmp.get_selected_entry() then cmp.select_next_item({ behavior = cmp.SelectBehavior.Select }) end
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+              elseif ls.expand_or_locally_jumpable() then
+                ls.expand_or_jump()
+              else
+                fallback()
+              end
+            end,
+          }),
         }),
         window = {
           completion = cmp.config.window.bordered({ scrollbar = false, border = border }),
@@ -108,7 +97,7 @@ return {
           },
           { { name = "nvim_lsp_signature_help", keyword_length = 2, max_item_count = 10, priority = 850 } },
           { { name = "luasnip", keyword_length = 2, max_item_count = 10, priority = 850 } },
-          { { name = "nvim_lua", keyword_length = 3, max_item_count = 10, priority = 800 } },
+          { { name = "nvim_lua", keyword_length = 2, max_item_count = 10, priority = 800 } },
           { { name = "buffer", keyword_length = 2, max_item_count = 10, priority = 800 } },
           { { name = "path", keyword_length = 3, max_item_count = 10, priority = 550 } },
           { { name = "treesitter", keyword_length = 2, max_item_count = 10, priority = 525 } },
@@ -127,15 +116,15 @@ return {
             end
             return lspkind.cmp_format({
               mode = "symbol",
-              maxwidth = 50,
+              maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
               menu = {
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[Lua]",
                 luasnip = "[SNIP]",
                 path = "[Path]",
-                buffer = "[Buffer]",
+                buffer = "[Buf]",
                 cmdline = "[CMD]",
-                vimtex = "[Vimtex]",
+                vimtex = "[Tex]",
               },
             })(entry, item)
           end,

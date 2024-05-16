@@ -1,8 +1,7 @@
 return {
   "lervag/vimtex",
   dependencies = { "micangl/cmp-vimtex" },
-  ft = { "tex", "markdown" },
-  -- version = "*",
+  ft = { "tex" },
   config = function()
     -- vim.g['vimtex_view_method'] = 'zathura'     -- main variant with xdotool (requires X11; not compatible with wayland)
     vim.g["vimtex_view_method"] = "zathura_simple" -- for variant without xdotool to avoid errors in wayland

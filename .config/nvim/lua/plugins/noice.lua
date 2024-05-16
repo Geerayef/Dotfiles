@@ -41,10 +41,17 @@ return {
       { view = "split", filter = { error = true, min_height = 20 } },
       { view = "split", filter = { event = "msg_show", min_height = 20 } },
       {
+        view = "mini",
+        filter = {
+          event = "msg_show",
+          any = { { find = "; after #%d+" }, { find = "; before #%d+" }, { find = "fewer lines" } },
+        },
+      },
+      {
         view = "messages",
         filter = {
           event = "msg_show",
-          any = { { min_height = 5 }, { min_width = 200 } },
+          any = { { min_height = 5 }, { min_width = 100 } },
           ["not"] = { kind = { "confirm", "confirm_sub", "return_prompt", "quickfix", "search_count" } },
           blocking = false,
         },
@@ -54,7 +61,7 @@ return {
         view = "mini",
         filter = {
           event = "msg_show",
-          any = { { min_height = 5 }, { min_width = 200 } },
+          any = { { min_height = 5 }, { min_width = 100 } },
           ["not"] = { kind = { "confirm", "confirm_sub", "return_prompt", "quickfix", "search_count" } },
           blocking = true,
         },
@@ -62,14 +69,7 @@ return {
       },
       {
         view = "mini",
-        filter = { event = "msg_showmode", any = { { min_height = 5 }, { min_width = 200 } }, blocking = true },
-      },
-      {
-        view = "mini",
-        filter = {
-          event = "msg_show",
-          any = { { find = "; after #%d+" }, { find = "; before #%d+" }, { find = "fewer lines" } },
-        },
+        filter = { event = "msg_showmode", any = { { min_height = 5 }, { min_width = 100 } }, blocking = true },
       },
     },
     views = {
