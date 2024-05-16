@@ -2,6 +2,7 @@ local o = vim.opt
 
 o.shell = "/usr/bin/fish"
 o.shortmess:append("Is")
+if vim.fn.executable("rg") == 1 then o.grepprg = "rg --unrestricted --vimgrep --no-heading --smart-case --trim" end
 
 -- ~  File
 vim.cmd.syntax("on")
@@ -27,6 +28,9 @@ o.completeopt = "menu,menuone,noinsert,noselect"
 o.showfulltag = true
 o.virtualedit = "block"
 o.backspace = "indent,eol,start"
+o.wildmenu = true
+o.wildmode = "list:full"
+o.wildoptions = "fuzzy,pum"
 
 -- ~  UI
 o.termguicolors = true
@@ -48,9 +52,6 @@ o.switchbuf = "useopen,uselast,usetab"
 o.signcolumn = "yes"
 o.ruler = false
 o.pumblend = 0
-o.wildmenu = true
-o.wildmode = "list:full"
-o.wildoptions = "fuzzy,pum"
 o.list = true
 o.conceallevel = 2
 
@@ -64,9 +65,6 @@ o.scroll = 10
 o.scrolloff = 4
 o.sidescrolloff = 4
 o.foldenable = true
-
--- ~  Search
-if vim.fn.executable("rg") == 1 then o.grepprg = "rg --unrestricted --vimgrep --no-heading --smart-case --trim" end
 o.ignorecase = true
 o.smartcase = true
 o.hlsearch = true
