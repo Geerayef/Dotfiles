@@ -162,12 +162,32 @@ return {
       })
 
       -- Python
+      lspconfig.pyright.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        filetypes = { "python" },
+        root_dir = lspconfig.util.root_pattern("*.py", "__init__.py", ".git", "ruff.toml", "pyproject.toml"),
+        settings = {
+          pylsp = {
+            plugins = {
+              autopep8 = { enabled = false },
+              flake8 = { enabled = false },
+              yapf = { enabled = false },
+              mccabe = { enabled = false },
+              pycodestyle = { enabled = false },
+              pyflakes = { enabled = false },
+              pylint = { enabled = false },
+            },
+          },
+        },
+        cmd = { "pylsp" },
+        single_file_support = true,
+      })
       lspconfig.ruff_lsp.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
         filetypes = { "python" },
-        root_dir = lspconfig.util.root_pattern("*.py", "__init__.py", ".git", "ruff.toml"),
-        init_options = { settings = { args = {} } },
+        root_dir = lspconfig.util.root_pattern("*.py", "__init__.py", ".git", "ruff.toml", "pyproject.toml"),
         cmd = { "ruff-lsp" },
         single_file_support = true,
       })

@@ -44,7 +44,7 @@ if G.font_dirs == nil then
     "/usr/share/fonts/TTF/FiraCodeNF/",
     "/usr/share/fonts/TTF/JetBrainsMonoNF/",
     "/usr/share/fonts/TTF/IosevkaNF/",
-    "/usr/share/fonts/TTF/RobotoMonoNF/",
+    "/usr/share/fonts/TTF/ZedMonoNF/",
   }
 end
 if G.firacode_harfbuzz == nil then
@@ -196,7 +196,9 @@ C.harfbuzz_features = {}
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
   { family = "IosevkaTerm Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
+  { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
   { family = "FiraCode Nerd Font Mono", harfbuzz_features = G.firacode_harfbuzz },
+  { family = "JetBrainsMono Nerd Font Mono", harfbuzz_features = G.firacode_harfbuzz },
   "Symbols Nerd Font",
 })
 C.font_size = 16

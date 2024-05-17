@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
+## @messages: string -- Message to notify.
+## @severity: string -- Message severity.
+notify() {
+  local messages=$1
+  local severity=$2
+  printf "~~~~~ [%s] %s" "$messages" "$severity"
+}
+
 ## @dir_destination: <string:path> -- Path to the destination directory to which fonts will be moved.
-create_dir() {
+create_path() {
   local dir_destination=$1
   [[ -d $dir_destination ]] || sudo mkdir "$dir_destination"
   printf "~~~~~ [DONE] Create %s.\n" "$dir_destination"
@@ -45,7 +53,7 @@ move() {
         ;;
       *)
         local dir_destination="/usr/share/fonts/TTF/${name}NF"
-        create_dir "$dir_destination"
+        create_path "$dir_destination"
         sudo mv "$dir_download"/"$name"*.ttf "$dir_destination"
         printf "~~~~~ [DONE] Move %s to %s\n" "$name" "$dir_destination"
         ;;
@@ -61,7 +69,7 @@ main() {
 
   local url_git_nerdfonts="https://github.com/ryanoasis/nerd-fonts/releases/latest/download"
   local dir_download_fonts="$HOME/Downloads/Fonts"
-  local font_names=("Iosevka" "IosevkaTerm" "FiraCode" "JetBrainsMono" "RobotoMono")
+  local font_names=("Iosevka" "IosevkaTerm" "FiraCode" "JetBrainsMono" "ZedMono")
 
   [[ -d $dir_download_fonts ]] || mkdir "$dir_download_fonts"
   printf "~~~~~ [DONE] Create %s.\n" "$dir_download_fonts"
@@ -71,7 +79,7 @@ main() {
   move "$dir_download_fonts" font_names
 
   printf "~~~~~ [INFO] Caching fonts...\n"
-  fc-cache -v
+  fc-cache -vr
   printf "\n~~~~~ [DONE] Fonts are set."
 }
 

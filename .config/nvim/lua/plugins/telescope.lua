@@ -53,7 +53,7 @@ return {
         pickers = {
           fd = {
             prompt_title = "Files",
-            find_command = { "fd", "-t", "f", "--strip-cwd-prefix=always", "--color=never", "--prune" },
+            find_command = { "fd", "-H", "-t", "f", "--strip-cwd-prefix=always", "--color=never", "--prune" },
           },
           grep_string = {
             preview_title = "",
