@@ -1,7 +1,7 @@
 local border = require("util.objects").Border
 return {
   "stevearc/oil.nvim",
-  priority = 950,
+  priority = 990,
   opts = {
     default_file_explorer = true,
     columns = { "icon" },

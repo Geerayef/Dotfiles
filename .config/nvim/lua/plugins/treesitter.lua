@@ -3,7 +3,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   version = false,
   build = ":TSUpdate",
-  event = { "BufAdd", "BufReadPost", "BufWinEnter !oil", "WinEnter" },
+  event = { "BufRead", "BufWinEnter" },
   init = function(plugin)
     require("lazy.core.loader").add_to_rtp(plugin)
     require("nvim-treesitter.query_predicates")

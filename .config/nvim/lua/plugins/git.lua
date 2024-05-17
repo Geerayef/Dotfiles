@@ -2,6 +2,7 @@ local border = require("util.objects").Border
 return {
   {
     "lewis6991/gitsigns.nvim",
+    event = "BufEnter !oil",
     opts = {
       signs = {
         add = { text = "│" },

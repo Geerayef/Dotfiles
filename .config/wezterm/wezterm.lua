@@ -13,33 +13,30 @@ if W.config_builder then C = W.config_builder() end
 -- ~  Globals
 
 if G.tab_titles == nil then G.tab_titles = {} end
-
 if G.process_icons == nil then
   G.process_icons = {
-    ["fish"] = nf.fa_terminal,
-    ["nvim"] = nf.linux_neovim,
-    ["docker"] = nf.linux_docker,
-    ["docker-compose"] = nf.linux_docker,
-    ["psql"] = nf.dev_postgresql,
     ["make"] = nf.seti_makefile,
-    ["vim"] = nf.dev_vim,
     ["go"] = nf.seti_go,
+    ["cargo"] = nf.dev_rust,
+    ["lua"] = nf.seti_lua,
+    ["fish"] = nf.fa_terminal,
     ["zsh"] = nf.dev_terminal,
     ["bash"] = nf.cod_terminal_bash,
-    ["btm"] = nf.md_chart_donut_variant,
-    ["btop"] = nf.md_chart_donut_variant,
-    ["cargo"] = nf.dev_rust,
-    ["sudo"] = nf.fa_hashtag,
+    ["vim"] = nf.dev_vim,
+    ["nvim"] = nf.linux_neovim,
+    ["docker"] = nf.linux_docker,
     ["lazydocker"] = nf.linux_docker,
+    ["docker-compose"] = nf.linux_docker,
+    ["psql"] = nf.dev_postgresql,
+    ["btop"] = nf.md_chart_donut_variant,
     ["git"] = nf.dev_git,
-    ["lua"] = nf.seti_lua,
+    ["gh"] = nf.dev_github_badge,
     ["wget"] = nf.md_arrow_down_box,
     ["curl"] = nf.md_flattr,
-    ["gh"] = nf.dev_github_badge,
     ["node"] = nf.dev_nodejs_small,
+    ["sudo"] = nf.fa_hashtag,
   }
 end
-
 if G.font_dirs == nil then
   G.font_dirs = {
     "/usr/share/fonts/TTF/",
@@ -76,6 +73,7 @@ end
 if G.jetbrainsmono_harfbuzz == nil then
   G.jetbrainsmono_harfbuzz = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
 end
+
 -- ~ -------------------------------------------------------------------------------- ~ --
 
 -- ~  Functions
@@ -108,7 +106,8 @@ local function map(key, action) return { key = key, mods = "LEADER", action = ac
 
 local function get_process(tab)
   local process = tab.active_pane.foreground_process_name:match("([^/\\]+)$")
-  return G.process_icons[process] or string.format("%s", process)
+  local result = G.process_icons[process]
+  return result or string.format("%s", process)
 end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
@@ -193,18 +192,14 @@ C.custom_block_glyphs = true
 C.anti_alias_custom_block_glyphs = false
 C.freetype_load_flags = "NO_HINTING|NO_BITMAP|NO_AUTOHINT"
 C.freetype_load_target = "Light"
-C.freetype_render_target = "HorizontalLcd"
 C.harfbuzz_features = {}
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
   { family = "IosevkaTerm Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
   { family = "FiraCode Nerd Font Mono", harfbuzz_features = G.firacode_harfbuzz },
-  { family = "JetBrainsMono Nerd Font Mono", harfbuzz_features = G.jetbrainsmono_harfbuzz },
-  "RobotoMono Nerd Font Mono",
   "Symbols Nerd Font",
-  "Symbols Nerd Font Mono",
 })
-C.font_size = 18
+C.font_size = 16
 C.line_height = 1
 
 -- Workspace
@@ -214,7 +209,9 @@ C.default_workspace = "home"
 C.enable_wayland = false
 C.animation_fps = 1
 C.max_fps = 60
-C.front_end = "OpenGL"
+C.front_end = "WebGpu"
+local gpus = W.gui.enumerate_gpus()
+C.webgpu_preferred_adapter = gpus[1]
 C.webgpu_force_fallback_adapter = false
 C.scrollback_lines = 2000
 C.audible_bell = "Disabled"

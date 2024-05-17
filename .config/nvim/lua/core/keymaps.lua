@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 local map = F.map
 local bopt = { noremap = true, silent = true, desc = "" }
@@ -49,6 +50,9 @@ map({ "l", "c" }, "<M-a>", "<Home>", bopt, "Start of line")
 -------------------------------------------------------------------------------------------------------
 
 -- ~  Plugin keymaps
+
+-- Lazy
+map("n", "<leader>L", "<cmd>Lazy<CR>", bopt, "[L]azy")
 
 -- Oil
 map("n", "<leader>f", "<cmd>Oil<CR>", bopt, "Oil [f]ile browser")
