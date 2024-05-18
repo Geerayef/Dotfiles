@@ -118,7 +118,7 @@ return {
         on_attach = lsp_attach,
         capabilities = capabilities,
         filetypes = { "rust" },
-        root_dir = lspconfig.util.root_pattern("*.rs", "Cargo.toml", "rust-project.json", ".git"),
+        root_dir = lspconfig.util.root_pattern("main.rs", "*.rs", "Cargo.toml", "rust-project.json", ".git"),
         settings = {
           ["rust-analyzer"] = {
             imports = { prefix = "self", granularity = { group = "module" } },

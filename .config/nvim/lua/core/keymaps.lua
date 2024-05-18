@@ -23,9 +23,8 @@ map("n", "N", "Nzzzv", bopt, "Vertically center on previous matching search")
 -- Copy/Yank/Paste
 map("n", "x", "\"_x", bopt, "Cut rightward character without saving to buffer")
 map("x", "<leader>P", "\"_dP", bopt, "Past from system clipboard")
-map("n", "<leader>y", "\"+y", bopt, "Yank to system clipboard")
+map({ "n", "x" }, "<leader>y", "\"+y", bopt, "Yank to system clipboard")
 map("n", "<leader>Y", "\"+Y", bopt, "Yank to system clipboard")
-map("v", "<leader>y", "\"+y", bopt, "Yank to system clipboard")
 
 -- Tabs
 map("n", "<leader>to", "<cmd>tabnew<CR>", bopt, "[t]ab [o]pen")

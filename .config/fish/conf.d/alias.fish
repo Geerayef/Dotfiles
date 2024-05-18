@@ -28,6 +28,8 @@ alias ldw="ls -al /usr/share/wayland-sessions"
 # ~  Apps
 
 alias v="nvim"
+alias nv="neovide"
+alias nvpr="$HOME/software/neovim/nvim-linux64/bin/nvim"
 alias e="nvim (fzf)"
 if test -e "$(command -v codium)"
     alias codi="$(which codium)"

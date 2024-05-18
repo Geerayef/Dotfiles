@@ -2,7 +2,9 @@ local o = vim.opt
 
 o.shell = "/usr/bin/fish"
 o.shortmess:append("Is")
-if vim.fn.executable("rg") == 1 then o.grepprg = "rg --unrestricted --vimgrep --no-heading --smart-case --trim" end
+if vim.fn.executable("rg") == 1 then
+  o.grepprg = "rg --unrestricted --vimgrep --no-heading --smart-case --no-filename --trim"
+end
 
 -- ~  File
 vim.cmd.syntax("on")
@@ -27,7 +29,6 @@ o.complete:remove("i")
 o.completeopt = "menu,menuone,noinsert,noselect"
 o.showfulltag = true
 o.virtualedit = "block"
-o.backspace = "indent,eol,start"
 o.wildmenu = true
 o.wildmode = "list:full"
 o.wildoptions = "fuzzy,pum"

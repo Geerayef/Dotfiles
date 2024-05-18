@@ -106,8 +106,7 @@ local function map(key, action) return { key = key, mods = "LEADER", action = ac
 
 local function get_process(tab)
   local process = tab.active_pane.foreground_process_name:match("([^/\\]+)$")
-  local result = G.process_icons[process]
-  return result or string.format("%s", process)
+  return G.process_icons[process] or string.format("%s", process)
 end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
@@ -136,11 +135,12 @@ W.on("update-status", function(window, _)
     "ResetAttributes",
   }))
   window:set_right_status(fmt({
-    { Foreground = { Color = ayu.brights[3] } },
+    { Text = "(.-. ) " },
     { Text = "| " },
+    { Foreground = { Color = ayu.brights[3] } },
     { Text = nf.md_clock .. "  " .. time },
-    { Text = " |" },
     "ResetAttributes",
+    { Text = " |" },
   }))
 end)
 
@@ -195,8 +195,8 @@ C.freetype_load_target = "Light"
 C.harfbuzz_features = {}
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
-  { family = "IosevkaTerm Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
   { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
+  { family = "IosevkaTerm Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
   { family = "FiraCode Nerd Font Mono", harfbuzz_features = G.firacode_harfbuzz },
   { family = "JetBrainsMono Nerd Font Mono", harfbuzz_features = G.firacode_harfbuzz },
   "Symbols Nerd Font",

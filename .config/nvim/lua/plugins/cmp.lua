@@ -83,7 +83,7 @@ return {
         }),
         window = {
           completion = cmp.config.window.bordered({ scrollbar = false, border = border }),
-          documentation = cmp.config.window.bordered({ scrollbar = false, border = border }),
+          documentation = cmp.config.window.bordered({ scrollbar = true, border = border }),
         },
         sources = cmp.config.sources(
           {
