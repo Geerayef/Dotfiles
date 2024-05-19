@@ -66,6 +66,10 @@ return {
       lspconfig.lua_ls.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
+        on_init = function(client)
+          local path = client.workspace_folders[1].name
+          if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then return end
+        end,
         settings = {
           Lua = {
             completion = { enable = true, callSnippet = "Both", keywordSnippet = "Both", displayContext = 2 },
@@ -75,19 +79,20 @@ return {
               library = {
                 vim.env.VIMRUNTIME,
                 vim.env.MANSECT,
-                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                [vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua"] = true,
+                vim.fn.expand("$VIMRUNTIME/lua"),
+                vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
+                vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
               },
-              maxPreload = 2000,
+              ignoreSubmodules = false,
               preloadFileSize = 1000,
-              checkThirdParty = true,
+              checkThirdParty = false,
             },
             telemetry = { enable = false },
             hint = { enable = true, setType = true },
             root_dir = { ".stylua.toml", "stylua.toml", "*.lua", ".git", "lua/" },
           },
         },
+        cmd = { "lua-language-server" },
         single_file_support = true,
       })
 

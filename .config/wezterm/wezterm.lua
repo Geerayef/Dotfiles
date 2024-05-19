@@ -191,7 +191,6 @@ C.custom_block_glyphs = true
 C.anti_alias_custom_block_glyphs = false
 C.freetype_load_flags = "NO_HINTING|NO_BITMAP|NO_AUTOHINT"
 C.freetype_load_target = "Light"
-C.harfbuzz_features = {}
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
   { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },

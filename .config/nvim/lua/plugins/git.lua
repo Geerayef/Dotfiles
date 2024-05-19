@@ -18,25 +18,6 @@ return {
       word_diff = false,
       watch_gitdir = { follow_files = true },
       auto_attach = true,
-      on_attach = function(bufnr)
-        local gs = require("gitsigns")
-        local bo = { noremap = true, buffer = bufnr }
-        local map = F.map
-        map("n", "]h", function()
-          if vim.wo.diff then return "]c" end
-          vim.schedule(function() gs.next_hunk() end)
-          return "<Ignore>"
-        end, bo, "Next [h]unk")
-        map("n", "[h", function()
-          if vim.wo.diff then return "[c" end
-          vim.schedule(function() gs.prev_hunk() end)
-          return "<Ignore>"
-        end, bo, "Previous [h]unk")
-        map("v", "<leader>hs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, bo, "[h]unk [s]tage")
-        map("v", "<leader>hr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, bo, "[h]unk [r]eset")
-        map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, bo, "[h]unk [b]lame line")
-        map("n", "<leader>hD", function() gs.diffthis("~") end, bo, "[h]unk [D]iff this ~")
-      end,
       preview_config = { border = border, style = "minimal", relative = "cursor", row = 0, col = 1 },
     },
   },

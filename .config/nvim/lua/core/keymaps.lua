@@ -72,6 +72,20 @@ map("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", bopt, "Telescope [s]ear
 map("n", "<leader>G", "<cmd>Neogit<CR>", bopt, "Neo[G]it")
 
 -- Gitsigns
+map("n", "]h", function()
+  if vim.wo.diff then
+    vim.cmd.normal({ "]c", bang = true })
+  else
+    require("gitsigns").nav_hunk("next")
+  end
+end, bopt, "Next [h]unk")
+map("n", "[h", function()
+  if vim.wo.diff then
+    vim.cmd.normal({ "[c", bang = true })
+  else
+    require("gitsigns").nav_hunk("prev")
+  end
+end, bopt, "Previous [h]unk")
 map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>", bopt, "Gitsigns [h]unk [s]tage")
 map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>", bopt, "Gitsigns [h]unk [S]tage buffer")
 map("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>", bopt, "Gitsigns [h]unk [r]eset")
