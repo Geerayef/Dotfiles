@@ -50,9 +50,6 @@ map({ "l", "c" }, "<M-a>", "<Home>", bopt, "Start of line")
 
 -- ~  Plugin keymaps
 
--- Lazy
-map("n", "<leader>L", "<cmd>Lazy<CR>", bopt, "[L]azy")
-
 -- Oil
 map("n", "<leader>f", "<cmd>Oil<CR>", bopt, "Oil [f]ile browser")
 map("n", "<leader>of", "<cmd>Oil --float<CR>", bopt, "[o]il [f]loat")
@@ -67,6 +64,9 @@ map("n", "<leader>sh", "<cmd>Telescope help_tags<CR>", bopt, "Telescope [s]earch
 map("n", "<leader>sg", "<cmd>Telescope live_grep<CR>", bopt, "Telescope [s]earch [g]rep")
 map("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", bopt, "Telescope [s]earch [w]ord")
 map("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", bopt, "Telescope [s]earch [d]iagnostics")
+
+-- FzfLua
+map("n", "<leader>z", "<cmd>FzfLua<CR>", bopt, "FzfLua")
 
 -- Neogit
 map("n", "<leader>G", "<cmd>Neogit<CR>", bopt, "Neo[G]it")

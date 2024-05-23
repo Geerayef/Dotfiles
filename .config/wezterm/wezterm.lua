@@ -2,8 +2,8 @@ local W = require("wezterm")
 local G = W.GLOBAL
 local act = W.action
 local fmt = W.format
-local nf = W.nerdfonts
 local fmtime = W.strftime
+local nf = W.nerdfonts
 local ayu = require("ayu")
 local C = {}
 if W.config_builder then C = W.config_builder() end
@@ -12,7 +12,6 @@ if W.config_builder then C = W.config_builder() end
 
 -- ~  Globals
 
-if G.tab_titles == nil then G.tab_titles = {} end
 if G.process_icons == nil then
   G.process_icons = {
     ["make"] = nf.seti_makefile,
@@ -37,6 +36,7 @@ if G.process_icons == nil then
     ["sudo"] = nf.fa_hashtag,
   }
 end
+
 if G.font_dirs == nil then
   G.font_dirs = {
     "/usr/share/fonts/TTF/",
@@ -47,6 +47,7 @@ if G.font_dirs == nil then
     "/usr/share/fonts/TTF/ZedMonoNF/",
   }
 end
+
 if G.firacode_harfbuzz == nil then
   G.firacode_harfbuzz = {
     "zero",
@@ -67,9 +68,11 @@ if G.firacode_harfbuzz == nil then
     "ss09",
   }
 end
+
 if G.iosevka_harfbuzz == nil then
   G.iosevka_harfbuzz = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" }
 end
+
 if G.jetbrainsmono_harfbuzz == nil then
   G.jetbrainsmono_harfbuzz = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
 end
@@ -79,30 +82,6 @@ end
 -- ~  Functions
 
 local function map(key, action) return { key = key, mods = "LEADER", action = action } end
-
--- local function tbl_merge(t1, t2)
---   for i = 1, #t2 do
---     t1[#t1 + 1] = t2[i]
---   end
---   return t1
--- end
-
--- local function basename(s) return string.gsub(s, "(.*[/\\])(.*)", "%2") end
-
--- local function dir_name_tail(cwd)
---   if cwd == nil then return "N/A" end
---   local path_stripped = cwd:match("^file:///(.+)") or cwd
---   local path = {}
---   for segment in string.gmatch(path_stripped, "[^/]+") do
---     table.insert(path, segment)
---   end
---   return path[#path]
--- end
-
--- local function get_cwd(tab)
---   local current_dir = tab.active_pane.current_working_dir or ""
---   return dir_name_tail(current_dir)
--- end
 
 local function get_process(tab)
   local process = tab.active_pane.foreground_process_name:match("([^/\\]+)$")
@@ -170,34 +149,30 @@ C.color_scheme = "ayu"
 C.colors = {
   cursor_fg = "#000000",
   tab_bar = {
-    background = ayu.background,
+    background = ayu.bg,
     active_tab = {
       bg_color = ayu.ansi[7],
-      fg_color = ayu.background,
+      fg_color = ayu.bg,
       intensity = "Bold",
       underline = "None",
       italic = false,
       strikethrough = false,
     },
-    inactive_tab = { bg_color = ayu.background, fg_color = ayu.foreground },
+    inactive_tab = { bg_color = ayu.bg, fg_color = ayu.fg },
   },
 }
 
 -- Font
 C.unicode_version = 14
 C.bold_brightens_ansi_colors = true
-C.allow_square_glyphs_to_overflow_width = "Always"
 C.custom_block_glyphs = true
-C.anti_alias_custom_block_glyphs = false
-C.freetype_load_flags = "NO_HINTING|NO_BITMAP|NO_AUTOHINT"
-C.freetype_load_target = "Light"
+C.anti_alias_custom_block_glyphs = true
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
   { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
-  { family = "IosevkaTerm Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
+  { family = "Iosevka Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
   { family = "FiraCode Nerd Font Mono", harfbuzz_features = G.firacode_harfbuzz },
-  { family = "JetBrainsMono Nerd Font Mono", harfbuzz_features = G.firacode_harfbuzz },
-  "Symbols Nerd Font",
+  "Symbols Nerd Font Mono",
 })
 C.font_size = 16
 C.line_height = 1
@@ -212,7 +187,7 @@ C.max_fps = 60
 C.front_end = "WebGpu"
 local gpus = W.gui.enumerate_gpus()
 C.webgpu_preferred_adapter = gpus[1]
-C.webgpu_force_fallback_adapter = false
+C.webgpu_force_fallback_adapter = true
 C.scrollback_lines = 2000
 C.audible_bell = "Disabled"
 C.set_environment_variables = { CURRENT_TERM = "wezterm" }

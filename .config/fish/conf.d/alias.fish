@@ -29,7 +29,6 @@ alias ldw="ls -al /usr/share/wayland-sessions"
 
 alias v="nvim"
 alias nv="neovide"
-alias e="nvim (fzf)"
 if test -e "$(command -v codium)"
     alias codi="$(which codium)"
 end

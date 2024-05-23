@@ -2,7 +2,7 @@
 
 main() {
   local stamux_dir
-  stamux_dir="/home/tibor/.config/tmux/plugins/stamuxline"
+  stamux_dir="$HOME/.config/tmux/plugins/stamuxline"
 
   get-tmux-option() {
     local option value default

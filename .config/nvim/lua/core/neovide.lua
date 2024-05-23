@@ -1,4 +1,4 @@
-vim.o.guifont = "ZedMono Nerd Font Mono:24"
+-- vim.o.guifont = "ZedMono Nerd Font Mono:24"
 
 vim.g.neovide_refresh_rate = 60
 vim.g.neovide_refresh_rate_idle = 5
