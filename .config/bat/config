@@ -2,5 +2,4 @@
 --theme=Dracula
 --color=always
 --wrap=character
---paging=always
---pager="$PAGER"
+--paging=never

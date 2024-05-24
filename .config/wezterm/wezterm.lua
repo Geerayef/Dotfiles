@@ -37,16 +37,10 @@ if G.process_icons == nil then
   }
 end
 
-if G.font_dirs == nil then
-  G.font_dirs = {
-    "/usr/share/fonts/TTF/",
-    "/usr/share/fonts/OTF/",
-    "/usr/share/fonts/TTF/FiraCodeNF/",
-    "/usr/share/fonts/TTF/JetBrainsMonoNF/",
-    "/usr/share/fonts/TTF/IosevkaNF/",
-    "/usr/share/fonts/TTF/ZedMonoNF/",
-  }
-end
+if G.font_dirs == nil then G.font_dirs = {
+  "/usr/share/fonts/TTF/",
+  "/usr/share/fonts/OTF/",
+} end
 
 if G.firacode_harfbuzz == nil then
   G.firacode_harfbuzz = {
