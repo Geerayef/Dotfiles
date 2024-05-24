@@ -35,7 +35,7 @@ end
 function n --wraps nnn --description "CD to current directory on exit"
     # Don't nest nnn in subshells
     if test -n "$NNNLVL" -a "$NNNLVL" -ge 1
-        echo "nnn is already running"
+        echo "~~~~~ [INFO] nnn is already running.\n"
         return
     end
 
@@ -45,7 +45,7 @@ function n --wraps nnn --description "CD to current directory on exit"
     # stty lwrap undef
     # stty lnext undef
 
-    command nnn $argv
+    command nnn -Tv $argv
 
     if test -e $NNN_TMPFILE
         source $NNN_TMPFILE
