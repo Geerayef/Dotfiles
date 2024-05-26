@@ -36,7 +36,7 @@ end
 # ~  Git
 
 alias dot="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
-alias dotu="dot add .config/{nvim,emacs,micro,tofi,alacritty,wezterm,foot,kitty,hypr,fish,bash,zsh,nnn,bat,btop,mako,fontconfig,starship,zellij,tmux,vimiumc,zathura}/ .local/bin/"
+alias dotu="dot add .config/{nvim,vim,emacs,micro,tofi,alacritty,wezterm,foot,kitty,hypr,fish,bash,zsh,nnn,bat,btop,mako,fontconfig,starship,zellij,tmux,vimiumc,zathura}/ .local/bin/ .zshenv"
 alias dota="dot add"
 alias dots="dot status"
 alias dotc="dot commit -m"

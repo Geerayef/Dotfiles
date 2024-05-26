@@ -22,3 +22,4 @@ Dotfiles/
 .config/emacs/elgrep-data.el
 .config/micro/buffers
 .config/zellij/plugin
+.config/vim/.netrwhist

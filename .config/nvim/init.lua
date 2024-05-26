@@ -4,6 +4,6 @@ require("core.options")
 require("core.keymaps")
 require("lazy").setup("plugins", Tim)
 require("core.autocmds")
-F.DisableBuiltin()
 if vim.g.neovide then require("core.neovide") end
+F.DisableBuiltin()
 vim.cmd.colorscheme("kanagawa")

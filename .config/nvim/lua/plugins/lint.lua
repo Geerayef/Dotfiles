@@ -10,7 +10,6 @@ return {
         cpp = { "cpplint" },
         python = { "ruff" },
         fish = { "fish" },
-        zsh = { "zsh" },
         markdown = {},
         yaml = { "yamllint" },
         ["yaml.docker-compose"] = { "hadolint" },

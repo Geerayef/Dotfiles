@@ -85,10 +85,11 @@ return {
             },
           },
           { "branch", icon = Icons.git.branch, color = { fg = palette.dragonGreen } },
-          { function() return " |" end, color = { fg = palette.dragonWhite }, padding = { right = 0 } },
         },
         lualine_y = {},
-        lualine_z = {},
+        lualine_z = {
+          { function() return " |" end, color = { fg = palette.dragonWhite, bg = "Normal" }, padding = { right = 0 } },
+        },
       },
     })
   end,

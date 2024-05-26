@@ -17,7 +17,7 @@ set -gx NNN_FIFO "/tmp/nnn.fifo"
 set -gx NNN_TERMINAL "$TERM"
 set -gx NNN_PAGER bat --style="plain"
 set -gx NNN_PLUG "p:-preview.bash"
-set -gx NNN_OPTS deEH
+set -gx NNN_OPTS eEH
 set -gx NNN_FCOLORS "$BLK$CHR$DIR$EXE$REG$HRDL$SYML$MISS$ORPH$FIFO$SOCK$OTHR"
 
 if test -n "$XDG_CONFIG_HOME"

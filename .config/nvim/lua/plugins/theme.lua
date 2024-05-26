@@ -27,6 +27,13 @@ return {
           NormalDark = { fg = t.ui.fg_dim, bg = t.ui.bg_m3 },
           MasonNormal = { bg = "none", fg = t.ui.fg_dim },
           LazyNormal = { bg = "none", fg = t.ui.fg_dim },
+          TelescopeTitle = { fg = t.ui.special, bold = true },
+          TelescopePromptNormal = { bg = t.ui.float.bg },
+          TelescopePromptBorder = { fg = t.ui.fg, bg = t.ui.float.bg },
+          TelescopeResultsNormal = { fg = t.ui.fg_dim, bg = t.ui.float.bg },
+          TelescopeResultsBorder = { fg = t.ui.fg, bg = t.ui.float.bg },
+          TelescopePreviewNormal = { bg = t.ui.float.bg },
+          TelescopePreviewBorder = { fg = t.ui.fg, bg = t.ui.float.bg },
         }
       end,
       -- fg fg_dim fg_reverse bg_dim bg_gutter bg_m3 bg_m2 bg_m1
@@ -70,12 +77,4 @@ return {
   --     custom_highlights = {},
   --   },
   -- },
-
-  -- ~  Midnight
-  -- { "dasupradyumna/midnight.nvim", lazy = false, priority = 1010 },
-
-  -- ~ -------------------------------------------------------------------------------- ~ --
-
-  -- ~  Neodark/er (ayu / neobones)
-  -- { "VDuchauffour/neodark.nvim", lazy = false, priority = 1010, opts = { theme_style = "neodarker" } },
 }

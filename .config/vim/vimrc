@@ -1,4 +1,4 @@
 vim9script
 
-source options.vim
+source ~/.config/vim/options.vim
 colorscheme habamax
