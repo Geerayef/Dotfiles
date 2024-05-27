@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ -e ~/.ssh/ ]]; then
-  git clone --bare git@github.com:Tibor5/Dotfiles.git "$HOME/Dotfiles"
-else
-  git clone --bare https://www.github.com/Tibor5/Dotfiles.git "$HOME/Dotfiles"
-fi
+git clone --bare git@github.com:Tibor5/Dotfiles.git "$HOME/Dotfiles"
 
 function dot {
   /usr/bin/git --git-dir="$HOME/Dotfiles/" --work-tree="$HOME" "$@"
