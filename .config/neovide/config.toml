@@ -1,0 +1,19 @@
+wsl = false
+no-multigrid = false
+vsync = true
+maximized = false
+srgb = false
+idle = true
+frame = "none"
+title-hidden = true
+tabs = false
+
+[font]
+normal = { family = "ZedMono Nerd Font Mono", style = "Regular" }
+bold = { family = "ZedMono Nerd Font Mono", style = "Bold" }
+italic = { family = "ZedMono Nerd Font Mono", style = "Italic" }
+bold_italic = { family = "ZedMono Nerd Font Mono", style = "BoldItalic" }
+size = 14
+
+[font.features]
+ZedMonoNFM = [ "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "+ss10" ]
