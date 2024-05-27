@@ -1,4 +1,4 @@
-local border = require("util.objects").Border
+local border = O.Border
 return {
   {
     "lewis6991/gitsigns.nvim",

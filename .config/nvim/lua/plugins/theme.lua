@@ -11,7 +11,7 @@ return {
       undercurl = true,
       commentStyle = { italic = true },
       functionStyle = {},
-      keywordStyle = { italic = true },
+      keywordStyle = {},
       statementStyle = { bold = true },
       typeStyle = {},
       transparent = false,
@@ -19,7 +19,6 @@ return {
       terminalColors = true,
       overrides = function(colors)
         local t = colors.theme
-        -- local p = colors.palette
         return {
           NormalFloat = { bg = "none" },
           FloatBorder = { bg = "none" },

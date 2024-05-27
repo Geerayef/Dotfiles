@@ -1,4 +1,4 @@
-local border = require("util.objects").BorderSimple
+local border = O.BorderSimple
 return {
   {
     "nvim-telescope/telescope.nvim",

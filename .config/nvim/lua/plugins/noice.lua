@@ -1,4 +1,4 @@
-local border = require("util.objects").Border
+local border = O.Border
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
@@ -17,7 +17,7 @@ return {
       view_search = "virtualtext",
     },
     notify = { enabled = true, view = "notify" },
-    popupmenu = { enabled = true, backend = "cmp" },
+    popupmenu = { enabled = true, backend = "nui" },
     commands = { history = { view = "popup" }, last = { view = "mini" } },
     lsp = {
       message = { enabled = true, view = "notify" },
@@ -79,7 +79,7 @@ return {
       messages = { view = "popup" },
       split = { enter = true, win_options = { wrap = false }, close = { keys = { "q", "<C-c>" } } },
       vsplit = { enter = true },
-      virtualtext = { format = { "{message} 󰝤 " } },
+      virtualtext = { format = { "    {message} 󰝤 " } },
     },
     health = { checker = false },
   },

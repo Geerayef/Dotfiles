@@ -1,6 +1,7 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local border = O.Border
 vim.opt.rtp:prepend(lazypath)
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -17,7 +18,7 @@ return {
   change_detection = { notify = false },
   ui = {
     title = "Lazy",
-    border = require("util.objects").Border,
+    border = border,
   },
   performance = {
     rtp = {

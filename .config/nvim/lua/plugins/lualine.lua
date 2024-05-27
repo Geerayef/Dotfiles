@@ -15,7 +15,7 @@ return {
     local palette = require("colors.kanagawa.palette")
     local theme = require("colors.kanagawa.theme")
     local kanagawaline = require("colors.kanagawa.kanagawaline").setup(theme)
-    local Icons = require("util.objects").Icons
+    local icon = O.Icons
     require("lualine").setup({
       options = {
         component_separators = "",
@@ -30,7 +30,7 @@ return {
           { function() return "| " end, color = { fg = palette.dragonWhite, bg = "Normal" }, padding = { left = 0 } },
           {
             "mode",
-            fmt = function() return " " .. Icons.mode .. " " .. F.GetViMode(false) end,
+            fmt = function() return " " .. icon.mode .. " " .. F.GetViMode(false) end,
             padding = { right = 1 },
             color = function() return { fg = palette.dragonBlack0 } end,
           },
@@ -44,7 +44,7 @@ return {
             cond = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
             path = 0,
             color = { fg = palette.dragonAqua },
-            symbols = { modified = Icons.touched, readonly = Icons.lock, unnamed = "[No Name]", newfile = "[New]" },
+            symbols = { modified = icon.touched, readonly = icon.lock, unnamed = "[No Name]", newfile = "[New]" },
           },
           { function() return "%=" end },
         },
@@ -60,7 +60,7 @@ return {
               local g = vim.b.gitsigns_status_dict
               if g then return { added = g.added, modified = g.changed, removed = g.removed } end
             end,
-            symbols = { added = Icons.git.added, modified = Icons.git.modified_simple, removed = Icons.git.removed },
+            symbols = { added = icon.git.added, modified = icon.git.modified_simple, removed = icon.git.removed },
             colored = true,
             diff_color = {
               added = { fg = theme.vcs.added },
@@ -72,10 +72,10 @@ return {
             "diagnostics",
             sources = { "nvim_lsp", "nvim_diagnostic" },
             symbols = {
-              error = Icons.diagnostics.error,
-              warn = Icons.diagnostics.warn,
-              info = Icons.diagnostics.info,
-              hint = Icons.diagnostics.hint,
+              error = icon.diagnostics.error,
+              warn = icon.diagnostics.warn,
+              info = icon.diagnostics.info,
+              hint = icon.diagnostics.hint,
             },
             diagnostics_color = {
               error = { fg = theme.diag.error },
@@ -84,7 +84,7 @@ return {
               hint = { fg = theme.diag.hint },
             },
           },
-          { "branch", icon = Icons.git.branch, color = { fg = palette.dragonGreen } },
+          { "branch", icon = icon.git.branch, color = { fg = palette.dragonGreen } },
         },
         lualine_y = {},
         lualine_z = {

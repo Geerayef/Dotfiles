@@ -1,4 +1,4 @@
-local border = require("util.objects").Border
+local border = O.Border
 return {
   "stevearc/oil.nvim",
   priority = 990,
