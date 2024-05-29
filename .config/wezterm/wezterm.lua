@@ -175,7 +175,7 @@ C.line_height = 1
 C.default_workspace = "home"
 
 -- Performance
-C.enable_wayland = false
+C.enable_wayland = true
 C.animation_fps = 1
 C.max_fps = 60
 C.front_end = "WebGpu"

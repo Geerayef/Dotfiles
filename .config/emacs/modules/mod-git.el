@@ -1,4 +1,4 @@
-;;;; mod-vcs.el --- Version control systems -*- lexical-binding: t; -*-
+;;;; mod-git.el --- Version control systems -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -21,5 +21,5 @@
   (diff-hl-flydiff-mode)
   (diff-hl-dired-mode))
 
-(provide 'mod-vcs)
-;;; mod-vcs.el ends here
+(provide 'mod-git)
+;;; mod-git.el ends here

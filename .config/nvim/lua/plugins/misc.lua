@@ -3,8 +3,8 @@ return {
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-sleuth", event = "BufEnter" },
   { "tpope/vim-surround", event = "BufRead" },
-  { "numToStr/Comment.nvim", event = "BufRead" },
   { "mfussenegger/nvim-jdtls", ft = "java" },
+  { "numToStr/Comment.nvim", event = "BufRead", opts = { extra = { above = "gcO", below = "gco", eol = "gcA" } } },
   -- { "Pocco81/true-zen.nvim", lazy = true, cmd = { "TZFocus", "TZNarrow", "TZAtaraxis", "TZMinimalist" } },
   -- { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle", opts = { ["*"] = { RRGGBBAA = true } } },
   {

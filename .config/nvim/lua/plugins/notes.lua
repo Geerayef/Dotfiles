@@ -1,24 +1,21 @@
 return {
-  {
-    "henriklovhaug/Preview.nvim",
-    ft = "markdown",
-    cmd = "Preview",
-    keys = { { "<leader>mp", "<cmd>Preview<CR>", desc = "[m]arkdown [p]review" } },
-    config = true,
-  },
-  { "ellisonleao/glow.nvim", ft = "markdown", cmd = "Glow", config = { border = "single" } },
+  { "lukas-reineke/headlines.nvim", ft = "markdown", config = true },
+  { "henriklovhaug/Preview.nvim", ft = "markdown", cmd = "Preview", config = true },
   {
     "epwalsh/obsidian.nvim",
     version = "*",
     ft = "markdown",
     opts = {
       workspaces = { { name = "notes", path = "~/notes" }, { name = "LGR", path = "~/notes/LGR" } },
+      daily_notes = { folder = "~/notes/daily", date_format = "%d-%m-%Y", alias_format = "%B %-d, %Y", template = nil },
+      -- `substitutions`: map for custom variables. `key`: variable, `value`: function.
+      templates = { folder = "~/notes/template", date_format = "%d-%m-%Y", time_format = "%H:%M", substitutions = {} },
       completion = { nvim_cmp = true, min_chars = 2 },
       preferred_link_style = "markdown",
       disable_frontmatter = true,
-      picker = { name = "telescope.nvim", mappings = { new = "<C-x>", insert_link = "<C-l>" } },
       sort_by = "path",
       sort_reversed = false,
+      picker = { name = "telescope.nvim", mappings = { new = "<C-x>", insert_link = "<C-l>" } },
       ui = {
         enable = true,
         update_debounce = 200,
@@ -34,6 +31,12 @@ return {
         highlight_text = { hl_group = "ObsidianHighlightText" },
         tags = { hl_group = "ObsidianTag" },
         block_ids = { hl_group = "ObsidianBlockID" },
+      },
+      mappings = {
+        ["gf"] = {
+          action = function() return require("obsidian").util.gf_passthrough() end,
+          opts = { noremap = false, expr = true, buffer = true },
+        },
       },
     },
   },

@@ -74,6 +74,12 @@ O.Icons = {
     hint = "󰌵 ",
     hintfull = " ",
   },
+  misc = {
+    box_empty = "󰄱",
+    box_check = "",
+    circle_rightwards_arrow = "",
+    circle_x = "󰰱",
+  },
   lock = "",
   touched = "●",
   recording = "",

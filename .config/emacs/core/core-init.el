@@ -196,7 +196,7 @@
 ;; ~  Navigation
 (use-package mod-nav :ensure nil)
 ;; ~  Version Control
-(use-package mod-vcs :ensure nil)
+(use-package mod-git :ensure nil)
 ;; ~  Project Management
 ;; ~  Workspace Management
 
