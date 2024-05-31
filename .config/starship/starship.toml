@@ -65,8 +65,10 @@ detect_folders = ["_opam", "esy.lock"]
 style = "#95C30A bold"
 
 [python]
-format = '[$virtualenv]($style) '
-style = "#94E2D5"
+format = '[$virtualenv(${version})]($style) '
+pyenv_version_name = true
+pyenv_prefix = ""
+style = "#94E2D5 bold"
 symbol = ""
 
 [lua]

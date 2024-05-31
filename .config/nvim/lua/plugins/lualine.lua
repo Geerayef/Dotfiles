@@ -78,7 +78,9 @@ return {
           },
           { "branch", icon = icon.git.branch, color = { fg = palette.dragonGreen } },
         },
-        lualine_y = {},
+        lualine_y = {
+          -- { require("noice").api.status.mode.get, cond = require("noice").api.status.mode.has, color = { fg = "#FF9E64" } },
+        },
         lualine_z = {
           { function() return " |" end, color = { fg = palette.dragonWhite, bg = "Normal" }, padding = { right = 0 } },
         },

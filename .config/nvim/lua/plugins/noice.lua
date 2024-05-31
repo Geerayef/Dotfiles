@@ -55,7 +55,7 @@ return {
           ["not"] = { kind = { "confirm", "confirm_sub", "return_prompt", "quickfix", "search_count" } },
           blocking = false,
         },
-        opts = { stop = true },
+        opts = { stop = false },
       },
       {
         view = "mini",
@@ -65,11 +65,11 @@ return {
           ["not"] = { kind = { "confirm", "confirm_sub", "return_prompt", "quickfix", "search_count" } },
           blocking = true,
         },
-        opts = { stop = true },
+        opts = { stop = false },
       },
       {
         view = "mini",
-        filter = { event = "msg_showmode", any = { { min_height = 5 }, { min_width = 100 } }, blocking = true },
+        filter = { event = "msg_showmode" },
       },
     },
     views = {

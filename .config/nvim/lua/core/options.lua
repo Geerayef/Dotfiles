@@ -57,7 +57,7 @@ o.list = true
 o.conceallevel = 2
 
 -- ~  Behaviour
-o.lazyredraw = false
+o.lazyredraw = true
 o.updatetime = 200
 o.belloff = "all"
 o.splitright = true

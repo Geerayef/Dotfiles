@@ -33,9 +33,7 @@ end
 # pyenv
 if test -e "$HOME/.pyenv"
     set -gx PYENV_ROOT "$HOME/.pyenv"
-    command -v pyenv >/dev/null
-    or fish_add_path -a --path "$PYENV_ROOT/bin"
-    eval "$(pyenv init -)"
+    command -vq pyenv; or fish_add_path -a --path "$PYENV_ROOT/bin"
 end
 
 # Tex
