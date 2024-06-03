@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MY_APPS="hyprland hypridle hyprlock alacritty wezterm fish starship neovim fd ripgrep fzf bat eza git curl clang cmake brightnessctl playerctl pipewire wireplumber handlr-regex"
+MY_APPS="hyprland hypridle hyprlock hyprpaper wezterm foot fish starship neovim python-pynvim fd ripgrep fzf bat eza git curl wget clang cmake brightnessctl playerctl pipewire wireplumber handlr-regex pandoc-cli md-tui syncthing rclone grim slurp wl-clipboard cliphist"
 printf "~~~~~ Using %s.\n" "$SHELL"
 printf "~~~~~ Installing %s\n" "$MY_APPS"
 if [[ -x "$(command -v dnf)" ]]; then
