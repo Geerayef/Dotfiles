@@ -4,7 +4,7 @@ background = "#0A0E14"
 foreground = "#B3B1AD"
 [colors.cursor]
 text    = "CellBackground"
-cursor  = "#528BFF"
+cursor  = "#FFFFFF"
 [colors.search]
 matches       = { foreground = "#44475A", background = "#50FA7B" }
 focused_match = { foreground = "#44475A", background = "#FFB86C" }

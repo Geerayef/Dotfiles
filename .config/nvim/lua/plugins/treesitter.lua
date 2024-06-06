@@ -44,6 +44,7 @@ return {
       highlight = {
         enable = true,
         disable = function(ft, buf) return F.IsBigBuff(buf) or ft == "latex" or vim.fn.win_gettype() == "command" end,
+        additional_vim_regex_highlighting = false,
       },
       indent = { enable = true, disable = { "python" } },
       incremental_selection = { enable = true, keymaps = is },

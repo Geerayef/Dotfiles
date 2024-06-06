@@ -24,6 +24,7 @@ o.smartindent = true
 o.wrap = true
 o.linebreak = true
 o.breakindent = true
+o.breakindentopt = "list:-1"
 o.showbreak = "- "
 o.complete:remove("i")
 o.completeopt = "menu,menuone,noinsert,noselect"
@@ -57,7 +58,7 @@ o.list = true
 o.conceallevel = 2
 
 -- ~  Behaviour
-o.lazyredraw = true
+o.lazyredraw = false
 o.updatetime = 200
 o.belloff = "all"
 o.splitright = true

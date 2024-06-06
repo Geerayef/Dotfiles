@@ -39,8 +39,7 @@ end
 # Tex
 if test -d /usr/local/texlive
     fish_add_path -p --path /usr/local/texlive/2024/bin/x86_64-linux
-else
-    if test -d "$HOME/.local/texlive2024"
-        fish_add_path -p --path "$HOME/.local/texlive2024/bin/x86_64-linux"
-    end
+end
+if test -d "$HOME/.local/texlive/"
+    fish_add_path -p --path "$HOME/.local/texlive/2024/bin/x86_64-linux"
 end

@@ -31,9 +31,4 @@ set recolor-reverse-video  "true"
 map normal <C-j> feedkeys Tab
 map normal <C-k> feedkeys <S-Tab>
 
-#set default-fg "#B7BDBA"
-#set default-bg rgba(41,49,54,0.8)
-#set recolor-darkcolor "#B7BDBA"
-#set recolor-lightcolor rgba(41,49,54,0.0)
-
-include themes/catpuccin-mocha
+include themes/ayu

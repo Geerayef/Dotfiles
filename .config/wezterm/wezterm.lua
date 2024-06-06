@@ -26,7 +26,6 @@ if G.process_icons == nil then
     ["docker"] = nf.linux_docker,
     ["lazydocker"] = nf.linux_docker,
     ["docker-compose"] = nf.linux_docker,
-    ["psql"] = nf.dev_postgresql,
     ["btop"] = nf.md_chart_donut_variant,
     ["git"] = nf.dev_git,
     ["gh"] = nf.dev_github_badge,
@@ -37,10 +36,7 @@ if G.process_icons == nil then
   }
 end
 
-if G.font_dirs == nil then G.font_dirs = {
-  "/usr/share/fonts/TTF/",
-  "/usr/share/fonts/OTF/",
-} end
+if G.font_dirs == nil then G.font_dirs = { "/usr/share/fonts/TTF/", "/usr/share/fonts/OTF/" } end
 
 if G.firacode_harfbuzz == nil then
   G.firacode_harfbuzz = {
@@ -125,7 +121,7 @@ C.tab_bar_at_bottom = true
 C.use_fancy_tab_bar = false
 C.hide_tab_bar_if_only_one_tab = false
 C.show_new_tab_button_in_tab_bar = false
-C.status_update_interval = 3000
+C.status_update_interval = 1000
 
 -- Window
 C.window_background_opacity = 1
@@ -161,6 +157,8 @@ C.unicode_version = 14
 C.bold_brightens_ansi_colors = true
 C.custom_block_glyphs = true
 C.anti_alias_custom_block_glyphs = true
+C.line_height = 1
+C.font_size = 16
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
   { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
@@ -168,16 +166,14 @@ C.font = W.font_with_fallback({
   { family = "FiraCode Nerd Font Mono", harfbuzz_features = G.firacode_harfbuzz },
   "Symbols Nerd Font Mono",
 })
-C.font_size = 16
-C.line_height = 1
 
 -- Workspace
 C.default_workspace = "home"
 
 -- Performance
-C.enable_wayland = true
+C.enable_wayland = false
 C.animation_fps = 1
-C.max_fps = 60
+C.max_fps = 30
 C.front_end = "WebGpu"
 local gpus = W.gui.enumerate_gpus()
 C.webgpu_preferred_adapter = gpus[1]

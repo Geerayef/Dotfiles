@@ -1,4 +1,3 @@
-local border = O.Border
 return {
   {
     "williamboman/mason.nvim",
@@ -7,8 +6,12 @@ return {
     opts = {
       registries = { "github:mason-org/mason-registry" },
       ui = {
-        icons = { package_installed = "✓", package_pending = "->", package_uninstalled = "x" },
-        border = border,
+        icons = {
+          package_installed = O.Icons.misc.box_check,
+          package_pending = "->",
+          package_uninstalled = O.Icons.misc.box_empty,
+        },
+        border = O.Border,
         width = 0.7,
         height = 0.5,
       },
@@ -18,7 +21,7 @@ return {
     "neovim/nvim-lspconfig",
     version = false,
     event = { "BufRead", "BufNewFile" },
-    dependencies = { "williamboman/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp" },
+    dependencies = { "hrsh7th/cmp-nvim-lsp" },
     opts = {
       diagnostics = require("core.diagnostics"),
       inlay_hints = { enabled = true },
@@ -38,9 +41,7 @@ return {
     },
     config = function(_, opts)
       local lspconfig = require("lspconfig")
-      require("lspconfig.ui.windows").default_options.border = border
-      -- local mason_lspconfig = require("mason-lspconfig")
-      -- mason_lspconfig.setup({ ensure_installed = vim.tbl_keys(opts.servers) })
+      require("lspconfig.ui.windows").default_options.border = O.Border
       local has_cmplsp, cmplsp = pcall(require, "cmp_nvim_lsp")
       local lsp_attach = F.LspAttach
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
@@ -50,26 +51,15 @@ return {
         has_cmplsp and cmplsp.default_capabilities(vim.lsp.protocol.make_client_capabilities()) or {},
         opts.capabilities or {}
       )
-      -- mason_lspconfig.setup_handlers({
-      --   function(server_name)
-      --     lspconfig[server_name].setup({
-      --       on_attach = lsp_attach,
-      --       capabilities = capabilities,
-      --       settings = opts.servers[server_name],
-      --     })
-      --   end,
-      -- })
-
-      -- ~  Local LSP settings
 
       -- Lua
       lspconfig.lua_ls.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        on_init = function(client)
-          local path = client.workspace_folders[1].name
-          if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then return end
-        end,
+        -- on_init = function(client)
+        --   local path = client.workspace_folders[1].name
+        --   if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then return end
+        -- end,
         settings = {
           Lua = {
             completion = { enable = true, callSnippet = "Both", keywordSnippet = "Both", displayContext = 2 },
