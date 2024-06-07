@@ -1,10 +1,12 @@
 return {
-  { "lukas-reineke/headlines.nvim", ft = "markdown", config = true },
-  { "henriklovhaug/Preview.nvim", ft = "markdown", cmd = "Preview", config = true },
   {
     "epwalsh/obsidian.nvim",
     version = "*",
     ft = "markdown",
+    dependencies = {
+      { "lukas-reineke/headlines.nvim", config = true },
+      { "henriklovhaug/Preview.nvim", cmd = "Preview", config = true },
+    },
     opts = {
       workspaces = { { name = "notes", path = "~/notes" }, { name = "LGR", path = "~/notes/LGR" } },
       daily_notes = { folder = "~/notes/daily", date_format = "%d-%m-%Y", alias_format = "%B %-d, %Y", template = nil },

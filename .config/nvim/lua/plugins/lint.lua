@@ -8,7 +8,7 @@ return {
       c = { "clangtidy" },
       cpp = { "cpplint" },
       python = { "ruff" },
-      fish = { "fish" },
+      fish = { "fish -n" },
       yaml = { "yamllint" },
       ["yaml.docker-compose"] = { "hadolint" },
       docker = { "hadolint" },

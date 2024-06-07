@@ -1,10 +1,10 @@
 return {
-  { "nvim-lua/plenary.nvim", lazy = false, priority = 1000 },
+  { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-sleuth", event = "BufEnter" },
-  { "tpope/vim-surround", event = "BufRead" },
+  { "tpope/vim-surround", event = "BufReadPost" },
   { "mfussenegger/nvim-jdtls", ft = "java" },
-  { "numToStr/Comment.nvim", event = "BufRead", opts = { extra = { above = "gcO", below = "gco", eol = "gcA" } } },
+  { "numToStr/Comment.nvim", event = "BufReadPost", opts = { extra = { above = "gcO", below = "gco", eol = "gcA" } } },
   -- { "Pocco81/true-zen.nvim", lazy = true, cmd = { "TZFocus", "TZNarrow", "TZAtaraxis", "TZMinimalist" } },
   -- { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle", opts = { ["*"] = { RRGGBBAA = true } } },
   {
@@ -17,13 +17,13 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
+    event = "BufReadPost",
     main = "ibl",
     opts = { indent = { char = "│" } },
   },
   {
     "andymass/vim-matchup",
-    event = "BufRead",
+    event = "BufReadPost",
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
       vim.g.matchup_surround_enabled = 1

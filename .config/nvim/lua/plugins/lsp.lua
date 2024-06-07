@@ -1,7 +1,6 @@
 return {
   {
     "williamboman/mason.nvim",
-    lazy = true,
     cmd = "Mason",
     opts = {
       registries = { "github:mason-org/mason-registry" },
@@ -20,7 +19,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     version = false,
-    event = { "BufRead", "BufNewFile" },
+    event = { "BufEnter", "BufWinEnter" },
     dependencies = { "hrsh7th/cmp-nvim-lsp" },
     opts = {
       diagnostics = require("core.diagnostics"),
@@ -251,7 +250,6 @@ return {
         cmd = { "yaml-language-server", "--stdio" },
         single_file_support = true,
       })
-
       lspconfig.docker_compose_language_service.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,

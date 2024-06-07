@@ -1,4 +1,3 @@
-local border = O.Border
 return {
   {
     "lewis6991/gitsigns.nvim",
@@ -19,7 +18,7 @@ return {
       word_diff = false,
       watch_gitdir = { follow_files = true },
       auto_attach = true,
-      preview_config = { border = border, style = "minimal", relative = "cursor", row = 0, col = 1 },
+      preview_config = { border = O.Border, style = "minimal", relative = "cursor", row = 0, col = 1 },
     },
   },
   {
