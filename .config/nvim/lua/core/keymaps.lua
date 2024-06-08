@@ -42,10 +42,13 @@ map("n", "<leader>dn", vim.diagnostic.goto_next, bo, "[d]iagnostic [n]ext")
 map("n", "<leader>dp", vim.diagnostic.goto_prev, bo, "[d]iagnostic [p]revious")
 
 -- Commandline
-map({ "l", "c" }, "<M-b>", "<C-Left>", bo, "Word leftwards")
-map({ "l", "c" }, "<M-w>", "<C-Right>", bo, "Word rightwards")
-map({ "l", "c" }, "<M-e>", "<End>", bo, "End of line")
-map({ "l", "c" }, "<M-a>", "<Home>", bo, "Start of line")
+map("c", "<C-b>", "<Left>", bo, "Left")
+map("c", "<C-f>", "<Right>", bo, "Right")
+map("c", "<C-a>", "<Home>", bo, "Home")
+map("c", "<M-b>", "<C-Left>", bo, "Word leftwards")
+map("c", "<M-w>", "<C-Right>", bo, "Word rightwards")
+map("c", "<M-e>", "<End>", bo, "End of line")
+map("c", "<M-a>", "<Home>", bo, "Start of line")
 
 -------------------------------------------------------------------------------------------------------
 

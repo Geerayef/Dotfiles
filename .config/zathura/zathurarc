@@ -28,7 +28,7 @@ set recolor-keephue        "true"
 set recolor-reverse-video  "true"
 
 # Keymaps
-map normal <C-j> feedkeys Tab
-map normal <C-k> feedkeys <S-Tab>
+map index <C-j> feedkeys Tab
+map index <C-k> feedkeys <S-Tab>
 
 include themes/ayu
