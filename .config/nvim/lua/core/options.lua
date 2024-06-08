@@ -65,6 +65,7 @@ o.scroll = 10
 o.scrolloff = 4
 o.sidescrolloff = 4
 o.foldenable = true
+o.foldmethod = "marker"
 o.ignorecase = true
 o.smartcase = true
 o.hlsearch = true
