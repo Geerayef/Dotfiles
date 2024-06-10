@@ -4,10 +4,10 @@ return {
   config = function()
     local lualine_require = require("lualine_require")
     lualine_require.require = require
-    local palette = require("colors.kanagawa.palette")
-    local theme = require("colors.kanagawa.theme")
-    local kanagawaline = require("colors.kanagawa.kanagawaline").setup(theme)
-    local icon = O.Icons
+    local palette = require("clrs.kanagawa.palette")
+    local theme = require("clrs.kanagawa.theme")
+    local kanagawaline = require("clrs.kanagawa.kanagawaline").setup(theme)
+    local icon = S.Icons
     require("lualine").setup({
       options = {
         component_separators = "",

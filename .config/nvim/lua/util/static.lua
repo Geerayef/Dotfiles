@@ -1,8 +1,8 @@
-O = {}
+S = {}
 
-O.BorderSimple = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
+S.BorderSimple = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
 
-O.Border = {
+S.Border = {
   { "┌", "Normal" },
   { "─", "Normal" },
   { "┐", "Normal" },
@@ -13,8 +13,7 @@ O.Border = {
   { "│", "Normal" },
 }
 
----@return string # Mapping: mode sig -> name
-O.ViModes = {
+S.ViModes = {
   ["n"] = "normal",
   ["no"] = "normal",
   ["nov"] = "normal",
@@ -54,7 +53,7 @@ O.ViModes = {
 }
 
 ---@return string # Icon
-O.Icons = {
+S.Icons = {
   mode = "",
   normal = "",
   visual = "",
@@ -126,4 +125,4 @@ O.Icons = {
   },
 }
 
-return O
+return S

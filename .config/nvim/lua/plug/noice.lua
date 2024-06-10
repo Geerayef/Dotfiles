@@ -1,4 +1,4 @@
-local border = O.Border
+local border = S.Border
 return {
   "folke/noice.nvim",
   event = "VeryLazy",

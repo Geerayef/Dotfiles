@@ -20,7 +20,7 @@ return {
       local ls = require("luasnip")
       local lspkind = require("lspkind")
       local devicons = require("nvim-web-devicons")
-      local border = O.Border
+      local border = S.Border
       local t = function(str) return vim.api.nvim_replace_termcodes(str, true, true, true) end
       -- Sources: "buffer" for '/', '?'. "cmdline" and "path" for ':'. 'native_menu', disables this.
       cmp.setup.cmdline({ "/", "?" }, {

@@ -8,6 +8,8 @@ return {
       c = { "clangtidy" },
       cpp = { "cpplint" },
       python = { "ruff" },
+      sh = { "shellcheck" },
+      bash = { "shellcheck" },
       fish = { "fish -n" },
       yaml = { "yamllint" },
       ["yaml.docker-compose"] = { "hadolint" },

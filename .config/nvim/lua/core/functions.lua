@@ -10,7 +10,7 @@ function F.LspAttach(client, bufnr)
     function(_) vim.lsp.buf.format() end,
     { desc = "Format current buffer with LSP." }
   )
-  if client.server_capabilities.code_lens then
+  if client.server_capabilities and client.server_capabilities.code_lens then
     local codelens = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
     vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
       group = codelens,
@@ -98,7 +98,7 @@ end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
-function F.DisableBuiltin()
+function F.DisableBuiltinProviders()
   local default_providers = { "node", "perl", "ruby" }
   for _, provider in ipairs(default_providers) do
     vim.g[("loaded_" .. provider .. "_provider")] = 0

@@ -6,11 +6,11 @@ return {
       registries = { "github:mason-org/mason-registry" },
       ui = {
         icons = {
-          package_installed = O.Icons.misc.box_check,
+          package_installed = S.Icons.misc.box_check,
           package_pending = "->",
-          package_uninstalled = O.Icons.misc.box_empty,
+          package_uninstalled = S.Icons.misc.box_empty,
         },
-        border = O.Border,
+        border = S.Border,
         width = 0.7,
         height = 0.5,
       },
@@ -19,7 +19,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     version = false,
-    event = { "BufEnter", "BufWinEnter" },
+    event = "VeryLazy",
     dependencies = { "hrsh7th/cmp-nvim-lsp" },
     opts = {
       diagnostics = require("core.diagnostics"),
@@ -40,7 +40,7 @@ return {
     },
     config = function(_, opts)
       local lspconfig = require("lspconfig")
-      require("lspconfig.ui.windows").default_options.border = O.Border
+      require("lspconfig.ui.windows").default_options.border = S.Border
       local has_cmplsp, cmplsp = pcall(require, "cmp_nvim_lsp")
       local lsp_attach = F.LspAttach
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
@@ -55,10 +55,6 @@ return {
       lspconfig.lua_ls.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        -- on_init = function(client)
-        --   local path = client.workspace_folders[1].name
-        --   if vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc") then return end
-        -- end,
         settings = {
           Lua = {
             completion = { enable = true, callSnippet = "Both", keywordSnippet = "Both", displayContext = 2 },

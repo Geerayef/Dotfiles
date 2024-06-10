@@ -66,6 +66,9 @@ start_preview() {
   if [[ -e ${TMUX%%,*} ]] && tmux -V | grep -q '[ -][3456789]\.'; then
     NNN_TERMINAL=tmux
     exists mpv && tmux display -p '#{client_termfeatures}' | grep -q 'sixel' && ENVVARS+=("NNN_PREVIEWVIDEO=sixel")
+  elif [ -n "$KITTY_LISTEN_ON" ]; then
+    NNN_TERMINAL=kitty
+    exists mpv && ENVVARS+=("NNN_PREVIEWVIDEO=kitty")
   elif [[ -n $WEZTERM_PANE ]]; then
     NNN_TERMINAL=wezterm
     exists mpv && ENVVARS+=("NNN_PREVIEWVIDEO=kitty")
@@ -76,38 +79,44 @@ start_preview() {
   else
     NNN_TERMINAL="$TERM"
   fi
-  # -----
+  # -------------------------------------------------------------------------------- #
   if [[ -z $NNN_SPLIT ]] && [[ $(($(tput lines) * 2)) -gt "$(tput cols)" ]]; then
     NNN_SPLIT='h'
   elif [[ $NNN_SPLIT != 'h' ]]; then
     NNN_SPLIT='v'
   fi
+  # -------------------------------------------------------------------------------- #
   ENVVARS+=("NNN_TERMINAL=$NNN_TERMINAL" "NNN_SPLIT=$NNN_SPLIT" "QLPATH=$2" "PREVIEW_MODE=1")
   case "$NNN_TERMINAL" in
-  tmux)
-    # tmux splits are inverted
-    ENVVARS=("${ENVVARS[@]/#/-e}")
-    if [[ $NNN_SPLIT == "v" ]]; then split="h"; else split="v"; fi
-    tmux split-window -l"$NNN_SPLITSIZE"% "${ENVVARS[@]}" -d"$split" -p"$NNN_SPLITSIZE" "$0" "$1"
-    ;;
-  *)
-    case "$CURRENT_TERM" in
-    wezterm)
-      export "${ENVVARS[@]}"
-      if [[ $NNN_SPLIT == "v" ]]; then split="--horizontal"; else split="--bottom"; fi
-      wezterm cli split-pane --cwd "$PWD" $split --percent "$NNN_SPLITSIZE" "$0" "$1" >/dev/null
-      wezterm cli activate-pane-direction Prev
+    tmux)
+      # tmux splits are inverted
+      ENVVARS=("${ENVVARS[@]/#/-e}")
+      if [[ $NNN_SPLIT == "v" ]]; then split="h"; else split="v"; fi
+      tmux split-window -l"$NNN_SPLITSIZE"% "${ENVVARS[@]}" -d"$split" -p"$NNN_SPLITSIZE" "$0" "$1"
       ;;
-    alacritty)
-      export "${ENVVARS[@]}"
-      alacritty --working-directory "$PWD" -e "$0" "$1" >/dev/null
+    *)
+      case "$CURRENT_TERM" in
+        wezterm)
+          export "${ENVVARS[@]}"
+          if [[ $NNN_SPLIT == "v" ]]; then split="--horizontal"; else split="--bottom"; fi
+          wezterm cli split-pane --cwd "$PWD" $split --percent "$NNN_SPLITSIZE" "$0" "$1" >/dev/null
+          wezterm cli activate-pane-direction Prev
+          ;;
+        kitty)
+          ENVVARS=("${ENVVARS[@]/#/--env=}")
+          kitty @ goto-layout splits
+          kitty @ launch --no-response --title "preview-tui" --keep-focus --cwd "$PWD" "${ENVVARS[@]}" --location "${NNN_SPLIT}split" "$0" "$1"
+          ;;
+        alacritty)
+          export "${ENVVARS[@]}"
+          alacritty --working-directory "$PWD" -e "$0" "$1" >/dev/null
+          ;;
+        foot)
+          export "${ENVVARS[@]}"
+          foot --working-directory "$PWD" "$0" "$1" >/dev/null
+          ;;
+      esac
       ;;
-    foot)
-      export "${ENVVARS[@]}"
-      foot --working-directory "$PWD" "$0" "$1" >/dev/null
-      ;;
-    esac
-    ;;
   esac
 }
 
@@ -158,85 +167,85 @@ print_bin_info() {
 
 handle_mime() {
   case "$2" in
-  image/jpeg)
-    image_preview "$cols" "$lines" "$1"
-    ;;
-  image/gif)
-    generate_preview "$cols" "$lines" "$1" "gif"
-    ;;
-  image/vnd.djvu)
-    generate_preview "$cols" "$lines" "$1" "djvu"
-    ;;
-  image/*)
-    generate_preview "$cols" "$lines" "$1" "image"
-    ;;
-  video/*)
-    generate_preview "$cols" "$lines" "$1" "video"
-    ;;
-  audio/*)
-    generate_preview "$cols" "$lines" "$1" "audio"
-    ;;
-  application/font* | application/*opentype | font/*)
-    generate_preview "$cols" "$lines" "$1" "font"
-    ;;
-  */*office* | */*document* | */*msword | */*ms-excel)
-    generate_preview "$cols" "$lines" "$1" "office"
-    ;;
-  application/zip)
-    fifo_pager unzip -l "$1"
-    ;;
-  text/troff)
-    if exists man; then
-      fifo_pager man -Pcat -l "$1"
-    else
-      fifo_pager pager "$1"
-    fi
-    ;;
-  *)
-    handle_ext "$1" "$3" "$4"
-    ;;
+    image/jpeg)
+      image_preview "$cols" "$lines" "$1"
+      ;;
+    image/gif)
+      generate_preview "$cols" "$lines" "$1" "gif"
+      ;;
+    image/vnd.djvu)
+      generate_preview "$cols" "$lines" "$1" "djvu"
+      ;;
+    image/*)
+      generate_preview "$cols" "$lines" "$1" "image"
+      ;;
+    video/*)
+      generate_preview "$cols" "$lines" "$1" "video"
+      ;;
+    audio/*)
+      generate_preview "$cols" "$lines" "$1" "audio"
+      ;;
+    application/font* | application/*opentype | font/*)
+      generate_preview "$cols" "$lines" "$1" "font"
+      ;;
+    */*office* | */*document* | */*msword | */*ms-excel)
+      generate_preview "$cols" "$lines" "$1" "office"
+      ;;
+    application/zip)
+      fifo_pager unzip -l "$1"
+      ;;
+    text/troff)
+      if exists man; then
+        fifo_pager man -Pcat -l "$1"
+      else
+        fifo_pager pager "$1"
+      fi
+      ;;
+    *)
+      handle_ext "$1" "$3" "$4"
+      ;;
   esac
 }
 
 handle_ext() {
   case "$2" in
-  epub) generate_preview "$cols" "$lines" "$1" "epub" ;;
-  pdf) generate_preview "$cols" "$lines" "$1" "pdf" ;;
-  gz | bz2) fifo_pager tar -tvf "$1" ;;
-  md)
-    if exists glow; then
-      fifo_pager glow -s dark "$1"
-    elif exists lowdown; then
-      fifo_pager lowdown -Tterm "$1"
-    else
-      fifo_pager pager "$1"
-    fi
-    ;;
-  htm | html | xhtml)
-    if exists w3m; then
-      fifo_pager w3m "$1"
-    elif exists lynx; then
-      fifo_pager lynx "$1"
-    elif exists elinks; then
-      fifo_pager elinks "$1"
-    else
-      fifo_pager pager "$1"
-    fi
-    ;;
-  7z | a | ace | alz | arc | arj | bz | cab | cpio | deb | jar | lha | lz | lzh | lzma | lzo | rar | rpm | rz | t7z | tar | tbz | tbz2 | tgz | tlz | txz | tZ | tzo | war | xpi | xz | Z)
-    if exists atool; then
-      fifo_pager atool -l "$1"
-    elif exists bsdtar; then
-      fifo_pager bsdtar -tvf "$1"
-    fi
-    ;;
-  *)
-    if [[ $3 == "bin" ]]; then
-      fifo_pager print_bin_info "$1"
-    else
-      fifo_pager pager "$1"
-    fi
-    ;;
+    epub) generate_preview "$cols" "$lines" "$1" "epub" ;;
+    pdf) generate_preview "$cols" "$lines" "$1" "pdf" ;;
+    gz | bz2) fifo_pager tar -tvf "$1" ;;
+    md)
+      if exists glow; then
+        fifo_pager glow -s dark "$1"
+      elif exists lowdown; then
+        fifo_pager lowdown -Tterm "$1"
+      else
+        fifo_pager pager "$1"
+      fi
+      ;;
+    htm | html | xhtml)
+      if exists w3m; then
+        fifo_pager w3m "$1"
+      elif exists lynx; then
+        fifo_pager lynx "$1"
+      elif exists elinks; then
+        fifo_pager elinks "$1"
+      else
+        fifo_pager pager "$1"
+      fi
+      ;;
+    7z | a | ace | alz | arc | arj | bz | cab | cpio | deb | jar | lha | lz | lzh | lzma | lzo | rar | rpm | rz | t7z | tar | tbz | tbz2 | tgz | tlz | txz | tZ | tzo | war | xpi | xz | Z)
+      if exists atool; then
+        fifo_pager atool -l "$1"
+      elif exists bsdtar; then
+        fifo_pager bsdtar -tvf "$1"
+      fi
+      ;;
+    *)
+      if [[ $3 == "bin" ]]; then
+        fifo_pager print_bin_info "$1"
+      else
+        fifo_pager pager "$1"
+      fi
+      ;;
   esac
 }
 
@@ -282,31 +291,31 @@ generate_preview() {
   elif [[ ! -f "$NNN_PREVIEWDIR/$3.jpg" ]] || [[ -n "$(find -L "$3" -newer "$NNN_PREVIEWDIR/$3.jpg")" ]]; then
     mkdir -p "$NNN_PREVIEWDIR/${3%/*}"
     case $4 in
-    audio) ffmpeg -i "$3" -filter_complex "scale=iw*min(1\,min($NNN_PREVIEWWIDTH/iw\,ih)):-1" "$NNN_PREVIEWDIR/$3.jpg" -y ;;
-    epub) gnome-epub-thumbnailer "$3" "$NNN_PREVIEWDIR/$3.jpg" ;;
-    font) fontpreview -i "$3" -o "$NNN_PREVIEWDIR/$3.jpg" ;;
-    gif)
-      if [[ -n $NNN_PREVIEWVIDEO ]]; then
-        video_preview "$1" "$2" "$3" && return
-      else
-        image_preview "$1" "$2" "$3" && return
-      fi
-      ;;
-    image)
-      if exists convert; then
-        convert "$3" -flatten -resize "$NNN_PREVIEWWIDTH"x"$NNN_PREVIEWHEIGHT"\> "$NNN_PREVIEWDIR/$3.jpg"
-      else
-        image_preview "$1" "$2" "$3" && return
-      fi
-      ;;
-    office)
-      libreoffice --convert-to jpg "$3" --outdir "$NNN_PREVIEWDIR/${3%/*}"
-      filename="$(printf "%s" "${3##*/}" | cut -d. -f1)"
-      mv "$NNN_PREVIEWDIR/${3%/*}/$filename.jpg" "$NNN_PREVIEWDIR/$3.jpg"
-      ;;
-    pdf) pdftoppm -jpeg -f 1 -singlefile "$3" "$NNN_PREVIEWDIR/$3" ;;
-    djvu) ddjvu -format=ppm -page=1 "$3" "$NNN_PREVIEWDIR/$3.jpg" ;;
-    video) video_preview "$1" "$2" "$3" && return ;;
+      audio) ffmpeg -i "$3" -filter_complex "scale=iw*min(1\,min($NNN_PREVIEWWIDTH/iw\,ih)):-1" "$NNN_PREVIEWDIR/$3.jpg" -y ;;
+      epub) gnome-epub-thumbnailer "$3" "$NNN_PREVIEWDIR/$3.jpg" ;;
+      font) fontpreview -i "$3" -o "$NNN_PREVIEWDIR/$3.jpg" ;;
+      gif)
+        if [[ -n $NNN_PREVIEWVIDEO ]]; then
+          video_preview "$1" "$2" "$3" && return
+        else
+          image_preview "$1" "$2" "$3" && return
+        fi
+        ;;
+      image)
+        if exists convert; then
+          convert "$3" -flatten -resize "$NNN_PREVIEWWIDTH"x"$NNN_PREVIEWHEIGHT"\> "$NNN_PREVIEWDIR/$3.jpg"
+        else
+          image_preview "$1" "$2" "$3" && return
+        fi
+        ;;
+      office)
+        libreoffice --convert-to jpg "$3" --outdir "$NNN_PREVIEWDIR/${3%/*}"
+        filename="$(printf "%s" "${3##*/}" | cut -d. -f1)"
+        mv "$NNN_PREVIEWDIR/${3%/*}/$filename.jpg" "$NNN_PREVIEWDIR/$3.jpg"
+        ;;
+      pdf) pdftoppm -jpeg -f 1 -singlefile "$3" "$NNN_PREVIEWDIR/$3" ;;
+      djvu) ddjvu -format=ppm -page=1 "$3" "$NNN_PREVIEWDIR/$3.jpg" ;;
+      video) video_preview "$1" "$2" "$3" && return ;;
     esac
   fi
   if [[ -f "$NNN_PREVIEWDIR/$3.jpg" ]]; then

@@ -1,4 +1,4 @@
-local border = O.Border
+local border = S.Border
 return {
   "nvim-treesitter/nvim-treesitter",
   version = false,

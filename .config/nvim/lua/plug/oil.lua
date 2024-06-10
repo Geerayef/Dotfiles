@@ -1,4 +1,4 @@
-local border = O.Border
+local border = S.Border
 return {
   "stevearc/oil.nvim",
   priority = 990,

@@ -1,4 +1,8 @@
 if test -d "$HOME/.local/bin"
+    fish_add_path -a --path "$HOME/.local/bin"
+end
+
+if test -d "$HOME/.local/bin/scripts"
     fish_add_path -a --path "$HOME/.local/bin/scripts"
 end
 

@@ -1,6 +1,4 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-local border = O.Border
-vim.opt.rtp:prepend(lazypath)
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -11,15 +9,14 @@ if not vim.uv.fs_stat(lazypath) then
     lazypath,
   })
 end
-return {
+vim.opt.rtp:prepend(lazypath)
+require("lazy").setup({
+  spec = "plug",
   defaults = { version = "*" },
   dev = { path = "~/dev" },
   checker = { enabled = false },
   change_detection = { notify = false },
-  ui = {
-    title = "Lazy",
-    border = border,
-  },
+  ui = { title = "Lazy", border = S.Border },
   performance = {
     rtp = {
       disabled_plugins = {
@@ -34,4 +31,4 @@ return {
       },
     },
   },
-}
+})

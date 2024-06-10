@@ -18,7 +18,7 @@ return {
       word_diff = false,
       watch_gitdir = { follow_files = true },
       auto_attach = true,
-      preview_config = { border = O.Border, style = "minimal", relative = "cursor", row = 0, col = 1 },
+      preview_config = { border = S.Border, style = "minimal", relative = "cursor", row = 0, col = 1 },
     },
   },
   {

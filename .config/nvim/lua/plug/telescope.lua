@@ -1,4 +1,4 @@
-local border = O.BorderSimple
+local border = S.BorderSimple
 return {
   {
     "nvim-telescope/telescope.nvim",

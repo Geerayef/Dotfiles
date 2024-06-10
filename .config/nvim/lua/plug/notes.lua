@@ -4,7 +4,7 @@ return {
     version = "*",
     ft = "markdown",
     dependencies = {
-      { "lukas-reineke/headlines.nvim", config = true },
+      { "lukas-reineke/headlines.nvim", config = { markdown = { fat_headlines = false } } },
       { "henriklovhaug/Preview.nvim", cmd = "Preview", config = true },
     },
     opts = {
