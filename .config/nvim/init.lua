@@ -1,3 +1,4 @@
+vim.loader.enable()
 require("util.static")
 require("core.functions")
 require("core.options")

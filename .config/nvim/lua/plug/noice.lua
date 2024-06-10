@@ -1,4 +1,3 @@
-local border = S.Border
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
@@ -74,7 +73,7 @@ return {
     },
     views = {
       mini = { win_options = { winblend = 100 } },
-      popup = { border = { style = border }, close = { keys = { "q", "<C-c>" } } },
+      popup = { border = { style = S.Border }, close = { keys = { "q", "<C-c>" } } },
       notify = { backend = "notify", replace = true, merge = true },
       messages = { view = "popup" },
       split = { enter = true, win_options = { wrap = false }, close = { keys = { "q", "<C-c>" } } },

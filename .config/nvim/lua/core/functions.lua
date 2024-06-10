@@ -22,6 +22,7 @@ end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
 
+---Map key sequence to action.
 ---@param mode string|table Mode{s}
 ---@param l string Left side of mapping
 ---@param r string|function Right side of mapping
@@ -34,66 +35,17 @@ end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
 
-function F.GetViMode(use_mode_icons)
-  local n
-  local v
-  local i
-  local c
-  if use_mode_icons then
-    n = ""
-    v = ""
-    i = ""
-    c = ""
+---Get currently active Vim mode.
+---@param full boolean # Show full mode name
+---@return string
+function F.VimMode(full)
+  local modes
+  if full then
+    modes = S.VimModeLowercaseFull
   else
-    n = "normal"
-    v = "visual"
-    i = "insert"
-    c = "command"
+    modes = S.VimModeTwo
   end
-  local r = "replace"
-  local s = "select"
-  local t = "terminal"
-  local sh = "shell"
-  local p = "prompt"
-  local modes = {
-    ["n"] = n,
-    ["no"] = n,
-    ["nov"] = n,
-    ["noV"] = n,
-    ["no\22"] = n,
-    ["niI"] = n,
-    ["niR"] = n,
-    ["niV"] = n,
-    ["nt"] = n,
-    ["ntT"] = n,
-    ["v"] = v,
-    ["vs"] = v,
-    ["V"] = v,
-    ["Vs"] = v,
-    ["\22"] = v,
-    ["\22s"] = v,
-    ["s"] = s,
-    ["S"] = s,
-    ["\19"] = i,
-    ["i"] = i,
-    ["ic"] = i,
-    ["ix"] = i,
-    ["R"] = r,
-    ["Rc"] = r,
-    ["Rx"] = r,
-    ["Rv"] = r,
-    ["Rvc"] = r,
-    ["Rvx"] = r,
-    ["c"] = c,
-    ["cv"] = c,
-    ["ce"] = c,
-    ["r"] = p,
-    ["rm"] = p,
-    ["r?"] = p,
-    ["!"] = sh,
-    ["t"] = t,
-  }
-  return modes[vim.api.nvim_get_mode().mode] or "[Unknown]"
+  return modes[vim.api.nvim_get_mode().mode] or "[unknown]"
 end
 
 -- ~ -------------------------------------------------------------------------------- ~ --

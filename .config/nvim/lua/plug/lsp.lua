@@ -6,9 +6,9 @@ return {
       registries = { "github:mason-org/mason-registry" },
       ui = {
         icons = {
-          package_installed = S.Icons.misc.box_check,
-          package_pending = "->",
-          package_uninstalled = S.Icons.misc.box_empty,
+          package_installed = S.Icons.ui.box_check,
+          package_pending = S.Icons.ui.arrow_right,
+          package_uninstalled = S.Icons.ui.box_empty,
         },
         border = S.Border,
         width = 0.7,

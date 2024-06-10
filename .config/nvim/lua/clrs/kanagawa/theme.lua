@@ -54,7 +54,8 @@ return {
     "#B98D7B",
   },
   ui = {
-    bg = "#181616",
+    -- bg = "#181616",
+    bg = "#11111B",
     bg_dim = "#12120F",
     bg_gutter = "none",
     bg_m1 = "#1D1C19",

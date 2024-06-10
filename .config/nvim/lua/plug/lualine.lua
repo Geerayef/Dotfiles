@@ -18,25 +18,24 @@ return {
         disabled_filetypes = { statusline = {} },
       },
       sections = {
-        lualine_a = {
-          { function() return "| " end, color = { fg = palette.dragonWhite, bg = "Normal" }, padding = { left = 0 } },
+        lualine_a = {},
+        lualine_b = {
+          { function() return "  " end, color = { bg = "Normal" }, padding = { left = 2, right = 2 } },
           {
             "mode",
-            fmt = function() return " " .. icon.mode .. " " .. F.GetViMode(false) end,
-            padding = { right = 1 },
-            color = function() return { fg = palette.dragonBlack0 } end,
+            fmt = function() return F.VimMode(false) end,
+            color = { bg = palette.sumiInk4 },
+            padding = { left = 1, right = 1 },
           },
         },
-        lualine_b = {},
         lualine_c = {
-          { function() return " |" end, color = { fg = palette.dragonWhite }, padding = { left = 0 } },
+          { function() return "|" end, color = { fg = palette.fujiGray }, padding = { left = 1 } },
           { "filetype", icon_only = true, padding = { left = 1, right = 0 } },
           {
             "filename",
             cond = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
             path = 0,
-            color = { fg = palette.dragonAqua },
-            symbols = { modified = icon.touched, readonly = icon.lock, unnamed = "[No Name]", newfile = "[New]" },
+            symbols = { modified = icon.ui.dot_large, readonly = icon.ui.lock, unnamed = "[Scratch]", newfile = "[New]" },
           },
           { function() return "%=" end },
         },
@@ -77,13 +76,10 @@ return {
             },
           },
           { "branch", icon = icon.git.branch, color = { fg = palette.dragonGreen } },
+          { function() return "  " end, padding = { left = 2, right = 2 } },
         },
-        lualine_y = {
-          -- { require("noice").api.status.mode.get, cond = require("noice").api.status.mode.has, color = { fg = "#FF9E64" } },
-        },
-        lualine_z = {
-          { function() return " |" end, color = { fg = palette.dragonWhite, bg = "Normal" }, padding = { right = 0 } },
-        },
+        lualine_y = {},
+        lualine_z = {},
       },
     })
   end,

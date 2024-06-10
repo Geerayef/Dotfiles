@@ -43,9 +43,9 @@ o.cursorlineopt = "number"
 o.showtabline = 1
 o.title = false
 o.laststatus = 3
-o.showcmd = false
-o.cmdheight = 0
-o.showcmdloc = "statusline"
+o.showcmd = true
+o.cmdheight = 1
+o.showcmdloc = "last"
 o.showmode = false
 o.showmatch = true
 o.switchbuf = "useopen,uselast,usetab"
@@ -66,11 +66,12 @@ o.scrolloff = 4
 o.sidescrolloff = 4
 o.foldenable = true
 o.foldmethod = "marker"
-o.ignorecase = true
 o.smartcase = true
+o.ignorecase = true
 o.hlsearch = true
 o.incsearch = true
 o.inccommand = "split"
+o.mouse = ""
 
 -- ~  Chars
 o.listchars = { tab = "→ ", nbsp = "␣", trail = "·" }

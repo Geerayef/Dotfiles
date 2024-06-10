@@ -14,8 +14,6 @@ if W.config_builder then C = W.config_builder() end
 
 if G.process_icons == nil then
   G.process_icons = {
-    ["make"] = nf.seti_makefile,
-    ["go"] = nf.seti_go,
     ["cargo"] = nf.dev_rust,
     ["lua"] = nf.seti_lua,
     ["fish"] = nf.fa_terminal,
@@ -24,7 +22,6 @@ if G.process_icons == nil then
     ["vim"] = nf.dev_vim,
     ["nvim"] = nf.linux_neovim,
     ["docker"] = nf.linux_docker,
-    ["lazydocker"] = nf.linux_docker,
     ["docker-compose"] = nf.linux_docker,
     ["btop"] = nf.md_chart_donut_variant,
     ["git"] = nf.dev_git,
@@ -98,18 +95,18 @@ W.on("update-status", function(window, _)
   local time = fmtime("%H:%M")
   window:set_left_status(fmt({
     { Foreground = { Color = stat_color } },
-    { Text = "| " },
-    { Text = nf.oct_table .. "  " .. stat },
+    { Text = "    " },
+    { Text = nf.oct_table .. " " .. stat },
     { Text = " |" },
     "ResetAttributes",
   }))
   window:set_right_status(fmt({
-    { Text = "(.-. ) " },
-    { Text = "| " },
-    { Foreground = { Color = ayu.brights[3] } },
-    { Text = nf.md_clock .. "  " .. time },
+    { Foreground = { Color = ayu.indexed[16] } },
+    { Text = "(.-. )" },
+    { Text = " | " },
+    { Text = nf.md_clock .. " " .. time },
     "ResetAttributes",
-    { Text = " |" },
+    { Text = "    " },
   }))
 end)
 
@@ -141,7 +138,7 @@ C.colors = {
   tab_bar = {
     background = ayu.bg,
     active_tab = {
-      bg_color = ayu.ansi[7],
+      bg_color = ayu.indexed[16],
       fg_color = ayu.bg,
       intensity = "Bold",
       underline = "None",
@@ -162,9 +159,7 @@ C.font_size = 16
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
   { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
-  { family = "Iosevka Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
   { family = "FiraCode Nerd Font Mono", harfbuzz_features = G.firacode_harfbuzz },
-  "Symbols Nerd Font Mono",
 })
 
 -- Workspace
