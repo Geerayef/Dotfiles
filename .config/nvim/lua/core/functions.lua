@@ -50,6 +50,19 @@ end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
+---@param group string
+---@vararg { [1]: string|string[], [2]: vim.api.keyset.create_autocmd }
+---@return nil
+function F.mk_augroup(group, ...)
+  local id = vim.api.nvim_create_augroup(group, {})
+  for _, a in ipairs({ ... }) do
+    a[2].group = id
+    vim.api.nvim_create_autocmd(unpack(a))
+  end
+end
+
+-- ~ -------------------------------------------------------------------------------- ~ --
+
 function F.DisableBuiltinProviders()
   local default_providers = { "node", "perl", "ruby" }
   for _, provider in ipairs(default_providers) do
@@ -62,9 +75,9 @@ end
 ---@param bufnr number
 ---@return boolean
 function F.IsBigBuff(bufnr)
-  local max_filesize = 1024 * 1024
-  local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
-  return ok and stats and stats.size > max_filesize
+  local large_file_threshold = 1024 * 1024
+  local ok, stat = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+  return ok and stat ~= nil and stat.size > large_file_threshold
 end
 
 -- ~  --------------------------------------------------------------------------------  ~ --

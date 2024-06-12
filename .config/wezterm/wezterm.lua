@@ -1,8 +1,6 @@
 local W = require("wezterm")
 local G = W.GLOBAL
 local act = W.action
-local fmt = W.format
-local fmtime = W.strftime
 local nf = W.nerdfonts
 local ayu = require("ayu")
 local C = {}
@@ -32,11 +30,10 @@ if G.process_icons == nil then
     ["sudo"] = nf.fa_hashtag,
   }
 end
-
 if G.font_dirs == nil then G.font_dirs = { "/usr/share/fonts/TTF/", "/usr/share/fonts/OTF/" } end
-
-if G.firacode_harfbuzz == nil then
-  G.firacode_harfbuzz = {
+if G.harf == nil then G.harf = {} end
+if G.harf.fira == nil then
+  G.harf.fira = {
     "zero",
     "calt=1",
     "clig=1",
@@ -55,14 +52,8 @@ if G.firacode_harfbuzz == nil then
     "ss09",
   }
 end
-
-if G.iosevka_harfbuzz == nil then
-  G.iosevka_harfbuzz = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" }
-end
-
-if G.jetbrainsmono_harfbuzz == nil then
-  G.jetbrainsmono_harfbuzz = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
-end
+if G.harf.io == nil then G.harf.io = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" } end
+if G.harf.jet == nil then G.harf.jet = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" } end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
@@ -92,15 +83,15 @@ W.on("update-status", function(window, _)
     stat = "LDR "
     stat_color = ayu.ansi[5]
   end
-  local time = fmtime("%H:%M")
-  window:set_left_status(fmt({
+  local time = W.strftime("%H:%M")
+  window:set_left_status(W.format({
     { Foreground = { Color = stat_color } },
     { Text = "    " },
     { Text = nf.oct_table .. " " .. stat },
     { Text = " |" },
     "ResetAttributes",
   }))
-  window:set_right_status(fmt({
+  window:set_right_status(W.format({
     { Foreground = { Color = ayu.indexed[16] } },
     { Text = "(.-. )" },
     { Text = " | " },
@@ -158,8 +149,8 @@ C.line_height = 1
 C.font_size = 16
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
-  { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.iosevka_harfbuzz },
-  { family = "FiraCode Nerd Font Mono", harfbuzz_features = G.firacode_harfbuzz },
+  { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.harf.io },
+  { family = "FiraCode Nerd Font Mono", harfbuzz_features = G.harf.fira },
 })
 
 -- Workspace
@@ -198,7 +189,6 @@ C.keys = {
   map("t", act.SpawnTab("CurrentPaneDomain")),
   map("[", act.ActivateTabRelative(-1)),
   map("]", act.ActivateTabRelative(1)),
-  -- map("n", act.ShowTabNavigator),
   -- Move
   map("m", act.ActivateKeyTable({ name = "move_tab", one_shot = false })),
   { key = "{", mods = "LEADER|SHIFT", action = act.MoveTabRelative(-1) },

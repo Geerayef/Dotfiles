@@ -74,5 +74,6 @@ o.inccommand = "split"
 o.mouse = ""
 
 -- ~  Chars
-o.listchars = { tab = "→ ", nbsp = "␣", trail = "·" }
-o.fillchars = { fold = "·", foldopen = "", foldclose = "", foldsep = " ", diff = "╱", eob = " " }
+local ui = S.Icons.ui
+o.listchars = { tab = ui.arrow_r .. " ", nbsp = ui.space, trail = ui.dot_s }
+o.fillchars = { fold = ui.dot_s, foldopen = ui.angle_d, foldclose = ui.angle_r, foldsep = " ", diff = "╱", eob = " " }

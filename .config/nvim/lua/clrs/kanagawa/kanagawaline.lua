@@ -6,7 +6,6 @@ function M.setup(theme)
     a = { bg = theme.syn.fun, fg = theme.ui.bg_m3 },
     b = { bg = theme.diff.change, fg = theme.syn.fun },
     c = { bg = "Normal", fg = theme.ui.fg, gui = "bold" },
-    -- c = { bg = theme.ui.bg_p1, fg = theme.ui.fg },
   }
 
   kanagawaline.insert = {

@@ -19,8 +19,8 @@ return {
           border = { prompt = { 1, 1, 1, 1 }, results = { 1, 1, 1, 1 }, preview = { 1, 1, 1, 1 } },
           borderchars = { prompt = border, results = border, preview = border },
           results_title = "",
-          prompt_prefix = " ",
-          selection_caret = " ",
+          prompt_prefix = S.Icons.ui.angle_r_l .. " ",
+          selection_caret = S.Icons.ui.triangle_s_r .. " ",
           mappings = {
             i = { ["<C-c>"] = a.close, ["<C-j>"] = a.move_selection_next, ["<C-k>"] = a.move_selection_previous },
             n = { ["<C-c>"] = a.close },

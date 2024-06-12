@@ -24,7 +24,7 @@ return {
           {
             "mode",
             fmt = function() return F.VimMode(false) end,
-            color = { bg = palette.sumiInk4 },
+            color = { fg = palette.dragonWhite, bg = palette.sumiInk4 },
             padding = { left = 1, right = 1 },
           },
         },
@@ -35,7 +35,7 @@ return {
             "filename",
             cond = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
             path = 0,
-            symbols = { modified = icon.ui.dot_large, readonly = icon.ui.lock, unnamed = "[Scratch]", newfile = "[New]" },
+            symbols = { modified = icon.ui.dot_l, readonly = icon.ui.lock, unnamed = "[Scratch]", newfile = "[New]" },
           },
           { function() return "%=" end },
         },

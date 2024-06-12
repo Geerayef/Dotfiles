@@ -7,7 +7,7 @@ return {
       ui = {
         icons = {
           package_installed = S.Icons.ui.box_check,
-          package_pending = S.Icons.ui.arrow_right,
+          package_pending = S.Icons.ui.arrow_r,
           package_uninstalled = S.Icons.ui.box_empty,
         },
         border = S.Border,
@@ -19,7 +19,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     version = false,
-    event = "VeryLazy",
+    event = { "BufReadPost", "VeryLazy" },
     dependencies = { "hrsh7th/cmp-nvim-lsp" },
     opts = {
       diagnostics = require("core.diagnostics"),
@@ -67,6 +67,7 @@ return {
                 vim.fn.expand("$VIMRUNTIME/lua"),
                 vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
                 vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
+                "${3rd}/luv/library",
               },
               ignoreSubmodules = false,
               preloadFileSize = 1000,
@@ -152,6 +153,14 @@ return {
       })
 
       -- Python
+      lspconfig.ruff_lsp.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        filetypes = { "python" },
+        root_dir = lspconfig.util.root_pattern("*.py", "__init__.py", ".git", "ruff.toml", "pyproject.toml"),
+        cmd = { "ruff-lsp" },
+        single_file_support = true,
+      })
       lspconfig.pyright.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
@@ -171,14 +180,6 @@ return {
           },
         },
         cmd = { "pylsp" },
-        single_file_support = true,
-      })
-      lspconfig.ruff_lsp.setup({
-        on_attach = lsp_attach,
-        capabilities = capabilities,
-        filetypes = { "python" },
-        root_dir = lspconfig.util.root_pattern("*.py", "__init__.py", ".git", "ruff.toml", "pyproject.toml"),
-        cmd = { "ruff-lsp" },
         single_file_support = true,
       })
 

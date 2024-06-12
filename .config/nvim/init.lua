@@ -6,4 +6,4 @@ require("core.keymaps")
 require("core.autocmds")
 if vim.g.neovide then require("core.neovide") end
 require("lazyTim")
-vim.cmd.colorscheme("kanagawa")
+vim.cmd.colorscheme("material")

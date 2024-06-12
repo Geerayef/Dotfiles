@@ -7,7 +7,6 @@ set adjust-open            "best-fit"
 set pages-per-row          1
 set font                   "Iosevka Nerd Font 18"
 
-# Stop at page boundries
 set scroll-page-aware      "true"
 set scroll-full-overlap    0.01
 set scroll-step            100
@@ -16,7 +15,7 @@ set scroll-step            100
 set zoom-min               10
 
 # Statusbar
-set guioptions             ""
+set guioptions             "s"
 set statusbar-basename     "true"
 set statusbar-home-tilde   "true"
 set statusbar-page-percent "true"
@@ -28,7 +27,7 @@ set recolor-keephue        "true"
 set recolor-reverse-video  "true"
 
 # Keymaps
-map index <C-j> feedkeys Tab
-map index <C-k> feedkeys <S-Tab>
+map index <C-j> down
+map index <C-k> up
 
 include themes/ayu
