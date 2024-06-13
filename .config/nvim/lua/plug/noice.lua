@@ -3,7 +3,10 @@ return {
   event = "VeryLazy",
   dependencies = {
     "MunifTanjim/nui.nvim",
-    { "rcarriga/nvim-notify", opts = { fps = 1, render = "minimal", stages = "static" } },
+    {
+      "rcarriga/nvim-notify",
+      opts = { fps = 1, render = "minimal", stages = "static" },
+    },
   },
   opts = {
     cmdline = { enabled = true, view = "cmdline" },
@@ -43,7 +46,11 @@ return {
         view = "mini",
         filter = {
           event = "msg_show",
-          any = { { find = "; after #%d+" }, { find = "; before #%d+" }, { find = "fewer lines" } },
+          any = {
+            { find = "; after #%d+" },
+            { find = "; before #%d+" },
+            { find = "fewer lines" },
+          },
         },
       },
       {
@@ -51,7 +58,15 @@ return {
         filter = {
           event = "msg_show",
           any = { { min_height = 5 }, { min_width = 100 } },
-          ["not"] = { kind = { "confirm", "confirm_sub", "return_prompt", "quickfix", "search_count" } },
+          ["not"] = {
+            kind = {
+              "confirm",
+              "confirm_sub",
+              "return_prompt",
+              "quickfix",
+              "search_count",
+            },
+          },
           blocking = false,
         },
         opts = { stop = false },
@@ -61,7 +76,15 @@ return {
         filter = {
           event = "msg_show",
           any = { { min_height = 5 }, { min_width = 100 } },
-          ["not"] = { kind = { "confirm", "confirm_sub", "return_prompt", "quickfix", "search_count" } },
+          ["not"] = {
+            kind = {
+              "confirm",
+              "confirm_sub",
+              "return_prompt",
+              "quickfix",
+              "search_count",
+            },
+          },
           blocking = true,
         },
         opts = { stop = false },
@@ -73,10 +96,17 @@ return {
     },
     views = {
       mini = { win_options = { winblend = 100 } },
-      popup = { border = { style = S.Border }, close = { keys = { "q", "<C-c>" } } },
+      popup = {
+        border = { style = S.Border },
+        close = { keys = { "q", "<C-c>" } },
+      },
       notify = { backend = "notify", replace = true, merge = true },
       messages = { view = "popup" },
-      split = { enter = true, win_options = { wrap = false }, close = { keys = { "q", "<C-c>" } } },
+      split = {
+        enter = true,
+        win_options = { wrap = false },
+        close = { keys = { "q", "<C-c>" } },
+      },
       vsplit = { enter = true },
       virtualtext = { format = { "    {message} 󰝤 " } },
     },

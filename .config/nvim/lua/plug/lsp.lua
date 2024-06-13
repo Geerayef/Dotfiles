@@ -32,7 +32,13 @@ return {
           completion = {
             completionItem = {
               snippetSupport = true,
-              resolveSupport = { properties = { "documentation", "detail", "additionalTextEdits" } },
+              resolveSupport = {
+                properties = {
+                  "documentation",
+                  "detail",
+                  "additionalTextEdits",
+                },
+              },
             },
           },
         },
@@ -47,7 +53,11 @@ return {
       local capabilities = vim.tbl_deep_extend(
         "force",
         {},
-        has_cmplsp and cmplsp.default_capabilities(vim.lsp.protocol.make_client_capabilities()) or {},
+        has_cmplsp
+            and cmplsp.default_capabilities(
+              vim.lsp.protocol.make_client_capabilities()
+            )
+          or {},
         opts.capabilities or {}
       )
 
@@ -57,9 +67,21 @@ return {
         capabilities = capabilities,
         settings = {
           Lua = {
-            completion = { enable = true, callSnippet = "Both", keywordSnippet = "Both", displayContext = 2 },
-            diagnostics = { enable = true, globals = { "vim", "jit" }, neededFileStatus = "Opened" },
-            runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
+            completion = {
+              enable = true,
+              callSnippet = "Both",
+              keywordSnippet = "Both",
+              displayContext = 2,
+            },
+            diagnostics = {
+              enable = true,
+              globals = { "vim", "jit" },
+              neededFileStatus = "Opened",
+            },
+            runtime = {
+              version = "LuaJIT",
+              path = vim.split(package.path, ";"),
+            },
             workspace = {
               library = {
                 vim.env.VIMRUNTIME,
@@ -75,7 +97,13 @@ return {
             },
             telemetry = { enable = false },
             hint = { enable = true, setType = true },
-            root_dir = { ".stylua.toml", "stylua.toml", "*.lua", ".git", "lua/" },
+            root_dir = {
+              ".stylua.toml",
+              "stylua.toml",
+              "*.lua",
+              ".git",
+              "lua/",
+            },
           },
         },
         cmd = { "lua-language-server" },
@@ -87,7 +115,14 @@ return {
         on_attach = lsp_attach,
         capabilities = capabilities,
         autostart = false,
-        filetypes = { "ocaml", "menhir", "ocamlinterface", "ocamllex", "reason", "dune" },
+        filetypes = {
+          "ocaml",
+          "menhir",
+          "ocamlinterface",
+          "ocamllex",
+          "reason",
+          "dune",
+        },
         root_dir = lspconfig.util.root_pattern(
           "*.ml",
           "*.mli",
@@ -109,7 +144,13 @@ return {
         on_attach = lsp_attach,
         capabilities = capabilities,
         filetypes = { "rust" },
-        root_dir = lspconfig.util.root_pattern("main.rs", "*.rs", "Cargo.toml", "rust-project.json", ".git"),
+        root_dir = lspconfig.util.root_pattern(
+          "main.rs",
+          "*.rs",
+          "Cargo.toml",
+          "rust-project.json",
+          ".git"
+        ),
         settings = {
           ["rust-analyzer"] = {
             imports = { prefix = "self", granularity = { group = "module" } },
@@ -126,7 +167,16 @@ return {
       lspconfig.clangd.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        filetypes = { "c", "h", "cpp", "chh", "objc", "objcpp", "cuda", "proto" },
+        filetypes = {
+          "c",
+          "h",
+          "cpp",
+          "chh",
+          "objc",
+          "objcpp",
+          "cuda",
+          "proto",
+        },
         root_dir = lspconfig.util.root_pattern(
           ".clangd",
           ".clang-tidy",
@@ -142,12 +192,18 @@ return {
 
       -- Markdown
       local capabilities_oxide = capabilities
-      capabilities_oxide.workspace = { didChangeWatchedFiles = { dynamicRegistration = true } }
+      capabilities_oxide.workspace =
+        { didChangeWatchedFiles = { dynamicRegistration = true } }
       lspconfig.markdown_oxide.setup({
         on_attach = lsp_attach,
         capabilities = capabilities_oxide,
         filetypes = { "markdown" },
-        root_dir = lspconfig.util.root_pattern(".git", ".obsidian", ".moxide.toml", "*.md"),
+        root_dir = lspconfig.util.root_pattern(
+          ".git",
+          ".obsidian",
+          ".moxide.toml",
+          "*.md"
+        ),
         cmd = { "markdown-oxide" },
         single_file_support = true,
       })
@@ -157,7 +213,13 @@ return {
         on_attach = lsp_attach,
         capabilities = capabilities,
         filetypes = { "python" },
-        root_dir = lspconfig.util.root_pattern("*.py", "__init__.py", ".git", "ruff.toml", "pyproject.toml"),
+        root_dir = lspconfig.util.root_pattern(
+          "*.py",
+          "__init__.py",
+          ".git",
+          "ruff.toml",
+          "pyproject.toml"
+        ),
         cmd = { "ruff-lsp" },
         single_file_support = true,
       })
@@ -165,7 +227,13 @@ return {
         on_attach = lsp_attach,
         capabilities = capabilities,
         filetypes = { "python" },
-        root_dir = lspconfig.util.root_pattern("*.py", "__init__.py", ".git", "ruff.toml", "pyproject.toml"),
+        root_dir = lspconfig.util.root_pattern(
+          "*.py",
+          "__init__.py",
+          ".git",
+          "ruff.toml",
+          "pyproject.toml"
+        ),
         settings = {
           pylsp = {
             plugins = {
@@ -232,12 +300,20 @@ return {
           yaml = {
             redhat = { telemetry = { enabled = false } },
             yamlVersion = 1.2,
-            format = { enable = true, singleQuote = false, bracketSpacing = true, printWidth = 96 },
+            format = {
+              enable = true,
+              singleQuote = false,
+              bracketSpacing = true,
+              printWidth = 96,
+            },
             validate = true,
             hover = true,
             completion = true,
             schemas = {},
-            schemaStore = { enable = true, url = "https://www.schemastore.org/api/json/catalog.json" },
+            schemaStore = {
+              enable = true,
+              url = "https://www.schemastore.org/api/json/catalog.json",
+            },
             editor = { tabSize = 2, formatOnType = true },
             disableDefaultProperties = true,
             suggest = { parentSkeletonSelectedFirst = true },
@@ -266,9 +342,25 @@ return {
       lspconfig.tsserver.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        init_options = { preferences = { disableSuggestions = true }, hostInfo = "neovim" },
-        filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-        root_dir = lspconfig.util.root_pattern("package.json", "node_modules", "jsconfig.json", "tsconfig.json", ".git"),
+        init_options = {
+          preferences = { disableSuggestions = true },
+          hostInfo = "neovim",
+        },
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "javascript.jsx",
+          "typescript",
+          "typescriptreact",
+          "typescript.tsx",
+        },
+        root_dir = lspconfig.util.root_pattern(
+          "package.json",
+          "node_modules",
+          "jsconfig.json",
+          "tsconfig.json",
+          ".git"
+        ),
         cmd = { "typescript-language-server", "--stdio" },
         single_file_support = true,
       })
@@ -277,8 +369,22 @@ return {
       lspconfig.biome.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        filetypes = { "javascript", "json", "jsonc", "typescript", "typescript.tsx", "astro", "svelte", "vue" },
-        root_dir = lspconfig.util.root_pattern(".git", "package.json", "biome.json", "biome.jsonc"),
+        filetypes = {
+          "javascript",
+          "json",
+          "jsonc",
+          "typescript",
+          "typescript.tsx",
+          "astro",
+          "svelte",
+          "vue",
+        },
+        root_dir = lspconfig.util.root_pattern(
+          ".git",
+          "package.json",
+          "biome.json",
+          "biome.jsonc"
+        ),
         cmd = { "biome", "lsp-proxy" },
         single_file_support = false,
       })
@@ -288,7 +394,12 @@ return {
         on_attach = lsp_attach,
         capabilities = capabilities,
         filetypes = { "svelte", "css", "html", "javascript", "typescript" },
-        root_dir = lspconfig.util.root_pattern("biome.json", "biome.jsonc", "svelte.config.js", ".git"),
+        root_dir = lspconfig.util.root_pattern(
+          "biome.json",
+          "biome.jsonc",
+          "svelte.config.js",
+          ".git"
+        ),
         single_file_support = true,
       })
     end,

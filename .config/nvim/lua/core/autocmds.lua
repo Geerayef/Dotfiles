@@ -3,7 +3,7 @@ local augroup = vim.api.nvim_create_augroup
 
 -- ~  Improve performance in large files
 
-F.mk_augroup("LargeFileSettings", {
+F.mk_autocmd("LargeFileSettings", {
   "BufReadPre",
   {
     desc = "Settings for handling large files.",
@@ -39,11 +39,18 @@ F.mk_augroup("LargeFileSettings", {
 -- ~  Highlight on yank
 
 local yankhl = augroup("YankHighlight", { clear = true })
-autocmd("TextYankPost", { callback = function() vim.highlight.on_yank() end, group = yankhl, pattern = "*" })
+autocmd(
+  "TextYankPost",
+  {
+    callback = function() vim.highlight.on_yank() end,
+    group = yankhl,
+    pattern = "*",
+  }
+)
 
 -- ~  Auto cd
 
-F.mk_augroup("AutoCWD", {
+F.mk_autocmd("AutoCWD", {
   { "BufWinEnter", "FileChangedShellPost" },
   {
     pattern = "*",
@@ -65,7 +72,9 @@ F.mk_augroup("AutoCWD", {
           local current_dir = vim.fn.getcwd(0)
           local target_dir = fs.proj_dir(info.file) or vim.fs.dirname(info.file)
           local stat = target_dir and vim.uv.fs_stat(target_dir)
-          if stat and stat.type == "directory" and current_dir ~= target_dir then pcall(vim.cmd.lcd, target_dir) end
+          if stat and stat.type == "directory" and current_dir ~= target_dir then
+            pcall(vim.cmd.lcd, target_dir)
+          end
         end)
       end)
     end,

@@ -4,20 +4,39 @@ return {
     version = "*",
     ft = "markdown",
     dependencies = {
-      { "lukas-reineke/headlines.nvim", config = { markdown = { fat_headlines = false } } },
+      {
+        "lukas-reineke/headlines.nvim",
+        config = { markdown = { fat_headlines = false } },
+      },
       { "henriklovhaug/Preview.nvim", cmd = "Preview", config = true },
     },
     opts = {
-      workspaces = { { name = "notes", path = "~/notes" }, { name = "LGR", path = "~/notes/LGR" } },
-      daily_notes = { folder = "~/notes/daily", date_format = "%d-%m-%Y", alias_format = "%B %-d, %Y", template = nil },
+      workspaces = {
+        { name = "notes", path = "~/notes" },
+        { name = "LGR", path = "~/notes/LGR" },
+      },
+      daily_notes = {
+        folder = "~/notes/daily",
+        date_format = "%d-%m-%Y",
+        alias_format = "%B %-d, %Y",
+        template = nil,
+      },
       -- `substitutions`: map for custom variables. `key`: variable, `value`: function.
-      templates = { folder = "~/notes/template", date_format = "%d-%m-%Y", time_format = "%H:%M", substitutions = {} },
+      templates = {
+        folder = "~/notes/template",
+        date_format = "%d-%m-%Y",
+        time_format = "%H:%M",
+        substitutions = {},
+      },
       completion = { nvim_cmp = true, min_chars = 2 },
       preferred_link_style = "markdown",
       disable_frontmatter = true,
       sort_by = "path",
       sort_reversed = false,
-      picker = { name = "telescope.nvim", mappings = { new = "<C-x>", insert_link = "<C-l>" } },
+      picker = {
+        name = "telescope.nvim",
+        mappings = { new = "<C-x>", insert_link = "<C-l>" },
+      },
       ui = {
         enable = true,
         update_debounce = 200,

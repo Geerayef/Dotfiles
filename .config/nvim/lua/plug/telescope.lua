@@ -16,13 +16,21 @@ return {
       local a = require("telescope.actions")
       telescope.setup({
         defaults = {
-          border = { prompt = { 1, 1, 1, 1 }, results = { 1, 1, 1, 1 }, preview = { 1, 1, 1, 1 } },
+          border = {
+            prompt = { 1, 1, 1, 1 },
+            results = { 1, 1, 1, 1 },
+            preview = { 1, 1, 1, 1 },
+          },
           borderchars = { prompt = border, results = border, preview = border },
           results_title = "",
           prompt_prefix = S.Icons.ui.angle_r_l .. " ",
           selection_caret = S.Icons.ui.triangle_s_r .. " ",
           mappings = {
-            i = { ["<C-c>"] = a.close, ["<C-j>"] = a.move_selection_next, ["<C-k>"] = a.move_selection_previous },
+            i = {
+              ["<C-c>"] = a.close,
+              ["<C-j>"] = a.move_selection_next,
+              ["<C-k>"] = a.move_selection_previous,
+            },
             n = { ["<C-c>"] = a.close },
           },
           sorting_strategy = "ascending",
@@ -37,8 +45,12 @@ return {
             "--column",
             "--trim",
           },
-          generic_sorter = function() return require("telescope").extensions.fzf.native_fzf_sorter end,
-          file_sorter = function() return require("telescope").extensions.fzf.native_fzf_sorter end,
+          generic_sorter = function()
+            return require("telescope").extensions.fzf.native_fzf_sorter
+          end,
+          file_sorter = function()
+            return require("telescope").extensions.fzf.native_fzf_sorter
+          end,
           layout_strategy = "vertical",
           layout_config = {
             height = 0.4,
@@ -46,14 +58,25 @@ return {
             prompt_position = "top",
             vertical = { preview_height = 0.0, height = 0.4, width = 0.4 },
             horizontal = {
-              preview_width = function(_, cols, _) return cols > 200 and math.floor(cols * 0.4) or math.floor(cols * 0.5) end,
+              preview_width = function(_, cols, _)
+                return cols > 200 and math.floor(cols * 0.4)
+                  or math.floor(cols * 0.5)
+              end,
             },
           },
         },
         pickers = {
           fd = {
             prompt_title = "Files",
-            find_command = { "fd", "-H", "-t", "f", "--strip-cwd-prefix=always", "--color=never", "--prune" },
+            find_command = {
+              "fd",
+              "-H",
+              "-t",
+              "f",
+              "--strip-cwd-prefix=always",
+              "--color=never",
+              "--prune",
+            },
           },
           grep_string = {
             preview_title = "",
@@ -82,17 +105,39 @@ return {
             borderchars = { preview = border },
             initial_mode = "normal",
           },
-          help_tags = { preview_title = "", theme = "ivy", borderchars = { preview = border } },
-          current_buffer_fuzzy_find = { prompt_title = "Search", layout_config = { width = 0.8 }, skip_empty_lines = true },
+          help_tags = {
+            preview_title = "",
+            theme = "ivy",
+            borderchars = { preview = border },
+          },
+          current_buffer_fuzzy_find = {
+            prompt_title = "Search",
+            layout_config = { width = 0.8 },
+            skip_empty_lines = true,
+          },
           live_grep = { prompt_title = "Grep", layout_config = { width = 0.8 } },
-          buffers = { initial_mode = "normal", sort_lastused = true, sort_mru = true, max_results = 10 },
+          buffers = {
+            initial_mode = "normal",
+            sort_lastused = true,
+            sort_mru = true,
+            max_results = 10,
+          },
           oldfiles = { prompt_title = "Old files" },
-          colorscheme = { preview_title = "", enable_preview = true, layout_strategy = "horizontal" },
+          colorscheme = {
+            preview_title = "",
+            enable_preview = true,
+            layout_strategy = "horizontal",
+          },
           keymaps = { layout_strategy = "horizontal" },
         },
         extensions = {
           ["ui-select"] = { initial_mode = "normal" },
-          fzf = { fuzzy = true, override_generic_sorter = true, override_file_sorter = true, case_mode = "smart_case" },
+          fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+          },
         },
       })
       telescope.load_extension("fzf")

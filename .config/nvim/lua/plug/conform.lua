@@ -5,7 +5,9 @@ return {
   keys = {
     {
       "<leader>F",
-      function() require("conform").format({ async = true, lsp_fallback = true }) end,
+      function()
+        require("conform").format({ async = true, lsp_fallback = true })
+      end,
       mode = "n",
       desc = "[F]ormat current buffer",
     },
@@ -34,9 +36,26 @@ return {
     format_on_save = { timeout_ms = 500, lsp_fallback = true },
     formatters = {
       beautysh = { prepend_args = { "-i", "2" } },
-      shfmt = { prepend_args = { "--simplify", "--indent", "2", "--binary-next-line", "--case-indent" } },
-      biome = { inherit = false, command = "biome", stdin = false, args = { "format", "--write", "$FILENAME" } },
-      prettier = { command = "prettier", stdin = true, args = { "--stdin-filepath", "$FILENAME" } },
+      shfmt = {
+        prepend_args = {
+          "--simplify",
+          "--indent",
+          "2",
+          "--binary-next-line",
+          "--case-indent",
+        },
+      },
+      biome = {
+        inherit = false,
+        command = "biome",
+        stdin = false,
+        args = { "format", "--write", "$FILENAME" },
+      },
+      prettier = {
+        command = "prettier",
+        stdin = true,
+        args = { "--stdin-filepath", "$FILENAME" },
+      },
     },
   },
 }

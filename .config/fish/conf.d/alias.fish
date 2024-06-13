@@ -22,9 +22,6 @@ else
     alias ll="ls -la --color=always --group-directories-first"
 end
 
-alias ldx="ls -al /usr/share/xsessions"
-alias ldw="ls -al /usr/share/wayland-sessions"
-
 # ~  Apps
 
 alias v="nvim"

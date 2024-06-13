@@ -13,6 +13,11 @@ return {
     vim.g["tex_indent_brace"] = 0 -- turn off brace indent
     vim.g["vimtex_syntax_enabled"] = 1 -- Syntax highlighting
     vim.g["vimtex_context_pdf_viewer"] = "zathura" -- external PDF viewer run from vimtex menu command
-    vim.g["vimtex_log_ignore"] = { "Underfull", "Overfull", "specifier changed to", "Token not allowed in a PDF string" }
+    vim.g["vimtex_log_ignore"] = {
+      "Underfull",
+      "Overfull",
+      "specifier changed to",
+      "Token not allowed in a PDF string",
+    }
   end,
 }

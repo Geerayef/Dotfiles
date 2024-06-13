@@ -4,15 +4,25 @@ return {
   { "tpope/vim-sleuth", event = "BufEnter" },
   { "tpope/vim-surround", event = "BufReadPost" },
   { "mfussenegger/nvim-jdtls", ft = "java" },
-  { "numToStr/Comment.nvim", event = "BufReadPost", opts = { extra = { above = "gcO", below = "gco", eol = "gcA" } } },
+  {
+    "numToStr/Comment.nvim",
+    event = "BufReadPost",
+    opts = { extra = { above = "gcO", below = "gco", eol = "gcA" } },
+  },
   -- { "Pocco81/true-zen.nvim", lazy = true, cmd = { "TZFocus", "TZNarrow", "TZAtaraxis", "TZMinimalist" } },
   -- { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle", opts = { ["*"] = { RRGGBBAA = true } } },
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = function()
-      require("cmp").event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
-      return { check_ts = true, ts_config = { lua = { "string" }, java = false } }
+      require("cmp").event:on(
+        "confirm_done",
+        require("nvim-autopairs.completion.cmp").on_confirm_done()
+      )
+      return {
+        check_ts = true,
+        ts_config = { lua = { "string" }, java = false },
+      }
     end,
   },
   {

@@ -14,13 +14,17 @@ return {
         section_separators = "",
         always_divide_middle = true,
         theme = kanagawaline,
-        globalstatus = true,
+        globalstatus = false,
         disabled_filetypes = { statusline = {} },
       },
       sections = {
         lualine_a = {},
         lualine_b = {
-          { function() return "  " end, color = { bg = "Normal" }, padding = { left = 2, right = 2 } },
+          {
+            function() return "  " end,
+            color = { bg = "Normal" },
+            padding = { left = 2, right = 2 },
+          },
           {
             "mode",
             fmt = function() return F.VimMode(false) end,
@@ -29,13 +33,22 @@ return {
           },
         },
         lualine_c = {
-          { function() return "|" end, color = { fg = palette.fujiGray }, padding = { left = 1 } },
+          {
+            function() return "|" end,
+            color = { fg = palette.fujiGray },
+            padding = { left = 1 },
+          },
           { "filetype", icon_only = true, padding = { left = 1, right = 0 } },
           {
             "filename",
             cond = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
             path = 0,
-            symbols = { modified = icon.ui.dot_l, readonly = icon.ui.lock, unnamed = "[Scratch]", newfile = "[New]" },
+            symbols = {
+              modified = icon.ui.dot_l,
+              readonly = icon.ui.lock,
+              unnamed = "[Scratch]",
+              newfile = "[New]",
+            },
           },
           { function() return "%=" end },
         },
@@ -49,9 +62,19 @@ return {
             end,
             source = function()
               local g = vim.b.gitsigns_status_dict
-              if g then return { added = g.added, modified = g.changed, removed = g.removed } end
+              if g then
+                return {
+                  added = g.added,
+                  modified = g.changed,
+                  removed = g.removed,
+                }
+              end
             end,
-            symbols = { added = icon.git.added, modified = icon.git.modified_simple, removed = icon.git.removed },
+            symbols = {
+              added = icon.git.added,
+              modified = icon.git.modified_simple,
+              removed = icon.git.removed,
+            },
             colored = true,
             diff_color = {
               added = { fg = theme.vcs.added },
@@ -75,7 +98,11 @@ return {
               hint = { fg = theme.diag.hint },
             },
           },
-          { "branch", icon = icon.git.branch, color = { fg = palette.dragonGreen } },
+          {
+            "branch",
+            icon = icon.git.branch,
+            color = { fg = palette.dragonGreen },
+          },
           { function() return "  " end, padding = { left = 2, right = 2 } },
         },
         lualine_y = {},

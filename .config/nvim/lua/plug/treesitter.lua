@@ -43,7 +43,11 @@ return {
       matchup = { enable = true },
       highlight = {
         enable = true,
-        disable = function(ft, buf) return F.IsBigBuff(buf) or ft == "latex" or vim.fn.win_gettype() == "command" end,
+        disable = function(ft, buf)
+          return F.IsBigBuff(buf)
+            or ft == "latex"
+            or vim.fn.win_gettype() == "command"
+        end,
         additional_vim_regex_highlighting = false,
       },
       indent = { enable = true, disable = { "python" } },
@@ -58,8 +62,16 @@ return {
           goto_previous_start = to.move.goto_previous_start,
           goto_previous_end = to.move.goto_previous_end,
         },
-        swap = { enable = true, swap_next = to.swap.next, swap_previous = to.swap.previous },
-        lsp_interop = { enable = true, border = border, peek_definition_code = to.lsp_interop },
+        swap = {
+          enable = true,
+          swap_next = to.swap.next,
+          swap_previous = to.swap.previous,
+        },
+        lsp_interop = {
+          enable = true,
+          border = border,
+          peek_definition_code = to.lsp_interop,
+        },
       },
     }
   end,

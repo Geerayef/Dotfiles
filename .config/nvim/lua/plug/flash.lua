@@ -1,9 +1,24 @@
 return {
   "folke/flash.nvim",
   keys = {
-    { "<M-j>", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash [j]ump" },
-    { "<M-t>", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash [T]reesitter" },
-    { "<C-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    {
+      "<M-j>",
+      mode = { "n", "x", "o" },
+      function() require("flash").jump() end,
+      desc = "Flash [j]ump",
+    },
+    {
+      "<M-t>",
+      mode = { "n", "x", "o" },
+      function() require("flash").treesitter() end,
+      desc = "Flash [T]reesitter",
+    },
+    {
+      "<C-s>",
+      mode = { "c" },
+      function() require("flash").toggle() end,
+      desc = "Toggle Flash Search",
+    },
   },
   opts = {
     labels = "asdfghjklqwertyuiopzxcvbnm",
@@ -49,7 +64,12 @@ return {
       backdrop = true,
       matches = true,
       priority = 5000,
-      groups = { match = "FlashMatch", current = "FlashCurrent", backdrop = "FlashBackdrop", label = "FlashLabel" },
+      groups = {
+        match = "FlashMatch",
+        current = "FlashCurrent",
+        backdrop = "FlashBackdrop",
+        label = "FlashLabel",
+      },
     },
     action = nil,
     pattern = "",
@@ -68,7 +88,8 @@ return {
       char = {
         enabled = true,
         config = function(opts)
-          opts.autohide = opts.autohide or (vim.fn.mode(true):find("no") and vim.v.operator == "y")
+          opts.autohide = opts.autohide
+            or (vim.fn.mode(true):find("no") and vim.v.operator == "y")
           opts.jump_labels = opts.jump_labels
             and vim.v.count == 0
             and vim.fn.reg_executing() == ""
@@ -83,7 +104,12 @@ return {
         -- e.g., { [";"] = "L", [","] = H }
         keys = { "f", "F", "t", "T", ";", "," },
         char_actions = function(motion)
-          return { [";"] = "next", [","] = "prev", [motion:lower()] = "next", [motion:upper()] = "prev" }
+          return {
+            [";"] = "next",
+            [","] = "prev",
+            [motion:lower()] = "next",
+            [motion:upper()] = "prev",
+          }
         end,
         search = { wrap = false },
         highlight = { backdrop = true },
@@ -107,7 +133,14 @@ return {
     prompt = {
       enabled = true,
       prefix = { { "⚡", "FlashPromptIcon" } },
-      win_config = { relative = "editor", width = 1, height = 1, row = -1, col = 0, zindex = 1000 },
+      win_config = {
+        relative = "editor",
+        width = 1,
+        height = 1,
+        row = -1,
+        col = 0,
+        zindex = 1000,
+      },
     },
     remote_op = { restore = false, motion = false },
   },

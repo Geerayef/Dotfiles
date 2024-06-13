@@ -30,7 +30,12 @@ return {
           TelescopePreviewBorder = { fg = t.ui.fg, bg = t.ui.float.bg },
         }
       end,
-      colors = { theme = { all = { ui = { bg_gutter = "none" } }, wave = { ui = { bg = "#0F1419" } } } },
+      colors = {
+        theme = {
+          all = { ui = { bg_gutter = "none" } },
+          wave = { ui = { bg = "#0F1419" } },
+        },
+      },
       theme = "dragon",
     },
   },
@@ -50,7 +55,16 @@ return {
         functions = { italic = true, bold = true },
         types = { italic = true, bold = true },
       },
-      plugins = { "flash", "gitsigns", "indent-blankline", "neogit", "noice", "nvim-notify", "nvim-cmp", "nvim-web-devicons" },
+      plugins = {
+        "flash",
+        "gitsigns",
+        "indent-blankline",
+        "neogit",
+        "noice",
+        "nvim-notify",
+        "nvim-cmp",
+        "nvim-web-devicons",
+      },
       high_visibility = { lighter = true, darker = true },
       lualine_style = "stealth",
       custom_colors = nil,
