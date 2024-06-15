@@ -31,7 +31,7 @@ function M.setup(theme)
   kanagawaline.inactive = {
     a = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
     b = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim, gui = "bold" },
-    c = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+    c = { bg = "Normal", fg = theme.ui.fg_dim },
   }
 
   if vim.g.kanagawa_lualine_bold then

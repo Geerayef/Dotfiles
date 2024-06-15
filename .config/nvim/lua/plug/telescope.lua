@@ -53,11 +53,18 @@ return {
           end,
           layout_strategy = "vertical",
           layout_config = {
-            height = 0.4,
-            width = 0.8,
             prompt_position = "top",
-            vertical = { preview_height = 0.0, height = 0.4, width = 0.4 },
+            vertical = {
+              height = 0.4,
+              width = function(_, cols, _)
+                return cols > 100 and math.floor(cols * 0.4)
+                  or math.floor(cols * 0.8)
+              end,
+              preview_height = 0.0,
+            },
             horizontal = {
+              height = 0.4,
+              width = 0.8,
               preview_width = function(_, cols, _)
                 return cols > 200 and math.floor(cols * 0.4)
                   or math.floor(cols * 0.5)

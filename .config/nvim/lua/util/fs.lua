@@ -1,78 +1,46 @@
 local M = {}
 
-M.root_patterns = {
-  -- Common directories
-  ".git/",
-  -- "src/",
-  -- "bin/",
-  -- "lib/",
-  -- "build/",
-  -- "out/",
-  -- "test/",
-  -- "scripts/",
-  -- "assets/",
-  -- Lua
-  "lua/",
-  "init.lua",
-  "stylua.toml",
-  "lazy-lock.json",
-  -- OCaml
-  "dune",
-  ".ocamlformat",
-  ".ocp-indent",
-  "dune-project",
-  "mantle.opam",
-  -- Make
-  "Makefile",
-  "makefile",
-  "MAKEFILE",
-  "README.md",
-  "README.org",
-  "README.txt",
-  "README.pdf",
-  ".editorconfig",
-  ".gitignore",
-}
-
--- TODO: Use quick sort.
--- ---Sort candidates by proximity to the path.
--- ---@param path string? # File/Directory path
--- ---@param candidates string[]? # List of paths
--- ---@return string[]? nil # Sorted list of paths | nil if invalid path
--- local function sort_proximity(path, candidates)
---   if not path or path == "" then return nil end
---   if not candidates or #candidates == 0 then return nil end
---   for i, root in ipairs(candidates) do
---     local dir_path = vim.uv.fs_realpath(root)
---   end
--- end
-
----Compute root directory.
----@param path string?
----@param patterns string[]? # Root patterns
----@return string? nil # If not found
-function M.proj_dir(path, patterns)
-  if not path or path == "" then return nil end
-  patterns = patterns or M.root_patterns
-  local stat = vim.uv.fs_stat(path)
-  if not stat then return end
-  local dir_path = stat.type == "directory" and path or vim.fs.dirname(path)
-  -- TODO: Select closest root instead of first-matched root.
-  for _, pattern in ipairs(patterns) do
-    local root = vim.fs.find(pattern, {
-      path = dir_path,
+---Compute the path of file's root directory.
+---@param file string? # File within the current window
+---@param root_markers string[]? # Files or directories marking the root
+---@return string? # Absolute path of the root directory
+function M.root(file, root_markers)
+  if not file or file == "" or not vim.uv.fs_stat(file) then return nil end
+  root_markers = root_markers or S.root_markers
+  local closest = ""
+  local closest_proximity = 24
+  local proximity = 0
+  local proximity_threshold = 2
+  local root = ""
+  local root_depth = 0
+  local _, file_depth = file:gsub("/", "")
+  local mark_path = ""
+  for _, mark in ipairs(root_markers) do
+    mark_path = vim.fs.find(mark, {
+      path = file,
       upward = true,
-      type = pattern:match("/$") and "directory" or "file",
+      type = mark:match("/$") and "directory" or "file",
     })[1]
-    if root and vim.uv.fs_stat(root) then
-      local dir_parent = vim.fs.dirname(root)
-      return dir_parent and vim.uv.fs_realpath(dir_parent) --[[@as string]]
+    if mark_path ~= "" or mark_path ~= nil then
+      root = vim.fs.dirname(mark_path)
+      if root ~= nil and root ~= "" then
+        root = vim.uv.fs_realpath(root) --[[@as string]]
+        _, root_depth = root:gsub("/", "")
+        proximity = file_depth - root_depth
+        if proximity <= closest_proximity then
+          closest_proximity = proximity
+          closest = root
+          if proximity <= proximity_threshold then return closest end
+        end
+      end
     end
   end
+  if closest == "" or closest == nil then return nil end
+  return closest
 end
 
 ---Read file contents.
----@param path string
+---@param path string # File path
 ---@return string?
 function M.read_file(path)
   local file = io.open(path, "r")
@@ -83,12 +51,13 @@ function M.read_file(path)
 end
 
 ---Write string into file.
----@param path string
+---@param path string # File path
+---@param content string
 ---@return boolean success
-function M.write_file(path, str)
+function M.write_file(path, content)
   local file = io.open(path, "w")
   if not file then return false end
-  file:write(str)
+  file:write(content)
   file:close()
   return true
 end

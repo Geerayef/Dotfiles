@@ -1,54 +1,45 @@
 local M = {}
 
----Print git command error.
----@param cmd string[] # Shell command
+---Print error.
+---@param cmd string[] # Git command
 ---@param msg string # Error message
----@param lev number? # Log level to use for errors (Default: WARN)
+---@param lev number? # Error log level (Default: WARN)
 ---@return nil
 function M.error(cmd, msg, lev)
   lev = lev or vim.log.levels.WARN
-  vim.notify("[git] failed to execute git command: " .. table.concat(cmd, " ") .. "\n" .. msg, lev)
+  vim.notify(
+    "~~~~~ [git] Failed to execute: " .. table.concat(cmd, " ") .. "\n" .. msg,
+    lev
+  )
 end
 
----Execute git command in given directory.
----@param path string
----@param cmd string[] # Git command to execute
----@param error_lev number? # Log level to use for errors (nil | false : hide errors)
----@reurn { success: boolean, output: string }
-function M.dir_execute(path, cmd, error_lev)
+---Execute a Git command in given directory.
+---@param path string # Git repo path
+---@param cmd string[] # Git command
+---@param lev number? # Error log level (vim.log.levels | nil | false: hide errors)
+---@return { success: boolean, output: string }
+function M.execute_in(path, cmd, lev)
   local shell_args = { "git", "-C", path, unpack(cmd) }
   local shell_out = vim.fn.system(shell_args)
   if vim.v.shell_error ~= 0 then
-    if error_lev then M.error(shell_args, shell_out, error_lev) end
-    return {
-      success = false,
-      output = shell_out,
-    }
+    if lev then M.error(shell_args, shell_out, lev) end
+    return { success = false, output = shell_out }
   end
-  return {
-    success = true,
-    output = shell_out,
-  }
+  return { success = true, output = shell_out }
 end
 
----Execute git command in current directory.
----@param cmd string[] # Git command to execute
----@param error_lev number? # Log level to use for errors (nil | false : hide errors)
+---Execute a Git command in current directory.
+---@param cmd string[] # Git command
+---@param lev number? # Error log level (vim.log.levels | nil | false: hide errors)
 ---@return { success: boolean, output: string }
-function M.execute(cmd, error_lev)
+function M.execute(cmd, lev)
   local shell_args = { "git", unpack(cmd) }
   local shell_out = vim.fn.system(shell_args)
   if vim.v.shell_error ~= 0 then
-    if error_lev then M.error(shell_args, shell_out, error_lev) end
-    return {
-      success = false,
-      output = shell_out,
-    }
+    if lev then M.error(shell_args, shell_out, lev) end
+    return { success = false, output = shell_out }
   end
-  return {
-    success = true,
-    output = shell_out,
-  }
+  return { success = true, output = shell_out }
 end
 
 vim.api.nvim_create_autocmd("FileChangedShellPost", {
@@ -58,21 +49,23 @@ vim.api.nvim_create_autocmd("FileChangedShellPost", {
 
 ---[async] Get current branch name.
 ---@param buf integer? # Buffer handle (Default: current buffer)
----@return string branch # Git branch name
+---@return string # Git branch name
 function M.branch(buf)
   buf = buf or vim.api.nvim_get_current_buf()
   if not vim.api.nvim_buf_is_valid(buf) then return "" end
-
-  local branch = vim.b[buf].git_branch
-  if branch then return branch end
-
+  if vim.b[buf].git_branch then return vim.b[buf].git_branch end
   vim.b[buf].git_branch = ""
   local dir = vim.fs.dirname(vim.api.nvim_buf_get_name(buf))
   if dir then
-    pcall(vim.system, { "git", "-C", dir, "rev-parse", "--abbrev-ref", "HEAD" }, { stderr = false }, function(err)
-      local buf_branch = err.stdout:gsub("\n.*", "")
-      pcall(vim.api.nvim_buf_set_var, buf, "git_branch", buf_branch)
-    end)
+    pcall(
+      vim.system,
+      { "git", "-C", dir, "rev-parse", "--abbrev-ref", "HEAD" },
+      { stderr = false },
+      function(err)
+        local branch = err.stdout:gsub("\n.*", "")
+        pcall(vim.api.nvim_buf_set_var, buf, "git_branch", branch)
+      end
+    )
   end
   return vim.b[buf].git_branch
 end
@@ -84,13 +77,11 @@ vim.api.nvim_create_autocmd({ "BufWrite", "FileChangedShellPost" }, {
 
 ---[async] Get diff stats for current buffer.
 ---@param buf integer? # Buffer handle (Default: current buffer)
----@return {added: integer?, removed: integer?, changed: integer?} diff stats
+---@return {added: integer?, removed: integer?, changed: integer?} # Diff stats
 function M.diffstat(buf)
   buf = buf or vim.api.nvim_get_current_buf()
   if not vim.api.nvim_buf_is_valid(buf) then return {} end
-
   if vim.b[buf].git_diffstat then return vim.b[buf].git_diffstat end
-
   vim.b[buf].git_diffstat = {}
   local path = vim.fs.normalize(vim.api.nvim_buf_get_name(buf))
   local dir = vim.fs.dirname(path)
@@ -106,11 +97,12 @@ function M.diffstat(buf)
       "--no-ext-diff",
       "--",
       path,
-    }, { stderr = false }, function(err)
+    }, { stderr = false }, function(out)
       local stat = { added = 0, removed = 0, changed = 0 }
-      for _, line in ipairs(vim.split(err.stdout, "\n")) do
+      for _, line in ipairs(vim.split(out.stdout, "\n")) do
         if line:find("^@@ ") then
-          local num_lines_old, num_lines_new = line:match("^@@ %-%d+,?(%d*) %+%d+,?(%d*)")
+          local num_lines_old, num_lines_new =
+            line:match("^@@ %-%d+,?(%d*) %+%d+,?(%d*)")
           num_lines_old = tonumber(num_lines_old) or 1
           num_lines_new = tonumber(num_lines_new) or 1
           local num_lines_changed = math.min(num_lines_old, num_lines_new)

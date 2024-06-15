@@ -3,16 +3,15 @@ local M = {}
 ---Wrapper for `nvim_get_hl()`.
 ---Does not create a highlight group if it doesn't exist.
 ---(Default: `opts.create = false`).
----Option `opts.winhl_link`: Get highlight attributes without effect of `winhl`
+---`opts.winhl_link`: Get highlight attributes without effect of `winhl`
 ---@param ns_id integer
----@param opts table{ name: string?, id: integer?, link: boolean? }
+---@param opts { name: string?, id: integer?, link: boolean?, create: boolean?, [any]: any }
 ---@return vim.api.keyset.hl_info # Highlight attributes
 function M.get(ns_id, opts)
   local no_winhl_link = opts.winhl_link == false
   opts.winhl_link = nil
   opts.create = opts.create or false
   local attr = vim.api.nvim_get_hl(ns_id, opts)
-  -- We want to get true highlight attribute not affected by winhl
   if no_winhl_link then
     while attr.link do
       opts.name = attr.link
@@ -24,16 +23,16 @@ end
 
 ---Wrapper for `nvim_buf_add_highlight()`.
 ---Does not create a cleared highlight group if it doesn't exist.
----@param buffer integer # Buffer handle
+---@param buf integer # Buffer handle
 ---@param ns_id integer # Namespace to use (-1: ungrouped highlight)
 ---@param hl_group string # Highlight group name
----@param line integer # Line to highlight (zero-indexed)
+---@param line integer # 0-indexed line number
 ---@param col_start integer # Start of (byte-indexed) column range to highlight
 ---@param col_end integer # End of (byte-indexed) column range to highlight (-1: highlight to the end of line)
 ---@return nil
-function M.buf_add_hl(buffer, ns_id, hl_group, line, col_start, col_end)
+function M.buf_add(buf, ns_id, hl_group, line, col_start, col_end)
   if vim.fn.hlexists(hl_group) == 0 then return end
-  vim.api.nvim_buf_add_highlight(buffer, ns_id, hl_group, line, col_start, col_end)
+  vim.api.nvim_buf_add_highlight(buf, ns_id, hl_group, line, col_start, col_end)
 end
 
 ---Highlight text in buffer, clear previous highlight if any exists.
@@ -46,9 +45,11 @@ function M.range_single(buf, hlgroup, range)
   vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
   if range then
     for linenr = range.start.line, range["end"].line do
-      local start_col = linenr == range.start.line and range.start.character or 0
-      local end_col = linenr == range["end"].line and range["end"].character or -1
-      M.buf_add_hl(buf, ns, hlgroup, linenr, start_col, end_col)
+      local start_col = linenr == range.start.line and range.start.character
+        or 0
+      local end_col = linenr == range["end"].line and range["end"].character
+        or -1
+      M.buf_add(buf, ns, hlgroup, linenr, start_col, end_col)
     end
   end
 end
@@ -56,11 +57,11 @@ end
 ---Highlight a line in buffer, clear previous highlight if any exists.
 ---@param buf integer
 ---@param hlgroup string
----@param linenr integer? # 1-indexed line number
-function M.line_single(buf, hlgroup, linenr)
-  M.range_single(buf, hlgroup, linenr and {
-    start = { line = linenr - 1, character = 0 },
-    ["end"] = { line = linenr - 1, character = -1 },
+---@param line integer? # 1-indexed line number
+function M.line_single(buf, hlgroup, line)
+  M.range_single(buf, hlgroup, line and {
+    start = { line = line - 1, character = 0 },
+    ["end"] = { line = line - 1, character = -1 },
   })
 end
 
@@ -94,14 +95,18 @@ function M.normalize_fg_or_bg(attr_type, fbg, default)
   if not fbg then return default end
   local data_type = type(fbg)
   if data_type == "number" then
-    if attr_type:match("^cterm") then return fbg >= 0 and fbg <= 255 and fbg or default end
+    if attr_type:match("^cterm") then
+      return fbg >= 0 and fbg <= 255 and fbg or default
+    end
     return fbg
   end
   if data_type == "string" then
-    if vim.fn.hlexists(fbg) == 1 then return M.get(0, {
-      name = fbg,
-      winhl_link = false,
-    })[attr_type] end
+    if vim.fn.hlexists(fbg) == 1 then
+      return M.get(0, {
+        name = fbg,
+        winhl_link = false,
+      })[attr_type]
+    end
     if fbg:match("^#%x%x%x%x%x%x$") then
       if attr_type:match("^cterm") then return default end
       return fbg
@@ -145,14 +150,16 @@ end
 
 ---Wrapper for `nvim_set_hl()`.
 ---Normalize highlight attributes before setting.
----@param ns_id integer # Namespace id
+---@param ns_id integer
 ---@param name string
 ---@param attr vim.api.keyset.highlight # Highlight attributes
 ---@return nil
-function M.set(ns_id, name, attr) return vim.api.nvim_set_hl(ns_id, name, M.normalize(attr)) end
+function M.set(ns_id, name, attr)
+  return vim.api.nvim_set_hl(ns_id, name, M.normalize(attr))
+end
 
 ---Set default highlight attributes, normalize highlight attributes before setting.
----@param ns_id integer # Namespace id
+---@param ns_id integer
 ---@param name string
 ---@param attr vim.api.keyset.highlight # Highlight attributes
 ---@return nil
@@ -186,7 +193,7 @@ local todec = {
   ["F"] = 15,
 }
 
----Convert an integer from hexadecimal to decimal.
+---Convert an hexadecimal to decimal.
 ---@param hex string
 ---@return integer dec
 function M.hex2dec(hex)
@@ -199,12 +206,13 @@ function M.hex2dec(hex)
   return dec
 end
 
----Convert an integer from decimal to hexadecimal.
+---Convert an decimal to hexadecimal.
 ---@param int integer
 ---@param n_digits integer? # Number of digits used for the hex code
 ---@return string hex
 function M.dec2hex(int, n_digits)
-  return not n_digits and string.format("%x", int) or string.format("%0" .. n_digits .. "x", int)
+  return not n_digits and string.format("%x", int)
+    or string.format("%0" .. n_digits .. "x", int)
 end
 
 ---Convert a hex color to rgb color.
@@ -269,8 +277,12 @@ end
 function M.blend(h1, h2, alpha)
   h1 = type(h1) == "table" and h1 or M.get(0, { name = h1, winhl_link = false })
   h2 = type(h2) == "table" and h2 or M.get(0, { name = h2, winhl_link = false })
-  local fg = h1.fg and h2.fg and M.cblend(h1.fg, h2.fg, alpha).dec or h1.fg or h2.fg
-  local bg = h1.bg and h2.bg and M.cblend(h1.bg, h2.bg, alpha).dec or h1.bg or h2.bg
+  local fg = h1.fg and h2.fg and M.cblend(h1.fg, h2.fg, alpha).dec
+    or h1.fg
+    or h2.fg
+  local bg = h1.bg and h2.bg and M.cblend(h1.bg, h2.bg, alpha).dec
+    or h1.bg
+    or h2.bg
   return vim.tbl_deep_extend("force", h1, h2, { fg = fg, bg = bg })
 end
 

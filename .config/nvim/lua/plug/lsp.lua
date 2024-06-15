@@ -114,7 +114,6 @@ return {
       lspconfig.ocamllsp.setup({
         on_attach = lsp_attach,
         capabilities = capabilities,
-        autostart = false,
         filetypes = {
           "ocaml",
           "menhir",

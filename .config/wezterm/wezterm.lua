@@ -6,12 +6,15 @@ local ayu = require("ayu")
 local C = {}
 if W.config_builder then C = W.config_builder() end
 
--- ~ -------------------------------------------------------------------------------- ~ --
+-- ~ ---------------------------------------------------------------------- ~ --
 
 -- ~  Globals
 
 if G.process_icons == nil then
   G.process_icons = {
+    ["opam"] = nf.seti_ocaml,
+    ["dune"] = nf.seti_ocaml,
+    ["ocamlc"] = nf.seti_ocaml,
     ["cargo"] = nf.dev_rust,
     ["lua"] = nf.seti_lua,
     ["fish"] = nf.fa_terminal,
@@ -19,18 +22,15 @@ if G.process_icons == nil then
     ["bash"] = nf.cod_terminal_bash,
     ["vim"] = nf.dev_vim,
     ["nvim"] = nf.linux_neovim,
-    ["docker"] = nf.linux_docker,
-    ["docker-compose"] = nf.linux_docker,
     ["btop"] = nf.md_chart_donut_variant,
     ["git"] = nf.dev_git,
     ["gh"] = nf.dev_github_badge,
-    ["wget"] = nf.md_arrow_down_box,
-    ["curl"] = nf.md_flattr,
-    ["node"] = nf.dev_nodejs_small,
     ["sudo"] = nf.fa_hashtag,
   }
 end
-if G.font_dirs == nil then G.font_dirs = { "/usr/share/fonts/TTF/", "/usr/share/fonts/OTF/" } end
+if G.font_dirs == nil then
+  G.font_dirs = { "/usr/share/fonts/TTF/", "/usr/share/fonts/OTF/" }
+end
 if G.harf == nil then G.harf = {} end
 if G.harf.fira == nil then
   G.harf.fira = {
@@ -52,25 +52,36 @@ if G.harf.fira == nil then
     "ss09",
   }
 end
-if G.harf.io == nil then G.harf.io = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" } end
-if G.harf.jet == nil then G.harf.jet = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" } end
+if G.harf.io == nil then
+  G.harf.io =
+    { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" }
+end
+if G.harf.jet == nil then
+  G.harf.jet =
+    { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
+end
 
--- ~ -------------------------------------------------------------------------------- ~ --
+-- ~ ---------------------------------------------------------------------- ~ --
 
 -- ~  Functions
 
-local function map(key, action) return { key = key, mods = "LEADER", action = action } end
+local function map(key, action)
+  return { key = key, mods = "LEADER", action = action }
+end
 
 local function get_process(tab)
   local process = tab.active_pane.foreground_process_name:match("([^/\\]+)$")
   return G.process_icons[process] or string.format("%s", process)
 end
 
--- ~ -------------------------------------------------------------------------------- ~ --
+-- ~ ---------------------------------------------------------------------- ~ --
 
 -- ~  Events
 
-W.on("format-tab-title", function(tab) return " " .. get_process(tab) .. " " end)
+W.on(
+  "format-tab-title",
+  function(tab) return " " .. get_process(tab) .. " " end
+)
 
 W.on("update-status", function(window, _)
   local stat_color = ayu.indexed[16]
@@ -88,7 +99,7 @@ W.on("update-status", function(window, _)
     { Foreground = { Color = stat_color } },
     { Text = "    " },
     { Text = nf.oct_table .. " " .. stat },
-    { Text = " |" },
+    { Text = " | " },
     "ResetAttributes",
   }))
   window:set_right_status(W.format({
@@ -101,13 +112,11 @@ W.on("update-status", function(window, _)
   }))
 end)
 
--- ~ -------------------------------------------------------------------------------- ~ --
+-- ~ ---------------------------------------------------------------------- ~ --
 
 -- Bar
-C.enable_tab_bar = true
 C.tab_bar_at_bottom = true
 C.use_fancy_tab_bar = false
-C.hide_tab_bar_if_only_one_tab = false
 C.show_new_tab_button_in_tab_bar = false
 C.status_update_interval = 1000
 
@@ -142,10 +151,6 @@ C.colors = {
 
 -- Font
 C.unicode_version = 14
-C.bold_brightens_ansi_colors = true
-C.custom_block_glyphs = true
-C.anti_alias_custom_block_glyphs = true
-C.line_height = 1
 C.font_size = 16
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({

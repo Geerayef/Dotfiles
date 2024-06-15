@@ -9,6 +9,7 @@
 -- vim.cmd({ cmd = "helptags", args = { merlin_doc } })
 
 -- set rtp^="/home/tibsi/.opam/default/share/ocp-indent/vim"
-local ocp_indent_path = vim.fn.substitute(vim.fn.system("opam var ocp-indent:share"), "\n$", "", "")
+local ocp_indent_path =
+  vim.fn.substitute(vim.fn.system("opam var ocp-indent:share"), "\n$", "", "")
 ocp_indent_path = ocp_indent_path .. "/vim"
 vim.opt.rtp:append(ocp_indent_path)

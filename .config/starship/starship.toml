@@ -54,9 +54,9 @@ format = "[$duration]($style) "
 style = "#A6E3A1"
 
 [ocaml]
-format = '[$symbol($switch_indicator$switch_name): ($version)]($style)'
+format = '[$symbol ($switch_indicator$switch_name): ($version)]($style)'
 version_format = "v${major}.${minor}"
-symbol = "🐪 "
+symbol = ""
 global_switch_indicator = ""
 local_switch_indicator = "*"
 detect_extensions = ["opam", "ml", "mli", "re", "rei", "dune"]

@@ -15,15 +15,14 @@ return {
         always_divide_middle = true,
         theme = kanagawaline,
         globalstatus = false,
-        disabled_filetypes = { statusline = {} },
       },
       sections = {
         lualine_a = {},
         lualine_b = {
           {
-            function() return "  " end,
+            function() return "      " end,
             color = { bg = "Normal" },
-            padding = { left = 2, right = 2 },
+            padding = { left = 0, right = 0 },
           },
           {
             "mode",
@@ -38,7 +37,6 @@ return {
             color = { fg = palette.fujiGray },
             padding = { left = 1 },
           },
-          { "filetype", icon_only = true, padding = { left = 1, right = 0 } },
           {
             "filename",
             cond = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
@@ -103,11 +101,19 @@ return {
             icon = icon.git.branch,
             color = { fg = palette.dragonGreen },
           },
-          { function() return "  " end, padding = { left = 2, right = 2 } },
         },
         lualine_y = {},
         lualine_z = {},
       },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = { "filename" },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {},
+      },
+      extensions = { "oil", "quickfix", "man" },
     })
   end,
 }

@@ -11,7 +11,8 @@ function F.LspAttach(client, bufnr)
     { desc = "Format current buffer with LSP." }
   )
   if client.server_capabilities and client.server_capabilities.code_lens then
-    local codelens = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
+    local codelens =
+      vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
     vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
       group = codelens,
       callback = function() vim.lsp.codelens.refresh() end,
@@ -50,11 +51,11 @@ end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
----@param group string
+---@param group_name string
 ---@vararg { [1]: string|string[], [2]: vim.api.keyset.create_autocmd }
 ---@return nil
-function F.mk_autocmd(group, ...)
-  local id = vim.api.nvim_create_augroup(group, {})
+function F.mk_autocmd(group_name, ...)
+  local id = vim.api.nvim_create_augroup(group_name, {})
   for _, a in ipairs({ ... }) do
     a[2].group = id
     vim.api.nvim_create_autocmd(unpack(a))
@@ -102,7 +103,8 @@ function F.GetFtIcon(devicons)
   local full_filename = vim.api.nvim_buf_get_name(0)
   local filename = vim.fn.fnamemodify(full_filename, ":t")
   local extension = vim.fn.fnamemodify(filename, ":e")
-  local ftype_icon, ftype_icon_color = devicons.get_icon_color(filename, extension, { default = true })
+  local ftype_icon, ftype_icon_color =
+    devicons.get_icon_color(filename, extension, { default = true })
   return ftype_icon and { ftype_icon .. "", ftype_icon_color }
 end
 
