@@ -1,7 +1,7 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    cond = F.IsGitRepo(),
+    cond = F.IsBufInRepo(0),
     event = "VeryLazy",
     opts = {
       signs = {

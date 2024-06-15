@@ -1,12 +1,15 @@
 local M = {}
 
 ---Compute the path of file's root directory.
----@param file string? # File within the current window
+---@param file string? # File path
 ---@param root_markers string[]? # Files or directories marking the root
 ---@return string? # Absolute path of the root directory
 function M.root(file, root_markers)
   if not file or file == "" or not vim.uv.fs_stat(file) then return nil end
   root_markers = root_markers or S.root_markers
+  if vim.tbl_contains(root_markers, vim.fs.basename(file)) then
+    return vim.fs.dirname(file)
+  end
   local closest = ""
   local closest_proximity = 24
   local proximity = 0
@@ -21,7 +24,7 @@ function M.root(file, root_markers)
       upward = true,
       type = mark:match("/$") and "directory" or "file",
     })[1]
-    if mark_path ~= "" or mark_path ~= nil then
+    if mark_path ~= nil or mark_path ~= "" then
       root = vim.fs.dirname(mark_path)
       if root ~= nil and root ~= "" then
         root = vim.uv.fs_realpath(root) --[[@as string]]
@@ -30,7 +33,7 @@ function M.root(file, root_markers)
         if proximity <= closest_proximity then
           closest_proximity = proximity
           closest = root
-          if proximity <= proximity_threshold then return closest end
+          if closest_proximity <= proximity_threshold then return closest end
         end
       end
     end

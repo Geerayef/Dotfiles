@@ -8,7 +8,7 @@ autocmd("BufReadPre", {
   group = augroup("LargeFileSettings", { clear = true }),
   callback = function(info)
     vim.b.bigfile = false
-    if F.IsBigBuff(info.buf) then
+    if F.IsLargeFile(info.buf) then
       vim.b.bigfile = true
       vim.opt_local.spell = false
       vim.opt_local.swapfile = false

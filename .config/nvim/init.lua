@@ -1,6 +1,7 @@
 vim.loader.enable()
 require("util.static")
 require("core.functions")
+F.DisableProviders()
 require("core.options")
 require("core.keymaps")
 require("core.autocmds")

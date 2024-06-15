@@ -51,20 +51,7 @@ end
 
 -- ~ -------------------------------------------------------------------------------- ~ --
 
----@param group_name string
----@vararg { [1]: string|string[], [2]: vim.api.keyset.create_autocmd }
----@return nil
-function F.mk_autocmd(group_name, ...)
-  local id = vim.api.nvim_create_augroup(group_name, {})
-  for _, a in ipairs({ ... }) do
-    a[2].group = id
-    vim.api.nvim_create_autocmd(unpack(a))
-  end
-end
-
--- ~ -------------------------------------------------------------------------------- ~ --
-
-function F.DisableBuiltinProviders()
+function F.DisableProviders()
   local default_providers = { "node", "perl", "ruby" }
   for _, provider in ipairs(default_providers) do
     vim.g[("loaded_" .. provider .. "_provider")] = 0
@@ -73,12 +60,12 @@ end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
 
----@param bufnr number
+---@param buf number # Buffer ID
 ---@return boolean
-function F.IsBigBuff(bufnr)
-  local large_file_threshold = 1024 * 1024
-  local ok, stat = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
-  return ok and stat ~= nil and stat.size > large_file_threshold
+function F.IsLargeFile(buf)
+  local size_threshold = 1024 * 1024
+  local ok, stat = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+  return ok and stat ~= nil and stat.size > size_threshold
 end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
@@ -88,24 +75,12 @@ function F.IsBufEmpty() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
 
+---@param buf number # Buffer ID
 ---@return boolean
-function F.IsGitRepo()
-  local bufferpath = vim.fn.expand("%:p:h")
-  local gitdir = vim.fn.finddir(".git", bufferpath .. ";")
-  return gitdir and #gitdir > 0 and #gitdir < #bufferpath
-end
-
--- ~  --------------------------------------------------------------------------------  ~ --
-
----@param devicons table # Object `nvim-web-devicons`
----@return table<string, string> # Filetype icon & icon color
-function F.GetFtIcon(devicons)
-  local full_filename = vim.api.nvim_buf_get_name(0)
-  local filename = vim.fn.fnamemodify(full_filename, ":t")
-  local extension = vim.fn.fnamemodify(filename, ":e")
-  local ftype_icon, ftype_icon_color =
-    devicons.get_icon_color(filename, extension, { default = true })
-  return ftype_icon and { ftype_icon .. "", ftype_icon_color }
+function F.IsBufInRepo(buf)
+  local buf_path = vim.api.nvim_buf_get_name(buf)
+  local gitdir = vim.fn.finddir(".git", buf_path .. ";")
+  return gitdir and #gitdir > 0 and #gitdir < #buf_path
 end
 
 -- ~  --------------------------------------------------------------------------------  ~ --
