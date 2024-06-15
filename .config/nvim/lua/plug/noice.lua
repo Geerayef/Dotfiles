@@ -27,14 +27,14 @@ return {
       progress = { enabled = false },
       signature = { enabled = false },
       override = {
-        -- ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        -- ["vim.lsp.util.stylize_markdown"] = true,
-        -- ["cmp.entry.get_documentation"] = true,
+        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        ["vim.lsp.util.stylize_markdown"] = true,
+        ["cmp.entry.get_documentation"] = true,
       },
     },
     presets = {
       bottom_search = true,
-      command_palette = true,
+      command_palette = false,
       long_message_to_split = true,
     },
     routes = {
@@ -103,9 +103,7 @@ return {
       },
       vsplit = { enter = true },
       virtualtext = {
-        format = {
-          S.Icons.ui.langle_l .. "    {message} " .. S.Icons.ui.diamond .. " ",
-        },
+        format = { " {message} " .. S.Icons.ui.diamond .. " " },
       },
     },
     health = { checker = false },

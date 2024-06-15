@@ -8,7 +8,7 @@ autocmd("BufReadPre", {
   group = augroup("LargeFileSettings", { clear = true }),
   callback = function(info)
     vim.b.bigfile = false
-    if F.IsLargeFile(info.buf) then
+    if FN.IsLargeFile(info.buf) then
       vim.b.bigfile = true
       vim.opt_local.spell = false
       vim.opt_local.swapfile = false
@@ -85,7 +85,7 @@ autocmd("FileType", {
     "query",
   },
   callback = function()
-    F.map(
+    FN.map(
       "n",
       "q",
       vim.cmd.close,

@@ -1,6 +1,7 @@
-local border = S.Border
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
+vim.lsp.handlers["textDocument/hover"] =
+  vim.lsp.with(vim.lsp.handlers.hover, { border = S.Border })
+vim.lsp.handlers["textDocument/signatureHelp"] =
+  vim.lsp.with(vim.lsp.handlers.signature_help, { border = S.Border })
 
 return {
   underline = true,
@@ -25,9 +26,11 @@ return {
         if not d.user_data.lsp then return d.message end
         code = d.user_data.lsp.code
       end
-      if code then t.message = string.format("%s [%s]", t.message, code):gsub("1. ", "") end
+      if code then
+        t.message = string.format("%s [%s]", t.message, code):gsub("1. ", "")
+      end
       return t.message
     end,
-    border = border,
+    border = S.Border,
   },
 }

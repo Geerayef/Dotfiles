@@ -1,7 +1,7 @@
 local M = {}
 
 ---@type lsp_client_config_t
-M.default_config = { root_patterns = require("utils.fs").root_patterns }
+M.default_config = { root_patterns = S.root_markers }
 
 ---@class vim.lsp.ClientConfig: lsp_client_config_t
 ---@class lsp_client_config_t

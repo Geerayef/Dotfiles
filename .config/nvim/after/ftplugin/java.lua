@@ -3,12 +3,15 @@ local jdtls = require("jdtls")
 local jdtls_setup = require("jdtls.setup")
 local root_markers = { "build.gradle", "gradlew", "mvnw", ".git", "*.java" }
 local root_dir = require("jdtls.setup").find_root(root_markers)
-local workspace_folder = home .. "/.cache/jdtls/workspace" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
+local workspace_folder = home
+  .. "/.cache/jdtls/workspace"
+  .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 local mason_packages = home .. "/.local/share/nvim/mason/packages"
 local path_to_jdtls = mason_packages .. "/jdtls"
 local path_to_config = path_to_jdtls .. "/config_linux"
 local lombok_path = path_to_jdtls .. "/lombok.jar"
-local path_to_jar = path_to_jdtls .. "/plugins/org.eclipse.equinox.launcher_1.6.600.v20231106-1826.jar"
+local path_to_jar = path_to_jdtls
+  .. "/plugins/org.eclipse.equinox.launcher_1.6.600.v20231106-1826.jar"
 local cmp = require("cmp_nvim_lsp")
 local capabilities = {
   workspace = { configuration = true },
@@ -28,9 +31,14 @@ local function lsp_attach(client, bufnr)
   jdtls_setup.add_commands()
   Key.LSP(client, bufnr)
   Key.JDTLS()
-  F.LspAttach(client, bufnr)
+  FN.LspAttach(client, bufnr)
   require("lsp_signature").on_attach(
-    { bind = true, padding = "", handler_opts = { border = "rounded" }, hint_prefix = "󱄑 " },
+    {
+      bind = true,
+      padding = "",
+      handler_opts = { border = "rounded" },
+      hint_prefix = "󱄑 ",
+    },
     bufnr
   )
 end
@@ -50,7 +58,10 @@ local config = {
     java = {
       format = {
         enabled = true,
-        settings = { url = "/.local/share/eclipse/eclipse-java-google-style.xml", profile = "GoogleStyle" },
+        settings = {
+          url = "/.local/share/eclipse/eclipse-java-google-style.xml",
+          profile = "GoogleStyle",
+        },
       },
       eclipse = { downloadSources = true },
       maven = { downloadSources = true },
@@ -66,11 +77,21 @@ local config = {
           "java.util.Objects.requireNonNullElse",
           "org.mockito.Mockito.*",
         },
-        filteredTypes = { "com.sun.*", "io.micrometer.shaded.*", "java.awt.*", "jdk.*", "sun.*" },
+        filteredTypes = {
+          "com.sun.*",
+          "io.micrometer.shaded.*",
+          "java.awt.*",
+          "jdk.*",
+          "sun.*",
+        },
       },
-      sources = { organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 } },
+      sources = {
+        organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 },
+      },
       codeGeneration = {
-        toString = { template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}" },
+        toString = {
+          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+        },
         hashCodeEquals = { useJava7Objects = false },
         useBlocks = true,
       },
