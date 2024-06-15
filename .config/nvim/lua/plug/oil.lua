@@ -32,6 +32,7 @@ return {
       ["<C-f>"] = "actions.preview_scroll_down",
       ["<C-b>"] = "actions.preview_scroll_up",
       ["<C-c>"] = "actions.close",
+      ["<q>"] = "actions.close",
       ["<C-r>"] = "actions.refresh",
     },
     view_options = {

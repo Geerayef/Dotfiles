@@ -1,6 +1,6 @@
 F = {}
 
--- ~  --------------------------------------------------------------------------------  ~ --
+-- ~ ---------------------------------------------------------------------- ~ --
 
 function F.LspAttach(client, bufnr)
   Key.LSP(client, bufnr)
@@ -15,26 +15,27 @@ function F.LspAttach(client, bufnr)
       vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
     vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
       group = codelens,
-      callback = function() vim.lsp.codelens.refresh() end,
       buffer = bufnr,
+      callback = function() vim.lsp.codelens.refresh() end,
     })
   end
 end
 
--- ~  --------------------------------------------------------------------------------  ~ --
+-- ~ ---------------------------------------------------------------------- ~ --
 
 ---Map key sequence to action.
----@param mode string|table Mode{s}
----@param l string Left side of mapping
----@param r string|function Right side of mapping
----@param bo table Buffer options
----@param desc string Mapping description
+---@param mode string|table # Mode{s}
+---@param l string # Left side of mapping
+---@param r string|function # Right side of mapping
+---@param bo table # Buffer options
+---@param desc string # Mapping description
 function F.map(mode, l, r, bo, desc)
-  bo.desc = desc
+  bo = bo or { noremap = true, silent = true, desc = "" }
+  bo.desc = desc or ("[" .. r .. "]")
   vim.keymap.set(mode, l, r, bo)
 end
 
--- ~  --------------------------------------------------------------------------------  ~ --
+-- ~ ---------------------------------------------------------------------- ~ --
 
 ---Get currently active Vim mode.
 ---@param full boolean # Show full mode name
@@ -49,16 +50,7 @@ function F.VimMode(full)
   return modes[vim.api.nvim_get_mode().mode] or "[unknown]"
 end
 
--- ~ -------------------------------------------------------------------------------- ~ --
-
-function F.DisableProviders()
-  local default_providers = { "node", "perl", "ruby" }
-  for _, provider in ipairs(default_providers) do
-    vim.g[("loaded_" .. provider .. "_provider")] = 0
-  end
-end
-
--- ~  --------------------------------------------------------------------------------  ~ --
+-- ~ ---------------------------------------------------------------------- ~ --
 
 ---@param buf number # Buffer ID
 ---@return boolean
@@ -68,12 +60,12 @@ function F.IsLargeFile(buf)
   return ok and stat ~= nil and stat.size > size_threshold
 end
 
--- ~  --------------------------------------------------------------------------------  ~ --
+-- ~ ---------------------------------------------------------------------- ~ --
 
 ---@return boolean
 function F.IsBufEmpty() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end
 
--- ~  --------------------------------------------------------------------------------  ~ --
+-- ~ ---------------------------------------------------------------------- ~ --
 
 ---@param buf number # Buffer ID
 ---@return boolean
@@ -82,7 +74,5 @@ function F.IsBufInRepo(buf)
   local gitdir = vim.fn.finddir(".git", buf_path .. ";")
   return gitdir and #gitdir > 0 and #gitdir < #buf_path
 end
-
--- ~  --------------------------------------------------------------------------------  ~ --
 
 return F

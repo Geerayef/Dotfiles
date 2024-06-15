@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
--- ~  Improve performance in large files
+-- ~  Large-file performance
 
 autocmd("BufReadPre", {
   desc = "Better handle large files.",
@@ -60,12 +60,37 @@ autocmd({ "BufWinEnter", "FileChangedShellPost" }, {
       end
       vim.api.nvim_win_call(win, function()
         local dir_from = vim.fn.getcwd(0)
-        local fs = require("util.fs")
-        local dir_to = fs.root(info.file)
+        local dir_to = require("util.fs").root(info.file)
         if dir_to ~= nil and dir_to ~= "" and dir_to ~= dir_from then
           pcall(vim.cmd.lcd, dir_to)
         end
       end)
     end)
+  end,
+})
+
+autocmd("FileType", {
+  pattern = {
+    "help",
+    "lazy",
+    "noice",
+    "mason",
+    "notify",
+    "lspinfo",
+    "checkhealth",
+    "NeogitStatus",
+    "fugitive*",
+    "qf",
+    "git",
+    "query",
+  },
+  callback = function()
+    F.map(
+      "n",
+      "q",
+      vim.cmd.close,
+      { buffer = true },
+      "Close the current buffer."
+    )
   end,
 })

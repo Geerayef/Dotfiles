@@ -29,6 +29,7 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPost",
     main = "ibl",
+    cond = vim.g.disable_ibl,
     opts = { indent = { char = "│" } },
   },
   {

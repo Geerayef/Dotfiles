@@ -8,7 +8,10 @@ local M = {}
 function M.error(cmd, msg, lev)
   lev = lev or vim.log.levels.WARN
   vim.notify(
-    "~~~~~ [git] Failed to execute: " .. table.concat(cmd, " ") .. "\n" .. msg,
+    "~~~~~ [] Failed to execute Git command: "
+      .. table.concat(cmd, " ")
+      .. "\n"
+      .. msg,
     lev
   )
 end

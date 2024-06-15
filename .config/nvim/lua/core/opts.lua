@@ -1,7 +1,11 @@
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 local o = vim.opt
 
 o.shell = "/usr/bin/fish"
-o.shortmess:append("Is")
+o.shortmess:append("Isa")
 if vim.fn.executable("rg") == 1 then
   o.grepprg = "rg --vimgrep --no-heading --smart-case --trim"
 end

@@ -1,10 +1,9 @@
 vim.loader.enable()
 require("util.static")
-require("core.functions")
-F.DisableProviders()
-require("core.options")
-require("core.keymaps")
-require("core.autocmds")
-if vim.g.neovide then require("core.neovide") end
+require("core.opts")
+require("core.func")
+require("core.keys")
+require("core.auto")
+if vim.g.neovide then require("core.vide") end
 require("lazyTim")
 vim.cmd.colorscheme("material")

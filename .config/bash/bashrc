@@ -10,5 +10,9 @@
 # Bash shell options
 . "$BASHDOTDIR/settings/options.bash"
 
+for fn in "$BASHDOTDIR/functions"/*.bash; do
+  . "$fn"
+done
+
 # Prompt
 eval "$(starship init bash)"

@@ -14,9 +14,10 @@ end
 
 # opam
 if test -d "$HOME/.opam"
-    not contains "$HOME/.opam/default/bin" $PATH
-    # and fish_add_path -a --path "$HOME/.opam/default/bin"
-    # and source "$HOME/.opam/opam-init/init.fish"
+    set -l switch (opam switch show)
+    not contains "$HOME/.opam/$switch/bin" $PATH
+    # and fish_add_path -a --path "$HOME/.opam/$switch/bin"
+    and source "$HOME/.opam/opam-init/init.fish"
 end
 
 # Cargo
@@ -37,7 +38,8 @@ end
 # pyenv
 if test -e "$HOME/.pyenv"
     set -gx PYENV_ROOT "$HOME/.pyenv"
-    command -vq pyenv; or fish_add_path -a --path "$PYENV_ROOT/bin"
+    command -vq pyenv
+    and fish_add_path -a --path "$PYENV_ROOT/bin"
 end
 
 # Tex

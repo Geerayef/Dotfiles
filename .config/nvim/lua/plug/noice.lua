@@ -27,17 +27,15 @@ return {
       progress = { enabled = false },
       signature = { enabled = false },
       override = {
-        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        ["vim.lsp.util.stylize_markdown"] = true,
-        ["cmp.entry.get_documentation"] = true,
+        -- ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        -- ["vim.lsp.util.stylize_markdown"] = true,
+        -- ["cmp.entry.get_documentation"] = true,
       },
     },
     presets = {
       bottom_search = true,
       command_palette = true,
-      long_message_to_split = false,
-      inc_rename = true,
-      lsp_doc_border = true,
+      long_message_to_split = true,
     },
     routes = {
       { view = "split", filter = { error = true, min_height = 20 } },
@@ -75,7 +73,7 @@ return {
         view = "mini",
         filter = {
           event = "msg_show",
-          any = { { min_height = 5 }, { min_width = 100 } },
+          any = { { min_height = 5 }, { min_width = 20 } },
           ["not"] = {
             kind = {
               "confirm",
@@ -88,10 +86,6 @@ return {
           blocking = true,
         },
         opts = { stop = false },
-      },
-      {
-        view = "mini",
-        filter = { event = "msg_showmode" },
       },
     },
     views = {
@@ -108,7 +102,11 @@ return {
         close = { keys = { "q", "<C-c>" } },
       },
       vsplit = { enter = true },
-      virtualtext = { format = { "    {message} 󰝤 " } },
+      virtualtext = {
+        format = {
+          S.Icons.ui.langle_l .. "    {message} " .. S.Icons.ui.diamond .. " ",
+        },
+      },
     },
     health = { checker = false },
   },

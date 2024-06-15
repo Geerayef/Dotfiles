@@ -22,7 +22,7 @@ return {
     event = { "BufReadPost", "VeryLazy" },
     dependencies = { "hrsh7th/cmp-nvim-lsp" },
     opts = {
-      diagnostics = require("core.diagnostics"),
+      diagnostics = require("core.diag"),
       inlay_hints = { enabled = true },
       autoformat = false,
       capabilities = {

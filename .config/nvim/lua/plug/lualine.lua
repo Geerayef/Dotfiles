@@ -14,7 +14,7 @@ return {
         section_separators = "",
         always_divide_middle = true,
         theme = kanagawaline,
-        globalstatus = false,
+        globalstatus = true,
       },
       sections = {
         lualine_a = {},
@@ -52,12 +52,22 @@ return {
         },
         lualine_x = {
           {
-            "diff",
-            cond = function()
-              local filepath = vim.fn.expand("%:p:h")
-              local gitdir = vim.fn.finddir(".git", filepath .. ";")
-              return gitdir and #gitdir > 0 and #gitdir < #filepath
+            function()
+              local reg = vim.fn.reg_recording()
+              return "recording @" .. reg .. " "
             end,
+            cond = function()
+              local r = vim.fn.reg_recording()
+              if r ~= "" then
+                return true
+              else
+                return false
+              end
+            end,
+          },
+          {
+            "diff",
+            cond = function() return F.IsBufInRepo(0) end,
             source = function()
               local g = vim.b.gitsigns_status_dict
               if g then
