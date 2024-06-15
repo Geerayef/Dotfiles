@@ -16,7 +16,7 @@ end
 if test -d "$HOME/.opam"
     not contains "$HOME/.opam/default/bin" $PATH
     # and fish_add_path -a --path "$HOME/.opam/default/bin"
-    and source "$HOME/.opam/opam-init/init.fish"
+    # and source "$HOME/.opam/opam-init/init.fish"
 end
 
 # Cargo

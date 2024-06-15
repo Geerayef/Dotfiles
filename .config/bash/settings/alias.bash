@@ -23,18 +23,15 @@ else
   alias ll="ls -la --color=always --group-directories-first"
 fi
 
-alias ldx="ls -al /usr/share/xsessions"
-alias ldw="ls -al /usr/share/wayland-sessions"
-
 # ~  Apps
 
 alias v="nvim"
-[[ -e "$(command -v codium)" ]] && alias codi="$(which codium)"
+alias nv="neovide"
 
 # ~  Git
 
-alias dot="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
-alias dotu="dot add .config/{nvim,emacs,micro,tofi,alacritty,wezterm,foot,kitty,hypr,fish,bash,zsh,nnn,bat,btop,fontconfig,starship,zellij,tmux,vimiumc,zathura}/ .local/bin/"
+alias dot="/usr/bin/git --git-dir=\$HOME/Dotfiles/ --work-tree=\$HOME"
+alias dotu="dot add .config/{nvim,vim,neovide,moxide,emacs,tofi,alacritty,wezterm,foot,kitty,hypr,fish,bash,zsh,firefoxcss,nnn,bat,btop,mako,fontconfig,starship,tmux,vimiumc,zathura}/ .local/bin/ .zshenv"
 alias dota="dot add"
 alias dots="dot status"
 alias dotc="dot commit -m"

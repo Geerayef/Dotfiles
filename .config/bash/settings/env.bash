@@ -42,7 +42,7 @@ export FZF_DEFAULT_OPTS='--scheme=path --cycle --layout=reverse --border --scrol
   elif [[ $SHELL == "bash" ]]; then
     [[ ! -r "$HOME/.opam/opam-init/init.sh" ]] || source "$HOME/.opam/opam-init/init.sh" >/dev/null 2>/dev/null
   else
-    if [[ $SHELL == "fish" ]]; then echo "~~~~~ Why is your {Z, BA}SH env getting sourced if your SHELL = fish?"; fi
+    if [[ $SHELL == "fish" ]]; then echo '~~~~~ Why is your {Z, BA}SH env getting sourced if your $SHELL=fish?'; fi
   fi
   # Python: pyenv
   if [[ -e $HOME/.pyenv ]]; then

@@ -6,7 +6,7 @@ return {
     dependencies = {
       {
         "lukas-reineke/headlines.nvim",
-        config = { markdown = { fat_headlines = false } },
+        opts = { markdown = { fat_headlines = false } },
       },
       { "henriklovhaug/Preview.nvim", cmd = "Preview", config = true },
     },
