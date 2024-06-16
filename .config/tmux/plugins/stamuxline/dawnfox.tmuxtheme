@@ -1,12 +1,12 @@
-# --> dawnfox
-thm_bg="#faf4ed" # background
-thm_fg="#575279" # foreground
-thm_black="#ebe5df" # active_tab_foreground
-thm_gray="#575279" # color0
-thm_red="#b4637a" # color1
-thm_green="#618774" # color2
-thm_yellow="#ea9d34" # color3
-thm_blue="#286983" # color4
-thm_pink="#907aa9" # color5
-thm_cyan="#56949f" # color6
-thm_orange="#d685af" # color17
+# Dawnfox
+bg="#faf4ed" # background
+fg="#575279" # foreground
+black="#ebe5df" # active_tab_foreground
+gray="#575279" # color0
+red="#b4637a" # color1
+green="#618774" # color2
+yellow="#ea9d34" # color3
+blue="#286983" # color4
+pink="#907aa9" # color5
+cyan="#56949f" # color6
+orange="#d685af" # color17

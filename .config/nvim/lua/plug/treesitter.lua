@@ -1,4 +1,3 @@
-local border = S.Border
 return {
   "nvim-treesitter/nvim-treesitter",
   version = false,
@@ -69,7 +68,7 @@ return {
         },
         lsp_interop = {
           enable = true,
-          border = border,
+          border = S.Border,
           peek_definition_code = to.lsp_interop,
         },
       },

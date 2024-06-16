@@ -143,47 +143,6 @@ S.Icons = {
     ellipsis = "…",
     space = "␣",
   },
-  kinds = {
-    Array = "",
-    Boolean = "󰨙",
-    Class = "",
-    Codeium = "󰘦",
-    Color = "",
-    Control = "",
-    Collapsed = "",
-    Constant = "󰏿",
-    Constructor = "",
-    Copilot = "",
-    Enum = "",
-    EnumMember = "",
-    Event = "",
-    Field = "",
-    File = "",
-    Folder = "",
-    Function = "󰊕",
-    Interface = "",
-    Key = "",
-    Keyword = "",
-    Method = "󰊕",
-    Module = "",
-    Namespace = "󰦮",
-    Null = "",
-    Number = "󰎠",
-    Object = "",
-    Operator = "",
-    Package = "",
-    Property = "",
-    Reference = "",
-    Snippet = "",
-    String = "",
-    Struct = "󰆼",
-    TabNine = "󰏚",
-    Text = "",
-    TypeParameter = "",
-    Unit = "",
-    Value = "",
-    Variable = "󰀫",
-  },
 }
 
 ---@type string[]
@@ -238,6 +197,28 @@ S.root_markers = {
   "scripts/",
   "out/",
   "assets/",
+}
+
+S.FtSpecial = {
+  "help",
+  "lazy",
+  "noice",
+  "mason",
+  "notify",
+  "lspinfo",
+  "checkhealth",
+  "qf",
+  "git",
+  "fugitive*",
+  "NeogitStatus",
+}
+
+S.FtIgnore = {
+  "oil",
+  "noice",
+  "help",
+  "qf",
+  "checkhealth",
 }
 
 return S

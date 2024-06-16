@@ -189,7 +189,7 @@ return {
         },
         bashls = {
           filetypes = { "sh", "bash" },
-          root_patterns = { "" },
+          root_patterns = { ".shellcheckrc" },
           settings = {
             bashIde = { globPattern = "*@(.sh|.inc|.bash|.command)" },
           },

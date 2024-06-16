@@ -22,13 +22,13 @@ scan_timeout = 10
 [directory]
 read_only = " "
 read_only_style = "red bold"
-style = "#FAB387 bold"
+style = "#EBA0AC bold"
 
 [character]
 # [❯] [❮] / [λ] / [⟫] [⟪] / [] [] / [],
-success_symbol = "[❯](#A6E3A1)"
-error_symbol   = "[❯](#F38BA8)"
-vimcmd_symbol  = "[❮](#74C7EC)"
+success_symbol = "[⟫](#94E2D5)"
+error_symbol   = "[⟫](#F38BA8)"
+vimcmd_symbol  = "[⟪](#6C7086)"
 
 [git_branch]
 format = "[$branch]($style)"
@@ -62,13 +62,13 @@ local_switch_indicator = "*"
 detect_extensions = ["opam", "ml", "mli", "re", "rei", "dune"]
 detect_files = ["dune", "dune-project", "jbuild", "jbuild-ignore", ".merlin", ".ocamlformat"]
 detect_folders = ["_opam", "esy.lock"]
-style = "#95C30A bold"
+style = "#FAB387 bold"
 
 [python]
 format = '[$virtualenv(${version})]($style) '
 pyenv_version_name = true
 pyenv_prefix = ""
-style = "#94E2D5 bold"
+style = "#A6E3A1 bold"
 symbol = ""
 
 [lua]

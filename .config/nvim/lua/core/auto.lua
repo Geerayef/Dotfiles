@@ -70,20 +70,7 @@ autocmd({ "BufWinEnter", "FileChangedShellPost" }, {
 })
 
 autocmd("FileType", {
-  pattern = {
-    "help",
-    "lazy",
-    "noice",
-    "mason",
-    "notify",
-    "lspinfo",
-    "checkhealth",
-    "NeogitStatus",
-    "fugitive*",
-    "qf",
-    "git",
-    "query",
-  },
+  pattern = S.FtSpecial,
   callback = function()
     FN.map(
       "n",

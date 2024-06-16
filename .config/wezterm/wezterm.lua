@@ -151,7 +151,7 @@ C.colors = {
 
 -- Font
 C.unicode_version = 14
-C.font_size = 16
+C.font_size = 17
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
   { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.harf.io },
