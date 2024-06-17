@@ -27,14 +27,14 @@ return {
           {
             "mode",
             fmt = function() return FN.VimMode(false) end,
-            color = { fg = palette.sumiInk3, bg = palette.lotusTeal1 },
+            color = { fg = palette.sumiInk0, bg = palette.lotusTeal1 },
             padding = { left = 1, right = 1 },
           },
         },
         lualine_c = {
           {
             function() return "|" end,
-            color = { fg = palette.fujiGray },
+            color = { fg = palette.lotusWhite0 },
             padding = { left = 1 },
           },
           {

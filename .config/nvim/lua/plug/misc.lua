@@ -9,8 +9,11 @@ return {
     event = "BufReadPost",
     opts = { extra = { above = "gcO", below = "gco", eol = "gcA" } },
   },
-  -- { "Pocco81/true-zen.nvim", lazy = true, cmd = { "TZFocus", "TZNarrow", "TZAtaraxis", "TZMinimalist" } },
-  -- { "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle", opts = { ["*"] = { RRGGBBAA = true } } },
+  {
+    "norcalli/nvim-colorizer.lua",
+    cmd = "ColorizerToggle",
+    opts = { ["*"] = { RRGGBBAA = true } },
+  },
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",

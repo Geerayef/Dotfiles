@@ -190,6 +190,7 @@ S.root_markers = {
   ".obsidian/",
   "moxide.toml",
   ".moxide.toml",
+  "TODO.md",
   "README.md",
   "README.org",
   "README.txt",

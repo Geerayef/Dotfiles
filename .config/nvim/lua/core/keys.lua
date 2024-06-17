@@ -288,6 +288,9 @@ map(
 map("n", "<leader>mp", "<cmd>Preview<CR>", bos, "[m]arkdown [p]review")
 map("n", "<leader>gp", "<cmd>Glow<CR>", bos, "[g]low [p]review")
 
+-- Misc
+map("n", "<leader>ct", "<cmd>ColorizerToggle<CR>", bos, "[c]olorizer [t]oggle")
+
 -- ~ LSP ------------------------------------------------------------------- ~ --
 
 Key = {}

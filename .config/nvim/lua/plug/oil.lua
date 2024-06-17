@@ -1,4 +1,3 @@
-local border = S.Border
 return {
   "stevearc/oil.nvim",
   priority = 990,
@@ -45,12 +44,12 @@ return {
       padding = 2,
       max_width = math.floor(vim.api.nvim_win_get_width(0) * 0.4),
       max_height = math.floor(vim.api.nvim_win_get_height(0) * 0.35),
-      border = border,
+      border = S.Border,
       override = function(conf)
+        conf.zindex = 300
         conf.style = "minimal"
         return conf
       end,
     },
-    preview = { border = border },
   },
 }
