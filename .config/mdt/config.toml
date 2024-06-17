@@ -1,0 +1,43 @@
+# General settings
+width = 100
+
+# Inline styling
+bold_color = ""
+bold_italic_color = ""
+code_bg_color = "#2A2A2A"
+code_fg_color = "red"
+italic_color = ""
+link_color = "blue"
+link_selected_bg_color = "darkgrey"
+link_selected_fg_color = "green"
+strikethrough_color = ""
+
+# Block styling
+code_block_bg_color = "#2A2A2A"
+quote_bg_color = ""
+table_header_bg_color = ""
+table_header_fg_color = "yellow"
+
+# File tree
+file_tree_name_color = "blue"
+file_tree_page_count_color = "lightgreen"
+file_tree_path_color = "gray"
+file_tree_selected_fg_color = "lightgreen"
+gitignore = false
+
+# Quote bar
+quote_caution = "lightmagenta"
+quote_default = "white"
+quote_important = "lightred"
+quote_note = "lightblue"
+quote_tip = "lightgreen"
+quote_warning = "lightYellow"
+
+# Heading
+h_bg_color = "blue"
+h_fg_color = "black"
+h2_fg_color = "green"
+h3_fg_color = "magenta"
+h4_fg_color = "cyan"
+h5_fg_color = "yellow"
+h6_fg_color = "lightred"

@@ -6,9 +6,7 @@ local ayu = require("ayu")
 local C = {}
 if W.config_builder then C = W.config_builder() end
 
--- ~ ---------------------------------------------------------------------- ~ --
-
--- ~  Globals
+-- ~ Global ---------------------------------------------------------------- ~ --
 
 if G.process_icons == nil then
   G.process_icons = {
@@ -61,9 +59,7 @@ if G.harf.jet == nil then
     { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
 end
 
--- ~ ---------------------------------------------------------------------- ~ --
-
--- ~  Functions
+-- ~ Function ------------------------------------------------------------- ~ --
 
 local function map(key, action)
   return { key = key, mods = "LEADER", action = action }
@@ -74,9 +70,7 @@ local function get_process(tab)
   return G.process_icons[process] or string.format("%s", process)
 end
 
--- ~ ---------------------------------------------------------------------- ~ --
-
--- ~  Events
+-- ~ Statusbar ------------------------------------------------------------- ~ --
 
 W.on(
   "format-tab-title",
@@ -112,7 +106,7 @@ W.on("update-status", function(window, _)
   }))
 end)
 
--- ~ ---------------------------------------------------------------------- ~ --
+-- ~ Settings ------------------------------------------------------------- ~ --
 
 -- Bar
 C.tab_bar_at_bottom = true
@@ -207,6 +201,7 @@ C.key_tables = {
     { key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
     { key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
     { key = "Escape", action = "PopKeyTable" },
+    { key = "c", mods = "CTRL", action = "PopKeyTable" },
     { key = "Enter", action = "PopKeyTable" },
   },
   move_tab = {
@@ -215,6 +210,7 @@ C.key_tables = {
     { key = "k", action = act.MoveTabRelative(1) },
     { key = "l", action = act.MoveTabRelative(1) },
     { key = "Escape", action = "PopKeyTable" },
+    { key = "c", mods = "CTRL", action = "PopKeyTable" },
     { key = "Enter", action = "PopKeyTable" },
   },
 }

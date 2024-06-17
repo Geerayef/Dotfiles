@@ -27,7 +27,7 @@ return {
           {
             "mode",
             fmt = function() return FN.VimMode(false) end,
-            color = { fg = palette.dragonWhite, bg = palette.sumiInk4 },
+            color = { fg = palette.sumiInk3, bg = palette.lotusTeal1 },
             padding = { left = 1, right = 1 },
           },
         },

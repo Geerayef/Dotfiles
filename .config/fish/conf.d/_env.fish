@@ -22,6 +22,6 @@ set -gx MANPAGER "nvim +Man!"
 set -gx SYSTEM_PACKAGE_MANAGER pacman
 set -gx MOZ_ENABLE_WAYLAND 1
 set -gx CONDA_AUTO_ACTIVATE_BASE false
-set -gx GTK_THEME Kripton
+# set -gx GTK_THEME Kripton
 set -gx PNPM_HOME /home/tibor/.local/share/pnpm
 set -gx VK_DRIVER_FILES /usr/share/vulkan/icd.d/nvidia_icd.json

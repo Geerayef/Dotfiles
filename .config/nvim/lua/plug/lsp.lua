@@ -46,30 +46,14 @@ return {
       },
       servers = {
         ocamllsp = {
-          filetypes = { "ocaml", "ocamlinterface", "opam", "dune", "menhir" },
-          root_patterns = {
-            "*.ml",
-            "*.mli",
-            "*.opam",
-            "dune",
-            ".ocamlformat",
-            "ocamlformat",
-            "package.json",
-            "dune-project",
-            "dune-workspace",
-          },
+          filetypes = { "ocaml", "ocamlinterface", "opam", "dune" },
+          root_patterns = { "*.ml", "*.mli", "*.opam" },
           cmd = { "ocamllsp" },
           single_file_support = true,
         },
         clangd = {
           filetypes = { "c", "h", "cpp", "chh" },
-          root_patterns = {
-            ".clangd",
-            ".clang-tidy",
-            ".clang-format",
-            "compile_commands.json",
-            "compile_flags.txt",
-          },
+          root_patterns = { "*.clangd" },
           cmd = { "clangd" },
           single_file_support = true,
         },
@@ -143,7 +127,6 @@ return {
           settings = {
             ["rust-analyzer"] = {
               imports = { prefix = "self", granularity = { group = "module" } },
-              checkOnSave = { command = "clippy" },
               cargo = { buildScripts = { enable = true } },
               procMacro = { enable = true },
             },
@@ -159,7 +142,7 @@ return {
         },
         texlab = {
           filetypes = { "tex", "plaintex", "bib" },
-          root_patterns = { ".latexmkrc" },
+          root_patterns = { "*.tex", "*.bib", ".latexmkrc" },
           settings = {
             texlab = {
               rootDirectory = nil,

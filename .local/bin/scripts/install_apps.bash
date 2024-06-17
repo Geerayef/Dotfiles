@@ -2,7 +2,7 @@
 
 main() {
   local aur="hyprshade brave-bin nvimpager clock-tui"
-  local app="hyprland hypridle hyprlock hyprpaper hyprlang wezterm foot fish starship neovim python-pynvim fd ripgrep fzf bat eza git curl wget clang cmake brightnessctl playerctl pipewire wireplumber handlr-regex pandoc-cli md-tui syncthing rclone grim slurp wl-clipboard cliphist tlp tlp_rdw"
+  local app="hyprland hypridle hyprlock hyprpaper hyprlang wezterm foot fish starship neovim python-pynvim fd ripgrep fzf bat eza git curl wget clang cmake brightnessctl playerctl pipewire wireplumber handlr-regex pandoc-cli md-tui glow syncthing rclone grim slurp wl-clipboard cliphist tlp tlp_rdw"
   printf "~~~~~ [ ArchLinux ] Install my apps.\n"
   if [[ -x "$(command -v pacman)" ]]; then
     printf "~~~~~ [INFO] Installing via 'pacman': %s.\n" "$app"

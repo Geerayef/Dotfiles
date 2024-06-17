@@ -276,11 +276,9 @@ main_menu() {
   esac
 }
 
-tofi_cmd="tofi $* --config $XDG_CONFIG_HOME/tofi/interactive --placeholder-text=Bluetooth"
+tofi_cmd="tofi --config $XDG_CONFIG_HOME/tofi/interactive --placeholder-text=Bluetooth $*"
 
-# ~ -------------------------------------------------------------------------------- ~ #
-
-# ~  Entry
+# ~ Entry-------------------------------------------------------------------- ~ #
 
 case "$1" in
   --status)

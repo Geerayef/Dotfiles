@@ -8,6 +8,7 @@ return {
         "lukas-reineke/headlines.nvim",
         opts = { markdown = { fat_headlines = false } },
       },
+      { "ellisonleao/glow.nvim", opts = { border = "single" }, cmd = "Glow" },
       { "henriklovhaug/Preview.nvim", cmd = "Preview", config = true },
     },
     opts = {

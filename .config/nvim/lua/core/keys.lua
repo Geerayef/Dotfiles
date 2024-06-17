@@ -41,9 +41,7 @@ map("t", "<Esc>", "<C-\\><C-n>", bos, "Terminal mode: Escape")
 map("n", "<leader>dn", vim.diagnostic.goto_next, bos, "[d]iagnostic [n]ext")
 map("n", "<leader>dp", vim.diagnostic.goto_prev, bos, "[d]iagnostic [p]revious")
 
--- ~ ---------------------------------------------------------------------- ~ --
-
--- ~  Plugin keymaps
+-- ~ Plugin ---------------------------------------------------------------- ~ --
 
 -- Lazy
 map("n", "<leader>L", "<cmd>Lazy<CR>", bos, "[L]azy")
@@ -286,13 +284,11 @@ map(
   bos,
   "[o]bsidian e[x]tract to new [n]ote and link to it"
 )
-
--- Markdown Preview
+-- Preview
 map("n", "<leader>mp", "<cmd>Preview<CR>", bos, "[m]arkdown [p]review")
+map("n", "<leader>gp", "<cmd>Glow<CR>", bos, "[g]low [p]review")
 
--- ~ ---------------------------------------------------------------------- ~ --
-
--- ~  LSP keymaps
+-- ~ LSP ------------------------------------------------------------------- ~ --
 
 Key = {}
 

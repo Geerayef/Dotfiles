@@ -14,7 +14,7 @@
   padding: 0.2em;
 }
 .LH:before {
-  position: absolute;
+    position: absolute;
   background: #ffff00;
   top: 0;
   left: 0;
@@ -94,8 +94,6 @@ body:after {
   background: #11111b;
   border-radius: unset;
   border-bottom: unset;
-  padding-top: 1em;
-  padding-bottom: 1em;
 }
 .has-dark #bar {
   background: #11111b;
@@ -103,11 +101,9 @@ body:after {
 #bar::before {
   content: "❯";
   display: inline-block;
-  height: 1em;
-  width: 1em;
   position: absolute;
   padding: 0.1em;
-  top: 2em;
+  top: 1.7em;
   left: 1em;
   z-index: 300;
   color: #ffffff;
@@ -329,4 +325,3 @@ body.D {
 .D #i {
   color: #ffffff;
 }
-

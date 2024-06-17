@@ -1,7 +1,5 @@
 FN = {}
 
--- ~ ---------------------------------------------------------------------- ~ --
-
 function FN.LspAttach(client, bufnr)
   Key.LSP(client, bufnr)
   vim.api.nvim_buf_create_user_command(
@@ -21,8 +19,6 @@ function FN.LspAttach(client, bufnr)
   end
 end
 
--- ~ ---------------------------------------------------------------------- ~ --
-
 ---Map key sequence to action.
 ---@param mode string|table # Mode{s}
 ---@param l string # Left side of mapping
@@ -34,8 +30,6 @@ function FN.map(mode, l, r, bo, desc)
   bo.desc = desc or ("[" .. r .. "]")
   vim.keymap.set(mode, l, r, bo)
 end
-
--- ~ ---------------------------------------------------------------------- ~ --
 
 ---Get currently active Vim mode.
 ---@param full boolean # Show full mode name
@@ -50,8 +44,6 @@ function FN.VimMode(full)
   return modes[vim.api.nvim_get_mode().mode] or "[unknown]"
 end
 
--- ~ ---------------------------------------------------------------------- ~ --
-
 ---@param buf number # Buffer ID
 ---@return boolean
 function FN.IsLargeFile(buf)
@@ -60,12 +52,8 @@ function FN.IsLargeFile(buf)
   return ok and stat ~= nil and stat.size > size_threshold
 end
 
--- ~ ---------------------------------------------------------------------- ~ --
-
 ---@return boolean
 function FN.IsBufEmpty() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end
-
--- ~ ---------------------------------------------------------------------- ~ --
 
 ---@param buf number # Buffer ID
 ---@return boolean
