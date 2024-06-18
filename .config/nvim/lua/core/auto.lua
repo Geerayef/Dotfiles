@@ -8,7 +8,7 @@ autocmd("BufReadPre", {
   group = augroup("LargeFileSettings", { clear = true }),
   callback = function(info)
     vim.b.bigfile = false
-    if FN.IsLargeFile(info.buf) then
+    if F.IsLargeFile(info.buf) then
       vim.b.bigfile = true
       vim.opt_local.spell = false
       vim.opt_local.swapfile = false
@@ -72,7 +72,7 @@ autocmd({ "BufWinEnter", "FileChangedShellPost" }, {
 autocmd("FileType", {
   pattern = S.FtSpecial,
   callback = function()
-    FN.map(
+    F.map(
       "n",
       "q",
       vim.cmd.close,

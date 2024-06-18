@@ -31,16 +31,13 @@ local function lsp_attach(client, bufnr)
   jdtls_setup.add_commands()
   Key.LSP(client, bufnr)
   Key.JDTLS()
-  FN.LspAttach(client, bufnr)
-  require("lsp_signature").on_attach(
-    {
-      bind = true,
-      padding = "",
-      handler_opts = { border = "rounded" },
-      hint_prefix = "󱄑 ",
-    },
-    bufnr
-  )
+  F.LspAttach(client, bufnr)
+  require("lsp_signature").on_attach({
+    bind = true,
+    padding = "",
+    handler_opts = { border = "rounded" },
+    hint_prefix = "󱄑 ",
+  }, bufnr)
 end
 
 -- ~  Config

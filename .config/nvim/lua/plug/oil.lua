@@ -46,7 +46,6 @@ return {
       max_height = math.floor(vim.api.nvim_win_get_height(0) * 0.35),
       border = S.Border,
       override = function(conf)
-        conf.zindex = 300
         conf.style = "minimal"
         return conf
       end,

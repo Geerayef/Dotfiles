@@ -8,7 +8,7 @@ return {
       compile = true,
       functionStyle = { italic = true, bold = true },
       typeStyle = { italic = true, bold = true },
-      keywordStyle = {},
+      keywordStyle = { bold = true },
       statementStyle = {},
       overrides = function(colors)
         local t = colors.theme
@@ -28,8 +28,6 @@ return {
           TelescopePreviewBorder = { fg = t.ui.fg, bg = t.ui.float.bg },
         }
       end,
-      -- fg,fg_dim,fg_reverse,bg_dim,bg_gutter,bg_m3,bg_m2,bg_m1
-      -- bg_p1,bg_p2,special,nontext,whitespace,bg_search,bg_visual
       colors = {
         theme = {
           all = { ui = { bg_gutter = "none" } },
@@ -37,6 +35,7 @@ return {
         },
       },
       theme = "dragon",
+      background = { dark = "dragon", light = "wave" },
     },
   },
   {

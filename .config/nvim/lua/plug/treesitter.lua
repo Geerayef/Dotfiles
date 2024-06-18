@@ -43,7 +43,7 @@ return {
       highlight = {
         enable = true,
         disable = function(ft, buf)
-          return FN.IsLargeFile(buf)
+          return F.IsLargeFile(buf)
             or ft == "latex"
             or vim.fn.win_gettype() == "command"
         end,

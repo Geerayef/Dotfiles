@@ -3,7 +3,7 @@ vim.lsp.handlers["textDocument/hover"] =
 vim.lsp.handlers["textDocument/signatureHelp"] =
   vim.lsp.with(vim.lsp.handlers.signature_help, { border = S.Border })
 
-return {
+vim.diagnostic.config({
   underline = true,
   severity_sort = true,
   update_in_insert = false,
@@ -13,7 +13,7 @@ return {
     severity = nil,
     source = "if_many",
     format = nil,
-    prefix = "●",
+    prefix = S.Icons.ui.dot_xl,
   },
   float = {
     source = "if_many",
@@ -31,6 +31,6 @@ return {
       end
       return t.message
     end,
-    border = S.Border,
+    border = S.BorderSimple,
   },
-}
+})

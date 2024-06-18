@@ -26,7 +26,7 @@ return {
           },
           {
             "mode",
-            fmt = function() return FN.VimMode(false) end,
+            fmt = function() return F.VimMode(false) end,
             color = { fg = palette.sumiInk0, bg = palette.lotusTeal1 },
             padding = { left = 1, right = 1 },
           },
@@ -67,7 +67,7 @@ return {
           },
           {
             "diff",
-            cond = function() return FN.IsBufInRepo(0) end,
+            cond = function() return F.IsBufInRepo(0) end,
             source = function()
               local g = vim.b.gitsigns_status_dict
               if g then

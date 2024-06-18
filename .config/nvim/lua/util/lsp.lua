@@ -1,7 +1,38 @@
-local M = {}
+local LSP = {}
+
+local has_cmplsp, cmplsp = pcall(require, "cmp_nvim_lsp")
+local caps = {
+  workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
+  textDocument = {
+    documentFormattingProvider = false,
+    codelens = { enable = true },
+    completion = {
+      completionItem = {
+        snippetSupport = true,
+        resolveSupport = {
+          properties = { "detail", "documentation", "additionalTextEdits" },
+        },
+      },
+    },
+  },
+}
+local capabilities = vim.tbl_deep_extend(
+  "force",
+  {},
+  caps or {},
+  has_cmplsp
+      and cmplsp.default_capabilities(
+        vim.lsp.protocol.make_client_capabilities()
+      )
+    or vim.lsp.protocol.make_client_capabilities()
+)
 
 ---@type lsp_client_config_t
-M.default_config = { root_patterns = S.root_markers }
+LSP.default_config = {
+  capabilities = capabilities,
+  root_patterns = S.root_markers,
+  single_file_support = true,
+}
 
 ---@class vim.lsp.ClientConfig: lsp_client_config_t
 ---@class lsp_client_config_t
@@ -33,7 +64,7 @@ M.default_config = { root_patterns = S.root_markers }
 ---@param config vim.lsp.ClientConfig -- lsp_client_config_t
 ---@param opts table?
 ---@return integer? client_id # ID of attached client or nil if failed
-function M.start(config, opts)
+function LSP.start(config, opts)
   if vim.b.bigfile or vim.bo.bt == "nofile" then return end
   local cmd_type = type(config.cmd)
   local cmd_exec = cmd_type == "table" and config.cmd[1]
@@ -47,10 +78,10 @@ function M.start(config, opts)
         vim.api.nvim_buf_get_name(0),
         vim.list_extend(
           config.root_patterns or {},
-          M.default_config.root_patterns or {}
+          LSP.default_config.root_patterns or {}
         )
       ),
-    }, M.default_config),
+    }, LSP.default_config),
     opts
   )
 end
@@ -63,7 +94,7 @@ end
 ---Soft stop LSP client with retries.
 ---@param client_or_id integer|vim.lsp.Client
 ---@param opts lsp_soft_stop_opts_t?
-function M.soft_stop(client_or_id, opts)
+function LSP.soft_stop(client_or_id, opts)
   local client = type(client_or_id) == "number"
       and vim.lsp.get_client_by_id(client_or_id)
     or client_or_id --[[@as vim.lsp.Client]]
@@ -85,27 +116,27 @@ function M.soft_stop(client_or_id, opts)
   end
   vim.defer_fn(function()
     opts.retry = opts.retry - 1
-    M.soft_stop(client, opts)
+    LSP.soft_stop(client, opts)
   end, opts.interval)
 end
 
 ---Restart and reattach LSP client.
 ---@param client_or_id integer|vim.lsp.Client
-function M.restart(client_or_id)
+function LSP.restart(client_or_id)
   local client = type(client_or_id) == "number"
       and vim.lsp.get_client_by_id(client_or_id)
     or client_or_id --[[@as vim.lsp.Client]]
   if not client then return end
   local config = client.config
   local attached_buffers = client.attached_buffers
-  M.soft_stop(client, {
+  LSP.soft_stop(client, {
     on_close = function()
       for buf, _ in pairs(attached_buffers) do
         if not vim.api.nvim_buf_is_valid(buf) then return end
-        vim.api.nvim_buf_call(buf, function() M.start(config) end)
+        vim.api.nvim_buf_call(buf, function() LSP.start(config) end)
       end
     end,
   })
 end
 
-return M
+return LSP

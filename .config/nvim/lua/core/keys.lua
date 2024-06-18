@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-local map = FN.map
+local map = F.map
 local bos = { noremap = true, silent = true, desc = "" }
 local bov = { noremap = true, silent = false, desc = "" }
 
