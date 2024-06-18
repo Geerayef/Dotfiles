@@ -12,4 +12,8 @@ local rust_analyzer = {
   cmd = { "rust-analyzer" },
 }
 
-lsp.start(rust_analyzer)
+if lsp.start(rust_analyzer) ~= nil then
+  F.Notify("INFO", rust_analyzer.cmd[1] .. " LSP started.")
+else
+  F.Notify("ERROR", "Could not start LSP " .. rust_analyzer.cmd[1])
+end

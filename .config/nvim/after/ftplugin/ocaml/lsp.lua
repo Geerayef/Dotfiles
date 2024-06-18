@@ -5,4 +5,8 @@ local ocamlls = {
   cmd = { "ocamllsp" },
 }
 
-lsp.start(ocamlls)
+if lsp.start(ocamlls) ~= nil then
+  F.Notify("INFO", ocamlls.cmd[1] .. " LSP started.")
+else
+  F.Notify("ERROR", "Could not start LSP " .. ocamlls.cmd[1])
+end

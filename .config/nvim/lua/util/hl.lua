@@ -244,8 +244,8 @@ function M.rgb2hex(rgb)
 end
 
 ---Blend two colors.
----@param c1 string|number|table # The first color, in hex, dec, or rgb
----@param c2 string|number|table # The second color, in hex, dec, or rgb
+---@param c1 number|string|table # The first color, in hex, dec, or rgb
+---@param c2 number|string|table # The second color, in hex, dec, or rgb
 ---@param alpha number? # Weight of the first color [0-1] (Default: 0.5)
 ---@return { hex: string, dec: integer, r: integer, g: integer, b: integer }
 function M.cblend(c1, c2, alpha)

@@ -30,8 +30,7 @@ return {
       end,
       colors = {
         theme = {
-          all = { ui = { bg_gutter = "none" } },
-          wave = { ui = { bg = "#0F1419" } },
+          all = { ui = { bg = "#0F1419", bg_gutter = "none" } },
         },
       },
       theme = "dragon",

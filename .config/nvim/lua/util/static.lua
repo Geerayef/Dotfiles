@@ -90,7 +90,6 @@ S.VimModeTwo = {
   ["t"] = "TE",
 }
 
----@return string # Icon
 S.Icons = {
   mode = "",
   normal = "",
@@ -145,7 +144,6 @@ S.Icons = {
   },
 }
 
----@type string[]
 S.root_markers = {
   ".git/",
   ".gitignore",

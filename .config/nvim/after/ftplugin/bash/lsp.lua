@@ -8,4 +8,8 @@ local bashls = {
   cmd = { "bash-language-server", "start" },
 }
 
-lsp.start(bashls)
+if lsp.start(bashls) ~= nil then
+  F.Notify("INFO", bashls.cmd[1] .. " LSP started.")
+else
+  F.Notify("ERROR", "Could not start LSP " .. bashls.cmd[1])
+end

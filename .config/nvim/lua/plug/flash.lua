@@ -38,7 +38,7 @@ return {
       multi_window = true,
       forward = true,
       wrap = true,
-      mode = "fuzzy", ---@type "exact" | "search" | "fuzzy" | fun(str) : string
+      mode = "fuzzy", ---@type "exact" | "search" | "fuzzy" | fun(str) : number
       incremental = false,
       exclude = {
         "notify",

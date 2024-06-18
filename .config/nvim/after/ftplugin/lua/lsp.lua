@@ -39,4 +39,8 @@ local lua_ls = {
   cmd = { "lua-language-server" },
 }
 
-lsp.start(lua_ls)
+if lsp.start(lua_ls) ~= nil then
+  F.Notify("INFO", lua_ls.cmd[1] .. " LSP started.")
+else
+  F.Notify("ERROR", "Could not start LSP " .. lua_ls.cmd[1])
+end

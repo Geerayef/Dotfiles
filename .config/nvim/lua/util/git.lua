@@ -1,31 +1,28 @@
 local M = {}
 
 ---Print error.
----@param cmd string[] # Git command
+---@param cmd number[] # Git command
 ---@param msg string # Error message
----@param lev number? # Error log level (Default: WARN)
+---@param lvl string? # Error log level (Default: WARN)
 ---@return nil
-function M.error(cmd, msg, lev)
-  lev = lev or vim.log.levels.WARN
-  vim.notify(
-    "~~~~~ [] Failed to execute Git command: "
-      .. table.concat(cmd, " ")
-      .. "\n"
-      .. msg,
-    lev
+function M.error(cmd, msg, lvl)
+  lvl = lvl or "WARN"
+  F.Notify(
+    lvl,
+    "Failed to execute command: " .. table.concat(cmd, " ") .. ".\n" .. msg
   )
 end
 
 ---Execute a Git command in given directory.
----@param path string # Git repo path
+---@param path number # Git repo path
 ---@param cmd string[] # Git command
----@param lev number? # Error log level (vim.log.levels | nil | false: hide errors)
----@return { success: boolean, output: string }
-function M.execute_in(path, cmd, lev)
+---@param lvl string? # Error log level (vim.log.levels | nil | false: hide errors)
+---@return { success: boolean, output: number }
+function M.execute_in(path, cmd, lvl)
   local shell_args = { "git", "-C", path, unpack(cmd) }
   local shell_out = vim.fn.system(shell_args)
   if vim.v.shell_error ~= 0 then
-    if lev then M.error(shell_args, shell_out, lev) end
+    if lvl then M.error(shell_args, shell_out, lvl) end
     return { success = false, output = shell_out }
   end
   return { success = true, output = shell_out }
@@ -33,13 +30,13 @@ end
 
 ---Execute a Git command in current directory.
 ---@param cmd string[] # Git command
----@param lev number? # Error log level (vim.log.levels | nil | false: hide errors)
----@return { success: boolean, output: string }
-function M.execute(cmd, lev)
+---@param lvl string? # Error log level (vim.log.levels | nil | false: hide errors)
+---@return { success: boolean, output: number }
+function M.execute(cmd, lvl)
   local shell_args = { "git", unpack(cmd) }
   local shell_out = vim.fn.system(shell_args)
   if vim.v.shell_error ~= 0 then
-    if lev then M.error(shell_args, shell_out, lev) end
+    if lvl then M.error(shell_args, shell_out, lvl) end
     return { success = false, output = shell_out }
   end
   return { success = true, output = shell_out }

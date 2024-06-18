@@ -23,5 +23,14 @@ local pylsp = {
   cmd = { "pylsp" },
 }
 
-lsp.start(ruff_lsp)
-lsp.start(pylsp)
+if lsp.start(pylsp) ~= nil then
+  F.Notify("INFO", pylsp.cmd[1] .. " LSP started.")
+else
+  F.Notify("ERROR", "Could not start LSP " .. pylsp.cmd[1])
+end
+
+if lsp.start(ruff_lsp) ~= nil then
+  F.Notify("INFO", ruff_lsp.cmd[1] .. " LSP started.")
+else
+  F.Notify("ERROR", "Could not start LSP " .. ruff_lsp.cmd[1])
+end

@@ -65,15 +65,17 @@ LSP.default_config = {
 ---@param opts table?
 ---@return integer? client_id # ID of attached client or nil if failed
 function LSP.start(config, opts)
-  if vim.b.bigfile or vim.bo.bt == "nofile" then return end
-  local cmd_type = type(config.cmd)
-  local cmd_exec = cmd_type == "table" and config.cmd[1]
-  if cmd_type == "table" and vim.fn.executable(cmd_exec or "") == 0 then
+  if
+    vim.b.bigfile
+    or vim.bo.bt == "nofile"
+    or type(config.cmd) ~= "table"
+    or vim.fn.executable(config.cmd[1]) == 0
+  then
     return
   end
   return vim.lsp.start(
     vim.tbl_deep_extend("keep", config or {}, {
-      name = cmd_exec,
+      name = config.cmd[1],
       root_dir = require("util.fs").root(
         vim.api.nvim_buf_get_name(0),
         vim.list_extend(

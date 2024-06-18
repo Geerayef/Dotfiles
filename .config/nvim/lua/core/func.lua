@@ -63,4 +63,12 @@ function F.IsBufInRepo(buf)
   return gitdir and #gitdir > 0 and #gitdir < #buf_path
 end
 
+---@param message string
+---@param level string # Log level
+function F.Notify(level, message)
+  if level == nil or message == nil then return end
+  local lvl = level:upper()
+  vim.notify("~~~~~ [" .. lvl .. "] " .. message, vim.log.levels[lvl])
+end
+
 return F
