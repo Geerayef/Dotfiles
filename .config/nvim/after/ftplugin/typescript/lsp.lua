@@ -20,15 +20,5 @@ local biome = {
   root_patterns = { "package.json", "biome.json", "biome.jsonc" },
   cmd = { "biome", "lsp-proxy" },
 }
-
-if lsp.start(tsserver) ~= nil then
-  F.Notify("INFO", tsserver.cmd[1] .. " LSP started.")
-else
-  F.Notify("ERROR", "Could not start LSP " .. tsserver.cmd[1])
-end
-
-if lsp.start(biome) ~= nil then
-  F.Notify("INFO", biome.cmd[1] .. " LSP started.")
-else
-  F.Notify("ERROR", "Could not start LSP " .. biome.cmd[1])
-end
+lsp.start(tsserver)
+lsp.start(biome)

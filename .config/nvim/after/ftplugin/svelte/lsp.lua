@@ -16,15 +16,5 @@ local biome = {
   root_patterns = { "package.json", "biome.json", "biome.jsonc" },
   cmd = { "biome", "lsp-proxy" },
 }
-
-if lsp.start(svelte) ~= nil then
-  F.Notify("INFO", svelte.cmd[1] .. " LSP started.")
-else
-  F.Notify("ERROR", "Could not start LSP " .. svelte.cmd[1])
-end
-
-if lsp.start(biome) ~= nil then
-  F.Notify("INFO", biome.cmd[1] .. " LSP started.")
-else
-  F.Notify("ERROR", "Could not start LSP " .. biome.cmd[1])
-end
+lsp.start(svelte)
+lsp.start(biome)
