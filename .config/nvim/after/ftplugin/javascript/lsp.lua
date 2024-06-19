@@ -1,5 +1,6 @@
 local lsp = require("util.lsp")
 local biome = {
+  on_attach = require("core.func").LspAttach,
   filetypes = {
     "javascript",
     "typescript",

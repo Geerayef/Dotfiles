@@ -1,6 +1,6 @@
 local lsp = require("util.lsp")
 local lua_ls = {
-  on_attach = F.LspAttach,
+  on_attach = require("core.func").LspAttach,
   filetypes = { "lua" },
   root_patterns = { "*.lua" },
   settings = {

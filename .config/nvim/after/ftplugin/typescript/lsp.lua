@@ -1,5 +1,6 @@
 local lsp = require("util.lsp")
 local tsserver = {
+  on_attach = require("core.func").LspAttach,
   init_options = {
     preferences = { disableSuggestions = true },
     hostInfo = "neovim",
@@ -9,6 +10,7 @@ local tsserver = {
   cmd = { "typescript-language-server", "--stdio" },
 }
 local biome = {
+  on_attach = require("core.func").LspAttach,
   filetypes = {
     "javascript",
     "typescript",

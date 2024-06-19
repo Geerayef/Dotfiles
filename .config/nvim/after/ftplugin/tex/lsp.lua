@@ -1,5 +1,6 @@
 local lsp = require("util.lsp")
 local texlab = {
+  on_attach = require("core.func").LspAttach,
   filetypes = { "tex", "plaintex", "bib" },
   root_patterns = { "*.tex", "*.bib", ".latexmkrc" },
   settings = {

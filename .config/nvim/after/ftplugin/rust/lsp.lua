@@ -1,5 +1,6 @@
 local lsp = require("util.lsp")
 local rust_analyzer = {
+  on_attach = require("core.func").LspAttach,
   filetypes = { "rust" },
   root_patterns = { "*.rs" },
   settings = {

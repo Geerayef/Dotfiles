@@ -1,10 +1,12 @@
 local lsp = require("util.lsp")
 local svelte = {
+  on_attach = require("core.func").LspAttach,
   filetypes = { "svelte" },
   root_patterns = { "biome.json", "biome.jsonc", "svelte.config.js" },
   cmd = { "svelteserver", "--stdio" },
 }
 local biome = {
+  on_attach = require("core.func").LspAttach,
   filetypes = {
     "javascript",
     "typescript",
