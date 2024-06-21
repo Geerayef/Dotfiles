@@ -11,7 +11,7 @@ function M.root(file, root_markers)
     return vim.fs.dirname(file)
   end
   local closest = ""
-  local closest_proximity = 24
+  local closest_proximity = 32
   local proximity = 0
   local proximity_threshold = 2
   local root = ""
@@ -31,14 +31,13 @@ function M.root(file, root_markers)
         _, root_depth = root:gsub("/", "")
         proximity = file_depth - root_depth
         if proximity <= closest_proximity then
+          if proximity <= proximity_threshold then return root end
           closest_proximity = proximity
           closest = root
-          if closest_proximity <= proximity_threshold then return closest end
         end
       end
     end
   end
-  if closest == "" or closest == nil then return nil end
   return closest
 end
 

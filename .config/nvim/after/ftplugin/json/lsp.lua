@@ -1,4 +1,3 @@
-local lsp = require("util.lsp")
 local biome = {
   on_attach = require("core.func").LspAttach,
   filetypes = {
@@ -12,4 +11,5 @@ local biome = {
   root_patterns = { "package.json", "biome.json", "biome.jsonc" },
   cmd = { "biome", "lsp-proxy" },
 }
-lsp.start(biome)
+
+require("util.lsp").start(biome)

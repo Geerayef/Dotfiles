@@ -158,7 +158,6 @@ C.default_workspace = "home"
 -- Performance
 C.enable_wayland = false
 C.animation_fps = 1
-C.max_fps = 30
 C.front_end = "WebGpu"
 local gpus = W.gui.enumerate_gpus()
 C.webgpu_preferred_adapter = gpus[1]

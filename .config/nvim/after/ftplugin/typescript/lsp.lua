@@ -1,4 +1,3 @@
-local lsp = require("util.lsp")
 local tsserver = {
   on_attach = require("core.func").LspAttach,
   init_options = {
@@ -9,6 +8,7 @@ local tsserver = {
   root_patterns = { "package.json", "jsconfig.json", "tsconfig.json" },
   cmd = { "typescript-language-server", "--stdio" },
 }
+
 local biome = {
   on_attach = require("core.func").LspAttach,
   filetypes = {
@@ -22,5 +22,6 @@ local biome = {
   root_patterns = { "package.json", "biome.json", "biome.jsonc" },
   cmd = { "biome", "lsp-proxy" },
 }
-lsp.start(tsserver)
-lsp.start(biome)
+
+require("util.lsp").start(tsserver)
+require("util.lsp").start(biome)

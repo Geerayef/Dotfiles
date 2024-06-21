@@ -1,4 +1,3 @@
-local lsp = require("util.lsp")
 local rust_analyzer = {
   on_attach = require("core.func").LspAttach,
   filetypes = { "rust" },
@@ -12,4 +11,5 @@ local rust_analyzer = {
   },
   cmd = { "rust-analyzer" },
 }
-lsp.start(rust_analyzer)
+
+require("util.lsp").start(rust_analyzer)

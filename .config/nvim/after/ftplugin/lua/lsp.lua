@@ -1,4 +1,3 @@
-local lsp = require("util.lsp")
 local lua_ls = {
   on_attach = require("core.func").LspAttach,
   filetypes = { "lua" },
@@ -38,4 +37,5 @@ local lua_ls = {
   },
   cmd = { "lua-language-server" },
 }
-lsp.start(lua_ls)
+
+require("util.lsp").start(lua_ls)

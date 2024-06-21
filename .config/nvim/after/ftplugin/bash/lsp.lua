@@ -1,4 +1,3 @@
-local lsp = require("util.lsp")
 local bashls = {
   on_attach = require("core.func").LspAttach,
   filetypes = { "sh", "bash" },
@@ -8,4 +7,5 @@ local bashls = {
   },
   cmd = { "bash-language-server", "start" },
 }
-lsp.start(bashls)
+
+require("util.lsp").start(bashls)

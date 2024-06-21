@@ -1,38 +1,32 @@
 local LSP = {}
 
+if not vim.g.lsp_active_clients then vim.g.lsp_active_clients = {} end
+
 local has_cmplsp, cmplsp = pcall(require, "cmp_nvim_lsp")
-local caps = {
-  workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
-  textDocument = {
-    documentFormattingProvider = false,
-    codelens = { enable = true },
-    completion = {
-      completionItem = {
-        snippetSupport = true,
-        resolveSupport = {
-          properties = { "detail", "documentation", "additionalTextEdits" },
+local capabilities = vim.tbl_deep_extend(
+  "force",
+  {},
+  {
+    workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
+    textDocument = {
+      documentFormattingProvider = false,
+      codelens = { enable = true },
+      completion = {
+        completionItem = {
+          snippetSupport = true,
+          resolveSupport = {
+            properties = { "detail", "documentation", "additionalTextEdits" },
+          },
         },
       },
     },
   },
-}
-local capabilities = vim.tbl_deep_extend(
-  "force",
-  {},
-  caps or {},
   has_cmplsp
       and cmplsp.default_capabilities(
         vim.lsp.protocol.make_client_capabilities()
       )
     or vim.lsp.protocol.make_client_capabilities()
 )
-
----@type lsp_client_config_t
-LSP.default_config = {
-  capabilities = capabilities,
-  root_patterns = S.root_markers,
-  single_file_support = true,
-}
 
 ---@class vim.lsp.ClientConfig: lsp_client_config_t
 ---@class lsp_client_config_t
@@ -59,6 +53,13 @@ LSP.default_config = {
 ---@field root_dir? string
 ---@field root_patterns? string[]
 
+---@type lsp_client_config_t
+LSP.default_config = {
+  capabilities = capabilities,
+  root_patterns = S.root_markers,
+  single_file_support = true,
+}
+
 ---Wrapper for `vim.lsp.start()`.
 ---Starts and attaches LSP client to the current buffer.
 ---@param config vim.lsp.ClientConfig -- lsp_client_config_t
@@ -71,7 +72,12 @@ function LSP.start(config, opts)
     or type(config.cmd) ~= "table"
     or vim.fn.executable(config.cmd[1]) == 0
   then
-    return
+    return nil
+  end
+  if not vim.list_contains(vim.g.lsp_active_clients, config.cmd[1]) then
+    vim.g.lsp_active_clients =
+      vim.list_extend(vim.g.lsp_active_clients, { config.cmd[1] })
+    F.Notify("INFO", "Started LSP client `" .. config.cmd[1] .. "`.")
   end
   return vim.lsp.start(
     vim.tbl_deep_extend("keep", config or {}, {

@@ -1,4 +1,3 @@
-local lsp = require("util.lsp")
 local texlab = {
   on_attach = require("core.func").LspAttach,
   filetypes = { "tex", "plaintex", "bib" },
@@ -29,4 +28,5 @@ local texlab = {
   },
   cmd = { "texlab" },
 }
-lsp.start(texlab)
+
+require("util.lsp").start(texlab)
