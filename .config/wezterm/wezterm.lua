@@ -106,7 +106,7 @@ W.on("update-status", function(window, _)
   }))
 end)
 
--- ~ Settings ------------------------------------------------------------- ~ --
+-- ~ Option ------------------------------------------------------------- ~ --
 
 -- Bar
 C.tab_bar_at_bottom = true
@@ -121,18 +121,18 @@ C.window_padding = { left = "0pt", right = "0pt", top = "0pt", bottom = "0pt" }
 C.use_resize_increments = true
 C.adjust_window_size_when_changing_font_size = false
 C.enable_scroll_bar = false
-C.inactive_pane_hsb = { saturation = 0.9, brightness = 0.8 }
+C.inactive_pane_hsb = { saturation = 1, brightness = 1 }
 C.default_cursor_style = "SteadyBlock"
 C.force_reverse_video_cursor = false
 
 -- Colorscheme
-C.color_scheme = "ayu"
+C.color_scheme = "Ayu Dark (Gogh)"
 C.colors = {
   cursor_fg = "#000000",
   tab_bar = {
     background = ayu.bg,
     active_tab = {
-      bg_color = ayu.brights[5],
+      bg_color = ayu.ansi[5],
       fg_color = ayu.bg,
       intensity = "Bold",
       underline = "None",
@@ -145,7 +145,7 @@ C.colors = {
 
 -- Font
 C.unicode_version = 14
-C.font_size = 17
+C.font_size = 18
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
   { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.harf.io },
@@ -168,7 +168,8 @@ C.audible_bell = "Disabled"
 C.set_environment_variables = { CURRENT_TERM = "wezterm" }
 C.check_for_updates = false
 
--- Keys
+-- ~ Key ------------------------------------------------------------------- ~ --
+
 C.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 }
 C.keys = {
   map("phys:Space", act.ActivateCommandPalette),

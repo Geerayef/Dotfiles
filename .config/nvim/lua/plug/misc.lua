@@ -7,7 +7,7 @@ return {
   {
     "numToStr/Comment.nvim",
     event = "BufReadPost",
-    opts = { extra = { above = "gcO", below = "gco", eol = "gcA" } },
+    opts = { extra = { above = "gcO", below = "gco" } },
   },
   {
     "norcalli/nvim-colorizer.lua",
@@ -44,5 +44,22 @@ return {
       vim.g.matchup_matchparen_deferred = 1
       vim.g.matchup_override_vimtex = 1
     end,
+  },
+  {
+    "williamboman/mason.nvim",
+    cmd = "Mason",
+    opts = {
+      registries = { "github:mason-org/mason-registry" },
+      ui = {
+        icons = {
+          package_installed = S.Icons.ui.box_check,
+          package_pending = S.Icons.ui.arrow_r,
+          package_uninstalled = S.Icons.ui.box_empty,
+        },
+        border = S.Border,
+        width = 0.7,
+        height = 0.5,
+      },
+    },
   },
 }

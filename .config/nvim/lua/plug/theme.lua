@@ -13,25 +13,20 @@ return {
       overrides = function(colors)
         local t = colors.theme
         return {
-          NormalFloat = { bg = "none" },
-          FloatBorder = { bg = "none" },
+          NormalDark = { fg = t.ui.fg_dim, bg = t.ui.bg_ayu },
           FloatTitle = { bg = "none" },
-          NormalDark = { fg = t.ui.fg_dim, bg = t.ui.bg_m3 },
+          FloatBorder = { bg = "none" },
+          NormalFloat = { bg = "none" },
           MasonNormal = { bg = "none", fg = t.ui.fg_dim },
           LazyNormal = { bg = "none", fg = t.ui.fg_dim },
-          TelescopeTitle = { fg = t.ui.special, bold = true },
-          TelescopePromptNormal = { bg = t.ui.float.bg },
-          TelescopePromptBorder = { fg = t.ui.fg, bg = t.ui.float.bg },
-          TelescopeResultsNormal = { fg = t.ui.fg_dim, bg = t.ui.float.bg },
-          TelescopeResultsBorder = { fg = t.ui.fg, bg = t.ui.float.bg },
-          TelescopePreviewNormal = { bg = t.ui.float.bg },
-          TelescopePreviewBorder = { fg = t.ui.fg, bg = t.ui.float.bg },
+          TelescopeTitle = { fg = t.ui.special, bg = "none", bold = true },
+          TelescopePromptBorder = { fg = t.ui.fg, bg = "none" },
+          TelescopeResultsBorder = { fg = t.ui.fg, bg = "none" },
+          TelescopePreviewBorder = { fg = t.ui.fg, bg = "none" },
         }
       end,
       colors = {
-        theme = {
-          all = { ui = { bg = "#0F1419", bg_gutter = "none" } },
-        },
+        theme = { all = { ui = { bg = "#0A0E14", bg_gutter = "none" } } },
       },
       theme = "dragon",
       background = { dark = "dragon", light = "wave" },

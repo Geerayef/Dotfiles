@@ -1,5 +1,5 @@
 return {
-  bg = "#0F1419",
+  bg = "#0A0E14",
   fg = "#E6E1CF",
   selection_bg = "#253340",
   selection_fg = "#E6E1CF",
