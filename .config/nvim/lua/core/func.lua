@@ -20,13 +20,25 @@ function F.LspAttach(client, bufnr)
 end
 
 ---Map key sequence to action.
+---Verbose. Buffer local.
 ---@param mode string|table # Mode{s}
 ---@param l string # Left side of mapping
 ---@param r string|function # Right side of mapping
----@param bo table # Buffer options
+---@param buf number # Buffer ID
 ---@param desc string # Mapping description
-function F.map(mode, l, r, bo, desc)
-  bo = bo or { noremap = true, silent = true, desc = "" }
+function F.bmap(mode, l, r, buf, desc)
+  local bo = { buffer = buf, desc = "" }
+  bo.desc = desc or ("[" .. r .. "]")
+  vim.keymap.set(mode, l, r, bo)
+end
+
+---Map key sequence to action.
+---@param mode string|table # Mode{s}
+---@param l string # Left side of mapping
+---@param r string|function # Right side of mapping
+---@param desc string # Mapping description
+function F.map(mode, l, r, desc)
+  local bo = { silent = true, desc = "" }
   bo.desc = desc or ("[" .. r .. "]")
   vim.keymap.set(mode, l, r, bo)
 end

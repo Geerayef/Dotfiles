@@ -71,13 +71,5 @@ autocmd({ "BufWinEnter", "FileChangedShellPost" }, {
 
 autocmd("FileType", {
   pattern = S.FtSpecial,
-  callback = function()
-    F.map(
-      "n",
-      "q",
-      vim.cmd.close,
-      { buffer = true },
-      "Close the current buffer."
-    )
-  end,
+  callback = function() F.map("n", "q", vim.cmd.close, "Close current buffer.") end,
 })
