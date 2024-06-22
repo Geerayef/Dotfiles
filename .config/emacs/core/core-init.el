@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ~  Functions
 (defun util/disable-indent-tabs ()
   "Disable indenting with tabs."
   (setq indent-tabs-mode nil))
@@ -15,7 +14,6 @@
       (when (and (file-directory-p name) (not (string-prefix-p "." f)))
         (util/recursive-add-to-load-path name)))))
 
-;; ~  Emacs settings (from C source)
 (use-package emacs
   :ensure nil
   :hook
@@ -47,7 +45,7 @@
   ;; Miscellaneous
   (visible-bell nil))
 
-;; ~  Keybindings
+;; ~ Keys ------------------------------------------------------------------ ~ ;;
 
 (global-set-key (kbd "C-v")
                 (lambda ()
@@ -59,9 +57,7 @@
                   (interactive
                    (forward-line (- (/ (window-height (selected-window)) 3))))))
 
-;; -------------------------------------------------------------------------------- ;;
-
-;; ~  Editing
+;; ~ Edit ------------------------------------------------------------------ ~ ;;
 
 (use-package display-line-numbers
   :ensure nil
@@ -99,9 +95,7 @@
   :ensure nil
   :hook (text-mode . visual-line-mode))
 
-;; -------------------------------------------------------------------------------- ;;
-
-;; ~  QoL
+;; ~ QoL ------------------------------------------------------------------- ~ ;;
 
 (use-package repeat
   :ensure nil
@@ -120,7 +114,8 @@
   :config
   (setq auto-insert-query nil)
   (auto-insert-mode 1)
-  (add-hook 'find-file-hook 'auto-insert))
+  :hook
+  (find-file . auto-insert))
 
 (use-package window
   :ensure nil
@@ -156,49 +151,33 @@
   :when (fboundp 'pixel-scroll-precision-mode)
   :config (pixel-scroll-precision-mode))
 
-;; ~  -------------------------------------------------------------------------------- ~ ;;
-
-;; ~  File system navigation
+;; ~ Dired ----------------------------------------------------------------- ~ ;;
 
 (use-package dired
   :ensure nil
   :custom
   (dired-auto-revert-buffer t)
   (dired-dwim-target t)
+  (dired-listing-switches "-alh --group-directories-first")
   :config
   (put 'dired-find-alternate-file 'disabled nil)
   (setf dired-kill-when-opening-new-dired-buffer t))
 
-;; ~  -------------------------------------------------------------------------------- ~ ;;
-
-;; ~  Modules
+;; ~ Modules --------------------------------------------------------------- ~ ;;
 
 (util/recursive-add-to-load-path modules-dir)
 
 (use-package core-backups :ensure nil)
-
-;; ~  UI
 (use-package mod-ui :ensure nil)
 (use-package mod-icons :ensure nil)
-;; ~  Completion
 (use-package mod-completion :ensure nil)
-;; ~  ORG mode, text editing
 (use-package mod-write :ensure nil)
-;; ~  Formatting
-;; ~  Linting
 (use-package mod-flycheck :ensure nil)
-;; ~  Treesitter
 (use-package mod-treesitter :ensure nil)
-;; ~  Eglot
 (use-package mod-eglot :ensure nil)
-;; ~  Programming
 (use-package mod-lang :ensure nil)
-;; ~  Navigation
 (use-package mod-nav :ensure nil)
-;; ~  Version Control
 (use-package mod-git :ensure nil)
-;; ~  Project Management
-;; ~  Workspace Management
 
 (provide 'core-init)
 ;;; core-init.el ends here

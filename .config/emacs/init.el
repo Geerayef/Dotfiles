@@ -19,7 +19,7 @@
 (use-package gcmh
   :ensure t
   :config (setq gcmh-high-cons-threshold (* 128 1024 1024))
-  :hook ((after-init . gcmh-mode)))
+  :hook ((elpaca-after-init . gcmh-mode)))
 
 ;; ~  --------------------------------------------------------------------------------  ~ ;;
 
@@ -30,3 +30,4 @@
 
 (provide 'init)
 ;;; init.el ends here
+(put 'downcase-region 'disabled nil)

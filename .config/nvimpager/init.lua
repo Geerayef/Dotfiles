@@ -1,4 +1,4 @@
--- ~  Keymaps
+-- ~ Keymap ------------------------------------------------------------------- ~ --
 
 vim.g.mapleader = " "
 
@@ -8,9 +8,7 @@ keymap("n", "<leader>y", '"+y', { noremap = true })
 keymap("n", "<leader>Y", '"+Y', { noremap = true })
 keymap("v", "<leader>y", '"+y', { noremap = true })
 
--- ---------------------------------------- --
-
--- ~  Options
+-- ~ Option ------------------------------------------------------------------- ~ --
 
 local o = vim.opt
 local cmd = vim.cmd
@@ -45,7 +43,6 @@ o.relativenumber = true
 
 --  Behaviour
 o.ttyfast = true
-o.lazyredraw = true
 o.updatetime = 300
 o.belloff = "all"
 o.scrolloff = 2

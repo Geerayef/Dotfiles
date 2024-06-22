@@ -12,17 +12,17 @@
   (unless (boundp 'native-comp-deferred-compilation-deny-list)
     (defvaralias 'native-comp-deferred-compilation-deny-list 'native-comp-jit-compilation-deny-list))
   (define-advice comp-effective-async-max-jobs (:before (&rest _) set-default-cpus)
-    "Default to 1/4 of cores in interactive sessions and all of them otherwise."
-    (and (null comp-num-cpus)
-         (zerop native-comp-async-jobs-number)
-         (setq comp-num-cpus
-               (max 1 (/ (num-processors) (if noninteractive 1 4)))))))
+                 "Default to 1/4 of cores in interactive sessions and all of them otherwise."
+                 (and (null comp-num-cpus)
+                      (zerop native-comp-async-jobs-number)
+                      (setq comp-num-cpus
+                            (max 1 (/ (num-processors) (if noninteractive 1 4)))))))
 
 ;; History
 (setq-default savehist-file (expand-file-name "savehist" cache-dir)
-			  savehist-additional-variables '(kill-ring search-ring regexp-search-ring)
-			  savehist-save-minibuffer-history t
-			  savehist-autosave-interval nil)
+              savehist-additional-variables '(kill-ring search-ring regexp-search-ring)
+              savehist-save-minibuffer-history t
+              savehist-autosave-interval nil)
 (savehist-mode 1)
 (setq history-length t
       history-delete-duplicates t)
@@ -57,11 +57,11 @@
 
 ;; Auto revert
 (setq-default global-auto-revert-mode t
-			  global-auto-revert-non-file-buffers t
-			  auto-revert-verbose t
-			  auto-revert-use-notify nil
-			  auto-revert-stop-on-user-input nil
-			  revert-without-query (list "."))
+              global-auto-revert-non-file-buffers t
+              auto-revert-verbose t
+              auto-revert-use-notify nil
+              auto-revert-stop-on-user-input nil
+              revert-without-query (list "."))
 
 ;; Recent files
 (require 'recentf)

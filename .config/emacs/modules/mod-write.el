@@ -1,8 +1,14 @@
-;;;; mod-write.el --- General editing enhancements -*- lexical-binding: t; -*-
+;;;; mod-write.el --- Tools for writing -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
-;; ~  Org
+(use-package jinx
+  :ensure t
+  :hook ((text-mode org-mode markdown-mode prog-mode conf-mode) . global-jinx-mode)
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages)))
+
+;; ~ Org ------------------------------------------------------------------- ~ ;;
 
 (use-package org
   :ensure nil
@@ -38,132 +44,114 @@
   :ensure t
   :hook (org-mode . org-appear-mode))
 
-;; ~  PDF
-
-(use-package pdf-tools
-  :ensure t
-  :init (pdf-loader-install))
-
-;; ~  Markdown
-
-(use-package markdown-mode
-  :ensure t
-  :commands (markdown-mode gfm-mode)
-  :custom
-  (markdown-command '("pandoc" "--standalone" "--mathjax" "--from=markdown" "--to=html5"))
-  (markdown-enable-math t)
-  (markdown-hide-markup t)
-  (markdown-gfm-uppercase-checkbox t)
-  (markdown-indent-on-enter 'indent-and-new-item)
-  :hook (gfm-mode . (lambda () (visual-line-mode)))
-  :mode (("README\\.md\\'" . gfm-mode)))
-
-(use-package markdown-preview-mode
-  :ensure t
-  :custom
-  (browse-url-browser-function 'browse-url-firefox)
-  ;; :hook ((markdown-mode . markdown-preview-mode)
-  ;;        (gfm-mode . markdown-preview-mode))
-  )
-
-;; ~  Latex
-
-(use-package reftex
-  :ensure nil
-  :hook
-  (LaTeX-mode . turn-on-reftex)
-  (latex-mode . turn-on-reftex))
-
-(use-package tex
-  :ensure
-  (auctex
-   :pre-build
-   (("./autogen.sh")
-    ("./configure" "--without-texmf-dir" "--with-lispdir=.")
-    ("make"))
-   :build (:not elpaca--compile-info)
-   :files ("*.el" "doc" "etc" "images" "latex" "style")
-   :version (lambda (_) (require 'tex-site) AUCTeX-version))
-  :config
-  (setq TeX-auto-save t
-        TeX-parse-self t
-        TeX-auto-untabify t
-        TeX-PDF-mode t
-        reftex-plug-into-AUCTeX t
-        bib-cite-use-reftex-view-crossref t)
-  (setq-default TeX-master nil)
-  :mode (("\\.tex\\'" . LaTeX-mode)))
-
-;; ~  Spelling
-
-(use-package jinx
-  :ensure t
-  :hook ((text-mode org-mode markdown-mode prog-mode conf-mode) . global-jinx-mode)
-  :bind (("M-$" . jinx-correct)
-         ("C-M-$" . jinx-languages)))
-
-;; ~  Notes
-
-(use-package obsidian
-  :ensure t
-  :init (global-obsidian-mode t)
-  :custom
-  (obsidian-specify-path "~/notes")
-  (obsidian-inbox-directory "Inbox")
-  (obsidian-wiki-link-create-file-in-inbox t)
-  ;; Daily notes: file name is YYYY-MM-DD.md
-  (obsidian-daily-notes-directory "DailyNotes")
-  ;; Note templates [nil]
-  (obsidian-templates-directory "Templates")
-  ;; Daily Note template name - requires a template directory. Default: Daily Note Template.md
-  (setq obsidian-daily-note-template "DailyNoteTemplate.md")
-  :bind (:map obsidian-mode-map
-              ;; Replace C-c C-o with Obsidian.el's implementation. It's ok to use another key binding.
-              ("C-c C-o" . obsidian-follow-link-at-point)
-              ("C-c C-b" . obsidian-backlink-jump)
-              ;; | `obsidian-insert-link'
-              ("C-c C-l" . obsidian-insert-wikilink)))
-
-(use-package denote
-  :ensure t
-  :config
-  (setq xref-search-program (cond (executable-find "rg") 'ripgrep) (t 'grep)
-        denote-directory (expand-file-name "~/notes/")
-        denote-save-buffer-after-creation nil
-        denote-known-keywords '("philosophy" "programming" "note")
-        denote-infer-keywords t
-        denote-sort-keywords t
-        denote-file-type '(org markdown-toml text)
-        denote-prompts '(title keywords)
-        denote-excluded-directories-regexp nil
-        denote-excluded-keywords-regexp nil
-        denote-rename-no-confirm nil ; Set to t if you are familiar with `denote-rename-file'
-        denote-date-prompt-use-org-read-date t
-        denote-backlinks-show-context t)
-  :bind
-  (:map global-map
-        ("C-c d n" . denote)
-        ("C-c d r" . denote-region) ; "contents" mnemonic
-        ("C-c d t" . denote-type)
-        ("C-c d d" . denote-date)
-        ("C-c d s" . denote-signature) ; "zettelkasten" mnemonic
-        ("C-c d s" . denote-subdirectory)
-        ("C-c d t" . denote-template)
-        ;; Otherwise follow the same pattern for `org-mode-map',
-        ;; `markdown-mode-map', and/or `text-mode-map'.
-        ("C-c d l" . denote-link) ; "insert" mnemonic
-        ("C-c d L" . denote-add-links)
-        ("C-c d b" . denote-backlinks)
-        ("C-c d f l" . denote-find-link)
-        ("C-c d f b" . denote-find-backlink)))
+;; (use-package denote
+;;   :ensure t
+;;   :config
+;;   (setq xref-search-program (cond (executable-find "rg") 'ripgrep) (t 'grep)
+;;         denote-directory (expand-file-name "~/notes/")
+;;         denote-save-buffer-after-creation nil
+;;         denote-known-keywords '("philosophy" "programming" "note")
+;;         denote-infer-keywords t
+;;         denote-sort-keywords t
+;;         denote-file-type '(org markdown markdown-toml text)
+;;         denote-prompts '(title keywords)
+;;         denote-excluded-directories-regexp nil
+;;         denote-excluded-keywords-regexp nil
+           ;; Set to t if you are familiar with `denote-rename-file'
+;;         denote-rename-no-confirm nil
+;;         denote-date-prompt-use-org-read-date t
+;;         denote-backlinks-show-context t)
+;;   :bind
+;;   (:map global-map
+;;         ("C-c d n" . denote)
+;;         ("C-c d r" . denote-region) ; "contents" mnemonic
+;;         ("C-c d t" . denote-type)
+;;         ("C-c d d" . denote-date)
+;;         ("C-c d s" . denote-signature) ; "zettelkasten" mnemonic
+;;         ("C-c d s" . denote-subdirectory)
+;;         ("C-c d t" . denote-template)
+;;         ;; Otherwise follow the same pattern for `org-mode-map',
+;;         ;; `markdown-mode-map', and/or `text-mode-map'.
+;;         ("C-c d l" . denote-link) ; "insert" mnemonic
+;;         ("C-c d L" . denote-add-links)
+;;         ("C-c d b" . denote-backlinks)
+;;         ("C-c d f l" . denote-find-link)
+;;         ("C-c d f b" . denote-find-backlink)))
 ;; Note that `denote-rename-file' can work from any context, not just
 ;; Dired bufffers.  That is why we bind it here to the `global-map'.
 ;; ("C-c n r" . denote-rename-file)
 ;; ("C-c n R" . denote-rename-file-using-front-matter)
 
-(use-package zzz-to-char
-  :ensure t
-  :bind (("M-z" . zzz-to-char-up-to-char)))
+;; ~ Latex ----------------------------------------------------------------- ~ ;;
+
+;; (use-package reftex
+;;   :ensure nil
+;;   :hook
+;;   (LaTeX-mode . turn-on-reftex)
+;;   (latex-mode . turn-on-reftex))
+
+;; (use-package tex
+;;   :ensure
+;;   (auctex
+;;    :pre-build
+;;    (("./autogen.sh")
+;;     ("./configure" "--without-texmf-dir" "--with-lispdir=.")
+;;     ("make"))
+;;    :build (:not elpaca--compile-info)
+;;    :files ("*.el" "doc" "etc" "images" "latex" "style")
+;;    :version (lambda (_) (require 'tex-site) AUCTeX-version))
+;;   :config
+;;   (setq TeX-auto-save t
+;;         TeX-parse-self t
+;;         TeX-auto-untabify t
+;;         TeX-PDF-mode t
+;;         reftex-plug-into-AUCTeX t
+;;         bib-cite-use-reftex-view-crossref t)
+;;   (setq-default TeX-master nil)
+;;   :mode (("\\.tex\\'" . LaTeX-mode)))
+
+;; ~ PDF ------------------------------------------------------------------- ~ ;;
+
+;; (use-package pdf-tools
+;;   :ensure t
+;;   :init (pdf-loader-install))
+
+;; ~ Markdown -------------------------------------------------------------- ~ ;;
+
+;; (use-package markdown-preview-mode
+;;   :ensure t
+;;   :custom
+;;   (browse-url-browser-function 'browse-url-firefox))
+;; :hook ((markdown-mode . markdown-preview-mode)
+;;        (gfm-mode . markdown-preview-mode))
+
+;; (use-package markdown-mode
+;;   :ensure t
+;;   :commands (markdown-mode gfm-mode)
+;;   :custom
+;;   (markdown-command '("pandoc" "--standalone" "--mathjax" "--from=markdown" "--to=html5"))
+;;   (markdown-enable-math t)
+;;   (markdown-hide-markup t)
+;;   (markdown-gfm-uppercase-checkbox t)
+;;   (markdown-indent-on-enter 'indent-and-new-item)
+;;   :hook (gfm-mode . (lambda () (visual-line-mode)))
+;;   :mode (("README\\.md\\'" . gfm-mode)))
+
+;; (use-package obsidian
+;;   :ensure t
+;;   :init (global-obsidian-mode t)
+;;   :custom
+;;   (obsidian-specify-path "~/notes")
+;;   (obsidian-inbox-directory "inbox")
+;;   (obsidian-wiki-link-create-file-in-inbox t)
+;;   ;; Daily notes: file name is YYYY-MM-DD.md
+;;   (obsidian-daily-notes-directory "daily")
+;;   (obsidian-templates-directory "templates")
+;;   (setq obsidian-daily-note-template "daily.md")
+;;   :bind (:map obsidian-mode-map
+;;               ("C-c C-o" . obsidian-follow-link-at-point)
+;;               ("C-c C-b" . obsidian-backlink-jump)
+;;               ("C-c C-l" . obsidian-insert-link)))
 
 (provide 'mod-write)
 ;;; mod-write.el ends here

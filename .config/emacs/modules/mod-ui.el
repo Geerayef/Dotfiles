@@ -32,32 +32,7 @@
 ;;              (org-capture-mode     . nano-modeline-org-capture-mode)
 ;;              (org-agenda-mode      . nano-modeline-org-agenda-mode))
 
-(use-package indent-bars
-             :ensure (indent-bars :type git :host github :repo "jdtsmith/indent-bars")
-             :config (require 'indent-bars-ts)
-             :custom
-             (indent-bars-prefer-character t)
-             (indent-bars-display-on-blank-lines nil)
-             (indent-bars-pattern ".")
-             (indent-bars-width-frac 0.1)
-             (indent-bars-pad-frac 0.1)
-             (indent-bars-zigzag nil)
-             (indent-bars-color '(highlight :face-bg nil :blend 0.3))
-             (indent-bars-color-by-depth nil)
-             (indent-bars-highlight-current-depth '(:blend 0.6))
-             (indent-bars-no-descend-list t)
-             (indent-bars-no-descend-string t)
-             (indent-bars-treesit-support t)
-             (indent-bars-treesit-ignore-blank-lines-types '("module" "program" "translation_unit"))
-             (indent-bars-treesit-scope '((python function_definition class_definition
-                                                  for_statement if_statement with_statement while_statement)))
-             (indent-bars-treesit-scope-min-lines 3)
-             (indent-bars-treesit-wrap '((python argument_list parameters list list_comprehension
-                                                 dictionary dictionary_comprehension
-                                                 parenthesized_expression subscript)))
-             :hook (prog-mode . indent-bars-mode))
-
-;; ~ Font
+;; ~ Font ------------------------------------------------------------------ ~ ;;
 
 (use-package jit-lock
              :ensure nil
@@ -67,12 +42,10 @@
              :ensure nil
              :hook
              (elpaca-after-init . (lambda ()
-                                    (progn (set-face-attribute 'default nil :family "IosevkaTerm Nerd Font Mono"
-                                                               :height 160 :weight 'regular)
+                                    (progn (set-face-attribute 'default nil :family "ZedMono Nerd Font Mono"
+                                                               :height 180 :weight 'regular)
                                            (set-face-attribute 'line-number-current-line nil :foreground "yellow"
                                                                :slant 'normal :weight  'regular)))))
-
-;; ~ Flash-indicate movement
 
 (defun pulse-line (&rest _)
   "Pulse-highlight the current line."

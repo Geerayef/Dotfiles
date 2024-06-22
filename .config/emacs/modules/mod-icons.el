@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ~  All the icons
 (use-package memoize :ensure t :demand t)
 (use-package all-the-icons
   :ensure t
@@ -12,7 +11,6 @@
   (all-the-icons-scale-factor 1.0)
   (all-the-icons-default-adjust -0.2))
 
-;; ~  Nerd icons
 (use-package nerd-icons
   :ensure t
   :custom
@@ -76,15 +74,6 @@
         (nerd-icons-completion-get-icon cand 'variable))
        (t (nerd-icons-octicon "nf-oct-gear" :face 'all-the-icons-silver)))))
   (nerd-icons-completion-mode))
-
-;; Disable for now, as having it enabled causes dired to not reliably select the
-;; current buffer when opening dired for directory of current buffer.
-;; (use-package nerd-icons-dired
-;;   :ensure (:host github :repo "rainstormstudio/nerd-icons-dired")
-;;   :hook
-;;   (dired-mode . nerd-icons-dired-mode)
-;;   :custom
-;;   (nerd-icons-dired-v-adjust 0.01))
 
 (use-package nerd-icons-ibuffer
   :ensure t

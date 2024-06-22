@@ -16,23 +16,15 @@
 ;;   * geiser-stklos
 ;;; Code:
 
-(require 'eldoc)
+;; ~ ELisp ----------------------------------------------------------------- ~ ;;
 
-;; ~  Indentation
-
-(use-package aggressive-indent
-  :ensure t
+(use-package eldoc
   :hook
-  ((lisp-mode
-    emacs-lisp-mode
-    clojure-mode
-    scheme-mode) . aggressive-indent-mode))
-
-;; ~  Emacs Lisp
+  (emacs-lisp-mode . eldoc-mode))
 
 (use-package package-lint :ensure t)
 
-;; ~  Common Lisp
+;; ~ Common Lisp ----------------------------------------------------------- ~ ;;
 
 (use-package sly
   :ensure t
@@ -54,34 +46,13 @@
   :ensure t
   :after sly)
 
-;; ~  Scheme and Racket
+;; ~ Scheme|Racket --------------------------------------------------------- ~ ;;
 
 (use-package geiser
   :ensure t
   :custom (scheme-program-name "guile"))
 (use-package geiser-guile :ensure t :after geiser)
 ;; (use-package geiser-racket :ensure t :after geiser)
-
-;; ~  Clojure
-
-;; (with-eval-after-load "clojure-mode"
-;;   (require 'cider "cider" :no-error)
-;;   (require 'clj-refactor "clj-refactor" :no-error)
-;;   (defun crafted-lisp-load-clojure-refactor ()
-;;     "Load `clj-refactor' toooling and fix keybinding conflicts with cider."
-;;     (when (locate-library "clj-refactor")
-;;       (clj-refactor-mode 1)
-;; keybindings mentioned on clj-refactor github page
-;; conflict with cider, use this by default as it does
-;; not conflict and is a better mnemonic
-;;       (cljr-add-keybindings-with-prefix "C-c r")))
-;;   (add-hook 'clojure-mode-hook #'crafted-lisp-load-clojure-refactor)
-;;   (with-eval-after-load "flycheck"
-;;     (flycheck-clojure-setup)))
-;; (use-package cider)
-;; (use-package clj-refactor)
-;; (use-package clojure-mode)
-;; (use-package flycheck-clojure)
 
 (provide 'lisp)
 ;;; lisp.el ends here

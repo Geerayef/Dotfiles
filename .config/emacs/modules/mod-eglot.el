@@ -6,21 +6,21 @@
 
 (defun add-eglot-hooks (mode-list)
   "Add `eglot-ensure' to modes in MODE-LIST.
-The mode must be loaded, i.e. found with `fboundp'.  A mode which
+  The mode must be loaded, i.e. found with `fboundp'.  A mode which
   is not loaded will not have a hook added, in which case add it
   manually with something like this:
   `(add-hook \='some-mode-hook #\='eglot-ensure)'"
   (dolist (mode-def mode-list)
     (let ((mode (if (listp mode-def) (car mode-def) mode-def)))
       (cond
-       ((listp mode) (add-eglot-hooks mode))
-       (t
-        (when (and (fboundp mode)
-                   (not (eq 'clojure-mode mode))  ; prefer cider
-                   (not (eq 'lisp-mode mode))     ; prefer sly/slime
-                   (not (eq 'scheme-mode mode)))  ; prefer geiser
-          (let ((hook-name (format "%s-hook" (symbol-name mode))))
-            (add-hook (intern hook-name) #'eglot-ensure))))))))
+        ((listp mode) (add-eglot-hooks mode))
+        (t
+          (when (and (fboundp mode)
+                     (not (eq 'clojure-mode mode))  ; prefer cider
+                     (not (eq 'lisp-mode mode))     ; prefer sly/slime
+                     (not (eq 'scheme-mode mode)))  ; prefer geiser
+            (let ((hook-name (format "%s-hook" (symbol-name mode))))
+              (add-hook (intern hook-name) #'eglot-ensure))))))))
 
 (defun lsp-exists-p (mode-def)
   "Return non-nil if LSP binary of MODE-DEF is found via `executable-find'."
@@ -28,9 +28,9 @@ The mode must be loaded, i.e. found with `fboundp'.  A mode which
     ;; `lsp-program' is either a list of strings or a function object
     ;; calling `eglot-alternatives'.
     (if (functionp lsp-program)
-        (condition-case nil
-            (car (funcall lsp-program))
-          (error nil))
+      (condition-case nil
+                      (car (funcall lsp-program))
+                      (error nil))
       (executable-find (car lsp-program)))))
 
 (defun eglot-auto-ensure ()
@@ -67,12 +67,13 @@ Major modes are only selected if the major mode's associated LSP
         ("C-c e h" . eldoc)
         ("C-c e g d" . xref-find-definitions))
   :hook
-  ((go-ts-mode
+  ((ocaml-ts-mode
+    go-ts-mode
     java-ts-mode
     python-ts-mode
     rust-ts-mode
     c-ts-mode
-    c++-ts-mode) . eglot-ensure))
+    c++-ts-mode) . eglot-auto-ensure))
 
 (provide 'mod-eglot)
 ;;; mod-eglot.el ends here

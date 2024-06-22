@@ -14,12 +14,12 @@
   (magit-pre-refresh . diff-hl-magit-pre-refresh)
   (magit-post-refresh . diff-hl-magit-post-refresh))
 
-(use-package diff-hl
-  :ensure t
-  :config
-  (global-diff-hl-mode)
-  (diff-hl-flydiff-mode)
-  (diff-hl-dired-mode))
+;; (use-package diff-hl
+;;   :ensure t
+;;   :config
+;;   (global-diff-hl-mode)
+;;   (diff-hl-flydiff-mode)
+;;   (diff-hl-dired-mode))
 
 (provide 'mod-git)
 ;;; mod-git.el ends here
