@@ -13,7 +13,7 @@ vim.diagnostic.config({
     severity = nil,
     source = "if_many",
     format = nil,
-    prefix = S.Icons.ui.dot_xl,
+    prefix = S.Icons.ui.circle_full,
   },
   float = {
     source = "if_many",

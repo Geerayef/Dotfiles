@@ -6,9 +6,19 @@ return {
     dependencies = {
       {
         "lukas-reineke/headlines.nvim",
-        opts = { markdown = { fat_headlines = false } },
+        opts = {
+          markdown = {
+            fat_headlines = false,
+            bullets = {
+              S.Icons.ui.circle_full,
+              S.Icons.ui.circle_circle_l,
+              S.Icons.ui.circle_outline,
+              S.Icons.ui.diamond,
+            },
+          },
+        },
       },
-      { "ellisonleao/glow.nvim", opts = { border = "single" }, cmd = "Glow" },
+      { "ellisonleao/glow.nvim", opts = { border = S.Border }, cmd = "Glow" },
     },
     opts = {
       workspaces = {

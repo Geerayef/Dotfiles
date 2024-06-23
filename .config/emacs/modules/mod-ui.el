@@ -9,7 +9,7 @@
              :demand t
              :config
              (mapc #'disable-theme custom-enabled-themes)
-             (load-theme 'ef-symbiosis t))
+             (load-theme 'ef-tritanopia-dark t))
 
 ;; (use-package nano-modeline
 ;;              :ensure t

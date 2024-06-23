@@ -22,6 +22,7 @@ return {
         "scheme",
         "commonlisp",
         "ocaml",
+        "ocaml_interface",
         "python",
         "rust",
         "hyprlang",
