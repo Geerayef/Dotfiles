@@ -210,8 +210,6 @@ S.FtSpecial = {
   "lazy",
   "noice",
   "mason",
-  "notify",
-  "lspinfo",
   "checkhealth",
   "qf",
   "git",

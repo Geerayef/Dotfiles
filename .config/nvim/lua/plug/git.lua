@@ -29,6 +29,7 @@ return {
   },
   {
     "NeogitOrg/neogit",
+    cond = F.IsBufInRepo(0),
     cmd = "Neogit",
     opts = {
       integrations = { telescope = true },

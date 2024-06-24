@@ -70,6 +70,16 @@ autocmd({ "BufWinEnter", "FileChangedShellPost" }, {
 })
 
 autocmd("FileType", {
-  pattern = S.FtSpecial,
+  pattern = {
+    "help",
+    "lazy",
+    "noice",
+    "mason",
+    "checkhealth",
+    "qf",
+    "git",
+    "fugitive*",
+    "NeogitStatus",
+  },
   callback = function() F.map("n", "q", vim.cmd.close, "Close current buffer.") end,
 })

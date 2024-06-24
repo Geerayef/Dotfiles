@@ -3,7 +3,7 @@ return {
   fg = "#E6E1CF",
   selection_bg = "#253340",
   selection_fg = "#E6E1CF",
-  cursor_bg = "#F29718",
+  cursor_bg = "#B4BEFE",
   cursor_fg = "#E6E1CF",
   cursor_border = "#F29718",
   ansi = {

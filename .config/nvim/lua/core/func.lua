@@ -80,7 +80,7 @@ end
 function F.Notify(level, message)
   if level == nil or message == nil then return end
   local lvl = level:upper()
-  vim.notify("~~~~~ [" .. lvl .. "] " .. message, vim.log.levels[lvl])
+  vim.notify("[" .. lvl .. "] " .. message, vim.log.levels[lvl])
 end
 
 return F

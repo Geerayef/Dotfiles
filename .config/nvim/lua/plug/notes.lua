@@ -23,17 +23,34 @@ return {
     opts = {
       workspaces = {
         { name = "notes", path = "~/notes" },
-        { name = "LGR", path = "~/notes/LGR" },
+        {
+          name = "self",
+          path = "~/notes",
+          strict = true,
+          overrides = { notes_subdir = "self" },
+        },
+        {
+          name = "dev",
+          path = "~/notes",
+          strict = true,
+          overrides = { notes_subdir = "dev" },
+        },
+        {
+          name = "LGR",
+          path = "~/notes",
+          strict = true,
+          overrides = { notes_subdir = "LGR" },
+        },
       },
       daily_notes = {
-        folder = "~/notes/daily",
+        folder = "daily",
         date_format = "%d-%m-%Y",
         alias_format = "%B %-d, %Y",
         template = nil,
       },
       -- `substitutions`: map for custom variables. `key`: variable, `value`: function.
       templates = {
-        folder = "~/notes/template",
+        folder = "template",
         date_format = "%d-%m-%Y",
         time_format = "%H:%M",
         substitutions = {},

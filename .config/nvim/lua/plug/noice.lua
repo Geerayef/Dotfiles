@@ -20,15 +20,15 @@ return {
     },
     notify = { enabled = true, view = "notify" },
     popupmenu = { enabled = true, backend = "nui" },
-    commands = { history = { view = "popup" }, last = { view = "mini" } },
+    commands = { history = { view = "popup" }, last = { view = "split" } },
     lsp = {
       message = { enabled = true, view = "notify" },
       hover = { enabled = false, silent = true },
       progress = { enabled = false },
       signature = { enabled = false },
       override = {
-        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        ["vim.lsp.util.stylize_markdown"] = true,
+        -- ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        -- ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true,
       },
     },
@@ -38,8 +38,22 @@ return {
       long_message_to_split = true,
     },
     routes = {
-      { view = "split", filter = { error = true, min_height = 20 } },
-      { view = "split", filter = { event = "msg_show", min_height = 20 } },
+      {
+        view = "split",
+        filter = {
+          error = true,
+          min_height = 20,
+          blocking = true,
+        },
+      },
+      {
+        view = "split",
+        filter = {
+          event = "msg_show",
+          min_height = 20,
+          blocking = true,
+        },
+      },
       {
         view = "mini",
         filter = {
@@ -65,7 +79,7 @@ return {
               "search_count",
             },
           },
-          blocking = false,
+          blocking = true,
         },
         opts = { stop = false },
       },
@@ -85,7 +99,7 @@ return {
           },
           blocking = true,
         },
-        opts = { stop = false },
+        opts = { stop = true },
       },
     },
     views = {

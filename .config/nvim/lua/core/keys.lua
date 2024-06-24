@@ -100,20 +100,22 @@ map("n", "<leader>htd", "<cmd>Gitsigns toggle_deleted<CR>", "Gitsigns [h]unk [t]
 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "Gitsigns TreeSitter textobjects [i]n [h]unk")
 
 -- Obsidian & Markdown
-map("n", "<leader>onn", ":ObsidianNew ", "[o]bsidian [n]ote [n]ew")
-map("n", "<leader>ond", "<cmd>ObsidianToday<CR>", "[o]bsidian [n]ote to[d]ay")
-map("n", "<leader>onm", "<cmd>ObsidianTomorrow<CR>", "[o]bsidian [n]ote to[m]orrow")
-map("n", "<leader>ony", "<cmd>ObsidianYesterday<CR>", "[o]bsidian [n]ote [y]esterday")
+map("n", "<leader>onn", "<cmd>ObsidianNew<CR>", "[o]bsidian [n]ote [n]ew")
 map("n", "<leader>ont", "<cmd>ObsidianTemplate<CR>", "[o]bsidian [n]ote from [t]emplate")
-map("n", "<leader>oct", "<cmd>ObsidianToggleCheckbox<CR>", "[o]bsidian [c]heckbox [t]oggle")
+map("n", "<leader>od", "<cmd>ObsidianToday<CR>", "[o]bsidian to[d]ay")
+map("n", "<leader>om", "<cmd>ObsidianTomorrow<CR>", "[o]bsidian to[m]orrow")
+map("n", "<leader>oy", "<cmd>ObsidianYesterday<CR>", "[o]bsidian [y]esterday")
 map({ "n", "x" }, "<leader>oln", "<cmd>ObsidianLink<CR>", "[o]bsidian [l]ink [n]ew")
 map("n", "<leader>olf", "<cmd>ObsidianFollowLink<CR>", "[o]bsidian [l]ink [f]ollow")
 map("n", "<leader>olb", "<cmd>ObsidianBacklinks<CR>", "[o]bsidian [l]ink [b]aclinks")
+map("n", "<leader>oss", "<cmd>ObsidianSearch<CR>", "[o]bsidian [s]earch")
 map("n", "<leader>ost", "<cmd>ObsidianTags<CR>", "[o]bsidian [s]earch [t]ags")
 map("n", "<leader>osd", "<cmd>ObsidianDailies<CR>", "[o]bsidian [s]earch [d]ailies")
 map("n", "<leader>osl", "<cmd>ObsidianLinks<CR>", "[o]bsidian [s]earch [l]inks")
+map("n", "<leader>ow", "<cmd>ObsidianWorkspace<CR>", "[o]obsidian [w]orkspace")
+map("n", "<leader>oc", "<cmd>ObsidianToggleCheckbox<CR>", "[o]bsidian [c]heckbox")
+map("n", "<leader>oq", "<cmd>ObsidianQuickSwitch<CR>", "[o]obsidian [q]uick switch")
 map({ "n", "x" }, "<leader>oxn", "<cmd>ObsidianExtractNote<CR>", "[o]bsidian e[x]tract to new [n]ote and link to it")
-map("n", "<leader>mp", "<cmd>Preview<CR>", "[m]arkdown [p]review")
 map("n", "<leader>gp", "<cmd>Glow<CR>", "[g]low [p]review")
 
 -- Colorizer
@@ -157,14 +159,8 @@ Key.TS = {
     move = {
       goto_next_start = { ["[f"] = "@function.outer", ["]["] = "@class.outer" },
       goto_next_end = { ["]f"] = "@function.outer", ["]]"] = "@class.outer" },
-      goto_previous_start = {
-        ["[F"] = "@function.outer",
-        ["[["] = "@class.outer",
-      },
-      goto_previous_end = {
-        ["]F"] = "@function.outer",
-        ["[]"] = "@class.outer",
-      },
+      goto_previous_start = { ["[F"] = "@function.outer", ["[["] = "@class.outer" },
+      goto_previous_end = { ["]F"] = "@function.outer", ["[]"] = "@class.outer" },
     },
     swap = {
       next = { ["<M-C-L>"] = "@parameter.inner" },

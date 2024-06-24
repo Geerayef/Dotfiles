@@ -129,6 +129,7 @@ C.force_reverse_video_cursor = false
 C.color_scheme = "Ayu Dark (Gogh)"
 C.colors = {
   cursor_fg = "#000000",
+  cursor_bg = "#FFFF00",
   tab_bar = {
     background = ayu.bg,
     active_tab = {
