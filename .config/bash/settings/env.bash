@@ -19,12 +19,12 @@ export TERM="wezterm"
 export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
 export VISUAL="$HOME/.local/bin/scripts/edit.fish"
-export PAGER="nvimpager -p"
+export PAGER="nvimpager"
 export MANPAGER="nvim +Man!"
 export SYSTEM_PACKAGE_MANAGER="pacman"
 export MOZ_ENABLE_WAYLAND=1
 export CONDA_AUTO_ACTIVATE_BASE=false
-export FZF_DEFAULT_OPTS='--scheme=path --cycle --layout=reverse --border --scroll-off=5 --height=45% --preview-window=wrap --marker="*"'
+export FZF_DEFAULT_OPTS='--scheme=path --cycle --layout=reverse --border=sharp --scroll-off=5 --height=45% --preview-window=wrap,border-sharp --marker="*"'
 
 # -------------------------------------------------------------------------------- #
 
@@ -34,8 +34,6 @@ export FZF_DEFAULT_OPTS='--scheme=path --cycle --layout=reverse --border --scrol
 {
   # Rust: Cargo
   [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
-  # Haskell: ghcup
-  [[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env"
   # OCaml: opam
   if [[ $SHELL == "zsh" ]]; then
     [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" >/dev/null 2>/dev/null
@@ -52,4 +50,6 @@ export FZF_DEFAULT_OPTS='--scheme=path --cycle --layout=reverse --border --scrol
       eval "$(pyenv init -)"
     )
   fi
+  # Haskell: ghcup
+  [[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env"
 }

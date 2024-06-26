@@ -72,6 +72,7 @@ function LSP.start(config, opts)
     or type(config.cmd) ~= "table"
     or vim.fn.executable(config.cmd[1]) == 0
   then
+    F.Notify("INFO", "LSP client `" .. config.cmd[1] .. "` not started.")
     return nil
   end
   if not vim.list_contains(vim.g.lsp_active_clients, config.cmd[1]) then

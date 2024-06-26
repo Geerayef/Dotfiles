@@ -55,17 +55,6 @@ return {
         },
       },
       {
-        view = "mini",
-        filter = {
-          event = "msg_show",
-          any = {
-            { find = "; after #%d+" },
-            { find = "; before #%d+" },
-            { find = "fewer lines" },
-          },
-        },
-      },
-      {
         view = "messages",
         filter = {
           event = "msg_show",
@@ -82,6 +71,17 @@ return {
           blocking = true,
         },
         opts = { stop = false },
+      },
+      {
+        view = "mini",
+        filter = {
+          event = "msg_show",
+          any = {
+            { find = "; after #%d+" },
+            { find = "; before #%d+" },
+            { find = "fewer lines" },
+          },
+        },
       },
       {
         view = "mini",

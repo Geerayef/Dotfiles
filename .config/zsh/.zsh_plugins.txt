@@ -1,16 +1,15 @@
-# .zsh_plugins.txt
 # NOTE: Order matters
 
+belak/zsh-utils path:utility
+belak/zsh-utils path:history
 belak/zsh-utils path:completion
 zsh-users/zsh-completions path:src kind:fpath
 belak/zsh-utils path:editor
-belak/zsh-utils path:history
-belak/zsh-utils path:utility
 Aloxaf/fzf-tab
 joshskidmore/zsh-fzf-history-search
 sorin-ionescu/prezto path:modules/directory
 
-### Deferred Plugins
+# Deferred Plugins
 
 zdharma-continuum/fast-syntax-highlighting kind:defer
 zsh-users/zsh-autosuggestions kind:defer

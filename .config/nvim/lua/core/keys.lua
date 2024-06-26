@@ -157,9 +157,9 @@ Key.TS = {
       ["ci"] = "@class.inner",
     },
     move = {
-      goto_next_start = { ["[f"] = "@function.outer", ["]["] = "@class.outer" },
-      goto_next_end = { ["]f"] = "@function.outer", ["]]"] = "@class.outer" },
-      goto_previous_start = { ["[F"] = "@function.outer", ["[["] = "@class.outer" },
+      goto_next_start = { ["]f"] = "@function.outer", ["]["] = "@class.outer" },
+      goto_next_end = { ["]F"] = "@function.outer", ["]]"] = "@class.outer" },
+      goto_previous_start = { ["[f"] = "@function.outer", ["[["] = "@class.outer" },
       goto_previous_end = { ["]F"] = "@function.outer", ["[]"] = "@class.outer" },
     },
     swap = {
