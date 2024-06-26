@@ -24,7 +24,7 @@ export MANPAGER="nvim +Man!"
 export SYSTEM_PACKAGE_MANAGER="pacman"
 export MOZ_ENABLE_WAYLAND=1
 export CONDA_AUTO_ACTIVATE_BASE=false
-export FZF_DEFAULT_OPTS='--scheme=path --cycle --layout=reverse --border=sharp --scroll-off=5 --height=45% --preview-window=wrap,border-sharp --marker="*"'
+export FZF_DEFAULT_OPTS='--scheme=path --cycle --layout=reverse --border=sharp --scroll-off=5 --height=45% --preview-window=wrap,border-sharp --marker="*" --bind=ctrl-f:preview-half-page-down,ctrl-b:preview-half-page-up'
 
 # -------------------------------------------------------------------------------- #
 

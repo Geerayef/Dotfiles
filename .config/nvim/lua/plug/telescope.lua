@@ -94,6 +94,17 @@ return {
             disable_coordinates = true,
             word_match = "-w",
           },
+          lsp_definitions = {
+            prompt_title = "",
+            preview_title = "",
+            theme = "ivy",
+            borderchars = { preview = border },
+            initial_mode = "normal",
+            layout_config = { preview_width = 0.6 },
+            path_display = { tail = true, shorten = 2 },
+            show_line = false,
+            trim_text = true,
+          },
           lsp_references = {
             prompt_title = "",
             preview_title = "",

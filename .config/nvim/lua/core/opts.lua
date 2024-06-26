@@ -37,8 +37,30 @@ o.completeopt = "menu,menuone,noinsert,noselect"
 o.showfulltag = true
 o.virtualedit = "block"
 o.wildmenu = true
-o.wildmode = "list:full"
+o.wildmode = "list:longest,list:full"
 o.wildoptions = "fuzzy,pum"
+o.wildignore:append({ ".javac", "node_modules", "*.pyc" })
+o.wildignore:append({ ".aux", ".out", ".toc" })
+o.wildignore:append({
+  ".o",
+  ".obj",
+  ".dll",
+  ".exe",
+  ".so",
+  ".a",
+  ".lib",
+  ".pyc",
+  ".pyo",
+  ".pyd",
+  ".swp",
+  ".swo",
+  ".class",
+  ".DS_Store",
+  ".git",
+  ".hg",
+  ".orig",
+})
+o.suffixesadd:append({ ".java", ".rs" })
 
 -- ~  UI
 
@@ -77,9 +99,9 @@ o.foldenable = true
 o.foldmethod = "marker"
 o.smartcase = true
 o.ignorecase = true
+o.inccommand = "split"
 o.hlsearch = true
 o.incsearch = true
-o.inccommand = "split"
 o.mouse = ""
 
 -- ~  Chars

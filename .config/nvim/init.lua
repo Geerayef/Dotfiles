@@ -7,9 +7,9 @@ require("core.auto")
 require("core.diag")
 if vim.g.neovide then require("core.vide") end
 require("lazyTim")
-vim.cmd.colorscheme("gruvbox-material")
-vim.cmd({
-  cmd = "highlight",
-  args = { "link", "NormalFloat", "Normal" },
-  bang = true,
-})
+vim.cmd.colorscheme("kanagawa")
+-- vim.cmd({
+--   cmd = "highlight",
+--   args = { "link", "NormalFloat", "Normal" },
+--   bang = true,
+-- })

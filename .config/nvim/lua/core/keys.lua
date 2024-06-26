@@ -4,7 +4,7 @@ vim.g.maplocalleader = " "
 local map = F.map
 local bmap = F.bmap
 
--- ~ General keymaps ------------------------------------------------------- ~ --
+-- ~ General --------------------------------------------------------------- ~ --
 
 -- Movement
 map("x", "J", ":'<,'>m '>+1<CR>gv=gv", "Move selection down")
@@ -14,6 +14,8 @@ map({ "n", "x" }, "<C-u>", "10k", "Scroll up 10 lines")
 
 -- Buffers
 map("n", "<leader>bd", "<cmd>bdelete<CR>", "[b]uffer [d]elete")
+map("n", "<leader>cn", "<cmd>cnext<CR>", "[c] [n]ext")
+map("n", "<leader>cp", "<cmd>cprevious<CR>", "[c] [p]revious")
 
 -- Search
 map("n", "<leader>nh", "<cmd>nohl<CR>", "[n]o [h]ighlights")
@@ -28,8 +30,6 @@ map("n", "<leader>Y", "\"+Y", "Yank to system clipboard")
 
 -- Tabs
 map("n", "<leader>to", "<cmd>tabnew<CR>", "[t]ab [o]pen")
-map("n", "<leader>tn", "<cmd>tabnext<CR>", "[t]ab [n]ext")
-map("n", "<leader>tp", "<cmd>tabprevious<CR>", "[t]ab [p]revious")
 map("n", "<leader>tmr", "<cmd>tabmove +1<CR>", "[t]ab [m]ove [l]eft")
 map("n", "<leader>tml", "<cmd>tabmove -1<CR>", "[t]ab [m]ove [r]ight")
 
@@ -51,29 +51,23 @@ vim.api.nvim_set_keymap("c", "<M-b>", "<S-Left>", {})
 -- ~ Plugin ---------------------------------------------------------------- ~ --
 
 -- stylua: ignore start
-
--- Lazy
 map("n", "<leader>L", "<cmd>Lazy<CR>", "[L]azy")
-
--- Oil
 map("n", "<leader>f", "<cmd>Oil<CR>", "Oil [f]ile browser")
 map("n", "<leader>of", "<cmd>Oil --float<CR>", "[o]il [f]loat")
 
 -- Telescope
 map("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", "[?] Recent files")
+map("n", "<leader> ", "<cmd>Telescope buffers<CR>", "Telescope [s]earch [b]uffers")
 map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", "[/] Search buffer")
 map("n", "<leader>tb", "<cmd>Telescope builtin<CR>", "[t]elescope [b]uiltin")
 map("n", "<leader>sf", "<cmd>Telescope fd<CR>", "Telescope [s]earch [f]iles")
-map("n", "<leader> ", "<cmd>Telescope buffers<CR>", "Telescope [s]earch [b]uffers")
 map("n", "<leader>sh", "<cmd>Telescope help_tags<CR>", "Telescope [s]earch [h]elp")
 map("n", "<leader>sg", "<cmd>Telescope live_grep<CR>", "Telescope [s]earch [g]rep")
 map("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", "Telescope [s]earch [w]ord")
 map("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", "Telescope [s]earch [d]iagnostics")
 
--- Neogit
+-- Git
 map("n", "<leader>G", "<cmd>Neogit<CR>", "Neo[G]it")
-
--- Gitsigns
 map("n", "]h", function()
   if vim.wo.diff then
     vim.cmd.normal({ "]c", bang = true })
@@ -133,6 +127,11 @@ function Key.LSP(_, buf)
   bmap("n", "<leader>ca", lspbuf.code_action, buf, "[c]ode [a]ction")
   bmap("n", "<leader>gD", lspbuf.declaration, buf, "[g]oto [D]eclaration")
   bmap("n", "<leader>D", lspbuf.type_definition, buf, "Type [D]efinition")
+  -- bmap("n", "<leader>gd", lspbuf.definition, buf, "[g]oto [d]efinition")
+  -- bmap("n", "<leader>gr", lspbuf.references, buf, "[g]oto [r]eferences")
+  -- bmap("n", "<leader>gi", lspbuf.implementation, buf, "[g]oto [i]mplementation")
+  -- bmap("n", "<leader>ds", lspbuf.document_symbol, buf, "[d]ocument [s]ymbols")
+  -- bmap("n", "<leader>ws", lspbuf.workspace_symbol, buf, "[w]orkspace [s]ymbols")
   bmap("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", buf, "[g]oto [d]efinition")
   bmap("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", buf, "[g]oto [r]eferences")
   bmap("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", buf, "[g]oto [i]mplementation")
@@ -142,7 +141,6 @@ function Key.LSP(_, buf)
   bmap("n", "<leader>wrf", lspbuf.remove_workspace_folder, buf, "[w]orkspace [r]emove [f]older")
 end
 
--- TreeSitter
 Key.TS = {
   incremental_selection = {
     init_selection = "<C-space>",
