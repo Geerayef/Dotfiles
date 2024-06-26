@@ -22,24 +22,24 @@ return {
     },
     opts = {
       workspaces = {
-        { name = "notes", path = "~/notes" },
+        { name = "notes", path = "~/notes", strict = true },
         {
           name = "self",
-          path = "~/notes",
+          path = "~/notes/self",
           strict = true,
-          overrides = { notes_subdir = "self" },
+          overrides = { notes_subdir = "" },
         },
         {
           name = "dev",
-          path = "~/notes",
+          path = "~/notes/dev",
           strict = true,
-          overrides = { notes_subdir = "dev" },
+          overrides = { notes_subdir = "" },
         },
         {
           name = "LGR",
-          path = "~/notes",
+          path = "~/notes/LGR",
           strict = true,
-          overrides = { notes_subdir = "LGR" },
+          overrides = { notes_subdir = "" },
         },
       },
       daily_notes = {

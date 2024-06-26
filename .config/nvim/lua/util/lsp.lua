@@ -72,13 +72,13 @@ function LSP.start(config, opts)
     or type(config.cmd) ~= "table"
     or vim.fn.executable(config.cmd[1]) == 0
   then
-    F.Notify("INFO", "LSP client `" .. config.cmd[1] .. "` not started.")
+    F.Notify("LSP", "Client `" .. config.cmd[1] .. "` not started.")
     return nil
   end
   if not vim.list_contains(vim.g.lsp_active_clients, config.cmd[1]) then
     vim.g.lsp_active_clients =
       vim.list_extend(vim.g.lsp_active_clients, { config.cmd[1] })
-    F.Notify("INFO", "Started LSP client `" .. config.cmd[1] .. "`.")
+    F.Notify("LSP", "Starting client for `" .. config.cmd[1] .. "`.")
   end
   return vim.lsp.start(
     vim.tbl_deep_extend("keep", config or {}, {

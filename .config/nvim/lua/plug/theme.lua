@@ -1,5 +1,4 @@
 return {
-  -- ~ ITALIC ---------------------------------------------------------------- ~ --
   {
     "rebelot/kanagawa.nvim",
     lazy = false,
@@ -38,7 +37,8 @@ return {
       vim.g.gruvbox_material_background = "hard"
       vim.g.gruvbox_material_foreground = "material"
       vim.g.gruvbox_material_enable_italic = 1
-      vim.g.gruvbox_material_ui_contrast = "low"
+      vim.g.gruvbox_material_ui_contrast = "high"
+      vim.g.gruvbox_material_statusline_style = "mix"
       vim.g.gruvbox_material_float_style = "dim"
       vim.g.gruvbox_material_better_performancs = 1
       vim.g.gruvbox_material_colors_override = { ["bg0"] = "#0A0E14" }

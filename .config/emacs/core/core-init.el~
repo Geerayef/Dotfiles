@@ -51,17 +51,20 @@
   :ensure nil
   :config (setq jit-lock-defer-time 0))
 
-(use-package faces
+;; (use-package faces
+;;   :ensure nil
+;;   :hook
+;;   (elpaca-after-init . (lambda ()
+;;                          (progn (set-face-attribute 'default nil :family "ZedMono Nerd Font Mono"
+;;                                                     :height 180 :weight 'regular)
+;;                                 (set-face-attribute 'line-number-current-line nil :foreground "yellow"
+;;                                                     :slant 'normal :weight  'regular)))))
+
+(use-package fontset
   :ensure nil
   :hook
-  (elpaca-after-init . (lambda ()
-                         (progn
-                           (set-face-attribute 'default nil
-                                               :family "Iosevka Nerd Font Mono"
-                                               :height 180 :weight 'regular)
-                           (set-face-attribute 'line-number-current-line nil
-                                               :foreground "yellow"
-                                               :slant 'normal :weight  'bold)))))
+;; (set-face-font 'default "Iosevka Nerd Font Mono")
+  (elpaca-after-init . (set-fontset-font t 'default "Iosevka Nerd Font Mono" nil)))
 
 ;; ~ Keys ------------------------------------------------------------------ ~ ;;
 

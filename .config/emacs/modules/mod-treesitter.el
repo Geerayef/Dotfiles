@@ -54,14 +54,14 @@
   (unless (treesit-language-available-p (car grammar))
     (treesit-install-language-grammar (car grammar))))
 
-;; (use-package treesit-auto
-;;   :ensure t
-;;   :init
-;;   (setq treesit-auto-langs '(c cpp ocaml python rust elisp commonlisp lua bash fish yaml toml markdown javascript))
-;;   :custom (treesit-auto-install 'prompt)
-;;   :config
-;;   (treesit-auto-add-to-auto-mode-alist 'all)
-;;   (global-treesit-auto-mode))
+(use-package treesit-auto
+  :ensure t
+  :init
+  (setq treesit-auto-langs '(c cpp ocaml python rust elisp lua bash fish yaml toml markdown))
+  :custom (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
 
 (provide 'mod-treesitter)
 ;;; mod-treesitter.el ends here

@@ -1,9 +1,6 @@
 ;;;; lisp.el --- Lisp development configuration  -*- lexical-binding: t; -*-
 ;;; Commentary:
-;; For Scheme and Racket, configure geiser.
-;;   Out of the box, geiser already supports some scheme
-;;   implementations.  However, there are several modules which can be
-;;   added to geiser for specific implementations:
+;; For Scheme and Racket, configure `geiser' and additional lips flavours.
 ;;   * geiser-chez
 ;;   * geiser-chibi
 ;;   * geiser-chicken
@@ -46,13 +43,12 @@
   :ensure t
   :after sly)
 
-;; ~ Scheme|Racket --------------------------------------------------------- ~ ;;
+;; ~ Geiser ---------------------------------------------------------------- ~ ;;
 
 (use-package geiser
   :ensure t
   :custom (scheme-program-name "guile"))
 (use-package geiser-guile :ensure t :after geiser)
-;; (use-package geiser-racket :ensure t :after geiser)
 
 (provide 'lisp)
 ;;; lisp.el ends here
