@@ -49,5 +49,6 @@ return {
         return conf
       end,
     },
+    keymaps_help = { border = S.Border },
   },
 }
