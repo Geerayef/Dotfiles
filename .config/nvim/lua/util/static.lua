@@ -207,13 +207,11 @@ S.root_markers = {
 
 S.FtSpecial = {
   "help",
-  "lazy",
-  "noice",
   "mason",
   "checkhealth",
   "qf",
   "git",
-  "fugitive*",
+  "fugitive",
   "NeogitStatus",
 }
 

@@ -26,39 +26,25 @@ return {
       hover = { enabled = false, silent = true },
       progress = { enabled = false },
       signature = { enabled = false },
-      override = {
-        -- ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        -- ["vim.lsp.util.stylize_markdown"] = true,
-        ["cmp.entry.get_documentation"] = true,
-      },
+      -- override = {
+      -- ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+      -- ["vim.lsp.util.stylize_markdown"] = true,
+      -- ["cmp.entry.get_documentation"] = true,
+      -- },
     },
     presets = {
       bottom_search = true,
-      command_palette = false,
+      command_palette = true,
       long_message_to_split = true,
     },
     routes = {
-      {
-        view = "split",
-        filter = {
-          error = true,
-          min_height = 20,
-          blocking = true,
-        },
-      },
-      {
-        view = "split",
-        filter = {
-          event = "msg_show",
-          min_height = 20,
-          blocking = true,
-        },
-      },
+      { view = "split", filter = { error = true, min_height = 20 } },
+      { view = "split", filter = { event = "msg_show", min_height = 20 } },
       {
         view = "messages",
         filter = {
           event = "msg_show",
-          any = { { min_height = 5 }, { min_width = 100 } },
+          any = { { min_height = 5 }, { min_width = 75 } },
           ["not"] = {
             kind = {
               "confirm",
@@ -68,7 +54,6 @@ return {
               "search_count",
             },
           },
-          blocking = true,
         },
         opts = { stop = false },
       },
@@ -82,12 +67,13 @@ return {
             { find = "fewer lines" },
           },
         },
+        opts = { stop = true },
       },
       {
         view = "mini",
         filter = {
           event = "msg_show",
-          any = { { min_height = 5 }, { min_width = 20 } },
+          any = { { max_height = 1 }, { max_width = 60 } },
           ["not"] = {
             kind = {
               "confirm",
@@ -97,7 +83,6 @@ return {
               "search_count",
             },
           },
-          blocking = true,
         },
         opts = { stop = true },
       },
@@ -116,9 +101,7 @@ return {
         close = { keys = { "q", "<C-c>" } },
       },
       vsplit = { enter = true },
-      virtualtext = {
-        format = { " {message} " .. S.Icons.ui.diamond .. " " },
-      },
+      virtualtext = { format = { " {message} " .. S.Icons.ui.diamond .. " " } },
     },
     health = { checker = false },
   },

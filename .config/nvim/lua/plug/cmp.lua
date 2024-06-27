@@ -193,7 +193,7 @@ return {
             end
             return lspkind.cmp_format({
               mode = "symbol",
-              maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+              maxwidth = function() return math.floor(0.75 * vim.o.columns) end,
               menu = {
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[Lua]",

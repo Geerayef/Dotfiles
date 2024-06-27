@@ -68,3 +68,10 @@ autocmd({ "BufWinEnter", "FileChangedShellPost" }, {
     end)
   end,
 })
+
+autocmd({ "FileType" }, {
+  desc = "Close special buffers with `q`.",
+  group = augroup("qCloseSpecialFT", { clear = true }),
+  pattern = table.concat(S.FtSpecial, ","),
+  callback = function() F.bmap("n", "q", "<C-w>c", 0, "Close current buffer.") end,
+})
