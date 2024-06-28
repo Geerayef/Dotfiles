@@ -19,8 +19,6 @@ return {
         "fish",
         "c",
         "cpp",
-        "scheme",
-        "commonlisp",
         "ocaml",
         "ocaml_interface",
         "python",

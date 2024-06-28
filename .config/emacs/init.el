@@ -3,25 +3,15 @@
 ;;; Code:
 
 (require 'early-init)
-
 (add-to-list 'load-path core-dir)
-
-(setq read-process-output-max (* 4 1024 1024)
-      process-adaptive-read-buffering nil)
-
+(require 'pacatim)
 (when (file-exists-p custom-file)
   (add-hook 'elpaca-after-init-hook (lambda () (load custom-file))))
-
-;; ~  --------------------------------------------------------------------------------  ~ ;;
-
-(require 'pacatim)
 
 (use-package gcmh
   :ensure t
   :config (setq gcmh-high-cons-threshold (* 128 1024 1024))
   :hook ((elpaca-after-init . gcmh-mode)))
-
-;; ~  --------------------------------------------------------------------------------  ~ ;;
 
 (let ((debug-on-error t)
       (debug-on-quit t)

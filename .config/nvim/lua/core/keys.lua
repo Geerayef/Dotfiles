@@ -30,8 +30,8 @@ map("n", "<leader>Y", "\"+Y", "Yank to system clipboard")
 
 -- Tabs
 map("n", "<leader>to", "<cmd>tabnew<CR>", "[t]ab [o]pen")
-map("n", "<leader>tmr", "<cmd>tabmove +1<CR>", "[t]ab [m]ove [l]eft")
-map("n", "<leader>tml", "<cmd>tabmove -1<CR>", "[t]ab [m]ove [r]ight")
+map("n", "<leader>tml", "<cmd>tabmove +1<CR>", "[t]ab [m]ove right")
+map("n", "<leader>tmh", "<cmd>tabmove -1<CR>", "[t]ab [m]ove left")
 
 -- Terminal
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal mode: Escape")

@@ -7,7 +7,7 @@ local o = vim.opt
 o.shell = "/usr/bin/fish"
 o.shortmess:append("Isa")
 if vim.fn.executable("rg") == 1 then
-  o.grepprg = "rg --vimgrep --no-heading --smart-case --trim"
+  o.grepprg = "rg --hidden --vimgrep --no-heading --smart-case --trim"
 end
 
 -- ~  File

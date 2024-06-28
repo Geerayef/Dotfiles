@@ -10,11 +10,6 @@ return {
     opts = { extra = { above = "gcO", below = "gco" } },
   },
   {
-    "norcalli/nvim-colorizer.lua",
-    cmd = "ColorizerToggle",
-    opts = { ["*"] = { RRGGBBAA = true } },
-  },
-  {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = function()
@@ -61,5 +56,10 @@ return {
         height = 0.5,
       },
     },
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+    cmd = "ColorizerToggle",
+    opts = { ["*"] = { RRGGBBAA = true } },
   },
 }

@@ -12,11 +12,11 @@
   (unless (boundp 'native-comp-deferred-compilation-deny-list)
     (defvaralias 'native-comp-deferred-compilation-deny-list 'native-comp-jit-compilation-deny-list))
   (define-advice comp-effective-async-max-jobs (:before (&rest _) set-default-cpus)
-                 "Default to 1/4 of cores in interactive sessions and all of them otherwise."
-                 (and (null comp-num-cpus)
-                      (zerop native-comp-async-jobs-number)
-                      (setq comp-num-cpus
-                            (max 1 (/ (num-processors) (if noninteractive 1 4)))))))
+    "Default to 1/4 of cores in interactive sessions and all of them otherwise."
+    (and (null comp-num-cpus)
+         (zerop native-comp-async-jobs-number)
+         (setq comp-num-cpus
+               (max 1 (/ (num-processors) (if noninteractive 1 4)))))))
 
 ;; History
 (setq-default savehist-file (expand-file-name "savehist" cache-dir)
@@ -65,11 +65,11 @@
 
 ;; Recent files
 (require 'recentf)
-(setq recentf-save-file (expand-file-name "recentf" cache-dir))
-(setq recentf-max-saved-items 100)
-(setq recentf-max-menu-items 10)
-(setq recentf-auto-cleanup nil)
-(setq recentf-exclude '("\\.git.*" "\\.hg.*" "\\.svn.*"))
+(setq recentf-save-file (expand-file-name "recentf" cache-dir)
+      recentf-max-saved-items 100
+      recentf-max-menu-items 10
+      recentf-auto-cleanup nil
+      recentf-exclude '("\\.git.*" "\\.hg.*" "\\.svn.*"))
 (defun recentf-exclude-p (file)
   "A predicate to decide whether to exclude FILE from recentf."
   (let ((file-dir (file-truename (file-name-directory file))))
@@ -86,9 +86,9 @@
 (recentf-mode +1)
 
 ;; Bookmarks
-(setq-default bookmark-default-file (expand-file-name "bookmarks" cache-dir))
-(setq-default bookmark-save-flag 1)
-(setq-default bookmark-set-no-overwrite t)
+(setq-default bookmark-default-file (expand-file-name "bookmarks" cache-dir)
+              bookmark-save-flag 1
+              bookmark-set-no-overwrite t)
 
 (provide 'core-backups)
 ;;; core-backups.el ends here

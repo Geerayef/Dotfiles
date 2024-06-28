@@ -26,6 +26,7 @@
   (display-line-numbers-type 'relative)
   (display-line-numbers-width 3)
   ;; Editing
+  (indent-tabs-mode nil)
   (tab-width 4)
   ;; Paragraph - Sentence
   (bidi-paragraph-direction 'left-to-right)
@@ -191,7 +192,7 @@
 
 ;; ~ Modules --------------------------------------------------------------- ~ ;;
 
-(util/recursive-add-to-load-path modules-dir)
+(util/recursive-add-to-load-path core-dir)
 
 (use-package core-backups :ensure nil)
 (use-package mod-ui :ensure nil)

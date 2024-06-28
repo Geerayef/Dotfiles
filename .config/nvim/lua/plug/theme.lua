@@ -12,7 +12,7 @@ return {
       overrides = function(colors)
         local t = colors.theme
         return {
-          NormalDark = { fg = t.ui.fg_dim, bg = t.ui.bg_ayu },
+          NormalDark = { fg = t.ui.fg_dim, bg = "#0A0E14" },
           FloatTitle = { bg = "none" },
           FloatBorder = { bg = "none" },
           NormalFloat = { bg = "none" },
@@ -33,6 +33,8 @@ return {
   },
   {
     "sainnhe/gruvbox-material",
+    lazy = false,
+    priority = 1010,
     init = function()
       vim.g.gruvbox_material_background = "hard"
       vim.g.gruvbox_material_foreground = "material"
