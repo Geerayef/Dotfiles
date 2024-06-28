@@ -16,13 +16,6 @@
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme 'ef-elea-dark t))
 
-;; (use-package kanagawa-theme
-;;   :ensure (:host github :repo "Fabiokleis/emacs-kanagawa-theme")
-;;   :config
-;;   (setq kanagawa-theme-custom-colors '((sumi-ink-1b . "#0A0E14")
-;;                                        (sumi-ink-1 . "#0A0E14")))
-;;   (load-theme 'kanagawa t))
-
 (use-package nano-modeline
   :ensure t
   :init

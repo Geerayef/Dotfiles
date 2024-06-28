@@ -31,21 +31,6 @@ return {
       background = { dark = "dragon", light = "wave" },
     },
   },
-  {
-    "sainnhe/gruvbox-material",
-    lazy = false,
-    priority = 1010,
-    init = function()
-      vim.g.gruvbox_material_background = "hard"
-      vim.g.gruvbox_material_foreground = "material"
-      vim.g.gruvbox_material_enable_italic = 1
-      vim.g.gruvbox_material_ui_contrast = "high"
-      vim.g.gruvbox_material_statusline_style = "mix"
-      vim.g.gruvbox_material_float_style = "dim"
-      vim.g.gruvbox_material_better_performancs = 1
-      vim.g.gruvbox_material_colors_override = { ["bg0"] = "#0A0E14" }
-    end,
-  },
   -- {
   --   "marko-cerovac/material.nvim",
   --   lazy = false,
