@@ -58,7 +58,7 @@
   (elpaca-after-init . (lambda ()
                          (progn
                            (set-face-attribute 'default nil
-                                               :family "Iosevka Nerd Font Mono"
+                                               :family "ZedMono Nerd Font Propo"
                                                :height 180 :weight 'regular)
                            (set-face-attribute 'line-number-current-line nil
                                                :foreground "yellow"

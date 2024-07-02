@@ -10,9 +10,7 @@
   :config
   (setq ef-elea-dark-palette-overrides
         '((cursor "#FFF779")
-          (bg-main "#0A0E14")
-          (comment red-faint)
-          (keyword cyan-cooler)))
+          (bg-main "#0A0E14")))
   (mapc #'disable-theme custom-enabled-themes)
   (load-theme 'ef-elea-dark t))
 
