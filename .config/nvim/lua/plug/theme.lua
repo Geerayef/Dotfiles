@@ -12,6 +12,7 @@ return {
       overrides = function(colors)
         local t = colors.theme
         return {
+          Cursor = { fg = "#FFF779" },
           NormalDark = { fg = t.ui.fg_dim, bg = "#0A0E14" },
           FloatTitle = { bg = "none" },
           FloatBorder = { bg = "none" },

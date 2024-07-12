@@ -23,17 +23,16 @@ return {
       fish = { "fish_indent" },
       sh = { "shfmt" },
       bash = { "shfmt" },
-      markdown = { "prettier" },
-      yaml = { "prettier" },
-      css = { "prettier" },
-      scss = { "prettier" },
-      html = { "prettier" },
+      yaml = { "prettierd" },
+      css = { "prettierd" },
+      scss = { "prettierd" },
+      html = { "prettierd" },
       json = { "biome" },
       jsonc = { "biome" },
       javascript = { "biome" },
       typescript = { "biome" },
     },
-    format_on_save = { timeout_ms = 500, lsp_fallback = true },
+    format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
     formatters = {
       beautysh = { prepend_args = { "-i", "2" } },
       shfmt = {
@@ -49,12 +48,19 @@ return {
         inherit = false,
         command = "biome",
         stdin = false,
-        args = { "format", "--write", "$FILENAME" },
+        args = function()
+          return {
+            "format",
+            "--config-path=" .. vim.fn.expand("$XDG_CONFIG_HOME") .. "/biome",
+            "--write",
+            "$FILENAME",
+          }
+        end,
       },
-      prettier = {
-        command = "prettier",
+      prettierd = {
+        command = "prettierd",
         stdin = true,
-        args = { "--stdin-filepath", "$FILENAME" },
+        args = { "$FILENAME" },
       },
     },
   },

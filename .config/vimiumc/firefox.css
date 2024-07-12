@@ -1,5 +1,4 @@
 /* #ui */
-
 * {
   font-family: "Iosevka Nerd Font Mono" !important;
   font-size: 20px;
@@ -14,7 +13,7 @@
   padding: 0.2em;
 }
 .LH:before {
-    position: absolute;
+  position: absolute;
   background: #ffff00;
   top: 0;
   left: 0;
@@ -24,7 +23,7 @@
   z-index: -1;
 }
 .D > .LH {
-  border-color: rgb(0, 0, 0);
+  border-color: rgb(0 0 0);
   color: #000000;
   font-weight: bold;
   font-size: 18px;
@@ -71,7 +70,7 @@
 /* #omni */
 
 * {
-  font-family: "Iosevka Nerd Font Mono";
+  font-family: "Iosevka Nerd Font Mono", monospace !important;
   font-size: 18px;
   overflow: hidden;
 }
@@ -175,7 +174,7 @@ body:after {
   stroke: #ddd8cd;
 }
 #list {
-  background: rgb(247, 246, 246);
+  background: rgb(247 246 246);
   border-radius: unset;
   padding: 1em;
 }
@@ -200,26 +199,24 @@ body:after {
   content: "";
   z-index: -1;
 }
-.item.s,
-.item:hover {
+.item.s .item:hover {
   background-color: unset;
-  border: 3px rgb(0, 0, 0) solid;
+  border: 3px rgb(0 0 0) solid;
 }
-.has-dark .item.s,
-.has-dark .item:hover {
-  border: 3px rgb(80, 83, 84) solid;
+.has-dark .item.s .has-dark .item:hover {
+  border: 3px rgb(80 83 84) solid;
 }
 .item.s::before {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255 255 255);
 }
 .item:hover::before {
   background-color: #ffffff;
 }
 .has-dark .item.s::before {
-  background-color: rgb(80, 83, 84);
+  background-color: rgb(80 83 84);
 }
 .has-dark .item:hover::before {
-  background-color: rgb(80, 83, 84);
+  background-color: rgb(80 83 84);
 }
 .item .icon {
   width: 1.5em;
@@ -291,18 +288,16 @@ body:after {
 /* #find */
 
 * {
-  font-family: "Iosevka Nerd Font Mono";
+  font-family: "Iosevka Nerd Font Mono", monospace !important;
   background: unset;
   font-size: 18px;
 }
-:host,
-body {
+:host body {
   overflow: hidden;
   background-color: unset !important;
   padding: 1em !important;
 }
-:host(.D),
-body.D {
+:host(.D) body.D {
   overflow: hidden;
   background-color: unset !important;
   padding: 1.5em !important;

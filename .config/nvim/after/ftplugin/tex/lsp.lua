@@ -23,7 +23,7 @@ local texlab = {
       latexFormatter = "latexindent",
       latexindent = { ["local"] = nil, modifyLineBreaks = false },
       bibtexFormatter = "texlab",
-      formatterLineLength = 96,
+      formatterLineLength = 80,
     },
   },
   cmd = { "texlab" },

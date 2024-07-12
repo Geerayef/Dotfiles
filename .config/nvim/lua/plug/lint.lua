@@ -10,8 +10,8 @@ return {
       python = { "ruff" },
       rust = { "clippy" },
       sh = { "shellcheck" },
-      bash = { "shellcheck" },
       fish = { "fish" },
+      bash = { "shellcheck" },
       json = { "biomejs" },
       jsonc = { "biomejs" },
       javascript = { "biomejs" },
@@ -21,6 +21,10 @@ return {
   config = function(_, opts)
     local M = {}
     local lint = require("lint")
+    lint.linters.biomejs.args = {
+      "lint",
+      "--config-path=" .. vim.fn.expand("$XDG_CONFIG_PATH") .. "/biome",
+    }
     for name, linter in pairs(opts.linters) do
       if type(linter) == "table" and type(lint.linters[name]) == "table" then
         lint.linters[name] =
@@ -32,6 +36,7 @@ return {
     lint.linters_by_ft = opts.linters_by_ft
     function M.debounce(ms, fn)
       local timer = vim.uv.new_timer()
+      if timer == nil then return nil end
       return function(...)
         local argv = { ... }
         timer:start(ms, 0, function()
