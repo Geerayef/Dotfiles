@@ -105,7 +105,7 @@ return {
           { { name = "path", keyword_length = 3, max_item_count = 10, priority = 550 } },
           { { name = "treesitter", keyword_length = 2, max_item_count = 10, priority = 525 } },
           { { name = "vimtex", keyword_length = 2, max_item_count = 10, priority = 400 } }),
-        --stylua: ignore end
+        -- stylua: ignore end
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)

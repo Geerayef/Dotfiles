@@ -8,7 +8,7 @@ $git_status\
 $line_break\
 $character"""
 
-right_format="""
+right_format = """
 $time\
 $line_break\
 $cmd_duration\
@@ -27,8 +27,8 @@ style = "#EBA0AC bold"
 [character]
 # [❯] [❮] [λ] [⟫] [⟪] [] [] [] [] [] [○] [●]
 success_symbol = "[](#94E2D5)"
-error_symbol   = "[](#F38BA8)"
-vimcmd_symbol  = "[](#6C7086)"
+error_symbol = "[](#F38BA8)"
+vimcmd_symbol = "[](#6C7086)"
 
 [git_branch]
 format = " [$branch]($style)"
@@ -60,13 +60,20 @@ symbol = ""
 global_switch_indicator = ""
 local_switch_indicator = "*"
 detect_extensions = ["opam", "ml", "mli", "re", "rei", "dune"]
-detect_files = ["dune", "dune-project", "jbuild", "jbuild-ignore", ".merlin", ".ocamlformat"]
+detect_files = [
+    "dune",
+    "dune-project",
+    "jbuild",
+    "jbuild-ignore",
+    ".merlin",
+    ".ocamlformat",
+]
 detect_folders = ["_opam", "esy.lock"]
 style = "#FAB387 bold"
 
 [python]
-format = '[$virtualenv(${version})]($style) '
-pyenv_version_name = true
+format = '[$virtualenv (${version})]($style) '
+pyenv_version_name = false
 pyenv_prefix = ""
 style = "#A6E3A1 bold"
 symbol = ""

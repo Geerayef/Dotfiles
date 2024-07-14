@@ -108,6 +108,8 @@ end)
 
 -- ~ Option ------------------------------------------------------------- ~ --
 
+-- C.term = "wezterm"
+
 -- Bar
 C.tab_bar_at_bottom = true
 C.use_fancy_tab_bar = false

@@ -11,7 +11,6 @@ if vim.fn.executable("rg") == 1 then
 end
 
 -- ~  File
-
 vim.cmd.syntax("on")
 vim.cmd.filetype({ args = { "plugin", "indent", "on" } })
 o.fileformats = "unix"
@@ -19,7 +18,6 @@ o.fileencoding = "utf-8"
 o.undofile = true
 
 -- ~  Edit
-
 o.tabstop = 4
 o.softtabstop = -1
 o.shiftwidth = 4
@@ -31,7 +29,7 @@ o.wrap = true
 o.linebreak = true
 o.breakindent = true
 o.breakindentopt = "list:-1"
-o.showbreak = " - "
+o.showbreak = "  "
 o.complete:remove("i")
 o.completeopt = "menu,menuone,noinsert,noselect"
 o.showfulltag = true
@@ -39,9 +37,13 @@ o.virtualedit = "block"
 o.wildmenu = true
 o.wildmode = "list:longest,list:full"
 o.wildoptions = "fuzzy,pum"
-o.wildignore:append({ ".javac", "node_modules", "*.pyc" })
-o.wildignore:append({ ".aux", ".out", ".toc" })
 o.wildignore:append({
+  ".javac",
+  "node_modules",
+  "*.pyc",
+  ".aux",
+  ".out",
+  ".toc",
   ".o",
   ".obj",
   ".dll",
@@ -49,7 +51,6 @@ o.wildignore:append({
   ".so",
   ".a",
   ".lib",
-  ".pyc",
   ".pyo",
   ".pyd",
   ".swp",
@@ -63,7 +64,6 @@ o.wildignore:append({
 o.suffixesadd:append({ ".java", ".rs" })
 
 -- ~  UI
-
 o.termguicolors = true
 o.background = "dark"
 o.number = true
@@ -86,7 +86,6 @@ o.list = true
 o.conceallevel = 2
 
 -- ~  Behaviour
-
 o.lazyredraw = false
 o.updatetime = 200
 o.belloff = "all"
@@ -105,7 +104,6 @@ o.incsearch = true
 o.mouse = ""
 
 -- ~  Chars
-
 local ui = S.Icons.ui
 o.listchars = { tab = ui.arrow_r .. " ", nbsp = ui.space, trail = ui.dot_s }
 o.fillchars = {
