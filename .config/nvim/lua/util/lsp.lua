@@ -156,7 +156,7 @@ function LSP.buf_active_clients(buf)
     vim.tbl_get(vim.lsp.get_clients({ bufnr = buf })[1], "_log_prefix")
   local client = string.sub(client_log_prefix, 5, -2)
   if client == "" then return end
-  vim.print(client)
+  F.Notify("info", client)
 end
 
 return LSP
