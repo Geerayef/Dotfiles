@@ -6,6 +6,13 @@ local bmap = F.bmap
 
 -- ~ General --------------------------------------------------------------- ~ --
 
+map(
+  "n",
+  "<leader>bac",
+  function() require("util.lsp").buf_active_clients(0) end,
+  "Buf get active clients"
+)
+
 -- Movement
 map("x", "J", ":'<,'>m '>+1<CR>gv=gv", "Move selection down")
 map("x", "K", ":'<,'>m '<-2<CR>gv=gv", "Move selection up")

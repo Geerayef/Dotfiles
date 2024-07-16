@@ -148,4 +148,15 @@ function LSP.restart(client_or_id)
   })
 end
 
+---Find the active LSP clients.
+---@param buf integer|nil # Buffer number
+function LSP.buf_active_clients(buf)
+  if buf == nil then buf = 0 end
+  local client_log_prefix =
+    vim.tbl_get(vim.lsp.get_clients({ bufnr = buf })[1], "_log_prefix")
+  local client = string.sub(client_log_prefix, 5, -2)
+  if client == "" then return end
+  vim.print(client)
+end
+
 return LSP
