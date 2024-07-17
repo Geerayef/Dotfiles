@@ -1,4 +1,4 @@
-/* #ui */
+/*#ui*/
 
 * {
   font-family: "Iosevka Nerd Font Mono";
@@ -13,7 +13,7 @@
   z-index: 0;
   padding: 0.2rem;
 }
-.LH::before {
+.LH:before {
   position: absolute;
   background: #ffff00;
   top: 0;
@@ -53,7 +53,7 @@
   min-width: 20rem;
   align-items: unset;
 }
-.HUD::after {
+.HUD:after {
   border-radius: unset;
   border: none;
   background: rgb(247, 246, 246);
@@ -61,12 +61,12 @@
 .HUD.D {
   border-color: rgb(80, 83, 84);
 }
-.HUD.D::after {
+.HUD.D:after {
   background: rgb(10, 14, 20);
 }
 /* -------------------------------------------------------------------------------- */
 
-/* #omni */
+/*#omni*/
 
 * {
   font-family: "Iosevka Nerd Font Mono", monospace !important;
@@ -84,7 +84,7 @@ body.has-dark {
   overflow: hidden;
   border-color: rgb(80, 83, 84);
 }
-body::after {
+body:after {
   overflow: hidden;
   border: unset;
 }
@@ -97,7 +97,7 @@ body::after {
 .has-dark #bar {
   background: rgb(10, 14, 20);
 }
-#bar::before {
+#bar:before {
   content: "❯";
   display: inline-block;
   height: 1rem;
@@ -112,7 +112,7 @@ body::after {
   color: rgb(0, 0, 0);
   font-weight: bold;
 }
-.has-dark #bar::before {
+.has-dark #bar:before {
   color: #d4d4d4;
 }
 #input {
@@ -187,7 +187,7 @@ body::after {
   border-radius: 0rem;
   height: 2.8rem;
 }
-.item::before {
+.item:before {
   position: absolute;
   background: none;
   top: 0;
@@ -206,16 +206,16 @@ body::after {
 .has-dark .item:hover {
   border: 3px rgb(80, 83, 84) solid;
 }
-.item.s::before {
+.item.s:before {
   background-color: rgb(255, 255, 255);
 }
-.item:hover::before {
+.item:hover:before {
   background-color: #ffffff;
 }
-.has-dark .item.s::before {
+.has-dark .item.s:before {
   background-color: rgb(80, 83, 84);
 }
-.has-dark .item:hover::before {
+.has-dark .item:hover:before {
   background-color: rgb(80, 83, 84);
 }
 .item .icon {
@@ -254,7 +254,7 @@ body::after {
 .has-dark .item .top .title match {
   color: #ffffff;
 }
-.item .top .title:empty::after {
+.item .top .title:empty:after {
   content: "<blank>";
 }
 .item .bottom {
@@ -281,7 +281,7 @@ body::after {
 }
 /* -------------------------------------------------------------------------------- */
 
-/* #find */
+/*#find*/
 
 * {
   font-family: "Iosevka Nerd Font Mono", monospace !important;

@@ -182,6 +182,7 @@ S.root_markers = {
   "Cargo.lock",
   "rust-project.json",
   "mod.rs",
+  "settings.json",
   "package.json",
   "Makefile",
   "makefile",

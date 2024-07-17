@@ -1,4 +1,4 @@
-vim.g.theme = "github_dark_colorblind"
+vim.g.theme = "kanagawa"
 require("util.static")
 require("core.opts")
 require("core.func")
