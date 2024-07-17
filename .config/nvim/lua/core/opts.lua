@@ -10,14 +10,14 @@ if vim.fn.executable("rg") == 1 then
   o.grepprg = "rg --hidden --vimgrep --no-heading --smart-case --trim"
 end
 
--- ~  File
+-- ~ File
 vim.cmd.syntax("on")
 vim.cmd.filetype({ args = { "plugin", "indent", "on" } })
 o.fileformats = "unix"
 o.fileencoding = "utf-8"
 o.undofile = true
 
--- ~  Edit
+-- ~ Edit
 o.tabstop = 4
 o.softtabstop = -1
 o.shiftwidth = 4
@@ -63,7 +63,7 @@ o.wildignore:append({
 })
 o.suffixesadd:append({ ".java", ".rs" })
 
--- ~  UI
+-- ~ UI
 o.termguicolors = true
 o.background = "dark"
 o.number = true
@@ -85,7 +85,7 @@ o.pumblend = 0
 o.list = true
 o.conceallevel = 2
 
--- ~  Behaviour
+-- ~ Behaviour
 o.lazyredraw = false
 o.updatetime = 200
 o.belloff = "all"
@@ -103,7 +103,7 @@ o.hlsearch = true
 o.incsearch = true
 o.mouse = ""
 
--- ~  Chars
+-- ~ Chars
 local ui = S.Icons.ui
 o.listchars = { tab = ui.arrow_r .. " ", nbsp = ui.space, trail = ui.dot_s }
 o.fillchars = {

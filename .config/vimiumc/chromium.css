@@ -1,4 +1,5 @@
 /* #ui */
+
 * {
   font-family: "Iosevka Nerd Font Mono";
   font-size: 20px;
@@ -12,7 +13,7 @@
   z-index: 0;
   padding: 0.2rem;
 }
-.LH:before {
+.LH::before {
   position: absolute;
   background: #ffff00;
   top: 0;
@@ -37,7 +38,7 @@
   bottom: 1rem;
   left: 1rem;
   right: unset;
-  border-radius: 1rem;
+  border-radius: 0rem;
   padding: 1rem;
   height: auto;
   line-height: auto;
@@ -52,7 +53,7 @@
   min-width: 20rem;
   align-items: unset;
 }
-.HUD:after {
+.HUD::after {
   border-radius: unset;
   border: none;
   background: rgb(247, 246, 246);
@@ -60,11 +61,13 @@
 .HUD.D {
   border-color: rgb(80, 83, 84);
 }
-.HUD.D:after {
+.HUD.D::after {
   background: rgb(10, 14, 20);
 }
 /* -------------------------------------------------------------------------------- */
+
 /* #omni */
+
 * {
   font-family: "Iosevka Nerd Font Mono", monospace !important;
   font-size: 18px;
@@ -75,13 +78,13 @@
 }
 body {
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: 0rem;
 }
 body.has-dark {
   overflow: hidden;
   border-color: rgb(80, 83, 84);
 }
-body:after {
+body::after {
   overflow: hidden;
   border: unset;
 }
@@ -181,7 +184,7 @@ body:after {
   margin: 0.2rem;
   margin-top: 0rem;
   border: unset;
-  border-radius: 1rem;
+  border-radius: 0rem;
   height: 2.8rem;
 }
 .item::before {
@@ -277,7 +280,9 @@ body:after {
   color: #76808a;
 }
 /* -------------------------------------------------------------------------------- */
+
 /* #find */
+
 * {
   font-family: "Iosevka Nerd Font Mono", monospace !important;
   background: unset;

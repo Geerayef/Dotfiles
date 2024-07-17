@@ -1,5 +1,6 @@
 local theme
 if vim.g.theme == "material" then
+  vim.g.material_style = "deep ocean"
   theme = {
     "marko-cerovac/material.nvim",
     lazy = false,
@@ -71,6 +72,49 @@ elseif vim.g.theme == "kanagawa" then
       theme = "dragon",
       background = { dark = "dragon", light = "wave" },
     },
+  }
+elseif string.sub(vim.g.theme, 1, 6) == "github" then
+  theme = {
+    "projekt0n/github-nvim-theme",
+    lazy = false,
+    priority = 1010,
+    config = function()
+      require("github-theme").setup({
+        styles = {
+          comments = "italic",
+          functions = "italic,bold",
+          types = "bold",
+        },
+        darken = { floats = false },
+        module_default = false,
+        modules = {
+          cmp = true,
+          diagnostic = true,
+          gitsigns = true,
+          indent_blankline = true,
+          native_lsp = true,
+          neogit = true,
+          notify = true,
+          telescope = true,
+          treesitter = true,
+        },
+        groups = {
+          all = {
+            Normal = { bg = "#0A0E14" },
+            NormalNC = { bg = "#0A0E14" },
+            Cursor = { fg = "#FFF779" },
+            -- FloatTitle = { bold = true },
+            -- TelescopePromptTitle = { fg = "#C5C9C5", bg = "none" },
+            -- TelescopePromptNormal = { bg = "#0A0E14" },
+            -- TelescopeResultsNormal = { bg = "#0A0E14" },
+            -- TelescopePreviewNormal = { bg = "#0A0E14" },
+            -- TelescopePromptBorder = { fg = "#C5C9C5", bg = "none" },
+            -- TelescopeResultsBorder = { fg = "#C5C9C5", bg = "none" },
+            -- TelescopePreviewBorder = { fg = "#C5C9C5", bg = "none" },
+          },
+        },
+      })
+    end,
   }
 end
 return theme
