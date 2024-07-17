@@ -5,6 +5,14 @@ return {
   { "tpope/vim-surround", event = "BufReadPost" },
   { "mfussenegger/nvim-jdtls", ft = "java" },
   {
+    "rcarriga/nvim-notify",
+    event = "VeryLazy",
+    config = function()
+      vim.notify = require("notify")
+      require("notify").setup({ fps = 1, render = "minimal", stages = "static" })
+    end,
+  },
+  {
     "numToStr/Comment.nvim",
     event = "BufReadPost",
     opts = { extra = { above = "gcO", below = "gco" } },

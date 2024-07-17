@@ -81,7 +81,9 @@ function F.Notify(lvl, msg)
   if lvl == nil or msg == nil then return end
   local level = lvl
   lvl = lvl:upper()
-  require("notify")("[" .. lvl .. "] " .. msg, level)
+  local ok, notify = pcall(require, "notify")
+  if not ok then return end
+  notify("[" .. lvl .. "] " .. msg, level)
 end
 
 return F
