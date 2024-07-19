@@ -23,10 +23,10 @@ return {
       fish = { "fish_indent" },
       sh = { "shfmt" },
       bash = { "shfmt" },
-      yaml = { "prettierd" },
-      css = { "prettierd" },
-      scss = { "prettierd" },
-      html = { "prettierd" },
+      yaml = { "prettier" },
+      css = { "prettier" },
+      scss = { "prettier" },
+      html = { "prettier" },
       json = { "biome" },
       jsonc = { "biome" },
       javascript = { "biome" },
@@ -57,11 +57,7 @@ return {
           }
         end,
       },
-      prettierd = {
-        command = "prettierd",
-        stdin = true,
-        args = { "$FILENAME" },
-      },
+      prettier = { command = "prettier", stdin = true, args = { "$FILENAME" } },
     },
   },
 }

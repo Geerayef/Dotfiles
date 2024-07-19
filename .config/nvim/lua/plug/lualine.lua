@@ -27,7 +27,11 @@ return {
           {
             "mode",
             fmt = function() return F.VimMode(false) end,
-            color = { fg = palette.sumiInk0, bg = palette.lotusTeal1 },
+            color = {
+              fg = palette.sumiInk0,
+              bg = palette.lotusTeal1,
+              gui = "bold",
+            },
             padding = { left = 1, right = 1 },
           },
         },
@@ -48,6 +52,10 @@ return {
               newfile = "[New]",
             },
           },
+          {
+            "searchcount",
+            color = { fg = palette.dragonYellow, gui = "bold" },
+          },
           { function() return "%=" end },
         },
         lualine_x = {
@@ -58,12 +66,24 @@ return {
             end,
             cond = function()
               local r = vim.fn.reg_recording()
-              if r ~= "" then
-                return true
-              else
-                return false
-              end
+              return r ~= "" and true or false
             end,
+          },
+          {
+            "diagnostics",
+            sources = { "nvim_lsp", "nvim_diagnostic" },
+            symbols = {
+              error = icon.diagnostics.error,
+              warn = icon.diagnostics.warn,
+              info = icon.diagnostics.info,
+              hint = icon.diagnostics.hint,
+            },
+            diagnostics_color = {
+              error = { fg = theme.diag.error },
+              warn = { fg = theme.diag.warning },
+              info = { fg = theme.diag.info },
+              hint = { fg = theme.diag.hint },
+            },
           },
           {
             "diff",
@@ -88,22 +108,6 @@ return {
               added = { fg = theme.vcs.added },
               modified = { fg = theme.vcs.changed },
               removed = { fg = theme.vcs.removed },
-            },
-          },
-          {
-            "diagnostics",
-            sources = { "nvim_lsp", "nvim_diagnostic" },
-            symbols = {
-              error = icon.diagnostics.error,
-              warn = icon.diagnostics.warn,
-              info = icon.diagnostics.info,
-              hint = icon.diagnostics.hint,
-            },
-            diagnostics_color = {
-              error = { fg = theme.diag.error },
-              warn = { fg = theme.diag.warning },
-              info = { fg = theme.diag.info },
-              hint = { fg = theme.diag.hint },
             },
           },
           {

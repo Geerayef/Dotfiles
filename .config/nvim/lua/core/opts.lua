@@ -5,7 +5,7 @@ vim.g.loaded_ruby_provider = 0
 local o = vim.opt
 
 o.shell = "/usr/bin/fish"
-o.shortmess:append("Isa")
+o.shortmess:append("ISsac")
 if vim.fn.executable("rg") == 1 then
   o.grepprg = "rg --hidden --vimgrep --no-heading --smart-case --trim"
 end
