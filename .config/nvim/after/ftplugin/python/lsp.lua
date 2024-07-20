@@ -1,8 +1,8 @@
-local ruff_lsp = {
+local ruff = {
   on_attach = require("core.func").LspAttach,
   filetypes = { "python" },
   root_patterns = { "*.py" },
-  cmd = { "ruff-lsp" },
+  cmd = { "ruff", "server" },
 }
 
 local pylsp = {
@@ -25,5 +25,5 @@ local pylsp = {
   cmd = { "pylsp" },
 }
 
+require("util.lsp").start(ruff)
 require("util.lsp").start(pylsp)
-require("util.lsp").start(ruff_lsp)

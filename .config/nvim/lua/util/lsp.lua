@@ -3,6 +3,7 @@ local LSP = {}
 if not vim.g.lsp_active_clients then vim.g.lsp_active_clients = {} end
 
 local has_cmplsp, cmplsp = pcall(require, "cmp_nvim_lsp")
+if not has_cmplsp then F.Notify("info", "`cmp_nvim_lsp` not found.") end
 local capabilities = vim.tbl_deep_extend(
   "force",
   {},
@@ -72,7 +73,7 @@ function LSP.start(config, opts)
     or type(config.cmd) ~= "table"
     or vim.fn.executable(config.cmd[1]) == 0
   then
-    F.Notify("LSP", "Client `" .. config.cmd[1] .. "` not started.")
+    F.Notify("LSP", "Client for `" .. config.cmd[1] .. "` not started.")
     return nil
   end
   if not vim.list_contains(vim.g.lsp_active_clients, config.cmd[1]) then
@@ -148,15 +149,11 @@ function LSP.restart(client_or_id)
   })
 end
 
----Find the active LSP clients.
+---Show active LSP clients.
 ---@param buf integer|nil # Buffer number
 function LSP.buf_active_clients(buf)
   if buf == nil then buf = 0 end
-  local client_log_prefix =
-    vim.tbl_get(vim.lsp.get_clients({ bufnr = buf })[1], "_log_prefix")
-  local client = string.sub(client_log_prefix, 5, -2)
-  if client == "" then return end
-  F.Notify("info", client)
+  F.Notify("info", vim.fn.string(vim.g.lsp_active_clients))
 end
 
 return LSP

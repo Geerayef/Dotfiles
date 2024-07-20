@@ -37,8 +37,8 @@ map("n", "<leader>tmh", "<cmd>tabmove -1<CR>", "[t]ab [m]ove left")
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal mode: Escape")
 
 -- Diagnostic
-map("n", "<leader>dn", vim.diagnostic.goto_next, "[d]iagnostic [n]ext")
-map("n", "<leader>dp", vim.diagnostic.goto_prev, "[d]iagnostic [p]revious")
+map("n", "]d", vim.diagnostic.goto_next, "[d]iagnostic ] next")
+map("n", "[d", vim.diagnostic.goto_prev, "[d]iagnostic [ previous")
 
 -- Commandline
 vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", {})

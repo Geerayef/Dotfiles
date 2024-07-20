@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
--- ~  Large-file performance
+-- ~ Large-file performance
 
 autocmd("BufReadPre", {
   desc = "Better handle large files.",
@@ -32,7 +32,7 @@ autocmd("BufReadPre", {
   end,
 })
 
--- ~  Highlight on yank
+-- ~ Highlight on yank
 
 autocmd("TextYankPost", {
   desc = "Highlight yanked text.",
@@ -41,7 +41,7 @@ autocmd("TextYankPost", {
   callback = function() vim.highlight.on_yank() end,
 })
 
--- ~  Auto cd
+-- ~ Auto cd
 
 autocmd({ "BufWinEnter", "FileChangedShellPost" }, {
   desc = "Automatically change current working directory based on predefined markers.",
@@ -69,9 +69,25 @@ autocmd({ "BufWinEnter", "FileChangedShellPost" }, {
   end,
 })
 
+-- ~ Close special buffers with `q`
+
 autocmd({ "FileType" }, {
   desc = "Close special buffers with `q`.",
   group = augroup("qCloseSpecialFT", { clear = true }),
   pattern = table.concat(S.FtSpecial, ","),
   callback = function() F.bmap("n", "q", "<C-w>c", 0, "Close current buffer.") end,
+})
+
+-- ~ Turn off Ruff Hover when used with Pylsp
+
+autocmd("LspAttach", {
+  desc = "LSP: Disable Ruff's hover.",
+  group = augroup("DisableRuffHover", { clear = true }),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client == nil then return end
+    if client.name == "ruff" then
+      client.server_capabilities.hoverProvider = false
+    end
+  end,
 })

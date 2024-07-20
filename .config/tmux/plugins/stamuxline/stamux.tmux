@@ -29,28 +29,27 @@ main() {
   stamux_dir="$HOME/.config/tmux/plugins/stamuxline"
   local theme
   theme="$(get-tmux-option "@stamux_color" "kanagawa")"
-  # shellcheck disable=1090
   source "${stamux_dir}/${theme}.tmuxtheme"
-  # Statusline
+  # status
   seto status "on"
   seto status-bg "${bg}"
   seto status-justify "left"
   seto status-left-length "100"
   seto status-right-length "100"
-  # Messages
+  # messages
   seto message-style "fg=${cyan},bg=${gray},align=centre"
   seto message-command-style "fg=${cyan},bg=${gray},align=centre"
-  # Panes
+  # panes
   seto pane-border-style "fg=${gray}"
   seto pane-active-border-style "fg=${blue}"
-  # Windows
+  # windows
   setw window-status-activity-style "bold"
   setw window-status-bell-style "bold"
   setw window-status-separator ""
   setw window-status-style "fg=${fg},bg=${bg},none"
   # clock
   seto clock-mode-style 24
-
+  # statusline
   seto status-left "#[fg=$fg]     #{?client_prefix,#[bg=$blue],#[bg=$bg]}#{?client_prefix,#[fg=$bg],#[fg=$yellow]} #S #[fg=$fg,bg=$bg]  | "
   seto status-right "#[fg=$fg,bg=$bg] | 󱑂 %R#[fg=$fg,bg=$bg]    "
   setw window-status-format "#[fg=$blue,bg=$gray,italics] #I #[fg=$blue,bg=$bg,italics] #W #[fg=$fg,bg=$bg]"
