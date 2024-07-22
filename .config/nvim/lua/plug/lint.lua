@@ -8,7 +8,7 @@ return {
       c = { "clangtidy" },
       cpp = { "clangtidy" },
       python = { "ruff" },
-      rust = { "clippy" },
+      rust = { "clippy-driver" },
       go = { "golangcilint" },
       sh = { "shellcheck" },
       fish = { "fish" },
