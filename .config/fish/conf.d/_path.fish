@@ -25,6 +25,13 @@ if test -d "$HOME/.cargo"
     fish_add_path -a --path "$HOME/.cargo/bin"
 end
 
+if test -e "$(command -v go)"
+    set -l gobin (go env GOBIN)
+    fish_add_path -a --path "$gobin"
+    set -l gopath (go env GOPATH)/bin
+    fish_add_path -a --path "$gopath"
+end
+
 # pnpm
 if not string match -q -- $PNPM_HOME $PATH
     fish_add_path -a --path "$PNPM_HOME"

@@ -1,13 +1,14 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
+  { "MunifTanjim/nui.nvim", lazy = true },
   { "tpope/vim-sleuth", event = "BufEnter" },
   { "tpope/vim-surround", event = "BufReadPost" },
-  { "mfussenegger/nvim-jdtls", ft = "java" },
+  { "numToStr/Comment.nvim", event = "BufReadPost", opts = true },
   {
     "rcarriga/nvim-notify",
     event = "VeryLazy",
-    config = function()
+    opts = function()
       vim.notify = require("notify")
       require("notify").setup({
         fps = 1,
@@ -20,11 +21,6 @@ return {
         end,
       })
     end,
-  },
-  {
-    "numToStr/Comment.nvim",
-    event = "BufReadPost",
-    opts = { extra = { above = "gcO", below = "gco" } },
   },
   {
     "windwp/nvim-autopairs",
@@ -57,6 +53,16 @@ return {
       vim.g.matchup_override_vimtex = 1
     end,
   },
+  {
+    "norcalli/nvim-colorizer.lua",
+    cmd = "ColorizerToggle",
+    opts = { ["*"] = { RRGGBBAA = true } },
+  },
+  {
+    "mfussenegger/nvim-jdtls",
+    ft = "java",
+    cond = function() return vim.bo.ft == "java" end,
+  },
   -- {
   --   "williamboman/mason.nvim",
   --   cmd = "Mason",
@@ -74,9 +80,4 @@ return {
   --     },
   --   },
   -- },
-  {
-    "norcalli/nvim-colorizer.lua",
-    cmd = "ColorizerToggle",
-    opts = { ["*"] = { RRGGBBAA = true } },
-  },
 }

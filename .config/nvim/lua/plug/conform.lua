@@ -18,6 +18,7 @@ return {
       cpp = { "clang-format" },
       ocaml = { "ocamlformat" },
       rust = { "rustfmt" },
+      go = { "gofmt" },
       lua = { "stylua" },
       python = { "ruff_format" },
       fish = { "fish_indent" },

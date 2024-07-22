@@ -1,10 +1,10 @@
-local theme
-if vim.g.theme == "material" then
-  vim.g.material_style = "deep ocean"
-  theme = {
+return {
+  {
     "marko-cerovac/material.nvim",
+    cond = function() return vim.g.theme == "material" end,
     lazy = false,
     priority = 1010,
+    init = function() vim.g.material_style = "deep ocean" end,
     opts = {
       contrast = { lsp_virtual_text = true },
       styles = {
@@ -38,10 +38,10 @@ if vim.g.theme == "material" then
         TelescopePreviewBorder = { fg = "#C5C9C5", bg = "none" },
       },
     },
-  }
-elseif vim.g.theme == "kanagawa" then
-  theme = {
+  },
+  {
     "rebelot/kanagawa.nvim",
+    cond = function() return vim.g.theme == "kanagawa" end,
     lazy = false,
     priority = 1010,
     opts = {
@@ -72,6 +72,5 @@ elseif vim.g.theme == "kanagawa" then
       theme = "dragon",
       background = { dark = "dragon", light = "wave" },
     },
-  }
-end
-return theme
+  },
+}

@@ -2,6 +2,7 @@ return {
   "lervag/vimtex",
   dependencies = { "micangl/cmp-vimtex" },
   ft = { "tex" },
+  cond = function() return vim.bo.ft == "tex" end,
   config = function()
     vim.g["tex_flavor"] = "latex" -- how to read tex files
     vim.g["tex_indent_items"] = 0 -- turn off enumerate indent

@@ -9,6 +9,7 @@ return {
       cpp = { "clangtidy" },
       python = { "ruff" },
       rust = { "clippy" },
+      go = { "golangcilint" },
       sh = { "shellcheck" },
       fish = { "fish" },
       bash = { "shellcheck" },

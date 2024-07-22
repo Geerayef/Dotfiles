@@ -132,13 +132,13 @@ return {
     },
     prompt = {
       enabled = true,
-      prefix = { { "⚡", "FlashPromptIcon" } },
+      prefix = { { "       ⚡ ", "FlashPromptIcon" } },
       win_config = {
         relative = "editor",
         width = 1,
         height = 1,
         row = -1,
-        col = 0,
+        col = 1,
         zindex = 1000,
       },
     },
