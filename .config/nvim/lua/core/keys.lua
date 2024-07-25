@@ -22,7 +22,7 @@ map("n", "<leader>nh", "<cmd>nohl<CR>", "[n]o [h]ighlights")
 map("n", "n", "nzzzv", "Vertically center on next matching search")
 map("n", "N", "Nzzzv", "Vertically center on previous matching search")
 
--- Copy/Yank/Paste
+-- Yank/Paste
 map("n", "x", "\"_x", "Cut rightward character without saving to buffer")
 map("x", "<leader>P", "\"_dP", "Past from system clipboard")
 map({ "n", "x" }, "<leader>y", "\"+y", "Yank to system clipboard")
@@ -34,11 +34,11 @@ map("n", "<leader>tml", "<cmd>tabmove +1<CR>", "[t]ab [m]ove right")
 map("n", "<leader>tmh", "<cmd>tabmove -1<CR>", "[t]ab [m]ove left")
 
 -- Terminal
-map("t", "<Esc>", "<C-\\><C-n>", "Terminal mode: Escape")
+map("t", "<Esc>", "<C-\\><C-n>", "Terminal escape")
 
 -- Diagnostic
-map("n", "]d", vim.diagnostic.goto_next, "[d]iagnostic ] next")
-map("n", "[d", vim.diagnostic.goto_prev, "[d]iagnostic [ previous")
+map("n", "]d", vim.diagnostic.goto_next, "Next ] [d]iagnostic")
+map("n", "[d", vim.diagnostic.goto_prev, "Previous [ [d]iagnostic")
 
 -- Commandline
 vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", {})

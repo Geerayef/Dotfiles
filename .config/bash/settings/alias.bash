@@ -97,7 +97,7 @@ elif [[ $SYSTEM_PACKAGE_MANAGER == dnf ]]; then
 elif [[ $SYSTEM_PACKAGE_MANAGER == pacman ]]; then
   alias pi="sudo pacman -S --needed"
   alias pu="sudo pacman -Syu"
-  alias pr="sudo pacman -Rns"
+  alias pr="sudo pacman -Rs"
   alias pq="sudo pacman -Q"
   alias ps="sudo pacman -Ss"
 else

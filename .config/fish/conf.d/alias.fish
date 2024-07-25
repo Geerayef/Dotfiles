@@ -96,7 +96,7 @@ else if test $SYSTEM_PACKAGE_MANAGER = dnf
 else if test $SYSTEM_PACKAGE_MANAGER = pacman
     alias pi="sudo pacman -S --needed"
     alias pu="sudo pacman -Syu"
-    alias pr="sudo pacman -Rns"
+    alias pr="sudo pacman -Rs"
     alias pq="sudo pacman -Q"
     alias ps="sudo pacman -Ss"
 else

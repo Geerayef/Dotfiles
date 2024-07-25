@@ -40,13 +40,12 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPost",
     main = "ibl",
-    cond = vim.g.disable_ibl,
     opts = { indent = { char = "│" } },
   },
   {
     "andymass/vim-matchup",
     event = "BufReadPost",
-    init = function()
+    opts = function()
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
       vim.g.matchup_surround_enabled = 1
       vim.g.matchup_matchparen_deferred = 1
