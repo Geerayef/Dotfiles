@@ -3,7 +3,6 @@ return {
     "epwalsh/obsidian.nvim",
     version = "*",
     ft = "markdown",
-    cond = function() return vim.bo.ft == "markdown" end,
     dependencies = {
       {
         "lukas-reineke/headlines.nvim",

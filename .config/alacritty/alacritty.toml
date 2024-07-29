@@ -1,4 +1,4 @@
-import = [ "~/.config/alacritty/colors/AyuDark.toml" ]
+import = [ "~/.config/alacritty/colors/Oxocarbon.toml" ]
 #shell = { program = "/usr/bin/fish", args = ["-c", "zellij attach home"] }
 #working_directory = ""
 live_config_reload = true
@@ -26,9 +26,9 @@ history    = 4000
 #multiplier = 3
 
 [font]
-normal              = { family = "ZedMono Nerd Font Mono", style = "Medium" }
+normal              = { family = "ZedMono Nerd Font Mono", style = "Regualar" }
 bold                = { family = "ZedMono Nerd Font Mono", style = "Bold" }
-italic              = { family = "ZedMono Nerd Font Mono", style = "Light" }
+italic              = { family = "ZedMono Nerd Font Mono", style = "Italic" }
 bold_italic         = { family = "ZedMono Nerd Font Mono", style = "Medium" }
 size                = 16
 offset              = { x = 0, y = 0 }

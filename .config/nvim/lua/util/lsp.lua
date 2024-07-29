@@ -76,24 +76,33 @@ function LSP.start(config, opts)
     F.Notify("LSP", "Client for `" .. config.cmd[1] .. "` not started.")
     return nil
   end
+  local client_id = nil
   if not vim.list_contains(vim.g.lsp_active_clients, config.cmd[1]) then
-    vim.g.lsp_active_clients =
-      vim.list_extend(vim.g.lsp_active_clients, { config.cmd[1] })
     F.Notify("LSP", "Starting client for `" .. config.cmd[1] .. "`.")
+    client_id = vim.lsp.start(
+      vim.tbl_deep_extend("keep", config or {}, {
+        name = config.cmd[1],
+        root_dir = require("util.fs").root(
+          vim.api.nvim_buf_get_name(0),
+          vim.list_extend(
+            config.root_patterns or {},
+            LSP.default_config.root_patterns or {}
+          )
+        ),
+      }, LSP.default_config),
+      opts
+    )
+    if client_id ~= nil then
+      F.Notify(
+        "DEBUG",
+        "Inserting { id = " .. client_id .. ", name = " .. config.cmd[1] .. " }"
+      )
+      vim.g.lsp_active_clients[#vim.g.lsp_active_clients + 1] =
+        { id = client_id, name = config.cmd[1] }
+      return client_id
+    end
   end
-  return vim.lsp.start(
-    vim.tbl_deep_extend("keep", config or {}, {
-      name = config.cmd[1],
-      root_dir = require("util.fs").root(
-        vim.api.nvim_buf_get_name(0),
-        vim.list_extend(
-          config.root_patterns or {},
-          LSP.default_config.root_patterns or {}
-        )
-      ),
-    }, LSP.default_config),
-    opts
-  )
+  return client_id
 end
 
 ---@class lsp_soft_stop_opts_t
@@ -153,7 +162,7 @@ end
 ---@param buf integer|nil # Buffer number
 function LSP.buf_active_clients(buf)
   if buf == nil then buf = 0 end
-  F.Notify("info", vim.fn.string(vim.g.lsp_active_clients))
+  F.Notify("LSP", vim.fn.string(vim.g.lsp_active_clients))
 end
 
 return LSP

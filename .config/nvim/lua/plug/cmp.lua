@@ -55,7 +55,7 @@ return {
         }),
         sources = cmp.config.sources(
           { { name = "path", keyword_length = 2, max_item_count = 20 } },
-          { { name = "cmdline", keyword_length = 2, max_item_count = 30 } }
+          { { name = "cmdline", keyword_length = 1, max_item_count = 30 } }
         ),
         view = { entries = { name = "custom" } },
       })
@@ -92,7 +92,7 @@ return {
           }),
         }),
         window = {
-          completion = cmp.config.window.bordered({ scrollbar = false, border = S.Border }),
+          completion = cmp.config.window.bordered({ scrollbar = true, border = S.Border }),
           documentation = cmp.config.window.bordered({ scrollbar = true, border = S.Border }),
         },
         sources = cmp.config.sources({
@@ -100,9 +100,9 @@ return {
             option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } } } },
           { { name = "nvim_lsp_signature_help", keyword_length = 2, max_item_count = 10, priority = 850 } },
           { { name = "luasnip", keyword_length = 2, max_item_count = 10, priority = 850 } },
-          { { name = "nvim_lua", keyword_length = 2, max_item_count = 10, priority = 800 } },
+          { { name = "nvim_lua", keyword_length = 3, max_item_count = 10, priority = 800 } },
           { { name = "buffer", keyword_length = 2, max_item_count = 10, priority = 800 } },
-          { { name = "path", keyword_length = 3, max_item_count = 10, priority = 550 } },
+          { { name = "path", keyword_length = 2, max_item_count = 10, priority = 550 } },
           { { name = "treesitter", keyword_length = 2, max_item_count = 10, priority = 525 } },
           { { name = "vimtex", keyword_length = 2, max_item_count = 10, priority = 400 } }),
         -- stylua: ignore end
