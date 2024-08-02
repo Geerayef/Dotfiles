@@ -1,6 +1,6 @@
 local LSP = {}
 
-if not vim.g.lsp_active_clients then vim.g.lsp_active_clients = {} end
+LSP.active_clients = {}
 
 local has_cmplsp, cmplsp = pcall(require, "cmp_nvim_lsp")
 if not has_cmplsp then F.Notify("info", "`cmp_nvim_lsp` not found.") end
@@ -77,7 +77,7 @@ function LSP.start(config, opts)
     return nil
   end
   local client_id = nil
-  if not vim.list_contains(vim.g.lsp_active_clients, config.cmd[1]) then
+  if not vim.list_contains(LSP.active_clients, config.cmd[1]) then
     F.Notify("LSP", "Starting client for `" .. config.cmd[1] .. "`.")
     client_id = vim.lsp.start(
       vim.tbl_deep_extend("keep", config or {}, {
@@ -93,13 +93,8 @@ function LSP.start(config, opts)
       opts
     )
     if client_id ~= nil then
-      F.Notify(
-        "DEBUG",
-        "Inserting { id = " .. client_id .. ", name = " .. config.cmd[1] .. " }"
-      )
-      vim.g.lsp_active_clients[#vim.g.lsp_active_clients + 1] =
-        { id = client_id, name = config.cmd[1] }
-      return client_id
+	    table.insert(LSP.active_clients, { id = client_id, name = config.cmd[1] })
+	    return client_id 
     end
   end
   return client_id

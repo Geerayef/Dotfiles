@@ -6,5 +6,5 @@ require("core.keys")
 require("core.diag")
 require("lazyTim")
 require("core.auto")
-if vim.g.neovide then require("core.vide") end
 vim.cmd.colorscheme(vim.g.theme)
+if vim.g.neovide then require("core.vide") end

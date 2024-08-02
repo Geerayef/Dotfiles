@@ -1,4 +1,4 @@
-import = [ "~/.config/alacritty/colors/Oxocarbon.toml" ]
+import = [ "~/.config/alacritty/colors/KanagawaDragon.toml" ]
 #shell = { program = "/usr/bin/fish", args = ["-c", "zellij attach home"] }
 #working_directory = ""
 live_config_reload = true
@@ -10,7 +10,7 @@ CURRENT_TERM = "alacritty"
 [window]
 dimensions                = { columns = 0, lines = 0 }
 position                  = "None"
-padding                   = { x = 0, y = 0 }
+padding                   = { x = 4, y = 4 }
 dynamic_padding           = false
 decorations               = "None"
 opacity                   = 1

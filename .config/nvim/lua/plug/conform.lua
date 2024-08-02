@@ -59,6 +59,18 @@ return {
         end,
       },
       prettier = { command = "prettier", stdin = true, args = { "$FILENAME" } },
+      ruff_format = {
+        command = "ruff",
+        args = {
+          "format",
+          "--config=$XDG_CONFIG_HOME/ruff/ruff.toml",
+          "--force-exclude",
+          "--stdin-filename",
+          "$FILENAME",
+          "-",
+        },
+        stdin = true,
+      },
     },
   },
 }
