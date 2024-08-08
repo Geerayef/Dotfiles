@@ -1,0 +1,64 @@
+{
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "cursor_blink": false,
+  "current_line_highlight": "gutter",
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+    "selections_menu": false
+  },
+  "scrollbar": {
+    "show": "system",
+    "cursors": false,
+    "git_diff": false,
+    "search_results": false,
+    "selected_symbol": false,
+    "diagnostics": false
+  },
+  "relative_line_numbers": true,
+  "gutter": {
+    "line_numbers": true,
+    "code_actions": false,
+    "runnables": false,
+    "folds": true
+  },
+  "indent_guides": {
+    "enabled": true,
+    "line_width": 1,
+    "active_line_width": 1,
+    "coloring": "fixed",
+    "background_coloring": "disabled"
+  },
+  "ui_font_size": 18,
+  "ui_font_family": "ZedMono Nerd Font Mono",
+  "ui_font_features": {
+    "calt": true,
+    "clig": true,
+    "liga": true,
+    "dlig": true,
+    "cv25": 12,
+    "cv85": 6,
+    "ss10": true
+  },
+  "buffer_font_size": 18,
+  "buffer_font_family": "ZedMono Nerd Font Mono",
+  "buffer_font_features": {
+    "calt": true,
+    "clig": true,
+    "liga": true,
+    "dlig": true,
+    "cv25": 12,
+    "cv85": 6,
+    "ss10": true
+  },
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Dark",
+    "dark": "One Dark"
+  },
+  "use_on_type_format": false
+}

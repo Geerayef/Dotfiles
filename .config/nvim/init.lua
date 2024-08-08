@@ -1,4 +1,4 @@
-vim.g.theme = "kanagawa"
+vim.g.theme = "material"
 require("util.static")
 require("core.opts")
 require("core.func")
