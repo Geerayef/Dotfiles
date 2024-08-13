@@ -24,3 +24,4 @@ Dotfiles/
 .config/zellij/plugin
 .config/vim/.netrwhist
 .config/nushell/history*
+.config/fish/fish_variables
