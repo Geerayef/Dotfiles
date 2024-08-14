@@ -45,7 +45,6 @@ end
 # pyenv
 if test -e "$HOME/.pyenv"
     set -gx PYENV_ROOT "$HOME/.pyenv"
-    command -vq pyenv
     and fish_add_path -a --path "$PYENV_ROOT/bin"
 end
 

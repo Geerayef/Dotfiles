@@ -10,6 +10,7 @@ return {
       python = { "ruff" },
       rust = { "clippy-driver" },
       go = { "golangcilint" },
+      lua = { "luacheck" },
       sh = { "shellcheck" },
       fish = { "fish" },
       bash = { "shellcheck" },

@@ -17,7 +17,7 @@ set -gx TERM wezterm
 set -gx EDITOR nvim
 set -gx SUDO_EDITOR nvim
 set -gx VISUAL edit.fish
-set -gx PAGER nvimpager
+set -gx PAGER "most +s +u"
 set -gx MANPAGER "nvim +Man!"
 set -gx SYSTEM_PACKAGE_MANAGER pacman
 set -gx MOZ_ENABLE_WAYLAND 1
