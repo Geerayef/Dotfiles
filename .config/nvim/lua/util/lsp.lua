@@ -93,8 +93,8 @@ function LSP.start(config, opts)
       opts
     )
     if client_id ~= nil then
-	    table.insert(LSP.active_clients, { id = client_id, name = config.cmd[1] })
-	    return client_id 
+      table.insert(LSP.active_clients, { id = client_id, name = config.cmd[1] })
+      return client_id
     end
   end
   return client_id

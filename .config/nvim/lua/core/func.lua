@@ -79,11 +79,10 @@ end
 ---@param lvl string # Log level
 function F.Notify(lvl, msg)
   if lvl == nil or msg == nil then return end
-  local level = lvl
-  lvl = lvl:upper()
+  local level = lvl:upper()
   local ok, notify = pcall(require, "notify")
   if not ok then return end
-  notify("[" .. lvl .. "] " .. msg, level)
+  notify("[" .. level .. "] " .. msg, lvl)
 end
 
 return F
