@@ -9,7 +9,7 @@
 
 # ~  Global variables
 
-DIVIDER="--------------------"
+DIVIDER="-------------------------"
 BACK="Back"
 
 # ~ -------------------------------------------------------------------------------- ~ #
@@ -41,13 +41,18 @@ toggle_power() {
 # - Scan
 # Echoes
 status_scaning() {
-  if bluetoothctl show | grep -q "Discovering: yes"; then
-    echo "Scan: on"
-    return 0
-  else
+  local result=0
+  local discovering
+  discovering=$(bluetoothctl show | rg --trim --color=never "Discovering: ")
+  discovering=${discovering//"Discovering: "/}
+  if [ "$discovering" == "no" ]; then
     echo "Scan: off"
-    return 1
+    result=1
+  else
+    echo "Scan: on"
+    result=0
   fi
+  return $result
 }
 
 toggle_scan() {
@@ -56,8 +61,7 @@ toggle_scan() {
     bluetoothctl scan off
     main_menu
   else
-    bluetoothctl scan bredr
-    echo "Scanning..."
+    bluetoothctl scan on
     sleep 5
     main_menu
   fi
@@ -245,7 +249,7 @@ main_menu() {
     pairable=$(status_pairable)
     discoverable=$(status_discoverable)
 
-    options="$devices\n$DIVIDER\n$power\n$scan\n$pairable\n$discoverable\nExit"
+    options="$devices\n$DIVIDER\n$power\n$scan\n$pairable\n$discoverable\n$DIVIDER\nExit"
   else
     power="Power: off"
     options="$power\nExit"
@@ -280,11 +284,15 @@ tofi_cmd="tofi --config $XDG_CONFIG_HOME/tofi/interactive --placeholder-text=Blu
 
 # ~ Entry-------------------------------------------------------------------- ~ #
 
-case "$1" in
-  --status)
-    print_status
-    ;;
-  *)
-    main_menu
-    ;;
-esac
+main() {
+  case "$1" in
+    --status)
+      print_status
+      ;;
+    *)
+      main_menu
+      ;;
+  esac
+}
+
+main "$@"

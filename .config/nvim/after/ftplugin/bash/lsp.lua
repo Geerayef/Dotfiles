@@ -1,9 +1,9 @@
 local bashls = {
   on_attach = require("core.func").LspAttach,
-  filetypes = { "sh", "bash" },
+  filetypes = { "bash", "sh" },
   root_patterns = { ".shellcheckrc" },
   settings = {
-    bashIde = { globPattern = "*@(.sh|.inc|.bash|.command)" },
+    bashIde = { globPattern = "*@(.bash|.inc|.sh|.command)" },
   },
   cmd = { "bash-language-server", "start" },
 }

@@ -37,12 +37,16 @@ return {
     formatters = {
       beautysh = { prepend_args = { "-i", "2" } },
       shfmt = {
-        prepend_args = {
-          "--simplify",
+        inherit = false,
+        command = "shfmt",
+        args = {
           "--indent",
           "2",
+          "--simplify",
           "--binary-next-line",
           "--case-indent",
+          "-filename",
+          "$FILENAME",
         },
       },
       biome = {
