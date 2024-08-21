@@ -5,7 +5,7 @@
 # This ensures that each individual word is passed as one parameter to the respective command.
 
 main() {
-  local aur="hyprshade brave-bin clock-tui"
+  local aur="hyprshade brave-bin"
   local app="hyprland hypridle hyprlock hyprpaper hyprlang xdg-desktop-portal-hyprland wezterm foot fish starship neovim python-pynvim fd ripgrep fzf bat eza git curl wget clang cmake brightnessctl playerctl pipewire wireplumber mako ufw most handlr-regex pandoc-cli md-tui glow syncthing rclone grim slurp wl-clipboard cliphist tlp tlp-rdw nwg-look"
   printf "~~~~~ [ ArchLinux ] Install my apps.\n"
   if [[ -x "$(command -v pacman)" ]]; then

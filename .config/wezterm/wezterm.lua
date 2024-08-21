@@ -159,9 +159,13 @@ C.default_workspace = "home"
 -- Performance
 C.enable_wayland = false
 C.animation_fps = 1
-C.front_end = "WebGpu"
 local gpus = W.gui.enumerate_gpus()
 C.webgpu_preferred_adapter = gpus[1]
+if gpus[2] ~= nil then
+  C.front_end = "WebGpu"
+else
+  C.front_end = "OpenGL"
+end
 C.webgpu_force_fallback_adapter = true
 C.scrollback_lines = 2000
 C.audible_bell = "Disabled"
