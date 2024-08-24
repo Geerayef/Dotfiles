@@ -51,11 +51,11 @@ vim.api.nvim_set_keymap("c", "<M-b>", "<S-Left>", {})
 
 -- ~ Plugin ---------------------------------------------------------------- ~ --
 
--- stylua: ignore start
 map("n", "<leader>L", "<cmd>Lazy<CR>", "[L]azy")
 map("n", "<leader>f", "<cmd>Oil<CR>", "Oil [f]ile browser")
 map("n", "<leader>of", "<cmd>Oil --float<CR>", "[o]il [f]loat")
 
+-- stylua: ignore start
 -- Telescope
 map("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", "[?] Recent files")
 map("n", "<leader> ", "<cmd>Telescope buffers<CR>", "Telescope [s]earch [b]uffers")

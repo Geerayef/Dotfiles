@@ -78,10 +78,10 @@ autocmd({ "FileType" }, {
   callback = function() F.bmap("n", "q", "<C-w>c", 0, "Close current buffer.") end,
 })
 
--- ~ Turn off Ruff Hover when used with Pylsp
+-- ~ Turn off Ruff LSP Hover when used with Pylsp
 
 autocmd("LspAttach", {
-  desc = "LSP: Disable Ruff's hover.",
+  desc = "LSP: Disable Ruff's hover if used with Pylsp.",
   group = augroup("DisableRuffHover", { clear = true }),
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)

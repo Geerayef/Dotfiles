@@ -156,13 +156,11 @@ S.root_markers = {
   "settings.toml",
   ".editorconfig",
   "lua/",
+  "init.lua",
   "after/",
-  "ftplugin/",
-  "plugin/",
   "stylua.toml",
   ".stylua.toml",
   "lazy-lock.json",
-  "init.lua",
   "dune",
   "dune-project",
   "dune-workspace",
@@ -218,6 +216,7 @@ S.FtSpecial = {
   "git",
   "fugitive",
   "NeogitStatus",
+  "lazy",
 }
 
 S.FtIgnore = {

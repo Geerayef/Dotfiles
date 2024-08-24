@@ -1,2 +1,5 @@
-allow_defined = true
-globals = { "vim", "F", "Key", "S", "LSP" }
+return {
+  std = "LuaJIT",
+  globals = { "vim", "F", "Key", "S", "LSP" },
+  allow_defined = true,
+}

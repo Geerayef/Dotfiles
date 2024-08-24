@@ -32,6 +32,7 @@ return {
       ["<C-b>"] = "actions.preview_scroll_up",
       ["<C-c>"] = "actions.close",
       ["<C-r>"] = "actions.refresh",
+      ["`"] = function() require("oil").open(vim.fn.expand("$HOME")) end,
     },
     view_options = {
       show_hidden = true,
