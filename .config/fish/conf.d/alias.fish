@@ -30,7 +30,7 @@ alias nv="neovide"
 # ~  Git
 
 alias dot="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
-alias dotu="dot add .config/{nvim,nvimpager,vim,neovide,moxide,mdt,glow,emacs,tofi,alacritty,wezterm,foot,kitty,hypr,fish,bash,zsh,firefoxcss,nnn,bat,btop,mako,fontconfig,starship,tmux,vimiumc,zathura,yazi}/ .local/bin/ .zshenv"
+alias dotu="dot add .config/{fish,bash,zsh,starship,alacritty,wezterm,foot,kitty,tmux,hypr,nvim,vim,neovide,moxide,mdt,glow,emacs,tofi,firefoxcss,nnn,bat,btop,mako,fontconfig,vimiumc,zathura,zed,ruff}/ .local/bin/ .zshenv .gitignore"
 alias dota="dot add"
 alias dots="dot status"
 alias dotc="dot commit -m"
