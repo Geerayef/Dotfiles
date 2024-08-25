@@ -1,7 +1,7 @@
 LSP = {}
 
 ---@class ActiveClient
----@field id number #LSP client ID
+---@field id integer #LSP client ID
 ---@field name string #LSP client name
 
 ---@type ActiveClient[]
@@ -78,24 +78,10 @@ function LSP.start(config, opts)
     or type(config.cmd) ~= "table"
     or vim.fn.executable(config.cmd[1]) == 0
   then
-    -- F.Notify("LSP", "Client for `" .. config.cmd[1] .. "` not started.")
     return nil
   end
   local client_id = nil
-  if
-    not vim.tbl_contains(
-      LSP.active_clients,
-      ---Check for matching LSP name in `LSP.active_clients`.
-      ---@param e ActiveClient
-      ---@return boolean
-      function(e)
-        local match = e.name == config.cmd[1]
-        return match
-      end,
-      { predicate = true }
-    )
-  then
-    F.Notify("LSP", "Starting client for `" .. config.cmd[1] .. "`.")
+  do
     client_id = vim.lsp.start(
       vim.tbl_deep_extend("keep", config or {}, {
         name = config.cmd[1],
@@ -110,7 +96,17 @@ function LSP.start(config, opts)
       opts
     )
     if client_id ~= nil then
-      table.insert(LSP.active_clients, { client_id, config.cmd[1] })
+      if
+        not vim.tbl_contains(
+          LSP.active_clients,
+          function(e) return e[2] == config.cmd[1] end,
+          { predicate = true }
+        )
+      then
+        table.insert(LSP.active_clients, { client_id, config.cmd[1] })
+        F.Notify("LSP", "Start client for `" .. config.cmd[1] .. "`.")
+      end
+      F.Notify("LSP", "Attach to client `" .. config.cmd[1] .. "`.")
       return client_id
     end
   end

@@ -14,6 +14,7 @@ return {
         fps = 1,
         render = "minimal",
         stages = "static",
+        timeout = 2500,
         on_open = function(win)
           local config = vim.api.nvim_win_get_config(win)
           config.border = S.Border

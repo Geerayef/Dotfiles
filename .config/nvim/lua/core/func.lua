@@ -75,13 +75,13 @@ function F.IsBufInRepo(buf)
   return gitdir and #gitdir > 0 and #gitdir < #buf_path
 end
 
----@param msg string
+---@param msg string # Message to display
 ---@param lvl string # Log level
 function F.Notify(lvl, msg)
   if lvl == nil or msg == nil then return end
-  local level = lvl:upper()
   local ok, notify = pcall(require, "notify")
   if not ok then return end
+  local level = lvl:upper()
   notify("[" .. level .. "] " .. msg, lvl)
 end
 
