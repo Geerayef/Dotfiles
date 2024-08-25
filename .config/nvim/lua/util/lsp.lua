@@ -1,5 +1,10 @@
-local LSP = {}
+LSP = {}
 
+---@class ActiveClient
+---@field id number #LSP client ID
+---@field name string #LSP client name
+
+---@type ActiveClient[]
 LSP.active_clients = {}
 
 local has_cmplsp, cmplsp = pcall(require, "cmp_nvim_lsp")
@@ -73,11 +78,23 @@ function LSP.start(config, opts)
     or type(config.cmd) ~= "table"
     or vim.fn.executable(config.cmd[1]) == 0
   then
-    F.Notify("LSP", "Client for `" .. config.cmd[1] .. "` not started.")
+    -- F.Notify("LSP", "Client for `" .. config.cmd[1] .. "` not started.")
     return nil
   end
   local client_id = nil
-  if not vim.list_contains(LSP.active_clients, config.cmd[1]) then
+  if
+    not vim.tbl_contains(
+      LSP.active_clients,
+      ---Check for matching LSP name in `LSP.active_clients`.
+      ---@param e ActiveClient
+      ---@return boolean
+      function(e)
+        local match = e.name == config.cmd[1]
+        return match
+      end,
+      { predicate = true }
+    )
+  then
     F.Notify("LSP", "Starting client for `" .. config.cmd[1] .. "`.")
     client_id = vim.lsp.start(
       vim.tbl_deep_extend("keep", config or {}, {
@@ -93,7 +110,7 @@ function LSP.start(config, opts)
       opts
     )
     if client_id ~= nil then
-      table.insert(LSP.active_clients, { id = client_id, name = config.cmd[1] })
+      table.insert(LSP.active_clients, { client_id, config.cmd[1] })
       return client_id
     end
   end

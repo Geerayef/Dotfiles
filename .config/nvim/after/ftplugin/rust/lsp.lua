@@ -13,4 +13,4 @@ local rust_analyzer = {
   cmd = { "rust-analyzer" },
 }
 
-require("util.lsp").start(rust_analyzer)
+LSP.start(rust_analyzer)

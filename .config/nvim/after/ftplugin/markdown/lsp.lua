@@ -5,4 +5,4 @@ local markdown_oxide = {
   cmd = { "markdown-oxide" },
 }
 
-require("util.lsp").start(markdown_oxide)
+LSP.start(markdown_oxide)

@@ -25,5 +25,5 @@ local pylsp = {
   cmd = { "pylsp" },
 }
 
-require("util.lsp").start(ruff)
-require("util.lsp").start(pylsp)
+LSP.start(ruff)
+LSP.start(pylsp)

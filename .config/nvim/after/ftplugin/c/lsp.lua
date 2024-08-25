@@ -5,4 +5,4 @@ local clangd = {
   cmd = { "clangd" },
 }
 
-require("util.lsp").start(clangd)
+LSP.start(clangd)

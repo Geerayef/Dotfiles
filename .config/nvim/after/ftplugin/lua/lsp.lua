@@ -38,4 +38,4 @@ local lua_ls = {
   cmd = { "lua-language-server" },
 }
 
-require("util.lsp").start(lua_ls)
+LSP.start(lua_ls)

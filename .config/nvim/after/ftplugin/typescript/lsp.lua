@@ -23,5 +23,5 @@ local biome = {
   cmd = { "biome", "lsp-proxy" },
 }
 
-require("util.lsp").start(tsserver)
-require("util.lsp").start(biome)
+LSP.start(tsserver)
+LSP.start(biome)
