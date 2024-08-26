@@ -150,6 +150,7 @@ C.font_size = 16
 C.font_dirs = G.font_dirs
 C.font = W.font_with_fallback({
   { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.harf.io },
+  { family = "IosevkaTerm Nerd Font Mono", harfbuzz_features = G.harf.io },
   { family = "FiraCode Nerd Font Mono", harfbuzz_features = G.harf.fira },
 })
 
