@@ -30,4 +30,4 @@ set recolor-reverse-video  "true"
 # map index <C-j> down
 # map index <C-k> up
 
-include themes/ayu
+include themes/gruvbox

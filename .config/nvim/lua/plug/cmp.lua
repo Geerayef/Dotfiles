@@ -54,8 +54,8 @@ return {
           }),
         }),
         sources = cmp.config.sources(
-          { { name = "path", keyword_length = 2, max_item_count = 20 } },
-          { { name = "cmdline", keyword_length = 1, max_item_count = 30 } }
+          { { name = "path", keyword_length = 5, max_item_count = 20 } },
+          { { name = "cmdline", keyword_length = 5, max_item_count = 30 } }
         ),
         view = { entries = { name = "custom" } },
       })
@@ -67,9 +67,19 @@ return {
           elseif vim.bo.buftype == "prompt" then
             return false
           else
-            return not ( ctx.in_treesitter_capture("comment") and ctx.in_syntax_group("Comment"))
+            return not (ctx.in_treesitter_capture("comment") and ctx.in_syntax_group("Comment"))
           end
         end,
+        completion = { autocomplete = false },
+        performance = { debounce = 250 },
+        matching = {
+          disallow_fuzzy_matching = false,
+          disallow_fullfuzzy_matching = false,
+          disallow_partial_fuzzy_matching = true,
+          disallow_partial_matching = false,
+          disallow_prefix_unmatching = false,
+          disallow_symbol_nonprefix_matching = true,
+        },
         snippet = { expand = function(args) ls.lsp_expand(args.body) end },
         mapping = cmp.mapping.preset.insert({
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -88,24 +98,26 @@ return {
               else
                 fallback()
               end
-            end,
+            end
           }),
         }),
+        sources = cmp.config.sources(
+          { {
+            name = "nvim_lsp",                  keyword_length = 2, max_item_count = 10, priority = 900,
+            option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } }
+          } },
+          { { name = "luasnip",                 keyword_length = 2, max_item_count = 10, priority = 850 } },
+          { { name = "nvim_lua",                keyword_length = 3, max_item_count = 10, priority = 850 } },
+          { { name = "nvim_lsp_signature_help", keyword_length = 2, max_item_count = 20, priority = 800 } },
+          { { name = "buffer",                  keyword_length = 2, max_item_count = 20, priority = 800 } },
+          { { name = "path",                    keyword_length = 2, max_item_count = 20, priority = 700 } },
+          { { name = "treesitter",              keyword_length = 2, max_item_count = 20, priority = 600 } },
+          { { name = "vimtex",                  keyword_length = 2, max_item_count = 20, priority = 400 } }),
+        -- stylua: ignore end
         window = {
           completion = cmp.config.window.bordered({ scrollbar = true, border = S.Border }),
           documentation = cmp.config.window.bordered({ scrollbar = true, border = S.Border }),
         },
-        sources = cmp.config.sources({
-          { name = "nvim_lsp", keyword_length = 1, max_item_count = 20, priority = 1000,
-            option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } } } },
-          { { name = "nvim_lsp_signature_help", keyword_length = 2, max_item_count = 20, priority = 850 } },
-          { { name = "luasnip", keyword_length = 2, max_item_count = 10, priority = 850 } },
-          { { name = "nvim_lua", keyword_length = 3, max_item_count = 10, priority = 800 } },
-          { { name = "buffer", keyword_length = 2, max_item_count = 10, priority = 800 } },
-          { { name = "path", keyword_length = 2, max_item_count = 10, priority = 550 } },
-          { { name = "treesitter", keyword_length = 2, max_item_count = 20, priority = 525 } },
-          { { name = "vimtex", keyword_length = 2, max_item_count = 10, priority = 400 } }),
-        -- stylua: ignore end
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
@@ -133,7 +145,6 @@ return {
             })(entry, item)
           end,
         },
-        view = { entries = { name = "custom" } },
       }
     end,
   },

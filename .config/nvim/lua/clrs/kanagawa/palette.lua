@@ -8,6 +8,7 @@ return {
   crystalBlue = "#7E9CD8",
   dragonAqua = "#8EA4A2",
   dragonAsh = "#737C73",
+  dragonInk = "#0A0E14",
   dragonBlack0 = "#0D0C0C",
   dragonBlack1 = "#12120F",
   dragonBlack2 = "#1D1C19",
