@@ -24,57 +24,34 @@ return {
       fish = { "fish_indent" },
       sh = { "shfmt" },
       bash = { "shfmt" },
-      yaml = { "prettier" },
-      -- css = { "prettier" },
-      -- scss = { "prettier" },
-      -- html = { "prettier" },
       json = { "biome" },
       jsonc = { "biome" },
       javascript = { "biome" },
       typescript = { "biome" },
     },
     format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
+    -- stylua: ignore start
     formatters = {
-      beautysh = { prepend_args = { "-i", "2" } },
-      shfmt = {
-        inherit = false,
-        command = "shfmt",
-        args = {
-          "--indent",
-          "2",
-          "--simplify",
-          "--binary-next-line",
-          "--case-indent",
-          "-filename",
-          "$FILENAME",
-        },
-      },
       biome = {
         inherit = false,
         command = "biome",
         stdin = false,
         args = function()
-          return {
-            "format",
-            "--config-path=" .. vim.fn.expand("$XDG_CONFIG_HOME") .. "/biome",
-            "--write",
-            "$FILENAME",
-          }
+          return { "format", "--config-path=" .. vim.fn.expand("$XDG_CONFIG_HOME") .. "/biome", "--write", "$FILENAME" }
         end,
       },
-      prettier = { command = "prettier", stdin = true, args = { "$FILENAME" } },
       ruff_format = {
         command = "ruff",
-        args = {
-          "format",
-          "--config=$XDG_CONFIG_HOME/ruff/ruff.toml",
-          "--force-exclude",
-          "--stdin-filename",
-          "$FILENAME",
-          "-",
-        },
+        args = { "format", "--config=$XDG_CONFIG_HOME/ruff/ruff.toml", "--force-exclude", "--stdin-filename", "$FILENAME", "-" },
         stdin = true,
       },
+      beautysh = { prepend_args = { "-i", "2" } },
+      shfmt = {
+        inherit = false,
+        command = "shfmt",
+        args = { "--indent", "2", "--simplify", "--binary-next-line", "--case-indent", "-filename", "$FILENAME" },
+      },
     },
+    -- stylua: ignore end
   },
 }
