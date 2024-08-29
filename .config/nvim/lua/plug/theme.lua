@@ -40,9 +40,9 @@ return {
     priority = 1010,
     opts = {
       compile = true,
-      functionStyle = { italic = true, bold = true },
-      typeStyle = { italic = true, bold = true },
       keywordStyle = { bold = true },
+      typeStyle = { italic = true, bold = true },
+      functionStyle = { italic = true, bold = true },
       statementStyle = {},
       overrides = function(colors)
         local p = colors.palette
