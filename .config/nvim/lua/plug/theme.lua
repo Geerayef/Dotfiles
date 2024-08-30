@@ -51,7 +51,7 @@ return {
           NormalFloat = { bg = "none" },
           FloatTitle = { bg = "none", bold = true },
           FloatBorder = { bg = "none" },
-          TelescopeBorder = { fg = p.dragonWhite, bg = "none" },
+          TelescopeBorder = { fg = p.fujiWhite, bg = "none" },
           WinSeparator = { fg = p.dragonBlack5 },
           TelescopeTitle = { fg = p.dragonTeal, bg = "none", bold = true },
         }

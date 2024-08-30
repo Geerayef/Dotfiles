@@ -13,6 +13,7 @@ return {
     },
   },
   opts = {
+    format_after_save = { async = true, lsp_fallback = true },
     formatters_by_ft = {
       c = { "clang-format" },
       cpp = { "clang-format" },
@@ -29,7 +30,6 @@ return {
       javascript = { "biome" },
       typescript = { "biome" },
     },
-    format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
     -- stylua: ignore start
     formatters = {
       biome = {

@@ -43,7 +43,6 @@ return {
             "--no-heading",
             "--line-number",
             "--column",
-            "--trim",
           },
           generic_sorter = function()
             return require("telescope").extensions.fzf.native_fzf_sorter
@@ -115,6 +114,12 @@ return {
             path_display = { tail = true, shorten = 2 },
             show_line = false,
             trim_text = true,
+          },
+          lsp_document_symbols = {
+            prompt_title = "",
+            preview_title = "",
+            symbol_width = 32,
+            layout_config = { width = 0.6 },
           },
           diagnostics = {
             prompt_title = "",

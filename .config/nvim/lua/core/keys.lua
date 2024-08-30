@@ -128,11 +128,6 @@ function Key.LSP(_, buf)
   bmap("n", "<leader>ca", lspbuf.code_action, buf, "[c]ode [a]ction")
   bmap("n", "<leader>gD", lspbuf.declaration, buf, "[g]oto [D]eclaration")
   bmap("n", "<leader>D", lspbuf.type_definition, buf, "Type [D]efinition")
-  -- bmap("n", "<leader>gd", lspbuf.definition, buf, "[g]oto [d]efinition")
-  -- bmap("n", "<leader>gr", lspbuf.references, buf, "[g]oto [r]eferences")
-  -- bmap("n", "<leader>gi", lspbuf.implementation, buf, "[g]oto [i]mplementation")
-  -- bmap("n", "<leader>ds", lspbuf.document_symbol, buf, "[d]ocument [s]ymbols")
-  -- bmap("n", "<leader>ws", lspbuf.workspace_symbol, buf, "[w]orkspace [s]ymbols")
   bmap("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", buf, "[g]oto [d]efinition")
   bmap("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", buf, "[g]oto [r]eferences")
   bmap("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", buf, "[g]oto [i]mplementation")
@@ -159,7 +154,7 @@ Key.TS = {
       goto_next_start = { ["]f"] = "@function.outer", ["]["] = "@class.outer" },
       goto_next_end = { ["]F"] = "@function.outer", ["]]"] = "@class.outer" },
       goto_previous_start = { ["[f"] = "@function.outer", ["[["] = "@class.outer" },
-      goto_previous_end = { ["]F"] = "@function.outer", ["[]"] = "@class.outer" },
+      goto_previous_end = { ["[F"] = "@function.outer", ["[]"] = "@class.outer" },
     },
     swap = {
       next = { ["<M-C-L>"] = "@parameter.inner" },
@@ -175,7 +170,6 @@ function Key.JDTLS()
   map("n", "<leader>ec", "<cmd>lua require(\"jdtls\").extract_constant<CR>", "[e]xtract [c]onstant")
   map("v", "<leader>em", "<cmd>lua require(\"jdtls\").extract_method(true)<CR>", "[e]xtract [m]ethod")
 end
-
 -- stylua: ignore end
 
 return Key
