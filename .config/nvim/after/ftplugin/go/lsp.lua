@@ -5,4 +5,4 @@ local gopls = {
   cmd = { "gopls" },
 }
 
-LSP.start(gopls)
+require("util.lsp").start(gopls)

@@ -8,4 +8,4 @@ local bashls = {
   cmd = { "bash-language-server", "start" },
 }
 
-LSP.start(bashls)
+require("util.lsp").start(bashls)

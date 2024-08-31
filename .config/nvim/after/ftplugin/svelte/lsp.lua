@@ -19,5 +19,5 @@ local biome = {
   cmd = { "biome", "lsp-proxy" },
 }
 
-LSP.start(svelte)
-LSP.start(biome)
+require("util.lsp").start(svelte)
+require("util.lsp").start(biome)

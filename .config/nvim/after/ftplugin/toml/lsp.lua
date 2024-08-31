@@ -5,4 +5,4 @@ local taplo = {
   cmd = { "taplo", "lsp", "stdio" },
 }
 
-LSP.start(taplo)
+require("util.lsp").start(taplo)

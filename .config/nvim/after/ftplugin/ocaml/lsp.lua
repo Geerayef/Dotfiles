@@ -6,4 +6,4 @@ local ocamlls = {
   cmd = { "ocamllsp" },
 }
 
-LSP.start(ocamlls)
+require("util.lsp").start(ocamlls)

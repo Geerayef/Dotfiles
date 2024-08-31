@@ -12,4 +12,4 @@ local biome = {
   cmd = { "biome", "lsp-proxy" },
 }
 
-LSP.start(biome)
+require("util.lsp").start(biome)

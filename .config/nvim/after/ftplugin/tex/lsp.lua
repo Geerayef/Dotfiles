@@ -29,4 +29,4 @@ local texlab = {
   cmd = { "texlab" },
 }
 
-LSP.start(texlab)
+require("util.lsp").start(texlab)
