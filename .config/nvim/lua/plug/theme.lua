@@ -31,7 +31,7 @@ return {
         Normal = { bg = "#0A0E14" },
         NormalNC = { bg = "#0A0E14" },
         Cursor = { fg = "#FFF779" },
-        String = { fg = "#F9D791" },
+        String = { fg = "#E9C799" },
         WinSeparator = { fg = "#393836" },
         NormalFloat = { bg = "none" },
         FloatTitle = { bg = "none", bold = true },
@@ -66,11 +66,23 @@ return {
       colors = {
         theme = {
           all = { ui = { bg_gutter = "none" } },
-          dragon = { ui = { bg = "#0A0E14" } },
+          -- dragon = { ui = { bg = "#0A0E14" } },
+          wave = { ui = { bg = "#0A0E14", light = "dragon" } },
         },
       },
-      theme = "dragon",
-      background = { dark = "dragon", light = "wave" },
+      theme = "wave",
+      background = { dark = "wave" },
+    },
+  },
+  {
+    "0xstepit/flow.nvim",
+    lazy = false,
+    priority = 1010,
+    opts = {
+      transparent = true,
+      fluo_color = "orange", -- pink | yellow | orange | green
+      mode = "bright", -- normal | bright | desaturate | dark | dim
+      aggressive_spell = true,
     },
   },
 }
