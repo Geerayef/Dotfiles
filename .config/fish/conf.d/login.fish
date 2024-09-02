@@ -1,5 +1,5 @@
 if status --is-login
     if test (tty) = /dev/tty1
-        Hyprland
+        dbus-run-session Hyprland
     end
 end

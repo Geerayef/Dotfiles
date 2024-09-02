@@ -98,8 +98,6 @@ W.on("update-status", function(window, _)
   }))
   window:set_right_status(W.format({
     { Foreground = { Color = ayu.indexed[16] } },
-    { Text = "(.-. )" },
-    { Text = " | " },
     { Text = nf.md_clock .. " " .. time },
     "ResetAttributes",
     { Text = "    " },
