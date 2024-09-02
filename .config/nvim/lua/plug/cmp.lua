@@ -22,9 +22,9 @@ return {
     "saadparwaiz1/cmp_luasnip",
   },
   opts = function()
-    local cmp = require("cmp")
     local ls = require("luasnip")
     local lspkind = require("lspkind")
+    local cmp = require("cmp")
     local devicon = require("nvim-web-devicons")
     local t = function(str)
       return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -34,7 +34,7 @@ return {
     cmp.setup.cmdline({ "/", "?" }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
-        { name = "buffer", keyword_length = 2, max_item_count = 10 },
+        { name = "buffer", keyword_length = 1, max_item_count = 10 },
       }),
       view = { entries = { name = "wildmenu", separator = " | " } },
     })
@@ -51,7 +51,7 @@ return {
       }),
       sources = cmp.config.sources(
         { { name = "path", keyword_length = 2, max_item_count = 20 } },
-        { { name = "cmdline", keyword_length = 3, max_item_count = 10 } }
+        { { name = "cmdline", keyword_length = 3, max_item_count = 20 } }
       ),
       view = { entries = { name = "custom" } },
     })
@@ -71,10 +71,49 @@ return {
           )
         end
       end,
-      completion = { autocomplete = false },
-      performance = { debounce = 80, throttle = 40 },
       snippet = { expand = function(args) ls.lsp_expand(args.body) end },
-      mapping = cmp.mapping.preset.insert({
+      completion = { autocomplete = false },
+      performance = { debounce = 200, throttle = 100 },
+      sorting = {
+        priority_weight = 2,
+        comparators = {
+          cmp.config.compare.exact,
+          cmp.config.compare.offset,
+          -- compare.scopes,
+          cmp.config.compare.score,
+          cmp.config.compare.locality,
+          cmp.config.compare.kind,
+          -- compare.sort_text,
+          cmp.config.compare.order,
+          cmp.config.compare.length,
+          --
+          cmp.config.compare.recently_used,
+        },
+      },
+      -- stylua: ignore start
+      sources = cmp.config.sources(
+        { { name = "nvim_lsp",                keyword_length = 2, max_item_count = 20, priority = 900,
+            option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } }
+        } },
+        { { name = "nvim_lsp_signature_help", keyword_length = 2, max_item_count = 20, priority = 900 } },
+        { { name = "buffer",                  keyword_length = 2, max_item_count = 10, priority = 750 } },
+        { { name = "path",                    keyword_length = 2, max_item_count = 10, priority = 700 } },
+        { { name = "luasnip",                 keyword_length = 2, max_item_count =  5, priority = 800 } },
+        { { name = "vimtex",                  keyword_length = 2, max_item_count = 20, priority = 400 } },
+        { { name = "nvim_lua",                keyword_length = 3, max_item_count = 10, priority = 600 } }
+        -- { { name = "treesitter", keyword_length = 2, max_item_count = 20, priority = 600 } }
+      ),
+      window = {
+        completion = cmp.config.window.bordered({ scrollbar = true, border = S.Border }),
+        documentation = cmp.config.window.bordered({ scrollbar = true, border = S.Border }),
+      },
+      mapping = {
+        ["<C-n>"] = function()
+          if cmp.visible() then cmp.select_next_item() else cmp.complete() end
+        end,
+        ["<C-p>"] = function()
+          if cmp.visible() then cmp.select_prev_item() else cmp.complete() end
+        end,
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
@@ -85,10 +124,7 @@ return {
               if not cmp.get_selected_entry() then
                 cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
               end
-              cmp.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = false,
-              })
+              cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
             elseif ls.expand_or_locally_jumpable() then
               ls.expand_or_jump()
             else
@@ -96,77 +132,8 @@ return {
             end
           end,
         }),
-      }),
-      sources = cmp.config.sources({
-        {
-          name = "nvim_lsp",
-          keyword_length = 3,
-          max_item_count = 10,
-          priority = 900,
-          option = {
-            markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] },
-          },
-        },
-      }, {
-        {
-          name = "luasnip",
-          keyword_length = 2,
-          max_item_count = 10,
-          priority = 850,
-        },
-      }, {
-        {
-          name = "nvim_lua",
-          keyword_length = 3,
-          max_item_count = 10,
-          priority = 850,
-        },
-      }, {
-        {
-          name = "nvim_lsp_signature_help",
-          keyword_length = 3,
-          max_item_count = 20,
-          priority = 800,
-        },
-      }, {
-        {
-          name = "buffer",
-          keyword_length = 2,
-          max_item_count = 20,
-          priority = 800,
-        },
-      }, {
-        {
-          name = "path",
-          keyword_length = 2,
-          max_item_count = 20,
-          priority = 700,
-        },
-      }, {
-        {
-          name = "treesitter",
-          keyword_length = 2,
-          max_item_count = 20,
-          priority = 600,
-        },
-      }, {
-        {
-          name = "vimtex",
-          keyword_length = 2,
-          max_item_count = 20,
-          priority = 400,
-        },
-      }),
-      window = {
-        completion = cmp.config.window.bordered({
-          scrollbar = true,
-          border = S.Border,
-        }),
-        documentation = cmp.config.window.bordered({
-          scrollbar = true,
-          border = S.Border,
-        }),
       },
+      -- stylua: ignore end
       formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, item)

@@ -4,7 +4,7 @@ return {
     hint = "#6A9589",
     info = "#658594",
     ok = "#98BB6C",
-    warning = "#FF9E3B",
+    warn = "#FF9E3B",
   },
   diff = {
     add = "#2B3328",

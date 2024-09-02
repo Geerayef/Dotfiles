@@ -30,8 +30,8 @@ map("n", "<leader>Y", "\"+Y", "Yank to system clipboard")
 
 -- Tabs
 map("n", "<leader>to", "<cmd>tabnew<CR>", "[t]ab [o]pen")
-map("n", "<leader>tml", "<cmd>tabmove +1<CR>", "[t]ab [m]ove right")
-map("n", "<leader>tmh", "<cmd>tabmove -1<CR>", "[t]ab [m]ove left")
+map("n", "<leader>tml", "<cmd>tabmove +1<CR>", "[t]ab [m]ove [l] right")
+map("n", "<leader>tmh", "<cmd>tabmove -1<CR>", "[t]ab [m]ove [h] left")
 
 -- Terminal
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal escape")
@@ -58,7 +58,7 @@ map("n", "<leader>of", "<cmd>Oil --float<CR>", "[o]il [f]loat")
 -- stylua: ignore start
 -- Telescope
 map("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", "[?] Recent files")
-map("n", "<leader> ", "<cmd>Telescope buffers<CR>", "Telescope [s]earch [b]uffers")
+map("n", "<leader> ", "<cmd>Telescope buffers<CR>", "Telescope search buffers")
 map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", "[/] Search buffer")
 map("n", "<leader>tb", "<cmd>Telescope builtin<CR>", "[t]elescope [b]uiltin")
 map("n", "<leader>sf", "<cmd>Telescope fd<CR>", "Telescope [s]earch [f]iles")

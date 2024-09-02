@@ -1,8 +1,7 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    cond = F.IsBufInRepo(0),
-    event = "VeryLazy",
+    cmd = "Gitsigns",
     opts = {
       signs = {
         add = { text = "│" },
@@ -29,7 +28,6 @@ return {
   },
   {
     "NeogitOrg/neogit",
-    cond = F.IsBufInRepo(0),
     cmd = "Neogit",
     opts = {
       integrations = { telescope = true },

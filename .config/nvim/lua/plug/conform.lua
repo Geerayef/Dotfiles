@@ -32,13 +32,8 @@ return {
     },
     -- stylua: ignore start
     formatters = {
-      biome = {
-        inherit = false,
-        command = "biome",
-        stdin = false,
-        args = function()
-          return { "format", "--config-path=" .. vim.fn.expand("$XDG_CONFIG_HOME") .. "/biome", "--write", "$FILENAME" }
-        end,
+      ["clang-format"] = {
+        prepend_args = { "--style=file" }
       },
       ruff_format = {
         command = "ruff",
@@ -50,6 +45,14 @@ return {
         inherit = false,
         command = "shfmt",
         args = { "--indent", "2", "--simplify", "--binary-next-line", "--case-indent", "-filename", "$FILENAME" },
+      },
+      biome = {
+        inherit = false,
+        command = "biome",
+        stdin = false,
+        args = function()
+          return { "format", "--config-path=" .. vim.fn.expand("$XDG_CONFIG_HOME") .. "/biome", "--write", "$FILENAME" }
+        end,
       },
     },
     -- stylua: ignore end

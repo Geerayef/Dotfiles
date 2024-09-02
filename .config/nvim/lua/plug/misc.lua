@@ -61,7 +61,6 @@ return {
   {
     "mfussenegger/nvim-jdtls",
     ft = "java",
-    cond = function() return vim.bo.ft == "java" end,
   },
   -- {
   --   "williamboman/mason.nvim",
