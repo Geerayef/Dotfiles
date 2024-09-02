@@ -135,6 +135,7 @@ function Key.LSP(_, buf)
   bmap("n", "<leader>ws", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", buf, "[w]orkspace [s]ymbols")
   bmap("n", "<leader>waf", lspbuf.add_workspace_folder, buf, "[w]orkspace [a]dd [f]older")
   bmap("n", "<leader>wrf", lspbuf.remove_workspace_folder, buf, "[w]orkspace [r]emove [f]older")
+  bmap("n", "<leader>bac", LSP.buf_active_clients, buf, "[b]uffer [a]ctive [c]lients")
 end
 
 Key.TS = {

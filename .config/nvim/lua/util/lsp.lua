@@ -169,7 +169,7 @@ end
 ---@param buf integer|nil # Buffer number
 function LSP.buf_active_clients(buf)
   if buf == nil then buf = 0 end
-  F.Notify("LSP", vim.fn.string(vim.g.lsp_active_clients))
+  F.Notify("LSP", vim.fn.string(LSP.active_clients))
 end
 
 return LSP
