@@ -125,9 +125,11 @@ C.force_reverse_video_cursor = false
 
 -- Colorscheme
 C.color_scheme = "Ayu Dark (Gogh)"
+-- C.color_scheme = "GruvboxDarkHard"
 C.colors = {
-  cursor_fg = "#000000",
-  cursor_bg = "#FFF779",
+  -- background = ayu.bg,
+  -- cursor_fg = "#000000",
+  -- cursor_bg = "#FFF779",
   tab_bar = {
     background = ayu.bg,
     active_tab = {
