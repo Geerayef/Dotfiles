@@ -1,15 +1,18 @@
-local M = {}
+GIT = {}
 
 ---Print error.
 ---@param cmd number[] # Git command
 ---@param msg string # Error message
 ---@param lvl string? # Error log level (Default: WARN)
 ---@return nil
-function M.error(cmd, msg, lvl)
-  lvl = lvl or "WARN"
+function GIT.error(cmd, msg, lvl)
+  lvl = lvl or "ERROR"
   F.Notify(
     lvl,
-    "Failed to execute command: " .. table.concat(cmd, " ") .. ".\n" .. msg
+    "Failed to execute command: `"
+      .. table.concat(cmd, " ")
+      .. "`.\nOutput was: "
+      .. msg
   )
 end
 
@@ -18,11 +21,11 @@ end
 ---@param cmd string[] # Git command
 ---@param lvl string? # Error log level (vim.log.levels | nil | false: hide errors)
 ---@return { success: boolean, output: number }
-function M.execute_in(path, cmd, lvl)
+function GIT.execute_in(path, cmd, lvl)
   local shell_args = { "git", "-C", path, unpack(cmd) }
   local shell_out = vim.fn.system(shell_args)
   if vim.v.shell_error ~= 0 then
-    if lvl then M.error(shell_args, shell_out, lvl) end
+    if lvl then GIT.error(shell_args, shell_out, lvl) end
     return { success = false, output = shell_out }
   end
   return { success = true, output = shell_out }
@@ -32,11 +35,11 @@ end
 ---@param cmd string[] # Git command
 ---@param lvl string? # Error log level (vim.log.levels | nil | false: hide errors)
 ---@return { success: boolean, output: number }
-function M.execute(cmd, lvl)
+function GIT.execute(cmd, lvl)
   local shell_args = { "git", unpack(cmd) }
   local shell_out = vim.fn.system(shell_args)
   if vim.v.shell_error ~= 0 then
-    if lvl then M.error(shell_args, shell_out, lvl) end
+    if lvl then GIT.error(shell_args, shell_out, lvl) end
     return { success = false, output = shell_out }
   end
   return { success = true, output = shell_out }
@@ -50,7 +53,7 @@ vim.api.nvim_create_autocmd("FileChangedShellPost", {
 ---[async] Get current branch name.
 ---@param buf integer? # Buffer handle (Default: current buffer)
 ---@return string # Git branch name
-function M.branch(buf)
+function GIT.branch(buf)
   buf = buf or vim.api.nvim_get_current_buf()
   if not vim.api.nvim_buf_is_valid(buf) then return "" end
   if vim.b[buf].git_branch then return vim.b[buf].git_branch end
@@ -78,14 +81,14 @@ vim.api.nvim_create_autocmd({ "BufWrite", "FileChangedShellPost" }, {
 ---[async] Get diff stats for current buffer.
 ---@param buf integer? # Buffer handle (Default: current buffer)
 ---@return {added: integer?, removed: integer?, changed: integer?} # Diff stats
-function M.diffstat(buf)
+function GIT.diffstat(buf)
   buf = buf or vim.api.nvim_get_current_buf()
   if not vim.api.nvim_buf_is_valid(buf) then return {} end
   if vim.b[buf].git_diffstat then return vim.b[buf].git_diffstat end
   vim.b[buf].git_diffstat = {}
   local path = vim.fs.normalize(vim.api.nvim_buf_get_name(buf))
   local dir = vim.fs.dirname(path)
-  if dir and M.branch(buf):find("%S") then
+  if dir and GIT.branch(buf):find("%S") then
     pcall(vim.system, {
       "git",
       "-C",
@@ -120,4 +123,4 @@ function M.diffstat(buf)
   return vim.b[buf].git_diffstat
 end
 
-return M
+return GIT

@@ -78,11 +78,14 @@ return {
     "0xstepit/flow.nvim",
     lazy = false,
     priority = 1010,
-    opts = {
-      transparent = true,
-      fluo_color = "orange", -- pink | yellow | orange | green
-      mode = "bright", -- normal | bright | desaturate | dark | dim
-      aggressive_spell = true,
-    },
+    opts = function()
+      require("flow").setup({
+        transparent = true,
+        fluo_color = "orange", -- pink | yellow | orange | green
+        mode = "bright", -- normal | bright | desaturate | dark | dim
+        aggressive_spell = true,
+      })
+      -- vim.cmd.highlight({ args = { "String", "guifg=#E9C799" }, bang = true })
+    end,
   },
 }

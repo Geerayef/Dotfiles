@@ -8,7 +8,7 @@ return {
       relative = "win",
       prefer_width = 0.4,
       max_width = { 0.8 },
-      min_width = { 0.4 },
+      min_width = { 0.2 },
       buf_options = {},
       win_options = {
         wrap = false,
@@ -23,6 +23,7 @@ return {
           ["<CR>"] = "Confirm",
         },
         i = {
+          ["<Esc>"] = "Close",
           ["<C-c>"] = "Close",
           ["<CR>"] = "Confirm",
           ["<C-p>"] = "HistoryPrev",

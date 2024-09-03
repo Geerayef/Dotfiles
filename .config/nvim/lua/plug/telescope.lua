@@ -25,6 +25,7 @@ return {
           results_title = "",
           prompt_prefix = S.Icons.ui.langle_r .. " ",
           selection_caret = S.Icons.ui.triangle_s_r .. " ",
+          sorting_strategy = "ascending",
           mappings = {
             i = {
               ["<C-c>"] = a.close,
@@ -33,23 +34,6 @@ return {
             },
             n = { ["<C-c>"] = a.close },
           },
-          sorting_strategy = "ascending",
-          vimgrep_arguments = {
-            "rg",
-            "-L",
-            "--smart-case",
-            "--color=never",
-            "--with-filename",
-            "--no-heading",
-            "--line-number",
-            "--column",
-          },
-          generic_sorter = function()
-            return require("telescope").extensions.fzf.native_fzf_sorter
-          end,
-          file_sorter = function()
-            return require("telescope").extensions.fzf.native_fzf_sorter
-          end,
           layout_strategy = "vertical",
           layout_config = {
             prompt_position = "top",
@@ -69,6 +53,17 @@ return {
                   or math.floor(cols * 0.5)
               end,
             },
+          },
+          vimgrep_arguments = {
+            "rg",
+            "-L",
+            "--smart-case",
+            "--color=never",
+            "--with-filename",
+            "--no-heading",
+            "--line-number",
+            "--column",
+            "--trim",
           },
         },
         pickers = {

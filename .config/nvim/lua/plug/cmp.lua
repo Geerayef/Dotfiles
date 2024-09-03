@@ -39,7 +39,7 @@ return {
       view = { entries = { name = "wildmenu", separator = " | " } },
     })
 
-    -- Command line
+    -- Command
     cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline({
         ["<C-j>"] = cmp.mapping({
@@ -56,7 +56,7 @@ return {
       view = { entries = { name = "custom" } },
     })
 
-    -- Main config
+    -- Main
     return {
       enabled = function()
         local ctx = require("cmp.config.context")
@@ -78,16 +78,15 @@ return {
         priority_weight = 2,
         comparators = {
           cmp.config.compare.exact,
-          cmp.config.compare.offset,
-          -- compare.scopes,
+          -- cmp.config.compare.offset,
+          cmp.config.compare.scopes,
           cmp.config.compare.score,
           cmp.config.compare.locality,
           cmp.config.compare.kind,
-          -- compare.sort_text,
+          -- cmp.config.compare.sort_text,
           cmp.config.compare.order,
           cmp.config.compare.length,
-          --
-          cmp.config.compare.recently_used,
+          -- cmp.config.compare.recently_used,
         },
       },
       -- stylua: ignore start
