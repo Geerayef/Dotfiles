@@ -75,17 +75,17 @@ return {
       completion = { autocomplete = false },
       performance = { debounce = 200, throttle = 100 },
       sorting = {
-        priority_weight = 2,
+        priority_weight = 1,
         comparators = {
           cmp.config.compare.exact,
           -- cmp.config.compare.offset,
           cmp.config.compare.scopes,
           cmp.config.compare.score,
           cmp.config.compare.locality,
-          cmp.config.compare.kind,
-          -- cmp.config.compare.sort_text,
           cmp.config.compare.order,
           cmp.config.compare.length,
+          cmp.config.compare.kind,
+          -- cmp.config.compare.sort_text,
           -- cmp.config.compare.recently_used,
         },
       },
@@ -94,11 +94,11 @@ return {
         { { name = "nvim_lsp",                keyword_length = 2, max_item_count = 20, priority = 900,
             option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } }
         } },
-        { { name = "nvim_lsp_signature_help", keyword_length = 2, max_item_count = 20, priority = 900 } },
-        { { name = "buffer",                  keyword_length = 2, max_item_count = 10, priority = 750 } },
-        { { name = "path",                    keyword_length = 2, max_item_count = 10, priority = 700 } },
+        { { name = "buffer",                  keyword_length = 2, max_item_count = 10, priority = 850 } },
         { { name = "luasnip",                 keyword_length = 2, max_item_count =  5, priority = 800 } },
-        { { name = "vimtex",                  keyword_length = 2, max_item_count = 20, priority = 400 } },
+        { { name = "nvim_lsp_signature_help", keyword_length = 2, max_item_count = 20, priority = 750 } },
+        { { name = "path",                    keyword_length = 2, max_item_count = 10, priority = 700 } },
+        { { name = "vimtex",                  keyword_length = 2, max_item_count = 20, priority = 500 } },
         { { name = "nvim_lua",                keyword_length = 3, max_item_count = 10, priority = 600 } }
         -- { { name = "treesitter", keyword_length = 2, max_item_count = 20, priority = 600 } }
       ),

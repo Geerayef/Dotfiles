@@ -2,7 +2,7 @@ return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "MunifTanjim/nui.nvim", lazy = true },
-  { "tpope/vim-sleuth", event = "BufEnter" },
+  { "tpope/vim-sleuth", event = "BufReadPost" },
   { "tpope/vim-surround", event = "BufReadPost" },
   { "numToStr/Comment.nvim", event = "BufReadPost", opts = true },
   {
@@ -58,10 +58,7 @@ return {
     cmd = "ColorizerToggle",
     opts = { ["*"] = { RRGGBBAA = true } },
   },
-  {
-    "mfussenegger/nvim-jdtls",
-    ft = "java",
-  },
+  { "mfussenegger/nvim-jdtls", ft = "java" },
   -- {
   --   "williamboman/mason.nvim",
   --   cmd = "Mason",

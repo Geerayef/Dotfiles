@@ -91,3 +91,21 @@ autocmd("LspAttach", {
     end
   end,
 })
+
+autocmd("ModeChanged", {
+  desc = "Change cursor color based on the active mode.",
+  group = augroup("CursorColorMode", { clear = true }),
+  callback = function()
+    local palette = require("clrs.kanagawa.palette")
+    local color = palette.lotusYellow5
+    local mode = vim.fn.mode()
+    if mode == "n" then
+      color = palette.lotusYellow5
+    elseif mode == "v" or mode == "V" or vim.fn.visualmode() == "" then
+      color = palette.crystalBlue
+    elseif mode == "i" then
+      color = palette.lotusWhite3
+    end
+    vim.cmd.highlight({ args = { "Cursor", "guibg=" .. color }, bang = true })
+  end,
+})

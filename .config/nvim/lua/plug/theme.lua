@@ -1,3 +1,4 @@
+local kanagawa = require("clrs.kanagawa.palette")
 return {
   {
     "marko-cerovac/material.nvim",
@@ -30,7 +31,7 @@ return {
       custom_highlights = {
         Normal = { bg = "#0A0E14" },
         NormalNC = { bg = "#0A0E14" },
-        Cursor = { fg = "#FFF779" },
+        Cursor = { fg = kanagawa.lotusYellow5 },
         String = { fg = "#E9C799" },
         WinSeparator = { fg = "#393836" },
         NormalFloat = { bg = "none" },
@@ -54,7 +55,7 @@ return {
       overrides = function(colors)
         local p = colors.palette
         return {
-          Cursor = { fg = "#FFF779" },
+          Cursor = { fg = kanagawa.lotusYellow5 },
           NormalFloat = { bg = "none" },
           WinSeparator = { fg = p.dragonBlack5 },
           FloatTitle = { bg = "none", bold = true },
