@@ -26,8 +26,4 @@ set recolor                "true"
 set recolor-keephue        "true"
 set recolor-reverse-video  "true"
 
-# Keymaps
-# map index <C-j> down
-# map index <C-k> up
-
-include themes/gruvbox
+include themes/ayu

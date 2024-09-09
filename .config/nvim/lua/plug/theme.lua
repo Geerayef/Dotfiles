@@ -60,6 +60,8 @@ return {
           WinSeparator = { fg = p.dragonBlack5 },
           FloatTitle = { bg = "none", bold = true },
           FloatBorder = { bg = "none" },
+          StatusLine = { bg = kanagawa.dragonInk },
+          StatusLineNC = { bg = kanagawa.dragonInk },
           TelescopeTitle = { fg = p.dragonTeal, bg = "none", bold = true },
           TelescopeBorder = { fg = p.fujiWhite, bg = "none" },
         }

@@ -28,11 +28,8 @@ set highlight-active-color      "#E78A4E" # orange
 
 set default-bg                  "#504945" # bg3
 set default-fg                  "#DDC7A1" # fg1
-set render-loading              true
 set render-loading-bg           "#32302F" # bg0
 set render-loading-fg           "#D4BE98" # fg0
 
 set recolor-lightcolor          "#32302F" # bg0
 set recolor-darkcolor           "#D4BE98" # fg0
-#set recolor                     "true"
-#set recolor-keephue             true      # keep original color
