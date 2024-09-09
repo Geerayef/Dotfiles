@@ -124,6 +124,10 @@ function LSP.soft_stop(client_or_id, opts)
   ---@diagnostic disable-next-line: invisible
   if client.is_stopped() then
     opts.on_close(client)
+    LSP.active_clients = vim.tbl_filter(
+      function(e) return e[1] ~= client.id end,
+      LSP.active_clients
+    )
     return
   end
   vim.defer_fn(function()

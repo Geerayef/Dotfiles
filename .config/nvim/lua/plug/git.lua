@@ -1,6 +1,7 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
+    cond = function() return F.IsBufInRepo(0) end,
     cmd = "Gitsigns",
     opts = {
       signs = {
@@ -29,6 +30,7 @@ return {
   {
     "NeogitOrg/neogit",
     cmd = "Neogit",
+    dependencies = { "lewis6991/gitsigns.nvim" },
     opts = {
       integrations = { telescope = true },
       telescope_sorter = function()

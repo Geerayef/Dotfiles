@@ -58,6 +58,11 @@ return {
             },
           },
           {
+            function () return "|" end,
+            cond = function () return F.IsBufInRepo(0) end,
+            color = { bg = "Normal" }, padding = { left = 1, right = 1 }
+          },
+          {
             "diff",
             cond = function() return F.IsBufInRepo(0) end,
             source = function()
