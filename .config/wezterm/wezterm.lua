@@ -10,6 +10,7 @@ if W.config_builder then C = W.config_builder() end
 
 if G.process_icons == nil then
   G.process_icons = {
+    ["presenterm"] = nf.fa_hashtag,
     ["opam"] = nf.seti_ocaml,
     ["dune"] = nf.seti_ocaml,
     ["ocamlc"] = nf.seti_ocaml,

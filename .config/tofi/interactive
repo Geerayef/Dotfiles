@@ -1,5 +1,5 @@
 font-size = 18
-font = /usr/share/fonts/TTF/IosevkaNF/IosevkaNerdFontMono-Regular.ttf
+font = IosevkaTerm Nerd Font Mono
 hint-font = false
 text-color = #585B70
 selection-color = #F9E2AF
@@ -20,7 +20,7 @@ padding-bottom = 0
 padding-top = 2%
 padding-right = 0
 
-background-color = #11111BFF
+background-color = #0A0E14
 border-color = #F9E2AF
 
 hide-cursor = true
