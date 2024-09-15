@@ -13,7 +13,7 @@ return {
     },
   },
   opts = {
-    format_after_save = { async = true, lsp_fallback = true },
+    -- format_after_save = { async = false, lsp_fallback = true },
     formatters_by_ft = {
       c = { "clang-format" },
       cpp = { "clang-format" },
@@ -32,9 +32,7 @@ return {
     },
     -- stylua: ignore start
     formatters = {
-      ["clang-format"] = {
-        prepend_args = { "--style=file" }
-      },
+      ["clang-format"] = { prepend_args = { "--style=file" } },
       ruff_format = {
         command = "ruff",
         args = { "format", "--config=$XDG_CONFIG_HOME/ruff/ruff.toml", "--force-exclude", "--stdin-filename", "$FILENAME", "-" },

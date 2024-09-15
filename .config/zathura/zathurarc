@@ -1,13 +1,13 @@
 set database               "sqlite"
-set window-title-basename  "true"
+set window-title-basename  true
 set selection-clipboard    "clipboard"
-set show-hidden            "true"
+set show-hidden            true
 set show-recent            4
 set adjust-open            "best-fit"
 set pages-per-row          1
 set font                   "Iosevka Nerd Font 18"
 
-set scroll-page-aware      "true"
+set scroll-page-aware      true
 set scroll-full-overlap    0.01
 set scroll-step            100
 
@@ -16,14 +16,15 @@ set zoom-min               10
 
 # Statusbar
 set guioptions             "s"
-set statusbar-basename     "true"
-set statusbar-home-tilde   "true"
-set statusbar-page-percent "true"
+set statusbar-basename     true
+set statusbar-home-tilde   true
+set statusbar-page-percent true
 
 # Colors
-set render-loading         "true"
-set recolor                "true"
-set recolor-keephue        "true"
-set recolor-reverse-video  "true"
+set render-loading         true
+set recolor-keephue        true
+set recolor-reverse-video  true
 
 include themes/ayu
+
+set recolor                true

@@ -29,5 +29,5 @@ set default-fg              "#CBCCC6"
 set render-loading-bg       "#0A0E14"
 set render-loading-fg       "#CBCCC6"
 
-set recolor-lightcolor      "0A0E14"
+set recolor-lightcolor      "#0A0E14"
 set recolor-darkcolor       "#CBCCC6"

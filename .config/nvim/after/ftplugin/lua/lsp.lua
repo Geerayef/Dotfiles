@@ -24,7 +24,7 @@ local lua_ls = {
           vim.env.VIMRUNTIME,
           vim.fn.expand("$VIMRUNTIME/lua"),
           vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
-          vim.fn.expand("$XDG_CONFIG_HOME") .. "/nvim/lua",
+          vim.fn.expand("$XDG_CONFIG_HOME/nvim"),
           "${3rd}/luv/library",
         },
         ignoreSubmodules = false,
