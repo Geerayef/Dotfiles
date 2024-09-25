@@ -2,12 +2,6 @@ F = {}
 
 function F.LspAttach(client, bufnr)
   Key.LSP(client, bufnr)
-  -- vim.api.nvim_buf_create_user_command(
-  --   bufnr,
-  --   "FormatLSP",
-  --   function(_) vim.lsp.buf.format() end,
-  --   { desc = "Format current buffer with LSP." }
-  -- )
   if client.server_capabilities and client.server_capabilities.code_lens then
     local codelens =
       vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })

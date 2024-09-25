@@ -121,20 +121,20 @@ map("n", "<leader>ct", "<cmd>ColorizerToggle<CR>", "[c]olorizer [t]oggle")
 Key = {}
 
 function Key.LSP(_, buf)
-  local lspbuf = vim.lsp.buf
-  bmap("n", "K", lspbuf.hover, buf, "Hover")
-  bmap("n", "<C-k>", lspbuf.signature_help, buf, "Signature")
-  bmap("n", "<leader>rn", lspbuf.rename, buf, "[r]e[n]ame")
-  bmap("n", "<leader>ca", lspbuf.code_action, buf, "[c]ode [a]ction")
-  bmap("n", "<leader>gD", lspbuf.declaration, buf, "[g]oto [D]eclaration")
-  bmap("n", "<leader>D", lspbuf.type_definition, buf, "Type [D]efinition")
+  local blsp = vim.lsp.buf
+  bmap("n", "K", blsp.hover, buf, "Hover")
+  bmap("n", "<C-k>", blsp.signature_help, buf, "Signature")
+  bmap("n", "<leader>rn", blsp.rename, buf, "[r]e[n]ame")
+  bmap("n", "<leader>ca", blsp.code_action, buf, "[c]ode [a]ction")
+  bmap("n", "<leader>gD", blsp.declaration, buf, "[g]oto [D]eclaration")
+  bmap("n", "<leader>D", blsp.type_definition, buf, "Type [D]efinition")
   bmap("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", buf, "[g]oto [d]efinition")
   bmap("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", buf, "[g]oto [r]eferences")
   bmap("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", buf, "[g]oto [i]mplementation")
   bmap("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>", buf, "[d]ocument [s]ymbols")
   bmap("n", "<leader>ws", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", buf, "[w]orkspace [s]ymbols")
-  bmap("n", "<leader>waf", lspbuf.add_workspace_folder, buf, "[w]orkspace [a]dd [f]older")
-  bmap("n", "<leader>wrf", lspbuf.remove_workspace_folder, buf, "[w]orkspace [r]emove [f]older")
+  bmap("n", "<leader>waf", blsp.add_workspace_folder, buf, "[w]orkspace [a]dd [f]older")
+  bmap("n", "<leader>wrf", blsp.remove_workspace_folder, buf, "[w]orkspace [r]emove [f]older")
   bmap("n", "<leader>bac", LSP.buf_active_clients, buf, "[b]uffer [a]ctive [c]lients")
 end
 
