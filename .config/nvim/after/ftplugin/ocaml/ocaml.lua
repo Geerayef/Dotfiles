@@ -7,6 +7,7 @@ vim.opt.rtp:append(ocp_indent_path)
 
 -- Options
 
-vim.opt.makeprg = "dune build"
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
+vim.o.makeprg = "dune build"
+vim.o.tabstop = 2
+vim.o.softtabstop = -1
+vim.o.shiftwidth = 2

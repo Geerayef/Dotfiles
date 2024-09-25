@@ -99,8 +99,8 @@ return {
           { { name = "luasnip",                 keyword_length = 2, max_item_count =  5, priority = 800 } },
           { { name = "nvim_lsp_signature_help", keyword_length = 2, max_item_count = 20, priority = 750 } },
           { { name = "path",                    keyword_length = 2, max_item_count = 10, priority = 700 } },
-          { { name = "vimtex",                  keyword_length = 2, max_item_count = 20, priority = 500 } },
-          { { name = "nvim_lua",                keyword_length = 3, max_item_count = 10, priority = 600 } }
+          { { name = "nvim_lua",                keyword_length = 3, max_item_count = 10, priority = 600 } },
+          { { name = "vimtex",                  keyword_length = 2, max_item_count = 20, priority = 500 } }
           -- { { name = "treesitter", keyword_length = 2, max_item_count = 20, priority = 600 } }
         ),
         window = {

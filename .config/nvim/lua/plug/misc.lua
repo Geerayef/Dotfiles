@@ -2,7 +2,11 @@ return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "MunifTanjim/nui.nvim", lazy = true },
-  { "tpope/vim-sleuth", event = "BufReadPost" },
+  {
+    "tpope/vim-sleuth",
+    event = "BufReadPost",
+    config = function() vim.g.sleuth_ocaml_heuristics = 0 end,
+  },
   { "tpope/vim-surround", event = "BufReadPost" },
   { "numToStr/Comment.nvim", event = "BufReadPost", opts = true },
   {

@@ -29,6 +29,7 @@ return {
   },
   {
     "NeogitOrg/neogit",
+    cond = function() return F.IsBufInRepo(0) end,
     cmd = "Neogit",
     dependencies = { "lewis6991/gitsigns.nvim" },
     opts = {

@@ -18,6 +18,7 @@ return {
       c = { "clang-format" },
       cpp = { "clang-format" },
       ocaml = { "ocamlformat" },
+      dune = { "dune" },
       rust = { "rustfmt" },
       go = { "gofmt" },
       lua = { "stylua" },
@@ -33,6 +34,7 @@ return {
     -- stylua: ignore start
     formatters = {
       ["clang-format"] = { prepend_args = { "--style=file" } },
+      dune = { command = "dune", args = { "format-dune-file" } },
       ruff_format = {
         command = "ruff",
         args = { "format", "--config=$XDG_CONFIG_HOME/ruff/ruff.toml", "--force-exclude", "--stdin-filename", "$FILENAME", "-" },
@@ -42,7 +44,7 @@ return {
       shfmt = {
         inherit = false,
         command = "shfmt",
-        args = { "--indent", "2", "--simplify", "--binary-next-line", "--case-indent", "-filename", "$FILENAME" },
+        args = { "-i", "2", "-s", "-bn", "-ci", "--filename", "$FILENAME" },
       },
       biome = {
         inherit = false,
