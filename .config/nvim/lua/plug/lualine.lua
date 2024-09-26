@@ -26,12 +26,7 @@ return {
             "filename",
             cond = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
             path = 0,
-            symbols = {
-              modified = icon.ui.dot_l,
-              readonly = icon.ui.lock,
-              unnamed = "[Scratch]",
-              newfile = "[New]",
-            },
+            symbols = { modified = icon.ui.dot_l, readonly = icon.ui.lock, unnamed = "[Scratch]", newfile = "[New]" },
           },
           { "searchcount", color = { fg = palette.dragonYellow, gui = "bold" } },
           { function() return "%=" end },
@@ -60,7 +55,7 @@ return {
           {
             function () return "|" end,
             cond = function () return F.IsBufInRepo(0) end,
-            color = { bg = "Normal" }, padding = { left = 1, right = 1 }
+            color = { fg = palette.lotusWhite0, bg = "Normal" }, padding = { left = 1, right = 1 }
           },
           {
             "diff",

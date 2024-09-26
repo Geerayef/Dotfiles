@@ -33,7 +33,7 @@ end
 ---@param desc string # Mapping description
 function F.map(mode, l, r, desc)
   local bo = { silent = true, desc = "" }
-  bo.desc = desc or ("[" .. r .. "]")
+  bo.desc = desc or (type(r) == "string" and ("[" .. r .. "]"))
   vim.keymap.set(mode, l, r, bo)
 end
 

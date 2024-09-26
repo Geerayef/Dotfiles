@@ -1,8 +1,21 @@
 return {
   {
+    "sindrets/diffview.nvim",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFiles",
+      "DiffviewRefresh",
+      "DiffviewFileHistory",
+    },
+    opts = { file_panel = { listing_style = "list" } },
+  },
+  {
     "lewis6991/gitsigns.nvim",
-    cond = function() return F.IsBufInRepo(0) end,
-    cmd = "Gitsigns",
+    dependencies = { "NeogitOrg/neogit", "sindrets/diffview.nvim" },
+    event = "BufReadPost",
+    -- cmd = "Gitsigns",
     opts = {
       signs = {
         add = { text = "│" },
@@ -29,9 +42,7 @@ return {
   },
   {
     "NeogitOrg/neogit",
-    cond = function() return F.IsBufInRepo(0) end,
     cmd = "Neogit",
-    dependencies = { "lewis6991/gitsigns.nvim" },
     opts = {
       integrations = { telescope = true },
       telescope_sorter = function()

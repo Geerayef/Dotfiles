@@ -8,57 +8,46 @@ if W.config_builder then C = W.config_builder() end
 
 -- ~ Global ---------------------------------------------------------------- ~ --
 
-if G.process_icons == nil then
-  G.process_icons = {
-    ["presenterm"] = nf.fa_hashtag,
-    ["opam"] = nf.seti_ocaml,
-    ["dune"] = nf.seti_ocaml,
-    ["ocamlc"] = nf.seti_ocaml,
-    ["cargo"] = nf.dev_rust,
-    ["lua"] = nf.seti_lua,
-    ["fish"] = nf.fa_terminal,
-    ["zsh"] = nf.dev_terminal,
-    ["bash"] = nf.cod_terminal_bash,
-    ["vim"] = nf.dev_vim,
-    ["nvim"] = nf.linux_neovim,
-    ["btop"] = nf.md_chart_donut_variant,
-    ["git"] = nf.dev_git,
-    ["gh"] = nf.dev_github_badge,
-    ["sudo"] = nf.fa_hashtag,
-  }
-end
-if G.font_dirs == nil then
-  G.font_dirs = { "/usr/share/fonts/TTF/", "/usr/share/fonts/OTF/" }
-end
-if G.harf == nil then G.harf = {} end
-if G.harf.fira == nil then
-  G.harf.fira = {
-    "zero",
-    "calt=1",
-    "clig=1",
-    "liga=1",
-    "dlig=1",
-    "cv01",
-    "cv02",
-    "cv04",
-    "cv08",
-    "cv29",
-    "cv30",
-    "cv31",
-    "ss01",
-    "ss02",
-    "ss05",
-    "ss09",
-  }
-end
-if G.harf.io == nil then
-  G.harf.io =
-    { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" }
-end
-if G.harf.jet == nil then
-  G.harf.jet =
-    { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
-end
+G.process_icons = {
+  ["presenterm"] = nf.fa_hashtag,
+  ["opam"] = nf.seti_ocaml,
+  ["dune"] = nf.seti_ocaml,
+  ["ocamlc"] = nf.seti_ocaml,
+  ["cargo"] = nf.dev_rust,
+  ["lua"] = nf.seti_lua,
+  ["fish"] = nf.fa_terminal,
+  ["zsh"] = nf.dev_terminal,
+  ["bash"] = nf.cod_terminal_bash,
+  ["vim"] = nf.dev_vim,
+  ["nvim"] = nf.linux_neovim,
+  ["btop"] = nf.md_chart_donut_variant,
+  ["git"] = nf.dev_git,
+  ["gh"] = nf.dev_github_badge,
+  ["sudo"] = nf.fa_hashtag,
+}
+G.harf = {}
+G.harf.fira = {
+  "zero",
+  "calt=1",
+  "clig=1",
+  "liga=1",
+  "dlig=1",
+  "cv01",
+  "cv02",
+  "cv04",
+  "cv08",
+  "cv29",
+  "cv30",
+  "cv31",
+  "ss01",
+  "ss02",
+  "ss05",
+  "ss09",
+}
+G.harf.io =
+  { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" }
+G.harf.jet =
+  { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
 
 -- ~ Function ------------------------------------------------------------- ~ --
 
@@ -148,11 +137,10 @@ C.colors = {
 -- Font
 C.unicode_version = 14
 C.font_size = 18
-C.font_dirs = G.font_dirs
+C.font_dirs = { "/usr/share/fonts/TTF/", "/usr/share/fonts/OTF/" }
 C.font = W.font_with_fallback({
   { family = "IosevkaTerm Nerd Font Mono", harfbuzz_features = G.harf.io },
   { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.harf.io },
-  { family = "FiraCode Nerd Font Mono", harfbuzz_features = G.harf.fira },
 })
 
 -- Workspace
