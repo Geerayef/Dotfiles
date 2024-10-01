@@ -1,53 +1,40 @@
 local W = require("wezterm")
-local G = W.GLOBAL
-local act = W.action
-local nf = W.nerdfonts
+local act = require("wezterm").action
+local nf = require("wezterm").nerdfonts
 local ayu = require("ayu")
 local C = {}
 if W.config_builder then C = W.config_builder() end
 
 -- ~ Global ---------------------------------------------------------------- ~ --
 
-G.process_icons = {
-  ["presenterm"] = nf.fa_hashtag,
-  ["opam"] = nf.seti_ocaml,
-  ["dune"] = nf.seti_ocaml,
-  ["ocamlc"] = nf.seti_ocaml,
-  ["cargo"] = nf.dev_rust,
-  ["lua"] = nf.seti_lua,
-  ["fish"] = nf.fa_terminal,
-  ["zsh"] = nf.dev_terminal,
-  ["bash"] = nf.cod_terminal_bash,
-  ["vim"] = nf.dev_vim,
-  ["nvim"] = nf.linux_neovim,
-  ["btop"] = nf.md_chart_donut_variant,
-  ["git"] = nf.dev_git,
-  ["gh"] = nf.dev_github_badge,
-  ["sudo"] = nf.fa_hashtag,
+W.GLOBAL = {
+  process_icons = {
+    ["presenterm"] = nf.fa_hashtag,
+    ["opam"] = nf.seti_ocaml,
+    ["dune"] = nf.seti_ocaml,
+    ["ocamlc"] = nf.seti_ocaml,
+    ["cargo"] = nf.dev_rust,
+    ["lua"] = nf.seti_lua,
+    ["fish"] = nf.fa_terminal,
+    ["zsh"] = nf.dev_terminal,
+    ["bash"] = nf.cod_terminal_bash,
+    ["vim"] = nf.dev_vim,
+    ["nvim"] = nf.linux_neovim,
+    ["btop"] = nf.md_chart_donut_variant,
+    ["git"] = nf.dev_git,
+    ["gh"] = nf.dev_github_badge,
+    ["sudo"] = nf.fa_hashtag,
+  },
+  harf = {
+    -- stylua: ignore start
+    io = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" },
+    jet = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" },
+    fira = { "zero", "calt=1", "clig=1", "liga=1", "dlig=1", "cv01", "cv02", "cv04", "cv08", "cv29",
+      "cv30", "cv31", "ss01", "ss02", "ss05", "ss09" },
+  },
 }
-G.harf = {}
-G.harf.fira = {
-  "zero",
-  "calt=1",
-  "clig=1",
-  "liga=1",
-  "dlig=1",
-  "cv01",
-  "cv02",
-  "cv04",
-  "cv08",
-  "cv29",
-  "cv30",
-  "cv31",
-  "ss01",
-  "ss02",
-  "ss05",
-  "ss09",
-}
-G.harf.io =
-  { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" }
-G.harf.jet =
-  { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
+-- stylua: ignore end
+local G = W.GLOBAL
 
 -- ~ Function ------------------------------------------------------------- ~ --
 
