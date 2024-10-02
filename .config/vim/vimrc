@@ -1,4 +1,6 @@
 vim9script
 
-source ~/.config/vim/options.vim
-colorscheme habamax
+source $XDG_CONFIG_HOME/vim/opts.vim
+source $XDG_CONFIG_HOME/vim/keys.vim
+source $XDG_CONFIG_HOME/vim/netrw.vim
+colorscheme slate

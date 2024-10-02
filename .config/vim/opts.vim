@@ -1,5 +1,7 @@
 vim9script
 
+g:mapleader = " "
+
 set shortmess+=Is
 syntax on
 filetype plugin indent on
