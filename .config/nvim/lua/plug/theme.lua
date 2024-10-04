@@ -1,9 +1,8 @@
-local kanagawa = require("clrs.kanagawa.palette")
+local kngw = require("clrs.kanagawa.palette")
 return {
   {
     "rebelot/kanagawa.nvim",
-    cond = function() return vim.g.theme == "kanagawa" end,
-    lazy = false,
+    lazy = function() return not (vim.g.theme == "kanagawa") end,
     priority = 1010,
     opts = {
       compile = true,
@@ -13,19 +12,19 @@ return {
       -- statementStyle = {},
       overrides = function()
         return {
-          Cursor = { fg = kanagawa.lotusYellow5 },
-          WinSeparator = { fg = kanagawa.dragonBlack5 },
+          Cursor = { fg = kngw.lotusYellow5 },
+          WinSeparator = { fg = kngw.dragonBlack5 },
           NormalFloat = { bg = "none" },
           FloatTitle = { bg = "none", bold = true },
           FloatBorder = { bg = "none" },
-          StatusLine = { bg = kanagawa.dragonInk },
-          StatusLineNC = { bg = kanagawa.dragonInk },
+          StatusLine = { bg = kngw.dragonInk },
+          StatusLineNC = { bg = kngw.dragonInk },
           TelescopeTitle = {
-            fg = kanagawa.dragonTeal,
+            fg = kngw.dragonTeal,
             bg = "none",
             bold = true,
           },
-          TelescopeBorder = { fg = kanagawa.fujiWhite, bg = "none" },
+          TelescopeBorder = { fg = kngw.fujiWhite, bg = "none" },
         }
       end,
       colors = {
@@ -42,16 +41,15 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    cond = function() return vim.g.theme == "rose-pine" end,
-    lazy = false,
+    lazy = function() return not (vim.g.theme == "rose-pine") end,
     priority = 1010,
     opts = {
       variant = "main",
       dark_variant = "main",
       enable = { legacy_highlights = false },
       highlight_groups = {
-        Normal = { bg = kanagawa.dragonInk },
-        NormalNC = { bg = kanagawa.dragonInk },
+        Normal = { bg = kngw.dragonInk },
+        NormalNC = { bg = kngw.dragonInk },
         NormalFloat = { bg = "none" },
         VertSplit = { fg = "muted", bg = "muted" },
         WinSeparator = { fg = "muted", bg = "none" },
@@ -59,57 +57,6 @@ return {
         FloatBorder = { bg = "none" },
         TelescopeTitle = { bg = "none", bold = true },
         TelescopeBorder = { bg = "none" },
-      },
-    },
-  },
-  {
-    "olimorris/onedarkpro.nvim",
-    cond = function() return vim.g.theme == "onedark" end,
-    lazy = false,
-    priority = 1010,
-    opts = {
-      colors = { dark = { bg = kanagawa.dragonInk } },
-      highlights = {
-        NormalFloat = { bg = "none" },
-        FloatBorder = { bg = "none" },
-      },
-      styles = {
-        types = "bold",
-        methods = "NONE",
-        numbers = "NONE",
-        strings = "NONE",
-        comments = "italic",
-        keywords = "NONE",
-        constants = "NONE",
-        functions = "bold,italic",
-        operators = "NONE",
-        variables = "italic",
-        parameters = "italic",
-        conditionals = "NONE",
-        virtual_text = "NONE",
-      },
-      filetypes = {
-        all = false,
-        c = true,
-        go = true,
-        lua = true,
-        rust = true,
-        python = true,
-        comment = true,
-        markdown = true,
-        toml = true,
-        yaml = true,
-        json = true,
-      },
-      plugins = {
-        all = false,
-        gitsigns = true,
-        nvim_cmp = true,
-        nvim_lsp = true,
-        flash_nvim = true,
-        indentline = true,
-        treesitter = true,
-        nvim_notify = true,
       },
     },
   },

@@ -199,6 +199,7 @@ S.root_markers = {
   "README.txt",
   "README.pdf",
   "LICENSE",
+  "license",
   "src/",
   "bin/",
   "lib/",

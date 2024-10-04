@@ -10,7 +10,15 @@ local lua_ls = {
     end
   end,
   filetypes = { "lua" },
-  root_patterns = { "*.lua" },
+  root_patterns = {
+    "*.lua",
+    "init.lua",
+    ".luacheckrc",
+    ".luarc.json",
+    ".luarc.jsonc",
+    ".stylua.toml",
+    "lazy-lock.json",
+  },
   settings = { Lua = {} },
   cmd = { "lua-language-server" },
 }
