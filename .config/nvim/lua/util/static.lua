@@ -173,6 +173,7 @@ S.root_markers = {
   ".ocamlformat",
   ".ocp-indent",
   ".opam",
+  ".ccls",
   "compile_commands.json",
   "compile_flags.txt",
   ".clang-tidy",

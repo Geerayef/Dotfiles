@@ -1,5 +1,5 @@
 font-size = 18
-font = Iosevka Nerd Font Mono Regular
+font = /usr/share/fonts/TTF/IosevkaNF/IosevkaNerdFontMono-Regular.ttf
 hint-font = false
 text-color = #585B70
 selection-color = #F9E2AF
