@@ -50,7 +50,7 @@ main() {
   # clock
   setopt clock-mode-style 24
   # statusline
-  setopt status-left "#[fg=$fg]     #{?client_prefix,#[bg=$blue],#[bg=$bg]}#{?client_prefix,#[fg=$bg],#[fg=$yellow]}#S #[fg=$fg,bg=$bg]| "
+  setopt status-left "#[fg=$fg]     #{?client_prefix,#[bg=$blue],#[bg=$bg]}#{?client_prefix,#[fg=$bg],#[fg=$yellow]}#S#[fg=$fg,bg=$bg] | "
   setopt status-right "#[fg=$fg,bg=$bg] | 󱑂 %R#[fg=$fg,bg=$bg]    "
   setw window-status-format "#[fg=$blue,bg=$gray,italics] #I #[fg=$blue,bg=$bg,italics] #W #[fg=$fg,bg=$bg]"
   setw window-status-current-format "#[fg=$bg,bg=$yellow,bold] #I #[fg=$yellow,bg=$gray,bold] #W #[fg=$fg,bg=$bg]"
