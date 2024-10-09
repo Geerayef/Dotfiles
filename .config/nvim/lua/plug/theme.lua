@@ -2,7 +2,7 @@ local kngw = require("clrs.kanagawa.palette")
 return {
   {
     "rebelot/kanagawa.nvim",
-    lazy = function() return not (vim.g.theme == "kanagawa") end,
+    lazy = function() return vim.g.theme ~= "kanagawa" end,
     priority = 1010,
     opts = {
       compile = true,
@@ -41,7 +41,7 @@ return {
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    lazy = function() return not (vim.g.theme == "rose-pine") end,
+    lazy = function() return vim.g.theme ~= "rose-pine" end,
     priority = 1010,
     opts = {
       variant = "main",
