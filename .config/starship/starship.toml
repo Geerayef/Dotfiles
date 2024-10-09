@@ -26,9 +26,9 @@ style = "#EBA0AC bold"
 
 [character]
 # [❯] [❮] [λ] [⟫] [⟪] [] [] [] [] [] [○] [●]
-success_symbol = "[](#94E2D5)"
-error_symbol = "[](#F38BA8)"
-vimcmd_symbol = "[](#6C7086)"
+success_symbol = "[»](#94E2D5)"
+error_symbol = "[»](#F38BA8)"
+vimcmd_symbol = "[«](#6C7086)"
 
 [git_branch]
 format = " [$branch]($style)"
