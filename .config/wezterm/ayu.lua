@@ -1,5 +1,6 @@
 return {
   bg = "#0A0E14",
+  bg_darker = "#010101",
   fg = "#E6E1CF",
   selection_bg = "#253340",
   selection_fg = "#E6E1CF",

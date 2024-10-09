@@ -44,7 +44,8 @@ end
 
 local function get_process(tab)
   local process = tab.active_pane.foreground_process_name:match("([^/\\]+)$")
-  return G.process_icons[process] or string.format("%s", process)
+  -- return G.process_icons[process] or string.format("%s", process)
+  return G.process_icons[process] or "()"
 end
 
 -- ~ Statusbar ------------------------------------------------------------- ~ --
@@ -101,23 +102,34 @@ C.default_cursor_style = "SteadyBlock"
 C.force_reverse_video_cursor = false
 
 -- Colorscheme
-C.color_scheme = "Ayu Dark (Gogh)"
--- C.color_scheme = "GruvboxDarkHard"
+-- ~ Monochromish {
+-- C.color_scheme = "Grayscale (dark) (terminal.sexy)"
+-- C.color_scheme = "Black Metal (Marduk) (base16)"
+-- C.color_scheme = "VWbug (terminal.sexy)"
+-- }
+-- ~ Dim {
+C.color_scheme = "Unsifted Wheat (terminal.sexy)"
+-- C.color_scheme = "Twilight"
+-- }
+-- ~ Bright {
+-- C.color_scheme = "Gruvbox Material (Gogh)"
+-- C.color_scheme = "Shic (terminal.sexy)"
+-- }
 C.colors = {
-  -- background = ayu.bg,
-  -- cursor_fg = "#000000",
-  -- cursor_bg = "#FFF779",
+  background = ayu.bg_darker,
+  cursor_fg = "#000000",
+  cursor_bg = "#FFF779",
   tab_bar = {
-    background = ayu.bg,
+    background = ayu.bg_darker,
     active_tab = {
       bg_color = ayu.ansi[5],
-      fg_color = ayu.bg,
+      fg_color = ayu.bg_darker,
       intensity = "Bold",
       underline = "None",
       italic = false,
       strikethrough = false,
     },
-    inactive_tab = { bg_color = ayu.bg, fg_color = ayu.fg },
+    inactive_tab = { bg_color = ayu.bg_darker, fg_color = ayu.fg },
   },
 }
 
@@ -126,8 +138,8 @@ C.unicode_version = 14
 C.font_size = 18
 C.font_dirs = { "/usr/share/fonts/TTF/", "/usr/share/fonts/OTF/" }
 C.font = W.font_with_fallback({
-  { family = "IosevkaTerm Nerd Font Mono", harfbuzz_features = G.harf.io },
   { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.harf.io },
+  { family = "Iosevka Nerd Font Mono", harfbuzz_features = G.harf.io },
 })
 
 -- Workspace

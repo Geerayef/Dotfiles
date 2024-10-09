@@ -17,8 +17,8 @@ return {
           NormalFloat = { bg = "none" },
           FloatTitle = { bg = "none", bold = true },
           FloatBorder = { bg = "none" },
-          StatusLine = { bg = kngw.dragonInk },
-          StatusLineNC = { bg = kngw.dragonInk },
+          StatusLine = { bg = kngw.dragonInk1 },
+          StatusLineNC = { bg = kngw.dragonInk1 },
           TelescopeTitle = {
             fg = kngw.dragonTeal,
             bg = "none",
@@ -30,8 +30,8 @@ return {
       colors = {
         theme = {
           all = { ui = { bg_gutter = "none" } },
-          -- wave = { ui = { bg = kanagawa.dragonInk } },
-          -- dragon = { ui = { bg = kanagawa.dragonInk } },
+          -- wave = { ui = { bg = kanagawa.dragonInk1 } },
+          -- dragon = { ui = { bg = kanagawa.dragonInk1 } },
         },
       },
       theme = "dragon",
@@ -48,8 +48,8 @@ return {
       dark_variant = "main",
       enable = { legacy_highlights = false },
       highlight_groups = {
-        Normal = { bg = kngw.dragonInk },
-        NormalNC = { bg = kngw.dragonInk },
+        Normal = { bg = kngw.dragonInk1 },
+        NormalNC = { bg = kngw.dragonInk1 },
         NormalFloat = { bg = "none" },
         VertSplit = { fg = "muted", bg = "muted" },
         WinSeparator = { fg = "muted", bg = "none" },

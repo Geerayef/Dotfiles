@@ -1,17 +1,49 @@
 #!/usr/bin/env fish
 
-function main -d "Install user-space component for which there is a script."
-    printf "~~~~~ %s\n" "Install user-space component for which there is a script."
-    set -l component (string lower "$argv[1]")
+function util_get_components -d "Utility: Get the list of available components."
     set -l dir_scripts (status dirname)
-    set -l installables (fd "install_" -t f $dir_scripts)
-    for i in (seq (count $installables))
-        set -l script $installables[$i]
-        set -l script_basename (basename $script)
-        set installables[$i] $script_basename
+    set -l comps (fd "install_" -t f $dir_scripts)
+    for i in (seq (count $comps))
+        set -l script_basename (basename $comps[$i])
+        set comps[$i] $script_basename
     end
+    echo $comps
+end
+
+function util_usage -d "Display help (usage)." -a available_components
+    printf "\n    Usage: install.fish [OPTION] -- [COMPONENT]\n\n"
+    printf "    OPTIONS:\n"
+    printf "            -h | --help    -> Display this message.\n\n"
+    printf "    Available components:\n"
+    for ac in (echo $available_components | tr ' ' \n)
+        printf "        %s\n" "$ac"
+    end
+    exit 0
+end
+
+function util_parse_args -d "Handle CLI arguments." -a clargs components
+    set -l component_candidates
+    for arg in (echo $clargs | tr ' ' \n)
+        switch $arg
+            case -h --help
+                util_usage $components
+            case '*'
+                set -a component_candidates "$arg"
+        end
+    end
+    echo $component_candidates
+end
+
+function main -d "Install user-space component for which there is a script."
+    set -l COMPONENTS (util_get_components)
+    set -l install_candidates (util_parse_args $argv $COMPONENTS)
+    notify INFO "@main: Candidate = $install_candidates"
+    for i in (echo $install_candidates | tr ' ' \n)
+        notify INFO "@main: Candidate = $i"
+    end
+    exit 0
     set -l component_script
-    for script in $installables
+    for script in $COMPONENTS
         if string match -q "*$component*" "$script"
             set component_script $script
             break
