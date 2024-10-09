@@ -97,7 +97,7 @@ else if test $SYSTEM_PACKAGE_MANAGER = pacman
     abbr -a pi "sudo pacman -S --needed"
     abbr -a pu "sudo pacman -Syu"
     abbr -a pr "sudo pacman -Rs"
-    abbr -a pq "sudo pacman -Q"
+    abbr -a pq "sudo pacman -Qs"
     abbr -a ps "sudo pacman -Ss"
 else
     echo "[ ERROR ] | Please set the SYSTEM_PACKAGE_MANAGER environment variable to the name of your system package manager."

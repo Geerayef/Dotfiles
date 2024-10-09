@@ -72,7 +72,7 @@ return {
   {
     "norcalli/nvim-colorizer.lua",
     cmd = "ColorizerToggle",
-    opts = { ["*"] = { RRGGBBAA = true } },
+    opts = { ["*"] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true } },
   },
   {
     "stevearc/dressing.nvim",

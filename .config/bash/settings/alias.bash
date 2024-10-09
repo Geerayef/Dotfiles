@@ -98,8 +98,8 @@ elif [[ $SYSTEM_PACKAGE_MANAGER == pacman ]]; then
   alias pi="sudo pacman -S --needed"
   alias pu="sudo pacman -Syu"
   alias pr="sudo pacman -Rs"
-  alias pq="sudo pacman -Q"
+  alias pq="sudo pacman -Qs"
   alias ps="sudo pacman -Ss"
 else
-  echo "Please set the SYSTEM_PACKAGE_MANAGER environment variable to the name of your system package manager."
+  echo "[ ERROR ] | Please set the SYSTEM_PACKAGE_MANAGER environment variable to the name of your system package manager."
 fi
