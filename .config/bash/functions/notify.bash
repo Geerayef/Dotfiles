@@ -4,5 +4,5 @@
 notify() {
   local severity="$1"
   local message="$2"
-  printf "~~~~~ [%s] %s\n" "$severity" "$message"
+  printf "    [ %s ] | %s\n" "$severity" "$message"
 }

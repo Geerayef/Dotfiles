@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # ~  General
 
 alias C="clear"

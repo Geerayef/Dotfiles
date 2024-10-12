@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # ~  Environment variables
 
 # Locations
@@ -5,12 +6,12 @@ export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-$HOME/.local/state}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
-export FZF_BASE="/usr/bin/fzf"
-export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 export ZDOTDIR=${ZDOTDIR:-${XDG_CONFIG_HOME}/zsh}
 export BASHDOTDIR=${BASHDOTDIR:-${XDG_CONFIG_HOME}/bash}
+export FZF_BASE="/usr/bin/fzf"
 export RUFF_CACHE_DIR="$HOME/.cache/ruff"
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
 
 # General settings
 [[ -n ${BASH_VERSION} || $SHELL == bash ]] && export HISTFILE="$BASHDOTDIR/history"
@@ -40,7 +41,7 @@ export FZF_DEFAULT_OPTS='--scheme=path --cycle --layout=reverse --border=sharp -
   elif [[ $SHELL == "bash" ]]; then
     [[ ! -r "$HOME/.opam/opam-init/init.sh" ]] || source "$HOME/.opam/opam-init/init.sh" >/dev/null 2>/dev/null
   else
-    if [[ $SHELL == "fish" ]]; then echo '~~~~~ Why is your {Z, BA}SH env getting sourced if your $SHELL=fish?'; fi
+    if [[ $SHELL == "fish" ]]; then echo '    [ WHAT??? ] Why is your {Z, BA}SH env getting sourced if your $SHELL=fish?'; fi
   fi
   # Python: pyenv
   if [[ -e $HOME/.pyenv ]]; then
