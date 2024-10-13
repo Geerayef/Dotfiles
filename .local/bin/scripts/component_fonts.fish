@@ -65,7 +65,6 @@ end
 function main
     notify INFO "NerdFonts setup."
     notify INFO "GitHub: ryanoasis/nerd-fonts."
-    echo "\n"
     set -l fonts Iosevka IosevkaTerm FiraCode JetBrainsMono ZedMono NerdFontsSymbolsOnly
     set -l dir_download "$HOME/Downloads/Fonts"
     set -l dir_destination /usr/share/fonts/TTF
