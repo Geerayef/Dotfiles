@@ -21,7 +21,7 @@ return {
         lualine_a = {},
         lualine_b = { { function() return "          " end, color = { bg = "Normal" }, padding = { left = 0, right = 0 } } },
         lualine_c = {
-          { function() return "|" end, color = { fg = palette.lotusWhite0 }, padding = { left = 1 } },
+          { function() return "|" end, color = { fg = palette.lotusWhite0, bg = "Normal" }, padding = { left = 1 } },
           {
             "filename",
             cond = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,

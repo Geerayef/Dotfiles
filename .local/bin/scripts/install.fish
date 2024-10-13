@@ -21,26 +21,36 @@ function util_usage -d "Display help (usage)." -a available_components
     exit 0
 end
 
-function util_parse_args -d "Handle CLI arguments." -a clargs components
-    set -l component_candidates
+function util_handle_args -d "Handle CLI arguments." -a clargs available_components
+    set -l targets
+    # TODO: Find a better way to split args than this (echo $clargs | tr ' ' \n)
     for arg in (echo $clargs | tr ' ' \n)
-        switch $arg
-            case -h --help
-                util_usage $components
-            case '*'
-                set -a component_candidates "$arg"
-        end
+        set -a targets $arg
+        # string match -q -- '-*' "$arg"
+        # if test $status -eq 0
+        #     echo HELPIN
+        #     util_usage $available_components
+        #     exit 0
+        # end
+        # switch "$arg"
+        #     case -h --help
+        #         util_usage $available_components
+        #     case '*'
+        #         set -a targets "$arg"
+        # end
     end
-    echo $component_candidates
+    echo $targets
 end
 
 function main -d "Install user-space component for which there is a script."
     set -l COMPONENTS (util_get_components)
-    set -l install_candidates (util_parse_args $argv $COMPONENTS)
-    notify INFO "@main: Candidate = $install_candidates"
-    for i in (echo $install_candidates | tr ' ' \n)
-        notify INFO "@main: Candidate = $i"
-    end
+    echo "@main: CLI arguments: $argv"
+    echo "@main: Available components: $COMPONENTS"
+    set -l install_candidates (util_handle_args $argv $COMPONENTS)
+    echo "@main: Install targets: $install_candidates"
+    # for i in (echo $install_candidates | tr ' ' \n)
+    #     notify INFO "@main: Candidate = $i"
+    # end
     exit 0
     set -l component_script
     for script in $COMPONENTS

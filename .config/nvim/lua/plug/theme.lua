@@ -1,6 +1,48 @@
 local kngw = require("clrs.kanagawa.palette")
 return {
   {
+    "slugbyte/lackluster.nvim",
+    lazy = function() return not (vim.startswith(vim.g.theme, "lackluster")) end,
+    priority = 1010,
+    opts = {
+      tweak_background = { normal = "#010101", telescope = "default" },
+      tweak_highlight = {
+        Normal = { overwrite = true, bg = "#010101" },
+        NormalNC = { link = "Normal" },
+        NormalFloat = { link = "Normal" },
+        FloatTitle = { bg = "none", bold = true },
+        FloatBorder = { bg = "none" },
+        TelescopeTitle = { bg = "none", bold = true },
+        TelescopeBorder = { bg = "none" },
+        TelescopePromptNormal = { link = "Normal" },
+        TelescopeResultsNormal = { link = "Normal" },
+        TelescopePreviewNormal = { link = "Normal" },
+      },
+      disable_plugins = {
+        telescope = true,
+        oil = true,
+        bufferline = true,
+        dashboard = true,
+        git_gutter = true,
+        headline = true,
+        indentmini = true,
+        lightbulb = true,
+        lsp_config = true,
+        mason = true,
+        mini_diff = true,
+        navic = true,
+        noice = true,
+        rainbow_delimiter = true,
+        scollbar = true,
+        todo_comments = true,
+        tree = true,
+        trouble = true,
+        which_key = true,
+        yanky = true,
+      },
+    },
+  },
+  {
     "rebelot/kanagawa.nvim",
     lazy = function() return vim.g.theme ~= "kanagawa" end,
     priority = 1010,
@@ -9,7 +51,6 @@ return {
       keywordStyle = { bold = true },
       typeStyle = { italic = false, bold = true },
       functionStyle = { italic = true, bold = false },
-      -- statementStyle = {},
       overrides = function()
         return {
           Cursor = { fg = kngw.lotusYellow5 },
@@ -19,11 +60,7 @@ return {
           FloatBorder = { bg = "none" },
           StatusLine = { bg = kngw.dragonInk1 },
           StatusLineNC = { bg = kngw.dragonInk1 },
-          TelescopeTitle = {
-            fg = kngw.dragonTeal,
-            bg = "none",
-            bold = true,
-          },
+          TelescopeTitle = { fg = kngw.dragonTeal, bg = "none", bold = true },
           TelescopeBorder = { fg = kngw.fujiWhite, bg = "none" },
         }
       end,

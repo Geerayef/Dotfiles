@@ -1,4 +1,4 @@
-vim.g.theme = "rose-pine"
+vim.g.theme = "lackluster-night"
 require("util.static")
 require("core.opts")
 require("core.func")
