@@ -1,12 +1,6 @@
 #!/usr/bin/env fish
 
-function notify -d "Log messages to stdio."
-    set -l severity $argv[1]
-    set -l message $argv[2]
-    printf "~~~~~ [%s] %s\n" $severity $message
-end
-
-function create_dir -d "Create directory at given path, unless it already exists."
+function create_dir -d "Util: Create directory at given path, unless it already exists."
     set -l dir_destination $argv[1]
     set -l elevated $argv[2]
     if test $elevated = true
@@ -14,10 +8,12 @@ function create_dir -d "Create directory at given path, unless it already exists
     else
         test -d $dir_destination || mkdir $dir_destination
     end
-    notify DONE "Create $dir_destination."
+    if test $status -eq 0
+        notify DONE "Create $dir_destination."
+    end
 end
 
-function download -d "Download fonts."
+function download -d "Util: Download fonts."
     set -l dir_download $argv[1]
     set -l url_git_nerdfonts $argv[2]
     set -l fonts $argv[3..]
@@ -28,7 +24,7 @@ function download -d "Download fonts."
     notify DONE "Download."
 end
 
-function extract -d "Extract fonts."
+function extract -d "Util: Extract fonts."
     set -l dir_download $argv[1]
     set -l fonts $argv[2..]
     notify INFO "Extracting."
@@ -43,7 +39,7 @@ function extract -d "Extract fonts."
     notify DONE "Extraction."
 end
 
-function move -d "Move fonts from download to destination directory."
+function move -d "Util: Move fonts from download to destination directory."
     set -l dir_download $argv[1]
     set -l dir_destination $argv[2]
     set -l fonts $argv[3..]
@@ -67,8 +63,9 @@ function move -d "Move fonts from download to destination directory."
 end
 
 function main
-    printf "~~~~~ NerdFonts setup.\n"
-    printf "~~~~~ GitHub: ryanoasis/nerd-fonts.\n\n"
+    notify INFO "NerdFonts setup."
+    notify INFO "GitHub: ryanoasis/nerd-fonts."
+    echo "\n"
     set -l fonts Iosevka IosevkaTerm FiraCode JetBrainsMono ZedMono NerdFontsSymbolsOnly
     set -l dir_download "$HOME/Downloads/Fonts"
     set -l dir_destination /usr/share/fonts/TTF
