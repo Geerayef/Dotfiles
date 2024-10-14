@@ -108,11 +108,11 @@ C.force_reverse_video_cursor = false
 -- C.color_scheme = "VWbug (terminal.sexy)"
 -- }
 -- ~ Dim {
-C.color_scheme = "Unsifted Wheat (terminal.sexy)"
+-- C.color_scheme = "Unsifted Wheat (terminal.sexy)"
 -- C.color_scheme = "Twilight"
 -- }
 -- ~ Bright {
--- C.color_scheme = "Gruvbox Material (Gogh)"
+C.color_scheme = "Gruvbox Material (Gogh)"
 -- C.color_scheme = "Shic (terminal.sexy)"
 -- }
 C.colors = {

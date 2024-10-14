@@ -1,47 +1,107 @@
 local kngw = require("clrs.kanagawa.palette")
 return {
   {
-    "slugbyte/lackluster.nvim",
-    lazy = function() return not (vim.startswith(vim.g.theme, "lackluster")) end,
+    "ramojus/mellifluous.nvim",
+    lazy = function() return vim.g.theme ~= "mellifluous" end,
     priority = 1010,
     opts = {
-      tweak_background = { normal = "#010101", telescope = "default" },
-      tweak_highlight = {
-        Normal = { overwrite = true, bg = "#010101" },
-        NormalNC = { link = "Normal" },
-        NormalFloat = { link = "Normal" },
-        FloatTitle = { link = "TelescopeTitle" },
-        FloatBorder = { bg = "none" },
-        LazyNormal = { link = "Normal" },
-        TelescopeTitle = { bg = "none", bold = true },
-        TelescopeBorder = { bg = "none" },
-        TelescopePromptNormal = { link = "Normal" },
-        TelescopeResultsNormal = { link = "Normal" },
-        TelescopePreviewNormal = { link = "Normal" },
+      dim_inactive = false,
+      colorset = "mountain",
+      styles = {
+        main_keywords = {},
+        other_keywords = {},
+        types = {},
+        functions = { bold = true },
+        operators = {},
+        strings = {},
+        constants = {},
+        comments = { italic = true },
+        markup = { headings = { bold = true } },
+        folds = {},
       },
-      disable_plugins = {
+      highlight_overrides = {
+        dark = function(hl, c)
+          hl.set("Normal", { bg = kngw.dragonInk1 })
+          hl.set("NormalNC", { bg = kngw.dragonInk1 })
+          hl.set("NormalFloat", { bg = kngw.dragonInk1 })
+          hl.set("WinSeparator", { fg = kngw.dragonBlack5 })
+          hl.set("LineNr", { bg = kngw.dragonInk1 })
+          hl.set("LineNrAbove", { fg = c.comments })
+          hl.set("LineNrBelow", { fg = c.comments })
+          hl.set("CursorLineNr", { link = "Normal" })
+          hl.set("FloatTitle", { link = "Title" })
+          hl.set("TelescopeTitle", { link = "Title" })
+          hl.set("LazyNormal", { link = "Normal" })
+        end,
+      },
+      transparent_background = {
+        enabled = false,
+        floating_windows = true,
         telescope = true,
-        oil = true,
-        bufferline = true,
-        dashboard = true,
-        git_gutter = true,
-        headline = true,
-        indentmini = true,
-        lightbulb = true,
-        lsp_config = true,
-        mason = true,
-        mini_diff = true,
-        navic = true,
-        noice = true,
-        rainbow_delimiter = true,
-        scollbar = true,
-        todo_comments = true,
-        tree = true,
-        trouble = true,
-        which_key = true,
-        yanky = true,
+        file_tree = true,
+        cursor_line = true,
+        status_line = false,
+      },
+      flat_background = {
+        line_numbers = true,
+        floating_windows = true,
+        cursor_line_number = true,
+        file_tree = false,
+      },
+      plugins = {
+        cmp = true,
+        gitsigns = true,
+        indent_blankline = true,
+        nvim_tree = { enabled = false },
+        neo_tree = { enabled = false },
+        telescope = { enabled = true, nvchad_like = true },
+        startify = false,
       },
     },
+  },
+  {
+    "slugbyte/lackluster.nvim",
+    lazy = function() return vim.g.theme ~= "lackluster" end,
+    priority = 1010,
+    config = function()
+      require("lackluster").setup({
+        tweak_background = { normal = "#010101", telescope = "default" },
+        tweak_highlight = {
+          Normal = { overwrite = true, bg = "#010101" },
+          NormalNC = { link = "Normal" },
+          NormalFloat = { link = "Normal" },
+          FloatTitle = { link = "TelescopeTitle" },
+          FloatBorder = { bg = "none" },
+          LazyNormal = { link = "Normal" },
+          TelescopeTitle = { bg = "none", bold = true },
+          TelescopeBorder = { bg = "none" },
+          TelescopePromptNormal = { link = "Normal" },
+          TelescopeResultsNormal = { link = "Normal" },
+          TelescopePreviewNormal = { link = "Normal" },
+        },
+        disable_plugins = {
+          telescope = true,
+          bufferline = true,
+          dashboard = true,
+          git_gutter = true,
+          headline = true,
+          indentmini = true,
+          lightbulb = true,
+          lsp_config = true,
+          mason = true,
+          mini_diff = true,
+          navic = true,
+          noice = true,
+          rainbow_delimiter = true,
+          scollbar = true,
+          todo_comments = true,
+          tree = true,
+          trouble = true,
+          which_key = true,
+          yanky = true,
+        },
+      })
+    end,
   },
   {
     "rebelot/kanagawa.nvim",
@@ -89,8 +149,8 @@ return {
         Normal = { bg = kngw.dragonInk1 },
         NormalNC = { bg = kngw.dragonInk1 },
         NormalFloat = { bg = "none" },
-        VertSplit = { fg = "muted", bg = "muted" },
-        WinSeparator = { fg = "muted", bg = "none" },
+        VertSplit = { fg = kngw.dragonBlack5, bg = kngw.dragonBlack5 },
+        WinSeparator = { fg = kngw.dragonBlack5, bg = "none" },
         FloatTitle = { bg = "none", bold = true },
         FloatBorder = { bg = "none" },
         TelescopeTitle = { bg = "none", bold = true },
