@@ -1,4 +1,4 @@
-;;; early-init.el --- Package manager and globals  -*- lexical-binding: t; -*-
+;;; early-init.el --- Global settings & Locations -*- no-byte-compile: t; lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -8,10 +8,10 @@
       read-process-output-max (* 4 1024 1024)
       process-adaptive-read-buffering nil
       load-prefer-newer t
-      inhibit-startup-screen t   
-      inhibit-startup-message t  
+      inhibit-startup-screen t
+      inhibit-startup-message t
       initial-scratch-message nil
-      use-dialog-box nil         
+      use-dialog-box nil
       use-file-dialog nil
       font-use-system-font nil)
 

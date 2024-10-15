@@ -1,4 +1,4 @@
-;;;; init.el --- Init -*- lexical-binding: t; -*-
+;;; init.el --- Initial setup -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -20,4 +20,3 @@
 
 (provide 'init)
 ;;; init.el ends here
-(put 'downcase-region 'disabled nil)
