@@ -1,11 +1,11 @@
+-- ~ Global ---------------------------------------------------------------- ~ --
+
 local W = require("wezterm")
 local act = require("wezterm").action
 local nf = require("wezterm").nerdfonts
 local ayu = require("ayu")
 local C = {}
 if W.config_builder then C = W.config_builder() end
-
--- ~ Global ---------------------------------------------------------------- ~ --
 
 W.GLOBAL = {
   process_icons = {
@@ -25,16 +25,40 @@ W.GLOBAL = {
     ["gh"] = nf.dev_github_badge,
     ["sudo"] = nf.fa_hashtag,
   },
-  harf = {
-    -- stylua: ignore start
-    io = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" },
-    jet = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" },
-    fira = { "zero", "calt=1", "clig=1", "liga=1", "dlig=1", "cv01", "cv02", "cv04", "cv08", "cv29",
-      "cv30", "cv31", "ss01", "ss02", "ss05", "ss09" },
-  },
 }
--- stylua: ignore end
+
 local G = W.GLOBAL
+local font_family = "ZedMono Nerd Font Mono"
+local font_features = { "calt=1", "clig=1", "liga=1", "dlig=1" }
+if string.match(font_family, "Zed") ~= nil then
+  font_features =
+    { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" }
+elseif string.match(font_family, "Iosevka") ~= nil then
+  font_features =
+    { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" }
+elseif string.match(font_family, "FiraCode") ~= nil then
+  font_features = {
+    "zero",
+    "calt=1",
+    "clig=1",
+    "liga=1",
+    "dlig=1",
+    "cv01",
+    "cv02",
+    "cv04",
+    "cv08",
+    "cv29",
+    "cv30",
+    "cv31",
+    "ss01",
+    "ss02",
+    "ss05",
+    "ss09",
+  }
+elseif string.match(font_family, "JetBrainsMono") ~= nil then
+  font_features =
+    { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
+end
 
 -- ~ Function ------------------------------------------------------------- ~ --
 
@@ -92,7 +116,7 @@ C.status_update_interval = 1000
 
 -- Window
 C.window_background_opacity = 1
-C.window_decorations = "RESIZE"
+C.window_decorations = "NONE"
 C.window_padding = { left = "0pt", right = "0pt", top = "0pt", bottom = "0pt" }
 C.use_resize_increments = true
 C.adjust_window_size_when_changing_font_size = false
@@ -138,15 +162,15 @@ C.unicode_version = 14
 C.font_size = 18
 C.font_dirs = { "/usr/share/fonts/TTF/", "/usr/share/fonts/OTF/" }
 C.font = W.font_with_fallback({
-  { family = "ZedMono Nerd Font Mono", harfbuzz_features = G.harf.io },
-  { family = "Iosevka Nerd Font Mono", harfbuzz_features = G.harf.io },
+  { family = font_family, harfbuzz_features = font_features },
+  { family = "Symbols Nerd Font Mono" },
 })
 
 -- Workspace
 C.default_workspace = "home"
 
 -- Performance
-C.enable_wayland = false
+C.enable_wayland = true
 C.animation_fps = 1
 local gpus = W.gui.enumerate_gpus()
 C.webgpu_preferred_adapter = gpus[1]

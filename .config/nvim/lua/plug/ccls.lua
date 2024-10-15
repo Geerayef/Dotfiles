@@ -20,7 +20,7 @@ return {
         border = S.Border,
       },
     },
-    filetypes = { "c", "cpp", "objc", "objcpp" },
+    filetypes = { "c", "cpp", "h", "hpp" },
     lsp = {
       codelens = { enabled = true, events = { "BufEnter", "BufWritePost" } },
     },

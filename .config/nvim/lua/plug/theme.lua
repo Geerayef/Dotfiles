@@ -8,13 +8,13 @@ return {
       dim_inactive = false,
       colorset = "mountain",
       styles = {
-        main_keywords = {},
-        other_keywords = {},
-        types = {},
+        main_keywords = { bold = false, italic = false },
+        other_keywords = { bold = false, italic = false },
+        types = { bold = false, italic = false },
         functions = { bold = true },
-        operators = {},
-        strings = {},
-        constants = {},
+        operators = { bold = false, italic = false },
+        strings = { bold = false, italic = false },
+        constants = { bold = false, italic = false },
         comments = { italic = true },
         markup = { headings = { bold = true } },
         folds = {},
@@ -34,14 +34,14 @@ return {
           hl.set("LazyNormal", { link = "Normal" })
         end,
       },
-      transparent_background = {
-        enabled = false,
-        floating_windows = true,
-        telescope = true,
-        file_tree = true,
-        cursor_line = true,
-        status_line = false,
+      color_overrides = {
+        dark = {
+          bg = function()
+            return require("mellifluous.color").new(kngw.dragonInk1)
+          end,
+        },
       },
+      transparent_background = { enabled = false },
       flat_background = {
         line_numbers = true,
         floating_windows = true,
@@ -52,16 +52,16 @@ return {
         cmp = true,
         gitsigns = true,
         indent_blankline = true,
+        telescope = { enabled = true, nvchad_like = true },
         nvim_tree = { enabled = false },
         neo_tree = { enabled = false },
-        telescope = { enabled = true, nvchad_like = true },
         startify = false,
       },
     },
   },
   {
     "slugbyte/lackluster.nvim",
-    lazy = function() return vim.g.theme ~= "lackluster" end,
+    lazy = function() return string.match(vim.g.theme, "lackluster") ~= nil end,
     priority = 1010,
     config = function()
       require("lackluster").setup({
