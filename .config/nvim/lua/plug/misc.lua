@@ -1,7 +1,6 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "MunifTanjim/nui.nvim", lazy = true },
   { "mfussenegger/nvim-jdtls", ft = "java" },
   { "numToStr/Comment.nvim", event = "BufReadPost", opts = true },
   { "tpope/vim-surround", event = "BufReadPost" },

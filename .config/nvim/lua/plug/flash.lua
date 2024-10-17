@@ -100,7 +100,7 @@ return {
         autohide = true,
         jump_labels = true,
         label = { exclude = "hjkliadco" },
-        multi_line = true,
+        multi_line = false,
         -- e.g., { [";"] = "L", [","] = H }
         keys = { "f", "F", "t", "T", ";", "," },
         char_actions = function(motion)
@@ -132,7 +132,7 @@ return {
     },
     prompt = {
       enabled = true,
-      prefix = { { "       ⚡ ", "FlashPromptIcon" } },
+      prefix = { { "              ⚡ ", "FlashPromptIcon" } },
       win_config = {
         relative = "editor",
         width = 1,

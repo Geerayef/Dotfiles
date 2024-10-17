@@ -19,9 +19,9 @@ return {
       -- stylua: ignore start
       sections = {
         lualine_a = {},
-        lualine_b = { { function() return "          " end, color = { bg = "Normal" }, padding = { left = 0, right = 0 } } },
+        lualine_b = { { function() return " " end, color = { bg = "Normal" }, padding = { left = 9, right = 0 } } },
         lualine_c = {
-          { function() return "|" end, color = { fg = palette.lotusWhite0, bg = "Normal" }, padding = { left = 1 } },
+          { function() return "|" end, color = { fg = "Normal", bg = "Normal" }, padding = { left = 1 } },
           {
             "filename",
             cond = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
@@ -55,7 +55,7 @@ return {
           {
             function () return "|" end,
             cond = function () return F.IsBufInRepo(0) end,
-            color = { fg = palette.lotusWhite0, bg = "Normal" }, padding = { left = 1, right = 1 }
+            color = { fg = "Normal", bg = "Normal" }, padding = { left = 1, right = 1 }
           },
           {
             "diff",
@@ -70,7 +70,7 @@ return {
           },
           { "branch", icon = icon.git.branch, color = { fg = palette.dragonGreen } },
         },
-        lualine_y = {},
+        lualine_y = { { function () return " " end, color = { fg = "Normal", bg = "Normal" }, padding = { left = 1, right = 9 } } },
         lualine_z = {},
       },
       inactive_sections = { lualine_a = {}, lualine_b = { "filename" }, lualine_c = {}, lualine_x = {}, lualine_y = {}, lualine_z = {} },

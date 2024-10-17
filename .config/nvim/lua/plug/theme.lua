@@ -52,7 +52,7 @@ return {
         cmp = true,
         gitsigns = true,
         indent_blankline = true,
-        telescope = { enabled = true, nvchad_like = true },
+        telescope = { enabled = true, nvchad_like = false },
         nvim_tree = { enabled = false },
         neo_tree = { enabled = false },
         startify = false,
