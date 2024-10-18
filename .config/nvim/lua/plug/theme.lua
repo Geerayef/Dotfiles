@@ -32,6 +32,21 @@ return {
           hl.set("FloatTitle", { link = "Title" })
           hl.set("TelescopeTitle", { link = "Title" })
           hl.set("LazyNormal", { link = "Normal" })
+          -- stylua: ignore start
+          hl.set("@markup.list.unchecked", { bg = kngw.dragonInk1 })
+          -- hl.set("@text.title.1.markdown"        , { link = "markdownH1" })
+          -- hl.set("@text.title.1.marker.markdown" , { link = "markdownH1Delimiter" })
+          -- hl.set("@text.title.2.markdown"        , { link = "markdownH2" })
+          -- hl.set("@text.title.2.marker.markdown" , { link = "markdownH2Delimiter" })
+          -- hl.set("@text.title.3.markdown"        , { link = "markdownH3" })
+          -- hl.set("@text.title.3.marker.markdown" , { link = "markdownH3Delimiter" })
+          -- hl.set("@text.title.4.markdown"        , { link = "markdownH4" })
+          -- hl.set("@text.title.4.marker.markdown" , { link = "markdownH4Delimiter" })
+          -- hl.set("@text.title.5.markdown"        , { link = "markdownH5" })
+          -- hl.set("@text.title.5.marker.markdown" , { link = "markdownH5Delimiter" })
+          -- hl.set("@text.title.6.markdown"        , { link = "markdownH6" })
+          -- hl.set("@text.title.6.marker.markdown" , { link = "markdownH6Delimiter" })
+          -- stylua: ignore end
         end,
       },
       color_overrides = {
@@ -41,18 +56,13 @@ return {
           end,
         },
       },
-      transparent_background = { enabled = false },
       flat_background = {
         line_numbers = true,
         floating_windows = true,
         cursor_line_number = true,
-        file_tree = false,
       },
       plugins = {
-        cmp = true,
-        gitsigns = true,
-        indent_blankline = true,
-        telescope = { enabled = true, nvchad_like = false },
+        telescope = { nvchad_like = false },
         nvim_tree = { enabled = false },
         neo_tree = { enabled = false },
         startify = false,
@@ -80,7 +90,6 @@ return {
           TelescopePreviewNormal = { link = "Normal" },
         },
         disable_plugins = {
-          telescope = true,
           bufferline = true,
           dashboard = true,
           git_gutter = true,
@@ -125,13 +134,7 @@ return {
           TelescopeBorder = { fg = kngw.fujiWhite, bg = "none" },
         }
       end,
-      colors = {
-        theme = {
-          all = { ui = { bg_gutter = "none" } },
-          -- wave = { ui = { bg = kanagawa.dragonInk1 } },
-          -- dragon = { ui = { bg = kanagawa.dragonInk1 } },
-        },
-      },
+      colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
       theme = "dragon",
       background = { dark = "dragon" },
     },

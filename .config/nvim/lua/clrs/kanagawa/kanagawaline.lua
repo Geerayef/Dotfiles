@@ -2,6 +2,7 @@ local M = {}
 
 function M.setup(theme)
   local kanagawaline = {}
+
   kanagawaline.normal = {
     a = { bg = theme.syn.fun, fg = theme.ui.bg_m3 },
     b = { bg = theme.diff.change, fg = theme.syn.fun },
@@ -39,6 +40,7 @@ function M.setup(theme)
       mode.a.gui = "bold"
     end
   end
+
   return kanagawaline
 end
 

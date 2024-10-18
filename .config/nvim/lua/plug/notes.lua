@@ -5,20 +5,10 @@ return {
     ft = "markdown",
     dependencies = {
       {
-        "lukas-reineke/headlines.nvim",
-        opts = {
-          markdown = {
-            fat_headlines = false,
-            bullets = {
-              S.Icons.ui.circle_full,
-              S.Icons.ui.circle_circle_l,
-              S.Icons.ui.circle_outline,
-              S.Icons.ui.diamond,
-            },
-          },
-        },
+        "MeanderingProgrammer/render-markdown.nvim",
+        ft = { "markdown" },
+        opts = { bullet = { icons = { S.Icons.ui.dot_l }, right_pad = 2 } },
       },
-      { "ellisonleao/glow.nvim", opts = { border = S.Border }, cmd = "Glow" },
     },
     opts = {
       workspaces = {
@@ -71,8 +61,9 @@ return {
         checkboxes = {
           [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
           ["x"] = { char = "", hl_group = "ObsidianDone" },
-          [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-          ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+          ["-"] = { char = "", hl_group = "ObsidianRightArrow" },
+          -- [">"] = { char = "", hl_group = "ObsidianRightArrow" },
+          -- ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
         },
         bullets = { char = "•", hl_group = "ObsidianBullet" },
         external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },

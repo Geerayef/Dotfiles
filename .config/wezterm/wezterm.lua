@@ -5,38 +5,36 @@ local act = require("wezterm").action
 local nf = require("wezterm").nerdfonts
 local ayu = require("ayu")
 local C = {}
+local G = W.GLOBAL
 if W.config_builder then C = W.config_builder() end
 
-W.GLOBAL = {
-  process_icons = {
-    ["presenterm"] = nf.fa_hashtag,
-    ["opam"] = nf.seti_ocaml,
-    ["dune"] = nf.seti_ocaml,
-    ["ocamlc"] = nf.seti_ocaml,
-    ["cargo"] = nf.dev_rust,
-    ["lua"] = nf.seti_lua,
-    ["fish"] = nf.fa_terminal,
-    ["zsh"] = nf.dev_terminal,
-    ["bash"] = nf.cod_terminal_bash,
-    ["vim"] = nf.dev_vim,
-    ["nvim"] = nf.linux_neovim,
-    ["btop"] = nf.md_chart_donut_variant,
-    ["git"] = nf.dev_git,
-    ["gh"] = nf.dev_github_badge,
-    ["sudo"] = nf.fa_hashtag,
-  },
+G.icon_proc = {
+  ["presenterm"] = nf.fa_hashtag,
+  ["opam"] = nf.seti_ocaml,
+  ["dune"] = nf.seti_ocaml,
+  ["ocamlc"] = nf.seti_ocaml,
+  ["cargo"] = nf.dev_rust,
+  ["lua"] = nf.seti_lua,
+  ["fish"] = nf.fa_terminal,
+  ["zsh"] = nf.dev_terminal,
+  ["bash"] = nf.cod_terminal_bash,
+  ["vim"] = nf.dev_vim,
+  ["nvim"] = nf.linux_neovim,
+  ["btop"] = nf.md_chart_donut_variant,
+  ["git"] = nf.dev_git,
+  ["gh"] = nf.dev_github_badge,
+  ["sudo"] = nf.fa_hashtag,
 }
 
-local G = W.GLOBAL
 local font_family = "ZedMono Nerd Font Mono"
 local font_features = { "calt=1", "clig=1", "liga=1", "dlig=1" }
-if string.match(font_family, "Zed") ~= nil then
+if
+  string.match(font_family, "Zed") ~= nil
+  or string.match(font_family, "Iosevka") ~= nil
+then
   font_features =
     { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" }
-elseif string.match(font_family, "Iosevka") ~= nil then
-  font_features =
-    { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" }
-elseif string.match(font_family, "FiraCode") ~= nil then
+elseif string.match(font_family, "Fira") ~= nil then
   font_features = {
     "zero",
     "calt=1",
@@ -55,7 +53,7 @@ elseif string.match(font_family, "FiraCode") ~= nil then
     "ss05",
     "ss09",
   }
-elseif string.match(font_family, "JetBrainsMono") ~= nil then
+elseif string.match(font_family, "Jet") ~= nil then
   font_features =
     { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
 end
@@ -66,24 +64,29 @@ local function map(key, action)
   return { key = key, mods = "LEADER", action = action }
 end
 
-local function get_process(tab)
-  local process = tab.active_pane.foreground_process_name:match("([^/\\]+)$")
-  -- return G.process_icons[process] or string.format("%s", process)
-  return G.process_icons[process] or "()"
+local function proc_name(tab)
+  local proc = tab.active_pane.foreground_process_name:match("([^/\\]+)$")
+  return G.icon_proc[proc] or "○ "
 end
 
 -- ~ Statusbar ------------------------------------------------------------- ~ --
 
-W.on(
-  "format-tab-title",
-  function(tab) return " " .. get_process(tab) .. " " end
-)
+W.on("format-tab-title", function(tab) return " " .. proc_name(tab) .. " " end)
 
 W.on("update-status", function(window, _)
   local stat_color = ayu.indexed[16]
   local stat = window:active_workspace()
   if window:active_key_table() then
     stat = window:active_key_table()
+    if stat == "move_tab" then
+      stat = "move"
+    elseif stat == "resize_pane" then
+      stat = "size"
+    elseif stat == "copy_mode" then
+      stat = "copy"
+    elseif stat == "search_mode" then
+      stat = "find"
+    end
     stat_color = ayu.brights[5]
   end
   if window:leader_is_active() then
@@ -95,7 +98,7 @@ W.on("update-status", function(window, _)
     { Foreground = { Color = stat_color } },
     { Text = "    " },
     { Text = nf.oct_table .. " " .. stat },
-    { Text = " | " },
+    { Text = " │ " },
     "ResetAttributes",
   }))
   window:set_right_status(W.format({
@@ -140,20 +143,20 @@ C.force_reverse_video_cursor = false
 C.color_scheme = "Shic (terminal.sexy)"
 -- }
 C.colors = {
-  background = ayu.bg_darker,
+  background = ayu.dragonInk1,
   cursor_fg = "#000000",
   cursor_bg = "#FFF779",
   tab_bar = {
-    background = ayu.bg_darker,
+    background = ayu.dragonInk1,
     active_tab = {
       bg_color = ayu.ansi[5],
-      fg_color = ayu.bg_darker,
+      fg_color = ayu.dragonInk1,
       intensity = "Bold",
       underline = "None",
       italic = false,
       strikethrough = false,
     },
-    inactive_tab = { bg_color = ayu.bg_darker, fg_color = ayu.fg },
+    inactive_tab = { bg_color = ayu.dragonInk1, fg_color = ayu.fg },
   },
 }
 
@@ -164,6 +167,7 @@ C.font_dirs = { "/usr/share/fonts/TTF/", "/usr/share/fonts/OTF/" }
 C.font = W.font_with_fallback({
   { family = font_family, harfbuzz_features = font_features },
   { family = "Symbols Nerd Font Mono" },
+  { family = "Font Awesome" },
 })
 
 -- Workspace
