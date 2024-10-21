@@ -13,6 +13,16 @@ function F.LspAttach(client, bufnr)
   end
 end
 
+---@param msg string # Message to display
+---@param lvl string # Log level
+function F.Notify(lvl, msg)
+  if lvl == nil or msg == nil then return end
+  local ok, notify = pcall(require, "notify")
+  if not ok then return end
+  local level = lvl:upper()
+  notify("[" .. level .. "] " .. msg, lvl)
+end
+
 ---Map key sequence to action.
 ---Verbose. Buffer local.
 ---@param mode string|table # Mode{s}
@@ -67,16 +77,6 @@ function F.IsBufInRepo(buf)
   local buf_path = vim.api.nvim_buf_get_name(buf)
   local gitdir = vim.fn.finddir(".git", buf_path .. ";")
   return gitdir and #gitdir > 0 and #gitdir < #buf_path
-end
-
----@param msg string # Message to display
----@param lvl string # Log level
-function F.Notify(lvl, msg)
-  if lvl == nil or msg == nil then return end
-  local ok, notify = pcall(require, "notify")
-  if not ok then return end
-  local level = lvl:upper()
-  notify("[" .. level .. "] " .. msg, lvl)
 end
 
 return F

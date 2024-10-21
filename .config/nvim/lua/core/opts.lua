@@ -8,7 +8,7 @@ o.shell = "/usr/bin/fish"
 o.shortmess:append("ISWsac")
 if vim.fn.executable("rg") == 1 then
   o.grepprg =
-    "rg --hidden --color=never --no-heading --line-number --column --with-filename  --smart-case --trim"
+    "rg --vimgrep --hidden --color=never --no-heading --line-number --column --with-filename  --smart-case --trim"
 end
 
 -- ~ File
@@ -78,7 +78,7 @@ o.showcmd = false
 o.cmdheight = 0
 o.showmode = false
 o.showmatch = true
-o.switchbuf = "useopen,uselast,usetab"
+o.switchbuf = "usetab,uselast,useopen"
 o.signcolumn = "yes"
 o.ruler = false
 o.pumblend = 0

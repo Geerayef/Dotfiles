@@ -14,9 +14,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     dependencies = { "NeogitOrg/neogit", "sindrets/diffview.nvim" },
-    -- event = "BufReadPost",
-    -- cmd = "Gitsigns",
-    lazy = F.IsBufInRepo(0),
+    cmd = "Gitsigns",
     opts = {
       signs = {
         add = { text = "│" },

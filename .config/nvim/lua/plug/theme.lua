@@ -8,16 +8,18 @@ return {
       dim_inactive = false,
       colorset = "mountain",
       styles = {
-        main_keywords = { bold = false, italic = false },
+        -- stylua: ignore start
+        main_keywords  = { bold = false, italic = false },
         other_keywords = { bold = false, italic = false },
-        types = { bold = false, italic = false },
-        functions = { bold = true },
-        operators = { bold = false, italic = false },
-        strings = { bold = false, italic = false },
-        constants = { bold = false, italic = false },
-        comments = { italic = true },
+        types          = { bold = false, italic = false },
+        functions      = { bold = true , italic = false },
+        operators      = { bold = false, italic = false },
+        strings        = { bold = false, italic = false },
+        constants      = { bold = false, italic = false },
+        comments       = { bold = false, italic = true  },
         markup = { headings = { bold = true } },
         folds = {},
+        -- stylua: ignore end
       },
       highlight_overrides = {
         dark = function(hl, c)
@@ -34,20 +36,20 @@ return {
           hl.set("LazyNormal", { link = "Normal" })
           -- stylua: ignore start
           hl.set("@markup.list.unchecked", { bg = kngw.dragonInk1 })
-          -- hl.set("@text.title.1.markdown"        , { link = "markdownH1" })
-          -- hl.set("@text.title.1.marker.markdown" , { link = "markdownH1Delimiter" })
-          -- hl.set("@text.title.2.markdown"        , { link = "markdownH2" })
-          -- hl.set("@text.title.2.marker.markdown" , { link = "markdownH2Delimiter" })
-          -- hl.set("@text.title.3.markdown"        , { link = "markdownH3" })
-          -- hl.set("@text.title.3.marker.markdown" , { link = "markdownH3Delimiter" })
-          -- hl.set("@text.title.4.markdown"        , { link = "markdownH4" })
-          -- hl.set("@text.title.4.marker.markdown" , { link = "markdownH4Delimiter" })
-          -- hl.set("@text.title.5.markdown"        , { link = "markdownH5" })
-          -- hl.set("@text.title.5.marker.markdown" , { link = "markdownH5Delimiter" })
-          -- hl.set("@text.title.6.markdown"        , { link = "markdownH6" })
-          -- hl.set("@text.title.6.marker.markdown" , { link = "markdownH6Delimiter" })
-          -- stylua: ignore end
+          hl.set("@text.title.1.markdown"        , { link = "markdownH1" })
+          hl.set("@text.title.1.marker.markdown" , { link = "markdownH1Delimiter" })
+          hl.set("@text.title.2.markdown"        , { link = "markdownH2" })
+          hl.set("@text.title.2.marker.markdown" , { link = "markdownH2Delimiter" })
+          hl.set("@text.title.3.markdown"        , { link = "markdownH3" })
+          hl.set("@text.title.3.marker.markdown" , { link = "markdownH3Delimiter" })
+          hl.set("@text.title.4.markdown"        , { link = "markdownH4" })
+          hl.set("@text.title.4.marker.markdown" , { link = "markdownH4Delimiter" })
+          hl.set("@text.title.5.markdown"        , { link = "markdownH5" })
+          hl.set("@text.title.5.marker.markdown" , { link = "markdownH5Delimiter" })
+          hl.set("@text.title.6.markdown"        , { link = "markdownH6" })
+          hl.set("@text.title.6.marker.markdown" , { link = "markdownH6Delimiter" })
         end,
+        -- stylua: ignore end
       },
       color_overrides = {
         dark = {
