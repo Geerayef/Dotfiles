@@ -79,13 +79,13 @@ W.on("update-status", function(window, _)
   if window:active_key_table() then
     stat = window:active_key_table()
     if stat == "move_tab" then
-      stat = "move"
+      stat = "MOVE"
     elseif stat == "resize_pane" then
-      stat = "size"
+      stat = "SIZE"
     elseif stat == "copy_mode" then
-      stat = "copy"
+      stat = "COPY"
     elseif stat == "search_mode" then
-      stat = "find"
+      stat = "FIND"
     end
     stat_color = ayu.brights[5]
   end

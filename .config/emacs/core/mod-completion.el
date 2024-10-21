@@ -113,6 +113,7 @@
 (use-package vertico
   :ensure t
   :demand t
+  :hook (minibuffer-setup . cursor-intangible-mode)
   :init
   (fido-mode -1)
   (fido-vertical-mode -1)
@@ -128,6 +129,9 @@
   (vertico-scroll-margin 0)
   (vertico-resize t)
   (enable-recursive-minibuffers t)
+  (minibuffer-prompt-properties
+    '(read-only t intangible t cursor-intangible t face
+                minibuffer-prompt))
   (add-to-list 'vertico-multiform-categories '(jinx grid (vertico-grid-annotate . 20))))
 
 ;; ~ Cape ------------------------------------------------------------------ ~ ;;

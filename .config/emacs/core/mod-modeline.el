@@ -1,27 +1,6 @@
-;;;; mod-ui.el --- UI -*- lexical-binding: t; -*-
+;;; mod-modeline.el --- Modeline plugin & settings   -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
-
-(setq custom-safe-themes t)
-
-(use-package ef-themes
-  :ensure t
-  :demand t
-  :config
-  (setq ef-elea-dark-palette-overrides
-        '((cursor "#FFF779")
-          (bg-main "#0A0E14")))
-  (mapc #'disable-theme custom-enabled-themes)
-  (load-theme 'ef-elea-dark t))
-
-;; (use-package kanagawa-theme
-;;   :ensure (:host github :repo "Fabiokleis/emacs-kanagawa-theme")
-;;   :demand t
-;;   :preface
-;;   (setq kanagawa-theme-custom-colors '((sumi-ink-1b "#0A0E14")
-;;                                        (sumi-ink-1 "#0A0E14")))
-;; :config
-;; (load-theme 'kanagawa t))
 
 (use-package nano-modeline
   :ensure t
@@ -44,5 +23,5 @@
   (org-capture-mode     . nano-modeline-org-capture-mode)
   (org-agenda-mode      . nano-modeline-org-agenda-mode))
 
-(provide 'mod-ui)
-;;; mod-ui.el ends here
+(provide 'mod-modeline)
+;;; mod-modeline.el ends here

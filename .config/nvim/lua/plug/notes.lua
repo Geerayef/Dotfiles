@@ -7,7 +7,10 @@ return {
       {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown" },
-        opts = { bullet = { icons = { S.Icons.ui.dot_l }, right_pad = 2 } },
+        opts = {
+          render_modes = true,
+          bullet = { icons = { S.Icons.ui.dot_l }, right_pad = 2 },
+        },
       },
     },
     opts = {

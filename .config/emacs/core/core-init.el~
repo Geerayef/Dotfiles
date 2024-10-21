@@ -16,55 +16,53 @@
 
 (use-package emacs
   :ensure nil
-  :hook
-  ((prog-mode text-mode fundamental-mode) . util/disable-indent-tabs)
-  :custom
-  ;; UX
-  (use-short-answers t)
-  ;; UI
-  (display-line-numbers-grow-only t)
-  (display-line-numbers-type 'relative)
-  (display-line-numbers-width 3)
-  ;; Editing
-  (tab-width 4)
-  ;; Paragraph - Sentence
-  (bidi-paragraph-direction 'left-to-right)
-  (bidi-inhibit-bpa t)
-  (truncate-partial-width-windows nil)
-  (sentence-end-double-space nil)
-  ;; Scroll
-  (auto-window-vscroll nil)
-  (scroll-margin 4)
-  (scroll-conservatively 101)
-  (fast-but-imprecise-scrolling t)
-  (scroll-preserve-screen-position t)
-  ;; Resize
-  (frame-inhibit-implied-resize t)
-  (window-resize-pixelwise t)
-  (frame-resize-pixelwise t)
-  ;; Miscellaneous
-  (visible-bell nil))
+  ;; :hook ((prog-mode text-mode fundamental-mode) . util/disable-indent-tabs)
+  :config
+  (setq-default left-fringe-width 8
+                right-fringe-width 8
+                indicate-buffer-boundaries nil
+                indicate-empty-lines nil
+                word-wrap t
+                truncate-lines t
+                fill-column 80
+                global-text-scale-adjust-resizes-frames nil
+                use-short-answers t
+                whitespace-line-column nil
+                indent-tabs-mode nil
+                tab-width 4
+                truncate-partial-width-windows nil
+                truncate-string-ellipsis "…"
+                sentence-end-double-space nil
+                delete-by-moving-to-trash (not noninteractive)
+                visible-bell nil
+                ring-bell-function #'ignore
+                mouse-yank-at-point t
+                split-width-threshold 170
+                split-height-threshold nil
+                comment-multi-line t
+                comment-empty-lines t
+                lazy-highlight-initial-delay 0
+                display-time-default-load-average nil
+                line-number-mode t
+                column-number-mode t))
 
 ;; ~ Font ------------------------------------------------------------------ ~ ;;
 
 (use-package jit-lock
   :ensure nil
-  :config (setq jit-lock-defer-time 0))
+  :custom (jit-lock-defer-time 0))
 
-;; (use-package faces
-;;   :ensure nil
-;;   :hook
-;;   (elpaca-after-init . (lambda ()
-;;                          (progn (set-face-attribute 'default nil :family "ZedMono Nerd Font Mono"
-;;                                                     :height 180 :weight 'regular)
-;;                                 (set-face-attribute 'line-number-current-line nil :foreground "yellow"
-;;                                                     :slant 'normal :weight  'regular)))))
-
-(use-package fontset
+(use-package faces
   :ensure nil
   :hook
-;; (set-face-font 'default "Iosevka Nerd Font Mono")
-  (elpaca-after-init . (set-fontset-font t 'default "Iosevka Nerd Font Mono" nil)))
+  (elpaca-after-init . (lambda ()
+                         (progn
+                           (set-face-attribute 'default nil
+                                               :family "ZedMono Nerd Font Propo"
+                                               :height 180 :weight 'regular)
+                           (set-face-attribute 'line-number-current-line nil
+                                               :foreground "yellow"
+                                               :slant 'normal :weight  'bold)))))
 
 ;; ~ Keys ------------------------------------------------------------------ ~ ;;
 
@@ -82,11 +80,22 @@
 
 (use-package display-line-numbers
   :ensure nil
-  :custom (global-display-line-numbers-mode 1))
+  :init (global-display-line-numbers-mode 1)
+  :custom
+  (display-line-numbers-type 'relative)
+  (display-line-numbers-widen t)
+  (display-line-numbers-width 3)
+  (display-line-numbers-grow-only t))
 
 (use-package paren
   :ensure nil
-  :init (show-paren-mode 1))
+  :init (show-paren-mode 1)
+  :config
+  (setq show-paren-delay 0.1
+        show-paren-highlight-openparen t
+        show-paren-when-point-inside-paren t
+        show-paren-when-point-in-periphery t
+        delete-pair-blink-delay 0.03))
 
 (use-package electric
   :ensure nil
@@ -109,8 +118,7 @@
   :custom
   (kill-do-not-save-duplicates t)
   (kill-ring-max 1000)
-  :hook
-  ((fundamental-mode prog-mode) . visual-line-mode))
+  :hook ((fundamental-mode prog-mode) . visual-line-mode))
 
 (use-package text-mode
   :ensure nil
@@ -132,11 +140,11 @@
   (Man-notify-method 'thrifty))
 
 (use-package autoinsert
+  :ensure nil
   :config
   (setq auto-insert-query nil)
   (auto-insert-mode 1)
-  :hook
-  (find-file . auto-insert))
+  :hook (find-file . auto-insert))
 
 (use-package window
   :ensure nil
@@ -144,6 +152,9 @@
   (switch-to-buffer-in-dedicated-window 'pop)
   (switch-to-buffer-obey-display-actions t)
   :config
+  (setq window-divider-default-bottom-width 1
+        window-divider-default-places t
+        window-divider-default-right-width 1)
   (add-to-list 'display-buffer-alist
                '("\\*Help\\*"
                  (display-buffer-reuse-window display-buffer-pop-up-window)
@@ -152,7 +163,8 @@
                '("\\*Completions\\*"
                  (display-buffer-reuse-window display-buffer-pop-up-window)
                  (inhibit-same-window . t)
-                 (window-height . 10))))
+                 (window-height . 10)))
+  :hook (after-init . window-divider-mode))
 
 (use-package winner
   :ensure nil
@@ -170,7 +182,18 @@
 (use-package pixel-scroll
   :ensure nil
   :when (fboundp 'pixel-scroll-precision-mode)
-  :config (pixel-scroll-precision-mode))
+  :config
+  (pixel-scroll-precision-mode)
+  (setq auto-window-vscroll nil
+        scroll-margin 0
+        scroll-conservatively 10
+        scroll-error-top-bottom t
+        fast-but-imprecise-scrolling t
+        scroll-preserve-screen-position t
+        hscroll-margin 2
+        hscroll-step 1
+        mouse-wheel-scroll-amount '(1 ((shift) . hscroll))
+        mouse-wheel-scroll-amount-horizontal 1))
 
 (defun pulse-line (&rest _)
   "Pulse-highlight the current line."
@@ -188,25 +211,36 @@
   (dired-auto-revert-buffer t)
   (dired-dwim-target t)
   (dired-listing-switches "-alh --group-directories-first")
+  (dired-clean-confirm-killing-deleted-buffers nil)
+  (dired-recursive-deletes 'top)
+  (dired-recursive-copies  'always)
+  (dired-create-destination-dirs 'ask)
+  (dired-kill-when-opening-new-dired-buffer t)
   :config
-  (put 'dired-find-alternate-file 'disabled nil)
-  (setf dired-kill-when-opening-new-dired-buffer t))
+  (put 'dired-find-alternate-file 'disabled nil))
+
+;; Filetype
+(setq python-indent-guess-indent-offset-verbose nil)
+(setq sh-indent-after-continuation 'always)
+
+(load-theme wombat)
 
 ;; ~ Modules --------------------------------------------------------------- ~ ;;
 
-(util/recursive-add-to-load-path modules-dir)
+(util/recursive-add-to-load-path core-dir)
 
 (use-package core-backups :ensure nil)
-(use-package mod-ui :ensure nil)
-(use-package mod-icons :ensure nil)
-(use-package mod-completion :ensure nil)
-(use-package mod-write :ensure nil)
-(use-package mod-flycheck :ensure nil)
-(use-package mod-treesitter :ensure nil)
-(use-package mod-eglot :ensure nil)
-(use-package mod-lang :ensure nil)
-(use-package mod-nav :ensure nil)
-(use-package mod-git :ensure nil)
+;; (use-package mod-theme :ensure nil)
+(use-package mod-modeline :ensure nil)
+;; (use-package mod-icons :ensure nil)
+;; (use-package mod-completion :ensure nil)
+;; (use-package mod-write :ensure nil)
+;; (use-package mod-flycheck :ensure nil)
+;; (use-package mod-treesitter :ensure nil)
+;; (use-package mod-eglot :ensure nil)
+;; (use-package mod-lang :ensure nil)
+;; (use-package mod-nav :ensure nil)
+;; (use-package mod-git :ensure nil)
 
 (provide 'core-init)
 ;;; core-init.el ends here
