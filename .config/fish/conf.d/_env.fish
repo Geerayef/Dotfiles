@@ -26,3 +26,4 @@ set -gx CONDA_AUTO_ACTIVATE_BASE false
 set -gx GTK_THEME Material
 set -gx VK_DRIVER_FILES /usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json
 set -gx MOAR "-colors=256 -wrap -style=rose-pine -no-statusbar -no-linenumbers=false"
+set -gx BUN_INSTALL "$HOME/.local"

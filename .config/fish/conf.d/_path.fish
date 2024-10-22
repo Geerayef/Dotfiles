@@ -25,6 +25,7 @@ if test -d "$HOME/.cargo"
     fish_add_path -a --path "$HOME/.cargo/bin"
 end
 
+# Go
 if test -e "$(command -v go)"
     set -l gobin (go env GOBIN)
     fish_add_path -a --path "$gobin"
