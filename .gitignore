@@ -26,3 +26,4 @@ Dotfiles/
 .config/nushell/history*
 .config/fish/fish_variables
 .config/nnn/.lastd
+.local/bin/bun*

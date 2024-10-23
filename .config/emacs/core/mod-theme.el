@@ -9,15 +9,8 @@
   :demand t
   :config
   (setq ef-elea-dark-palette-overrides '((cursor "#FFF779") (bg-main "#010202")))
-  (mapc #'disable-theme custom-enabled-themes)
-  ;; (load-theme 'ef-elea-dark)
-  )
+  (mapc #'disable-theme custom-enabled-themes))
 
-; 'doom-plain-dark
-; 'doom-tomorrow-night
-; 'doom-sourcerer
-; 'doom-pine
-; 'doom-spacegrey
 (use-package doom-themes
   :ensure t
   :demand t
@@ -25,7 +18,6 @@
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t
         doom-themes-padded-modeline 8)
-  (load-theme 'doom-spacegrey t)
   (doom-themes-org-config)
   (custom-set-faces
    '(default ((t (:background "#010202"))))

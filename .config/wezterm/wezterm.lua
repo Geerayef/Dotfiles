@@ -64,14 +64,18 @@ local function map(key, action)
   return { key = key, mods = "LEADER", action = action }
 end
 
-local function proc_name(tab)
-  local proc = tab.active_pane.foreground_process_name:match("([^/\\]+)$")
-  return G.icon_proc[proc] or "○ "
-end
-
 -- ~ Statusbar ------------------------------------------------------------- ~ --
 
-W.on("format-tab-title", function(tab) return " " .. proc_name(tab) .. " " end)
+W.on(
+  "format-tab-title",
+  function(tab)
+    return " "
+      .. (G.icon_proc[tab.active_pane.foreground_process_name:match(
+        "([^/\\]+)$"
+      )] or "○ ")
+      .. " "
+  end
+)
 
 W.on("update-status", function(window, _)
   local stat_color = ayu.indexed[16]
@@ -120,6 +124,7 @@ C.status_update_interval = 1000
 -- Window
 C.window_background_opacity = 1
 C.window_decorations = "NONE"
+C.window_frame = {}
 C.window_padding = { left = "0pt", right = "0pt", top = "0pt", bottom = "0pt" }
 C.use_resize_increments = true
 C.adjust_window_size_when_changing_font_size = false

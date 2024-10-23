@@ -1,4 +1,4 @@
-;;;; mod-write.el --- Tools for writing -*- lexical-binding: t; -*-
+;;; mod-write.el --- Tools for writing -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

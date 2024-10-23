@@ -96,7 +96,7 @@ else if test $SYSTEM_PACKAGE_MANAGER = dnf
 else if test $SYSTEM_PACKAGE_MANAGER = pacman
     abbr -a pi "sudo pacman -S --needed"
     abbr -a pu "sudo pacman -Syu"
-    abbr -a pr "sudo pacman -Rs"
+    abbr -a pr "sudo pacman -Rn"
     abbr -a pq "sudo pacman -Qs"
     abbr -a ps "sudo pacman -Ss"
 else

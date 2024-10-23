@@ -1,4 +1,4 @@
-;;;; core-init.el --- Core behaviour -*- lexical-binding: t; -*-
+;;; core-init.el --- Core behaviour -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -90,12 +90,12 @@
 (use-package paren
   :ensure nil
   :init (show-paren-mode 1)
-  :config
-  (setq show-paren-delay 0.1
-        show-paren-highlight-openparen t
-        show-paren-when-point-inside-paren t
-        show-paren-when-point-in-periphery t
-        delete-pair-blink-delay 0.03))
+  :custom
+  (show-paren-delay 0.1)
+  (show-paren-highlight-openparen t)
+  (show-paren-when-point-inside-paren t)
+  (show-paren-when-point-in-periphery t)
+  (delete-pair-blink-delay 0))
 
 (use-package electric
   :ensure nil

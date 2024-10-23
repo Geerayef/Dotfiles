@@ -1,10 +1,10 @@
-;;;; mod-nav.el --- File system -*- lexical-binding: t; -*-
+;;; mod-nav.el --- File system -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
-;; (use-package zzz-to-char
-;;   :ensure t
-;;   :bind (("M-z" . zzz-to-char-up-to-char)))
+(use-package zzz-to-char
+  :ensure t
+  :bind (("M-z" . zzz-to-char-up-to-char)))
 
 ;; (use-package dirvish
 ;;   :ensure t

@@ -73,51 +73,51 @@ return {
     cmd = "ColorizerToggle",
     opts = { ["*"] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true } },
   },
-  {
-    "stevearc/dressing.nvim",
-    event = "VeryLazy",
-    opts = {
-      input = {
-        title_pos = "center",
-        border = S.Border,
-        relative = "win",
-        prefer_width = 0.4,
-        max_width = { 0.8 },
-        min_width = { 0.2 },
-        win_options = { sidescrolloff = 2 },
-        mappings = {
-          n = { ["<Esc>"] = "Close", ["<C-c>"] = "Close", ["<CR>"] = "Confirm" },
-          i = {
-            ["<Esc>"] = "Close",
-            ["<C-c>"] = "Close",
-            ["<CR>"] = "Confirm",
-            ["<C-p>"] = "HistoryPrev",
-            ["<C-n>"] = "HistoryNext",
-          },
-        },
-        override = function(conf)
-          conf.style = "minimal"
-          return conf
-        end,
-      },
-      select = {
-        backend = { "telescope", "nui", "builtin", "fzf" },
-        fzf = { window = { width = 0.8, height = 0.4 } },
-        nui = { border = { style = S.Border } },
-        builtin = {
-          border = S.Border,
-          max_height = 0.6,
-          mappings = {
-            ["<Esc>"] = "Close",
-            ["<C-c>"] = "Close",
-            ["<CR>"] = "Confirm",
-          },
-          override = function(conf)
-            conf.style = "minimal"
-            return conf
-          end,
-        },
-      },
-    },
-  },
+  -- {
+  --   "stevearc/dressing.nvim",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     input = {
+  --       title_pos = "center",
+  --       border = S.Border,
+  --       relative = "win",
+  --       prefer_width = 0.4,
+  --       max_width = { 0.8 },
+  --       min_width = { 0.2 },
+  --       win_options = { sidescrolloff = 2 },
+  --       mappings = {
+  --         n = { ["<Esc>"] = "Close", ["<C-c>"] = "Close", ["<CR>"] = "Confirm" },
+  --         i = {
+  --           ["<Esc>"] = "Close",
+  --           ["<C-c>"] = "Close",
+  --           ["<CR>"] = "Confirm",
+  --           ["<C-p>"] = "HistoryPrev",
+  --           ["<C-n>"] = "HistoryNext",
+  --         },
+  --       },
+  --       override = function(conf)
+  --         conf.style = "minimal"
+  --         return conf
+  --       end,
+  --     },
+  --     select = {
+  --       backend = { "telescope", "nui", "builtin", "fzf" },
+  --       fzf = { window = { width = 0.8, height = 0.4 } },
+  --       nui = { border = { style = S.Border } },
+  --       builtin = {
+  --         border = S.Border,
+  --         max_height = 0.6,
+  --         mappings = {
+  --           ["<Esc>"] = "Close",
+  --           ["<C-c>"] = "Close",
+  --           ["<CR>"] = "Confirm",
+  --         },
+  --         override = function(conf)
+  --           conf.style = "minimal"
+  --           return conf
+  --         end,
+  --       },
+  --     },
+  --   },
+  -- },
 }
