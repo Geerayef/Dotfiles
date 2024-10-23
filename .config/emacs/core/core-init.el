@@ -132,7 +132,7 @@
 
 (use-package so-long
   :ensure nil
-  :config (global-so-long-mode))
+  :init (global-so-long-mode))
 
 (use-package man
   :ensure nil
@@ -141,8 +141,8 @@
 
 (use-package autoinsert
   :ensure nil
-  :config
-  (setq auto-insert-query nil)
+  :custom
+  (auto-insert-query nil)
   (auto-insert-mode 1)
   :hook (find-file . auto-insert))
 
@@ -152,9 +152,6 @@
   (switch-to-buffer-in-dedicated-window 'pop)
   (switch-to-buffer-obey-display-actions t)
   :config
-  (setq window-divider-default-bottom-width 1
-        window-divider-default-places t
-        window-divider-default-right-width 1)
   (add-to-list 'display-buffer-alist
                '("\\*Help\\*"
                  (display-buffer-reuse-window display-buffer-pop-up-window)
@@ -163,7 +160,14 @@
                '("\\*Completions\\*"
                  (display-buffer-reuse-window display-buffer-pop-up-window)
                  (inhibit-same-window . t)
-                 (window-height . 10)))
+                 (window-height . 10))))
+
+(use-package frame
+  :ensure nil
+  :custom
+  (window-divider-default-bottom-width 1)
+  (window-divider-default-places t)
+  (window-divider-default-right-width 1)
   :hook (after-init . window-divider-mode))
 
 (use-package winner
@@ -182,8 +186,9 @@
 (use-package pixel-scroll
   :ensure nil
   :when (fboundp 'pixel-scroll-precision-mode)
-  :config
+  :custom
   (pixel-scroll-precision-mode)
+  :config
   (setq auto-window-vscroll nil
         scroll-margin 0
         scroll-conservatively 10
@@ -210,7 +215,7 @@
   :custom
   (dired-auto-revert-buffer t)
   (dired-dwim-target t)
-  (dired-listing-switches "-alh --group-directories-first")
+  (dired-listing-switches "-alhD --group-directories-first")
   (dired-clean-confirm-killing-deleted-buffers nil)
   (dired-recursive-deletes 'top)
   (dired-recursive-copies  'always)

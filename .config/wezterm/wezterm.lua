@@ -102,8 +102,8 @@ W.on("update-status", function(window, _)
     { Foreground = { Color = stat_color } },
     { Text = "    " },
     { Text = nf.oct_table .. " " .. stat },
-    { Text = " │ " },
     "ResetAttributes",
+    { Text = " │ " },
   }))
   window:set_right_status(W.format({
     { Foreground = { Color = ayu.indexed[16] } },
@@ -196,6 +196,7 @@ C.check_for_updates = false
 
 -- ~ Key ------------------------------------------------------------------- ~ --
 
+C.disable_default_key_bindings = true
 C.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 }
 C.keys = {
   map("phys:Space", act.ActivateCommandPalette),
@@ -221,24 +222,25 @@ C.keys = {
   { key = "}", mods = "LEADER|SHIFT", action = act.MoveTabRelative(1) },
   map("w", act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" })),
 }
+
 C.key_tables = {
   resize_pane = {
     { key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
     { key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
     { key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
     { key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
-    { key = "Escape", action = "PopKeyTable" },
-    { key = "c", mods = "CTRL", action = "PopKeyTable" },
-    { key = "Enter", action = "PopKeyTable" },
+    { key = "Escape", action = act.PopKeyTable },
+    { key = "Enter", action = act.PopKeyTable },
+    { key = "c", mods = "CTRL", action = act.PopKeyTable },
   },
   move_tab = {
     { key = "h", action = act.MoveTabRelative(-1) },
     { key = "j", action = act.MoveTabRelative(-1) },
     { key = "k", action = act.MoveTabRelative(1) },
     { key = "l", action = act.MoveTabRelative(1) },
-    { key = "Escape", action = "PopKeyTable" },
-    { key = "c", mods = "CTRL", action = "PopKeyTable" },
-    { key = "Enter", action = "PopKeyTable" },
+    { key = "Escape", action = act.PopKeyTable },
+    { key = "Enter", action = act.PopKeyTable },
+    { key = "c", mods = "CTRL", action = act.PopKeyTable },
   },
 }
 

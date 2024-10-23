@@ -8,6 +8,9 @@
   (nano-modeline-prog-mode t)
   :custom
   (nano-modeline-position 'nano-modeline-footer)
+  :config
+  (custom-set-faces 
+   '(nano-modeline-active ((t (:background "#010202")))))
   :hook
   (prog-mode            . nano-modeline-prog-mode)
   (text-mode            . nano-modeline-text-mode)

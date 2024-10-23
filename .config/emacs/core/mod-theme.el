@@ -14,14 +14,16 @@
 (use-package doom-themes
   :ensure t
   :demand t
-  :config
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t
-        doom-themes-padded-modeline 8)
+  :custom
+  (doom-themes-enable-bold t)
+  (doom-themes-enable-italic t)
+  (doom-themes-padded-modeline 8)
   (doom-themes-org-config)
-  (custom-set-faces
+  :config
+  (custom-set-faces 
    '(default ((t (:background "#010202"))))
    '(mode-line ((t (:background "#010202"))))
+   '(mode-line-active ((t (:background "#010202"))))
    '(cursor ((t (:background "yellow"))))))
 
 (provide 'mod-theme)
