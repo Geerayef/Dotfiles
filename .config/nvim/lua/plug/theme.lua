@@ -51,25 +51,23 @@ return {
         end,
         -- stylua: ignore end
       },
-      color_overrides = {
-        dark = {
-          bg = function()
-            return require("mellifluous.color").new(kngw.dragonInk1)
-          end,
-        },
-      },
-      flat_background = {
-        line_numbers = true,
-        floating_windows = true,
-        cursor_line_number = true,
-      },
-      plugins = {
-        telescope = { nvchad_like = false },
-        nvim_tree = { enabled = false },
-        neo_tree = { enabled = false },
-        startify = false,
-      },
+      -- stylua: ignore start
+      color_overrides = { dark = { bg = function() return require("mellifluous.color").new(kngw.dragonInk1) end } },
+      flat_background = { line_numbers = true, floating_windows = true, cursor_line_number = true },
+      plugins = { telescope = { nvchad_like = false }, nvim_tree = { enabled = false }, neo_tree = { enabled = false }, startify = false },
+      -- stylua: ignore end
     },
+  },
+  {
+    "amedoeyes/eyes.nvim",
+    lazy = function() return vim.g.theme ~= "eyes" end,
+    priority = 1010,
+    -- stylua: ignore start
+    opts = { features = { plugins = { codeium = false, dap_ui = false, illuminate = false,
+      leap = false, mason = false, mini_indentscope = false, neo_tree = false, noice = false } },
+      extend = { highlights = { Normal = { bg = kngw.dragonInk1 } } }
+    },
+    -- stylua: ignore end
   },
   {
     "slugbyte/lackluster.nvim",
@@ -77,69 +75,29 @@ return {
     priority = 1010,
     config = function()
       require("lackluster").setup({
+        -- stylua: ignore start
         tweak_background = { normal = "#010101", telescope = "default" },
         tweak_highlight = {
-          Normal = { overwrite = true, bg = "#010101" },
-          NormalNC = { link = "Normal" },
-          NormalFloat = { link = "Normal" },
-          FloatTitle = { link = "TelescopeTitle" },
-          FloatBorder = { bg = "none" },
-          LazyNormal = { link = "Normal" },
-          TelescopeTitle = { bg = "none", bold = true },
-          TelescopeBorder = { bg = "none" },
-          TelescopePromptNormal = { link = "Normal" },
-          TelescopeResultsNormal = { link = "Normal" },
-          TelescopePreviewNormal = { link = "Normal" },
+          Normal                 = { bg   = kngw.dragonInk1, overwrite = true },
+          NormalNC               = { link = "Normal"         },
+          NormalFloat            = { link = "Normal"         },
+          FloatTitle             = { link = "TelescopeTitle" },
+          FloatBorder            = { bg   = "none"           },
+          LazyNormal             = { link = "Normal"         },
+          TelescopeTitle         = { bg   = "none", bold = true },
+          TelescopeBorder        = { bg   = "none"           },
+          TelescopePromptNormal  = { link = "Normal"         },
+          TelescopeResultsNormal = { link = "Normal"         },
+          TelescopePreviewNormal = { link = "Normal"         },
         },
-        disable_plugins = {
-          bufferline = true,
-          dashboard = true,
-          git_gutter = true,
-          headline = true,
-          indentmini = true,
-          lightbulb = true,
-          lsp_config = true,
-          mason = true,
-          mini_diff = true,
-          navic = true,
-          noice = true,
-          rainbow_delimiter = true,
-          scollbar = true,
-          todo_comments = true,
-          tree = true,
-          trouble = true,
-          which_key = true,
-          yanky = true,
-        },
+        disable_plugins = { bufferline = true, dashboard = true, git_gutter = true, headline = true,
+          indentmini = true, lightbulb = true, lsp_config = true, mason = true, mini_diff = true,
+          navic = true, noice = true, rainbow_delimiter = true, scollbar = true, todo_comments = true,
+          tree = true, trouble = true, which_key = true, yanky = true }
+,
+        -- stylua: ignore end
       })
     end,
-  },
-  {
-    "rebelot/kanagawa.nvim",
-    lazy = function() return vim.g.theme ~= "kanagawa" end,
-    priority = 1010,
-    opts = {
-      compile = true,
-      keywordStyle = { bold = true },
-      typeStyle = { italic = false, bold = true },
-      functionStyle = { italic = true, bold = false },
-      overrides = function()
-        return {
-          Cursor = { fg = kngw.lotusYellow5 },
-          WinSeparator = { fg = kngw.dragonBlack5 },
-          NormalFloat = { bg = "none" },
-          FloatTitle = { bg = "none", bold = true },
-          FloatBorder = { bg = "none" },
-          StatusLine = { bg = kngw.dragonInk1 },
-          StatusLineNC = { bg = kngw.dragonInk1 },
-          TelescopeTitle = { fg = kngw.dragonTeal, bg = "none", bold = true },
-          TelescopeBorder = { fg = kngw.fujiWhite, bg = "none" },
-        }
-      end,
-      colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
-      theme = "dragon",
-      background = { dark = "dragon" },
-    },
   },
   {
     "rose-pine/neovim",

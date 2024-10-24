@@ -110,7 +110,6 @@ map("n", "<leader>ow", cmd.ObsidianWorkspace,      "[o]bsidian [w]orkspace")
 map("n", "<leader>oc", cmd.ObsidianToggleCheckbox, "[o]bsidian [c]heckbox")
 map("n", "<leader>oq", cmd.ObsidianQuickSwitch,    "[o]bsidian [q]uick switch")
 map({ "n", "x" }, "<leader>oxn", cmd.ObsidianExtractNote, "[o]bsidian e[x]tract [n]ote")
-map("n", "<leader>gp", cmd.Glow, "[g]low [p]review")
 
 -- Colorizer
 map("n", "<leader>ct", cmd.ColorizerToggle, "[c]olorizer [t]oggle")

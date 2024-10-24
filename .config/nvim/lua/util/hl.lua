@@ -155,7 +155,7 @@ end
 ---@param attr vim.api.keyset.highlight # Highlight attributes
 ---@return nil
 function M.set(ns_id, name, attr)
-  return vim.api.nvim_set_hl(ns_id, name, M.normalize(attr))
+  vim.api.nvim_set_hl(ns_id, name, M.normalize(attr))
 end
 
 ---Set default highlight attributes, normalize highlight attributes before setting.
@@ -193,7 +193,7 @@ local todec = {
   ["F"] = 15,
 }
 
----Convert an hexadecimal to decimal.
+---Convert hexadecimal to decimal.
 ---@param hex string
 ---@return integer dec
 function M.hex2dec(hex)
@@ -206,7 +206,7 @@ function M.hex2dec(hex)
   return dec
 end
 
----Convert an decimal to hexadecimal.
+---Convert decimal to hexadecimal.
 ---@param int integer
 ---@param n_digits integer? # Number of digits used for the hex code
 ---@return string hex
@@ -215,8 +215,8 @@ function M.dec2hex(int, n_digits)
     or string.format("%0" .. n_digits .. "x", int)
 end
 
----Convert a hex color to rgb color.
----@param hex string # Color hex code
+---Convert hex to rgb.
+---@param hex string # hex code
 ---@return integer[] rgb
 function M.hex2rgb(hex)
   return {
@@ -226,7 +226,7 @@ function M.hex2rgb(hex)
   }
 end
 
----Convert an rgb color to hex color.
+---Convert rgb to hex.
 ---@param rgb integer[]
 ---@return string
 function M.rgb2hex(rgb)

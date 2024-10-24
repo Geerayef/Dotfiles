@@ -102,8 +102,8 @@ W.on("update-status", function(window, _)
     { Foreground = { Color = stat_color } },
     { Text = "    " },
     { Text = nf.oct_table .. " " .. stat },
-    "ResetAttributes",
     { Text = " │ " },
+    "ResetAttributes",
   }))
   window:set_right_status(W.format({
     { Foreground = { Color = ayu.indexed[16] } },
