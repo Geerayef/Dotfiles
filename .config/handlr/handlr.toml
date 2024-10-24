@@ -1,3 +1,4 @@
 enable_selector = true
 selector = "tofi"
 term_exec_args = '-e'
+expand_wildcards = true

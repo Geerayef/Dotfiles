@@ -1,7 +1,7 @@
 -- ~ Global ---------------------------------------------------------------- ~ --
 
 local W = require("wezterm")
-local act = require("wezterm").action
+local a = require("wezterm").action
 local nf = require("wezterm").nerdfonts
 local ayu = require("ayu")
 local C = {}
@@ -199,48 +199,65 @@ C.check_for_updates = false
 C.disable_default_key_bindings = true
 C.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 }
 C.keys = {
-  map("phys:Space", act.ActivateCommandPalette),
-  map("c", act.ActivateCopyMode),
+  map("phys:Space", a.ActivateCommandPalette),
+  map("c", a.ActivateCopyMode),
+  { key = "c", mods = "SHIFT|CTRL", action = a.CopyTo("Clipboard") },
+  { key = "v", mods = "SHIFT|CTRL", action = a.PasteFrom("Clipboard") },
+  { key = "=", mods = "CTRL", action = a.IncreaseFontSize },
+  { key = "-", mods = "CTRL", action = a.DecreaseFontSize },
+  { key = "0", mods = "CTRL", action = a.ResetFontSize },
+  { key = "phys:Space", mods = "SHIFT|CTRL", action = a.QuickSelect },
   -- Pane
-  map("h", act.ActivatePaneDirection("Left")),
-  map("j", act.ActivatePaneDirection("Down")),
-  map("k", act.ActivatePaneDirection("Up")),
-  map("l", act.ActivatePaneDirection("Right")),
-  map("s", act.SplitVertical({ domain = "CurrentPaneDomain" })),
-  map("v", act.SplitHorizontal({ domain = "CurrentPaneDomain" })),
-  map("x", act.CloseCurrentPane({ confirm = true })),
-  map("z", act.TogglePaneZoomState),
-  map("o", act.RotatePanes("Clockwise")),
-  map("r", act.ActivateKeyTable({ name = "resize_pane", one_shot = false })),
+  map("h", a.ActivatePaneDirection("Left")),
+  map("j", a.ActivatePaneDirection("Down")),
+  map("k", a.ActivatePaneDirection("Up")),
+  map("l", a.ActivatePaneDirection("Right")),
+  map("s", a.SplitVertical({ domain = "CurrentPaneDomain" })),
+  map("v", a.SplitHorizontal({ domain = "CurrentPaneDomain" })),
+  map("x", a.CloseCurrentPane({ confirm = true })),
+  map("z", a.TogglePaneZoomState),
+  map("o", a.RotatePanes("Clockwise")),
+  map("r", a.ActivateKeyTable({ name = "resize_pane", one_shot = false })),
+  map("f", a.Search("CurrentSelectionOrEmptyString")),
   -- Tab
-  map("t", act.SpawnTab("CurrentPaneDomain")),
-  map("[", act.ActivateTabRelative(-1)),
-  map("]", act.ActivateTabRelative(1)),
+  map("t", a.SpawnTab("CurrentPaneDomain")),
+  map("[", a.ActivateTabRelative(-1)),
+  map("]", a.ActivateTabRelative(1)),
   -- Move
-  map("m", act.ActivateKeyTable({ name = "move_tab", one_shot = false })),
-  { key = "{", mods = "LEADER|SHIFT", action = act.MoveTabRelative(-1) },
-  { key = "}", mods = "LEADER|SHIFT", action = act.MoveTabRelative(1) },
-  map("w", act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" })),
+  map("m", a.ActivateKeyTable({ name = "move_tab", one_shot = false })),
+  { key = "{", mods = "LEADER|SHIFT", action = a.MoveTabRelative(-1) },
+  { key = "}", mods = "LEADER|SHIFT", action = a.MoveTabRelative(1) },
+  map("w", a.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" })),
 }
 
 C.key_tables = {
   resize_pane = {
-    { key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
-    { key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
-    { key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
-    { key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
-    { key = "Escape", action = act.PopKeyTable },
-    { key = "Enter", action = act.PopKeyTable },
-    { key = "c", mods = "CTRL", action = act.PopKeyTable },
+    { key = "h", action = a.AdjustPaneSize({ "Left", 1 }) },
+    { key = "j", action = a.AdjustPaneSize({ "Down", 1 }) },
+    { key = "k", action = a.AdjustPaneSize({ "Up", 1 }) },
+    { key = "l", action = a.AdjustPaneSize({ "Right", 1 }) },
+    { key = "Escape", action = a.PopKeyTable },
+    { key = "Enter", action = a.PopKeyTable },
+    { key = "c", mods = "CTRL", action = a.PopKeyTable },
   },
   move_tab = {
-    { key = "h", action = act.MoveTabRelative(-1) },
-    { key = "j", action = act.MoveTabRelative(-1) },
-    { key = "k", action = act.MoveTabRelative(1) },
-    { key = "l", action = act.MoveTabRelative(1) },
-    { key = "Escape", action = act.PopKeyTable },
-    { key = "Enter", action = act.PopKeyTable },
-    { key = "c", mods = "CTRL", action = act.PopKeyTable },
+    { key = "h", action = a.MoveTabRelative(-1) },
+    { key = "j", action = a.MoveTabRelative(-1) },
+    { key = "k", action = a.MoveTabRelative(1) },
+    { key = "l", action = a.MoveTabRelative(1) },
+    { key = "Escape", action = a.PopKeyTable },
+    { key = "Enter", action = a.PopKeyTable },
+    { key = "c", mods = "CTRL", action = a.PopKeyTable },
+  },
+  search_mode = {
+    { key = "n", mods = "CTRL", action = a.CopyMode("NextMatch") },
+    { key = "p", mods = "CTRL", action = a.CopyMode("PriorMatch") },
+    { key = "r", mods = "CTRL", action = a.CopyMode("CycleMatchType") },
+    { key = "u", mods = "CTRL", action = a.CopyMode("ClearPattern") },
+    { key = "p", mods = "ALT", action = a.CopyMode("PriorMatchPage") },
+    { key = "n", mods = "ALT", action = a.CopyMode("NextMatchPage") },
+    { key = "c", mods = "CTRL", action = a.CopyMode("Close") },
+    { key = "Escape", mods = "NONE", action = a.CopyMode("Close") },
   },
 }
 

@@ -6,38 +6,37 @@
 
 # shellcheck shell=bash
 
-THIS
-THIS="@$(basename "$0")"
-
 main() {
+  local loc
+  loc="@$(basename "$0")"
   if [[ -d $BASHDOTDIR ]]; then
     # shellcheck disable=1091
     . "$BASHDOTDIR/functions/notify.bash"
   else
     # shellcheck disable=1090
-    . "${XDG_CONFIG_HOME:-$HOME/.config}bash/functions/notify.bash"
+    . "${XDG_CONFIG_HOME:-$HOME/.config}/bash/functions/notify.bash"
   fi
-  local aur="hyprlang-git hyprutils-git hyprshade xdg-desktop-portal-hyprland-git brave-bin librewolf-bin"
-  local app="hyprland hypridle hyprlock hyprpaper hyprcursor wezterm foot fish starship neovim python-pynvim fd ripgrep fzf bat eza git curl wget clang cmake brightnessctl playerctl pipewire wireplumber mako ufw most handlr-regex pandoc-cli glow syncthing rclone grim slurp wl-clipboard cliphist tlp tlp-rdw nwg-look tealdeer refind ruff pacman-contrib"
+  local aur="hyprlang-git hyprutils-git xdg-desktop-portal-hyprland-git hyprpolkitagent-git hyprshade brave-bin librewolf-bin moar-bin wezterm-git"
+  local app="intel-ucode refind pacman-contrib bluez bluez-utils hyprland hypridle hyprlock hyprpaper hyprcursor foot fish starship neovim python-pynvim fd ripgrep fzf bat eza btop btrfs-progs git curl wget brightnessctl playerctl pipewire wireplumber mako ufw handlr-regex pandoc-cli nwg-look zathura mupdf glow syncthing rclone grim slurp wl-clipboard cliphist tlp tlp-rdw tealdeer ruff clang clangd bear ccls cmake stylua luacheck lua-language-server shellcheck shfmt"
   if [[ -x "$(command -v pacman)" ]]; then
-    notify "INFO" "${THIS}: Installing via 'pacman':"
+    notify "INFO" "${loc}: Installing via 'pacman':"
     echo "$app" | tr ' ' '\n'
     # shellcheck disable=SC2086
     sudo pacman -Syu --needed $app
   else
-    notify "ERROR" "${THIS}: 'pacman' is not present on this system."
+    notify "ERROR" "${loc}: 'pacman' is not present on this system."
   fi
   if [[ -x "$(command -v paru)" ]]; then
-    notify "INFO" "${THIS}: (AUR) Installing via 'paru': ${aur}"
+    notify "INFO" "${loc}: (AUR) Installing via 'paru': ${aur}"
     # shellcheck disable=SC2086
     paru -Syu --needed $aur
   elif [[ -x "$(command -v yay)" ]]; then
-    notify "ERROR" "${THIS}: 'paru' is not present on this system."
-    notify "INFO" "${THIS}: (AUR) Installing via 'yay': ${aur}"
+    notify "ERROR" "${loc}: 'paru' is not present on this system."
+    notify "INFO" "${loc}: (AUR) Installing via 'yay': ${aur}"
     # shellcheck disable=SC2086
     yay -Syu --needed $aur
   else
-    notify "ERROR" "${THIS}: 'yay' is not present on this system."
+    notify "ERROR" "${loc}: 'yay' is not present on this system."
   fi
 }
 
