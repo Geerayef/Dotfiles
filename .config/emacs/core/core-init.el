@@ -2,6 +2,17 @@
 ;;; Commentary:
 ;;; Code:
 
+;; ~ Variables ------------------------------------------------------------- ~ ;;
+
+(defvar gracs/theme 'doom
+  "Default theme.
+
+Available themes providers:
+  - doom-themes,
+  - ef-themes.")
+
+;; ~ Utility functions ----------------------------------------------------- ~ ;;
+
 (defun util/disable-indent-tabs ()
   "Disable indenting with tabs."
   (setq indent-tabs-mode nil))
@@ -69,12 +80,12 @@
 (global-set-key (kbd "C-v")
                 (lambda ()
                   (interactive
-                   (forward-line (/ (window-height (selected-window)) 3)))))
+                   (forward-line (/ (window-height (selected-window)) 4)))))
 
 (global-set-key (kbd "M-v")
                 (lambda ()
                   (interactive
-                   (forward-line (- (/ (window-height (selected-window)) 3))))))
+                   (forward-line (- (/ (window-height (selected-window)) 4))))))
 
 ;; ~ Edit ------------------------------------------------------------------ ~ ;;
 
@@ -234,7 +245,7 @@
 
 (use-package core-backups :ensure nil)
 (use-package mod-theme :ensure nil)
-(use-package mod-modeline :ensure nil)
+;; (use-package mod-modeline :ensure nil)
 ;; (use-package mod-icons :ensure nil)
 ;; (use-package mod-completion :ensure nil)
 ;; (use-package mod-write :ensure nil)

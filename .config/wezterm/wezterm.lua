@@ -134,19 +134,17 @@ C.default_cursor_style = "SteadyBlock"
 C.force_reverse_video_cursor = false
 
 -- Colorscheme
--- ~ Monochromish {
+-- MONO
 -- C.color_scheme = "Grayscale (dark) (terminal.sexy)"
 -- C.color_scheme = "Black Metal (Marduk) (base16)"
 -- C.color_scheme = "VWbug (terminal.sexy)"
--- }
--- ~ Dim {
+-- DIM
 -- C.color_scheme = "Unsifted Wheat (terminal.sexy)"
 -- C.color_scheme = "Twilight"
--- }
--- ~ Bright {
+-- BRIGHT
 -- C.color_scheme = "Gruvbox Material (Gogh)"
 C.color_scheme = "Shic (terminal.sexy)"
--- }
+--
 C.colors = {
   background = ayu.dragonInk1,
   cursor_fg = "#000000",

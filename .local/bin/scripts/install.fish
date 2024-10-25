@@ -2,7 +2,7 @@
 
 function util_get_components -d "Utility: Get available components."
     set -l dir_scripts (status dirname)
-    set -l comps (fd "component_" -t f $dir_scripts)
+    set -l comps (fd "mod_" -t f $dir_scripts)
     for i in (seq (count $comps))
         set -l script_basename (basename $comps[$i])
         set comps[$i] $script_basename
