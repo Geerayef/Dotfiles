@@ -1,0 +1,23 @@
+# Rose-Piné
+
+fg="#e0def4"
+bg="#191724"
+
+# r0="#21202e"
+r0="#26233a" # black (Overlay)
+r1="#eb6f92" # red (Love)
+r2="#31748f" # green (Pine)
+r3="#f6c177" # yellow (Gold)
+r4="#9ccfd8" # blue (Foam)
+r5="#c4a7e7" # magenta (Iris)
+r6="#ebbcba" # cyan (Rose)
+r7="#e0def4" # white (Text)
+
+b0="#6e6a86" # black (Muted)
+b1="#eb6f92" # red (Love)
+b2="#31748f" # green (Pine)
+b3="#f6c177" # yellow (Gold)
+b4="#9ccfd8" # blue (Foam)
+b5="#c4a7e7" # magenta (Iris)
+b6="#ebbcba" # cyan (Rose)
+b7="#e0def4" # white (Text)

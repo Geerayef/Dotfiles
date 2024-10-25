@@ -1,12 +1,28 @@
 # Kanagawa Dragon
-bg="#0A0E14"
-fg="#F2F4F8"
-black="#0D0C0C"
-gray="#282727"
-red="#C4746E"
-green="#8A9A7B"
-yellow="#C4B28A"
-blue="#8BA4B0"
-pink="#A292A3"
-cyan="#8992A7"
-orange="#B98D7B"
+
+fg="#DCD7BA"
+bg="#090618"
+
+r0="#1F1F28"  # black
+r1="#C34043"  # red
+r2="#76946A"  # green
+r3="#C0A36E"  # yellow
+r4="#7E9CD8"  # blue
+r5="#957FB8"  # magenta
+r6="#6A9589"  # cyan
+r7="#C8C093"  # white
+
+b0="#727169"  # black
+b1="#E82424"  # red
+b2="#98BB6C"  # green
+b3="#E6C384"  # yellow
+b4="#7FB4CA"  # blue
+b5="#938AA9"  # magenta
+b6="#7AA89F"  # cyan
+b7="#DCD7BA"  # white
+
+sel-fg="#C8C093"
+sel-bg="#2D4F67"
+
+x16="#FFA066"
+x17="#FF5D62"

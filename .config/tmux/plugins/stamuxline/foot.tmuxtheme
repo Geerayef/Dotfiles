@@ -1,0 +1,26 @@
+# Foot - Theme to sync with foot
+
+fg="#EBDBB2"
+bg="#1B1B1B"
+
+r0="#2B2B2B" # black
+r1="#CC241D" # red
+r2="#98971A" # green
+r3="#D79921" # yellow
+r4="#458588" # blue
+r5="#B16286" # magenta
+r6="#689D6A" # cyan
+r7="#a89984" # white
+
+b0="#928374" # black
+b1="#FB4934" # red
+b2="#B8BB26" # green
+b3="#FABD2F" # yellow
+b4="#83A598" # blue
+b5="#D3869B" # magenta
+b6="#8EC07C" # cyan
+b7="#EBDBB2" # white
+
+sel-fg="#EBDBB2"
+sel-bg="#665C54"
+

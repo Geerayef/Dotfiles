@@ -37,11 +37,11 @@ main() {
   setopt status-left-length "100"
   setopt status-right-length "100"
   # messages
-  setopt message-style "fg=${cyan},bg=${gray},align=centre"
-  setopt message-command-style "fg=${cyan},bg=${gray},align=centre"
+  setopt message-style "fg=${b5},bg=${r0},align=centre"
+  setopt message-command-style "fg=${b5},bg=${r0},align=centre"
   # panes
-  setopt pane-border-style "fg=${gray}"
-  setopt pane-active-border-style "fg=${blue}"
+  setopt pane-border-style "fg=${r0}"
+  setopt pane-active-border-style "fg=${r5}"
   # windows
   setw window-status-activity-style "bold"
   setw window-status-bell-style "bold"
@@ -50,12 +50,12 @@ main() {
   # clock
   setopt clock-mode-style 24
   # statusline
-  setopt status-left "#[fg=$fg]     #{?client_prefix,#[bg=$blue],#[bg=$bg]}#{?client_prefix,#[fg=$bg],#[fg=$yellow]}#S#[fg=$fg,bg=$bg] | "
-  setopt status-right "#[fg=$fg,bg=$bg] | 󱑂 %R#[fg=$fg,bg=$bg]    "
-  setw window-status-format "#[fg=$blue,bg=$gray,italics] #I #[fg=$blue,bg=$bg,italics] #W #[fg=$fg,bg=$bg]"
-  setw window-status-current-format "#[fg=$bg,bg=$yellow,bold] #I #[fg=$yellow,bg=$gray,bold] #W #[fg=$fg,bg=$bg]"
-  setw clock-mode-colour "${cyan}"
-  setw mode-style "fg=${cyan} bg=${gray} bold"
+  setopt status-left "#[fg=$fg]     #{?client_prefix,#[bg=$b3],#[bg=$bg]}#{?client_prefix,#[fg=$bg],#[fg=$b3]}#S#[fg=$fg,bg=$bg] | "
+  setopt status-right "#[fg=$fg,bg=$bg] 󱑂 %R#[fg=$fg,bg=$bg]    "
+  setw window-status-format "#[fg=$r5,bg=$r0,italics] #I #[fg=$r5,bg=$bg,italics] #W #[fg=$fg,bg=$bg]"
+  setw window-status-current-format "#[fg=$bg,bg=$b3,bold] #I #[fg=$b3,bg=$r0,bold] #W #[fg=$fg,bg=$bg]"
+  setw clock-mode-colour "${b5}"
+  setw mode-style "fg=${b5} bg=${r0} bold"
 }
 
 main "$@"
