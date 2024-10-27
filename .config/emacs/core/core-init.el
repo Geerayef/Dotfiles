@@ -41,6 +41,7 @@ Available themes providers:
                 whitespace-line-column nil
                 indent-tabs-mode nil
                 tab-width 4
+                tab-always-indent 'complete
                 truncate-partial-width-windows nil
                 truncate-string-ellipsis "…"
                 sentence-end-double-space nil
@@ -80,12 +81,12 @@ Available themes providers:
 (global-set-key (kbd "C-v")
                 (lambda ()
                   (interactive
-                   (forward-line (/ (window-height (selected-window)) 4)))))
+                   (forward-line (/ (window-height (selected-window)) 2)))))
 
 (global-set-key (kbd "M-v")
                 (lambda ()
                   (interactive
-                   (forward-line (- (/ (window-height (selected-window)) 4))))))
+                   (forward-line (- (/ (window-height (selected-window)) 2))))))
 
 ;; ~ Edit ------------------------------------------------------------------ ~ ;;
 
@@ -245,7 +246,7 @@ Available themes providers:
 
 (use-package core-backups :ensure nil)
 (use-package mod-theme :ensure nil)
-;; (use-package mod-modeline :ensure nil)
+(use-package mod-modeline :ensure nil)
 ;; (use-package mod-icons :ensure nil)
 ;; (use-package mod-completion :ensure nil)
 ;; (use-package mod-write :ensure nil)

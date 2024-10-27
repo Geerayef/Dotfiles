@@ -3,7 +3,6 @@ return {
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "numToStr/Comment.nvim", event = "BufReadPost", opts = true },
   { "tpope/vim-surround", event = "BufReadPost" },
-  { "mfussenegger/nvim-jdtls", ft = "java" },
   {
     "tpope/vim-sleuth",
     event = "BufReadPost",
@@ -87,7 +86,11 @@ return {
         win_options = { sidescrolloff = 2 },
         mappings = {
           n = { ["<C-c>"] = "Close" },
-          i = { ["<Esc>"] = "Close", ["<C-p>"] = "HistoryPrev", ["<C-n>"] = "HistoryNext" },
+          i = {
+            ["<Esc>"] = "Close",
+            ["<C-p>"] = "HistoryPrev",
+            ["<C-n>"] = "HistoryNext",
+          },
         },
         override = function(conf)
           conf.style = "minimal"

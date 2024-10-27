@@ -1,4 +1,4 @@
-# ~  nnn
+# ~ nnn -------------------------------------------------------------------- ~ #
 
 set -l BLK E5
 set -l CHR E5
@@ -26,27 +26,20 @@ else
     set -x NNN_TMPFILE "$HOME/.config/nnn/.lastd"
 end
 
-# ~ -------------------------------------------------------------------------------- ~ #
-
-# ~  Functions
-
-# CD on quit
+# ~ Functions -------------------------------------------------------------- ~ #
 
 function n --wraps nnn --description "CD to current directory on exit"
     # Don't nest nnn in subshells
     if test -n "$NNNLVL" -a "$NNNLVL" -ge 1
-        echo "~~~~~ [INFO] nnn is already running.\n"
+        notify INFO "nnn is already running."
         return
     end
-
     # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
     stty start undef
     stty stop undef
     # stty lwrap undef
     # stty lnext undef
-
     command nnn -Tv $argv
-
     if test -e $NNN_TMPFILE
         source $NNN_TMPFILE
         rm $NNN_TMPFILE

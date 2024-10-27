@@ -139,12 +139,10 @@ C.force_reverse_video_cursor = false
 -- C.color_scheme = "Black Metal (Marduk) (base16)"
 -- C.color_scheme = "VWbug (terminal.sexy)"
 -- DIM
--- C.color_scheme = "Unsifted Wheat (terminal.sexy)"
--- C.color_scheme = "Twilight"
+C.color_scheme = "Unsifted Wheat (terminal.sexy)"
 -- BRIGHT
 -- C.color_scheme = "Gruvbox Material (Gogh)"
-C.color_scheme = "Shic (terminal.sexy)"
---
+-- C.color_scheme = "Shic (terminal.sexy)"
 C.colors = {
   background = ayu.dragonInk1,
   cursor_fg = "#000000",

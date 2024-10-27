@@ -1,1 +1,1 @@
-bind --mode insert \ef 'commandline -a " | fzf"'
+# bind --mode insert \ef 'commandline -a " | fzf"'

@@ -8,6 +8,7 @@ if test -e "$(command -v eza)"
     alias lT="eza -aT -L 2 --color=always --icons=always --group-directories-first"
     alias lt="eza -aT -L 1 --color=always --icons=always --group-directories-first"
     alias l.="eza -af --color=always --icons=always --group-directories-first"
+    alias lp="eza -a --color=never --icons=never --group-directories-first"
 else if test -e "$(command -v exa)"
     alias ls="exa -a --color=always --icons=always --group-directories-first"
     alias la="exa -aG --color=always --icons=always --group-directories-first"
@@ -15,11 +16,13 @@ else if test -e "$(command -v exa)"
     alias lT="exa -aT -L 2 --color=always --icons=always --group-directories-first"
     alias lt="exa -aT -L 1 --color=always --icons=always --group-directories-first"
     alias l.="exa -af --color=always --icons=always --group-directories-first"
+    alias lp="exa -a --color=never --icons=never --group-directories-first"
 else
     alias ls="ls -a --color=always --group-directories-first"
     alias l.="ls -A | grep -E '^\.' --group-directories-first"
     alias la="ls -a --color=always --group-directories-first"
     alias ll="ls -la --color=always --group-directories-first"
+    alias lp="ls -a --color=never --group-directories-first"
 end
 
 # ~ Apps

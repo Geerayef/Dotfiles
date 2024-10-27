@@ -1,4 +1,4 @@
-;;;; mod-flycheck.el --- Flycheck -*- lexical-binding: t; -*-
+;;; mod-flycheck.el --- Flycheck -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -11,13 +11,7 @@
   (flycheck-idle-change-delay 1.0)
   (flycheck-display-errors-delay 0.25)
   (flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list)
-  :hook
-  ((prog-mode-hook text-mode-hook) . flycheck-mode))
-
-(use-package flycheck-package
-  :ensure t
-  :after (flycheck package-lint)
-  :init (flycheck-package-setup))
+  :hook ((prog-mode-hook text-mode-hook) . flycheck-mode))
 
 (provide 'mod-flycheck)
 ;;; mod-flycheck.el ends here

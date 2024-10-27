@@ -1,48 +1,50 @@
-;;; mod-write.el --- Tools for writing -*- lexical-binding: t; -*-
+;;; mod-write.el --- Writing tools -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
 (use-package jinx
   :ensure t
-  :hook ((text-mode org-mode markdown-mode prog-mode conf-mode) . global-jinx-mode)
-  :bind (("M-$" . jinx-correct)
-         ("C-M-$" . jinx-languages)))
+  :hook
+  ((text-mode org-mode markdown-mode prog-mode conf-mode) . global-jinx-mode)
+  :bind
+  (("M-$" . jinx-correct)
+   ("C-M-$" . jinx-languages)))
 
 ;; ~ Org ------------------------------------------------------------------- ~ ;;
 
-(use-package org
-  :ensure nil
-  :custom
-  (org-startup-indented t)
-  (org-pretty-entities t)
-  (org-use-sub-superscripts "{}")
-  (org-hide-emphasis-markers t)
-  (org-startup-with-inline-images t)
-  (org-image-actual-width '(300)))
+;; (use-package org
+;;   :ensure nil
+;;   :custom
+;;   (org-startup-indented t)
+;;   (org-pretty-entities t)
+;;   (org-use-sub-superscripts "{}")
+;;   (org-hide-emphasis-markers t)
+;;   (org-startup-with-inline-images t)
+;;   (org-image-actual-width '(300)))
 
-(use-package org-modern
-  :ensure t
-  :custom
-  (org-modern-keyword nil)
-  (org-modern-checkbox nil)
-  (org-modern-table nil)
-  :hook
-  (org-mode . global-org-modern-mode))
+;; (use-package org-modern
+;;   :ensure t
+;;   :custom
+;;   (org-modern-keyword nil)
+;;   (org-modern-checkbox nil)
+;;   (org-modern-table nil)
+;;   :hook
+;;   (org-mode . global-org-modern-mode))
 
-(use-package org-fragtog
-  :ensure t
-  :after org
-  :custom
-  (org-startup-with-latex-preview t)
-  (org-format-latex-options
-   (plist-put org-format-latex-options :scale 2)
-   (plist-put org-format-latex-options :foreground 'auto)
-   (plist-put org-format-latex-options :background 'auto))
-  :hook (org-mode . org-fragtog-mode))
+;; (use-package org-fragtog
+;;   :ensure t
+;;   :after org
+;;   :custom
+;;   (org-startup-with-latex-preview t)
+;;   (org-format-latex-options
+;;    (plist-put org-format-latex-options :scale 2)
+;;    (plist-put org-format-latex-options :foreground 'auto)
+;;    (plist-put org-format-latex-options :background 'auto))
+;;   :hook (org-mode . org-fragtog-mode))
 
-(use-package org-appear
-  :ensure t
-  :hook (org-mode . org-appear-mode))
+;; (use-package org-appear
+;;   :ensure t
+;;   :hook (org-mode . org-appear-mode))
 
 ;; (use-package denote
 ;;   :ensure t
@@ -147,11 +149,12 @@
 ;;   ;; Daily notes: file name is YYYY-MM-DD.md
 ;;   (obsidian-daily-notes-directory "daily")
 ;;   (obsidian-templates-directory "templates")
-;;   (setq obsidian-daily-note-template "daily.md")
-;;   :bind (:map obsidian-mode-map
-;;               ("C-c C-o" . obsidian-follow-link-at-point)
-;;               ("C-c C-b" . obsidian-backlink-jump)
-;;               ("C-c C-l" . obsidian-insert-link)))
+;;   (obsidian-daily-note-template "daily.md")
+;;   :bind
+;;   (:map obsidian-mode-map
+;;         ("C-c C-o" . obsidian-follow-link-at-point)
+;;         ("C-c C-b" . obsidian-backlink-jump)
+;;         ("C-c C-l" . obsidian-insert-link)))
 
 (provide 'mod-write)
 ;;; mod-write.el ends here

@@ -1,7 +1,7 @@
 FS = {}
 
 ---Compute the path of file's root directory.
----@param file string? # File path
+---@param file string # File path
 ---@param root_markers string[]? # Files or directories marking the root
 ---@return string? # Absolute path of the root directory
 function FS.root(file, root_markers)
@@ -10,12 +10,12 @@ function FS.root(file, root_markers)
   if vim.tbl_contains(root_markers, vim.fs.basename(file)) then
     return vim.fs.dirname(file)
   end
+  local proximity_threshold = 2
   local closest = ""
   local closest_proximity = 32
-  local proximity = 0
-  local proximity_threshold = 2
   local root = ""
   local root_depth = 0
+  local root_proximity = 0
   local _, file_depth = file:gsub("/", "")
   local mark_path = ""
   for _, mark in ipairs(root_markers) do
@@ -29,10 +29,10 @@ function FS.root(file, root_markers)
       if root ~= nil and root ~= "" then
         root = vim.uv.fs_realpath(root) --[[@as string]]
         _, root_depth = root:gsub("/", "")
-        proximity = file_depth - root_depth
-        if proximity <= closest_proximity then
-          if proximity <= proximity_threshold then return root end
-          closest_proximity = proximity
+        root_proximity = file_depth - root_depth
+        if root_proximity <= closest_proximity then
+          if root_proximity <= proximity_threshold then return root end
+          closest_proximity = root_proximity
           closest = root
         end
       end
@@ -44,7 +44,7 @@ end
 ---Read file contents.
 ---@param path string # File path relative to CWD
 ---@return string?
-function FS.read_file(path)
+function FS.file_read(path)
   local file = io.open(path, "r")
   if not file then return nil end
   local content = file:read("*a")
@@ -56,7 +56,7 @@ end
 ---@param path string # File path relative to CWD
 ---@param content string
 ---@return boolean success
-function FS.write_file(path, content)
+function FS.file_write(path, content)
   local file = io.open(path, "w")
   if not file then return false end
   file:write(content)

@@ -1,8 +1,9 @@
-;;;; mod-icons.el --- Icons -*- lexical-binding: t; -*-
+;;; mod-icons.el --- Icons -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
 (use-package memoize :ensure t :demand t)
+
 (use-package all-the-icons
   :ensure t
   :after memoize
@@ -17,7 +18,8 @@
   (nerd-icons-scale-factor 0.7)
   (nerd-icons-default-adjust -0.1)
   :config
-  (when (and (display-graphic-p nil) (not (member "Symbols Nerd Font Mono" (font-family-list))))
+  (when (and (display-graphic-p nil)
+             (not (member "Symbols Nerd Font Mono" (font-family-list))))
     (nerd-icons-install-fonts)))
 
 (use-package nerd-icons-completion

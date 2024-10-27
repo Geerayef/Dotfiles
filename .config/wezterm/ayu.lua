@@ -1,6 +1,6 @@
 return {
   bg = "#0A0E14",
-  dragonInk1 = "#010203",
+  dragonInk1 = "#010204",
   fg = "#E6E1CF",
   selection_bg = "#253340",
   selection_fg = "#E6E1CF",

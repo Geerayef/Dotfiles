@@ -1,4 +1,4 @@
-;;;; eglot.el --- Eglot -*- lexical-binding: t; -*-
+;;; eglot.el --- Eglot -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -13,9 +13,8 @@
   (dolist (mode-def mode-list)
     (let ((mode (if (listp mode-def) (car mode-def) mode-def)))
       (cond
-        ((listp mode) (add-eglot-hooks mode))
-        (t
-          (when (and (fboundp mode)
+       ((listp mode) (add-eglot-hooks mode))
+       (t (when (and (fboundp mode)
                      (not (eq 'clojure-mode mode))  ; prefer cider
                      (not (eq 'lisp-mode mode))     ; prefer sly/slime
                      (not (eq 'scheme-mode mode)))  ; prefer geiser
@@ -28,9 +27,9 @@
     ;; `lsp-program' is either a list of strings or a function object
     ;; calling `eglot-alternatives'.
     (if (functionp lsp-program)
-      (condition-case nil
-                      (car (funcall lsp-program))
-                      (error nil))
+        (condition-case nil
+            (car (funcall lsp-program))
+          (error nil))
       (executable-find (car lsp-program)))))
 
 (defun eglot-auto-ensure ()

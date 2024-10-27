@@ -1,17 +1,16 @@
-;;;; mod-completion.el --- Completion -*- lexical-binding: t; -*-
+;;; mod-completion.el --- Completion -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
-(setq tab-always-indent 'complete)
-
-;; ~ Orderless ------------------------------------------------------------- ~ ;;
+;; ~ Orderless ------------------------------------------------------------ ~ ;;
 
 (use-package orderless
   :ensure t
   :demand t
   :config
-  (orderless-define-completion-style orderless+initialism
-    (orderless-matching-styles '(orderless-initialism orderless-literal orderless-regexp)))
+  (orderless-define-completion-style
+   orderless+initialism (orderless-matching-styles
+                         '(orderless-initialism orderless-literal orderless-regexp)))
   :custom
   (completion-styles '(orderless partial-completion substring basic))
   (completion-category-defaults '(()))
@@ -23,7 +22,7 @@
                                    (eglot-capf (styles orderless))))
   (orderless-component-separator #'orderless-escapable-split-on-space))
 
-;; ~ Consult --------------------------------------------------------------- ~ ;;
+;; ~ Consult -------------------------------------------------------------- ~ ;;
 
 (use-package consult
   :ensure t
@@ -95,20 +94,22 @@
   (setq consult-fd-args '("fd" "-H" "-i" "-E .git node_modules" "--prune" "--color=never" "-t f")
         consult-ripgrep-args (concat consult-ripgrep-args " --hidden")
         consult-narrow-key "<"))
+
 (use-package consult-flycheck :ensure t :after consult)
+
 (use-package consult-eglot :ensure t :after consult)
 
-;; ~ Marginalia ------------------------------------------------------------ ~ ;;
+;; ~ Marginalia ----------------------------------------------------------- ~ ;;
 
 (use-package marginalia
   :ensure t
   :after vertico
   :init
   (marginalia-mode)
-  :config
-  (setq marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil)))
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil)))
 
-;; ~ Vertico --------------------------------------------------------------- ~ ;;
+;; ~ Vertico -------------------------------------------------------------- ~ ;;
 
 (use-package vertico
   :ensure t
@@ -130,11 +131,11 @@
   (vertico-resize t)
   (enable-recursive-minibuffers t)
   (minibuffer-prompt-properties
-    '(read-only t intangible t cursor-intangible t face
-                minibuffer-prompt))
+   '(read-only t intangible t cursor-intangible t face
+               minibuffer-prompt))
   (add-to-list 'vertico-multiform-categories '(jinx grid (vertico-grid-annotate . 20))))
 
-;; ~ Cape ------------------------------------------------------------------ ~ ;;
+;; ~ Cape ----------------------------------------------------------------- ~ ;;
 
 ;; (use-package cape
 ;;              :ensure t
@@ -167,7 +168,7 @@
 ;; ("C-c p &" . cape-sgml)
 ;; ("C-c p r" . cape-rfc1345)
 
-;; ~ Corfu ----------------------------------------------------------------- ~ ;;
+;; ~ Corfu ---------------------------------------------------------------- ~ ;;
 
 ;; (use-package corfu
 ;;              :ensure (corfu :files (:defaults "extensions/*") :includes (corfu-popupinfo))
@@ -194,7 +195,7 @@
 ;;                    ("M-p" . corfu-popupinfo-scroll-down)
 ;;                    ("M-n" . corfu-popupinfo-scroll-up)))
 
-;; ~ Embark ---------------------------------------------------------------- ~ ;;
+;; ~ Embark --------------------------------------------------------------- ~ ;;
 
 ;; (use-package embark
 ;;              :ensure t
