@@ -1,4 +1,4 @@
-vim.g.theme = "mellifluous"
+vim.g.theme = "yugen"
 require("util.static")
 require("core.opts")
 require("core.func")

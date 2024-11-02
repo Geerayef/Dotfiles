@@ -1,6 +1,11 @@
 local kngw = require("clrs.kanagawa.palette")
 return {
   {
+    "bettervim/yugen.nvim",
+    priority = 1010,
+    lazy = function() return vim.g.theme ~= "yugen" end,
+  },
+  {
     "ramojus/mellifluous.nvim",
     lazy = function() return vim.g.theme ~= "mellifluous" end,
     priority = 1010,
@@ -93,8 +98,7 @@ return {
         disable_plugins = { bufferline = true, dashboard = true, git_gutter = true, headline = true,
           indentmini = true, lightbulb = true, lsp_config = true, mason = true, mini_diff = true,
           navic = true, noice = true, rainbow_delimiter = true, scollbar = true, todo_comments = true,
-          tree = true, trouble = true, which_key = true, yanky = true }
-,
+          tree = true, trouble = true, which_key = true, yanky = true },
         -- stylua: ignore end
       })
     end,

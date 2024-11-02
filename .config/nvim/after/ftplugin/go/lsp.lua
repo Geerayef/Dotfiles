@@ -1,13 +1,7 @@
 local gopls = {
   on_attach = require("core.func").LspAttach,
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_patterns = {
-    "*.go",
-    "main.go",
-    "go.mod",
-    "go.work",
-    "go.sum",
-  },
+  root_patterns = { "*.go", "main.go", "go.mod", "go.work", "go.sum" },
   cmd = { "gopls" },
 }
 

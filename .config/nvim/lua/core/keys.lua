@@ -13,6 +13,10 @@ map("x", "K", ":'<,'>m '<-2<CR>gv=gv", "Move selection up")
 map({ "n", "x" }, "<C-d>", "10j", "Scroll down 10 lines")
 map({ "n", "x" }, "<C-u>", "10k", "Scroll up 10 lines")
 
+-- Edit
+map("n", "<tab>", ">>", "Indent line using <tab>")
+map("n", "<bs>", "<<", "Unindent line using <bs>")
+
 -- Buffers
 map("n", "<leader>bd", cmd.bd, "[b]uffer [d]elete")
 
@@ -32,14 +36,12 @@ map("n", "<leader>to", cmd.tabnew, "[t]ab [o]pen")
 map("n", "<leader>tml", "<cmd>tabmove +1<CR>", "[t]ab [m]ove [l] right")
 map("n", "<leader>tmh", "<cmd>tabmove -1<CR>", "[t]ab [m]ove [h] left")
 
--- Terminal
-map("t", "<Esc>", "<C-\\><C-n>", "Terminal escape")
-
 -- Diagnostic
 map("n", "]d", vim.diagnostic.goto_next, "Next ] [d]iagnostic")
 map("n", "[d", vim.diagnostic.goto_prev, "Previous [ [d]iagnostic")
 
 -- Commandline
+map({ "n", "v" }, "<cr>", ":", "Use Enter key to enter command mode")
 local key = vim.api.nvim_set_keymap
 key("c", "<C-a>", "<Home>", {})
 key("c", "<C-e>", "<End>", {})
@@ -48,6 +50,9 @@ key("c", "<C-b>", "<Left>", {})
 key("c", "<C-d>", "<Del>", {})
 key("c", "<M-f>", "<S-Right>", {})
 key("c", "<M-b>", "<S-Left>", {})
+
+-- Terminal
+map("t", "<Esc>", "<C-\\><C-n>", "Terminal escape")
 
 -- ~ Plugin ---------------------------------------------------------------- ~ --
 
