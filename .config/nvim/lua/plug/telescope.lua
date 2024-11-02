@@ -138,6 +138,7 @@ return {
             sort_lastused = true,
             sort_mru = true,
             max_results = 10,
+            mappings = { n = { ["x"] = a.delete_buffer } },
           },
           oldfiles = { prompt_title = "Old files" },
           colorscheme = {
@@ -146,6 +147,7 @@ return {
             layout_strategy = "horizontal",
           },
           keymaps = { layout_strategy = "horizontal" },
+          highlights = { layout_strategy = "horizontal" },
         },
         extensions = {
           ["ui-select"] = { initial_mode = "normal" },
