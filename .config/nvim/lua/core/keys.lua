@@ -68,7 +68,8 @@ map("n", "<leader>sh", "<cmd>Telescope help_tags<CR>",   "Telescope [s]earch [h]
 map("n", "<leader>sg", "<cmd>Telescope live_grep<CR>",   "Telescope [s]earch [g]rep")
 map("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", "Telescope [s]earch [w]ord")
 map("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", "Telescope [s]earch [d]iagnostics")
-map("n", "<leader>?", "<cmd>Telescope oldfiles<CR>",     "[?] Telescope recent files")
+-- map("n", "<leader>?", "<cmd>Telescope oldfiles<CR>",     "[?] Telescope recent files")
+map("n", "<leader>?", "<cmd>Telescope frecency<CR>",     "[?] Telescope recent files")
 map("n", "<leader> ", "<cmd>Telescope buffers<CR>",      "[ ] Telescope buffers")
 map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", "[/] Telescope search buffer")
 

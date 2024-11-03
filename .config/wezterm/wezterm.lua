@@ -122,7 +122,7 @@ C.show_new_tab_button_in_tab_bar = false
 C.status_update_interval = 1000
 
 -- Window
-C.window_background_opacity = 1
+C.window_background_opacity = 0.9
 C.window_decorations = "NONE"
 C.window_frame = {}
 C.window_padding = { left = "0pt", right = "0pt", top = "0pt", bottom = "0pt" }

@@ -102,6 +102,8 @@ o.inccommand = "split"
 o.hlsearch = true
 o.incsearch = true
 o.mouse = ""
+o.sessionoptions =
+  "buffers,curdir,folds,help,tabpages,winsize,winpos,localoptions"
 
 -- ~ Chars
 local ui = S.Icons.ui
