@@ -31,7 +31,7 @@ local function lsp_attach(client, bufnr)
   jdtls_setup.add_commands()
   Key.LSP(client, bufnr)
   Key.JDTLS()
-  F.LspAttach(client, bufnr)
+  F.LSPAttach(client, bufnr)
   require("lsp_signature").on_attach({
     bind = true,
     padding = "",

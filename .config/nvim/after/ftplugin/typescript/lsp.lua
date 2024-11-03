@@ -1,5 +1,5 @@
 local tsserver = {
-  on_attach = require("core.func").LspAttach,
+  on_attach = require("core.func").LSPAttach,
   init_options = {
     preferences = { disableSuggestions = true },
     hostInfo = "neovim",
@@ -10,7 +10,7 @@ local tsserver = {
 }
 
 local biome = {
-  on_attach = require("core.func").LspAttach,
+  on_attach = require("core.func").LSPAttach,
   filetypes = {
     "javascript",
     "typescript",

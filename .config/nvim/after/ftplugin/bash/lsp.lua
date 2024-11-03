@@ -1,5 +1,5 @@
 local bashls = {
-  on_attach = require("core.func").LspAttach,
+  on_attach = require("core.func").LSPAttach,
   filetypes = { "bash", "sh" },
   root_patterns = { ".shellcheckrc" },
   settings = {

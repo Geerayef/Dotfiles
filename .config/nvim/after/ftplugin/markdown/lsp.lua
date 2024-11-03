@@ -1,5 +1,5 @@
 local markdown_oxide = {
-  on_attach = require("core.func").LspAttach,
+  on_attach = require("core.func").LSPAttach,
   filetypes = { "markdown" },
   root_patterns = { "*.md" },
   cmd = { "markdown-oxide" },

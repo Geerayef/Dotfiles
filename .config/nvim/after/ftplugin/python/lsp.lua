@@ -1,12 +1,12 @@
 local ruff = {
-  on_attach = require("core.func").LspAttach,
+  on_attach = require("core.func").LSPAttach,
   filetypes = { "python" },
   root_patterns = { "*.py" },
   cmd = { "ruff", "server" },
 }
 
 local pylsp = {
-  on_attach = require("core.func").LspAttach,
+  on_attach = require("core.func").LSPAttach,
   filetypes = { "python" },
   root_patterns = { "*.py" },
   settings = {

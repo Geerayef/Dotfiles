@@ -1,5 +1,5 @@
 local rust_analyzer = {
-  on_attach = require("core.func").LspAttach,
+  on_attach = require("core.func").LSPAttach,
   filetypes = { "rust" },
   root_patterns = { "*.rs" },
   settings = {

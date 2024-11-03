@@ -1,5 +1,5 @@
 local lua_ls = {
-  on_attach = require("core.func").LspAttach,
+  on_attach = require("core.func").LSPAttach,
   on_init = function(client)
     local path = client.workspace_folders[1].name
     if

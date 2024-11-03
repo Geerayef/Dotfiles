@@ -42,14 +42,13 @@ map("n", "[d", vim.diagnostic.goto_prev, "Previous [ [d]iagnostic")
 
 -- Commandline
 map({ "n", "v" }, "<cr>", ":", "Use Enter key to enter command mode")
-local key = vim.api.nvim_set_keymap
-key("c", "<C-a>", "<Home>", {})
-key("c", "<C-e>", "<End>", {})
-key("c", "<C-f>", "<Right>", {})
-key("c", "<C-b>", "<Left>", {})
-key("c", "<C-d>", "<Del>", {})
-key("c", "<M-f>", "<S-Right>", {})
-key("c", "<M-b>", "<S-Left>", {})
+vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", {})
+vim.api.nvim_set_keymap("c", "<C-e>", "<End>", {})
+vim.api.nvim_set_keymap("c", "<C-f>", "<Right>", {})
+vim.api.nvim_set_keymap("c", "<C-b>", "<Left>", {})
+vim.api.nvim_set_keymap("c", "<C-d>", "<Del>", {})
+vim.api.nvim_set_keymap("c", "<M-f>", "<S-Right>", {})
+vim.api.nvim_set_keymap("c", "<M-b>", "<S-Left>", {})
 
 -- Terminal
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal escape")
@@ -63,15 +62,15 @@ map("n", "<leader>u", vim.cmd.UndotreeToggle, "[u]ndo tree")
 
 -- stylua: ignore start
 -- Telescope
-map("n", "<leader>?", "<cmd>Telescope oldfiles<CR>", "[?] Telescope recent files")
-map("n", "<leader> ", "<cmd>Telescope buffers<CR>",  "[ ] Telescope buffers")
-map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", "[/] Telescope search buffer")
 map("n", "<leader>tb", "<cmd>Telescope builtin<CR>",     "[t]elescope [b]uiltin")
 map("n", "<leader>sf", "<cmd>Telescope fd<CR>",          "Telescope [s]earch [f]iles")
 map("n", "<leader>sh", "<cmd>Telescope help_tags<CR>",   "Telescope [s]earch [h]elp")
 map("n", "<leader>sg", "<cmd>Telescope live_grep<CR>",   "Telescope [s]earch [g]rep")
 map("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", "Telescope [s]earch [w]ord")
 map("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", "Telescope [s]earch [d]iagnostics")
+map("n", "<leader>?", "<cmd>Telescope oldfiles<CR>",     "[?] Telescope recent files")
+map("n", "<leader> ", "<cmd>Telescope buffers<CR>",      "[ ] Telescope buffers")
+map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", "[/] Telescope search buffer")
 
 -- Git
 map("n", "<leader>G", "<cmd>Neogit<CR>", "Neo[G]it")
@@ -125,20 +124,20 @@ Key = {}
 
 function Key.LSP(_, buf)
   local blsp = vim.lsp.buf
-  bmap("n", "K", blsp.hover, buf, "Hover")
-  bmap("n", "<C-k>", blsp.signature_help, buf, "Signature")
-  bmap("n", "<leader>rn", blsp.rename, buf, "[r]e[n]ame")
-  bmap("n", "<leader>ca", blsp.code_action, buf, "[c]ode [a]ction")
-  bmap("n", "<leader>gD", blsp.declaration, buf, "[g]oto [D]eclaration")
-  bmap("n", "<leader>D", blsp.type_definition, buf, "Type [D]efinition")
-  bmap("n", "<leader>gd", "<cmd>Telescope lsp_definitions<CR>", buf, "[g]oto [d]efinition")
-  bmap("n", "<leader>gr", "<cmd>Telescope lsp_references<CR>", buf, "[g]oto [r]eferences")
-  bmap("n", "<leader>gi", "<cmd>Telescope lsp_implementations<CR>", buf, "[g]oto [i]mplementation")
-  bmap("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>", buf, "[d]ocument [s]ymbols")
-  bmap("n", "<leader>ws", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", buf, "[w]orkspace [s]ymbols")
-  bmap("n", "<leader>waf", blsp.add_workspace_folder, buf, "[w]orkspace [a]dd [f]older")
-  bmap("n", "<leader>wrf", blsp.remove_workspace_folder, buf, "[w]orkspace [r]emove [f]older")
-  bmap("n", "<leader>bac", LSP.buf_active_clients, buf, "[b]uffer [a]ctive [c]lients")
+  bmap("n", "K",           blsp.hover,                                         buf, "LSP hover")
+  bmap("n", "<C-k>",       blsp.signature_help,                                buf, "LSP signature")
+  bmap("n", "<leader>rn",  blsp.rename,                                        buf, "LSP [r]e[n]ame")
+  bmap("n", "<leader>ca",  blsp.code_action,                                   buf, "LSP [c]ode [a]ction")
+  bmap("n", "<leader>gD",  blsp.declaration,                                   buf, "LSP [g]o to [D]eclaration")
+  bmap("n", "<leader>gd",  "<cmd>Telescope lsp_definitions<CR>",               buf, "LSP [g]o to [d]efinition")
+  bmap("n", "<leader>gr",  "<cmd>Telescope lsp_references<CR>",                buf, "LSP [g]o to [r]eferences")
+  bmap("n", "<leader>gi",  "<cmd>Telescope lsp_implementations<CR>",           buf, "LSP [g]o to [i]mplementation")
+  bmap("n", "<leader>td",  blsp.type_definition,                               buf, "LSP [t]ype [d]efinition")
+  bmap("n", "<leader>ds",  "<cmd>Telescope lsp_document_symbols<CR>",          buf, "LSP [d]ocument [s]ymbols")
+  bmap("n", "<leader>ws",  "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", buf, "LSP [w]orkspace [s]ymbols")
+  bmap("n", "<leader>wfa", blsp.add_workspace_folder,                          buf, "LSP [w]orkspace [f]older [a]dd")
+  bmap("n", "<leader>wfr", blsp.remove_workspace_folder,                       buf, "LSP [w]orkspace [f]older [r]emove")
+  bmap("n", "<leader>bac", LSP.buf_active_clients,                             buf, "LSP [b]uffer [a]ctive [c]lients")
 end
 
 Key.TS = {

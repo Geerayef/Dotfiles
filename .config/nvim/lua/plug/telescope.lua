@@ -109,8 +109,14 @@ return {
             show_line = false,
             trim_text = true,
           },
+          lsp_dynamic_workspace_symbols = {
+            prompt_title = "Symbols: workspace",
+            preview_title = "",
+            symbol_width = 32,
+            layout_config = { width = 0.6 },
+          },
           lsp_document_symbols = {
-            prompt_title = "",
+            prompt_title = "Symbols: buffer",
             preview_title = "",
             symbol_width = 32,
             layout_config = { width = 0.6 },
@@ -132,7 +138,10 @@ return {
             layout_config = { width = 0.8 },
             skip_empty_lines = true,
           },
-          live_grep = { prompt_title = "Grep", layout_config = { width = 0.8 } },
+          live_grep = {
+            prompt_title = "grep CWD",
+            layout_config = { width = 0.8 },
+          },
           buffers = {
             initial_mode = "normal",
             sort_lastused = true,
@@ -140,7 +149,7 @@ return {
             max_results = 10,
             mappings = { n = { ["x"] = a.delete_buffer } },
           },
-          oldfiles = { prompt_title = "Old files" },
+          oldfiles = { prompt_title = "Recent" },
           colorscheme = {
             preview_title = "",
             enable_preview = true,
@@ -148,6 +157,7 @@ return {
           },
           keymaps = { layout_strategy = "horizontal" },
           highlights = { layout_strategy = "horizontal" },
+          builtin = { prompt_title = "" },
         },
         extensions = {
           ["ui-select"] = { initial_mode = "normal" },

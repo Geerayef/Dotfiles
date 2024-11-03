@@ -1,5 +1,5 @@
 local ocamlls = {
-  on_attach = require("core.func").LspAttach,
+  on_attach = require("core.func").LSPAttach,
   capabilities = { handleSwitchImplIntf = true },
   filetypes = { "ocaml", "ocamlinterface", "opam", "dune" },
   root_patterns = {

@@ -3,7 +3,7 @@ local server
 if vim.fn.executable("clangd") then
   require("core.func").Notify("INFO", "Using clangd for C/C++.")
   server = {
-    on_attach = require("core.func").LspAttach,
+    on_attach = require("core.func").LSPAttach,
     filetypes = { "cpp", "hpp" },
     root_patterns = {
       "compile_commands.json",
@@ -28,7 +28,7 @@ if vim.fn.executable("clangd") then
 elseif vim.fn.executable("ccls") then
   require("core.func").Notify("INFO", "Using CCLS for C/C++.")
   server = {
-    on_attach = require("core.func").LspAttach,
+    on_attach = require("core.func").LSPAttach,
     filetypes = { "cpp", "hpp" },
     root_patterns = { ".ccls", "compile_commands.json", "compile_flags.txt" },
     cmd = { "ccls" },

@@ -1,6 +1,6 @@
 F = {}
 
-function F.LspAttach(client, bufnr)
+function F.LSPAttach(client, bufnr)
   Key.LSP(client, bufnr)
   if client.server_capabilities and client.server_capabilities.code_lens then
     local codelens =
