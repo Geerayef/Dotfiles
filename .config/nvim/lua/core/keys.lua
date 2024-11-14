@@ -46,9 +46,11 @@ vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", {})
 vim.api.nvim_set_keymap("c", "<C-e>", "<End>", {})
 vim.api.nvim_set_keymap("c", "<C-f>", "<Right>", {})
 vim.api.nvim_set_keymap("c", "<C-b>", "<Left>", {})
+vim.api.nvim_set_keymap("c", "<C-n>", "<Down>", {})
+vim.api.nvim_set_keymap("c", "<C-p>", "<Up>", {})
 vim.api.nvim_set_keymap("c", "<C-d>", "<Del>", {})
-vim.api.nvim_set_keymap("c", "<M-f>", "<S-Right>", {})
 vim.api.nvim_set_keymap("c", "<M-b>", "<S-Left>", {})
+vim.api.nvim_set_keymap("c", "<M-f>", "<S-Right>", {})
 
 -- Terminal
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal escape")
@@ -103,7 +105,7 @@ map("n", "<leader>hb", "<cmd>Gitsigns toggle_current_line_blame<CR>", "Gitsigns 
 -- Markdown & Obsidian
 map("n", "<leader>mn", cmd.ObsidianNew,            "Obsidian [m]arkdown [n]ew note")
 map("n", "<leader>mt", cmd.ObsidianTemplate,       "Obsidian [m]arkdown [t]emplate note")
-map({ "n", "x" }, "<leader>oln", cmd.ObsidianLink, "Obsidian [m]arkdown [l]ink [n]ew")
+map({ "n", "x" }, "<leader>mln", cmd.ObsidianLink, "Obsidian [m]arkdown [l]ink [n]ew")
 map("n", "<leader>mlf", cmd.ObsidianFollowLink,    "Obsidian [m]arkdown [l]ink [f]ollow")
 map("n", "<leader>mlb", cmd.ObsidianBacklinks,     "Obsidian [m]arkdown [l]ink [b]aclinks")
 map("n", "<leader>mss", cmd.ObsidianSearch,        "Obsidian [m]arkdown [s]earch [s]")

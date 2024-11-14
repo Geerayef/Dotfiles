@@ -9,6 +9,7 @@ return {
       { "hrsh7th/cmp-nvim-lua" },
       { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" },
       { "hrsh7th/cmp-buffer", event = "InsertEnter" },
+      { "amarakon/nvim-cmp-buffer-lines", event = "InsertEnter" },
       {
         url = "https://codeberg.org/FelipeLema/cmp-async-path",
         event = "InsertEnter",
@@ -37,8 +38,10 @@ return {
       -- stylua: ignore start
       cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({ { name = "buffer", keyword_length = 1, max_item_count = 10 } }),
-        view = { entries = { name = "wildmenu", separator = " | " } },
+        sources = cmp.config.sources({
+          { name = "buffer", keyword_length = 1, max_item_count = 10 },
+          { name = "buffer-lines" }}),
+        view = { entries = { name = "wildmenu", separator = " │ " } },
       })
 
       -- Command
@@ -87,13 +90,13 @@ return {
           priority_weight = 4,
           comparators = {
             cmp.config.compare.exact,
-            cmp.config.compare.offset,
             cmp.config.compare.scopes,
-            cmp.config.compare.score,
+            cmp.config.compare.offset,
             cmp.config.compare.locality,
+            cmp.config.compare.score,
+            cmp.config.compare.length,
             cmp.config.compare.kind,
             cmp.config.compare.order,
-            cmp.config.compare.length,
             -- cmp.config.compare.sort_text,
             -- cmp.config.compare.recently_used,
           },
@@ -105,11 +108,12 @@ return {
               option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } } },
             { name = "nvim_lsp_signature_help", keyword_length = 1, max_item_count = 20, priority = 850 },
             { name = "nvim_lua",                keyword_length = 3, max_item_count = 10, priority = 600 } },
-          { { name = "buffer",                  keyword_length = 3, max_item_count = 10, priority = 800 } },
+          { { name = "buffer",                  keyword_length = 3, max_item_count = 10, priority = 850 } },
+          { { name = "buffer-lines",            keyword_length = 4, max_item_count = 10, priority = 750,
+              option = { comments = true, leading_whitespace = false } } },
           { { name = "luasnip",                 keyword_length = 2, max_item_count =  5, priority = 800 } },
           { { name = "async_path",              keyword_length = 2, max_item_count = 10, priority = 700,
               option = { trailing_slash = true, show_hidden_files_by_default = true } } },
-          -- {  },
           { { name = "vimtex",                  keyword_length = 2, max_item_count = 20, priority = 500 } }
           -- { { name = "treesitter", keyword_length = 2, max_item_count = 20, priority = 600 } }
         ),
@@ -118,18 +122,19 @@ return {
           documentation = cmp.config.window.bordered({ scrollbar = true, border = S.Border }),
         },
         mapping = {
+          -- ["<C-x><C-l>"] = function() if cmp.visible() then end end,
           ["<C-n>"] = function()
-            if cmp.visible() then cmp.select_next_item() else cmp.complete() end
+            if cmp.visible() then cmp.select_next_item({ behaviour = cmp.SelectBehavior.Select }) else cmp.complete() end
           end,
           ["<C-p>"] = function()
-            if cmp.visible() then cmp.select_prev_item() else cmp.complete() end
+            if cmp.visible() then cmp.select_prev_item({ behaviour = cmp.SelectBehavior.Select }) else cmp.complete() end
           end,
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-Space>"] = function() if not cmp.visible() then cmp.mapping.complete() else cmp.complete_common_string() end end,
           ["<C-e>"] = cmp.mapping.abort(),
           ["<C-y>"] = cmp.mapping({
-            i = function(fallback)
+            i = function(fb)
               if cmp.visible() then
                 if not cmp.get_selected_entry() then
                   cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
@@ -138,7 +143,7 @@ return {
               elseif ls.expand_or_locally_jumpable() then
                 ls.expand_or_jump()
               else
-                fallback()
+                fb()
               end
             end,
           }),
@@ -156,6 +161,7 @@ return {
               luasnip = "[Snip]",
               async_path = "[Path]",
               buffer = "[Buf]",
+              ["buffer-lines"] = "[Line]",
               cmdline = "[CMD]",
               vimtex = "[Tex]",
             },
