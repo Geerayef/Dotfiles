@@ -61,8 +61,8 @@ return {
           end }),
         }),
         sources = cmp.config.sources(
-          { { name = "async_path", keyword_length = 2, max_item_count = 20 } },
-          { { name = "cmdline", keyword_length = 2, max_item_count = 20 } }
+          { { name = "cmdline", keyword_length = 1, max_item_count = 20 } },
+          { { name = "async_path", keyword_length = 2, max_item_count = 20 } }
         ),
         view = { entries = { name = "custom" } },
       })
@@ -102,17 +102,17 @@ return {
           },
         },
         -- stylua: ignore start
-        -- Source groups: LSP, buffer, snippet, path, vimtex.
+        -- Source groups: LSP & snippet, buffer, path, vimtex.
         sources = cmp.config.sources(
-          { { name = "nvim_lsp",                keyword_length = 0, max_item_count = 20, priority = 900,
+          { { name = "nvim_lsp",                keyword_length = 0, max_item_count = 20, priority = 900, group_index = 1,
               option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } } },
-            { name = "nvim_lsp_signature_help", keyword_length = 1, max_item_count = 20, priority = 850 },
-            { name = "nvim_lua",                keyword_length = 3, max_item_count = 10, priority = 600 } },
-          { { name = "buffer",                  keyword_length = 3, max_item_count = 10, priority = 850 } },
-          { { name = "buffer-lines",            keyword_length = 4, max_item_count = 10, priority = 750,
+            { name = "nvim_lsp_signature_help", keyword_length = 1, max_item_count = 20, priority = 875, group_index = 1, },
+            { name = "luasnip",                 keyword_length = 2, max_item_count =  5, priority = 800, group_index = 1, },
+            { name = "nvim_lua",                keyword_length = 3, max_item_count = 10, priority = 600, group_index = 1, } },
+          { { name = "buffer",                  keyword_length = 3, max_item_count = 10, priority = 850, group_index = 2 },
+            { name = "buffer-lines",            keyword_length = 4, max_item_count = 10, priority = 825, group_index = 2,
               option = { comments = true, leading_whitespace = false } } },
-          { { name = "luasnip",                 keyword_length = 2, max_item_count =  5, priority = 800 } },
-          { { name = "async_path",              keyword_length = 2, max_item_count = 10, priority = 700,
+          { { name = "async_path",              keyword_length = 2, max_item_count = 10, priority = 750, group_index = 3,
               option = { trailing_slash = true, show_hidden_files_by_default = true } } },
           { { name = "vimtex",                  keyword_length = 2, max_item_count = 20, priority = 500 } }
           -- { { name = "treesitter", keyword_length = 2, max_item_count = 20, priority = 600 } }
@@ -131,7 +131,9 @@ return {
           end,
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = function() if not cmp.visible() then cmp.mapping.complete() else cmp.complete_common_string() end end,
+          ["<C-Space>"] = function()
+            if not cmp.visible() then cmp.complete() else cmp.complete_common_string() end
+          end,
           ["<C-e>"] = cmp.mapping.abort(),
           ["<C-y>"] = cmp.mapping({
             i = function(fb)
