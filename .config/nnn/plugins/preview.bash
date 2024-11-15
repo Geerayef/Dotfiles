@@ -390,3 +390,5 @@ else
     toggle_preview "$1" &
   fi
 fi
+
+# vim: ft=bash

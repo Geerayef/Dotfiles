@@ -27,7 +27,7 @@ return {
       "-x",
       "-a",
       "-s bash",
-      "-P SCRIPTDIR:$XDG_CONFIG_HOME/bash:$HOME/.local/bin/scripts",
+      "-P $SCRIPTDIR:$PATH",
     }
     lint.linters.biomejs.args = {
       "lint",
