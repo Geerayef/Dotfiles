@@ -92,10 +92,10 @@ return {
             ["<C-n>"] = "HistoryNext",
           },
         },
-        override = function(conf)
-          conf.style = "minimal"
-          return conf
-        end,
+        -- override = function(conf)
+        --   conf.style = "minimal"
+        --   return conf
+        -- end,
       },
       select = {
         backend = { "telescope", "nui", "builtin" },
