@@ -17,7 +17,7 @@ main() {
     . "${XDG_CONFIG_HOME:-$HOME/.config}/bash/functions/notify.bash"
   fi
   local aur="hyprlang-git hyprutils-git xdg-desktop-portal-hyprland-git hyprpolkitagent-git hyprshade brave-bin librewolf-bin moar-bin wezterm-git"
-  local app="intel-ucode refind pacman-contrib bluez bluez-utils hyprland hypridle hyprlock hyprpaper hyprcursor foot fish starship neovim python-pynvim fd ripgrep fzf bat eza btop btrfs-progs git curl wget brightnessctl playerctl pipewire wireplumber mako ufw handlr-regex pandoc-cli nwg-look zathura mupdf glow syncthing rclone grim slurp wl-clipboard cliphist tlp tlp-rdw tealdeer ruff clang clangd bear ccls cmake stylua luacheck lua-language-server shellcheck shfmt"
+  local app="intel-ucode refind pacman-contrib bluez bluez-utils hyprland hypridle hyprlock hyprpaper hyprcursor foot fish starship neovim python-pynvim fd ripgrep fzf bat eza btop btrfs-progs git curl wget parallel brightnessctl playerctl pipewire wireplumber mako ufw handlr-regex pandoc-cli nwg-look zathura mupdf glow syncthing rclone grim slurp wl-clipboard cliphist tlp tlp-rdw tealdeer ruff clang clangd bear ccls cmake stylua luacheck lua-language-server shellcheck shfmt"
   if [[ -x "$(command -v pacman)" ]]; then
     notify "INFO" "${loc}: Installing via 'pacman':"
     echo "$app" | tr ' ' '\n'
