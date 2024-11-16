@@ -14,6 +14,7 @@ map({ "n", "x" }, "<C-d>", "10j", "Scroll down 10 lines")
 map({ "n", "x" }, "<C-u>", "10k", "Scroll up 10 lines")
 
 -- Edit
+map("n", "<C-i>", "<C-i>", "Disambiguate from <tab>")
 map("n", "<tab>", ">>", "Indent line using <tab>")
 map("n", "<bs>", "<<", "Unindent line using <bs>")
 
