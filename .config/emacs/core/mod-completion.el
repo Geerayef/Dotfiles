@@ -46,13 +46,14 @@
    ("M-g g" . consult-goto-line)
    ("M-g M-g" . consult-goto-line)
    ;; Alternative: consult-org-heading
-   ("M-g o" . consult-outline)
-   ("M-g m" . consult-mark)
-   ("M-g k" . consult-global-mark)
+   ;; ("M-g o" . consult-outline)
+   ;; ("M-g m" . consult-mark)
+   ;; ("M-g k" . consult-global-mark)
    ("M-g i" . consult-imenu)
    ("M-g I" . consult-imenu-multi)
    ;;;; ~ M-s bindings in `search-map'
    ("M-s f" . consult-fd)
+   ;; ("C-x C-F" . consult-fd)
    ("M-s g" . consult-ripgrep)
    ("M-s G" . consult-git-grep)
    ;; needed by consult-line to detect isearch

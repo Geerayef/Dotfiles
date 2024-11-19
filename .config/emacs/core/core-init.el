@@ -7,7 +7,7 @@
 (defvar gracs/theme 'doom
   "Default theme.
 
-Available themes providers:
+Available themes:
   - doom-themes,
   - ef-themes.")
 
@@ -248,8 +248,8 @@ Available themes providers:
 (use-package mod-theme :ensure nil)
 (use-package mod-modeline :ensure nil)
 ;; (use-package mod-icons :ensure nil)
-;; (use-package mod-fs :ensure nil)
-;; (use-package mod-completion :ensure nil)
+;; (use-package mod-dirvish :ensure nil)
+(use-package mod-completion :ensure nil)
 ;; (use-package mod-write :ensure nil)
 ;; (use-package mod-flycheck :ensure nil)
 ;; (use-package mod-treesitter :ensure nil)

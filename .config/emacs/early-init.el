@@ -20,15 +20,15 @@
 (if (and (featurep 'native-compile)
          (fboundp 'native-comp-available-p)
          (native-comp-available-p))
-  (setq native-comp-jit-compilation t
-        package-native-compile t)
+    (setq native-comp-jit-compilation t
+          package-native-compile t)
   (setq features (delq 'native-compile features)))
 (if (fboundp #'json-parse-string)
-  (push 'jansson features))
+    (push 'jansson features))
 (if (string-match-p "HARFBUZZ" system-configuration-features)
-  (push 'harfbuzz features))
+    (push 'harfbuzz features))
 (if (bound-and-true-p module-file-suffix)
-  (push 'dynamic-modules features))
+    (push 'dynamic-modules features))
 
 ;; ~ Settings ------------------------------------------------------------- ~ ;;
 
@@ -72,7 +72,7 @@
       compilation-always-kill t
       compilation-ask-about-save nil
       compilation-scroll-output 'first-error
-      ;; Warnings, Errors
+      ;;
       auto-mode-case-fold nil
       font-use-system-font nil
       default-input-method nil
