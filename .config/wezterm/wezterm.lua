@@ -26,14 +26,14 @@ G.icon_proc = {
   ["sudo"] = nf.fa_hashtag,
 }
 
-local font_family = "ZedMono Nerd Font Mono"
+local font_family = "Iosevka Nerd Font Mono"
 local font_features = { "calt=1", "clig=1", "liga=1", "dlig=1" }
 if
   string.match(font_family, "Zed") ~= nil
   or string.match(font_family, "Iosevka") ~= nil
 then
   font_features =
-    { "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "ss10" }
+    { "calt=1", "clig=1", "liga=1", "dlig=1", "ss10", "cv26=12", "cv85=6", "cv59=16", "cv10=6" }
 elseif string.match(font_family, "Fira") ~= nil then
   font_features = {
     "zero",

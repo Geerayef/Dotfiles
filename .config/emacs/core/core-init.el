@@ -248,15 +248,15 @@ Available themes:
 (use-package mod-theme :ensure nil)
 (use-package mod-modeline :ensure nil)
 ;; (use-package mod-icons :ensure nil)
-;; (use-package mod-dirvish :ensure nil)
 (use-package mod-completion :ensure nil)
 ;; (use-package mod-write :ensure nil)
 ;; (use-package mod-flycheck :ensure nil)
 ;; (use-package mod-treesitter :ensure nil)
 ;; (use-package mod-eglot :ensure nil)
 ;; (use-package mod-lang :ensure nil)
-;; (use-package mod-misc :ensure nil)
+;; (use-package mod-dirvish :ensure nil)
 ;; (use-package mod-git :ensure nil)
+(use-package mod-misc :ensure nil)
 
 (provide 'core-init)
 ;;; core-init.el ends here

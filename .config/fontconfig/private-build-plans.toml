@@ -1,0 +1,42 @@
+[buildPlans.Iosevka]
+family = "Iosevka"
+spacing = "normal"
+serifs = "sans"
+noCvSs = false
+exportGlyphNames = true
+
+[buildPlans.Iosevka.variants.design]
+zero = "dotted"
+capital-a = "straight-serifless"
+a = "single-storey-earless-corner-serifless"
+b = "toothless-corner-serifless"
+f = "flat-hook-serifless"
+g = "single-storey-flat-hook-earless-corner"
+i = "hooky"
+j = "serifed"
+k = "straight-serifless"
+l = "hooky"
+m = "earless-rounded-double-arch-short-leg-serifless"
+n = "earless-corner-straight-serifless"
+p = "earless-corner-serifless"
+q = "earless-corner-straight-serifless"
+t = "flat-hook"
+v = "straight-serifless"
+y = "cursive-flat-hook-serifless"
+tittle = "square"
+diacritic-dot = "square"
+punctuation-dot = "square"
+braille-dot = "square"
+asterisk = "hex-high"
+caret = "medium"
+ascii-grave = "straight"
+ascii-single-quote = "straight"
+paren = "flat-arc"
+brace = "curly"
+guillemet = "straight"
+bar = "natural-slope"
+lig-equal-chain = "without-notch"
+lig-hyphen-chain = "without-notch"
+
+  [buildPlans.Iosevka.ligations]
+  inherits = "dlig"
