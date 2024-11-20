@@ -19,10 +19,15 @@
          :custom
          (ef-elea-dark-palette-overrides '((bg-main "#010204")))
          :config
-         (mapc #'disable-theme custom-enabled-themes))))
+         (mapc #'disable-theme custom-enabled-themes)))
+
+  ('poet (use-package poet-theme
+           :ensure t
+           :demand t)))
 
 (custom-set-faces
  '(default ((t (:background "#010204"))))
+ '(fringe ((t (:background "#010204"))))
  '(cursor ((t (:background "#FFF779"))))
  '(line-number ((t (:slant normal))))
  '(line-number-current-line ((t (:foreground "#FFF779" :slant normal :weight bold)))))

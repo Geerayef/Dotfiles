@@ -26,7 +26,7 @@ G.icon_proc = {
   ["sudo"] = nf.fa_hashtag,
 }
 
-local font_family = "ZedMono Nerd Font Mono"
+local font_family = "Iosevka"
 local font_features = { "calt=1", "clig=1", "liga=1", "dlig=1" }
 if
   string.match(font_family, "Zed") ~= nil
@@ -177,6 +177,7 @@ C.font_size = 18
 C.font_dirs = { "/usr/share/fonts/TTF/", "/usr/share/fonts/OTF/" }
 C.font = W.font_with_fallback({
   { family = font_family, harfbuzz_features = font_features },
+  { family = "Iosevka Nerd Font Mono", harfbuzz_features = font_features },
   { family = "Symbols Nerd Font Mono" },
   { family = "Font Awesome" },
 })

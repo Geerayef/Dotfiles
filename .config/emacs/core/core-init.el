@@ -2,15 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ~ Variables ------------------------------------------------------------- ~ ;;
-
-(defvar gracs/theme 'doom
-  "Default theme.
-
-Available themes:
-  - doom-themes,
-  - ef-themes.")
-
 ;; ~ Utility functions ----------------------------------------------------- ~ ;;
 
 (defun util/disable-indent-tabs ()
@@ -68,13 +59,9 @@ Available themes:
   :ensure nil
   :hook
   (elpaca-after-init . (lambda ()
-                         (progn
-                           (set-face-attribute 'default nil
-                                               :family "ZedMono Nerd Font Propo"
-                                               :height 180 :weight 'regular)
-                           (set-face-attribute 'line-number-current-line nil
-                                               :foreground "yellow"
-                                               :slant 'normal :weight 'bold)))))
+                         (progn (set-face-attribute 'default nil
+                                                    :family "ZedMono Nerd Font Propo"
+                                                    :height 180 :weight 'regular)))))
 
 ;; ~ Keys ------------------------------------------------------------------ ~ ;;
 
