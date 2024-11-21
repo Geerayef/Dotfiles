@@ -5,38 +5,60 @@ serifs = "sans"
 noCvSs = false
 exportGlyphNames = true
 
+[buildPlans.Iosevka.variants]
+inherits = "ss10"
+
 [buildPlans.Iosevka.variants.design]
+one = "no-base"
+six = "straight-bar"
+eight = "two-circles"
 zero = "dotted"
 capital-a = "straight-serifless"
+capital-g = "toothless-rounded-inward-serifed-hooked"
+capital-j = "serifless"
+capital-q = "curly-tailed"
 a = "single-storey-earless-corner-serifless"
 b = "toothless-corner-serifless"
 f = "flat-hook-serifless"
 g = "single-storey-flat-hook-earless-corner"
 i = "hooky"
 j = "serifed"
-k = "straight-serifless"
+k = "symmetric-connected-serifless"
 l = "hooky"
 m = "earless-rounded-double-arch-short-leg-serifless"
 n = "earless-corner-straight-serifless"
 p = "earless-corner-serifless"
 q = "earless-corner-straight-serifless"
+r = "earless-corner-serifless"
 t = "flat-hook"
+u = "toothless-rounded-serifless"
 v = "straight-serifless"
 y = "cursive-flat-hook-serifless"
+lower-delta = "rounded"
+lower-mu = "toothless-corner-serifless"
 tittle = "square"
 diacritic-dot = "square"
 punctuation-dot = "square"
 braille-dot = "square"
 asterisk = "hex-high"
+underscore = "low"
 caret = "medium"
 ascii-grave = "straight"
 ascii-single-quote = "straight"
 paren = "flat-arc"
-brace = "curly"
+brace = "straight"
 guillemet = "straight"
+dollar = "open"
+cent = "open"
+percent = "rings-continuous-slash"
 bar = "natural-slope"
 lig-equal-chain = "without-notch"
 lig-hyphen-chain = "without-notch"
 
-  [buildPlans.Iosevka.ligations]
-  inherits = "dlig"
+[buildPlans.Iosevka.ligations]
+inherits = "dlig"
+
+[buildPlans.Iosevka.widths.Normal]
+shape = 500
+menu = 5
+css = "normal"
