@@ -8,7 +8,9 @@
   (nano-modeline-prog-mode t)
   :custom
   (nano-modeline-position 'nano-modeline-footer)
-  (nano-modeline-padding '(0.1 . 0.1))
+  (nano-modeline-padding '(0 . 0))
+  :custom-face
+  (nano-modeline-active ((t (:foreground ,gracs/theme-fg :background ,gracs/theme-bg))))
   :hook
   (prog-mode            . nano-modeline-prog-mode)
   (text-mode            . nano-modeline-text-mode)

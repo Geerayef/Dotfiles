@@ -7,20 +7,19 @@
 (require 'pacatim)
 (when (file-exists-p custom-file)
   (add-hook 'elpaca-after-init-hook (lambda () (load custom-file))))
-(add-hook 'elpaca-after-init-hook (lambda ()
-                                    (setq-default gc-cons-threshold (* 16 1024 1024))))
+(add-hook 'elpaca-after-init-hook (lambda () (setq-default gc-cons-threshold (* 16 1024 1024))))
 
 ;; ~ Variables ------------------------------------------------------------- ~ ;;
 
-(defvar gracs/theme 'doom
-  "Default theme.
+;; 'ef-elea-dark | 'doom-{plain-dark, tomorrow-night, spacegrey} | 'poet-dark{-monochrome}
+(defvar gracs/theme "poet-dark-monochrome"
+  "Geerayef's default Emacs theme.
 Available themes:
   - doom-themes,
   - ef-themes,
   - poet.")
 
-;; 'ef-elea-dark | 'doom-{plain-dark, tomorrow-night, spacegrey} | 'poet-dark{-monochrome}
-(add-hook 'elpaca-after-init-hook (lambda () (load-theme 'doom-spacegrey t)))
+(add-hook 'elpaca-after-init-hook (lambda () (load-theme (intern gracs/theme) t)))
 
 (use-package core-init :ensure nil)
 
