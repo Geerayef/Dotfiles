@@ -16,12 +16,13 @@
       (when (and (file-directory-p name) (not (string-prefix-p "." f)))
         (util/recursive-add-to-load-path name)))))
 
+;; ~ Emacs ---------------------------------------------------------------- ~ ;;
+
 (use-package emacs
   :ensure nil
-  ;; :hook ((prog-mode text-mode fundamental-mode) . util/disable-indent-tabs)
   :config
-  (setq-default left-fringe-width 8
-                right-fringe-width 8
+  (setq-default left-fringe-width 0
+                right-fringe-width 0
                 indicate-buffer-boundaries nil
                 indicate-empty-lines nil
                 word-wrap t
@@ -58,9 +59,19 @@
 (use-package faces
   :ensure nil
   :hook
-  (elpaca-after-init . (lambda () (progn (set-face-attribute
-                                          'default nil :family "Iosevka"
-                                          :height 180 :weight 'regular)))))
+  (elpaca-after-init . (lambda ()
+                         (progn (set-face-attribute
+                                 'default nil :family "Iosevka"
+                                 :height 180 :weight 'regular)
+                                (set-face-attribute
+                                 'variable-pitch nil :family "Iosevka"
+                                 :height 180 :weight 'regular)
+                                (set-face-attribute
+                                 'fixed-pitch nil :family "Iosevka"
+                                 :height 180 :weight 'regular)
+                                (set-face-attribute
+                                 'dired-mark nil :family "Iosevka"
+                                 :height 180 :weight 'regular)))))
 
 ;; ~ Keys ------------------------------------------------------------------ ~ ;;
 
@@ -122,6 +133,11 @@
   :ensure nil
   :hook (text-mode . visual-line-mode))
 
+(use-package prog-mode
+  :ensure nil
+  :custom
+  (global-prettify-symbols-mode t))
+
 ;; ~ QoL ------------------------------------------------------------------- ~ ;;
 
 (use-package repeat
@@ -139,47 +155,24 @@
 
 (use-package autoinsert
   :ensure nil
+  :hook (find-file . auto-insert)
   :custom
   (auto-insert-query nil)
-  (auto-insert-mode 1)
-  :hook (find-file . auto-insert))
+  (auto-insert-mode 1))
 
 (use-package window
   :ensure nil
   :custom
-  (switch-to-buffer-in-dedicated-window 'pop)
-  (switch-to-buffer-obey-display-actions t)
-  :config
-  (add-to-list 'display-buffer-alist
-               '("\\*Help\\*"
-                 (display-buffer-reuse-window display-buffer-pop-up-window)
-                 (inhibit-same-window . t)))
-  (add-to-list 'display-buffer-alist
-               '("\\*Completions\\*"
-                 (display-buffer-reuse-window display-buffer-pop-up-window)
-                 (inhibit-same-window . t)
-                 (window-height . 10))))
+  (switch-to-buffer-in-dedicated-window t)
+  (switch-to-buffer-obey-display-actions t))
 
 (use-package frame
   :ensure nil
+  :hook (elpaca-after-init . window-divider-mode)
   :custom
-  (window-divider-default-bottom-width 1)
   (window-divider-default-places t)
-  (window-divider-default-right-width 1)
-  :hook (after-init . window-divider-mode))
-
-(use-package winner
-  :ensure nil
-  :demand t
-  :custom (winner-mode 1))
-;; (define-prefix-command 'keymap-window)
-;; (keymap-set 'keymap-window "u" 'winner-undo)
-;; (keymap-set 'keymap-window "r" 'winner-redo)
-;; (keymap-set 'keymap-window "n" 'windmove-down)
-;; (keymap-set 'keymap-window "p" 'windmove-up)
-;; (keymap-set 'keymap-window "b" 'windmove-left)
-;; (keymap-set 'keymap-window "f" 'windmove-right)
-;; (keymap-global-set prefix-key-window 'keymap-window)
+  (window-divider-default-bottom-width 1)
+  (window-divider-default-right-width 1))
 
 (use-package pixel-scroll
   :ensure nil
@@ -216,7 +209,7 @@
   (dired-listing-switches "-alhD --group-directories-first")
   (dired-clean-confirm-killing-deleted-buffers nil)
   (dired-recursive-deletes 'top)
-  (dired-recursive-copies  'always)
+  (dired-recursive-copies 'always)
   (dired-create-destination-dirs 'ask)
   (dired-kill-when-opening-new-dired-buffer t)
   :config
