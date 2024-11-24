@@ -27,7 +27,9 @@ G.icon_proc = {
 }
 
 local font_family = "Iosevka"
+local font_family_fallback = "Iosevka Nerd Font Mono"
 local font_features = { "calt=1", "clig=1", "liga=1", "dlig=1" }
+local font_features_fallback = { "calt=1", "clig=1", "liga=1", "dlig=1" }
 if string.match(font_family, "Zed") ~= nil then
   font_features = {
     "calt=1",
@@ -175,7 +177,7 @@ C.font_dirs =
   { "~/.local/share/fonts/", "/usr/share/fonts/TTF/", "/usr/share/fonts/OTF/" }
 C.font = W.font_with_fallback({
   { family = font_family, harfbuzz_features = font_features },
-  { family = "Iosevka Nerd Font Mono", harfbuzz_features = font_features },
+  { family = font_family_fallback, harfbuzz_features = font_features_fallback },
   { family = "Symbols Nerd Font Mono" },
   { family = "Font Awesome" },
 })
