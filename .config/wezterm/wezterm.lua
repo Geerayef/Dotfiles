@@ -26,7 +26,7 @@ G.icon_proc = {
   ["sudo"] = nf.fa_hashtag,
 }
 
-local font_family = "Iosevka"
+local font_family = "Iosevka Light"
 local font_family_fallback = "Iosevka Nerd Font Mono"
 local font_features = { "calt=1", "clig=1", "liga=1", "dlig=1" }
 local font_features_fallback = { "calt=1", "clig=1", "liga=1", "dlig=1" }

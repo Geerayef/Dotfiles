@@ -1,6 +1,5 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
   { "numToStr/Comment.nvim", event = "BufReadPost", opts = true },
   { "tpope/vim-surround", event = "BufReadPost" },
   {
@@ -17,24 +16,6 @@ return {
       vim.g.undotree_SplitWidth = 40
       vim.g.undotree_SetFocusWhenToggle = 1
       vim.g.undotree_HelpLine = 0
-    end,
-  },
-  {
-    "rcarriga/nvim-notify",
-    event = "VeryLazy",
-    opts = function()
-      vim.notify = require("notify")
-      require("notify").setup({
-        fps = 1,
-        render = "minimal",
-        stages = "static",
-        timeout = 2500,
-        on_open = function(win)
-          local config = vim.api.nvim_win_get_config(win)
-          config.border = S.Border
-          vim.api.nvim_win_set_config(win, config)
-        end,
-      })
     end,
   },
   {
@@ -61,12 +42,6 @@ return {
     },
   },
   {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPost",
-    main = "ibl",
-    opts = { indent = { char = "│" } },
-  },
-  {
     "andymass/vim-matchup",
     event = "BufReadPost",
     opts = function()
@@ -75,46 +50,5 @@ return {
       vim.g.matchup_matchparen_deferred = 1
       vim.g.matchup_override_vimtex = 1
     end,
-  },
-  {
-    "norcalli/nvim-colorizer.lua",
-    cmd = "ColorizerToggle",
-    opts = { ["*"] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true } },
-  },
-  {
-    "stevearc/dressing.nvim",
-    event = "VeryLazy",
-    opts = {
-      input = {
-        title_pos = "center",
-        border = S.Border,
-        relative = "win",
-        prefer_width = 0.4,
-        max_width = { 0.8 },
-        min_width = { 0.2 },
-        win_options = { sidescrolloff = 2 },
-        mappings = {
-          n = { ["<C-c>"] = "Close" },
-          i = {
-            ["<Esc>"] = "Close",
-            ["<C-p>"] = "HistoryPrev",
-            ["<C-n>"] = "HistoryNext",
-          },
-        },
-      },
-      select = {
-        backend = { "telescope", "nui", "builtin" },
-        fzf = { window = { width = 0.8, height = 0.4 } },
-        nui = { border = { style = S.Border } },
-        builtin = {
-          border = S.Border,
-          max_height = 0.4,
-          override = function(conf)
-            conf.style = "minimal"
-            return conf
-          end,
-        },
-      },
-    },
   },
 }
