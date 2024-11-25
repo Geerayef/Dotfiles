@@ -33,15 +33,6 @@ return {
     end,
   },
   {
-    "rachartier/tiny-inline-diagnostic.nvim",
-    event = "VeryLazy",
-    priority = 1000,
-    opts = {
-      signs = { left = "", right = "" },
-      options = { show_source = true },
-    },
-  },
-  {
     "andymass/vim-matchup",
     event = "BufReadPost",
     opts = function()
