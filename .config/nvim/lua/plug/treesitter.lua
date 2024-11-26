@@ -9,9 +9,8 @@ return {
   end,
   dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
   opts = function()
-    local ts = Key.TS
-    local to = ts.textobjects
-    local is = ts.incremental_selection
+    local to = Key.TS.textobjects
+    local is = Key.TS.incremental_selection
     return {
       ensure_installed = {
         "regex",

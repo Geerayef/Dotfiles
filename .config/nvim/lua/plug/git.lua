@@ -42,6 +42,7 @@ return {
   {
     "NeogitOrg/neogit",
     cmd = "Neogit",
+    dependencies = "lewis6991/gitsigns.nvim",
     opts = {
       integrations = { telescope = true },
       telescope_sorter = function()

@@ -78,6 +78,9 @@ pyenv_prefix = ""
 style = "#A6E3A1 bold"
 symbol = ""
 
+[conda]
+format = '[$symbol$environment]($style)'
+
 [lua]
 format = '[$symbol ($version)]($style)'
 symbol = "🌙"

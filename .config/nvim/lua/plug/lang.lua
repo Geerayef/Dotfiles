@@ -36,6 +36,6 @@ return {
   --   },
   --   config = function(o) require("ccls").setup(o) end,
   -- },
-  { "mfussenegger/nvim-jdtls", ft = "java" },
+  -- { "mfussenegger/nvim-jdtls", ft = "java" },
   { "gpanders/nvim-parinfer", ft = "lisp" },
 }

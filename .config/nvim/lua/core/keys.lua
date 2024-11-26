@@ -166,8 +166,8 @@ Key.TS = {
       goto_previous_end = { ["[F"] = "@function.outer", ["[]"] = "@class.outer" },
     },
     swap = {
-      next = { ["<M-C-L>"] = "@parameter.inner" },
-      previous = { ["<M-C-H>"] = "@parameter.inner" },
+      next = { ["<M-C-n>"] = "@parameter.inner", ["<S-M-C-n>"] = "@function.outer" },
+      previous = { ["<M-C-p>"] = "@parameter.inner", ["<S-M-C-p>"] = "@function.outer" },
     },
     lsp_interop = { ["<C-k>"] = "@function.outer", ["<C-K>"] = "@class.outer" },
   },
