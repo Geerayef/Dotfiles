@@ -196,7 +196,7 @@ C.force_reverse_video_cursor = false
 -- Unsifted Wheat (terminal.sexy)
 -- BRIGHT
 -- Gruvbox Material (Gogh) | Shic (terminal.sexy)
-C.color_scheme = "VWbug (terminal.sexy)"
+C.color_scheme = "Black Metal (Marduk) (base16)"
 C.colors = {
   background = kngw.palette.dragonInk1,
   cursor_fg = kngw.ansi[1],
