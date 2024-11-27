@@ -4,16 +4,16 @@ return {
   config = function()
     local lualine_require = require("lualine_require")
     lualine_require.require = require
-    -- local palette = require("clrs.kanagawa.palette")
-    local theme = require("clrs.kanagawa.theme")
-    local kanagawaline = require("clrs.kanagawa.kanagawaline").setup(theme)
+    -- local kp = require("clrs.kanagawa.palette")
+    local kt = require("clrs.kanagawa.theme")
+    local kl = require("clrs.kanagawa.kanagawaline").setup(kt)
     local icon = S.Icons
     require("lualine").setup({
       options = {
         component_separators = "",
         section_separators = "",
         always_divide_middle = true,
-        theme = kanagawaline,
+        theme = kl,
         globalstatus = true,
       },
       -- stylua: ignore start
@@ -42,7 +42,7 @@ return {
             symbols =
               { error = icon.diagnostics.error,    warn = icon.diagnostics.warn,    info = icon.diagnostics.info,    hint = icon.diagnostics.hint },
             diagnostics_color =
-              { error = { fg = theme.diag.error }, warn = { fg = theme.diag.warn }, info = { fg = theme.diag.info }, hint = { fg = theme.diag.hint } },
+              { error = { fg = kt.diag.error }, warn = { fg = kt.diag.warn }, info = { fg = kt.diag.info }, hint = { fg = kt.diag.hint } },
           },
           {
             function() return "│" end,
@@ -58,7 +58,7 @@ return {
             end,
             colored = true,
             symbols =    { added = icon.git.added,           modified = icon.git.modified_simple,   removed = icon.git.removed },
-            diff_color = { added = { fg = theme.vcs.added }, modified = { fg = theme.vcs.changed }, removed = { fg = theme.vcs.removed } },
+            diff_color = { added = { fg = kt.vcs.added }, modified = { fg = kt.vcs.changed }, removed = { fg = kt.vcs.removed } },
           },
           { "branch", icon = icon.git.branch },
         },

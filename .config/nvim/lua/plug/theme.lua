@@ -8,8 +8,8 @@ return {
   -- stylua: ignore start
   {
     "amedoeyes/eyes.nvim",
-    lazy = function() return vim.g.theme ~= "eyes" end,
     priority = 1010,
+    lazy = function() return vim.g.theme ~= "eyes" end,
     opts = { features = { plugins = { codeium = false, dap_ui = false, illuminate = false,
       leap = false, mason = false, mini_indentscope = false, neo_tree = false, noice = false } },
       extend = { highlights = { Normal = { bg = kngw.dragonInk1 } } }
@@ -17,8 +17,8 @@ return {
   },
   {
     "ramojus/mellifluous.nvim",
-    lazy = function() return vim.g.theme ~= "mellifluous" end,
     priority = 1010,
+    lazy = function() return vim.g.theme ~= "mellifluous" end,
     opts = {
       dim_inactive = false,
       colorset = "mountain",
