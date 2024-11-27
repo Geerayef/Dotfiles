@@ -1,6 +1,10 @@
 return {
-  foreground = "#DCD7BA",
-  background = "#0D0C0C",
+  palette = {
+    dragonInk1 = "#010204",
+    dragonYellow = "#FFF779",
+  },
+  fg = "#DCD7BA",
+  bg = "#0D0C0C",
   cursor_bg = "#C8C093",
   cursor_fg = "#C8C093",
   cursor_border = "#C8C093",

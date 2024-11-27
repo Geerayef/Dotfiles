@@ -1,15 +1,19 @@
--- ~ Global ---------------------------------------------------------------- ~ --
+-- ~ Local ---------------------------------------------------------------- ~ --
 
 local W = require("wezterm")
 local a = require("wezterm").action
 local nf = require("wezterm").nerdfonts
-local ayu = require("ayu")
-local C = {}
+local kngw = require("kanagawa")
 local G = W.GLOBAL
-if W.config_builder then C = W.config_builder() end
+local C = W.config_builder()
+local font = {
+  fam = "Iosevka",
+  fam_fb = "ZedMono Nerd Font Mono",
+  feat = { "calt=1", "clig=1", "liga=1", "dlig=1" },
+  feat_fb = {},
+}
 
 G.icon_proc = {
-  ["presenterm"] = nf.fa_hashtag,
   ["opam"] = nf.seti_ocaml,
   ["dune"] = nf.seti_ocaml,
   ["ocamlc"] = nf.seti_ocaml,
@@ -23,186 +27,16 @@ G.icon_proc = {
   ["btop"] = nf.md_chart_donut_variant,
   ["git"] = nf.dev_git,
   ["gh"] = nf.dev_github_badge,
+  ["presenterm"] = nf.fa_hashtag,
+  ["moar"] = nf.seti_ruby,
   ["sudo"] = nf.fa_hashtag,
 }
 
-local font_family = "Iosevka Light"
-local font_family_fallback = "Iosevka Nerd Font Mono"
-local font_features = { "calt=1", "clig=1", "liga=1", "dlig=1" }
-local font_features_fallback = { "calt=1", "clig=1", "liga=1", "dlig=1" }
-if string.match(font_family, "Zed") ~= nil then
-  font_features = {
-    "calt=1",
-    "clig=1",
-    "liga=1",
-    "dlig=1",
-    "ss10",
-    "cv01=2",
-    "cv10=6",
-    "cv26=12",
-    "cv59=16",
-    "cv85=6",
-  }
-elseif string.match(font_family, "Fira") ~= nil then
-  font_features = {
-    "zero",
-    "calt=1",
-    "clig=1",
-    "liga=1",
-    "dlig=1",
-    "cv01",
-    "cv02",
-    "cv04",
-    "cv08",
-    "cv29",
-    "cv30",
-    "cv31",
-    "ss01",
-    "ss02",
-    "ss05",
-    "ss09",
-  }
-elseif string.match(font_family, "Jet") ~= nil then
-  font_features =
-    { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
-end
-
--- ~ Function ------------------------------------------------------------- ~ --
+-- ~ Key ------------------------------------------------------------------ ~ --
 
 local function map(key, action)
   return { key = key, mods = "LEADER", action = action }
 end
-
--- ~ Statusbar ------------------------------------------------------------- ~ --
-
-W.on(
-  "format-tab-title",
-  function(tab)
-    return " "
-      .. (G.icon_proc[tab.active_pane.foreground_process_name:match(
-        "([^/\\]+)$"
-      )] or "○ ")
-      .. " "
-  end
-)
-
-W.on("update-status", function(window, _)
-  local stat_color = ayu.indexed[16]
-  local stat = window:active_workspace()
-  if window:active_key_table() then
-    stat = window:active_key_table()
-    if stat == "move_tab" then
-      stat = "MOVE"
-    elseif stat == "resize_pane" then
-      stat = "SIZE"
-    elseif stat == "copy_mode" then
-      stat = "COPY"
-    elseif stat == "search_mode" then
-      stat = "FIND"
-    end
-    stat_color = ayu.brights[5]
-  end
-  if window:leader_is_active() then
-    stat = "LDR "
-    stat_color = ayu.ansi[5]
-  end
-  local time = W.strftime("%H:%M")
-  window:set_left_status(W.format({
-    { Foreground = { Color = stat_color } },
-    { Text = "    " },
-    { Text = nf.oct_table .. " " .. stat },
-    { Text = " │ " },
-    "ResetAttributes",
-  }))
-  window:set_right_status(W.format({
-    { Foreground = { Color = ayu.indexed[16] } },
-    { Text = nf.md_clock .. " " .. time },
-    "ResetAttributes",
-    { Text = "    " },
-  }))
-end)
-
--- ~ Option ------------------------------------------------------------- ~ --
-
--- Bar
-C.tab_bar_at_bottom = true
-C.use_fancy_tab_bar = false
-C.show_new_tab_button_in_tab_bar = false
-C.status_update_interval = 1000
-
--- Window
-C.window_background_opacity = 1
-C.window_decorations = "NONE"
-C.window_frame = {}
-C.window_padding = { left = "0pt", right = "0pt", top = "0pt", bottom = "0pt" }
-C.use_resize_increments = true
-C.adjust_window_size_when_changing_font_size = false
-C.enable_scroll_bar = false
-C.inactive_pane_hsb = { saturation = 1, brightness = 1 }
-C.default_cursor_style = "SteadyBlock"
-C.force_reverse_video_cursor = false
-
--- Colorscheme
--- MONO
--- C.color_scheme = "Grayscale (dark) (terminal.sexy)"
--- C.color_scheme = "Black Metal (Marduk) (base16)"
--- C.color_scheme = "VWbug (terminal.sexy)"
--- DIM
-C.color_scheme = "Unsifted Wheat (terminal.sexy)"
--- BRIGHT
--- C.color_scheme = "Gruvbox Material (Gogh)"
--- C.color_scheme = "Shic (terminal.sexy)"
-C.colors = {
-  background = ayu.dragonInk1,
-  cursor_fg = "#000000",
-  cursor_bg = "#FFF779",
-  tab_bar = {
-    background = ayu.dragonInk1,
-    active_tab = {
-      bg_color = ayu.ansi[5],
-      fg_color = ayu.dragonInk1,
-      intensity = "Bold",
-      underline = "None",
-      italic = false,
-      strikethrough = false,
-    },
-    inactive_tab = { bg_color = ayu.dragonInk1, fg_color = ayu.fg },
-  },
-}
-
--- Font
-C.unicode_version = 14
-C.font_size = 18
-C.font_dirs =
-  { "~/.local/share/fonts/", "/usr/share/fonts/TTF/", "/usr/share/fonts/OTF/" }
-C.font = W.font_with_fallback({
-  { family = font_family, harfbuzz_features = font_features },
-  { family = font_family_fallback, harfbuzz_features = font_features_fallback },
-  { family = "Symbols Nerd Font Mono" },
-  { family = "Font Awesome" },
-})
-C.line_height = 1.2
-
--- Workspace
-C.default_workspace = "home"
-
--- Performance
-C.enable_wayland = true
-C.animation_fps = 1
-local gpus = W.gui.enumerate_gpus()
-C.webgpu_preferred_adapter = gpus[1]
-if gpus[2] ~= nil then
-  C.front_end = "WebGpu"
-else
-  C.front_end = "OpenGL"
-end
-C.webgpu_force_fallback_adapter = true
-C.scrollback_lines = 2000
-C.audible_bell = "Disabled"
-C.set_environment_variables = { CURRENT_TERM = "wezterm" }
-C.check_for_updates = false
-
--- ~ Key ------------------------------------------------------------------- ~ --
 
 C.disable_default_key_bindings = true
 C.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 }
@@ -268,5 +102,141 @@ C.key_tables = {
     { key = "Escape", mods = "NONE", action = a.CopyMode("Close") },
   },
 }
+
+-- ~ Statusbar ------------------------------------------------------------- ~ --
+
+W.on(
+  "format-tab-title",
+  function(tab)
+    return " "
+      .. (G.icon_proc[tab.active_pane.foreground_process_name:match(
+        "([^/\\]+)$"
+      )] or "○ ")
+      .. " "
+  end
+)
+
+W.on("update-status", function(win, _)
+  local s_clr = kngw.ansi[8]
+  local s = win:active_workspace()
+  if win:active_key_table() then
+    s = win:active_key_table()
+    if s == "move_tab" then
+      s = "MOVE"
+    elseif s == "resize_pane" then
+      s = "SIZE"
+    elseif s == "copy_mode" then
+      s = "COPY"
+    elseif s == "search_mode" then
+      s = "FIND"
+    end
+    s_clr = kngw.brights[5]
+  end
+  if win:leader_is_active() then
+    s = "LDR "
+    s_clr = kngw.ansi[2]
+  end
+  local time = W.strftime("%H:%M")
+  win:set_left_status(W.format({
+    { Text = "    " },
+    { Foreground = { Color = s_clr } },
+    { Text = nf.oct_table .. " " .. s },
+    "ResetAttributes",
+    { Foreground = { Color = kngw.fg } },
+    { Text = " │ " },
+  }))
+  win:set_right_status(W.format({
+    { Foreground = { Color = kngw.fg } },
+    { Text = nf.md_clock .. " " .. time },
+    "ResetAttributes",
+    { Text = "    " },
+  }))
+end)
+
+-- ~ Option ---------------------------------------------------------------- ~ --
+
+-- Bar
+C.tab_bar_at_bottom = true
+C.use_fancy_tab_bar = false
+C.show_new_tab_button_in_tab_bar = false
+C.status_update_interval = 1000
+
+-- Performance
+C.enable_wayland = true
+C.animation_fps = 1
+local gpus = W.gui.enumerate_gpus()
+C.webgpu_preferred_adapter = gpus[1]
+if gpus[2] ~= nil then
+  C.front_end = "WebGpu"
+else
+  C.front_end = "OpenGL"
+end
+C.webgpu_force_fallback_adapter = true
+C.scrollback_lines = 2000
+C.audible_bell = "Disabled"
+C.set_environment_variables = { CURRENT_TERM = "wezterm" }
+C.check_for_updates = false
+
+-- Window
+C.window_background_opacity = 1
+C.window_decorations = "NONE"
+C.window_frame = {}
+C.window_padding = { left = "0pt", right = "0pt", top = "0pt", bottom = "0pt" }
+C.use_resize_increments = true
+C.adjust_window_size_when_changing_font_size = false
+C.enable_scroll_bar = false
+C.inactive_pane_hsb = { saturation = 1, brightness = 1 }
+C.default_cursor_style = "SteadyBlock"
+C.force_reverse_video_cursor = false
+
+-- Colors
+-- MONO
+-- Grayscale (dark) (terminal.sexy) | Black Metal (Marduk) (base16) | VWbug (terminal.sexy)
+-- DIM
+-- Unsifted Wheat (terminal.sexy)
+-- BRIGHT
+-- Gruvbox Material (Gogh) | Shic (terminal.sexy)
+C.color_scheme = "VWbug (terminal.sexy)"
+C.colors = {
+  background = kngw.palette.dragonInk1,
+  cursor_fg = kngw.ansi[1],
+  cursor_bg = kngw.palette.dragonYellow,
+  tab_bar = {
+    background = kngw.palette.dragonInk1,
+    active_tab = {
+      bg_color = kngw.fg,
+      fg_color = kngw.palette.dragonInk1,
+      intensity = "Bold",
+      underline = "None",
+      italic = false,
+      strikethrough = false,
+    },
+    inactive_tab = { bg_color = kngw.palette.dragonInk1, fg_color = kngw.fg },
+  },
+}
+
+-- Font
+-- stylua: ignore start
+if string.match(font.fam_fb, "Zed") ~= nil then
+  font.feat_fb = { "calt=1", "clig=1", "liga=1", "dlig=1", "ss10", "cv01=2", "cv10=6", "cv26=12", "cv59=16", "cv85=6" }
+elseif string.match(font.fam_fb, "Fira") ~= nil then
+  font.feat_fb = { "zero", "calt=1", "clig=1", "liga=1", "dlig=1", "cv01", "cv02", "cv04", "cv08", "cv29", "cv30", "cv31", "ss01", "ss02", "ss05", "ss09" }
+elseif string.match(font.fam_fb, "Jet") ~= nil then
+  font.feat_fb = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
+end
+-- stylua: ignore end
+C.unicode_version = 14
+C.font_size = 18
+C.font_dirs = { "~/.local/share/fonts/", "/usr/share/fonts/TTF/" }
+C.font = W.font_with_fallback({
+  { family = font.fam, harfbuzz_features = font.feat },
+  { family = font.fam_fb, harfbuzz_features = font.feat_fb },
+  { family = "Symbols Nerd Font Mono" },
+  { family = "Font Awesome" },
+})
+C.line_height = 1.2
+
+-- Workspace
+C.default_workspace = "home"
 
 return C
