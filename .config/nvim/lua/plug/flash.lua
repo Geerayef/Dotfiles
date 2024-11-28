@@ -11,7 +11,7 @@ return {
       "<M-t>",
       mode = { "n", "x", "o" },
       function() require("flash").treesitter() end,
-      desc = "Flash [T]reesitter",
+      desc = "Flash [t]reesitter",
     },
     {
       "<C-s>",
@@ -132,7 +132,7 @@ return {
     },
     prompt = {
       enabled = true,
-      prefix = { { "              ⚡ ", "FlashPromptIcon" } },
+      prefix = { { "          ⚡ ", "FlashPromptIcon" } },
       win_config = {
         relative = "editor",
         width = 1,

@@ -4,16 +4,13 @@ return {
     version = false,
     lazy = true,
     dependencies = {
-      { "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
-      { "hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter" },
-      { "hrsh7th/cmp-nvim-lua" },
-      { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" },
-      { "hrsh7th/cmp-buffer", event = "InsertEnter" },
-      { "amarakon/nvim-cmp-buffer-lines", event = "InsertEnter" },
-      {
-        url = "https://codeberg.org/FelipeLema/cmp-async-path",
-        event = "InsertEnter",
-      },
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-buffer",
+      "amarakon/nvim-cmp-buffer-lines",
+      { url = "https://codeberg.org/FelipeLema/cmp-async-path" },
       {
         "L3MON4D3/LuaSnip",
         build = "make install_jsregexp",

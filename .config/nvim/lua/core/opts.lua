@@ -8,7 +8,7 @@ o.shell = "/usr/bin/fish"
 o.shortmess:append("ISWsac")
 if vim.fn.executable("rg") == 1 then
   o.grepprg =
-    "rg --vimgrep --hidden --color=never --no-heading --line-number --column --with-filename  --smart-case --trim"
+    "rg --vimgrep --hidden --color=never --no-heading --line-number --column --with-filename  --smart-case --trim --"
 end
 
 -- ~ File
@@ -34,6 +34,7 @@ o.showbreak = "  "
 o.complete:remove("i")
 o.completeopt = "menu,menuone,noinsert,noselect"
 o.showfulltag = true
+o.nrformats:append("alpha")
 o.virtualedit = "block"
 o.wildmenu = true
 o.wildmode = "list:longest,list:full"

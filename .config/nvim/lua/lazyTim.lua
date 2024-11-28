@@ -22,12 +22,14 @@ require("lazy").setup({
     rtp = {
       disabled_plugins = {
         "bugreport",
+        "editorconfig",
         "getscript",
         "getscriptPlugin",
         "gzip",
         "logipat",
         "matchit",
         "matchparen",
+        "menu",
         "netrw",
         "netrwPlugin",
         "netrwSettings",

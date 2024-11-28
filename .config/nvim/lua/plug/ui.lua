@@ -31,7 +31,7 @@ return {
   },
   {
     "stevearc/dressing.nvim",
-    event = "VeryLazy",
+    event = { "WinEnter" },
     opts = {
       input = {
         title_pos = "center",
