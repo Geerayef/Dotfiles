@@ -234,7 +234,7 @@ C.font = W.font_with_fallback({
   { family = "Symbols Nerd Font Mono" },
   { family = "Font Awesome" },
 })
-C.line_height = 1.6
+C.line_height = 1.2
 
 -- Workspace
 C.default_workspace = "home"
