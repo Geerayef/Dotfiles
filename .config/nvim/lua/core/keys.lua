@@ -124,6 +124,28 @@ map({ "n", "x" }, "<leader>mxn", cmd.ObsidianExtractNote, "Obsidian [m]arkdown e
 -- Colorizer
 map("n", "<leader>ct", cmd.ColorizerToggle, "[c]olorizer [t]oggle")
 
+-- DAP
+map("n", "<M-d>c", cmd.DapContinue, "DAP [c]ontinue")
+map("n", "<M-d>o", cmd.DapStepOver, "DAP step [o]ver")
+map("n", "<M-d>i", cmd.DapStepInto, "DAP step [i]nto")
+map("n", "<M-d>u", cmd.DapStepOut, "DAP step o[u]t")
+map("n", "<M-d>b", cmd.DapToggleBreakpoint, "DAP toggle [b]reakpoint")
+map("n", "<M-d>B", function() require("dap").clear_breakpoints() end, "DAP clear all breakpoints [B]")
+map("n", "<M-d>t", cmd.DapTerminate, "DAP [t]erminate session")
+map("n", "<leader>DS", function ()
+  local w = require("dap.ui.widgets")
+  local s = w.sidebar(w.scopes, {}, "vsplit")
+  return s.toggle()
+end, "[D]AP [S]idebar")
+map("n", "<leader>DJ", function ()
+  local w = require("dap.ui.widgets")
+  local b = w.sidebar(w.frames, { height = 10 }, "belowright split")
+  return b.toggle()
+end, "[D]AP [F]rames")
+map("n", "<leader>DH", function ()
+  return require("dap.ui.widgets").hover()
+end, "[D]AP [H]over")
+
 -- ~ LSP ------------------------------------------------------------------- ~ --
 
 Key = {}

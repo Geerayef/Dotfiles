@@ -1,8 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
--- ~ Large-file performance
-
+--- ~ Large-file performance
 autocmd("BufReadPre", {
   desc = "Better handle large files.",
   group = augroup("LargeFileSettings", { clear = true }),
@@ -32,8 +31,7 @@ autocmd("BufReadPre", {
   end,
 })
 
--- ~ Highlight on yank
-
+--- ~ Highlight on yank
 autocmd("TextYankPost", {
   desc = "Highlight yanked text.",
   group = augroup("YankHighlight", { clear = true }),
@@ -41,8 +39,7 @@ autocmd("TextYankPost", {
   callback = function() vim.highlight.on_yank() end,
 })
 
--- ~ Auto cd
-
+--- ~ Auto cd
 autocmd({ "BufWinEnter", "FileChangedShellPost" }, {
   desc = "Automatically change current working directory based on predefined markers.",
   group = augroup("AutoCWD", { clear = true }),
@@ -69,8 +66,7 @@ autocmd({ "BufWinEnter", "FileChangedShellPost" }, {
   end,
 })
 
--- ~ Close special buffers with `q`
-
+--- ~ Close special buffers with `q`
 autocmd({ "FileType" }, {
   desc = "Close specific buffers with `q`.",
   group = augroup("qCloseSpecialFT", { clear = true }),
@@ -78,8 +74,7 @@ autocmd({ "FileType" }, {
   callback = function() F.bmap("n", "q", "<C-w>c", 0, "Close current buffer.") end,
 })
 
--- ~ Turn off Ruff LSP Hover when used with Pylsp
-
+--- ~ Turn off Ruff LSP Hover when used with Pylsp
 autocmd("LspAttach", {
   desc = "LSP: Disable Ruff's hover if used with Pylsp.",
   group = augroup("DisableRuffHover", { clear = true }),
@@ -89,5 +84,17 @@ autocmd("LspAttach", {
     if client.name == "ruff" then
       client.server_capabilities.hoverProvider = false
     end
+  end,
+})
+
+--- ~ Apply custom UI highlights
+autocmd("ColorScheme", {
+  desc = "Apply custom highlights after loading the main colorscheme.",
+  group = augroup("CustomHighlights", { clear = true }),
+  callback = function()
+    local kngw = require("clrs.kanagawa.palette")
+    vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "bg" })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = kngw.lotusYellow5 })
+    vim.api.nvim_set_hl(0, "TabLineSel", { fg = kngw.lotusYellow5 })
   end,
 })

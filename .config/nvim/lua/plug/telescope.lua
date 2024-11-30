@@ -22,8 +22,8 @@ return {
           },
           borderchars = { prompt = border, results = border, preview = border },
           results_title = "",
-          prompt_prefix = S.Icons.ui.langle_r .. " ",
-          selection_caret = S.Icons.ui.triangle_s_r .. " ",
+          prompt_prefix = S.Icons.ui.angle_right_l .. " ",
+          selection_caret = S.Icons.ui.triangle_right_s .. " ",
           sorting_strategy = "ascending",
           mappings = {
             i = {

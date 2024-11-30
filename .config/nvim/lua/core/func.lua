@@ -37,6 +37,7 @@ function F.bmap(mode, l, r, buf, desc)
 end
 
 ---Map key sequence to action.
+---Wrapper for `vim.keymap.set`.
 ---@param mode string|table # Mode{s}
 ---@param l string # Left side of mapping
 ---@param r string|function # Right side of mapping
