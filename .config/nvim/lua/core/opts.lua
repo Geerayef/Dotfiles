@@ -1,11 +1,12 @@
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+vim.g.loaded_python3_provider = 0
 
 local o = vim.opt
 
 o.shell = "/usr/bin/fish"
-o.shortmess:append("ISWsac")
+o.shortmess:append("IWSsac")
 if vim.fn.executable("rg") == 1 then
   o.grepprg =
     "rg --vimgrep --hidden --color=never --no-heading --line-number --column --with-filename  --smart-case --trim --"

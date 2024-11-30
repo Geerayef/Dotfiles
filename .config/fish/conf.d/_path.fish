@@ -49,6 +49,17 @@ if test -e "$HOME/.pyenv"
     and fish_add_path -a --path "$PYENV_ROOT/bin"
 end
 
+# conda
+if test -f "$HOME/miniconda3/bin/conda"
+    eval "$HOME/miniconda3/bin/conda" "shell.fish" hook $argv | source
+else
+    if test -f "$HOME/miniconda3/etc/fish/conf.d/conda.fish"
+        . "$HOME/miniconda3/etc/fish/conf.d/conda.fish"
+    else
+        fish_add_path "$HOME/miniconda3/bin"
+    end
+end
+
 # Tex
 if test -d /usr/local/texlive
     fish_add_path -p --path /usr/local/texlive/2024/bin/x86_64-linux

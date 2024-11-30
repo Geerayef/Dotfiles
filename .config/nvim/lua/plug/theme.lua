@@ -4,6 +4,12 @@ return {
     "bettervim/yugen.nvim",
     priority = 1010,
     lazy = function() return vim.g.theme ~= "yugen" end,
+    config = function()
+      require("yugen").setup()
+      vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "bg" })
+      vim.api.nvim_set_hl(0, "CursorLineNr", { fg = kngw.lotusYellow5 })
+      vim.api.nvim_set_hl(0, "TabLineSel", { fg = kngw.lotusYellow5 })
+    end,
   },
   -- stylua: ignore start
   {

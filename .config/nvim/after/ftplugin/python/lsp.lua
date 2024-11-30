@@ -5,25 +5,42 @@ local ruff = {
   cmd = { "ruff", "server" },
 }
 
-local pylsp = {
+-- local pylsp = {
+--   on_attach = require("core.func").LSPAttach,
+--   filetypes = { "python" },
+--   root_patterns = { "*.py" },
+--   settings = {
+--     pylsp = {
+--       plugins = {
+--         autopep8    = { enabled = false },
+--         flake8      = { enabled = false },
+--         mccabe      = { enabled = false },
+--         pycodestyle = { enabled = false },
+--         pyflakes    = { enabled = false },
+--         pylint      = { enabled = false },
+--         yapf        = { enabled = false },
+--       },
+--     },
+--   },
+--   cmd = { "pylsp" },
+-- }
+
+local pyright = {
   on_attach = require("core.func").LSPAttach,
   filetypes = { "python" },
   root_patterns = { "*.py" },
   settings = {
-    pylsp = {
-      plugins = {
-        autopep8 = { enabled = false },
-        flake8 = { enabled = false },
-        yapf = { enabled = false },
-        mccabe = { enabled = false },
-        pycodestyle = { enabled = false },
-        pyflakes = { enabled = false },
-        pylint = { enabled = false },
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "openFilesOnly",
+        useLibraryCodeForTypes = true,
       },
     },
   },
-  cmd = { "pylsp" },
+  cmd = { "pyright-langserver", "--stdio" },
 }
 
 require("util.lsp").start(ruff)
-require("util.lsp").start(pylsp)
+-- require("util.lsp").start(pylsp)
+require("util.lsp").start(pyright)

@@ -57,7 +57,8 @@ Major modes are only selected if the major mode's associated LSP
                                             "--completion-style=detailed"
                                             "--pch-storage=memory"
                                             "--header-insertion=never"
-                                            "--header-insertion-decorators=0")))
+                                            "--header-insertion-decorators=0"))
+               '((python-mode python-ts-mode) . ("basedpyright-langserver" "--stdio")))
   :bind
   (:map eglot-mode-map
         ("C-c e a" . eglot-code-actions)
