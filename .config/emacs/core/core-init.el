@@ -60,18 +60,15 @@
   :ensure nil
   :hook
   (elpaca-after-init . (lambda ()
-                         (progn (set-face-attribute
-                                 'default nil :family "Iosevka"
-                                 :height 180 :weight 'regular)
-                                (set-face-attribute
-                                 'variable-pitch nil :family "Iosevka"
-                                 :height 180 :weight 'regular)
-                                (set-face-attribute
-                                 'fixed-pitch nil :family "Iosevka"
-                                 :height 180 :weight 'regular)
-                                (set-face-attribute
-                                 'dired-mark nil :family "Iosevka"
-                                 :height 180 :weight 'regular)))))
+                         (progn
+                           (set-face-attribute 'default nil :family "Iosevka"
+                                               :height 180 :weight 'regular)
+                           (set-face-attribute 'variable-pitch nil :family "Iosevka"
+                                               :height 180 :weight 'regular)
+                           (set-face-attribute 'fixed-pitch nil :family "Iosevka"
+                                               :height 180 :weight 'regular)
+                           (set-face-attribute 'dired-mark nil :family "Iosevka"
+                                               :height 180 :weight 'regular)))))
 
 ;; ~ Keys ------------------------------------------------------------------ ~ ;;
 

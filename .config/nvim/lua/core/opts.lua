@@ -35,7 +35,6 @@ o.showbreak = "  "
 o.complete:remove("i")
 o.completeopt = "menu,menuone,noinsert,noselect"
 o.showfulltag = true
-o.nrformats:append("alpha")
 o.virtualedit = "block"
 o.wildmenu = true
 o.wildmode = "list:longest,list:full"
