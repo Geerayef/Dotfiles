@@ -7,6 +7,7 @@ vim.opt.rtp:append(ocp_indent_path)
 
 -- Options
 
+vim.g.no_ocaml_maps = 1
 vim.o.makeprg = "dune build @ocaml-index"
 vim.o.tabstop = 2
 vim.o.softtabstop = -1

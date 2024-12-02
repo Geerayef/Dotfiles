@@ -41,6 +41,7 @@ return {
         max_width = { 0.8 },
         min_width = { 0.2 },
         win_options = { sidescrolloff = 2 },
+        trim_prompt = false,
         mappings = {
           n = { ["<C-c>"] = "Close" },
           i = {

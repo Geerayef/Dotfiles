@@ -43,8 +43,14 @@ map("n", "[d", vim.diagnostic.goto_prev, "Previous [ [d]iagnostic")
 
 -- Commandline
 map("n", "<cr>", function()
-  vim.ui.input({ prompt = "" }, function(i) vim.cmd(i) end)
-end, "Use Enter key to enter command mode")
+  vim.ui.input({ prompt = "" }, function(i)
+    if i == nil then
+      return
+    else
+      vim.cmd(i)
+    end
+  end)
+end, "Enter key for cmdline")
 vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", {})
 vim.api.nvim_set_keymap("c", "<C-e>", "<End>", {})
 vim.api.nvim_set_keymap("c", "<C-f>", "<Right>", {})
