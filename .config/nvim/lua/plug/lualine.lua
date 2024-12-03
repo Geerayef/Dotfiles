@@ -6,7 +6,7 @@ return {
     lualine_require.require = require
     -- local kp = require("clrs.kanagawa.palette")
     local kt = require("clrs.kanagawa.theme")
-    local kl = require("clrs.kanagawa.kanagawaline").setup(kt)
+    local kl = require("clrs.kanagawa.line").setup(kt)
     local icon = S.Icons
     require("lualine").setup({
       options = {

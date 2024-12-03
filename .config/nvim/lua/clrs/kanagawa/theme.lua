@@ -51,7 +51,7 @@ return {
     "#7AA89F",
     "#C5C9C5",
     "#B6927B",
-    "#B98D7B",
+    "#FFBE89",
   },
   ui = {
     bg_ayu = "#0A0E14",

@@ -210,20 +210,13 @@ return {
     end,
   },
   -- }}}
-  -- {
-  --   "saghen/blink.compat",
-  --   version = "v2.*",
-  --   lazy = false,
-  --   opts = { impersonate_nvim_cmp = true },
-  -- },
+  -- { "saghen/blink.compat", version = "v2.*", lazy = false, opts = { impersonate_nvim_cmp = true } },
   -- ~ blink.cmp {{{
   {
     "saghen/blink.cmp",
     lazy = false,
     dependencies = { "rafamadriz/friendly-snippets" },
     version = "v0.*",
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
     opts = {
       -- show, hide, cancel, accept, select_and_accept, select_prev, select_next, show_documentation, hide_documentation,
       -- scroll_documentation_up, scroll_documentation_down, snippet_forward, snippet_backward, fallback
@@ -238,12 +231,6 @@ return {
         ["<C-y>"] = { "accept", "select_and_accept" },
         ["<Tab>"] = { "snippet_forward", "fallback" },
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
-      },
-      blocked_filetypes = {},
-      snippets = {
-        expand = function(snippet) vim.snippet.expand(snippet) end,
-        active = function(filter) return vim.snippet.active(filter) end,
-        jump = function(direction) vim.snippet.jump(direction) end,
       },
       -- ~ Completion {{{
       completion = {
