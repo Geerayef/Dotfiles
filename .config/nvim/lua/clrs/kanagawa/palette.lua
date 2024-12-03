@@ -77,6 +77,7 @@ return {
   lotusYellow3 = "#DE9800",
   lotusYellow4 = "#F9D791",
   lotusYellow5 = "#FFF779",
+  lotusYellow6 = "#FFBE89",
   oldWhite = "#C8C093",
   oniViolet = "#957FB8",
   oniViolet2 = "#B8B4D0",

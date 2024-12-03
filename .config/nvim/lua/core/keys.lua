@@ -12,6 +12,7 @@ map("x", "J", ":'<,'>m '>+1<CR>gv=gv", "Move selection down")
 map("x", "K", ":'<,'>m '<-2<CR>gv=gv", "Move selection up")
 map({ "n", "x" }, "<C-d>", "10j", "Scroll down 10 lines")
 map({ "n", "x" }, "<C-u>", "10k", "Scroll up 10 lines")
+map({ "n", "x" }, "<C-Space>", "", "Disable moving cursor with space")
 
 -- Edit
 map("n", "<C-i>", "<C-i>", "Disambiguate from <tab>")
@@ -131,12 +132,13 @@ map({ "n", "x" }, "<leader>mxn", cmd.ObsidianExtractNote, "Obsidian [m]arkdown e
 map("n", "<leader>ct", cmd.ColorizerToggle, "[c]olorizer [t]oggle")
 
 -- DAP
-map("n", "<M-d>c", cmd.DapContinue, "DAP [c]ontinue")
-map("n", "<M-d>o", cmd.DapStepOver, "DAP step [o]ver")
-map("n", "<M-d>i", cmd.DapStepInto, "DAP step [i]nto")
-map("n", "<M-d>u", cmd.DapStepOut, "DAP step o[u]t")
+map("n", "<M-d>c", cmd.DapContinue,         "DAP [c]ontinue")
+map("n", "<M-d>o", cmd.DapStepOver,         "DAP step [o]ver")
+map("n", "<M-d>i", cmd.DapStepInto,         "DAP step [i]nto")
+map("n", "<M-d>u", cmd.DapStepOut,          "DAP step o[u]t")
 map("n", "<M-d>b", cmd.DapToggleBreakpoint, "DAP toggle [b]reakpoint")
-map("n", "<M-d>B", function() require("dap").clear_breakpoints() end, "DAP clear all breakpoints [B]")
+-- map("n", "<M-d>B", function() require("dap").clear_breakpoints() end, "DAP clear all breakpoints [B]")
+map("n", "<M-d>B", cmd.DapClearBreakpoints, "DAP clear all [B]reakpoints")
 map("n", "<M-d>t", cmd.DapTerminate, "DAP [t]erminate session")
 map("n", "<leader>DS", function ()
   local w = require("dap.ui.widgets")
@@ -202,10 +204,10 @@ Key.TS = {
 }
 
 function Key.JDTLS()
-  map("n", "<leader>oi", "<cmd>lua require(\"jdtls\").organize_imports<CR>", "[o]rganize [i]mports")
-  map("n", "<leader>ev", "<cmd>lua require(\"jdtls\").extract_variable<CR>", "[e]xtract [v]ariable")
-  map("n", "<leader>ec", "<cmd>lua require(\"jdtls\").extract_constant<CR>", "[e]xtract [c]onstant")
-  map("v", "<leader>em", "<cmd>lua require(\"jdtls\").extract_method(true)<CR>", "[e]xtract [m]ethod")
+  map("n", "<leader>oi", "<cmd>lua require('jdtls').organize_imports<CR>", "[o]rganize [i]mports")
+  map("n", "<leader>ev", "<cmd>lua require('jdtls').extract_variable<CR>", "[e]xtract [v]ariable")
+  map("n", "<leader>ec", "<cmd>lua require('jdtls').extract_constant<CR>", "[e]xtract [c]onstant")
+  map("v", "<leader>em", "<cmd>lua require('jdtls').extract_method(true)<CR>", "[e]xtract [m]ethod")
 end
 -- stylua: ignore end
 

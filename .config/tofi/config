@@ -1,9 +1,11 @@
 font-size = 18
-font = /usr/share/fonts/TTF/IosevkaNF/IosevkaNerdFontMono-Regular.ttf
+font = Iosevka
 hint-font = false
-text-color = #585B70
+text-color = #393836
 selection-color = #F9E2AF
-selection-match-color = #CBA6F7
+selection-match-color = #949FB5
+background-color = #010204
+border-color = #A6A69C
 
 prompt-text = ""
 placeholder-text = "Search:"
@@ -20,9 +22,5 @@ padding-bottom = 0
 padding-top = 2%
 padding-right = 0
 
-background-color = #0A0E14
-border-color = #F9E2AF
-
 hide-cursor = true
-
 late-keyboard-init = true

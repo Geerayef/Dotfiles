@@ -92,9 +92,12 @@ autocmd("ColorScheme", {
   desc = "Apply custom highlights after loading the main colorscheme.",
   group = augroup("CustomHighlights", { clear = true }),
   callback = function()
-    local kngw = require("clrs.kanagawa.palette")
-    vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "bg" })
-    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = kngw.lotusYellow5 })
-    vim.api.nvim_set_hl(0, "TabLineSel", { fg = kngw.lotusYellow5 })
+    local kp = require("clrs.kanagawa.palette")
+    local hl = vim.api.nvim_set_hl
+    hl(0, "RenderMarkdownCode", { bg = "bg" })
+    hl(0, "CursorLineNr", { fg = kp.lotusYellow5 })
+    hl(0, "TabLineSel", { fg = kp.lotusYellow5 })
+    hl(0, "LspSignatureActiveParameter", { fg = kp.dragonInk1, bg = kp.lotusYellow5, bold = true })
+    hl(0, "ActionPreviewTitle", { fg = kp.dragonInk1, bg = kp.lotusYellow5, bold = true })
   end,
 })

@@ -1,7 +1,8 @@
 return {
   palette = {
-    dragonInk1 = "#010204",
+    dragonInk = "#010204",
     dragonYellow = "#FFF779",
+    dragonMellow = "#FFBE89",
   },
   fg = "#DCD7BA",
   bg = "#0D0C0C",

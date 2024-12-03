@@ -198,20 +198,20 @@ C.force_reverse_video_cursor = false
 -- Gruvbox Material (Gogh) | Shic (terminal.sexy)
 C.color_scheme = "Black Metal (Marduk) (base16)"
 C.colors = {
-  background = kngw.palette.dragonInk1,
+  background = kngw.palette.dragonInk,
   cursor_fg = kngw.ansi[1],
   cursor_bg = kngw.palette.dragonYellow,
   tab_bar = {
-    background = kngw.palette.dragonInk1,
+    background = kngw.palette.dragonInk,
     active_tab = {
       bg_color = kngw.fg,
-      fg_color = kngw.palette.dragonInk1,
+      fg_color = kngw.palette.dragonInk,
       intensity = "Bold",
       underline = "None",
       italic = false,
       strikethrough = false,
     },
-    inactive_tab = { bg_color = kngw.palette.dragonInk1, fg_color = kngw.fg },
+    inactive_tab = { bg_color = kngw.palette.dragonInk, fg_color = kngw.fg },
   },
 }
 

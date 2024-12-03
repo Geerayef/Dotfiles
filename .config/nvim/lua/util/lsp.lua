@@ -7,8 +7,10 @@ LSP = {}
 ---@type ActiveClient[]
 LSP.active_clients = {}
 
-local ok_cmp, cmplsp = pcall(require, "cmp_nvim_lsp")
-if not ok_cmp then F.Notify("info", "`cmp_nvim_lsp` not found.") end
+-- local ok_cmp, cmplsp = pcall(require, "cmp_nvim_lsp")
+local ok_blink, blink = pcall(require, "blink.cmp")
+-- if not ok_cmp then F.Notify("info", "`cmp_nvim_lsp` not found.") end
+if not ok_blink then F.Notify("info", "`blink.cmp` not found.") end
 local caps = vim.tbl_deep_extend(
   "force",
   {},
@@ -27,11 +29,8 @@ local caps = vim.tbl_deep_extend(
       },
     },
   },
-  ok_cmp
-      and cmplsp.default_capabilities(
-        vim.lsp.protocol.make_client_capabilities()
-      )
-    or vim.lsp.protocol.make_client_capabilities()
+  -- ok_cmp and cmplsp.default_capabilities(vim.lsp.protocol.make_client_capabilities()) or vim.lsp.protocol.make_client_capabilities()
+  ok_blink and blink.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities()) or vim.lsp.protocol.make_client_capabilities()
 )
 
 ---@class vim.lsp.ClientConfig: lsp_client_config_t

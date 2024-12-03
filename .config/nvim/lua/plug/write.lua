@@ -37,12 +37,6 @@ return {
           strict = true,
           overrides = { notes_subdir = "" },
         },
-        {
-          name = "LGR",
-          path = "~/notes/LGR",
-          strict = true,
-          overrides = { notes_subdir = "" },
-        },
       },
       daily_notes = {
         folder = "daily",
@@ -58,7 +52,7 @@ return {
         substitutions = {},
       },
       follow_url_func = function(url) vim.system({ "xdg-open", url }) end,
-      completion = { nvim_cmp = true, min_chars = 2 },
+      completion = { nvim_cmp = false, min_chars = 2 },
       preferred_link_style = "markdown",
       disable_frontmatter = true,
       sort_by = "path",
