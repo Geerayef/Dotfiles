@@ -40,7 +40,7 @@ return {
             "diagnostics",
             sources = { "nvim_lsp", "nvim_diagnostic" },
             symbols =
-              { error = icon.diagnostics.error,    warn = icon.diagnostics.warn,    info = icon.diagnostics.info,    hint = icon.diagnostics.hint },
+              { error = icon.diagnostics.error, warn = icon.diagnostics.warn, info = icon.diagnostics.info, hint = icon.diagnostics.hint },
             diagnostics_color =
               { error = { fg = kt.diag.error }, warn = { fg = kt.diag.warn }, info = { fg = kt.diag.info }, hint = { fg = kt.diag.hint } },
           },

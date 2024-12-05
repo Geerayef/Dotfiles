@@ -57,7 +57,7 @@ return {
   lotusPink = "#B35B79",
   lotusRed = "#C84053",
   lotusRed2 = "#D7474B",
-  lotusRed3 = "#E82424",
+  lotusRed3 = "#E82424", -- samuraiRed
   lotusRed4 = "#D9A594",
   lotusTeal1 = "#4E8CA2",
   lotusTeal2 = "#6693BF",
@@ -84,7 +84,6 @@ return {
   peachRed = "#FF5D62",
   roninYellow = "#FF9E3B",
   sakuraPink = "#D27E99",
-  samuraiRed = "#E82424",
   springBlue = "#7FB4CA",
   springGreen = "#98BB6C",
   springViolet1 = "#938AA9",

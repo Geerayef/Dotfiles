@@ -1,6 +1,6 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
-  { "numToStr/Comment.nvim", event = { "CursorHold", "CursorHoldI" } },
+  { "numToStr/Comment.nvim", event = { "CursorHold", "CursorHoldI" }, opts = true },
   { "tpope/vim-surround", event = { "CursorHold", "CursorHoldI" } },
   { "tpope/vim-sleuth", event = { "BufNewFile", "BufReadPost" } },
   {

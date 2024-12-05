@@ -201,9 +201,30 @@ return {
         view = { entries = { name = "custom" } },
       })
       return {
+        completion = { autocomplete = false },
         window = {
           completion = cmp.config.window.bordered({ scrollbar = true, border = S.Border }),
           documentation = cmp.config.window.bordered({ scrollbar = true, border = S.Border }),
+        },
+        formatting = {
+          fields = { "kind", "abbr" },
+          format = function(e, i)
+            e.mode = "symbol"
+            -- e.show_labelDetails = true
+            -- i.maxwidth = function() return math.floor(0.75 * vim.o.columns) end
+            i.kind = string.format("%s", S.Icons.kind_icons[i.kind])
+            -- i.menu = ({
+            --   nvim_lsp = "[LSP]",
+            --   nvim_lua = "[Vim]",
+            --   luasnip = "[Snip]",
+            --   async_path = "[Path]",
+            --   buffer = "[Buf]",
+            --   ["buffer-lines"] = "[Line]",
+            --   cmdline = "[CMD]",
+            --   vimtex = "[Tex]",
+            -- })[e.source.name]
+            return i
+          end,
         },
       }
       -- stylua: ignore end
@@ -291,7 +312,8 @@ return {
             gap = 1,
             columns = {
               { "kind_icon" },
-              { "label", "label_description", gap = 1 },
+              -- { "label", "label_description", gap = 1 },
+              { "label", gap = 1 },
             },
             -- ellipsis           : whether to add an ellipsis when truncating the text
             -- width              : control the min, max and fill behavior of the component
@@ -509,33 +531,7 @@ return {
         highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
         use_nvim_cmp_as_default = true,
         nerd_font_variant = "mono",
-        kind_icons = {
-          Text = "󰉿",
-          Method = "󰊕",
-          Function = "󰊕",
-          Constructor = "󰒓",
-          Field = "󰜢",
-          Variable = "󰆦",
-          Property = "󰖷",
-          Class = "󱡠",
-          Interface = "󱡠",
-          Struct = "󱡠",
-          Module = "󰅩",
-          Unit = "󰪚",
-          Value = "󰦨",
-          Enum = "󰦨",
-          EnumMember = "󰦨",
-          Keyword = "󰻾",
-          Constant = "󰏿",
-          Snippet = "󱄽",
-          Color = "󰏘",
-          File = "󰈔",
-          Reference = "󰬲",
-          Folder = "󰉋",
-          Event = "󱐋",
-          Operator = "󰪚",
-          TypeParameter = "󰬛",
-        },
+        kind_icons = S.Icons.kind_icons,
       },
       -- }}}
     },

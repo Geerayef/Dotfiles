@@ -1,10 +1,11 @@
+local kp = require("clrs.kanagawa.palette")
 return {
   diag = {
-    error = "#E82424",
-    hint = "#6A9589",
-    info = "#658594",
-    ok = "#98BB6C",
-    warn = "#FF9E3B",
+    error = kp.lotusRed3,
+    hint = kp.waveAqua1,
+    info = kp.dragonBlue,
+    ok = kp.springGreen,
+    warn = kp.roninYellow,
   },
   diff = {
     add = "#2B3328",

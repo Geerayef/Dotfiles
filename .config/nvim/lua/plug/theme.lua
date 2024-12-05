@@ -1,4 +1,4 @@
-local kngw = require("clrs.kanagawa.palette")
+local kp = require("clrs.kanagawa.palette")
 return {
   {
     "bettervim/yugen.nvim",
@@ -12,7 +12,7 @@ return {
     lazy = function() return vim.g.theme ~= "eyes" end,
     opts = { features = { plugins = { codeium = false, dap_ui = false, illuminate = false,
       leap = false, mason = false, mini_indentscope = false, neo_tree = false, noice = false } },
-      extend = { highlights = { Normal = { bg = kngw.dragonInk1 } } }
+      extend = { highlights = { Normal = { bg = kp.dragonInk1 } } }
     },
   },
   -- stylua: ignore end
