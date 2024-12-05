@@ -4,10 +4,6 @@
 
 ;; ~ Utility functions ----------------------------------------------------- ~ ;;
 
-(defun util/disable-indent-tabs ()
-  "Disable indenting with tabs."
-  (setq indent-tabs-mode nil))
-
 (defun util/recursive-add-to-load-path (dir)
   "Add DIR and all its sub-directories to `load-path'."
   (add-to-list 'load-path dir)
@@ -75,12 +71,12 @@
 (global-set-key (kbd "C-v")
                 (lambda ()
                   (interactive
-                   (forward-line (/ (window-height (selected-window)) 2)))))
+                   (forward-line (/ (window-height (selected-window)) 4)))))
 
 (global-set-key (kbd "M-v")
                 (lambda ()
                   (interactive
-                   (forward-line (- (/ (window-height (selected-window)) 2))))))
+                   (forward-line (- (/ (window-height (selected-window)) 4))))))
 
 ;; ~ Edit ------------------------------------------------------------------ ~ ;;
 

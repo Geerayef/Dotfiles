@@ -12,12 +12,8 @@
 ;; ~ Variables ------------------------------------------------------------- ~ ;;
 
 ;; 'ef-elea-dark | 'doom-{plain-dark, tomorrow-night, spacegrey} | 'poet-dark{-monochrome}
-(defvar gracs/theme "poet-dark-monochrome"
-  "Geerayef's default Emacs theme.
-Available themes:
-  - doom-themes,
-  - ef-themes,
-  - poet.")
+(defvar gracs/theme "poet-dark"
+  "Default theme.")
 
 (add-hook 'elpaca-after-init-hook (lambda () (load-theme (intern gracs/theme) t)))
 

@@ -57,8 +57,7 @@
 (use-package treesit-auto
   :ensure t
   :init
-  (setq treesit-auto-langs
-        '(c cpp ocaml python rust elisp lua bash fish yaml toml markdown))
+  (setq treesit-auto-langs '(c cpp ocaml python rust elisp lua bash fish yaml toml markdown))
   :custom
   (treesit-auto-install 'prompt)
   (treesit-auto-add-to-auto-mode-alist 'all)
