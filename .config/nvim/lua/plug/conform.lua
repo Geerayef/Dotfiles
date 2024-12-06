@@ -35,11 +35,7 @@ return {
     formatters = {
       ["clang-format"] = { prepend_args = { "--style=file" } },
       dune = { command = "dune", args = { "format-dune-file" } },
-      ruff_format = {
-        command = "ruff",
-        args = { "format", "--config=$XDG_CONFIG_HOME/ruff/ruff.toml", "--force-exclude", "--stdin-filename", "$FILENAME", "-" },
-        stdin = true,
-      },
+      ruff_format = { command = "ruff", args = { "format", "--force-exclude", "--stdin-filename", "$FILENAME", "-" }, stdin = true },
       beautysh = { prepend_args = { "-i", "2" } },
       shfmt = {
         inherit = false,

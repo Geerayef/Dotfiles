@@ -57,8 +57,8 @@ return {
               if g then return { added = g.added, modified = g.changed, removed = g.removed } end
             end,
             colored = true,
-            symbols =    { added = icon.git.added,           modified = icon.git.modified_simple,   removed = icon.git.removed },
-            diff_color = { added = { fg = kt.vcs.added }, modified = { fg = kt.vcs.changed }, removed = { fg = kt.vcs.removed } },
+            symbols =    { added = icon.git.added_simple, modified = icon.git.modified_simple, removed = icon.git.removed_simple },
+            diff_color = { added = { fg = kt.vcs.added }, modified = { fg = kt.vcs.modified }, removed = { fg = kt.vcs.removed } },
           },
           { "branch", icon = icon.git.branch },
         },

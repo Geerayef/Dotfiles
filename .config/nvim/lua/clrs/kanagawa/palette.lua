@@ -18,7 +18,7 @@ return {
   dragonBlack5 = "#393836",
   dragonBlack6 = "#625E5A",
   dragonBlue = "#658594",
-  dragonBlue2 = "#8BA4B0",
+  dragonBlue1 = "#8BA4B0",
   dragonGray = "#A6A69C",
   dragonGray2 = "#9E9B93",
   dragonGray3 = "#7A8382",

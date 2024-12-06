@@ -99,12 +99,15 @@ S.Icons = {
   git = {
     branch = "",
     added = " ",
+    added_simple = "⁺ ",
     modified = "󰝤 ",
-    modified_simple = "~ ",
+    modified_simple = "∼ ",
     removed = " ",
+    removed_simple = "⁻ "
   },
   diagnostics = {
     error = " ",
+    error_simple = "×",
     warn = " ",
     info = " ",
     hint = "󰌵 ",

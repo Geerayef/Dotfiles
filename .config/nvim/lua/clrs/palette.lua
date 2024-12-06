@@ -2,6 +2,7 @@ return {
   lotusYellow5 = "#FFF779",
   roninYellow = "#FF9E3B",
   surimiOrange = "#FFA066",
+  peachRed = "#FF5D62",
   sumiInk = "#11111B",
   sumiInk1 = "#16161D",
   sumiInk2 = "#181820",
