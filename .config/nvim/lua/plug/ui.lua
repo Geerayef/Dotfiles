@@ -29,41 +29,4 @@ return {
     cmd = "ColorizerToggle",
     opts = { ["*"] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true } },
   },
-  {
-    "stevearc/dressing.nvim",
-    event = { "WinEnter" },
-    opts = {
-      input = {
-        title_pos = "center",
-        border = S.Border,
-        relative = "win",
-        prefer_width = 0.4,
-        max_width = { 0.8 },
-        min_width = { 0.2 },
-        win_options = { sidescrolloff = 2 },
-        trim_prompt = false,
-        mappings = {
-          n = { ["<C-c>"] = "Close" },
-          i = {
-            ["<Esc>"] = "Close",
-            ["<C-p>"] = "HistoryPrev",
-            ["<C-n>"] = "HistoryNext",
-          },
-        },
-      },
-      select = {
-        backend = { "telescope", "nui", "builtin" },
-        fzf = { window = { width = 0.8, height = 0.4 } },
-        nui = { border = { style = S.Border } },
-        builtin = {
-          border = S.Border,
-          max_height = 0.4,
-          override = function(conf)
-            conf.style = "minimal"
-            return conf
-          end,
-        },
-      },
-    },
-  },
 }

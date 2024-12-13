@@ -32,8 +32,8 @@ o.linebreak = true
 o.breakindent = true
 o.breakindentopt = "list:-1"
 o.showbreak = "  "
-o.complete:remove("i")
-o.completeopt = "menu,menuone,noinsert,noselect"
+o.complete:append("i,kspell")
+o.completeopt = "menu,menuone,noselect"
 o.showfulltag = true
 o.virtualedit = "block"
 o.wildmenu = true
@@ -103,8 +103,7 @@ o.inccommand = "split"
 o.hlsearch = true
 o.incsearch = true
 o.mouse = ""
-o.sessionoptions =
-  "buffers,curdir,folds,help,tabpages,winsize,winpos,localoptions"
+o.sessionoptions = "buffers,curdir,folds,help,tabpages,localoptions"
 
 -- ~ Chars
 local ui = S.Icons.ui

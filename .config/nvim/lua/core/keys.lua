@@ -43,7 +43,7 @@ map("n", "]d", vim.diagnostic.goto_next, "Next ] [d]iagnostic")
 map("n", "[d", vim.diagnostic.goto_prev, "Previous [ [d]iagnostic")
 
 -- Commandline
-map("n", "<cr>", ":<C-U>", "Enter key for cmdline")
+map("n", "<CR>", ":<C-U>", "Enter key for cmdline")
 vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", {})
 vim.api.nvim_set_keymap("c", "<C-e>", "<End>", {})
 vim.api.nvim_set_keymap("c", "<C-f>", "<Right>", {})
@@ -140,9 +140,7 @@ map("n", "<leader>DJ", function ()
   local b = w.sidebar(w.frames, { height = 10 }, "belowright split")
   return b.toggle()
 end, "[D]AP [F]rames")
-map("n", "<leader>DH", function ()
-  return require("dap.ui.widgets").hover()
-end, "[D]AP [H]over")
+map("n", "<leader>DH", function () return require("dap.ui.widgets").hover() end, "[D]AP [H]over")
 
 -- ~ LSP ------------------------------------------------------------------- ~ --
 
@@ -158,11 +156,11 @@ function Key.LSP(_, buf)
   bmap("n", "<leader>gd",  "<cmd>Telescope lsp_definitions<CR>",               buf, "LSP [g]o to [d]efinition")
   bmap("n", "<leader>gr",  "<cmd>Telescope lsp_references<CR>",                buf, "LSP [g]o to [r]eferences")
   bmap("n", "<leader>gi",  "<cmd>Telescope lsp_implementations<CR>",           buf, "LSP [g]o to [i]mplementation")
-  bmap("n", "<leader>td",  blsp.type_definition,                               buf, "LSP [t]ype [d]efinition")
+  bmap("n", "<leader>td",  "<cmd>Telescope lsp_type_definitions<CR>",          buf, "LSP [t]ype [d]efinition")
   bmap("n", "<leader>ds",  "<cmd>Telescope lsp_document_symbols<CR>",          buf, "LSP [d]ocument [s]ymbols")
   bmap("n", "<leader>ws",  "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", buf, "LSP [w]orkspace [s]ymbols")
-  bmap("n", "<leader>wfa", blsp.add_workspace_folder,                          buf, "LSP [w]orkspace [f]older [a]dd")
-  bmap("n", "<leader>wfr", blsp.remove_workspace_folder,                       buf, "LSP [w]orkspace [f]older [r]emove")
+  -- bmap("n", "<leader>wfa", blsp.add_workspace_folder,                          buf, "LSP [w]orkspace [f]older [a]dd")
+  -- bmap("n", "<leader>wfr", blsp.remove_workspace_folder,                       buf, "LSP [w]orkspace [f]older [r]emove")
   bmap("n", "<leader>bac", LSP.buf_active_clients,                             buf, "LSP [b]uffer [a]ctive [c]lients")
 end
 
