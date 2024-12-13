@@ -1,4 +1,4 @@
-local kp = require "clrs.kanagawa.palette"
+local kp = require("clrs.kanagawa.palette")
 return {
   {
     "bettervim/yugen.nvim",

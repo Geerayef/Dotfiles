@@ -3,16 +3,15 @@ return {
   version = false,
   build = ":TSUpdate",
   event = "BufReadPost",
+  dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
   init = function(plugin)
     require("lazy.core.loader").add_to_rtp(plugin)
-    require "nvim-treesitter.query_predicates"
-    vim.opt.runtimepath:append ""
+    require("nvim-treesitter.query_predicates")
   end,
-  dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
-  opts = function()
+  config = function()
     local to = Key.TS.textobjects
     local is = Key.TS.incremental_selection
-    return {
+    require("nvim-treesitter.configs").setup({
       ensure_installed = {
         "regex",
         "bash",
@@ -33,9 +32,6 @@ return {
         "markdown",
         "markdown_inline",
         "html",
-        "javascript",
-        "typescript",
-        "svelte",
         "yaml",
         "toml",
         "vim",
@@ -75,7 +71,6 @@ return {
           peek_definition_code = to.lsp_interop,
         },
       },
-    }
+    })
   end,
-  config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
 }

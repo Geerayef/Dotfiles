@@ -178,7 +178,7 @@ return {
     event = "CmdlineEnter",
     dependencies = "hrsh7th/cmp-cmdline",
     opts = function()
-      local cmp = require "cmp"
+      local cmp = require("cmp")
       -- stylua: ignore start
       local t = function(str) return vim.api.nvim_replace_termcodes(str, true, true, true) end
       cmp.setup.cmdline({ "/", "?" }, {
@@ -210,19 +210,7 @@ return {
           fields = { "kind", "abbr" },
           format = function(e, i)
             e.mode = "symbol"
-            -- e.show_labelDetails = true
-            -- i.maxwidth = function() return math.floor(0.75 * vim.o.columns) end
             i.kind = string.format("%s", S.Icons.kind_icons[i.kind])
-            -- i.menu = ({
-            --   nvim_lsp = "[LSP]",
-            --   nvim_lua = "[Vim]",
-            --   luasnip = "[Snip]",
-            --   async_path = "[Path]",
-            --   buffer = "[Buf]",
-            --   ["buffer-lines"] = "[Line]",
-            --   cmdline = "[CMD]",
-            --   vimtex = "[Tex]",
-            -- })[e.source.name]
             return i
           end,
         },
@@ -489,11 +477,11 @@ return {
             min_keyword_length = 2,
             opts = {
               friendly_snippets = true,
-              search_paths = { vim.fn.stdpath "config" .. "/snippets" },
+              search_paths = { vim.fn.stdpath("config") .. "/snippets" },
               global_snippets = { "all" },
               extended_filetypes = {},
               ignored_filetypes = {},
-              get_filetype = function(ctx) return vim.bo.filetype end,
+              get_filetype = function(_) return vim.bo.filetype end,
             },
             --- Example usage for disabling the snippet provider after pressing trigger characters (i.e. ".")
             -- enabled = function(ctx)
@@ -528,7 +516,7 @@ return {
       -- }}}
       -- ~ Appearance {{{
       appearance = {
-        highlight_ns = vim.api.nvim_create_namespace "blink_cmp",
+        highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
         use_nvim_cmp_as_default = true,
         nerd_font_variant = "mono",
         kind_icons = S.Icons.kind_icons,

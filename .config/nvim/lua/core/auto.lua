@@ -92,7 +92,7 @@ autocmd("ColorScheme", {
   desc = "Apply custom highlights after loading the main colorscheme.",
   group = augroup("CustomHighlights", { clear = true }),
   callback = function()
-    local kp = require "clrs.kanagawa.palette"
+    local kp = require("clrs.kanagawa.palette")
     local hl = vim.api.nvim_set_hl
     hl(0, "RenderMarkdownCode", { bg = "bg" })
     hl(0, "CursorLineNr", { fg = kp.lotusYellow5 })

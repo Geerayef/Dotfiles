@@ -22,7 +22,7 @@ return {
   },
   config = function(_, opts)
     local M = {}
-    local lint = require "lint"
+    local lint = require("lint")
     lint.linters.shellcheck.args = {
       "-x",
       "-a",
@@ -31,7 +31,7 @@ return {
     }
     lint.linters.biomejs.args = {
       "lint",
-      "--config-path=" .. vim.fn.expand "$XDG_CONFIG_PATH" .. "/biome",
+      "--config-path=" .. vim.fn.expand("$XDG_CONFIG_PATH") .. "/biome",
     }
     for name, linter in pairs(opts.linters) do
       if type(linter) == "table" and type(lint.linters[name]) == "table" then

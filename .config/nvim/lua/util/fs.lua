@@ -22,7 +22,7 @@ function FS.root(file, root_markers)
     mark_path = vim.fs.find(mark, {
       path = file,
       upward = true,
-      type = mark:match "/$" and "directory" or "file",
+      type = mark:match("/$") and "directory" or "file",
     })[1]
     if mark_path ~= nil or mark_path ~= "" then
       root = vim.fs.dirname(mark_path)
@@ -47,7 +47,7 @@ end
 function FS.file_read(path)
   local file = io.open(path, "r")
   if not file then return nil end
-  local content = file:read "*a"
+  local content = file:read("*a")
   file:close()
   return content or ""
 end

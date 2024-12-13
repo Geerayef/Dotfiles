@@ -51,7 +51,7 @@ return {
         time_format = "%H:%M",
         substitutions = {},
       },
-      follow_url_func = function(url) vim.system { "xdg-open", url } end,
+      follow_url_func = function(url) vim.system({ "xdg-open", url }) end,
       completion = { nvim_cmp = false, min_chars = 2 },
       preferred_link_style = "markdown",
       disable_frontmatter = true,
