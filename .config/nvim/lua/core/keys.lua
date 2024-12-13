@@ -28,10 +28,10 @@ map("n", "n", "nzzzv", "Vertically center on next matching search")
 map("n", "N", "Nzzzv", "Vertically center on previous matching search")
 
 -- Yank/Paste
-map("n", "x", "\"_x", "Cut rightward character without saving to buffer")
-map("x", "<leader>P", "\"_dP", "Past from system clipboard")
-map({ "n", "x" }, "<leader>y", "\"+y", "Yank to system clipboard")
-map("n", "<leader>Y", "\"+Y", "Yank to system clipboard")
+map("n", "x", '"_x', "Cut rightward character without saving to buffer")
+map("x", "<leader>P", '"_dP', "Past from system clipboard")
+map({ "n", "x" }, "<leader>y", '"+y', "Yank to system clipboard")
+map("n", "<leader>Y", '"+Y', "Yank to system clipboard")
 
 -- Tabs
 map("n", "<leader>to", cmd.tabnew, "[t]ab [o]pen")

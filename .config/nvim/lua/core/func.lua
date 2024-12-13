@@ -70,7 +70,7 @@ function F.IsLargeFile(buf)
 end
 
 ---@return boolean
-function F.IsBufEmpty() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end
+function F.IsBufEmpty() return vim.fn.empty(vim.fn.expand "%:t") ~= 1 end
 
 ---@param buf number # Buffer ID
 ---@return boolean

@@ -5,8 +5,8 @@ return {
   event = "BufReadPost",
   init = function(plugin)
     require("lazy.core.loader").add_to_rtp(plugin)
-    require("nvim-treesitter.query_predicates")
-    vim.opt.runtimepath:append("")
+    require "nvim-treesitter.query_predicates"
+    vim.opt.runtimepath:append ""
   end,
   dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
   opts = function()

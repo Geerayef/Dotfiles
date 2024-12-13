@@ -9,13 +9,7 @@ vim.diagnostic.config({
   update_in_insert = false,
   signs = true,
   virtual_text = false,
-  -- virtual_text = {
-  --   spacing = 4,
-  --   severity = nil,
-  --   source = "if_many",
-  --   format = nil,
-  --   prefix = S.Icons.ui.circle_full,
-  -- },
+  border = S.Border,
   float = {
     source = "if_many",
     wrap_at = 64,
@@ -32,6 +26,5 @@ vim.diagnostic.config({
       end
       return t.message
     end,
-    border = S.Border,
   },
 })

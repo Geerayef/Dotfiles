@@ -6,15 +6,15 @@ vim.g.loaded_python3_provider = 0
 local o = vim.opt
 
 o.shell = "/usr/bin/fish"
-o.shortmess:append("IWSsac")
-if vim.fn.executable("rg") == 1 then
+o.shortmess:append "IWSsac"
+if vim.fn.executable "rg" == 1 then
   o.grepprg =
     "rg --vimgrep --hidden --color=never --no-heading --line-number --column --with-filename  --smart-case --trim --"
 end
 
 -- ~ File
-vim.cmd.syntax("on")
-vim.cmd.filetype({ args = { "plugin", "indent", "on" } })
+vim.cmd.syntax "on"
+vim.cmd.filetype { args = { "plugin", "indent", "on" } }
 o.fileformats = "unix"
 o.fileencoding = "utf-8"
 o.undofile = true
@@ -32,14 +32,14 @@ o.linebreak = true
 o.breakindent = true
 o.breakindentopt = "list:-1"
 o.showbreak = "  "
-o.complete:remove("i")
+o.complete:remove "i"
 o.completeopt = "menu,menuone,noinsert,noselect"
 o.showfulltag = true
 o.virtualedit = "block"
 o.wildmenu = true
 o.wildmode = "list:longest,list:full"
 o.wildoptions = "fuzzy,pum"
-o.wildignore:append({
+o.wildignore:append {
   ".javac",
   "node_modules",
   "*.pyc",
@@ -62,8 +62,8 @@ o.wildignore:append({
   ".git",
   ".hg",
   ".orig",
-})
-o.suffixesadd:append({ ".java", ".rs" })
+}
+o.suffixesadd:append { ".java", ".rs" }
 
 -- ~ UI
 o.termguicolors = true

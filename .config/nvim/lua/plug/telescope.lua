@@ -11,9 +11,9 @@ return {
     cmd = { "Telescope" },
     branch = "0.1.x",
     config = function()
-      local telescope = require("telescope")
-      local a = require("telescope.actions")
-      telescope.setup({
+      local telescope = require "telescope"
+      local a = require "telescope.actions"
+      telescope.setup {
         defaults = {
           border = {
             prompt = { 1, 1, 1, 1 },
@@ -168,9 +168,9 @@ return {
             case_mode = "smart_case",
           },
         },
-      })
-      telescope.load_extension("fzf")
-      telescope.load_extension("ui-select")
+      }
+      telescope.load_extension "fzf"
+      telescope.load_extension "ui-select"
     end,
   },
 }

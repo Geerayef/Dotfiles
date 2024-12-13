@@ -2,13 +2,13 @@ return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   config = function()
-    local lualine_require = require("lualine_require")
+    local lualine_require = require "lualine_require"
     lualine_require.require = require
     -- local kp = require("clrs.kanagawa.palette")
-    local kt = require("clrs.kanagawa.theme")
+    local kt = require "clrs.kanagawa.theme"
     local kl = require("clrs.kanagawa.line").setup(kt)
     local icon = S.Icons
-    require("lualine").setup({
+    require("lualine").setup {
       options = {
         component_separators = "",
         section_separators = "",
@@ -68,6 +68,6 @@ return {
       inactive_sections = { lualine_a = {}, lualine_b = { "filename" }, lualine_c = {}, lualine_x = {}, lualine_y = {}, lualine_z = {} },
       extensions = { "oil", "quickfix", "man" },
       -- stylua: ignore end
-    })
+    }
   end,
 }

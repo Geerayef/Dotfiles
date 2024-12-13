@@ -178,7 +178,7 @@ return {
     event = "CmdlineEnter",
     dependencies = "hrsh7th/cmp-cmdline",
     opts = function()
-      local cmp = require("cmp")
+      local cmp = require "cmp"
       -- stylua: ignore start
       local t = function(str) return vim.api.nvim_replace_termcodes(str, true, true, true) end
       cmp.setup.cmdline({ "/", "?" }, {
@@ -489,7 +489,7 @@ return {
             min_keyword_length = 2,
             opts = {
               friendly_snippets = true,
-              search_paths = { vim.fn.stdpath("config") .. "/snippets" },
+              search_paths = { vim.fn.stdpath "config" .. "/snippets" },
               global_snippets = { "all" },
               extended_filetypes = {},
               ignored_filetypes = {},
@@ -528,7 +528,7 @@ return {
       -- }}}
       -- ~ Appearance {{{
       appearance = {
-        highlight_ns = vim.api.nvim_create_namespace("blink_cmp"),
+        highlight_ns = vim.api.nvim_create_namespace "blink_cmp",
         use_nvim_cmp_as_default = true,
         nerd_font_variant = "mono",
         kind_icons = S.Icons.kind_icons,

@@ -2,12 +2,12 @@ return {
   "mfussenegger/nvim-dap",
   event = "VeryLazy",
   config = function()
-    local dap = require("dap")
+    local dap = require "dap"
     dap.adapters.python = function(cb, config)
       if config.request == "attach" then
         local port = (config.connect or config).port
         local host = (config.connect or config).host or "127.0.0.1"
-        cb({
+        cb {
           type = "server",
           port = assert(
             port,
@@ -15,15 +15,15 @@ return {
           ),
           host = host,
           options = { source_filetype = "python" },
-        })
+        }
       else
         -- config.request == "launch"
-        cb({
+        cb {
           type = "executable",
           command = "python",
           args = { "-m", "debugpy.adapter" },
           options = { source_filetype = "python" },
-        })
+        }
       end
     end
     dap.configurations.python = {
@@ -32,8 +32,8 @@ return {
         request = "attach",
         name = "[DAP] Attach to a Python debugger.",
         connect = function()
-          local host = vim.fn.input("Host: ")
-          local port = tonumber(vim.fn.input("Port: "))
+          local host = vim.fn.input "Host: "
+          local port = tonumber(vim.fn.input "Port: ")
           return { host = host, port = port }
         end,
       },
@@ -45,12 +45,12 @@ return {
         program = "${file}",
         pythonPath = function()
           if
-            os.getenv("VIRTUAL_ENV") ~= nil
-            and os.getenv("PYENV_VIRTUAL_ENV") ~= nil
+            os.getenv "VIRTUAL_ENV" ~= nil
+            and os.getenv "PYENV_VIRTUAL_ENV" ~= nil
           then
-            return (os.getenv("PYENV_VIRTUAL_ENV") .. "/bin/python")
-          elseif os.getenv("CONDA_PREFIX") ~= nil then
-            return (os.getenv("CONDA_PREFIX") .. "/bin/python")
+            return (os.getenv "PYENV_VIRTUAL_ENV" .. "/bin/python")
+          elseif os.getenv "CONDA_PREFIX" ~= nil then
+            return (os.getenv "CONDA_PREFIX" .. "/bin/python")
           else
             return "python"
           end

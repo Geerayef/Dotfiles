@@ -103,7 +103,7 @@ S.Icons = {
     modified = "󰝤 ",
     modified_simple = "∼ ",
     removed = " ",
-    removed_simple = "⁻ "
+    removed_simple = "⁻ ",
   },
   diagnostics = {
     error = " ",
