@@ -1,7 +1,14 @@
 local rust_analyzer = {
   on_attach = require("core.func").LSPAttach,
   filetypes = { "rust" },
-  root_patterns = { "*.rs" },
+  root_patterns = {
+    "*.rs",
+    "mod.rs",
+    "Cargo.toml",
+    "Cargo.lock",
+    "rust-project.json",
+    "package.json",
+  },
   settings = {
     ["rust-analyzer"] = {
       imports = { prefix = "self", granularity = { group = "module" } },

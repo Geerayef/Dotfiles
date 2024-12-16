@@ -1,4 +1,6 @@
-local lua_ls = {
+vim.opt.shiftwidth = 2
+
+local luals = {
   on_attach = require("core.func").LSPAttach,
   on_init = function(client)
     local path = client.workspace_folders[1].name
@@ -19,8 +21,8 @@ local lua_ls = {
     ".stylua.toml",
     "lazy-lock.json",
   },
-  settings = { Lua = {} },
+  settings = { Lua = { runtime = { version = "LuaJIT" } } },
   cmd = { "lua-language-server" },
 }
 
-require("util.lsp").start(lua_ls)
+require("util.lsp").start(luals)

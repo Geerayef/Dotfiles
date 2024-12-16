@@ -4,10 +4,10 @@ return {
   build = ":TSUpdate",
   event = "BufReadPost",
   dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
-  init = function(plugin)
-    require("lazy.core.loader").add_to_rtp(plugin)
-    require("nvim-treesitter.query_predicates")
-  end,
+  -- init = function(plugin)
+  --   require("lazy.core.loader").add_to_rtp(plugin)
+  --   require("nvim-treesitter.query_predicates")
+  -- end,
   config = function()
     local to = Key.TS.textobjects
     local is = Key.TS.incremental_selection

@@ -1,3 +1,5 @@
+vim.opt.shiftwidth = 2
+
 local server
 
 if vim.fn.executable("clangd") then
@@ -6,11 +8,17 @@ if vim.fn.executable("clangd") then
     on_attach = require("core.func").LSPAttach,
     filetypes = { "c", "h" },
     root_patterns = {
+      "*.c",
+      "*.h",
+      "*.cmake",
+      "cmake*/",
+      "CMakePresets.json",
+      "CTestConfig.cmake",
       "compile_commands.json",
+      "compile_flags.txt",
       ".clangd",
       ".clang-tidy",
       ".clang-format",
-      "compile_flags.txt",
     },
     cmd = { "clangd", "--background-index", "--clang-tidy", "--log=verbose" },
     init_options = { fallback_flags = { "-std=c11" } },
@@ -20,7 +28,17 @@ elseif vim.fn.executable("ccls") then
   server = {
     on_attach = require("core.func").LSPAttach,
     filetypes = { "c", "h" },
-    root_patterns = { ".ccls", "compile_commands.json", "compile_flags.txt" },
+    root_patterns = {
+      "*.c",
+      "*.h",
+      ".ccls",
+      "*.cmake",
+      "cmake*/",
+      "CMakePresets.json",
+      "CTestConfig.cmake",
+      "compile_commands.json",
+      "compile_flags.txt",
+    },
     cmd = { "ccls" },
     offset_encoding = "utf-32",
     single_file_support = false,

@@ -5,7 +5,7 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lsp-signature-help",
-    { "hrsh7th/cmp-nvim-lua", ft = "lua", },
+    { "hrsh7th/cmp-nvim-lua", ft = "lua" },
     { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" },
     "hrsh7th/cmp-buffer",
     "amarakon/nvim-cmp-buffer-lines",
