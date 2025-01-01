@@ -36,26 +36,7 @@ return {
   },
   {
     "folke/flash.nvim",
-    keys = {
-      {
-        "<M-j>",
-        mode = { "n", "x", "o" },
-        function() require("flash").jump() end,
-        desc = "Flash [j]ump",
-      },
-      {
-        "<M-t>",
-        mode = { "n", "x", "o" },
-        function() require("flash").treesitter() end,
-        desc = "Flash [t]reesitter",
-      },
-      {
-        "<C-s>",
-        mode = { "c" },
-        function() require("flash").toggle() end,
-        desc = "Toggle Flash Search",
-      },
-    },
+    lazy = true,
     opts = {
       labels = "asdfghjklqwertyuiopzxcvbnm",
       label = {
