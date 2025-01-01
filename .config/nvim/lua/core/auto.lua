@@ -40,7 +40,7 @@ autocmd("TextYankPost", {
 })
 
 --- ~ Auto cd
-autocmd({ "BufWinEnter", "FileChangedShellPost" }, {
+autocmd("BufWinEnter", {
   desc = "Automatically change current working directory based on predefined markers.",
   group = augroup("AutoCWD", { clear = true }),
   pattern = "*",
@@ -59,7 +59,7 @@ autocmd({ "BufWinEnter", "FileChangedShellPost" }, {
         local dir_from = vim.fn.getcwd(0)
         local dir_to = require("util.fs").root(info.file)
         if dir_to ~= nil and dir_to ~= "" and dir_to ~= dir_from then
-          pcall(vim.cmd.lcd, dir_to)
+          pcall(vim.cmd.cd, dir_to)
         end
       end)
     end)

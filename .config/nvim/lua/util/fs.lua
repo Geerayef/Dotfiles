@@ -24,7 +24,7 @@ function FS.root(file, root_markers)
       upward = true,
       type = mark:match("/$") and "directory" or "file",
     })[1]
-    if mark_path ~= nil or mark_path ~= "" then
+    if mark_path ~= nil and mark_path ~= "" then
       root = vim.fs.dirname(mark_path)
       if root ~= nil and root ~= "" then
         root = vim.uv.fs_realpath(root) --[[@as string]]
@@ -53,6 +53,7 @@ function FS.file_read(path)
 end
 
 ---Write string into file.
+---TODO: Check if the given path already exists first!
 ---@param path string # File path relative to CWD
 ---@param content string
 ---@return boolean success

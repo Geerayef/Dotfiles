@@ -89,10 +89,7 @@ function LSP.start(config, opts)
         name = config.cmd[1],
         root_dir = require("util.fs").root(
           vim.api.nvim_buf_get_name(0),
-          vim.list_extend(
-            config.root_patterns or {},
-            LSP.default.root_patterns or {}
-          )
+          vim.list_extend(LSP.default.root_patterns, config.root_patterns)
         ),
       }, LSP.default.config),
       opts
