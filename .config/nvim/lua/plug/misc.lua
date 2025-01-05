@@ -1,12 +1,13 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
+  { "tpope/vim-surround", event = { "CursorHold", "CursorHoldI" } },
+  { "tpope/vim-sleuth", event = { "BufNewFile", "BufReadPost" } },
   {
     "numToStr/Comment.nvim",
     event = { "CursorHold", "CursorHoldI" },
     opts = true,
   },
-  { "tpope/vim-surround", event = { "CursorHold", "CursorHoldI" } },
-  { "tpope/vim-sleuth", event = { "BufNewFile", "BufReadPost" } },
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
@@ -61,10 +62,36 @@ return {
           multi_line = false,
         },
       },
-      prompt = {
-        prefix = { { " ⚡ ", "FlashPromptIcon" } },
-        win_config = { width = 0.7, col = 1 },
-      },
+      prompt = { prefix = { { " ⚡ ", "FlashPromptIcon" } } },
     },
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPost",
+    main = "ibl",
+    opts = { indent = { char = "│" } },
+  },
+  {
+    "rcarriga/nvim-notify",
+    event = "VeryLazy",
+    opts = function()
+      vim.notify = require("notify")
+      require("notify").setup({
+        fps = 1,
+        render = "minimal",
+        stages = "static",
+        timeout = 2500,
+        on_open = function(win)
+          local config = vim.api.nvim_win_get_config(win)
+          config.border = S.Border
+          vim.api.nvim_win_set_config(win, config)
+        end,
+      })
+    end,
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+    cmd = "ColorizerToggle",
+    opts = { ["*"] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true } },
   },
 }
