@@ -2,27 +2,23 @@ vim.opt.shiftwidth = 2
 
 local luals = {
   on_attach = require("core.func").LSPAttach,
-  on_init = function(client)
-    local path = client.workspace_folders[1].name
-    if
-      vim.loop.fs_stat(path .. "/.luarc.json")
-      or vim.loop.fs_stat(path .. "/.luarc.jsonc")
-    then
-      return
-    end
-  end,
   filetypes = { "lua" },
   root_patterns = {
+    ".luarc.json",
+    ".luarc.jsonc",
     "*.lua",
     "init.lua",
     ".luacheckrc",
-    ".luarc.json",
-    ".luarc.jsonc",
     ".stylua.toml",
     "lazy-lock.json",
   },
-  settings = { Lua = { runtime = { version = "LuaJIT" } } },
+  settings = { Lua = {} },
   cmd = { "lua-language-server" },
 }
 
-require("util.lsp").start(luals)
+vim.schedule(function()
+  vim.api.nvim_win_call(
+    vim.api.nvim_get_current_win(),
+    function() require("util.lsp").start(luals) end
+  )
+end)

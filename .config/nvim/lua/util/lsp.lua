@@ -174,7 +174,7 @@ function LSP.restart(client_id)
   )
   LSP.stop(client, {
     on_close = function(c)
-      for buf, _ in pairs(attached_buffers) do
+      for buf, _ in pairs(c.attached_buffers) do
         if vim.api.nvim_buf_is_valid(buf) then
           vim.api.nvim_buf_call(buf, function() LSP.start(config) end)
         end

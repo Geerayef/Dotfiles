@@ -253,7 +253,7 @@ S.root_markers = {
   "scripts/",
   "out/",
   "assets/",
-  "deps",
+  "deps/",
 }
 
 S.FtSpecial = {

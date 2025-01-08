@@ -17,4 +17,9 @@ local ocamlls = {
   cmd = { "ocamllsp" },
 }
 
-require("util.lsp").start(ocamlls)
+vim.schedule(function()
+  vim.api.nvim_win_call(
+    vim.api.nvim_get_current_win(),
+    function() require("util.lsp").start(ocamlls) end
+  )
+end)

@@ -74,19 +74,6 @@ autocmd({ "FileType" }, {
   callback = function() F.bmap("n", "q", "<C-w>c", 0, "Close current buffer.") end,
 })
 
---- ~ Turn off Ruff LSP Hover when used with Pylsp
-autocmd("LspAttach", {
-  desc = "LSP: Disable Ruff's hover if used with Pylsp.",
-  group = augroup("DisableRuffHover", { clear = true }),
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client == nil then return end
-    if client.name == "ruff" then
-      client.server_capabilities.hoverProvider = false
-    end
-  end,
-})
-
 --- ~ Apply custom UI highlights
 autocmd("ColorScheme", {
   desc = "Apply custom highlights after loading the main colorscheme.",
@@ -97,15 +84,7 @@ autocmd("ColorScheme", {
     hl(0, "RenderMarkdownCode", { bg = "bg" })
     hl(0, "CursorLineNr", { fg = kp.lotusYellow5 })
     hl(0, "TabLineSel", { fg = kp.lotusYellow5 })
-    hl(
-      0,
-      "LspSignatureActiveParameter",
-      { fg = kp.dragonInk1, bg = kp.lotusYellow5, bold = true }
-    )
-    hl(
-      0,
-      "ActionPreviewTitle",
-      { fg = kp.dragonInk1, bg = kp.lotusYellow5, bold = true }
-    )
+    hl(0, "LspSignatureActiveParameter", { fg = kp.dragonInk1, bg = kp.lotusYellow5, bold = true })
+    hl(0, "ActionPreviewTitle", { fg = kp.dragonInk1, bg = kp.lotusYellow5, bold = true })
   end,
 })

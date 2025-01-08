@@ -5,4 +5,9 @@ local markdown_oxide = {
   cmd = { "markdown-oxide" },
 }
 
-require("util.lsp").start(markdown_oxide)
+vim.schedule(function()
+  vim.api.nvim_win_call(
+    vim.api.nvim_get_current_win(),
+    function() require("util.lsp").start(markdown_oxide) end
+  )
+end)

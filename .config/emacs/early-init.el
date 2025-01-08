@@ -21,7 +21,14 @@
          (fboundp 'native-comp-available-p)
          (native-comp-available-p))
     (setq native-comp-jit-compilation t
-          package-native-compile t)
+          package-native-compile t
+          native-comp-speed 2
+          comp-speed 2
+          native-comp-async-report-warnings-errors nil
+          comp-async-report-warnings-errors nil
+          native-comp-warning-on-missing-source nil
+          native-comp-async-query-on-exit t
+          comp-async-query-on-exit t)
   (setq features (delq 'native-compile features)))
 (if (fboundp #'json-parse-string)
     (push 'jansson features))
@@ -63,8 +70,6 @@
       comint-buffer-maximum-size 2048
       ;; Warnings, Errors
       warning-suppress-types '((lexical-binding))
-      native-comp-async-report-warnings-errors nil
-      native-comp-warning-on-missing-source nil
       debug-on-error nil
       jka-compr-verbose nil
       byte-compile-warnings nil

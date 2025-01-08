@@ -1,5 +1,6 @@
 # ~ General
 
+alias rm="rm -I"
 alias C="clear"
 if test -e "$(command -v eza)"
     alias ls="eza -a --color=always --icons=always --group-directories-first"

@@ -3,7 +3,7 @@ vim.opt.shiftwidth = 2
 local server
 
 if vim.fn.executable("clangd") then
-  require("core.func").Notify("INFO", "Using clangd for C/C++.")
+  require("core.func").Notify("INFO", "[LSP] C|C++: Clangd.")
   server = {
     on_attach = require("core.func").LSPAttach,
     filetypes = { "cpp", "hpp" },
@@ -34,7 +34,7 @@ if vim.fn.executable("clangd") then
     },
   }
 elseif vim.fn.executable("ccls") then
-  require("core.func").Notify("INFO", "Using CCLS for C/C++.")
+  require("core.func").Notify("INFO", "[LSP] C|C++: CCLS.")
   server = {
     on_attach = require("core.func").LSPAttach,
     filetypes = { "cpp", "hpp" },
@@ -63,4 +63,9 @@ else
   require("core.func").Notify("ERROR", "C/C++ LSP not found.")
 end
 
-require("util.lsp").start(server)
+vim.schedule(function()
+  vim.api.nvim_win_call(
+    vim.api.nvim_get_current_win(),
+    function() require("util.lsp").start(server) end
+  )
+end)

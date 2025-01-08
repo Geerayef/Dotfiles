@@ -4,7 +4,8 @@ return {
   opts = {
     { "skim", "telescope", "max-perf" },
     fzf_bin = "sk",
-    defaults = { no_header = true, no_header_i = true },
+    fzf_opts = { ["--layout"] = "reverse", ["--marker"] = false },
+    defaults = { compat_warn = false, no_header = true, no_header_i = true },
     winopts = {
       header = false,
       height = 0.4,
@@ -27,7 +28,6 @@ return {
         scrollchars = { "", "" },
       },
     },
-    fzf_opts = { ["--layout"] = "reverse", ["--marker"] = false },
     keymap = {
       builtin = {
         true,
