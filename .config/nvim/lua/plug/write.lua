@@ -12,15 +12,6 @@ return {
           bullet = { icons = { S.Icons.ui.dot }, right_pad = 2 },
         },
       },
-      {
-        url = "https://git.sr.ht/~hedy/markdown-toc.nvim",
-        cmd = { "Mtoc" },
-        opts = {
-          toc_list = { markers = "1." },
-          fences = { start_text = "ToC start", end_text = "ToC end" },
-          auto_update = { enabled = true },
-        },
-      },
     },
     opts = {
       workspaces = {

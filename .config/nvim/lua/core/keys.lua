@@ -8,8 +8,8 @@ local cmd = vim.cmd
 -- ~ General --------------------------------------------------------------- ~ --
 
 -- Movement
-map("x", "J", ":'<,'>m '>+1<CR>gv=gv", "Move selection down")
-map("x", "K", ":'<,'>m '<-2<CR>gv=gv", "Move selection up")
+map("x", "J", [[:'<,'>m '>+1<CR>gv=gv]], "Move selection down")
+map("x", "K", [[:'<,'>m '<-2<CR>gv=gv]], "Move selection up")
 map({ "n", "x" }, "<C-d>", "10j", "Scroll down 10 lines")
 map({ "n", "x" }, "<C-u>", "10k", "Scroll up 10 lines")
 map({ "n", "x" }, "<Space>", "", "Disable moving cursor with space")
@@ -88,7 +88,7 @@ map("n", "<leader>sw", "<cmd>FzfLua grep_cword<CR>",           "FzfLua [s]earch 
 map("n", "<leader>sd", "<cmd>FzfLua diagnostics_document<CR>", "FzfLua [s]earch [d]iagnostics")
 map("n", "<leader>?", "<cmd>FzfLua oldfiles<CR>",              "[?] FzfLua recent files")
 map("n", "<leader> ", "<cmd>FzfLua buffers<CR>",               "[ ] FzfLua open buffers")
-map("n", "<leader>/", "<cmd>FzfLua grep_curbuf<CR>",           "[/] FzfLua search buffer")
+map("n", "<leader>/", "<cmd>FzfLua blines<CR>",                "[/] FzfLua search buffer")
 
 -- Git
 map("n", "<leader>G", "<cmd>Neogit<CR>", "Neo[G]it")
@@ -167,7 +167,7 @@ function Key.LSP(_, buf)
   bmap("n", "<C-k>",       blsp.signature_help,                          buf, "LSP signature")
   bmap("n", "<leader>rn",  blsp.rename,                                  buf, "LSP [r]e[n]ame")
   bmap("n", "<leader>ca",  "<cmd>FzfLua lsp_code_actions<CR>",           buf, "LSP [c]ode [a]ction")
-  bmap("n", "<leader>gD",  blsp.declaration,                             buf, "LSP [g]o to [D]eclaration")
+  bmap("n", "<leader>gD",  "<cmd>FzfLua lsp_declarations<CR>",           buf, "LSP [g]o to [D]eclaration")
   bmap("n", "<leader>gd",  "<cmd>FzfLua lsp_definitions<CR>",            buf, "LSP [g]o to [d]efinition")
   bmap("n", "<leader>gr",  "<cmd>FzfLua lsp_references<CR>",             buf, "LSP [g]o to [r]eferences")
   bmap("n", "<leader>gi",  "<cmd>FzfLua lsp_implementations<CR>",        buf, "LSP [g]o to [i]mplementation")
@@ -176,7 +176,7 @@ function Key.LSP(_, buf)
   bmap("n", "<leader>ws",  "<cmd>FzfLua lsp_live_workspace_symbols<CR>", buf, "LSP [w]orkspace [s]ymbols")
   -- bmap("n", "<leader>wfa", blsp.add_workspace_folder,                          buf, "LSP [w]orkspace [f]older [a]dd")
   -- bmap("n", "<leader>wfr", blsp.remove_workspace_folder,                       buf, "LSP [w]orkspace [f]older [r]emove")
-  bmap("n", "<leader>bac", LSP.buf_active_clients,                             buf, "LSP [b]uffer [a]ctive [c]lients")
+  bmap("n", "<leader>bac", LSP.buf_active_clients,                       buf, "LSP [b]uffer [a]ctive [c]lients")
 end
 
 Key.TS = {

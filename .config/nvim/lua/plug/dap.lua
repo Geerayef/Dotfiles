@@ -1,8 +1,16 @@
 return {
   "mfussenegger/nvim-dap",
-  event = "VeryLazy",
+  ft = { "cpp", "c", "python", "rust" },
   config = function()
     local dap = require("dap")
+    local path_debugee = function()
+      return vim.fn.input(
+        "Path to executable: ",
+        vim.fn.getcwd() .. "/",
+        "file"
+      )
+    end
+    -- Python ----------------------------------------------------------------------
     dap.adapters.python = function(cb, config)
       if config.request == "attach" then
         local port = (config.connect or config).port
@@ -57,6 +65,36 @@ return {
         end,
       },
     }
+    -- C|C++ -----------------------------------------------------------------------
+    dap.adapters.gdb = {
+      type = "executable",
+      command = "gdb",
+      args = { "-i", "dap" },
+    }
+    dap.adapters.codelldb = {
+      type = "executable",
+      command = os.getenv("HOME")
+        .. "/software/codelldb/extension/adapter/codelldb",
+    }
+    dap.configurations.cpp = {
+      {
+        type = "codelldb",
+        request = "launch",
+        name = "[DAP] Launch CodeLLDB.",
+        program = path_debugee,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+      },
+      {
+        type = "gdb",
+        request = "launch",
+        name = "[DAP] Launch GDB.",
+        program = path_debugee,
+        cwd = "${workspaceFolder}",
+      },
+    }
+    dap.configurations.c = dap.configurations.cpp
+    --------------------------------------------------------------------------------
     vim.fn.sign_define("DapBreakpoint", {
       text = S.Icons.ui.circle_circle,
       texthl = "DiagnosticError",

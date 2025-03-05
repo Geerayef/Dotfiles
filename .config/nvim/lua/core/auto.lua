@@ -81,10 +81,25 @@ autocmd("ColorScheme", {
   callback = function()
     local kp = require("clrs.kanagawa.palette")
     local hl = vim.api.nvim_set_hl
-    hl(0, "RenderMarkdownCode", { bg = "bg" })
-    hl(0, "CursorLineNr", { fg = kp.lotusYellow5 })
-    hl(0, "TabLineSel", { fg = kp.lotusYellow5 })
-    hl(0, "LspSignatureActiveParameter", { fg = kp.dragonInk1, bg = kp.lotusYellow5, bold = true })
-    hl(0, "ActionPreviewTitle", { fg = kp.dragonInk1, bg = kp.lotusYellow5, bold = true })
+    if vim.g.theme_override_hlg then
+      hl(0, "RenderMarkdownCode", { bg = "bg" })
+      hl(0, "CursorLineNr", { fg = kp.lotusYellow5 })
+      hl(0, "TabLineSel", { fg = kp.lotusYellow5 })
+      hl(
+        0,
+        "LspSignatureActiveParameter",
+        { fg = kp.dragonInk1, bg = kp.lotusYellow5, bold = true }
+      )
+      hl(
+        0,
+        "ActionPreviewTitle",
+        { fg = kp.dragonInk1, bg = kp.lotusYellow5, bold = true }
+      )
+      hl(0, "Normal", { bg = kp.dragonInk1 })
+      hl(0, "NormalNC", { link = "Normal" })
+      hl(0, "NormalFloat", { link = "Normal" })
+      hl(0, "SignColumn", { link = "Normal" })
+      hl(0, "WinSeparator", { bg = kp.dragonInk1 })
+    end
   end,
 })

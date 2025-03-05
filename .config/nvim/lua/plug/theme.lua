@@ -3,17 +3,26 @@ return {
   {
     "bettervim/yugen.nvim",
     priority = 1010,
-    lazy = function() return vim.g.theme ~= "yugen" end,
+    lazy = vim.g.theme ~= "yugen",
   },
-  -- stylua: ignore start
   {
     "amedoeyes/eyes.nvim",
     priority = 1010,
-    lazy = function() return vim.g.theme ~= "eyes" end,
-    opts = { features = { plugins = { codeium = false, dap_ui = false, illuminate = false,
-      leap = false, mason = false, mini_indentscope = false, neo_tree = false, noice = false } },
-      extend = { highlights = { Normal = { bg = kp.dragonInk1 } } }
+    lazy = vim.g.theme ~= "eyes",
+    opts = {
+      extend = { highlights = { Normal = { bg = kp.dragonInk1 } } },
+      features = {
+        plugins = {
+          codeium = false,
+          dap_ui = false,
+          illuminate = false,
+          leap = false,
+          mason = false,
+          mini_indentscope = false,
+          neo_tree = false,
+          noice = false,
+        },
+      },
     },
   },
-  -- stylua: ignore end
 }

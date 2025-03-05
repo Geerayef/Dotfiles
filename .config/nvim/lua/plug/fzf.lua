@@ -2,7 +2,7 @@ return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   opts = {
-    { "skim", "telescope", "max-perf" },
+    { "skim", "max-perf", "telescope" },
     fzf_bin = "sk",
     fzf_opts = { ["--layout"] = "reverse", ["--marker"] = false },
     defaults = { compat_warn = false, no_header = true, no_header_i = true },
@@ -16,13 +16,13 @@ return {
       treesitter = { enabled = true },
       backdrop = 100,
       preview = {
-        default = "bat",
+        -- default = "bat",
         border = "noborder",
         wrap = "nowrap",
         hidden = "hidden",
         vertical = "down:50%",
         horizontal = "right:50%",
-        layout = "flex",
+        layout = "horizontal",
         scrollbar = false,
         scrolloff = "-2",
         scrollchars = { "", "" },
@@ -34,7 +34,7 @@ return {
         ["<M-Esc>"] = "hide",
         ["<F1>"] = "toggle-help",
         ["<F2>"] = "toggle-fullscreen",
-        -- Only valid with the 'builtin' previewer
+        -- Only valid with the "builtin" previewer
         ["<F3>"] = "toggle-preview-wrap",
         ["<M-p>"] = "toggle-preview",
         -- Rotate preview clockwise/counter-clockwise
@@ -79,6 +79,8 @@ return {
     --     ["ctrl-t"] = require("fzf-lua").actions.buf_tabedit,
     --   },
     -- },
-    files = { winopts = { height = 0.4, width = 0.4 } },
+    files = { winopts = { width = 0.4 } },
+    oldfiles = { winopts = { width = 0.4 } },
+    buffers = { winopts = { width = 0.4 } },
   },
 }

@@ -104,8 +104,8 @@ function LSP.start(config, opts)
       then
         table.insert(LSP.active_clients, { client_id, config.cmd[1] })
         F.Notify(
-          "LSP",
-          "Start " .. config.cmd[1] .. " (ID: " .. client_id .. ")"
+          "INFO",
+          "[LSP] Start " .. config.cmd[1] .. " (ID: " .. client_id .. ")"
         )
       end
       return client_id
