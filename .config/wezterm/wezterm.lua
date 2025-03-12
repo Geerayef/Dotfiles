@@ -8,7 +8,7 @@ local G = W.GLOBAL
 local C = W.config_builder()
 local font = {
   fam = "Iosevka",
-  fam_fb = "ZedMono Nerd Font Mono",
+  fam_fb = "IosevkaTerm Nerd Font Mono",
   feat = { "calt=1", "clig=1", "liga=1", "dlig=1" },
   feat_fb = {},
 }
@@ -218,9 +218,13 @@ C.colors = {
 
 -- Font
 -- stylua: ignore start
-if string.match(font.fam_fb, "Zed") ~= nil then
+if string.match(font.fam_fb, "Term") ~= nil then
   font.feat_fb = { "calt=1", "clig=1", "liga=1", "dlig=1", "ss10", "cv01=2", "cv10=6", "cv26=12", "cv59=16", "cv85=6" }
 elseif string.match(font.fam_fb, "Fira") ~= nil then
+  font.feat_fb = { "zero", "calt=1", "clig=1", "liga=1", "dlig=1", "cv01", "cv02", "cv04", "cv08", "cv29", "cv30", "cv31", "ss01", "ss02", "ss05", "ss09" }
+elseif string.match(font.fam_fb, "Blex") ~= nil then
+  font.feat_fb = { "zero", "calt=1", "clig=1", "liga=1", "dlig=1", "cv01", "cv02", "cv04", "cv08", "cv29", "cv30", "cv31", "ss01", "ss02", "ss05", "ss09" }
+elseif string.match(font.fam_fb, "Victor") ~= nil then
   font.feat_fb = { "zero", "calt=1", "clig=1", "liga=1", "dlig=1", "cv01", "cv02", "cv04", "cv08", "cv29", "cv30", "cv31", "ss01", "ss02", "ss05", "ss09" }
 elseif string.match(font.fam_fb, "Jet") ~= nil then
   font.feat_fb = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
