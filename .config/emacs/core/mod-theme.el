@@ -22,7 +22,7 @@
       
       ((string-search "ef" gracs/theme)
        (use-package ef-themes
-         :ensure t
+         :ensure (:host github :repo "protesilaos/ef-themes")
          :demand t
          :custom
          (ef-elea-dark-palette-overrides `((bg-main ,gracs/theme-bg)))

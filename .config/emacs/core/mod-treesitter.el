@@ -18,7 +18,7 @@
           (python-mode . python-ts-mode)
           (bash-mode . bash-ts-mode)
           (fish-mode . fish-ts-mode)
-          (markdown-mode . markdown-ts-mode)
+          ;; (markdown-mode . markdown-ts-mode)
           (toml-mode . toml-ts-mode)
           (yaml-mode . yaml-ts-mode)
           (makefile-mode . make-ts-mode)
@@ -57,7 +57,7 @@
 (use-package treesit-auto
   :ensure t
   :init
-  (setq treesit-auto-langs '(c cpp ocaml python rust elisp lua bash fish yaml toml markdown))
+  (setq treesit-auto-langs '(c cpp ocaml python elisp lua bash fish yaml toml markdown))
   :custom
   (treesit-auto-install 'prompt)
   (treesit-auto-add-to-auto-mode-alist 'all)

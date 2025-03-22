@@ -3,12 +3,9 @@
 ;;; Code:
 
 (use-package nano-modeline
-  :ensure t
-  :init
-  (nano-modeline-prog-mode t)
-  :custom
-  (nano-modeline-position 'nano-modeline-footer)
-  (nano-modeline-padding '(0 . 0))
+  :ensure (:host github :repo "rougier/nano-modeline")
+  :demand t
+  :custom (nano-modeline-position 'nano-modeline-footer)
   :custom-face
   (nano-modeline-active ((t (:foreground ,gracs/theme-fg :background ,gracs/theme-bg))))
   :hook

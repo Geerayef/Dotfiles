@@ -220,7 +220,7 @@
 (use-package mod-theme :ensure nil)
 (use-package mod-modeline :ensure nil)
 (use-package mod-completion :ensure nil)
-;; (use-package mod-treesitter :ensure nil)
+(use-package mod-treesitter :ensure nil)
 ;; (use-package mod-eglot :ensure nil)
 ;; (use-package mod-lang :ensure nil)
 ;; (use-package mod-write :ensure nil)

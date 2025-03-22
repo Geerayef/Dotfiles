@@ -8,7 +8,16 @@ local biome = {
     "jsonc",
     "css",
   },
-  root_patterns = { "package.json", "biome.json", "biome.jsonc" },
+  root_patterns = {
+    "package.json",
+    "biome.json",
+    "biome.jsonc",
+    "*.js",
+    ".ts",
+    "*.json",
+    "*.jsonc",
+    "*.css",
+  },
   cmd = { "biome", "lsp-proxy" },
 }
 
