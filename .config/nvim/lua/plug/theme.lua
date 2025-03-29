@@ -1,6 +1,11 @@
 local kp = require("clrs.kanagawa.palette")
 return {
   {
+    "vinitkumar/oscura-vim",
+    priority = 1010,
+    lazy = false,
+  },
+  {
     "bettervim/yugen.nvim",
     priority = 1010,
     lazy = vim.g.theme ~= "yugen",

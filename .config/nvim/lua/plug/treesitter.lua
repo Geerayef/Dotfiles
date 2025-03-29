@@ -28,7 +28,7 @@ return {
         "markdown_inline",
         "vim",
         "vimdoc",
-        -- "javascript",
+        "javascript",
         "typescript",
         "hyprlang",
         "toml",

@@ -76,8 +76,9 @@ function F.IsBufEmpty() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end
 ---@return boolean
 function F.IsBufInRepo(buf)
   local buf_path = vim.api.nvim_buf_get_name(buf)
-  local gitdir = vim.fn.finddir(".git", buf_path .. ";")
-  return gitdir and #gitdir > 0 and #gitdir < #buf_path
+  -- local gitdir = vim.fn.finddir(".git", buf_path .. ";")
+  local gitdir = vim.fs.root(buf_path, ".git")
+  return gitdir ~= nil and #gitdir > 0 and #gitdir < #buf_path
 end
 
 return F

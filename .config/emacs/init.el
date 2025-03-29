@@ -12,7 +12,7 @@
 ;; ~ Variables ------------------------------------------------------------- ~ ;;
 
 ;; 'ef-elea-dark | 'doom-{plain-dark, tomorrow-night, spacegrey} | 'poet-dark{-monochrome}
-(defvar gracs/theme "doom-spacegrey"
+(defvar gracs/theme "doom-plain-dark"
   "Default theme.")
 
 (add-hook 'elpaca-after-init-hook (lambda () (load-theme (intern gracs/theme) t)))

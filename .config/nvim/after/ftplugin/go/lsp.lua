@@ -2,7 +2,7 @@ local gopls = {
   on_attach = require("core.func").LSPAttach,
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
   root_patterns = { "*.go", "main.go", "go.mod", "go.work", "go.sum" },
-  cmd = { "gopls" },
+  cmd = { "gopls", "serve" },
 }
 
 vim.schedule(function()

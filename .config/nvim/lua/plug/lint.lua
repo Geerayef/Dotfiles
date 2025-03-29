@@ -9,7 +9,7 @@ return {
       cpp = { "clangtidy" },
       python = { "ruff" },
       rust = { "clippy-driver" },
-      go = { "golangcilint" },
+      golangcilint = { "golangcilint" },
       lua = { "luacheck" },
       sh = { "shellcheck" },
       fish = { "fish" },

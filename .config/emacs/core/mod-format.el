@@ -2,10 +2,25 @@
 ;;; Commentary:
 ;;; Code:
 
+;; ~ Apheleia ------------------------------------------------------------- ~ ;;
+
+(use-package apheleia
+  :ensure t
+  :bind (("C-c f" . apheleia-format-buffer)))
+
+;; ~ Reformatter ---------------------------------------------------------- ~ ;;
+
+;; (use-package reformatter
+;;   :ensure t)
+
+;; ~ Aggressive indent ---------------------------------------------------- ~ ;;
+
 (use-package aggressive-indent
   :ensure t
   :config
   (global-aggressive-indent-mode 1))
+
+;; ~ Format all ----------------------------------------------------------- ~ ;;
 
 ;; (use-package format-all
 ;;   :ensure t

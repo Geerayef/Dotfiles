@@ -157,6 +157,7 @@ end)
 
 -- Bar
 C.tab_bar_at_bottom = true
+C.tab_max_width = 128
 C.use_fancy_tab_bar = false
 C.show_new_tab_button_in_tab_bar = false
 C.status_update_interval = 1000
@@ -197,7 +198,7 @@ C.force_reverse_video_cursor = false
 -- Unsifted Wheat (terminal.sexy)
 -- BRIGHT
 -- Gruvbox Material (Gogh) | Shic (terminal.sexy)
-C.color_scheme = "Gruvbox Material (Gogh)"
+C.color_scheme = "Shic (terminal.sexy)"
 C.colors = {
   background = kngw.palette.dragonInk,
   cursor_fg = kngw.ansi[1],

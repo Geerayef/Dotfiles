@@ -15,11 +15,13 @@ Dotfiles/
 .config/btop/btop.log
 .config/emacs/eln-cache/
 .config/emacs/cache/
+.config/emacs/.cache/
 .config/emacs/elpa/
 .config/emacs/elpaca/
 .config/emacs/tree-sitter/
 .config/emacs/custom.el
 .config/emacs/elgrep-data.el
+.config/emacs/.lsp-session
 .config/micro/buffers
 .config/zellij/plugin
 .config/vim/.netrwhist

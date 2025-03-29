@@ -22,7 +22,7 @@
       
       ((string-search "ef" gracs/theme)
        (use-package ef-themes
-         :ensure (:host github :repo "protesilaos/ef-themes")
+         :ensure t
          :demand t
          :custom
          (ef-elea-dark-palette-overrides `((bg-main ,gracs/theme-bg)))
@@ -39,8 +39,8 @@
           `(highlight ((t (:background ,gracs/theme-sel-bg))))))))
 
 (custom-set-faces
- `(default ((t (:background ,gracs/theme-bg))))
- `(fringe ((t (:background ,gracs/theme-bg))))
+ ;; `(default ((t (:background ,gracs/theme-bg))))
+ ;; `(fringe ((t (:background ,gracs/theme-bg))))
  `(cursor ((t (:background ,gracs/color-yellow))))
  `(show-paren-match ((t (:inherit 'default :background ,gracs/color-gray))))
  `(line-number ((t (:slant normal))))

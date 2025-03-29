@@ -15,7 +15,7 @@ return {
   },
   {
     "andymass/vim-matchup",
-    -- event = { "CursorHold", "CursorHoldI" },
+    lazy = true,
     config = function()
       vim.g.matchup_mouse_enabled = 0
       vim.g.matchup_matchparen_offscreen = { method = "popup" }

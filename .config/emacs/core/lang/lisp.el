@@ -25,20 +25,22 @@
 
 (use-package sly
   :ensure t
-  :hook (lisp-mode . sly-editing-mode)
-  ;; :config
-  ;; Uncomment and update if you need to set the path to an
-  ;; implementation of common lisp. This would be needed only if you
-  ;; have multiple instances of common lisp installed, for example,
-  ;; both CLISP and SBCL. In this case, we are assuming SBCL.
-  ;; (setq inferior-lisp-program "/usr/bin/sbcl")
-  )
+  :hook (lisp-mode . sly-editing-mode))
+;; :config
+;; Uncomment and update if you need to set the path to an
+;; implementation of common lisp. This would be needed only if you
+;; have multiple instances of common lisp installed, for example,
+;; both CLISP and SBCL. In this case, we are assuming SBCL.
+;; (setq inferior-lisp-program "/usr/bin/sbcl")
+
 (use-package sly-asdf
   :ensure t
   :after sly)
+
 (use-package sly-quicklisp
   :ensure t
   :after sly)
+
 (use-package sly-repl-ansi-color
   :ensure t
   :after sly)
@@ -48,6 +50,7 @@
 (use-package geiser
   :ensure t
   :custom (scheme-program-name "guile"))
+
 (use-package geiser-guile :ensure t :after geiser)
 
 (provide 'lisp)

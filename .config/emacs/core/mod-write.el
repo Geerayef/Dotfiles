@@ -120,24 +120,23 @@
 
 ;; ~ Markdown -------------------------------------------------------------- ~ ;;
 
-;; (use-package markdown-preview-mode
-;;   :ensure t
-;;   :custom
-;;   (browse-url-browser-function 'browse-url-firefox))
-;; :hook ((markdown-mode . markdown-preview-mode)
-;;        (gfm-mode . markdown-preview-mode))
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :custom
+  (markdown-command '("pandoc" "--standalone" "--mathjax" "--from=markdown" "--to=html5"))
+  (markdown-enable-math t)
+  (markdown-hide-markup t)
+  (markdown-gfm-uppercase-checkbox t)
+  (markdown-indent-on-enter 'indent-and-new-item)
+  :hook (gfm-mode . (lambda () (visual-line-mode)))
+  :mode (("README\\.md\\'" . gfm-mode)))
 
-;; (use-package markdown-mode
-;;   :ensure t
-;;   :commands (markdown-mode gfm-mode)
-;;   :custom
-;;   (markdown-command '("pandoc" "--standalone" "--mathjax" "--from=markdown" "--to=html5"))
-;;   (markdown-enable-math t)
-;;   (markdown-hide-markup t)
-;;   (markdown-gfm-uppercase-checkbox t)
-;;   (markdown-indent-on-enter 'indent-and-new-item)
-;;   :hook (gfm-mode . (lambda () (visual-line-mode)))
-;;   :mode (("README\\.md\\'" . gfm-mode)))
+(use-package markdown-preview-mode
+  :ensure t
+  :hook ((markdown-mode . markdown-preview-mode)
+         (gfm-mode . markdown-preview-mode))
+  :custom (browse-url-browser-function 'browse-url-firefox))
 
 ;; (use-package obsidian
 ;;   :ensure t

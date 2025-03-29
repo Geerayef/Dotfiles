@@ -1,4 +1,4 @@
-vim.g.theme = "yugen"
+vim.g.theme = "oscura"
 vim.g.theme_override_hlg = true
 require("util.static")
 require("core.opts")

@@ -98,15 +98,18 @@
 
 (use-package consult-flycheck :ensure t :after consult)
 
-(use-package consult-eglot :ensure t :after consult)
+;; (use-package consult-eglot :ensure t :after consult)
+
+(use-package consult-lsp
+  :ensure (:host github :repo "gagbo/consult-lsp")
+  :after consult)
 
 ;; ~ Marginalia ----------------------------------------------------------- ~ ;;
 
 (use-package marginalia
   :ensure t
   :after vertico
-  :init
-  (marginalia-mode)
+  :init (marginalia-mode)
   :custom
   (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil)))
 
@@ -138,30 +141,30 @@
 
 ;; ~ Cape ----------------------------------------------------------------- ~ ;;
 
-;; (use-package cape
-;;              :ensure t
-;;              :init
-;;              (add-to-list 'completion-at-point-functions #'cape-keyword)
-;;              (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-;;              (add-to-list 'completion-at-point-functions #'cape-file)
-;;              (add-to-list 'completion-at-point-functions #'cape-elisp-block)
-;;              (add-to-list 'completion-at-point-functions #'cape-elisp-symbol)
-;;              :config
-;;              (defun my/eglot-capf ()
-;;                (setq-local completion-at-point-functions
-;;                            (list (cape-capf-super #'eglot-completion-at-point #'cape-file))))
-;;              :hook (eglot-managed-mode . my/eglot-capf)
-;;              :bind (("C-c p p" . completion-at-point)
-;;                     ("C-c p t" . complete-tag)
-;;                     ("C-c p d" . cape-dabbrev)
-;;                     ("C-c p f" . cape-file)
-;;                     ("C-c p k" . cape-keyword)
-;;                     ("C-c p l" . cape-line)
-;;                     ("C-c p s" . cape-elisp-symbol)
-;;                     ("C-c p e" . cape-elisp-block)
-;;                     ("C-c p w" . cape-dict)
-;;                     ("C-c p :" . cape-emoji)
-;;                     ("C-c p _" . cape-tex)))
+(use-package cape
+  :ensure t
+  :init
+  (add-to-list 'completion-at-point-functions #'cape-keyword)
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-elisp-block)
+  (add-to-list 'completion-at-point-functions #'cape-elisp-symbol)
+  ;; :config
+  ;; (defun gracs/eglot-capf ()
+  ;;   (setq-local completion-at-point-functions
+  ;;               (list (cape-capf-super #'eglot-completion-at-point #'cape-file))))
+  ;; :hook (eglot-managed-mode . gracs/eglot-capf)
+  :bind (("C-c c p" . completion-at-point)
+         ("C-c c t" . complete-tag)
+         ("C-c c d" . cape-dabbrev)
+         ("C-c c f" . cape-file)
+         ("C-c c k" . cape-keyword)
+         ("C-c c l" . cape-line)
+         ;; ("C-c c s" . cape-elisp-symbol)
+         ;; ("C-c c e" . cape-elisp-block)
+         ("C-c c w" . cape-dict)
+         ;; ("C-c c :" . cape-emoji)
+         ("C-c c _" . cape-tex)))
 ;; ("C-c p \\" . cape-tex)
 ;; ("C-c p ^" . cape-tex)
 ;; ("C-c p h" . cape-history)
@@ -171,30 +174,31 @@
 
 ;; ~ Corfu ---------------------------------------------------------------- ~ ;;
 
-;; (use-package corfu
-;;              :ensure (corfu :files (:defaults "extensions/*") :includes (corfu-popupinfo))
-;;              :init
-;;              (global-corfu-mode)
-;;              (corfu-popupinfo-mode)
-;;              :custom
-;;              (corfu-cycle t)
-;;              (corfu-auto nil)
-;;              (corfu-auto-prefix 2)
-;;              (corfu-quit-no-match t)
-;;              :config
-;;              (eldoc-add-command #'corfu-insert)
-;;              ;; (corfu-separator ?\s)
-;;              ;; (corfu-quit-at-boundary nil)
-;;              ;; (corfu-preview-current nil)
-;;              ;; (corfu-preselect 'prompt)
-;;              ;; (corfu-on-exact-match nil)
-;;              ;; (corfu-scroll-margin 5)
-;;              :bind
-;;              (:map corfu-map
-;;                    ("SPC" . corfu-insert-separator)
-;;                    ("M-d" . corfu-popupinfo-toggle)
-;;                    ("M-p" . corfu-popupinfo-scroll-down)
-;;                    ("M-n" . corfu-popupinfo-scroll-up)))
+(use-package corfu
+  ;; :ensure (corfu :files (:defaults "extensions/*") :includes (corfu-popupinfo))
+  :ensure t
+  :init
+  (global-corfu-mode)
+  (corfu-popupinfo-mode)
+  :custom
+  (corfu-cycle t)
+  (corfu-auto nil)
+  (corfu-auto-prefix 2)
+  (corfu-quit-no-match t)
+  :config
+  (eldoc-add-command #'corfu-insert)
+  ;; (corfu-separator ?\s)
+  ;; (corfu-quit-at-boundary nil)
+  ;; (corfu-preview-current nil)
+  ;; (corfu-preselect 'prompt)
+  ;; (corfu-on-exact-match nil)
+  ;; (corfu-scroll-margin 5)
+  :bind
+  (:map corfu-map
+        ("SPC" . corfu-insert-separator)
+        ("M-d" . corfu-popupinfo-toggle)
+        ("M-p" . corfu-popupinfo-scroll-down)
+        ("M-n" . corfu-popupinfo-scroll-up)))
 
 ;; ~ Embark --------------------------------------------------------------- ~ ;;
 
