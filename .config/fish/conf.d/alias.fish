@@ -26,10 +26,10 @@ else
     alias lp="ls -a --color=never --group-directories-first"
 end
 
-# ~ Apps
-
 alias v="nvim"
 alias nv="neovide"
+
+abbr -a ts "tree-sitter"
 
 # ~ Git
 

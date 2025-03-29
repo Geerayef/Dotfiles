@@ -85,6 +85,8 @@ o.ruler = false
 o.pumblend = 0
 o.list = true
 o.conceallevel = 2
+o.guifont = "Iosevka,IosevkaTerm NFM:h16"
+o.linespace = 8
 
 -- ~ Behaviour
 o.lazyredraw = false

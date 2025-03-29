@@ -29,3 +29,6 @@ Dotfiles/
 .config/fish/fish_variables
 .config/nnn/.lastd
 .local/bin/bun*
+.config/emacs/tramp
+.config/emacs/transient
+.config/emacs/transient/**

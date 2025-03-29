@@ -82,5 +82,8 @@ return {
     files = { winopts = { width = 0.4 } },
     oldfiles = { winopts = { width = 0.4 } },
     buffers = { winopts = { width = 0.4 } },
+    helptags = {
+      winopts = { width = 1.0, height = 0.75, row = 1.0, col = 0.0 },
+    },
   },
 }
