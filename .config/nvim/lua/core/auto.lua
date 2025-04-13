@@ -98,6 +98,7 @@ autocmd("ColorScheme", {
       hl(0, "Normal", { bg = kp.dragonInk1 })
       hl(0, "NormalNC", { link = "Normal" })
       hl(0, "NormalFloat", { link = "Normal" })
+      hl(0, "StatusLine", { link = "Normal" })
       hl(0, "SignColumn", { link = "Normal" })
       hl(0, "WinSeparator", { bg = kp.dragonInk1 })
     end

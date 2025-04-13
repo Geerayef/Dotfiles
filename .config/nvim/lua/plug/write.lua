@@ -53,7 +53,7 @@ return {
         mappings = { new = "<C-x>", insert_link = "<C-l>" },
       },
       ui = {
-        enable = true,
+        enable = false,
         update_debounce = 200,
         checkboxes = {
           [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
