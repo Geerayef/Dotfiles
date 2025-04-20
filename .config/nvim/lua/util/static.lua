@@ -102,6 +102,7 @@ S.Icons = {
     added_simple = "⁺ ",
     modified = "󰝤 ",
     modified_simple = "∼ ",
+    modified_simple_up = "° ",
     removed = " ",
     removed_simple = "⁻ ",
   },

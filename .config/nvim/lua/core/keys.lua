@@ -39,8 +39,18 @@ map("n", "<leader>tml", "<cmd>tabmove +1<CR>", "[t]ab [m]ove [l] right")
 map("n", "<leader>tmh", "<cmd>tabmove -1<CR>", "[t]ab [m]ove [h] left")
 
 -- Diagnostic
-map("n", "]d", vim.diagnostic.goto_next, "Next ] [d]iagnostic")
-map("n", "[d", vim.diagnostic.goto_prev, "Previous [ [d]iagnostic")
+map(
+  "n",
+  "]d",
+  function() vim.diagnostic.jump({ count = 1, float = true }) end,
+  "Next ] [d]iagnostic"
+)
+map(
+  "n",
+  "[d",
+  function() vim.diagnostic.jump({ count = -1, float = true }) end,
+  "Previous [ [d]iagnostic"
+)
 
 -- Commandline
 map("n", "<CR>", ":<C-U>", "Enter key for cmdline")
@@ -163,8 +173,8 @@ Key = {}
 
 function Key.LSP(_, buf)
   local blsp = vim.lsp.buf
-  bmap("n", "K",           blsp.hover,                                   buf, "LSP hover")
-  bmap("n", "<C-k>",       blsp.signature_help,                          buf, "LSP signature")
+  bmap("n", "K",           function() blsp.hover({ border = S.Border }) end, buf, "LSP hover")
+  bmap("n", "<C-k>",       function() blsp.signature_help({ border = S.Border }) end, buf, "LSP signature")
   bmap("n", "<leader>rn",  blsp.rename,                                  buf, "LSP [r]e[n]ame")
   bmap("n", "<leader>ca",  "<cmd>FzfLua lsp_code_actions<CR>",           buf, "LSP [c]ode [a]ction")
   bmap("n", "<leader>gD",  "<cmd>FzfLua lsp_declarations<CR>",           buf, "LSP [g]o to [D]eclaration")

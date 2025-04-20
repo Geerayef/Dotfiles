@@ -1,9 +1,10 @@
-vim.g.theme = "oscura"
+vim.g.theme = "yugen"
 vim.g.theme_override_hlg = true
 require("util.static")
 require("core.opts")
 require("core.func")
 require("core.keys")
+require("core.lsp")
 require("lazyTim")
 require("core.diag")
 require("core.auto")
