@@ -87,6 +87,7 @@ o.list = true
 o.conceallevel = 2
 o.guifont = "Iosevka,IosevkaTerm NFM:h16"
 o.linespace = 8
+o.winborder = "single"
 
 -- ~ Behaviour
 o.lazyredraw = false

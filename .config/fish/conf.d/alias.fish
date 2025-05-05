@@ -33,11 +33,11 @@ abbr -a ts "tree-sitter"
 
 # ~ Git
 
-alias dot="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
-alias dotu="dot add .config/{fish,bash,zsh,starship,alacritty,wezterm,foot,kitty,tmux,hypr,nvim,vim,neovide,moxide,mdt,glow,emacs,tofi,firefoxcss,nnn,bat,btop,mako,fontconfig,vimiumc,zathura,zed,ruff}/ .local/bin/ .zshenv .gitignore"
-alias dota="dot add"
-alias dots="dot status"
-alias dotc="dot commit -m"
+alias dotfiles="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
+alias dotfilesu="dotfiles add .config/{fish,bash,zsh,starship,alacritty,wezterm,foot,kitty,tmux,hypr,nvim,vim,neovide,moxide,mdt,glow,emacs,tofi,firefoxcss,nnn,bat,btop,mako,fontconfig,vimiumc,zathura,zed,ruff}/ .local/bin/ .zshenv .gitignore"
+alias dotfilesa="dotfiles add"
+alias dotfiless="dotfiles status"
+alias dotfilesc="dotfiles commit -m"
 alias gs="git status ."
 alias ga="git add"
 alias ga.="git add ."

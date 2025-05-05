@@ -1,7 +1,8 @@
 # Kanagawa Dragon
 
 fg="#DCD7BA"
-bg="#090618"
+# bg="#090618"
+bg="#010204"
 
 r0="#1F1F28"  # black
 r1="#C34043"  # red

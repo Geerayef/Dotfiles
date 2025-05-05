@@ -64,7 +64,9 @@ C.keys = {
   -- Tab
   map("t", a.SpawnTab("CurrentPaneDomain")),
   map("[", a.ActivateTabRelative(-1)),
+  map("p", a.ActivateTabRelative(-1)),
   map("]", a.ActivateTabRelative(1)),
+  map("n", a.ActivateTabRelative(1)),
   -- Move
   map("m", a.ActivateKeyTable({ name = "move_tab", one_shot = false })),
   { key = "{", mods = "LEADER|SHIFT", action = a.MoveTabRelative(-1) },
@@ -192,16 +194,13 @@ C.default_cursor_style = "SteadyBlock"
 C.force_reverse_video_cursor = false
 
 -- Colors
--- MONO
 -- Grayscale (dark) (terminal.sexy) | Black Metal (Marduk) (base16) | VWbug (terminal.sexy)
--- DIM
--- Unsifted Wheat (terminal.sexy)
--- BRIGHT
--- Gruvbox Material (Gogh) | Shic (terminal.sexy)
-C.color_scheme = "Shic (terminal.sexy)"
+-- Unsifted Wheat (terminal.sexy) | Twilight (Gogh)
+-- Gruvbox Material (Gogh) | Shic (terminal.sexy) | Terminix Dark (Gogh)
+C.color_scheme = "Terminix Dark (Gogh)"
 C.colors = {
   background = kngw.palette.dragonInk,
-  cursor_fg = kngw.ansi[1],
+  cursor_fg = kngw.bg,
   cursor_bg = kngw.palette.dragonYellow,
   tab_bar = {
     background = kngw.palette.dragonInk,

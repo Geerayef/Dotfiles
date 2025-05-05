@@ -8,31 +8,35 @@ LSP = {}
 LSP.active_clients = {}
 
 local ok_cmp, cmplsp = pcall(require, "cmp_nvim_lsp")
-if not ok_cmp then F.Notify("info", "`cmp_nvim_lsp` not found.") end
-local caps = vim.tbl_deep_extend(
-  "force",
-  {},
-  {
-    workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
-    textDocument = {
-      documentFormattingProvider = false,
-      codelens = { enable = true },
-      completion = {
-        completionItem = {
-          snippetSupport = true,
-          resolveSupport = {
-            properties = { "detail", "documentation", "additionalTextEdits" },
-          },
+local ok_blink, blink = pcall(require, "blink.cmp")
+local completion_capabilities
+if ok_cmp then
+  F.Notify("info", "`blink.cmp` not found.")
+  completion_capabilities =
+    cmplsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
+elseif ok_blink then
+  F.Notify("info", "`cmp_nvim_lsp` not found.")
+  completion_capabilities =
+    blink.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+else
+  completion_capabilities = vim.lsp.protocol.make_client_capabilities()
+end
+local caps = vim.tbl_deep_extend("force", {}, {
+  workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
+  textDocument = {
+    documentFormattingProvider = false,
+    codelens = { enable = true },
+    completion = {
+      completionItem = {
+        snippetSupport = true,
+        resolveSupport = {
+          properties = { "detail", "documentation", "additionalTextEdits" },
         },
       },
     },
   },
-  ok_cmp
-      and cmplsp.default_capabilities(
-        vim.lsp.protocol.make_client_capabilities()
-      )
-    or vim.lsp.protocol.make_client_capabilities()
-)
+  completion_capabilities,
+})
 
 ---@class vim.lsp.ClientConfig: lsp_client_config_t
 ---@class lsp_client_config_t

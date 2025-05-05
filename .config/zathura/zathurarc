@@ -25,6 +25,6 @@ set render-loading         true
 set recolor-keephue        true
 set recolor-reverse-video  true
 
-include themes/ayu
+include themes/road
 
 set recolor                true

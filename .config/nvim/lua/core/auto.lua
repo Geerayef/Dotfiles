@@ -85,6 +85,7 @@ autocmd("ColorScheme", {
       hl(0, "RenderMarkdownCode", { bg = "bg" })
       hl(0, "CursorLineNr", { fg = kp.lotusYellow5 })
       hl(0, "TabLineSel", { fg = kp.lotusYellow5 })
+      hl(0, "FloatBorder", { fg = kp.lotusYellow5 })
       hl(
         0,
         "LspSignatureActiveParameter",

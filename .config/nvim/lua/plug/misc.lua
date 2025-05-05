@@ -4,6 +4,11 @@ return {
   { "tpope/vim-surround", event = { "CursorHold", "CursorHoldI" } },
   { "tpope/vim-sleuth", event = { "BufNewFile", "BufReadPost" } },
   {
+    "mistweaverco/kulala.nvim",
+    ft = { "http", "rest" },
+    opts = { global_keymaps = false },
+  },
+  {
     "numToStr/Comment.nvim",
     event = { "CursorHold", "CursorHoldI" },
     opts = true,

@@ -1,0 +1,44 @@
+# Mint cream   "#D9E4DB",
+# Jet          "#373643",
+# Ebony        "#565848",
+# Cadet Gray   "#86909A",
+# Raisin Black "#2B2A30",
+# Citron       "#D7CC75",
+# Paynes Gray  "#5E686E",
+# Charcoal     "#4A515C",
+# Yellow       "#FFF779"
+# Dragon Ink   "#010204"
+
+set notification-bg         "#D7CC75"
+set notification-fg         "#373643"
+set notification-error-bg   "#F28779"
+set notification-error-fg   "#373643"
+set notification-warning-bg "#FFF779"
+set notification-warning-fg "#373643"
+
+set completion-bg           "#2B2A30"
+set completion-fg           "#D9E4DB"
+set completion-highlight-bg "#5E686E"
+set completion-highlight-fg "#373643"
+
+set index-bg                "#373643"
+set index-fg                "#D9E4DB"
+set index-active-bg         "#5E686E"
+set index-active-fg         "#D9E4DB"
+
+set inputbar-bg             "#2B2A30"
+set inputbar-fg             "#D9E4DB"
+
+set statusbar-bg            "#010204"
+set statusbar-fg            "#D9E4DB"
+
+set highlight-color         "#5E686E"
+set highlight-active-color  "#D7CC75"
+
+set default-bg              "#010204"
+set default-fg              "#D9E4DB"
+set render-loading-bg       "#010204"
+set render-loading-fg       "#D9E4DB"
+
+set recolor-lightcolor      "#010204"
+set recolor-darkcolor       "#D9E4DB"

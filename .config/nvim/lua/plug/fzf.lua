@@ -2,8 +2,8 @@ return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   opts = {
-    { "skim", "max-perf", "telescope" },
-    fzf_bin = "sk",
+    { "max-perf", "telescope" },
+    -- fzf_bin = "sk",
     fzf_opts = { ["--layout"] = "reverse", ["--marker"] = false },
     defaults = { compat_warn = false, no_header = true, no_header_i = true },
     winopts = {
@@ -80,7 +80,7 @@ return {
     --   },
     -- },
     files = { winopts = { width = 0.4 } },
-    oldfiles = { winopts = { width = 0.4 } },
+    oldfiles = { winopts = { title = " Old files ", width = 0.4 } },
     buffers = { winopts = { width = 0.4 } },
     helptags = {
       winopts = { width = 1.0, height = 0.75, row = 1.0, col = 0.0 },

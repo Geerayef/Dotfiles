@@ -3,7 +3,7 @@ vim.diagnostic.config({
   signs = true,
   underline = true,
   update_in_insert = false,
-  virtual_text = false,
+  virtual_text = true,
   virtual_lines = false,
   float = {
     scope = "line",
@@ -15,12 +15,11 @@ vim.diagnostic.config({
       if not code then
         if not d.user_data.lsp then return d.message end
         code = d.user_data.lsp.code
-      end
-      if code then
+      else
         t.message = string.format("%s [%s]", t.message, code):gsub("1. ", "")
       end
       return t.message
     end,
-    border = S.Border,
+    border = S.BorderSimple,
   },
 })
