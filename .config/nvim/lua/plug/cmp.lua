@@ -165,7 +165,10 @@ return {
   -- }}}
   {
     "saghen/blink.cmp",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      { "L3MON4D3/LuaSnip", version = "v2.*" },
+    },
     version = "1.*",
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -186,22 +189,33 @@ return {
       appearance = { nerd_font_variant = "mono" },
       completion = {
         ghost_text = { enabled = true },
-        documentation = { auto_show = true, window = { border = S.Border } },
-        trigger = {
-          show_in_snippet = false,
-          show_on_keyword = false,
-          show_on_trigger_character = false,
+        documentation = {
+          auto_show = true,
+          window = {
+            border = S.Border,
+            winhighlight = "BlinkCmpDoc:Normal,BlinkCmpDocBorder:FloatBorder,None:Search",
+          },
         },
+        trigger = { show_on_keyword = false, show_on_trigger_character = false },
         accept = { dot_repeat = false, create_undo_point = false },
         menu = {
-          min_width = 15,
           max_height = 20,
           border = S.Border,
           auto_show = false,
-          draw = { treesitter = { "lsp" } },
+          draw = {
+            treesitter = { "lsp" },
+            columns = {
+              { "kind_icon" },
+              { "label", "label_description", gap = 1 },
+              { "source_name" },
+            },
+            components = { kind_icon = { highlight = "Normal" } },
+          },
+          winhighlight = "BlinkCmpMenu:Normal,BlinkCmpMenuBorder:FloatBorder,BlinkCmpLabelDescription:Normal,BlinkCmpSource:Normal",
         },
       },
       sources = { default = { "lsp", "path", "snippets", "buffer" } },
+      snippets = { preset = "luasnip" },
       fuzzy = { implementation = "prefer_rust" },
     },
     opts_extend = { "sources.default" },

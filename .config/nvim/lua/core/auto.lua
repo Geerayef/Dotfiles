@@ -85,21 +85,21 @@ autocmd("ColorScheme", {
       hl(0, "RenderMarkdownCode", { bg = "bg" })
       hl(0, "CursorLineNr", { fg = kp.lotusYellow5 })
       hl(0, "TabLineSel", { fg = kp.lotusYellow5 })
-      hl(0, "FloatBorder", { fg = kp.lotusYellow5 })
       hl(
         0,
         "LspSignatureActiveParameter",
-        { fg = kp.dragonInk1, bg = kp.lotusYellow5, bold = true }
+        { fg = kp.dragonInk1, bg = kp.roninYellow, bold = true }
       )
       hl(
         0,
         "ActionPreviewTitle",
-        { fg = kp.dragonInk1, bg = kp.lotusYellow5, bold = true }
+        { fg = kp.dragonInk1, bg = kp.roninYellow, bold = true }
       )
       hl(0, "Normal", { bg = kp.dragonInk1 })
       hl(0, "NormalNC", { link = "Normal" })
       hl(0, "NormalFloat", { link = "Normal" })
       hl(0, "StatusLine", { link = "Normal" })
+      hl(0, "FloatBorder", { fg = kp.dragonOrange })
       hl(0, "SignColumn", { link = "Normal" })
       hl(0, "WinSeparator", { bg = kp.dragonInk1 })
     end

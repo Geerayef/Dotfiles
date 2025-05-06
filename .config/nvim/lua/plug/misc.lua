@@ -1,4 +1,10 @@
 return {
+  -- {
+  --   name = "porphyrio",
+  --   dir = "~/dev/porphyrio/",
+  --   lazy = false,
+  --   priority = 1020,
+  -- },
   { "nvim-lua/plenary.nvim", lazy = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-surround", event = { "CursorHold", "CursorHoldI" } },
