@@ -79,29 +79,31 @@ autocmd("ColorScheme", {
   desc = "Apply custom highlights after loading the main colorscheme.",
   group = augroup("CustomHighlights", { clear = true }),
   callback = function()
-    local kp = require("clrs.kanagawa.palette")
+    local road = require("clrs.road.palette")
+    local rb = road.base
+    local rp = road.palette
     local hl = vim.api.nvim_set_hl
     if vim.g.theme_override_hlg then
       hl(0, "RenderMarkdownCode", { bg = "bg" })
-      hl(0, "CursorLineNr", { fg = kp.lotusYellow5 })
-      hl(0, "TabLineSel", { fg = kp.lotusYellow5 })
-      hl(
-        0,
-        "LspSignatureActiveParameter",
-        { fg = kp.dragonInk1, bg = kp.roninYellow, bold = true }
-      )
+      hl(0, "CursorLineNr", { fg = rb.lotusYellow })
+      hl(0, "TabLineSel", { fg = rb.lotusYellow })
+      hl(0, "LspSignatureActiveParameter", {
+        fg = rb.dragonInk,
+        bg = rp.lotusYellow[200],
+        bold = true,
+      })
       hl(
         0,
         "ActionPreviewTitle",
-        { fg = kp.dragonInk1, bg = kp.roninYellow, bold = true }
+        { fg = rb.dragonInk, bg = rp.lotusYellow[200], bold = true }
       )
-      hl(0, "Normal", { bg = kp.dragonInk1 })
+      hl(0, "Normal", { bg = rb.dragonInk })
       hl(0, "NormalNC", { link = "Normal" })
       hl(0, "NormalFloat", { link = "Normal" })
       hl(0, "StatusLine", { link = "Normal" })
-      hl(0, "FloatBorder", { fg = kp.dragonOrange })
+      hl(0, "FloatBorder", { fg = rp.charcoal[800] })
       hl(0, "SignColumn", { link = "Normal" })
-      hl(0, "WinSeparator", { bg = kp.dragonInk1 })
+      hl(0, "WinSeparator", { bg = rb.dragonInk })
     end
   end,
 })

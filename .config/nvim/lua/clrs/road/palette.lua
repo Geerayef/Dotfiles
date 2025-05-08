@@ -1,5 +1,5 @@
 local palette = {
-  mint_cream = {
+  mintCream = {
     DEFAULT = "#D9E4DB",
     [100] = "#253428",
     [200] = "#4A684F",
@@ -35,7 +35,7 @@ local palette = {
     [800] = "#BEC0B2",
     [900] = "#DFDFD8",
   },
-  cadet_gray = {
+  cadetGray = {
     DEFAULT = "#86909A",
     [100] = "#1A1D1F",
     [200] = "#34393E",
@@ -47,7 +47,7 @@ local palette = {
     [800] = "#CED2D6",
     [900] = "#E7E9EB",
   },
-  raisin_black = {
+  raisinBlack = {
     DEFAULT = "#2B2A30",
     [100] = "#09090A",
     [200] = "#121114",
@@ -71,7 +71,7 @@ local palette = {
     [800] = "#EFEAC8",
     [900] = "#F7F5E3",
   },
-  paynes_gray = {
+  paynesGray = {
     DEFAULT = "#5E686E",
     [100] = "#131516",
     [200] = "#262A2C",
@@ -95,7 +95,7 @@ local palette = {
     [800] = "#B3B9C2",
     [900] = "#D9DCE1",
   },
-  dragon_ink = {
+  dragonInk = {
     DEFAULT = "#010204",
     [100] = "#0A0E14",
     [200] = "#0D0C0C",
@@ -106,6 +106,29 @@ local palette = {
     [700] = "#393836",
     [800] = "#625E5A",
     [900] = "#7A8382",
+  },
+  lotusYellow = {
+    DEFAULT = "#FFF779",
+    [100] = "#FF9E3B",
+    [200] = "#E59F71",
+    [300] = "#BA5A31",
+    [400] = "#",
+    [500] = "#",
+    [600] = "#",
+    [700] = "#",
+    [800] = "#",
+  },
+  emerald = {
+    DEFAUL = "#69DC9E",
+    [100] = "#ACECCA",
+    [200] = "#8BE4B5",
+    [300] = "#49D48A",
+    [400] = "#2FC675",
+    [500] = "#27A562",
+    [600] = "#1F844E",
+    [700] = "#17633B",
+    [800] = "#104227",
+    [900] = "#082114",
   },
 }
 
@@ -122,4 +145,6 @@ end
 ---# Citron       "#D7CC75",
 ---# Paynes Gray  "#5E686E",
 ---# Charcoal     "#4A515C",
-return { palette, base }
+---# Dragon Ink   "#010204"
+---# Lotus Yellow "#010204"
+return { base = base, palette = palette }

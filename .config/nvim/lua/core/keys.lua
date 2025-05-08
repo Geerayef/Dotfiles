@@ -96,6 +96,7 @@ map("n", "<leader>sh", "<cmd>FzfLua helptags<CR>",             "FzfLua [s]earch 
 map("n", "<leader>sg", "<cmd>FzfLua live_grep<CR>",            "FzfLua [s]earch [g]rep")
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword<CR>",           "FzfLua [s]earch [w]ord")
 map("n", "<leader>sd", "<cmd>FzfLua diagnostics_document<CR>", "FzfLua [s]earch [d]iagnostics")
+map("n", "<leader>ss", "<cmd>FzfLua spell_suggest",            "FzFLua [s]earch [s]pell suggestions")
 map("n", "<leader>?", "<cmd>FzfLua oldfiles<CR>",              "[?] FzfLua recent files")
 map("n", "<leader> ", "<cmd>FzfLua buffers<CR>",               "[ ] FzfLua open buffers")
 map("n", "<leader>/", "<cmd>FzfLua blines<CR>",                "[/] FzfLua search buffer")
