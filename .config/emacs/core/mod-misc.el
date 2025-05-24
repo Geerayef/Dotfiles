@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(use-package memoize :ensure t :demand t)
+
 (use-package zzz-to-char
   :ensure t
   :bind (("M-z" . zzz-to-char-up-to-char)))

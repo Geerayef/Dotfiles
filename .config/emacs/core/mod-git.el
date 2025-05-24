@@ -14,6 +14,9 @@
   (magit-pre-refresh . diff-hl-magit-pre-refresh)
   (magit-post-refresh . diff-hl-magit-post-refresh))
 
+(use-package transient
+  :ensure t)
+
 ;; (use-package diff-hl
 ;;   :ensure t
 ;;   :config

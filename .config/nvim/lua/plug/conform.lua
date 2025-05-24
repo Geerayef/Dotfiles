@@ -28,6 +28,7 @@ return {
         fish = { "fish_indent" },
         sh = { "shfmt" },
         bash = { "shfmt" },
+        markdown = { "mdformat" },
         json = { "biome" },
         jsonc = { "biome" },
         javascript = { "biome" },

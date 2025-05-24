@@ -12,12 +12,12 @@
 ;; ~ Variables ------------------------------------------------------------- ~ ;;
 
 ;; 'ef-elea-dark | 'doom-{plain-dark, tomorrow-night, spacegrey} | 'poet-dark{-monochrome}
-(defvar gracs/theme "doom-plain-dark"
+(defvar gracs/theme "poet-dark"
   "Default theme.")
 
-(add-hook 'elpaca-after-init-hook (lambda () (load-theme (intern gracs/theme) t)))
-
 (use-package core-init :ensure nil)
+
+(add-hook 'elpaca-after-init-hook (lambda () (load-theme (intern gracs/theme) t)))
 
 (provide 'init)
 ;;; init.el ends here

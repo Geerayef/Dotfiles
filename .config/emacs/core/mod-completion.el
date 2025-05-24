@@ -5,7 +5,7 @@
 ;; ~ Orderless ------------------------------------------------------------ ~ ;;
 
 (use-package orderless
-  :ensure t
+  :ensure (:fetcher github :repo "oantolin/orderless")
   :demand t
   :config
   (orderless-define-completion-style

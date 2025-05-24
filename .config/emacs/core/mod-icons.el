@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package memoize :ensure t :demand t)
-
 (use-package all-the-icons
   :ensure t
   :after memoize

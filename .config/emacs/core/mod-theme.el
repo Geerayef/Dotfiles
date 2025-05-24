@@ -4,6 +4,7 @@
 
 (setq custom-safe-themes t)
 
+(defvar gracs/default-bg (face-attribute 'default :background))
 (defvar gracs/color-yellow "#FFF779")
 (defvar gracs/color-gray "#505050")
 (defvar gracs/theme-fg "#EDE7DD")
@@ -42,7 +43,7 @@
  ;; `(default ((t (:background ,gracs/theme-bg))))
  ;; `(fringe ((t (:background ,gracs/theme-bg))))
  `(cursor ((t (:background ,gracs/color-yellow))))
- `(show-paren-match ((t (:inherit 'default :background ,gracs/color-gray))))
+ `(show-paren-match ((t (:inherit 'default :background ,gracs/default-bg :foreground ,gracs/color-gray :weight bold))))
  `(line-number ((t (:slant normal))))
  `(line-number-current-line ((t (:foreground ,gracs/color-yellow :slant normal :weight bold)))))
 

@@ -14,6 +14,7 @@ return {
       sh = { "shellcheck" },
       fish = { "fish" },
       bash = { "shellcheck" },
+      markdown = { "markdownlint-cli2" },
       json = { "biomejs" },
       jsonc = { "biomejs" },
       javascript = { "biomejs" },
