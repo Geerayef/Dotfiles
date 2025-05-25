@@ -1,0 +1,98 @@
+[buildPlans.IosevkaNarrower]
+family = "Iosevka Narrower"
+spacing = "term"
+serifs = "sans"
+noCvSs = false
+exportGlyphNames = true
+
+[buildPlans.IosevkaNarrower.variants.design]
+two = "straight-neck-serifless"
+four = "open-non-crossing-serifless"
+five = "upright-flat-serifless"
+six = "closed-contour"
+eight = "two-circles"
+nine = "closed-contour"
+zero = "dotted"
+capital-b = "standard-serifless"
+capital-d = "standard-serifless"
+capital-g = "toothless-rounded-serifless-hooked"
+capital-k = "symmetric-connected-serifless"
+capital-r = "straight-serifless"
+capital-w = "straight-vertical-sides-serifless"
+a = "double-storey-toothless-corner"
+b = "toothless-corner-serifless"
+c = "unilateral-inward-serifed"
+d = "toothless-corner-serifless"
+f = "flat-hook-serifless-crossbar-at-x-height"
+g = "single-storey-flat-hook-earless-corner"
+i = "hooky"
+j = "flat-hook-serifless"
+k = "symmetric-connected-serifless"
+l = "hooky"
+m = "earless-corner-double-arch-serifless"
+n = "earless-corner-straight-serifless"
+p = "earless-corner-serifless"
+q = "earless-corner-straight-serifless"
+r = "earless-corner-serifless"
+s = "serifless"
+t = "flat-hook"
+u = "toothless-corner-serifless"
+w = "straight-vertical-sides-serifless"
+x = "straight-serifless"
+y = "cursive-flat-hook-serifless"
+capital-eszet = "rounded-serifless"
+long-s = "bent-hook-serifless"
+lower-mu = "toothed-serifless"
+lower-pi = "tailless"
+partial-derivative = "straight-bar"
+tittle = "square"
+diacritic-dot = "square"
+punctuation-dot = "square"
+braille-dot = "square"
+tilde = "low"
+asterisk = "hex-high"
+underscore = "above-baseline"
+caret = "medium"
+ascii-single-quote = "straight"
+paren = "flat-arc"
+brace = "straight"
+guillemet = "straight"
+number-sign = "upright"
+at = "threefold"
+dollar = "through-cap"
+cent = "open"
+percent = "rings-continuous-slash"
+bar = "natural-slope"
+question = "smooth"
+pilcrow = "high"
+micro-sign = "toothed-serifless"
+decorative-angle-brackets = "middle"
+lig-neq = "vertical"
+lig-equal-chain = "with-notch"
+lig-hyphen-chain = "with-notch"
+lig-plus-chain = "with-notch"
+lig-double-arrow-bar = "without-notch"
+lig-single-arrow-bar = "without-notch"
+
+[buildPlans.IosevkaNarrower.ligations]
+inherits = "dlig"
+
+[buildPlans.IosevkaNarrower.weights.Regular]
+shape = 400
+menu = 400
+css = 400
+
+[buildPlans.IosevkaNarrower.weights.Bold]
+shape = 700
+menu = 700
+css = 700
+
+[buildPlans.IosevkaNarrower.widths.Normal]
+shape = 500
+menu = 5
+css = "normal"
+
+[buildPlans.IosevkaNarrower.widths.SemiCondensed]
+shape = 456
+menu = 4
+css = "semi-condensed"
