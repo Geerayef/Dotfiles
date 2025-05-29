@@ -42,9 +42,15 @@ end
 ---@param l string # Left side of mapping
 ---@param r string|function # Right side of mapping
 ---@param desc string # Mapping description
-function F.map(mode, l, r, desc)
+---@param opts? vim.keymap.set.Opts # Options to vim.keymap.set
+function F.map(mode, l, r, desc, opts)
   local bo = { silent = true, desc = "" }
   bo.desc = desc or (type(r) == "string" and ("[" .. r .. "]"))
+  if opts ~= nil then
+    for k, v in pairs(opts) do
+      bo[k] = v
+    end
+  end
   vim.keymap.set(mode, l, r, bo)
 end
 
@@ -76,7 +82,6 @@ function F.IsBufEmpty() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end
 ---@return boolean
 function F.IsBufInRepo(buf)
   local buf_path = vim.api.nvim_buf_get_name(buf)
-  -- local gitdir = vim.fn.finddir(".git", buf_path .. ";")
   local gitdir = vim.fs.root(buf_path, ".git")
   return gitdir ~= nil and #gitdir > 0 and #gitdir < #buf_path
 end

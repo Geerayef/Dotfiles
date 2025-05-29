@@ -3,7 +3,7 @@ return {
   {
     "vinitkumar/oscura-vim",
     priority = 1010,
-    lazy = false,
+    lazy = vim.g.theme ~= "oscura",
   },
   {
     "bettervim/yugen.nvim",

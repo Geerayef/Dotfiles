@@ -83,27 +83,25 @@ autocmd("ColorScheme", {
     local rb = road.base
     local rp = road.palette
     local hl = vim.api.nvim_set_hl
-    if vim.g.theme_override_hlg then
-      hl(0, "RenderMarkdownCode", { bg = "bg" })
-      hl(0, "CursorLineNr", { fg = rb.lotusYellow })
-      hl(0, "TabLineSel", { fg = rb.lotusYellow })
-      hl(0, "LspSignatureActiveParameter", {
-        fg = rb.dragonInk,
-        bg = rp.lotusYellow[200],
-        bold = true,
-      })
-      hl(
-        0,
-        "ActionPreviewTitle",
-        { fg = rb.dragonInk, bg = rp.lotusYellow[200], bold = true }
-      )
-      hl(0, "Normal", { bg = rb.dragonInk })
-      hl(0, "NormalNC", { link = "Normal" })
-      hl(0, "NormalFloat", { link = "Normal" })
-      hl(0, "StatusLine", { link = "Normal" })
-      hl(0, "FloatBorder", { fg = rp.charcoal[800] })
-      hl(0, "SignColumn", { link = "Normal" })
-      hl(0, "WinSeparator", { bg = rb.dragonInk })
-    end
+    hl(0, "Normal", { bg = rb.dragonInk })
+    hl(0, "NormalNC", { link = "Normal" })
+    hl(0, "NormalFloat", { link = "Normal" })
+    -- hl(0, "FloatBorder", { bg = rb.dragonInk, fg = rp.cadetGray[700] })
+    hl(0, "FloatBorder", { link = "Normal" })
+    hl(0, "RenderMarkdownCode", { bg = "bg" })
+    hl(0, "CursorLineNr", { fg = rb.lotusYellow })
+    hl(0, "TabLineSel", { fg = rb.lotusYellow })
+    hl(0, "LspSignatureActiveParameter", {
+      fg = rb.dragonInk,
+      bg = rp.lotusYellow[200],
+      bold = true,
+    })
+    hl(
+      0,
+      "ActionPreviewTitle",
+      { fg = rb.dragonInk, bg = rp.lotusYellow[200], bold = true }
+    )
+    hl(0, "SignColumn", { link = "Normal" })
+    hl(0, "WinSeparator", { link = "Normal" })
   end,
 })

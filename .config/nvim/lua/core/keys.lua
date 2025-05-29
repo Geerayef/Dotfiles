@@ -18,6 +18,13 @@ map({ "n", "x" }, "<Space>", "", "Disable moving cursor with space")
 map("n", "<C-i>", "<C-i>", "Disambiguate from <tab>")
 map("n", "<tab>", ">>", "Indent line using <tab>")
 map("n", "<bs>", "<<", "Unindent line using <bs>")
+map(
+  "n",
+  "<leader>yg",
+  function() vim.fn.execute("normal yyPgcc") end,
+  "Duplicate current line, commenting the original out",
+  { remap = true }
+)
 
 -- Buffers
 map("n", "<leader>bd", cmd.bd, "[b]uffer [d]elete")
@@ -53,7 +60,6 @@ map(
 )
 
 -- Commandline
-map("n", "<CR>", ":<C-U>", "Enter key for cmdline")
 vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", {})
 vim.api.nvim_set_keymap("c", "<C-e>", "<End>", {})
 vim.api.nvim_set_keymap("c", "<C-f>", "<Right>", {})
@@ -118,14 +124,14 @@ map("n", "[h", function()
   end
 end, "Previous [h]unk")
 map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>",      "Gitsigns [h]unk [s]tage")
-map("n", "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<CR>", "Gitsigns [h]unk stage [u]ndo")
-map("n", "<leader>hS", "<cmd>Gitsigns stage_buffer<CR>",    "Gitsigns [h]unk [S]tage buffer")
+map("n", "<leader>hS", "<cmd>Gitsigns undo_stage_hunk<CR>", "Gitsigns [h]unk un[S]tage")
 map("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>",      "Gitsigns [h]unk [r]eset")
-map("n", "<leader>hR", "<cmd>Gitsigns reset_buffer<CR>",    "Gitsigns [h]unk [R]eset buffer")
 map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>",    "Gitsigns [h]unk [p]review")
+map("n", "<leader>hbs", "<cmd>Gitsigns stage_buffer<CR>",   "Gitsigns [h]unk [b]uffer [s]tage")
+map("n", "<leader>hbr", "<cmd>Gitsigns reset_buffer<CR>",   "Gitsigns [h]unk [b]uffer [r]eset")
 map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>",        "Gitsigns [h]unk [d]iff")
 map("n", "<leader>htd", "<cmd>Gitsigns toggle_deleted<CR>", "Gitsigns [h]unk [t]oggle [d]eleted")
-map("n", "<leader>hb", "<cmd>Gitsigns toggle_current_line_blame<CR>", "Gitsigns [h]unk [b]lame line")
+map("n", "<leader>htlb", "<cmd>Gitsigns toggle_current_line_blame<CR>", "Gitsigns [h]unk [t]oggle [l]ine [b]lame")
 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>",   "Gitsigns TreeSitter textobject [i]n [h]unk")
 
 -- Markdown & Obsidian
