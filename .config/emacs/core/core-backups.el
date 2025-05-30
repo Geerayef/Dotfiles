@@ -1,4 +1,4 @@
-;;;; core-backups.el --- Safe fallback behaviours -*- lexical-binding: t; -*-
+;;; core-backups.el --- Safe fallback behaviours -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

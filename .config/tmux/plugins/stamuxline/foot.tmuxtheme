@@ -1,9 +1,10 @@
 # Foot - Theme to sync with foot
 
 fg="#EBDBB2"
-bg="#1B1B1B"
+# bg="#1B1B1B"
+bg="#010204"
 
-r0="#2B2B2B" # black
+r0="#1B1B1B" # black
 r1="#CC241D" # red
 r2="#98971A" # green
 r3="#D79921" # yellow

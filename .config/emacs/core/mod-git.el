@@ -1,4 +1,4 @@
-;;;; mod-git.el --- Version control systems -*- lexical-binding: t; -*-
+;;; mod-git.el --- Version control systems -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

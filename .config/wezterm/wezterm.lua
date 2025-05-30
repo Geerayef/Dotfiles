@@ -185,7 +185,7 @@ C.check_for_updates = false
 C.window_background_opacity = 1
 C.window_decorations = "NONE"
 C.window_frame = {}
-C.window_padding = { left = "0pt", right = "0pt", top = "0pt", bottom = "0pt" }
+C.window_padding = { left = "0%", right = "0%", top = "0%", bottom = "0%" }
 C.use_resize_increments = true
 C.adjust_window_size_when_changing_font_size = false
 C.enable_scroll_bar = false
@@ -231,7 +231,7 @@ elseif string.match(font.fam_fb, "Jet") ~= nil then
 end
 -- stylua: ignore end
 C.unicode_version = 14
-C.font_size = 18
+C.font_size = 16
 C.font_dirs = { "~/.local/share/fonts/", "/usr/share/fonts/TTF/" }
 C.font = W.font_with_fallback({
   { family = font.fam, harfbuzz_features = font.feat },
@@ -239,7 +239,7 @@ C.font = W.font_with_fallback({
   { family = "Symbols Nerd Font Mono" },
   { family = "Font Awesome" },
 })
-C.line_height = 1.2
+C.line_height = 1.6
 
 -- Workspace
 C.default_workspace = "home"

@@ -1,4 +1,4 @@
-;;;; mod-format.el --- Formatting -*- lexical-binding: t; -*-
+;;; mod-format.el --- Formatting -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

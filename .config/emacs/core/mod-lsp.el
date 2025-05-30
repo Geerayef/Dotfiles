@@ -106,7 +106,6 @@
          (go-ts-mode . lsp)
          (bash-ts-mode . lsp)
          (typescript-ts-mode . lsp)
-         (tsx-ts-mode . lsp)
          (js-ts-mode . lsp))
   :commands lsp
   :custom
