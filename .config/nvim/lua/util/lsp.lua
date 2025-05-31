@@ -7,15 +7,9 @@ LSP = {}
 ---@type ActiveClient[]
 LSP.active_clients = {}
 
-local ok_cmp, cmplsp = pcall(require, "cmp_nvim_lsp")
 local ok_blink, blink = pcall(require, "blink.cmp")
 local completion_capabilities
-if ok_cmp then
-  F.Notify("info", "`blink.cmp` not found.")
-  completion_capabilities =
-    cmplsp.default_capabilities(vim.lsp.protocol.make_client_capabilities())
-elseif ok_blink then
-  F.Notify("info", "`cmp_nvim_lsp` not found.")
+if ok_blink then
   completion_capabilities =
     blink.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 else

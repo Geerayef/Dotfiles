@@ -13,7 +13,7 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
-    lazy = F.IsBufInRepo(vim.api.nvim_get_current_buf()),
+    lazy = not F.IsBufInRepo(vim.api.nvim_get_current_buf()),
     dependencies = { "NeogitOrg/neogit", "sindrets/diffview.nvim" },
     cmd = "Gitsigns",
     opts = {
@@ -43,19 +43,10 @@ return {
   {
     "NeogitOrg/neogit",
     cmd = "Neogit",
-    dependencies = "lewis6991/gitsigns.nvim",
     opts = {
       graph_style = "kitty",
       kind = "floating",
       integrations = { fzf_lua = true },
-      -- telescope_sorter = function()
-      --   return require("telescope").extensions.fzf.native_fzf_sorter()
-      -- end,
-      git_services = {
-        ["github.com"] = "https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1",
-        ["gitlab.com"] = "https://gitlab.com/${owner}/${repository}/merge_requests/new?merge_request[source_branch]=${branch_name}",
-        ["bitbucket.org"] = "https://bitbucket.org/${owner}/${repository}/pull-requests/new?source=${branch_name}&t=1",
-      },
       use_per_project_settings = true,
     },
   },

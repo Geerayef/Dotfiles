@@ -79,29 +79,31 @@ autocmd("ColorScheme", {
   desc = "Apply custom highlights after loading the main colorscheme.",
   group = augroup("CustomHighlights", { clear = true }),
   callback = function()
-    local road = require("clrs.road.palette")
-    local rb = road.base
-    local rp = road.palette
-    local hl = vim.api.nvim_set_hl
-    hl(0, "Normal", { bg = rb.dragonInk })
-    hl(0, "NormalNC", { link = "Normal" })
-    hl(0, "NormalFloat", { link = "Normal" })
-    -- hl(0, "FloatBorder", { bg = rb.dragonInk, fg = rp.cadetGray[700] })
-    hl(0, "FloatBorder", { link = "Normal" })
-    hl(0, "RenderMarkdownCode", { bg = "bg" })
-    hl(0, "CursorLineNr", { fg = rb.lotusYellow })
-    hl(0, "TabLineSel", { fg = rb.lotusYellow })
-    hl(0, "LspSignatureActiveParameter", {
-      fg = rb.dragonInk,
-      bg = rp.lotusYellow[200],
-      bold = true,
-    })
-    hl(
-      0,
-      "ActionPreviewTitle",
-      { fg = rb.dragonInk, bg = rp.lotusYellow[200], bold = true }
-    )
-    hl(0, "SignColumn", { link = "Normal" })
-    hl(0, "WinSeparator", { link = "Normal" })
+    if vim.g.theme == "yugen" then
+      local road = require("clrs.road.palette")
+      local rb = road.base
+      local rp = road.palette
+      local hl = vim.api.nvim_set_hl
+      hl(0, "Normal", { bg = rb.dragonInk, default = true })
+      -- hl(0, "NormalNC", { link = "Normal" })
+      -- hl(0, "NormalFloat", { link = "Normal" })
+      -- hl(0, "FloatBorder", { bg = rb.dragonInk, fg = rp.cadetGray[700] })
+      -- hl(0, "FloatBorder", { link = "Normal" })
+      hl(0, "RenderMarkdownCode", { bg = "bg", default = true })
+      hl(0, "CursorLineNr", { fg = rb.lotusYellow })
+      hl(0, "TabLineSel", { fg = rb.lotusYellow })
+      hl(0, "SignColumn", { link = "Normal" })
+      hl(0, "WinSeparator", { link = "Normal" })
+      hl(0, "LspSignatureActiveParameter", {
+        fg = rb.dragonInk,
+        bg = rp.lotusYellow[200],
+        bold = true,
+      })
+      hl(
+        0,
+        "ActionPreviewTitle",
+        { fg = rb.dragonInk, bg = rp.lotusYellow[200], bold = true }
+      )
+    end
   end,
 })

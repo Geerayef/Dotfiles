@@ -86,23 +86,13 @@ map({"n", "x", "o"}, "<leader>j", function() require("flash").jump() end, "Flash
 map({"n", "x", "o"}, "<leader>t", function() require("flash").treesitter() end, "Flash [t]reesitter" )
 map("c", "<C-s>", function() require("flash").toggle() end, "Toggle Flash Search")
 
--- Telescope
--- map("n", "<leader>sf", "<cmd>Telescope fd<CR>",          "Telescope [s]earch [f]iles")
--- map("n", "<leader>sh", "<cmd>Telescope help_tags<CR>",   "Telescope [s]earch [h]elp")
--- map("n", "<leader>sg", "<cmd>Telescope live_grep<CR>",   "Telescope [s]earch [g]rep")
--- map("n", "<leader>sw", "<cmd>Telescope grep_string<CR>", "Telescope [s]earch [w]ord")
--- map("n", "<leader>sd", "<cmd>Telescope diagnostics<CR>", "Telescope [s]earch [d]iagnostics")
--- map("n", "<leader>?", "<cmd>Telescope oldfiles<CR>",     "[?] Telescope recent files")
--- map("n", "<leader> ", "<cmd>Telescope buffers<CR>",      "[ ] Telescope buffers")
--- map("n", "<leader>/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", "[/] Telescope search buffer")
-
 -- FZF Lua
 map("n", "<leader>sf", "<cmd>FzfLua files<CR>",                "FzfLua [s]earch [f]iles")
 map("n", "<leader>sh", "<cmd>FzfLua helptags<CR>",             "FzfLua [s]earch [h]elp")
 map("n", "<leader>sg", "<cmd>FzfLua live_grep<CR>",            "FzfLua [s]earch [g]rep")
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword<CR>",           "FzfLua [s]earch [w]ord")
 map("n", "<leader>sd", "<cmd>FzfLua diagnostics_document<CR>", "FzfLua [s]earch [d]iagnostics")
-map("n", "<leader>ss", "<cmd>FzfLua spell_suggest",            "FzFLua [s]earch [s]pell suggestions")
+map("n", "<leader>ss", "<cmd>FzfLua spell_suggest<CR>",        "FzFLua [s]earch [s]pell suggestions")
 map("n", "<leader>?", "<cmd>FzfLua oldfiles<CR>",              "[?] FzfLua recent files")
 map("n", "<leader> ", "<cmd>FzfLua buffers<CR>",               "[ ] FzfLua open buffers")
 map("n", "<leader>/", "<cmd>FzfLua blines<CR>",                "[/] FzfLua search buffer")
@@ -162,17 +152,17 @@ map("n", "<M-d>b", cmd.DapToggleBreakpoint, "DAP toggle [b]reakpoint")
 -- map("n", "<M-d>B", function() require("dap").clear_breakpoints() end, "DAP clear all breakpoints [B]")
 map("n", "<M-d>B", cmd.DapClearBreakpoints, "DAP clear all [B]reakpoints")
 map("n", "<M-d>t", cmd.DapTerminate, "DAP [t]erminate session")
-map("n", "<leader>DS", function ()
+map("n", "<M-d>S", function ()
   local w = require("dap.ui.widgets")
   local s = w.sidebar(w.scopes, {}, "vsplit")
   return s.toggle()
-end, "[D]AP [S]idebar")
-map("n", "<leader>DJ", function ()
+end, "DAP [S]idebar")
+map("n", "<M-d>F", function ()
   local w = require("dap.ui.widgets")
   local b = w.sidebar(w.frames, { height = 10 }, "belowright split")
   return b.toggle()
-end, "[D]AP [F]rames")
-map("n", "<leader>DH", function () return require("dap.ui.widgets").hover() end, "[D]AP [H]over")
+end, "DAP [F]rames")
+map("n", "<M-d>H", function () return require("dap.ui.widgets").hover() end, "DAP [H]over")
 
 -- ~ LSP ------------------------------------------------------------------- ~ --
 
@@ -180,48 +170,20 @@ Key = {}
 
 function Key.LSP(_, buf)
   local blsp = vim.lsp.buf
-  bmap("n", "K",           function() blsp.hover({ border = S.Border }) end, buf, "LSP hover")
-  bmap("n", "<C-k>",       function() blsp.signature_help({ border = S.Border }) end, buf, "LSP signature")
-  bmap("n", "<leader>rn",  blsp.rename,                                  buf, "LSP [r]e[n]ame")
-  bmap("n", "<leader>ca",  "<cmd>FzfLua lsp_code_actions<CR>",           buf, "LSP [c]ode [a]ction")
-  bmap("n", "<leader>gD",  "<cmd>FzfLua lsp_declarations<CR>",           buf, "LSP [g]o to [D]eclaration")
-  bmap("n", "<leader>gd",  "<cmd>FzfLua lsp_definitions<CR>",            buf, "LSP [g]o to [d]efinition")
-  bmap("n", "<leader>gr",  "<cmd>FzfLua lsp_references<CR>",             buf, "LSP [g]o to [r]eferences")
-  bmap("n", "<leader>gi",  "<cmd>FzfLua lsp_implementations<CR>",        buf, "LSP [g]o to [i]mplementation")
-  bmap("n", "<leader>gt",  "<cmd>FzfLua lsp_type_definitions<CR>",       buf, "LSP [g]o to [t]ype definition")
-  bmap("n", "<leader>ds",  "<cmd>FzfLua lsp_document_symbols<CR>",       buf, "LSP [d]ocument [s]ymbols")
-  bmap("n", "<leader>ws",  "<cmd>FzfLua lsp_live_workspace_symbols<CR>", buf, "LSP [w]orkspace [s]ymbols")
-  -- bmap("n", "<leader>wfa", blsp.add_workspace_folder,                          buf, "LSP [w]orkspace [f]older [a]dd")
-  -- bmap("n", "<leader>wfr", blsp.remove_workspace_folder,                       buf, "LSP [w]orkspace [f]older [r]emove")
-  bmap("n", "<leader>bac", LSP.buf_active_clients,                       buf, "LSP [b]uffer [a]ctive [c]lients")
+  bmap("n", "K",            function() blsp.hover({ border = S.Border }) end, buf, "LSP hover")
+  bmap("n", "<C-k>",        function() blsp.signature_help({ border = S.Border }) end, buf, "LSP signature")
+  bmap("n", "<leader>lrn",  blsp.rename,                                  buf, "[l]SP [r]e[n]ame")
+  bmap("n", "<leader>lca",  "<cmd>FzfLua lsp_code_actions<CR>",           buf, "[l]SP [c]ode [a]ction")
+  -- bmap("n", "<leader>lgD",  "<cmd>FzfLua lsp_declarations<CR>",           buf, "[l]SP [g]o to [D]eclaration")
+  bmap("n", "<leader>lgd",  "<cmd>FzfLua lsp_definitions<CR>",            buf, "[l]SP [g]o to [d]efinition")
+  bmap("n", "<leader>lgr",  "<cmd>FzfLua lsp_references<CR>",             buf, "[l]SP [g]o to [r]eferences")
+  -- bmap("n", "<leader>lgi",  "<cmd>FzfLua lsp_implementations<CR>",        buf, "[l]SP [g]o to [i]mplementation")
+  -- bmap("n", "<leader>lgt",  "<cmd>FzfLua lsp_type_definitions<CR>",       buf, "[l]SP [g]o to [t]ype definition")
+  bmap("n", "<leader>lsd",  "<cmd>FzfLua lsp_document_symbols<CR>",       buf, "[l]SP [s]ymbols [d]ocument")
+  bmap("n", "<leader>lsw",  "<cmd>FzfLua lsp_live_workspace_symbols<CR>", buf, "[l]SP [s]ymbols [w]orkspace")
+  -- bmap("n", "<leader>lfwa", blsp.add_workspace_folder,                    buf, "LSP [f]older [w]orkspace [a]dd")
+  -- bmap("n", "<leader>lfwr", blsp.remove_workspace_folder,                 buf, "LSP [f]older [w]orkspace [r]emove")
 end
-
-Key.TS = {
-  incremental_selection = {
-    init_selection = "<C-space>",
-    scope_incremental = "<C-space>",
-    node_decremental = "<C-S><space>",
-  },
-  textobjects = {
-    select = {
-      ["of"] = "@function.outer",
-      ["if"] = "@function.inner",
-      ["co"] = "@class.outer",
-      ["ci"] = "@class.inner",
-    },
-    move = {
-      goto_next_start = { ["]f"] = "@function.outer", ["]["] = "@class.outer" },
-      goto_next_end = { ["]F"] = "@function.outer", ["]]"] = "@class.outer" },
-      goto_previous_start = { ["[f"] = "@function.outer", ["[["] = "@class.outer" },
-      goto_previous_end = { ["[F"] = "@function.outer", ["[]"] = "@class.outer" },
-    },
-    swap = {
-      next = { ["<M-C-n>"] = "@parameter.inner", ["<S-M-C-n>"] = "@function.outer" },
-      previous = { ["<M-C-p>"] = "@parameter.inner", ["<S-M-C-p>"] = "@function.outer" },
-    },
-    lsp_interop = { ["<C-k>"] = "@function.outer", ["<C-K>"] = "@class.outer" },
-  },
-}
 
 function Key.JDTLS()
   map("n", "<leader>oi", "<cmd>lua require('jdtls').organize_imports<CR>", "[o]rganize [i]mports")

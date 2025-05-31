@@ -1,5 +1,5 @@
 # Dotfiles dump
 
-Perpetual.
+*Perpetual*.
 
 System is extremely minimal, few configs get regular attention.

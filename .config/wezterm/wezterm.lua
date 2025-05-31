@@ -234,12 +234,16 @@ C.unicode_version = 14
 C.font_size = 16
 C.font_dirs = { "~/.local/share/fonts/", "/usr/share/fonts/TTF/" }
 C.font = W.font_with_fallback({
-  { family = font.fam, harfbuzz_features = font.feat },
+  { family = font.fam, harfbuzz_features = font.feat, style = "Normal" },
+  { family = font.fam, harfbuzz_features = font.feat, style = "Oblique" },
   { family = font.fam_fb, harfbuzz_features = font.feat_fb },
   { family = "Symbols Nerd Font Mono" },
   { family = "Font Awesome" },
 })
-C.line_height = 1.6
+C.line_height = 1.66
+C.freetype_load_target = "Light"
+-- C.freetype_render_target = "HorizontalLcd"
+C.freetype_load_flags = "NO_HINTING|MONOCHROME"
 
 -- Workspace
 C.default_workspace = "home"
