@@ -26,10 +26,9 @@ return {
   },
   {
     "andymass/vim-matchup",
-    lazy = true,
     config = function()
       vim.g.matchup_mouse_enabled = 0
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
+      vim.g.matchup_matchparen_offscreen = {}
       vim.g.matchup_matchparen_deferred = 1
       vim.g.matchup_surround_enabled = 1
       vim.g.matchup_override_vimtex = 1
