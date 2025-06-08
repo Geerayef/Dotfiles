@@ -1,4 +1,4 @@
-local palette = {
+return {
   mintCream = {
     DEFAULT = "#D9E4DB",
     [100] = "#253428",
@@ -110,13 +110,13 @@ local palette = {
   lotusYellow = {
     DEFAULT = "#FFF779",
     [100] = "#FF9E3B",
-    [200] = "#E59F71",
-    [300] = "#BA5A31",
-    [400] = "#",
-    [500] = "#",
-    [600] = "#",
-    [700] = "#",
-    [800] = "#",
+    [200] = "#F29F56",
+    [300] = "#E59F71",
+    [400] = "#F2CB75",
+    [500] = "#FFF779",
+    [600] = "#BA5A31",
+    [700] = "#665F00",
+    [800] = "#3D3900",
   },
   emerald = {
     DEFAUL = "#69DC9E",
@@ -131,20 +131,3 @@ local palette = {
     [900] = "#082114",
   },
 }
-
-local base = {}
-for k, v in pairs(palette) do
-  base[k] = v["DEFAULT"]
-end
-
----# Mint cream   "#D9E4DB",
----# Jet          "#373643",
----# Ebony        "#565848",
----# Cadet Gray   "#86909A",
----# Raisin Black "#2B2A30",
----# Citron       "#D7CC75",
----# Paynes Gray  "#5E686E",
----# Charcoal     "#4A515C",
----# Dragon Ink   "#010204"
----# Lotus Yellow "#010204"
-return { base = base, palette = palette }

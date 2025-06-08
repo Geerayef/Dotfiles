@@ -80,15 +80,15 @@ autocmd("ColorScheme", {
   group = augroup("CustomHighlights", { clear = true }),
   callback = function()
     if vim.g.theme == "yugen" then
-      local road = require("clrs.road.palette")
+      local road = require("clrs.road")
       local rb = road.base
       local rp = road.palette
       local hl = vim.api.nvim_set_hl
       hl(0, "Normal", { bg = rb.dragonInk, default = true })
-      -- hl(0, "NormalNC", { link = "Normal" })
-      -- hl(0, "NormalFloat", { link = "Normal" })
+      hl(0, "NormalNC", { link = "Normal" })
+      hl(0, "NormalFloat", { link = "Normal" })
+      hl(0, "FloatBorder", { link = "Normal" })
       -- hl(0, "FloatBorder", { bg = rb.dragonInk, fg = rp.cadetGray[700] })
-      -- hl(0, "FloatBorder", { link = "Normal" })
       hl(0, "RenderMarkdownCode", { bg = "bg", default = true })
       hl(0, "CursorLineNr", { fg = rb.lotusYellow })
       hl(0, "TabLineSel", { fg = rb.lotusYellow })
@@ -96,13 +96,13 @@ autocmd("ColorScheme", {
       hl(0, "WinSeparator", { link = "Normal" })
       hl(0, "LspSignatureActiveParameter", {
         fg = rb.dragonInk,
-        bg = rp.lotusYellow[200],
+        bg = rp.lotusYellow[400],
         bold = true,
       })
       hl(
         0,
         "ActionPreviewTitle",
-        { fg = rb.dragonInk, bg = rp.lotusYellow[200], bold = true }
+        { fg = rb.dragonInk, bg = rp.lotusYellow[400], bold = true }
       )
     end
   end,

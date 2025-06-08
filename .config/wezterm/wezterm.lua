@@ -244,6 +244,7 @@ C.line_height = 1.66
 C.freetype_load_target = "Light"
 -- C.freetype_render_target = "HorizontalLcd"
 C.freetype_load_flags = "NO_HINTING|MONOCHROME"
+C.underline_position = "-0.2cell"
 
 -- Workspace
 C.default_workspace = "home"

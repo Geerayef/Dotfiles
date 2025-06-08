@@ -60,7 +60,7 @@ return {
         { "n", "x", "o" },
       },
       {
-        "af",
+        "vaf",
         function()
           require("nvim-treesitter-textobjects.select").select_textobject(
             "@function.outer",
@@ -71,7 +71,7 @@ return {
         desc = "around function",
       },
       {
-        "if",
+        "vif",
         function()
           require("nvim-treesitter-textobjects.select").select_textobject(
             "@function.inner",
