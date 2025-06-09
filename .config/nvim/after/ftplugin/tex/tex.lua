@@ -16,4 +16,3 @@ vim.keymap.set(
   "<cmd>VimtexView<CR>",
   { noremap = true, silent = true, desc = "[v]imtex [v]iew" }
 )
-vim.treesitter.start(vim.fn.bufnr(), "tex")

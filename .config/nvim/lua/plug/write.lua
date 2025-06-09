@@ -6,7 +6,7 @@ return {
     dependencies = {
       {
         "MeanderingProgrammer/render-markdown.nvim",
-        ft = { "markdown" },
+        ft = { "markdown", "codecompanion" },
         opts = {
           render_modes = true,
           bullet = { icons = { S.Icons.ui.dot }, right_pad = 2 },

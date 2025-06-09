@@ -12,4 +12,3 @@ vim.o.makeprg = "dune build @ocaml-index"
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.g.sleuth_ocaml_heuristics = 0
-vim.tresitter.start(vim.fn.bufnr(), "ocaml")

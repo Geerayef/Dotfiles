@@ -1,6 +1,14 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
+--- ~ Tree-Sitter auto-start
+autocmd("FileType", {
+  desc = "Automatically start Tree-Sitter",
+  pattern = S.TSEnsure,
+  group = augroup("AutoTreeSitter", { clear = true }),
+  callback = function() vim.treesitter.start() end,
+})
+
 --- ~ Large-file performance
 autocmd("BufReadPre", {
   desc = "Better handle large files.",
@@ -88,7 +96,6 @@ autocmd("ColorScheme", {
       hl(0, "NormalNC", { link = "Normal" })
       hl(0, "NormalFloat", { link = "Normal" })
       hl(0, "FloatBorder", { link = "Normal" })
-      -- hl(0, "FloatBorder", { bg = rb.dragonInk, fg = rp.cadetGray[700] })
       hl(0, "RenderMarkdownCode", { bg = "bg", default = true })
       hl(0, "CursorLineNr", { fg = rb.lotusYellow })
       hl(0, "TabLineSel", { fg = rb.lotusYellow })

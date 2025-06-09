@@ -19,6 +19,7 @@ return {
       ["@"] = "actions.cd",
       ["gs"] = "actions.change_sort",
       ["gx"] = "actions.open_external",
+      ["gy"] = "actions.yank_entry",
       ["g."] = "actions.toggle_hidden",
       ["g\\"] = "actions.toggle_trash",
       ["h"] = "actions.parent",

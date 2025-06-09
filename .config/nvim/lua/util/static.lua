@@ -276,4 +276,38 @@ S.FtIgnore = {
   "checkhealth",
 }
 
+S.TSEnsure = {
+  "gitcommit",
+  "git_config",
+  "git_rebase",
+  "regex",
+  "bash",
+  "fish",
+  "c",
+  "cpp",
+  "ocaml",
+  "ocaml_interface",
+  "menhir",
+  "python",
+  "rust",
+  "go",
+  "lua",
+  "luadoc",
+  "markdown",
+  "markdown_inline",
+  "vim",
+  "vimdoc",
+  "javascript",
+  "typescript",
+  "hyprlang",
+  "json",
+  "jsonc",
+  "jq",
+  "ini",
+  "toml",
+  "yaml",
+  "html",
+  "http",
+}
+
 return S
