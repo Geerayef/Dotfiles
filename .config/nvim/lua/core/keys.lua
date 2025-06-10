@@ -73,6 +73,12 @@ vim.api.nvim_set_keymap("c", "<M-f>", "<S-Right>", {})
 -- Terminal
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal escape")
 
+-- Navigation
+map("n", "<leader>cd", function()
+  vim.cmd({ cmd = "cd", args = { "%:p:h" } })
+  F.Notify("INFO", string.format("CWD: %s", vim.fn.getcwd()))
+end, "[c]hange to current working [d]irectory")
+
 -- ~ Plugin ---------------------------------------------------------------- ~ --
 
 map("n", "<leader>L", cmd.Lazy, "[L]azy")
