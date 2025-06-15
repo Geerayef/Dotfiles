@@ -1,17 +1,5 @@
 return {
   {
-    "sindrets/diffview.nvim",
-    cmd = {
-      "DiffviewOpen",
-      "DiffviewClose",
-      "DiffviewToggleFiles",
-      "DiffviewFocusFiles",
-      "DiffviewRefresh",
-      "DiffviewFileHistory",
-    },
-    opts = { file_panel = { listing_style = "list" } },
-  },
-  {
     "lewis6991/gitsigns.nvim",
     lazy = not F.IsBufInRepo(vim.api.nvim_get_current_buf()),
     dependencies = { "NeogitOrg/neogit", "sindrets/diffview.nvim" },
@@ -39,6 +27,18 @@ return {
         col = 1,
       },
     },
+  },
+  {
+    "sindrets/diffview.nvim",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFiles",
+      "DiffviewRefresh",
+      "DiffviewFileHistory",
+    },
+    opts = { file_panel = { listing_style = "list" } },
   },
   {
     "NeogitOrg/neogit",
