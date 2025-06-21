@@ -1,19 +1,18 @@
+local road = require("clrs.road")
+local rp = road.palette
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   config = function()
     local lualine_require = require("lualine_require")
     lualine_require.require = require
-    -- local kp = require("clrs.kanagawa.palette")
-    local kt = require("clrs.kanagawa.theme")
-    local kl = require("clrs.kanagawa.line").setup(kt)
     local icon = S.Icons
     require("lualine").setup({
       options = {
         component_separators = "",
         section_separators = "",
         always_divide_middle = true,
-        theme = kl,
+        theme = require("clrs.road.line").setup(rp),
         globalstatus = true,
       },
       -- stylua: ignore start
@@ -42,7 +41,7 @@ return {
             symbols =
               { error = icon.diagnostics.error, warn = icon.diagnostics.warn, info = icon.diagnostics.info, hint = icon.diagnostics.hint },
             diagnostics_color =
-              { error = { fg = kt.diag.error }, warn = { fg = kt.diag.warn }, info = { fg = kt.diag.info }, hint = { fg = kt.diag.hint } },
+              { error = { fg = rp.rustyRed["DEFAULT"] }, warn = { fg = rp.lotusYellow[100] }, info = { fg = rp.jet[600] }, hint = { fg = rp.emerald[400] } },
           },
           {
             function() return "│" end,
@@ -58,7 +57,7 @@ return {
             end,
             colored = true,
             symbols =    { added = icon.git.added_simple, modified = icon.git.modified_simple_up, removed = icon.git.removed_simple },
-            diff_color = { added = { fg = kt.vcs.added }, modified = { fg = kt.vcs.modified }, removed = { fg = kt.vcs.removed } },
+            diff_color = { added = { fg = rp.emerald[400] }, modified = { fg = rp.lotusYellow[100] }, removed = { fg = rp.rustyRed["DEFAULT"] } },
           },
           { "branch", icon = icon.git.branch },
         },

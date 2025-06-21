@@ -9,7 +9,13 @@ return {
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-surround", event = { "CursorHold", "CursorHoldI" } },
   { "tpope/vim-sleuth", event = { "BufNewFile", "BufReadPost" } },
-  { "echasnovski/mini.ai", version = false, event = "VeryLazy", opts = {} },
+  {
+    "echasnovski/mini.ai",
+    version = false,
+    event = "BufReadPost",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    opts = {},
+  },
   {
     "mistweaverco/kulala.nvim",
     ft = { "http", "rest" },

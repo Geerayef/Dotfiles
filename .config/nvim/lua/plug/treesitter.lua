@@ -3,7 +3,11 @@ return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
     build = ":TSUpdate",
-    event = "BufReadPost",
+    lazy = true,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-context",
+      "nvim-treesitter/nvim-treesitter-textobjects",
+    },
     config = function()
       local ts = require("nvim-treesitter")
       local ensure = S.TSEnsure
@@ -20,7 +24,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    event = "BufReadPost",
+    lazy = true,
     config = {
       enable = true,
       multiwindow = false,
@@ -38,8 +42,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
-    event = "BufReadPost",
-    dependencies = "nvim-treesitter/nvim-treesitter",
+    lazy = true,
     keys = {
       -- {
       --   "af",
