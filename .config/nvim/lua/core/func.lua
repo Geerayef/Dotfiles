@@ -3,10 +3,8 @@ F = {}
 function F.LSPAttach(client, bufnr)
   Key.LSP(client, bufnr)
   if client.server_capabilities and client.server_capabilities.code_lens then
-    local codelens =
-      vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
     vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
-      group = codelens,
+      group = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true }),
       buffer = bufnr,
       callback = function() vim.lsp.codelens.refresh() end,
     })

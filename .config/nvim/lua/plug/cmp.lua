@@ -7,8 +7,21 @@ return {
   },
   version = "1.*",
   opts = {
+    cmdline = {
+      keymap = {
+        ["<Tab>"] = { "show_and_insert", "select_next" },
+        ["<S-Tab>"] = { "show_and_insert", "select_prev" },
+        ["<C-n>"] = { "select_next", "fallback" },
+        ["<C-p>"] = { "select_prev", "fallback" },
+        ["<C-b>"] = { "scroll_documentation_up" },
+        ["<C-f>"] = { "scroll_documentation_down" },
+        ["<C-Space>"] = { "show_and_insert", "fallback" },
+        ["<C-'>"] = { "show_documentation", "hide_documentation" },
+        ["<C-e>"] = { "cancel", "hide" },
+        ["<C-y>"] = { "accept", "select_and_accept" },
+      },
+    },
     keymap = {
-      -- preset = "default",
       ["<C-n>"] = { "show", "select_next", "fallback" },
       ["<C-p>"] = { "show", "select_prev", "fallback" },
       ["<C-b>"] = { "scroll_documentation_up" },
@@ -50,7 +63,7 @@ return {
     },
     sources = { default = { "lsp", "path", "snippets", "buffer" } },
     snippets = { preset = "luasnip" },
-    fuzzy = { implementation = "prefer_rust" },
+    fuzzy = { implementation = "rust" },
   },
   opts_extend = { "sources.default" },
 }

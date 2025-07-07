@@ -1,4 +1,23 @@
 return {
+  {
+    "mrcjkb/haskell-tools.nvim",
+    version = "^6",
+    lazy = false,
+    config = function()
+      vim.g.haskell_tools = {
+        hls = {
+          on_attach = F.LSPAttach,
+          -- cmd = { "haskell-language-server-wrapper", "--lsp" },
+          settings = {
+            haskell = {
+              cabalFormattingProvider = "",
+              formattingProvider = "",
+            },
+          },
+        },
+      }
+    end,
+  },
   -- {
   --   "ranjithshegde/ccls.nvim",
   --   ft = { "c", "h", "cpp", "hpp" },

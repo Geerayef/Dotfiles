@@ -28,3 +28,5 @@ set -gx VK_DRIVER_FILES /usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share
 set -gx MOAR "-colors=256 -wrap -style=rose-pine -no-statusbar -no-linenumbers=false"
 set -gx BUN_INSTALL "$HOME/.local"
 set -gx LUA_PATH "$HOME/.local/lib/lua/?.lua;$HOME/.local/lib/lua/?/?.lua;$HOME/.local/lib/lua/?/init.lua;$HOME/.local/lib/lua/?/lua/?.lua;$HOME/.local/lib/lua/?/lua/init.lua;;"
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/tib/.local/bin

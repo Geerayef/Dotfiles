@@ -9,17 +9,13 @@ return {
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-surround", event = { "CursorHold", "CursorHoldI" } },
   { "tpope/vim-sleuth", event = { "BufNewFile", "BufReadPost" } },
+  { "MunifTanjim/nui.nvim", lazy = true },
   {
     "echasnovski/mini.ai",
     version = false,
     event = "BufReadPost",
     dependencies = "nvim-treesitter/nvim-treesitter",
     opts = {},
-  },
-  {
-    "mistweaverco/kulala.nvim",
-    ft = { "http", "rest" },
-    opts = { global_keymaps = false },
   },
   {
     "numToStr/Comment.nvim",
@@ -112,4 +108,10 @@ return {
     cmd = "ColorizerToggle",
     opts = { ["*"] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true } },
   },
+  {
+    "mistweaverco/kulala.nvim",
+    ft = { "http", "rest" },
+    opts = { global_keymaps = false },
+  },
+  { "phelipetls/jsonpath.nvim", ft = "json" },
 }

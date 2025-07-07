@@ -41,14 +41,14 @@ return {
         ruff_format = { command = "ruff", args = { "format", "--force-exclude", "--stdin-filename", "$FILENAME", "-" }, stdin = true },
         beautysh = { prepend_args = { "-i", "2" } },
         shfmt = { inherit = false, command = "shfmt", args = { "-i", "2", "-s", "-bn", "-ci", "--filename", "$FILENAME" } },
-        biome = {
-          inherit = false,
-          command = "biome",
-          stdin = false,
-          args = function()
-            return { "format", "--config-path=" .. vim.fn.expand("$XDG_CONFIG_HOME") .. "/biome", "--write", "$FILENAME" }
-          end,
-        },
+        -- biome = {
+        --   inherit = false,
+        --   command = "biome",
+        --   stdin = false,
+        --   args = function()
+        --     return { "format", "--config-path=" .. vim.fn.expand("$XDG_CONFIG_HOME") .. "/biome", "--write", "$FILENAME" }
+        --   end,
+        -- },
       },
       -- stylua: ignore end
     })

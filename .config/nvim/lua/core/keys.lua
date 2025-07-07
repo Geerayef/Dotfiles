@@ -12,12 +12,11 @@ map("x", "J", [[:'<,'>m '>+1<CR>gv=gv]], "Move selection down")
 map("x", "K", [[:'<,'>m '<-2<CR>gv=gv]], "Move selection up")
 map({ "n", "x" }, "<C-d>", "10j", "Scroll down 10 lines")
 map({ "n", "x" }, "<C-u>", "10k", "Scroll up 10 lines")
-map({ "n", "x" }, "<Space>", "", "Disable moving cursor with space")
 
 -- Edit
-map("n", "<C-i>", "<C-i>", "Disambiguate from <tab>")
 map("n", "<tab>", ">>", "Indent line using <tab>")
 map("n", "<bs>", "<<", "Unindent line using <bs>")
+map("n", "<C-i>", "<C-i>", "Disambiguate from <tab>")
 map(
   "n",
   "<leader>yg",
@@ -64,8 +63,8 @@ vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", {})
 vim.api.nvim_set_keymap("c", "<C-e>", "<End>", {})
 vim.api.nvim_set_keymap("c", "<C-f>", "<Right>", {})
 vim.api.nvim_set_keymap("c", "<C-b>", "<Left>", {})
-vim.api.nvim_set_keymap("c", "<C-n>", "<Down>", {})
-vim.api.nvim_set_keymap("c", "<C-p>", "<Up>", {})
+vim.api.nvim_set_keymap("c", "<C-j>", "<Down>", {})
+vim.api.nvim_set_keymap("c", "<C-k>", "<Up>", {})
 vim.api.nvim_set_keymap("c", "<C-d>", "<Del>", {})
 vim.api.nvim_set_keymap("c", "<M-b>", "<S-Left>", {})
 vim.api.nvim_set_keymap("c", "<M-f>", "<S-Right>", {})
@@ -85,6 +84,12 @@ map("n", "<leader>L", cmd.Lazy, "[L]azy")
 map("n", "<leader>f", cmd.Oil, "Oil [f]ile browser")
 map("n", "<leader>of", "<cmd>Oil --float<CR>", "[o]il [f]loat")
 map("n", "<leader>u", vim.cmd.UndotreeToggle, "[u]ndo tree")
+map(
+  "n",
+  "y<C-p>",
+  function() vim.fn.setreg("+", require("jsonpath").get()) end,
+  "[y]ank JSON[p]ath"
+)
 
 -- stylua: ignore start
 -- Flash
@@ -189,13 +194,6 @@ function Key.LSP(_, buf)
   bmap("n", "<leader>lsw",  "<cmd>FzfLua lsp_live_workspace_symbols<CR>", buf, "[l]SP [s]ymbols [w]orkspace")
   -- bmap("n", "<leader>lfwa", blsp.add_workspace_folder,                    buf, "LSP [f]older [w]orkspace [a]dd")
   -- bmap("n", "<leader>lfwr", blsp.remove_workspace_folder,                 buf, "LSP [f]older [w]orkspace [r]emove")
-end
-
-function Key.JDTLS()
-  map("n", "<leader>oi", "<cmd>lua require('jdtls').organize_imports<CR>", "[o]rganize [i]mports")
-  map("n", "<leader>ev", "<cmd>lua require('jdtls').extract_variable<CR>", "[e]xtract [v]ariable")
-  map("n", "<leader>ec", "<cmd>lua require('jdtls').extract_constant<CR>", "[e]xtract [c]onstant")
-  map("v", "<leader>em", "<cmd>lua require('jdtls').extract_method(true)<CR>", "[e]xtract [m]ethod")
 end
 -- stylua: ignore end
 

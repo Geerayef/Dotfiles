@@ -191,6 +191,11 @@ S.root_markers = {
   ".ocamlformat",
   ".ocp-indent",
   ".opam",
+  -- [Haskell]
+  "cabal.project",
+  "hie.yaml",
+  "stack.yaml",
+  "package.yaml",
   -- [C|C++] (Clangd|CCLS)
   ".ccls",
   "compile_commands.json",
@@ -288,6 +293,7 @@ S.TSEnsure = {
   "ocaml",
   "ocaml_interface",
   "menhir",
+  "haskell",
   "python",
   "rust",
   "go",
