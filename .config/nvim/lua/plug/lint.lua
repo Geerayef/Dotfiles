@@ -8,6 +8,7 @@ return {
       c = { "clangtidy" },
       cpp = { "clangtidy" },
       python = { "ruff" },
+      haskell = { "hlint" },
       rust = { "clippy-driver" },
       golangcilint = { "golangcilint" },
       lua = { "luacheck" },

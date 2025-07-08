@@ -21,6 +21,7 @@ return {
         cpp = { "clang-format" },
         ocaml = { "ocamlformat" },
         dune = { "dune" },
+        haskell = { "fourmolu" },
         rust = { "rustfmt" },
         go = { "gofmt" },
         lua = { "stylua" },

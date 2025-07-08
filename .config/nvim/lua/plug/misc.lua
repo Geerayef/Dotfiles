@@ -10,6 +10,7 @@ return {
   { "tpope/vim-surround", event = { "CursorHold", "CursorHoldI" } },
   { "tpope/vim-sleuth", event = { "BufNewFile", "BufReadPost" } },
   { "MunifTanjim/nui.nvim", lazy = true },
+  { "j-hui/fidget.nvim", event = "BufReadPost", version = false, opts = {} },
   {
     "echasnovski/mini.ai",
     version = false,
@@ -29,7 +30,6 @@ return {
   },
   {
     "andymass/vim-matchup",
-    event = "BufReadPost",
     config = function()
       vim.g.matchup_mouse_enabled = 0
       vim.g.matchup_matchparen_offscreen = {}
