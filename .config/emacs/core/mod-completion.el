@@ -5,7 +5,7 @@
 ;; ~ Orderless ------------------------------------------------------------ ~ ;;
 
 (use-package orderless
-  :ensure (:fetcher github :repo "oantolin/orderless")
+  :ensure t
   :demand t
   :config
   (orderless-define-completion-style
@@ -44,7 +44,6 @@
    ("M-g e" . consult-compile-error)
    ("M-g f" . consult-flycheck)
    ("M-g g" . consult-goto-line)
-   ("M-g M-g" . consult-goto-line)
    ;; Alternative: consult-org-heading
    ;; ("M-g o" . consult-outline)
    ;; ("M-g m" . consult-mark)
@@ -175,8 +174,9 @@
 ;; ~ Corfu ---------------------------------------------------------------- ~ ;;
 
 (use-package corfu
-  ;; :ensure (corfu :files (:defaults "extensions/*") :includes (corfu-popupinfo))
+  ;; :ensure (corfu :files (:defaults "extensions/*") :includes (corfu-popupinfo))  
   :ensure t
+  :after orderless
   :init
   (global-corfu-mode)
   (corfu-popupinfo-mode)

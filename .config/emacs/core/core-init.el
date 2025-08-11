@@ -12,12 +12,25 @@
       (when (and (file-directory-p name) (not (string-prefix-p "." f)))
         (util/recursive-add-to-load-path name)))))
 
+(defun wsl-copy (start end)
+  (interactive "r")
+  (shell-command-on-region start end "clip.exe")
+  (deactivate-mark))
+
+(defun wsl-paste ()
+  (interactive)
+  (let ((clipboard
+         (shell-command-to-string "powershell.exe -command 'Get-Clipboard' 2> /dev/null")))
+    (setq clipboard (replace-regexp-in-string "\r" "" clipboard))
+    (setq clipboard (substring clipboard 0 -1))
+    (insert clipboard)))
+
 ;; ~ Emacs ---------------------------------------------------------------- ~ ;;
 
 (use-package emacs
   :ensure nil
   :config
-  (setq-default left-fringe-width 0
+  (setq-default left-fringe-width 2
                 right-fringe-width 0
                 indicate-buffer-boundaries nil
                 indicate-empty-lines nil
@@ -58,25 +71,28 @@
   (elpaca-after-init . (lambda ()
                          (progn
                            (set-face-attribute 'default nil :family "Iosevka"
-                                               :height 180 :weight 'regular)
+                                               :height 140 :weight 'regular)
                            (set-face-attribute 'variable-pitch nil :family "Iosevka"
-                                               :height 180 :weight 'regular)
+                                               :height 140 :weight 'regular)
                            (set-face-attribute 'fixed-pitch nil :family "Iosevka"
-                                               :height 180 :weight 'regular)
+                                               :height 140 :weight 'regular)
                            (set-face-attribute 'dired-mark nil :family "Iosevka"
-                                               :height 180 :weight 'regular)))))
+                                               :height 140 :weight 'regular)))))
 
 ;; ~ Keys ------------------------------------------------------------------ ~ ;;
 
 (global-set-key (kbd "C-v")
                 (lambda ()
-                  (interactive
-                   (forward-line (/ (window-height (selected-window)) 4)))))
+                  (interactive)
+                  (forward-line 10)))
 
 (global-set-key (kbd "M-v")
                 (lambda ()
-                  (interactive
-                   (forward-line (- (/ (window-height (selected-window)) 4))))))
+                  (interactive)
+                  (forward-line -10)))
+
+(global-set-key (kbd "C-c C-c") 'wsl-copy)
+(global-set-key (kbd "C-c C-v") 'wsl-paste)
 
 ;; ~ Edit ------------------------------------------------------------------ ~ ;;
 
@@ -215,19 +231,19 @@
 
 (util/recursive-add-to-load-path core-dir)
 
-(use-package core-backups :ensure nil)
-(use-package mod-misc :ensure nil)
-(use-package mod-treesitter :ensure nil)
-(use-package mod-modeline :ensure nil)
-(use-package mod-completion :ensure nil)
-(use-package mod-lsp :ensure nil)
-;; (use-package mod-lint :ensure nil)
-(use-package mod-format :ensure nil)
-(use-package mod-lang :ensure nil)
-(use-package mod-write :ensure nil)
-;; (use-package mod-dirvish :ensure nil)
+(use-package core-backups :ensure nil :demand t)
+(use-package mod-treesitter :ensure nil :demand t)
+(use-package mod-completion :ensure nil :demand t)
+(use-package mod-lsp :ensure nil :demand t)
 (use-package mod-git :ensure nil)
-(use-package mod-icons :ensure nil)
+(use-package mod-lang :ensure nil)
+(use-package mod-lint :ensure nil)
+(use-package mod-format :ensure nil)
+(use-package mod-write :ensure nil)
+(use-package mod-dirvish :ensure nil)
+(use-package mod-misc :ensure nil)
+(use-package mod-rest :ensure nil)
+(use-package mod-modeline :ensure nil)
 (use-package mod-theme :ensure nil)
 
 (provide 'core-init)

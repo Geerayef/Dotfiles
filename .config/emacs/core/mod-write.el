@@ -6,9 +6,7 @@
   :ensure t
   :hook
   ((text-mode org-mode markdown-mode prog-mode conf-mode) . global-jinx-mode)
-  :bind
-  (("M-$" . jinx-correct)
-   ("C-M-$" . jinx-languages)))
+  :bind (("M-$" . jinx-correct) ("C-M-$" . jinx-languages)))
 
 ;; ~ Org ------------------------------------------------------------------- ~ ;;
 
@@ -59,7 +57,7 @@
 ;;         denote-prompts '(title keywords)
 ;;         denote-excluded-directories-regexp nil
 ;;         denote-excluded-keywords-regexp nil
-           ;; Set to t if you are familiar with `denote-rename-file'
+;; Set to t if you are familiar with `denote-rename-file'
 ;;         denote-rename-no-confirm nil
 ;;         denote-date-prompt-use-org-read-date t
 ;;         denote-backlinks-show-context t)
@@ -120,11 +118,12 @@
 
 ;; ~ Markdown -------------------------------------------------------------- ~ ;;
 
-(use-package markdown-mode
+(use-package  markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
   :custom
-  (markdown-command '("pandoc" "--standalone" "--mathjax" "--from=markdown" "--to=html5"))
+  (markdown-command
+   '("pandoc" "--standalone" "--mathjax" "--from=markdown" "--to=html5"))
   (markdown-enable-math t)
   (markdown-hide-markup t)
   (markdown-gfm-uppercase-checkbox t)
@@ -132,28 +131,29 @@
   :hook (gfm-mode . (lambda () (visual-line-mode)))
   :mode (("README\\.md\\'" . gfm-mode)))
 
-(use-package markdown-preview-mode
-  :ensure t
-  :hook ((markdown-mode . markdown-preview-mode)
-         (gfm-mode . markdown-preview-mode))
-  :custom (browse-url-browser-function 'browse-url-firefox))
-
-;; (use-package obsidian
+;; (use-package markdown-preview-mode
 ;;   :ensure t
-;;   :init (global-obsidian-mode t)
-;;   :custom
-;;   (obsidian-specify-path "~/notes")
-;;   (obsidian-inbox-directory "inbox")
-;;   (obsidian-wiki-link-create-file-in-inbox t)
-;;   ;; Daily notes: file name is YYYY-MM-DD.md
-;;   (obsidian-daily-notes-directory "daily")
-;;   (obsidian-templates-directory "templates")
-;;   (obsidian-daily-note-template "daily.md")
-;;   :bind
-;;   (:map obsidian-mode-map
-;;         ("C-c C-o" . obsidian-follow-link-at-point)
-;;         ("C-c C-b" . obsidian-backlink-jump)
-;;         ("C-c C-l" . obsidian-insert-link)))
+;;   :hook
+;;   ((markdown-mode . markdown-preview-mode) (gfm-mode . markdown-preview-mode))
+;;  :custom (browse-url-browser-function 'browse-url-firefox))
+
+(use-package obsidian
+  :ensure t
+  :hook (markdown-mode . obsidian-mode)
+  :bind
+  (:map
+   obsidian-mode-map
+   ("C-c C-o" . obsidian-follow-link-at-point)
+   ("C-c C-b" . obsidian-backlink-jump)
+   ("C-c C-l" . obsidian-insert-link))
+  :custom
+  (obsidian-specify-path "~/notes")
+  (obsidian-inbox-directory "inbox")
+  (obsidian-wiki-link-create-file-in-inbox t)
+  ;; Daily notes: file name is YYYY-MM-DD.md
+  (obsidian-daily-notes-directory "daily")
+  (obsidian-templates-directory "templates")
+  (obsidian-daily-note-template "daily.md"))
 
 (provide 'mod-write)
 ;;; mod-write.el ends here
