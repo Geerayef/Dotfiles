@@ -31,9 +31,9 @@
   (advice-add #'register-preview :override #'consult-register-window)
   (setq register-preview-delay 0.5
         register-preview-function #'consult-register-format
-        xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref
         completion-in-region-function #'consult-completion-in-region)
+  (setq-default xref-show-xrefs-function #'consult-xref
+                xref-show-definitions-function #'consult-xref)
   :config
   (setq consult-fd-args '("fd" "-H" "-i" "-E .git node_modules" "--prune" "--color=never" "-t f")
         consult-ripgrep-args (concat consult-ripgrep-args " --hidden")
@@ -56,7 +56,7 @@
    ("C-x b" . consult-buffer)
    ;; ("C-x 4 b" . consult-buffer-other-window)
    ;; ("C-x 5 b" . consult-buffer-other-frame)
-   ("C-x t b" . consult-buffer-other-tab)
+   ;; ("C-x t b" . consult-buffer-other-tab)
    ("C-x r b" . consult-bookmark)
    ("C-x p b" . consult-project-buffer)
    ("M-g e" . consult-compile-error)
@@ -86,16 +86,6 @@
 
 (use-package consult-eglot :ensure t :after consult)
 
-;; ~ Marginalia ----------------------------------------------------------- ~ ;;
-
-(use-package marginalia
-  :ensure t
-  :after vertico
-  :init (marginalia-mode)
-  ;; :custom
-  ;; (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil))
-  )
-
 ;; ~ Vertico -------------------------------------------------------------- ~ ;;
 
 (use-package vertico
@@ -117,10 +107,19 @@
   (vertico-scroll-margin 0)
   (vertico-resize t)
   (enable-recursive-minibuffers t)
+  (minibuffer-depth-indicate-mode t)
   (minibuffer-prompt-properties
-   '(read-only t intangible t cursor-intangible t face
-               minibuffer-prompt))
+   '(read-only t intangible t cursor-intangible t face minibuffer-prompt))
   (add-to-list 'vertico-multiform-categories '(jinx grid (vertico-grid-annotate . 20))))
+
+;; ~ Marginalia ----------------------------------------------------------- ~ ;;
+
+(use-package marginalia
+  :ensure t
+  :after vertico
+  :init (marginalia-mode)
+  :custom
+  (marginalia-annotators '(marginalia-annotators-heavy marginalia-annotators-light nil)))
 
 ;; ~ Cape ----------------------------------------------------------------- ~ ;;
 
@@ -134,7 +133,7 @@
   (add-to-list 'completion-at-point-functions #'cape-elisp-block)
   (add-to-list 'completion-at-point-functions #'cape-elisp-symbol)
   :config
-  (setq corfu-separator 32)
+  (setq-default corfu-separator 32)
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
   (defun gracs/eglot-capf ()
     (setq-local completion-at-point-functions

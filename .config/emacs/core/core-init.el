@@ -56,7 +56,6 @@
                 comment-empty-lines t
                 lazy-highlight-initial-delay 0
                 display-time-default-load-average nil
-                line-number-mode t
                 column-number-mode t))
 
 ;; ~ Font ------------------------------------------------------------------ ~ ;;
@@ -91,8 +90,10 @@
                   (interactive)
                   (forward-line -10)))
 
-(global-set-key (kbd "C-c C-c") 'wsl-copy)
-(global-set-key (kbd "C-c C-v") 'wsl-paste)
+(when (and (eq system-type 'gnu/linux)
+           (getenv "WSLENV"))
+  (global-set-key (kbd "C-c C-c") 'wsl-copy)
+  (global-set-key (kbd "C-c C-v") 'wsl-paste))
 
 ;; ~ Edit ------------------------------------------------------------------ ~ ;;
 
@@ -222,10 +223,6 @@
   (dired-kill-when-opening-new-dired-buffer t)
   :config
   (put 'dired-find-alternate-file 'disabled nil))
-
-;; Filetype
-(setq python-indent-guess-indent-offset-verbose nil)
-(setq sh-indent-after-continuation 'always)
 
 ;; ~ Modules --------------------------------------------------------------- ~ ;;
 

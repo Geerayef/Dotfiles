@@ -15,9 +15,14 @@
 
 ;; ~ ELisp ----------------------------------------------------------------- ~ ;;
 
+(use-package elisp-mode
+  :ensure nil
+  :config
+  (define-key emacs-lisp-mode-map (kbd "C-c e") #'eval-defun))
+
 (use-package eldoc
-  :hook
-  (emacs-lisp-mode . eldoc-mode))
+  :ensure nil
+  :hook (emacs-lisp-mode . eldoc-mode))
 
 (use-package package-lint :ensure t)
 
