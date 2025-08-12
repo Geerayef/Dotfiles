@@ -2,17 +2,15 @@ return {
   {
     "mrcjkb/haskell-tools.nvim",
     version = "^6",
-    lazy = false,
+    ft = "haskell",
+    keys = { { "<leader>Hrt", "<cmd>Haskell repl toggle<cr>" } },
     config = function()
       vim.g.haskell_tools = {
         hls = {
           on_attach = F.LSPAttach,
           -- cmd = { "haskell-language-server-wrapper", "--lsp" },
           settings = {
-            haskell = {
-              cabalFormattingProvider = "",
-              formattingProvider = "",
-            },
+            haskell = { cabalFormattingProvider = "", formattingProvider = "" },
           },
         },
       }

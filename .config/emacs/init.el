@@ -9,8 +9,6 @@
   (add-hook 'elpaca-after-init-hook (lambda () (load custom-file))))
 (add-hook 'elpaca-after-init-hook (lambda () (setq-default gc-cons-threshold (* 16 1024 1024))))
 
-;; ~ Variables ------------------------------------------------------------- ~ ;;
-
 ;; 'ef-elea-dark | 'doom-{plain-dark, tomorrow-night, spacegrey} | 'poet-dark{-monochrome}
 (defvar gracs/theme "poet-dark"
   "Default theme.")

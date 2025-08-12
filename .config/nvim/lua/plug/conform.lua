@@ -34,24 +34,29 @@ return {
         jsonc = { "biome" },
         javascript = { "biome" },
         typescript = { "biome" },
+        yaml = { "yamlfmt" },
       },
-      -- stylua: ignore start
       formatters = {
         ["clang-format"] = { prepend_args = { "--style=file" } },
         dune = { command = "dune", args = { "format-dune-file" } },
-        ruff_format = { command = "ruff", args = { "format", "--force-exclude", "--stdin-filename", "$FILENAME", "-" }, stdin = true },
+        ruff_format = {
+          command = "ruff",
+          args = {
+            "format",
+            "--force-exclude",
+            "--stdin-filename",
+            "$FILENAME",
+            "-",
+          },
+          stdin = true,
+        },
         beautysh = { prepend_args = { "-i", "2" } },
-        shfmt = { inherit = false, command = "shfmt", args = { "-i", "2", "-s", "-bn", "-ci", "--filename", "$FILENAME" } },
-        -- biome = {
-        --   inherit = false,
-        --   command = "biome",
-        --   stdin = false,
-        --   args = function()
-        --     return { "format", "--config-path=" .. vim.fn.expand("$XDG_CONFIG_HOME") .. "/biome", "--write", "$FILENAME" }
-        --   end,
-        -- },
+        shfmt = {
+          inherit = false,
+          command = "shfmt",
+          args = { "-i", "2", "-s", "-bn", "-ci", "--filename", "$FILENAME" },
+        },
       },
-      -- stylua: ignore end
     })
   end,
 }

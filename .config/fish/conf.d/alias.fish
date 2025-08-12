@@ -29,27 +29,27 @@ end
 alias v="nvim"
 alias nv="neovide"
 
-abbr -a ts "tree-sitter"
+abbr -a ts tree-sitter
 
 # ~ Git
 
 alias dotfiles="/usr/bin/git --git-dir=$HOME/Dotfiles/ --work-tree=$HOME"
-alias dtflsu="dotfiles add .config/{fish,bash,zsh,starship,alacritty,wezterm,foot,kitty,tmux,hypr,nvim,vim,neovide,moxide,mdt,glow,emacs,tofi,firefoxcss,nnn,bat,btop,mako,fontconfig,vimiumc,zathura,zed,ruff}/ .local/bin/ .zshenv .gitignore"
+alias dtflsu="dotfiles add .config/{fish,bash,zsh,starship,alacritty,wezterm,foot,kitty,tmux,hypr,nvim,vim,emacs,neovide,moxide,mdt,glow,tofi,firefoxcss,nnn,bat,btop,mako,fontconfig,vimiumc,zathura,zed,ruff}/ .local/bin/ .zshenv .gitignore"
 alias dtflsa="dotfiles add"
 alias dtflss="dotfiles status"
 alias dtflsc="dotfiles commit -m"
-abbr -a gs "git status ."
+abbr -a gs "git status"
 abbr -a ga "git add"
 abbr -a ga. "git add ."
 abbr -a grs "git restore --staged"
 abbr -a gr "git restore"
 abbr -a gst "git stash"
 abbr -a gstp "git stash pop"
-abbr -a gc "git commit -m"
+abbr -a gc "git commit"
 abbr -a gf "git fetch"
 abbr -a gm "git merge"
 abbr -a gpl "git pull --rebase"
-abbr -a gps "git push --set-upstream"
+abbr -a gps "git push"
 abbr -a gch "git checkout"
 abbr -a gb "git branch"
 abbr -a gl 'git log --pretty="%h » ¦ « %aN » ¦ « %s » ¦ « %aD"'

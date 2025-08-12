@@ -1,12 +1,12 @@
 local hls = {
   on_attach = require("core.func").LSPAttach,
   filetypes = { "haskell", "lhaskell", "cabal" },
-  root_patterns = { "*.cabal" },
+  root_patterns = { "*.hs", "*.cabal" },
   cmd = { "haskell-language-server-wrapper", "--lsp" },
   settings = {
     haskell = {
-      cabalFormattingProvider = "cabal-gild",
-      formattingProvider = "fourmolu",
+      cabalFormattingProvider = "",
+      formattingProvider = "",
     },
   },
 }

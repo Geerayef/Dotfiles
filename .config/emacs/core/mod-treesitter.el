@@ -52,10 +52,6 @@
           (markdown . ("https://github.com/tree-sitter-grammars/tree-sitter-markdown" "split_parser" "tree-sitter-markdown/src"))
           (javascript "https://github.com/tree-sitter/tree-sitter-javascript"))))
 
-;; (dolist (grammar treesit-language-source-alist)
-;;   (unless (treesit-language-available-p (car grammar))
-;;     (treesit-install-language-grammar (car grammar))))
-
 (use-package treesit-auto
   :ensure t
   :init

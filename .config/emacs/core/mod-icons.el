@@ -2,16 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package all-the-icons
-  :ensure t
-  :after memoize
-  :if window-system
-  :custom
-  (all-the-icons-scale-factor 1.0)
-  (all-the-icons-default-adjust -0.2))
-
 (use-package nerd-icons
   :ensure t
+  :demand t
   :custom
   (nerd-icons-scale-factor 0.7)
   (nerd-icons-default-adjust -0.1)
@@ -20,8 +13,22 @@
              (not (member "Symbols Nerd Font Mono" (font-family-list))))
     (nerd-icons-install-fonts)))
 
+(use-package nerd-icons-ibuffer
+  :ensure t
+  :after nerd-icons
+  :hook
+  (ibuffer-mode . nerd-icons-ibuffer-mode))
+
+(use-package all-the-icons
+  :ensure t
+  :after nerd-icons
+  :custom
+  (all-the-icons-scale-factor 1.0)
+  (all-the-icons-default-adjust -0.2))
+
 (use-package nerd-icons-completion
   :ensure t
+  :after nerd-icons
   :hook
   (marginalia-mode . nerd-icons-completion-marginalia-setup)
   :config
@@ -74,11 +81,6 @@
         (nerd-icons-completion-get-icon cand 'variable))
        (t (nerd-icons-octicon "nf-oct-gear" :face 'all-the-icons-silver)))))
   (nerd-icons-completion-mode))
-
-(use-package nerd-icons-ibuffer
-  :ensure t
-  :hook
-  (ibuffer-mode . nerd-icons-ibuffer-mode))
 
 (provide 'mod-icons)
 ;;; mod-icons.el ends here

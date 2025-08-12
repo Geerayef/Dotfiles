@@ -83,25 +83,5 @@
 ;;   (org-capture-mode     . nano-modeline-org-capture-mode)
 ;;   (org-agenda-mode      . nano-modeline-org-agenda-mode))
 
-;; (use-package mood-line
-;;   :ensure t
-;;   :custom
-;;   (mood-line-glyph-alist mood-line-glyphs-fira-code)
-;;   (mood-line-format (mood-line-defformat
-;;                      :left
-;;                      ("    │ "
-;;                       ((mood-line-segment-buffer-name) . " ")
-;;                       (mood-line-segment-buffer-status))
-;;                      :right
-;;                      ((mood-line-segment-misc-info)
-;;                       " "
-;;                       (mood-line-segment-process)
-;;                       " "
-;;                       ((when (mood-line-segment-checker) " │ ") . " ")
-;;                       (mood-line-segment-vc)
-;;                       "    ")))
-;;   :config
-;;   (mood-line-mode))
-
 (provide 'mod-modeline)
 ;;; mod-modeline.el ends here

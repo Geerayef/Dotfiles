@@ -9,7 +9,7 @@ return {
       cpp = { "clangtidy" },
       python = { "ruff" },
       haskell = { "hlint" },
-      rust = { "clippy-driver" },
+      rust = { "clippy" },
       golangcilint = { "golangcilint" },
       lua = { "luacheck" },
       sh = { "shellcheck" },
@@ -20,6 +20,7 @@ return {
       jsonc = { "biomejs" },
       javascript = { "biomejs" },
       typescript = { "biomejs" },
+      yaml = { "yamllint" },
     },
   },
   config = function(_, opts)

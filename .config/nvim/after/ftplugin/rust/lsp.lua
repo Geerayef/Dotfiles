@@ -13,8 +13,7 @@ local rust_analyzer = {
     ["rust-analyzer"] = {
       imports = { prefix = "self", granularity = { group = "module" } },
       cargo = { buildScripts = { enable = true } },
-      procMacro = { enable = true },
-      checkOnSave = { command = "clippy" },
+      checkOnSave = false,
     },
   },
   cmd = { "rust-analyzer" },
