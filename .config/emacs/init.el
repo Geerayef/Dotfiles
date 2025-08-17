@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'early-init)
+;; (require 'early-init)
 (add-to-list 'load-path core-dir)
 (require 'pacatim)
 (when (file-exists-p custom-file)
@@ -13,9 +13,9 @@
 (defvar gracs/theme "poet-dark"
   "Default theme.")
 
-(use-package core-init :ensure nil)
-
 (add-hook 'elpaca-after-init-hook (lambda () (load-theme (intern gracs/theme) t)))
+
+(use-package core-init :ensure nil)
 
 (provide 'init)
 ;;; init.el ends here

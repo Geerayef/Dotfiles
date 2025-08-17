@@ -44,6 +44,8 @@
 (elpaca elpaca-use-package
   (elpaca-use-package-mode))
 
+(setq elpaca-lock-file (concat cache-dir "elpaca.lock"))
+
 (elpaca-wait)
 
 (provide 'pacatim)
