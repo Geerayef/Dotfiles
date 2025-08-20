@@ -17,7 +17,11 @@ require("lazy").setup({
   dev = { path = "~/dev" },
   checker = { enabled = false },
   change_detection = { notify = false },
-  ui = { title = "Lazy", border = S.Border },
+  ui = {
+    title = "Lazy",
+    border = S.Border,
+    size = { width = 1, height = 1 },
+  },
   performance = {
     rtp = {
       disabled_plugins = {

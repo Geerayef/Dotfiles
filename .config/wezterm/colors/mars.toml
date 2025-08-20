@@ -1,0 +1,34 @@
+[colors]
+ansi = [
+    "#4A2C2C", #Black
+    "#A0392F", # Red
+    "#E07B5F", # Green
+    "#C45A3F", # Yellow
+    "#7B534E", # Blue
+    "#FF6B4A", # Purple
+    "#D9AFA7", # Cyan
+    "#F9CFC7", # White
+]
+brights = [
+    "#5A3C3C", # Black
+    "#B0493F", # Red
+    "#F08B6F", # Green
+    "#D46A4F", # Yellow
+    "#8B634E", # Blue
+    "#FF8B6A", # Purple
+    "#E9BFB7", # Cyan
+    "#FFD7CF", # White
+]
+foreground = "#F9CFC7"
+background = "#4A2C2C"
+cursor_bg = "#F9CFC7"
+cursor_border = "#F9CFC7"
+cursor_fg = "#4A2C2C"
+selection_bg = "#5A3C3C"
+selection_fg = "#E9BFB7"
+[colors.indexed]
+[metadata]
+aliases = ["Mars"]
+name = "Mars"
+origin_url = "https://github.com/steve-lohmeyer/mars.nvim"
+wezterm_version = "Always"

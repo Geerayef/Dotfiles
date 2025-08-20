@@ -1,4 +1,4 @@
-local palette = require("clrs.road.palette")
+local palette = require("road.palette")
 
 local image = {
   ["Raisin black"] = "#292931",

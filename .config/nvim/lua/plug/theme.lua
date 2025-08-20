@@ -1,21 +1,13 @@
-local kp = require("clrs.kanagawa.palette")
+local rb = require("clrs.road").base
 return {
-  {
-    "vinitkumar/oscura-vim",
-    priority = 1010,
-    lazy = vim.g.theme ~= "oscura",
-  },
-  {
-    "bettervim/yugen.nvim",
-    priority = 1010,
-    lazy = vim.g.theme ~= "yugen",
-  },
+  { "bettervim/yugen.nvim", priority = 1010, lazy = vim.g.theme ~= "yugen" },
+  { "vinitkumar/oscura-vim", priority = 1010, lazy = vim.g.theme ~= "oscura" },
   {
     "amedoeyes/eyes.nvim",
     priority = 1010,
     lazy = vim.g.theme ~= "eyes",
     opts = {
-      extend = { highlights = { Normal = { bg = kp.dragonInk1 } } },
+      extend = { highlights = { Normal = { bg = rb.dragonInk } } },
       features = {
         plugins = {
           codeium = false,

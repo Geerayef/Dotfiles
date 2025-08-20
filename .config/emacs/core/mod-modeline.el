@@ -2,63 +2,35 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (use-package lambda-line
-;;   :ensure (:host github :repo "lambda-emacs/lambda-line")
-;;   :custom
-;;   (lambda-line-position 'bottom)
-;;   (lambda-line-visual-bell nil)
-;;   (lambda-line-abbrev t)
-;;   (lambda-line-hspace "    ")
-;;   (lambda-line-prefix t)
-;;   (lambda-line-prefix-padding nil)
-;;   (lambda-line-status-invert nil)
-;;   (lambda-line-position-format " ")
-;;   (lambda-line-lsp-indicator nil)
-;;   (lambda-line-syntax t)
-;;   (lambda-line-git-diff-mode-line t)
-;;   (lambda-line-vc-symbol "  ")
-;;   (lambda-line-gui-ro-symbol  "  ")
-;;   (lambda-line-gui-mod-symbol " • ")
-;;   (lambda-line-gui-rw-symbol  " ○ ")
-;;   (lambda-line-tty-ro-symbol  "  ")
-;;   (lambda-line-tty-mod-symbol " • ")
-;;   (lambda-line-tty-rw-symbol  " ○ ")
-;;   (lambda-line-space-top 0)
-;;   (lambda-line-space-bottom 0)
-;;   (lambda-line-symbol-position 0.1)
-;;   :hook (elpaca-after-init . lambda-line-mode)
-;;   :config
-;;   (lambda-line-mode)
-;;   (require 'nerd-icons)
-;;   (defface info '((t (:inherit (flycheck-info)))) " ")
-;;   (setq lambda-line-flycheck-label (format " %s" (nerd-icons-mdicon "nf-md-alarm_light")))
-;;   (setq lambda-line-vc-symbol (format " %s" (nerd-icons-mdicon "nf-md-git"))))
-
-(use-package lordar-mode-line
-  :ensure (:host github :repo "hubisan/lordar-mode-line")
-  :demand t
+(use-package lambda-line
+  :ensure (:host github :repo "lambda-emacs/lambda-line")
   :custom
-  (lordar-mode-line-height-adjust-factor 0.25)
-  ;; (lordar-mode-line-default-segments
-  ;;  '(:left
-  ;;    ((lordar-mode-line-segments-adjust-height 2)
-  ;;     (lordar-mode-line-segments-vertical-space)
-  ;;     (lordar-mode-line-segments-buffer-name "%s")
-  ;;     (lordar-mode-line-segments-buffer-status (concat "%s" ...)))
-  ;;    :right
-  ;;    ((lordar-mode-line-segments-vc-state (concat "%s" ...))
-  ;;     (lordar-mode-line-segments-vc-branch "%s"))))
-  ;; (lordar-mode-line-prog-mode-segments
-  ;;  '(:left
-  ;;    ((lordar-mode-line-segments-adjust-height 2)
-  ;;     (lordar-mode-line-segments-vertical-space)
-  ;;     (lordar-mode-line-segments-buffer-name "%s")
-  ;;     (lordar-mode-line-segments-buffer-status (concat "%s" ...)))
-  ;;    :right
-  ;;    ((lordar-mode-line-segments-vc-state (concat "%s" ...))
-  ;;     (lordar-mode-line-segments-vc-branch "%s"))))
-  :init
-  (lordar-mode-line-mode t))
+  (lambda-line-position 'bottom)
+  (lambda-line-visual-bell nil)
+  (lambda-line-abbrev t)
+  (lambda-line-hspace "    ")
+  (lambda-line-prefix t)
+  (lambda-line-prefix-padding nil)
+  (lambda-line-status-invert nil)
+  (lambda-line-position-format " ")
+  (lambda-line-lsp-indicator nil)
+  (lambda-line-syntax t)
+  (lambda-line-git-diff-mode-line t)
+  (lambda-line-vc-symbol "  ")
+  (lambda-line-gui-ro-symbol  "  ")
+  (lambda-line-gui-mod-symbol " • ")
+  (lambda-line-gui-rw-symbol  " ○ ")
+  (lambda-line-tty-ro-symbol  "  ")
+  (lambda-line-tty-mod-symbol " • ")
+  (lambda-line-tty-rw-symbol  " ○ ")
+  (lambda-line-space-top 0)
+  (lambda-line-space-bottom 0)
+  (lambda-line-symbol-position 0.1)
+  :hook (elpaca-after-init . lambda-line-mode)
+  :config
+  (lambda-line-mode)
+  (require 'nerd-icons)
+  (setq lambda-line-vc-symbol (format " %s" (nerd-icons-mdicon "nf-md-git"))))
 
 ;; (use-package nano-modeline
 ;;   :ensure t

@@ -1,4 +1,4 @@
-;;; mod-theme.el --- UI -*- lexical-binding: t; -*-
+;;; mod-theme.el --- Theme -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -41,8 +41,7 @@
       ((string-search "poet" gracs/theme)
        (use-package poet-theme
          :ensure t
-         :demand t
-         :config)))
+         :demand t)))
 
 (custom-set-faces
  `(default ((t (:background ,gracs/theme-bg))))
@@ -52,7 +51,8 @@
  `(cursor ((t (:foreground ,gracs/road-palette-dragon-ink :background ,gracs/road-palette-lotus-yellow))))
  `(show-paren-match ((t (:inherit 'default :foreground ,gracs/road-palette-citron :background ,gracs/road-palette-paynes-gray))))
  `(line-number ((t (:slant normal))))
- `(line-number-current-line ((t (:foreground ,gracs/road-palette-lotus-yellow :slant normal :weight bold)))))
+ `(line-number-current-line ((t (:foreground ,gracs/road-palette-lotus-yellow :slant normal :weight bold))))
+ `(mode-line ((t (:background ,gracs/theme-bg)))))
 
 (provide 'mod-theme)
 ;;; mod-theme.el ends here

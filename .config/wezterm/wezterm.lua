@@ -1,11 +1,12 @@
 -- ~ Local ---------------------------------------------------------------- ~ --
 
 local W = require("wezterm")
-local a = require("wezterm").action
-local nf = require("wezterm").nerdfonts
-local kngw = require("kanagawa")
 local G = W.GLOBAL
 local C = W.config_builder()
+local a = W.action
+local nf = W.nerdfonts
+local rb = require("road").base
+local rp = require("road").palette
 local font = {
   fam = "Iosevka",
   fam_fb = "IosevkaTerm Nerd Font Mono",
@@ -119,7 +120,7 @@ W.on(
 )
 
 W.on("update-status", function(win, _)
-  local s_clr = kngw.ansi[8]
+  local s_clr = rb.emerald
   local s = win:active_workspace()
   if win:active_key_table() then
     s = win:active_key_table()
@@ -132,11 +133,11 @@ W.on("update-status", function(win, _)
     elseif s == "search_mode" then
       s = "FIND"
     end
-    s_clr = kngw.brights[5]
+    s_clr = rp.gunmetal[900]
   end
   if win:leader_is_active() then
     s = "LDR "
-    s_clr = kngw.ansi[2]
+    s_clr = rb.rustyRed
   end
   local time = W.strftime("%H:%M")
   win:set_left_status(W.format({
@@ -144,11 +145,11 @@ W.on("update-status", function(win, _)
     { Foreground = { Color = s_clr } },
     { Text = nf.oct_table .. " " .. s },
     "ResetAttributes",
-    { Foreground = { Color = kngw.fg } },
+    { Foreground = { Color = rb.mintCream } },
     { Text = " │ " },
   }))
   win:set_right_status(W.format({
-    { Foreground = { Color = kngw.fg } },
+    { Foreground = { Color = rb.mintCream } },
     { Text = nf.md_clock .. " " .. time },
     "ResetAttributes",
     { Text = "    " },
@@ -197,22 +198,22 @@ C.force_reverse_video_cursor = false
 -- Grayscale (dark) (terminal.sexy) | Black Metal (Marduk) (base16) | VWbug (terminal.sexy)
 -- Unsifted Wheat (terminal.sexy) | Twilight (Gogh)
 -- Gruvbox Material (Gogh) | Shic (terminal.sexy) | Terminix Dark (Gogh)
-C.color_scheme = "Terminix Dark (Gogh)"
+C.color_scheme = "Mars"
 C.colors = {
-  background = kngw.palette.dragonInk,
-  cursor_fg = kngw.bg,
-  cursor_bg = kngw.palette.dragonYellow,
+  background = rb.dragonInk,
+  cursor_fg = rb.dragonInk,
+  cursor_bg = rb.lotusYellow,
   tab_bar = {
-    background = kngw.palette.dragonInk,
+    background = rb.dragonInk,
     active_tab = {
-      bg_color = kngw.fg,
-      fg_color = kngw.palette.dragonInk,
+      bg_color = rb.mintCream,
+      fg_color = rb.dragonInk,
       intensity = "Bold",
       underline = "None",
       italic = false,
       strikethrough = false,
     },
-    inactive_tab = { bg_color = kngw.palette.dragonInk, fg_color = kngw.fg },
+    inactive_tab = { bg_color = rb.dragonInk, fg_color = rb.mintCream },
   },
 }
 

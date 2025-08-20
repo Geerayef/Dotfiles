@@ -19,3 +19,4 @@
 
 (provide 'init)
 ;;; init.el ends here
+(put 'downcase-region 'disabled nil)

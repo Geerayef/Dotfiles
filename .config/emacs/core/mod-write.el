@@ -4,9 +4,14 @@
 
 (use-package jinx
   :ensure t
-  :hook
-  ((text-mode org-mode markdown-mode prog-mode conf-mode) . global-jinx-mode)
-  :bind (("M-$" . jinx-correct) ("C-M-$" . jinx-languages)))
+  :hook ((text-mode
+          org-mode
+          markdown-mode
+          gfm-mode
+          prog-mode
+          conf-mode) . global-jinx-mode)
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages)))
 
 ;; ~ Org ------------------------------------------------------------------- ~ ;;
 
@@ -118,18 +123,18 @@
 
 ;; ~ Markdown -------------------------------------------------------------- ~ ;;
 
-(use-package  markdown-mode
+(use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
+  :hook (gfm-mode . (lambda () (visual-line-mode)))
+  :mode (("README\\.md\\'" . gfm-mode))
   :custom
   (markdown-command
    '("pandoc" "--standalone" "--mathjax" "--from=markdown" "--to=html5"))
   (markdown-enable-math t)
   (markdown-hide-markup t)
   (markdown-gfm-uppercase-checkbox t)
-  (markdown-indent-on-enter 'indent-and-new-item)
-  :hook (gfm-mode . (lambda () (visual-line-mode)))
-  :mode (("README\\.md\\'" . gfm-mode)))
+  (markdown-indent-on-enter 'indent-and-new-item))
 
 ;; (use-package markdown-preview-mode
 ;;   :ensure t
@@ -140,12 +145,6 @@
 (use-package obsidian
   :ensure t
   :hook (markdown-mode . obsidian-mode)
-  :bind
-  (:map
-   obsidian-mode-map
-   ("C-c C-o" . obsidian-follow-link-at-point)
-   ("C-c C-b" . obsidian-backlink-jump)
-   ("C-c C-l" . obsidian-insert-link))
   :custom
   (obsidian-specify-path "~/notes")
   (obsidian-inbox-directory "inbox")
@@ -153,7 +152,13 @@
   ;; Daily notes: file name is YYYY-MM-DD.md
   (obsidian-daily-notes-directory "daily")
   (obsidian-templates-directory "templates")
-  (obsidian-daily-note-template "daily.md"))
+  (obsidian-daily-note-template "daily.md")
+  :bind
+  (:map
+   obsidian-mode-map
+   ("C-c o l f" . obsidian-follow-link-at-point)
+   ("C-c o l b" . obsidian-backlink-jump)
+   ("C-c o l i" . obsidian-insert-link)))
 
 (provide 'mod-write)
 ;;; mod-write.el ends here

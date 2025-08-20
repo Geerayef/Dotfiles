@@ -8,7 +8,6 @@ return {
       vim.g.haskell_tools = {
         hls = {
           on_attach = F.LSPAttach,
-          -- cmd = { "haskell-language-server-wrapper", "--lsp" },
           settings = {
             haskell = { cabalFormattingProvider = "", formattingProvider = "" },
           },

@@ -46,7 +46,7 @@
 (setq package-enable-at-startup nil
       gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.5
-      read-process-output-max (* 1024 1024)
+      read-process-output-max (* 1024 1024 1024)
       process-adaptive-read-buffering nil
       load-prefer-newer t
       frame-inhibit-implied-resize t
@@ -68,7 +68,6 @@
       ad-redefinition-action 'accept
       comint-prompt-read-only t
       comint-buffer-maximum-size 2048
-      ;; Warnings, Errors
       warning-suppress-types '((lexical-binding))
       debug-on-error nil
       jka-compr-verbose nil
@@ -77,7 +76,6 @@
       compilation-always-kill t
       compilation-ask-about-save nil
       compilation-scroll-output 'first-error
-      ;;
       auto-mode-case-fold nil
       font-use-system-font nil
       default-input-method nil
@@ -90,19 +88,13 @@
       x-stretch-cursor nil
       highlight-nonselected-windows nil)
 
-;; (advice-add #'display-startup-echo-area-message :override #'ignore)
-;; (advice-add #'display-startup-screen :override #'ignore)
-
 ;; ~ GUI ------------------------------------------------------------------ ~ ;;
 
 (blink-cursor-mode -1)
-;; (menu-bar-mode -1)
 (push '(menu-bar-lines . 0) default-frame-alist)
 (setq menu-bar-mode nil)
-;; (tool-bar-mode -1)
 (push '(tool-bar-lines . 0) default-frame-alist)
 (setq tool-bar-mode nil)
-;; (scroll-bar-mode -1)
 (push '(vertical-scroll-bars) default-frame-alist)
 (push '(horizontal-scroll-bars) default-frame-alist)
 (setq scroll-bar-mode nil)

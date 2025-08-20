@@ -6,19 +6,19 @@
 
 (use-package flymake
   :ensure t
-  :hook (eglot-managed-mode . flymake-mode)
+  :hook ((prog-mode eglot-managed-mode) . flymake-mode)
   :custom
   (flymake-no-changes-timeout 0.5)
   (flymake-start-on-save-buffer t)
   (flymake-indicator-type 'margins)
-  (flymake-margin-indicators-string
-   `((error "»" compilation-error)
-     (warning "»" compilation-warning)
-     (note "»" compilation-info)))
+  ;; (flymake-margin-indicators-string
+  ;;  `((error "»" compilation-error)
+  ;;    (warning "»" compilation-warning)
+  ;;    (note "»" compilation-info)))
   :bind
   (("C-c d s" . flymake-show-buffer-diagnostics)
-   ("C-c [ d" . flymake-goto-prev-error)
-   ("C-c ] d" . flymake-goto-next-error)))
+   ("C-c d p" . flymake-goto-prev-error)
+   ("C-c d n" . flymake-goto-next-error)))
 
 ;; Flyover ---------------------------------------------------------------- ~ ;;
 
