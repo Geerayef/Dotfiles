@@ -36,7 +36,7 @@
         xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
   :config
-  (setq consult-fd-args (concat consult-fd-args "-H" "-i")
+  (setq consult-fd-args (concat consult-fd-args " -H" " -i")
         consult-ripgrep-args (concat consult-ripgrep-args " --hidden")
         consult-narrow-key "<")
   (consult-customize
