@@ -1,20 +1,20 @@
 return {
-  {
-    "mrcjkb/haskell-tools.nvim",
-    version = "^6",
-    ft = "haskell",
-    keys = { { "<leader>Hrt", "<cmd>Haskell repl toggle<cr>" } },
-    config = function()
-      vim.g.haskell_tools = {
-        hls = {
-          on_attach = F.LSPAttach,
-          settings = {
-            haskell = { cabalFormattingProvider = "", formattingProvider = "" },
-          },
-        },
-      }
-    end,
-  },
+  -- {
+  --   "mrcjkb/haskell-tools.nvim",
+  --   version = "^6",
+  --   ft = "haskell",
+  --   keys = { { "<leader>Hrt", "<cmd>Haskell repl toggle<cr>" } },
+  --   config = function()
+  --     vim.g.haskell_tools = {
+  --       hls = {
+  --         on_attach = F.LSPAttach,
+  --         settings = {
+  --           haskell = { cabalFormattingProvider = "", formattingProvider = "" },
+  --         },
+  --       },
+  --     }
+  --   end,
+  -- },
   -- {
   --   "ranjithshegde/ccls.nvim",
   --   ft = { "c", "h", "cpp", "hpp" },

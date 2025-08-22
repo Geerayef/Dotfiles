@@ -2,8 +2,8 @@ font-size = 18
 font = Iosevka
 hint-font = false
 text-color = #393836
-selection-color = #F9E2AF
-selection-match-color = #949FB5
+selection-color = #FFBE89
+selection-match-color = #807E98
 background-color = #010204
 border-color = #A6A69C
 

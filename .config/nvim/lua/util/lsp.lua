@@ -150,10 +150,10 @@ function LSP.stop(client_or_id, opts)
   end, opts.interval)
 end
 
-vim.api.nvim_create_user_command("LSPStop", function(opts)
+vim.api.nvim_create_user_command("LSPStop ", function(opts)
   if opts.args then
     local client_id = tonumber(opts.args)
-    if client_id ~= nil then require("util.lsp").soft_stop(client_id) end
+    if client_id ~= nil then LSP.stop(client_id) end
     F.Notify("LSP", "Stopping client " .. opts.args .. ".")
   end
 end, { nargs = 1, desc = "Stop LSP client with given ID." })
@@ -181,7 +181,7 @@ function LSP.restart(client_id)
   })
 end
 
-vim.api.nvim_create_user_command("LSPRestart", function(opts)
+vim.api.nvim_create_user_command("LSPRestart ", function(opts)
   if opts.args then
     local client_id = tonumber(opts.args)
     if client_id ~= nil then

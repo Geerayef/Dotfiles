@@ -16,7 +16,7 @@ map({ "n", "x" }, "<C-u>", "10k", "Scroll up 10 lines")
 -- Edit
 map("n", "<tab>", ">>", "Indent line using <tab>")
 map("n", "<bs>", "<<", "Unindent line using <bs>")
-map("n", "<C-i>", "<C-i>", "Disambiguate from <tab>")
+-- map("n", "<C-i>", "<C-i>", "Disambiguate from <tab>")
 map(
   "n",
   "<leader>yg",
@@ -40,7 +40,8 @@ map({ "n", "x" }, "<leader>y", '"+y', "Yank to system clipboard")
 map("n", "<leader>Y", '"+Y', "Yank to system clipboard")
 
 -- Tabs
-map("n", "<leader>to", cmd.tabnew, "[t]ab [o]pen")
+map("n", "<leader>tn", cmd.tabnew, "[t]ab [o]pen")
+map("n", "<leader>to", cmd.tabonly, "[t]ab [o]pen")
 map("n", "<leader>tml", "<cmd>tabmove +1<CR>", "[t]ab [m]ove [l] right")
 map("n", "<leader>tmh", "<cmd>tabmove -1<CR>", "[t]ab [m]ove [h] left")
 
