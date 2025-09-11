@@ -1,71 +1,20 @@
-local road = require("clrs.road")
-local rp = road.palette
+local rp = require("clrs.road").palette
 return {
-  {
-    "nanozuki/tabby.nvim",
-    event = "VeryLazy",
-    config = function()
-      local theme = {
-        current = {
-          fg = rp.lotusYellow["DEFAULT"],
-          bg = "NONE",
-          style = "bold",
-        },
-        not_current = {
-          fg = rp.charcoal[600],
-          bg = "NONE",
-          style = "italic",
-        },
-        fill = { bg = "NONE" },
-      }
-      require("tabby.tabline").set(function(line)
-        return {
-          line.tabs().foreach(function(tab)
-            local modified = false
-            local win_ids = require("tabby.module.api").get_tab_wins(tab.id)
-            for _, win_id in ipairs(win_ids) do
-              local buf_id = vim.api.nvim_win_get_buf(win_id)
-              if buf_id then
-                if
-                  vim.api.nvim_get_option_value("modified", { buf = buf_id })
-                then
-                  modified = true
-                  break
-                end
-              end
-            end
-            local hl = tab.is_current() and theme.current or theme.not_current
-            return {
-              line.sep("|", hl, theme.fill),
-              " ",
-              tab.number(),
-              " ",
-              tab.name(),
-              " ",
-              modified and S.Icons.ui.dot or " ",
-              " ",
-              hl = hl,
-            }
-          end),
-        }
-      end)
-    end,
-  },
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    config = function()
-      local lualine_require = require("lualine_require")
-      lualine_require.require = require
-      local icon = S.Icons
-      require("lualine").setup({
-        options = {
-          component_separators = "",
-          section_separators = "",
-          always_divide_middle = true,
-          theme = require("clrs.road.line").setup(rp),
-          globalstatus = true,
-        },
+  "nvim-lualine/lualine.nvim",
+  event = "VeryLazy",
+  cond = vim.g.vscode == nil,
+  config = function()
+    local lualine_require = require("lualine_require")
+    lualine_require.require = require
+    local icon = S.Icons
+    require("lualine").setup({
+      options = {
+        component_separators = "",
+        section_separators = "",
+        always_divide_middle = true,
+        theme = require("clrs.road.line").setup(rp),
+        globalstatus = true,
+      },
       -- stylua: ignore start
       sections = {
         lualine_a = {},
@@ -92,7 +41,7 @@ return {
             symbols =
             { error = icon.diagnostics.error, warn = icon.diagnostics.warn, info = icon.diagnostics.info, hint = icon.diagnostics.hint },
             diagnostics_color =
-            { error = { fg = rp.rustyRed["DEFAULT"] }, warn = { fg = rp.lotusYellow[100] }, info = { fg = rp.jet[600] }, hint = { fg = rp.emerald[400] } },
+            { error = { fg = rp.rustyRed[400] }, warn = { fg = rp.lotusYellow[200] }, info = { fg = rp.cadetGray[500] }, hint = { fg = rp.emerald[300] } },
           },
           {
             function() return "│" end,
@@ -108,7 +57,7 @@ return {
             end,
             colored = true,
             symbols =    { added = icon.git.added_simple, modified = icon.git.modified_simple_up, removed = icon.git.removed_simple },
-            diff_color = { added = { fg = rp.emerald[400] }, modified = { fg = rp.lotusYellow[100] }, removed = { fg = rp.rustyRed["DEFAULT"] } },
+            diff_color = { added = { fg = rp.emerald[300] }, modified = { fg = rp.lotusYellow[400] }, removed = { fg = rp.rustyRed[600] } },
           },
           { "branch", icon = icon.git.branch },
         },
@@ -117,8 +66,7 @@ return {
       },
       inactive_sections = { lualine_a = {}, lualine_b = { "filename" }, lualine_c = {}, lualine_x = {}, lualine_y = {}, lualine_z = {} },
       extensions = { "oil", "quickfix", "man" },
-        -- stylua: ignore end
-      })
-    end,
-  },
+      -- stylua: ignore end
+    })
+  end,
 }
