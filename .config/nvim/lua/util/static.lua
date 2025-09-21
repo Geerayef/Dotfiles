@@ -301,6 +301,7 @@ S.TSEnsure = {
   "python",
   "rust",
   "go",
+  "gomod",
   "lua",
   "luadoc",
   "markdown",

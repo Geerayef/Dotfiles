@@ -75,7 +75,7 @@ autocmd("BufWinEnter", {
 })
 
 --- ~ Close special buffers with `q`
-autocmd({ "FileType" }, {
+autocmd("FileType", {
   desc = "Close specific buffers with `q`.",
   group = augroup("qCloseSpecialFT", { clear = true }),
   pattern = table.concat(S.FtSpecial, ","),
@@ -87,7 +87,8 @@ autocmd("ColorScheme", {
   desc = "Apply custom highlights after loading the main colorscheme.",
   group = augroup("CustomHighlights", { clear = true }),
   callback = function()
-    local rb, rp = require("clrs.road").base, require("clrs.road").palette
+    local road = require("clrs.road")
+    local rb, rp = road.base, road.palette
     local hl = vim.api.nvim_set_hl
     hl(0, "Normal", { fg = rb.mintCream, bg = rb.dragonInk })
     hl(0, "NormalNC", { link = "Normal" })
@@ -109,4 +110,11 @@ autocmd("ColorScheme", {
       { fg = rb.dragonInk, bg = rp.lotusYellow[400], bold = true }
     )
   end,
+})
+
+-- ~ GRIM
+autocmd("TabNew", {
+  desc = "Initiate GRIM tabline when creating a new tab.",
+  group = augroup("TabLine", { clear = true }),
+  callback = function() require("util.tabline").Init() end,
 })

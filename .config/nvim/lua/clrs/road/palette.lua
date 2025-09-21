@@ -119,7 +119,7 @@ return {
     [800] = "#3D3900",
   },
   emerald = {
-    DEFAUL = "#69DC9E",
+    DEFAULT = "#69DC9E",
     [100] = "#ACECCA",
     [200] = "#8BE4B5",
     [300] = "#49D48A",

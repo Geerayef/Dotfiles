@@ -28,16 +28,16 @@ return {
     event = "InsertEnter",
     opts = { check_ts = true, ts_config = { lua = { "string" }, java = false } },
   },
-  -- {
-  --   "andymass/vim-matchup",
-  --   config = function()
-  --     vim.g.matchup_mouse_enabled = 0
-  --     vim.g.matchup_matchparen_offscreen = {}
-  --     vim.g.matchup_matchparen_deferred = 1
-  --     vim.g.matchup_surround_enabled = 1
-  --     vim.g.matchup_override_vimtex = 1
-  --   end,
-  -- },
+  {
+    "andymass/vim-matchup",
+    config = function()
+      vim.g.matchup_mouse_enabled = 0
+      vim.g.matchup_matchparen_offscreen = {}
+      vim.g.matchup_matchparen_deferred = 1
+      vim.g.matchup_surround_enabled = 1
+      vim.g.matchup_override_vimtex = 1
+    end,
+  },
   {
     "mbbill/undotree",
     event = "BufReadPost",
@@ -88,7 +88,7 @@ return {
   {
     "rcarriga/nvim-notify",
     event = "VeryLazy",
-    opts = function()
+    config = function()
       vim.notify = require("notify")
       require("notify").setup({
         fps = 1,
@@ -107,6 +107,13 @@ return {
     "norcalli/nvim-colorizer.lua",
     cmd = "ColorizerToggle",
     opts = { ["*"] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true } },
+  },
+  {
+    "stevearc/quicker.nvim",
+    ft = "qf",
+    ---@module "quicker"
+    ---@type quicker.SetupOptions
+    opts = {},
   },
   {
     "mistweaverco/kulala.nvim",

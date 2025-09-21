@@ -1,20 +1,37 @@
 return {
-  -- {
-  --   "mrcjkb/haskell-tools.nvim",
-  --   version = "^6",
-  --   ft = "haskell",
-  --   keys = { { "<leader>Hrt", "<cmd>Haskell repl toggle<cr>" } },
-  --   config = function()
-  --     vim.g.haskell_tools = {
-  --       hls = {
-  --         on_attach = F.LSPAttach,
-  --         settings = {
-  --           haskell = { cabalFormattingProvider = "", formattingProvider = "" },
-  --         },
-  --       },
-  --     }
-  --   end,
-  -- },
+  {
+    "mrcjkb/haskell-tools.nvim",
+    version = "^6",
+    ft = "haskell",
+    keys = { { "<leader>Hrt", "<cmd>Haskell repl toggle<cr>" } },
+    config = function()
+      return {
+        -- tools = {
+        --   codeLens = { autoRefresh = true },
+        --   hoogle = { mode = "browser" },
+        --   hover = {
+        --     enable = true,
+        --     border = S.Border,
+        --     stylize_markdown = true,
+        --     auto_focus = false,
+        --   },
+        --   definition = { hoogle_signature_fallback = true },
+        --   repl = { prefer = "cabal" },
+        --   tags = {},
+        --   log = {},
+        --   open_url = {},
+        -- },
+        hls = {
+          on_attach = F.LSPAttach,
+          capabilities = require("util.lsp").default.config.capabilities,
+          settings = {
+            haskell = { cabalFormattingProvider = "", formattingProvider = "" },
+          },
+        },
+        -- dap = {},
+      }
+    end,
+  },
   -- {
   --   "ranjithshegde/ccls.nvim",
   --   ft = { "c", "h", "cpp", "hpp" },

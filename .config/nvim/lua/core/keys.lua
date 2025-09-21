@@ -175,22 +175,39 @@ map("n", "<M-d>F", function ()
   return b.toggle()
 end, "DAP [F]rames")
 map("n", "<M-d>H", function () return require("dap.ui.widgets").hover() end, "DAP [H]over")
+-- stylua: ignore end
+
+-- Quicker
+map(
+  "n",
+  ">",
+  function()
+    require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
+  end,
+  "Quickfix: Expand context"
+)
+map(
+  "n",
+  "<",
+  function() require("quicker").collapse() end,
+  "Quickfix: Collapse context"
+)
 
 -- ~ LSP ------------------------------------------------------------------- ~ --
 
 Key = {}
-
+-- stylua: ignore start
 function Key.LSP(_, buf)
   local blsp = vim.lsp.buf
   bmap("n", "K",            function() blsp.hover({ border = S.Border }) end, buf, "LSP hover")
   bmap("n", "<C-k>",        function() blsp.signature_help({ border = S.Border }) end, buf, "LSP signature")
   bmap("n", "<leader>lrn",  blsp.rename,                                  buf, "[l]SP [r]e[n]ame")
   bmap("n", "<leader>lca",  "<cmd>FzfLua lsp_code_actions<CR>",           buf, "[l]SP [c]ode [a]ction")
-  -- bmap("n", "<leader>lgD",  "<cmd>FzfLua lsp_declarations<CR>",           buf, "[l]SP [g]o to [D]eclaration")
+  bmap("n", "<leader>lgD",  "<cmd>FzfLua lsp_declarations<CR>",           buf, "[l]SP [g]o to [D]eclaration")
   bmap("n", "<leader>lgd",  "<cmd>FzfLua lsp_definitions<CR>",            buf, "[l]SP [g]o to [d]efinition")
   bmap("n", "<leader>lgr",  "<cmd>FzfLua lsp_references<CR>",             buf, "[l]SP [g]o to [r]eferences")
-  -- bmap("n", "<leader>lgi",  "<cmd>FzfLua lsp_implementations<CR>",        buf, "[l]SP [g]o to [i]mplementation")
-  -- bmap("n", "<leader>lgt",  "<cmd>FzfLua lsp_type_definitions<CR>",       buf, "[l]SP [g]o to [t]ype definition")
+  bmap("n", "<leader>lgi",  "<cmd>FzfLua lsp_implementations<CR>",        buf, "[l]SP [g]o to [i]mplementation")
+  bmap("n", "<leader>lgt",  "<cmd>FzfLua lsp_type_definitions<CR>",       buf, "[l]SP [g]o to [t]ype definition")
   bmap("n", "<leader>lsd",  "<cmd>FzfLua lsp_document_symbols<CR>",       buf, "[l]SP [s]ymbols [d]ocument")
   bmap("n", "<leader>lsw",  "<cmd>FzfLua lsp_live_workspace_symbols<CR>", buf, "[l]SP [s]ymbols [w]orkspace")
   -- bmap("n", "<leader>lfwa", blsp.add_workspace_folder,                    buf, "LSP [f]older [w]orkspace [a]dd")
