@@ -30,13 +30,13 @@ return {
   },
   {
     "andymass/vim-matchup",
-    config = function()
-      vim.g.matchup_mouse_enabled = 0
-      vim.g.matchup_matchparen_offscreen = {}
-      vim.g.matchup_matchparen_deferred = 1
-      vim.g.matchup_surround_enabled = 1
-      vim.g.matchup_override_vimtex = 1
-    end,
+    version = "v0.8.0",
+    ft = "!haskell",
+    opts = {
+      mouse = { enabled = 0 },
+      matchparen = { offscreen = {}, deferred = true },
+      surround = { enabled = 1 },
+    },
   },
   {
     "mbbill/undotree",

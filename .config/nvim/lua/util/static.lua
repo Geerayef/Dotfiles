@@ -192,10 +192,13 @@ S.root_markers = {
   ".ocp-indent",
   ".opam",
   -- [Haskell]
+  "*.cabal",
   "cabal.project",
+  "cabal.project.local",
   "hie.yaml",
   "stack.yaml",
   "package.yaml",
+  "package.yaml.lock",
   -- [C|C++] (Clangd|CCLS)
   ".ccls",
   "compile_commands.json",
