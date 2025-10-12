@@ -22,6 +22,7 @@ return {
         ocaml = { "ocamlformat" },
         dune = { "dune" },
         haskell = { "fourmolu" },
+        cabal = { "cabal-gild" },
         rust = { "rustfmt" },
         go = { "gofmt" },
         lua = { "stylua" },
@@ -55,6 +56,11 @@ return {
           inherit = false,
           command = "shfmt",
           args = { "-i", "2", "-s", "-bn", "-ci", "--filename", "$FILENAME" },
+        },
+        ["cabal-gild"] = {
+          command = "cabal-gild",
+          args = { "--crlf=strict", "--stdin", "$FILENAME" },
+          stdin = true,
         },
       },
     })

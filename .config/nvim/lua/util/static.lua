@@ -128,6 +128,8 @@ S.Icons = {
     dot = "",
     dot_s = "·",
     lock = "",
+    link = "",
+    clock = "󰥔",
     angle_right_l = "",
     angle_left_l = "",
     angle_right_x = "❯",
@@ -290,6 +292,7 @@ S.FtIgnore = {
 
 S.TSEnsure = {
   "gitcommit",
+  "gitignore",
   "git_config",
   "git_rebase",
   "regex",
@@ -305,6 +308,7 @@ S.TSEnsure = {
   "rust",
   "go",
   "gomod",
+  "gosum",
   "lua",
   "luadoc",
   "markdown",

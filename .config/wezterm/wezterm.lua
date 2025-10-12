@@ -108,6 +108,13 @@ C.key_tables = {
 
 -- ~ Statusbar ------------------------------------------------------------- ~ --
 
+local bat = function()
+  local b = W.battery_info()
+  return nf.md_battery_90
+    .. " "
+    .. string.format("%.0f%%", b[1].state_of_charge * 100)
+end
+
 W.on(
   "format-tab-title",
   function(tab)
@@ -150,6 +157,7 @@ W.on("update-status", function(win, _)
   }))
   win:set_right_status(W.format({
     { Foreground = { Color = rb.mintCream } },
+    -- { Text = bat() .. " " },
     { Text = nf.md_clock .. " " .. time },
     "ResetAttributes",
     { Text = "    " },

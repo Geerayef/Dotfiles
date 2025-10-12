@@ -3,18 +3,13 @@ return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
     build = ":TSUpdate",
-    lazy = true,
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-context",
-      "nvim-treesitter/nvim-treesitter-textobjects",
-    },
+    lazy = false,
     config = function()
       local ts = require("nvim-treesitter")
-      local ensure = S.TSEnsure
       local installed = ts.get_installed()
       ts.install(
         vim
-          .iter(ensure)
+          .iter(S.TSEnsure)
           :filter(
             function(parser) return not vim.tbl_contains(installed, parser) end
           )
@@ -24,19 +19,12 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    lazy = true,
+    event = "BufReadPost",
     config = {
-      enable = true,
-      multiwindow = false,
       max_lines = 1,
-      min_window_height = 0,
-      line_numbers = true,
       multiline_threshold = 2,
       trim_scope = "inner",
-      mode = "cursor",
       separator = "─",
-      zindex = 20,
-      on_attach = nil,
     },
   },
   {
@@ -44,28 +32,28 @@ return {
     branch = "main",
     lazy = true,
     keys = {
-      -- {
-      --   "af",
-      --   function()
-      --     require("nvim-treesitter-textobjects.select").select_textobject(
-      --       "@function.outer",
-      --       "textobjects"
-      --     )
-      --   end,
-      --   { "x", "o" },
-      --   desc = "around function",
-      -- },
-      -- {
-      --   "if",
-      --   function()
-      --     require("nvim-treesitter-textobjects.select").select_textobject(
-      --       "@function.inner",
-      --       "textobjects"
-      --     )
-      --   end,
-      --   { "x", "o" },
-      --   desc = "in function",
-      -- },
+      {
+        "af",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject(
+            "@function.outer",
+            "textobjects"
+          )
+        end,
+        mode = { "x", "o" },
+        desc = "around function",
+      },
+      {
+        "if",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject(
+            "@function.inner",
+            "textobjects"
+          )
+        end,
+        mode = { "x", "o" },
+        desc = "in function",
+      },
       {
         "<M-C-n>",
         function()
@@ -110,7 +98,7 @@ return {
             "textobjects"
           )
         end,
-        { "n", "x", "o" },
+        mode = { "n", "x", "o" },
         desc = "Go to next function start",
       },
       {
@@ -121,7 +109,7 @@ return {
             "textobjects"
           )
         end,
-        { "n", "x", "o" },
+        mode = { "n", "x", "o" },
         desc = "Go to next function end",
       },
       {
@@ -132,7 +120,7 @@ return {
             "textobjects"
           )
         end,
-        { "n", "x", "o" },
+        mode = { "n", "x", "o" },
         desc = "Go to previous function start",
       },
       {
@@ -143,7 +131,7 @@ return {
             "textobjects"
           )
         end,
-        { "n", "x", "o" },
+        mode = { "n", "x", "o" },
         desc = "Go to previous function end",
       },
       {
@@ -154,7 +142,7 @@ return {
             "textobjects"
           )
         end,
-        { "n", "x", "o" },
+        mode = { "n", "x", "o" },
         desc = "Go to next class start",
       },
       {
@@ -165,7 +153,7 @@ return {
             "textobjects"
           )
         end,
-        { "n", "x", "o" },
+        mode = { "n", "x", "o" },
         desc = "Go to next class end",
       },
       {
@@ -176,7 +164,7 @@ return {
             "textobjects"
           )
         end,
-        { "n", "x", "o" },
+        mode = { "n", "x", "o" },
         desc = "Go to previous class start",
       },
       {
@@ -187,7 +175,7 @@ return {
             "textobjects"
           )
         end,
-        { "n", "x", "o" },
+        mode = { "n", "x", "o" },
         desc = "Go to previous class end",
       },
     },

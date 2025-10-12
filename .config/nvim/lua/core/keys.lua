@@ -14,9 +14,6 @@ map({ "n", "x" }, "<C-d>", "10j", "Scroll down 10 lines")
 map({ "n", "x" }, "<C-u>", "10k", "Scroll up 10 lines")
 
 -- Edit
-map("n", "<tab>", ">>", "Indent line using <tab>")
-map("n", "<bs>", "<<", "Unindent line using <bs>")
--- map("n", "<C-i>", "<C-i>", "Disambiguate from <tab>")
 map(
   "n",
   "<leader>yg",
@@ -26,7 +23,7 @@ map(
 )
 
 -- Buffers
-map("n", "<leader>bd", cmd.bd, "[b]uffer [d]elete")
+map("n", "<leader>bd", "<cmd>bd!<CR>", "[b]uffer [d]elete")
 
 -- Search
 map("n", "<leader>nh", cmd.nohl, "[n]o [h]ighlights")
@@ -40,8 +37,8 @@ map({ "n", "x" }, "<leader>y", '"+y', "Yank to system clipboard")
 map("n", "<leader>Y", '"+Y', "Yank to system clipboard")
 
 -- Tabs
-map("n", "<leader>tn", cmd.tabnew, "[t]ab [o]pen")
-map("n", "<leader>to", cmd.tabonly, "[t]ab [o]pen")
+map("n", "<leader>tn", cmd.tabnew, "[t]ab [n]ew")
+map("n", "<leader>to", cmd.tabonly, "[t]ab [o]nly")
 map("n", "<leader>tml", "<cmd>tabmove +1<CR>", "[t]ab [m]ove [l] right")
 map("n", "<leader>tmh", "<cmd>tabmove -1<CR>", "[t]ab [m]ove [h] left")
 
@@ -137,20 +134,20 @@ map("n", "<leader>htlb", "<cmd>Gitsigns toggle_current_line_blame<CR>", "Gitsign
 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>",   "Gitsigns TreeSitter textobject [i]n [h]unk")
 
 -- Markdown & Obsidian
-map("n", "<leader>on", cmd.ObsidianNew,            "[o]bsidian [n]ew note")
-map("n", "<leader>ot", cmd.ObsidianTemplate,       "[o]bsidian [t]emplate note")
-map({ "n", "x" }, "<leader>oln", cmd.ObsidianLink, "[o]bsidian [l]ink [n]ew")
-map("n", "<leader>olf", cmd.ObsidianFollowLink,    "[o]bsidian [l]ink [f]ollow")
-map("n", "<leader>olb", cmd.ObsidianBacklinks,     "[o]bsidian [l]ink [b]aclinks")
-map("n", "<leader>oss", cmd.ObsidianSearch,        "[o]bsidian [s]earch [s]")
-map("n", "<leader>ost", cmd.ObsidianTags,          "[o]bsidian [s]earch [t]ags")
-map("n", "<leader>osd", cmd.ObsidianDailies,       "[o]bsidian [s]earch [d]ailies")
-map("n", "<leader>osl", cmd.ObsidianLinks,         "[o]bsidian [s]earch [l]inks")
-map("n", "<leader>od", cmd.ObsidianToday,          "[o]bsidian to[d]ay")
-map("n", "<leader>ow", cmd.ObsidianWorkspace,      "[o]bsidian [w]orkspace")
-map("n", "<leader>oc", cmd.ObsidianToggleCheckbox, "[o]bsidian [c]heckbox")
-map("n", "<leader>oq", cmd.ObsidianQuickSwitch,    "[o]bsidian [q]uick switch")
-map({ "n", "x" }, "<leader>oxn", cmd.ObsidianExtractNote, "[o]bsidian e[x]tract [n]ote")
+map("n", "<leader>on", "<cmd>Obsidian new<CR>",            "[o]bsidian [n]ew note")
+map("n", "<leader>ot", "<cmd>Obsidian template<CR>",       "[o]bsidian [t]emplate note")
+map({ "n", "x" }, "<leader>oln", "<cmd>Obsidian link<CR>", "[o]bsidian [l]ink [n]ew")
+map("n", "<leader>olf", "<cmd>Obsidian follow_link<CR>",    "[o]bsidian [l]ink [f]ollow")
+map("n", "<leader>olb", "<cmd>Obsidian backlinks<CR>",     "[o]bsidian [l]ink [b]aclinks")
+map("n", "<leader>oss", "<cmd>Obsidian search<CR>",        "[o]bsidian [s]earch [s]")
+map("n", "<leader>ost", "<cmd>Obsidian tags<CR>",          "[o]bsidian [s]earch [t]ags")
+map("n", "<leader>osd", "<cmd>Obsidian dailies<CR>",       "[o]bsidian [s]earch [d]ailies")
+map("n", "<leader>osl", "<cmd>Obsidian links<CR>",         "[o]bsidian [s]earch [l]inks")
+map("n", "<leader>od", "<cmd>Obsidian today<CR>",          "[o]bsidian to[d]ay")
+map("n", "<leader>ow", "<cmd>Obsidian workspace<CR>",      "[o]bsidian [w]orkspace")
+map("n", "<leader>oc", "<cmd>Obsidian toggle_checkbox<CR>", "[o]bsidian [c]heckbox")
+map("n", "<leader>oq", "<cmd>Obsidian quick_switch<CR>",    "[o]bsidian [q]uick switch")
+map({ "n", "x" }, "<leader>oxn", "<cmd>Obsidian extract_note<CR>", "[o]bsidian e[x]tract [n]ote")
 
 -- Colorizer
 map("n", "<leader>ct", cmd.ColorizerToggle, "[c]olorizer [t]oggle")
@@ -178,20 +175,6 @@ map("n", "<M-d>H", function () return require("dap.ui.widgets").hover() end, "DA
 -- stylua: ignore end
 
 -- Quicker
-map(
-  "n",
-  ">",
-  function()
-    require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
-  end,
-  "Quickfix: Expand context"
-)
-map(
-  "n",
-  "<",
-  function() require("quicker").collapse() end,
-  "Quickfix: Collapse context"
-)
 
 -- ~ LSP ------------------------------------------------------------------- ~ --
 

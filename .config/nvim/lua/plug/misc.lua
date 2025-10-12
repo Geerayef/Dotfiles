@@ -6,18 +6,20 @@ return {
   --   priority = 1020,
   -- },
   { "nvim-lua/plenary.nvim", lazy = true },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
   { "tpope/vim-surround", event = { "CursorHold", "CursorHoldI" } },
   { "tpope/vim-sleuth", event = { "BufNewFile", "BufReadPost" } },
-  { "MunifTanjim/nui.nvim", lazy = true },
-  { "j-hui/fidget.nvim", event = "BufReadPost", version = false, opts = {} },
+  { "andymass/vim-matchup", lazy = false },
   {
     "echasnovski/mini.ai",
     version = false,
     event = "BufReadPost",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    opts = {},
+    dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
   },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
+  { "stevearc/quicker.nvim", ft = "qf" },
+  { "MunifTanjim/nui.nvim", lazy = true },
+  { "j-hui/fidget.nvim", version = false, event = "VeryLazy" },
+  { "phelipetls/jsonpath.nvim", ft = "json" },
   {
     "numToStr/Comment.nvim",
     event = { "CursorHold", "CursorHoldI" },
@@ -25,18 +27,8 @@ return {
   },
   {
     "windwp/nvim-autopairs",
-    event = "InsertEnter",
+    event = "BufModifiedSet",
     opts = { check_ts = true, ts_config = { lua = { "string" }, java = false } },
-  },
-  {
-    "andymass/vim-matchup",
-    version = "v0.8.0",
-    ft = "!haskell",
-    opts = {
-      mouse = { enabled = 0 },
-      matchparen = { offscreen = {}, deferred = true },
-      surround = { enabled = 1 },
-    },
   },
   {
     "mbbill/undotree",
@@ -108,17 +100,4 @@ return {
     cmd = "ColorizerToggle",
     opts = { ["*"] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true } },
   },
-  {
-    "stevearc/quicker.nvim",
-    ft = "qf",
-    ---@module "quicker"
-    ---@type quicker.SetupOptions
-    opts = {},
-  },
-  {
-    "mistweaverco/kulala.nvim",
-    ft = { "http", "rest" },
-    opts = { global_keymaps = false },
-  },
-  { "phelipetls/jsonpath.nvim", ft = "json" },
 }

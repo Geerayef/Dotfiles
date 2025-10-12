@@ -2,8 +2,13 @@ return {
   "saghen/blink.cmp",
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
-    "rafamadriz/friendly-snippets",
-    { "L3MON4D3/LuaSnip", version = "v2.*" },
+    {
+      "L3MON4D3/LuaSnip",
+      version = "v2.*",
+      build = "make install_jsregexp",
+      dependencies = { "rafamadriz/friendly-snippets" },
+      config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
+    },
   },
   version = "1.*",
   opts = {
@@ -33,7 +38,6 @@ return {
       ["<Tab>"] = { "snippet_forward", "fallback" },
       ["<S-Tab>"] = { "snippet_backward", "fallback" },
     },
-    appearance = { nerd_font_variant = "mono" },
     completion = {
       ghost_text = { enabled = true },
       documentation = {
