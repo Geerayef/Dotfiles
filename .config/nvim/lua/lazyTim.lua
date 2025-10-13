@@ -18,7 +18,7 @@ require("lazy").setup({
   checker = { enabled = false },
   change_detection = { notify = false },
   ui = {
-    title = "Lazy",
+    title = " Lazy ",
     border = S.Border,
     size = { width = 1, height = 1 },
   },

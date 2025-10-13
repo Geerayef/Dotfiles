@@ -15,10 +15,8 @@ end
 ---@param lvl string # Log level
 function F.Notify(lvl, msg)
   if lvl == nil or msg == nil then return end
-  local ok, notify = pcall(require, "notify")
-  if not ok then return end
   local level = lvl:upper()
-  notify("[" .. level .. "] " .. msg, lvl)
+  vim.notify("[" .. level .. "] " .. msg, vim.log.levels[lvl])
 end
 
 ---Map key sequence to action.

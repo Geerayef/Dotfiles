@@ -1,12 +1,11 @@
 local rp = require("clrs.road").palette
+local icon = S.Icons
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
-  cond = vim.g.vscode == nil,
-  config = function()
+  opts = function()
     local lualine_require = require("lualine_require")
     lualine_require.require = require
-    local icon = S.Icons
     require("lualine").setup({
       options = {
         component_separators = "",

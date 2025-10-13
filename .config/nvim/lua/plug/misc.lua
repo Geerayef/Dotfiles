@@ -8,27 +8,35 @@ return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "tpope/vim-surround", event = { "CursorHold", "CursorHoldI" } },
   { "tpope/vim-sleuth", event = { "BufNewFile", "BufReadPost" } },
-  { "andymass/vim-matchup", lazy = false },
+  { "phelipetls/jsonpath.nvim", ft = "json" },
+  { "numToStr/Comment.nvim", event = "CursorHold", opts = true },
+  { "windwp/nvim-autopairs", event = "BufModifiedSet", opts = {} },
   {
     "echasnovski/mini.ai",
     version = false,
     event = "BufReadPost",
     dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
   },
+  { "folke/zen-mode.nvim", cmd = "ZenMode" },
+  { "folke/twilight.nvim", lazy = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "stevearc/quicker.nvim", ft = "qf" },
   { "MunifTanjim/nui.nvim", lazy = true },
-  { "j-hui/fidget.nvim", version = false, event = "VeryLazy" },
-  { "phelipetls/jsonpath.nvim", ft = "json" },
   {
-    "numToStr/Comment.nvim",
-    event = { "CursorHold", "CursorHoldI" },
-    opts = true,
-  },
-  {
-    "windwp/nvim-autopairs",
-    event = "BufModifiedSet",
-    opts = { check_ts = true, ts_config = { lua = { "string" }, java = false } },
+    "j-hui/fidget.nvim",
+    version = false,
+    event = "VeryLazy",
+    opts = {
+      notification = {
+        override_vim_notify = true,
+        window = { max_width = 80, y_padding = 1 },
+        view = {
+          reflow = "ellipsis",
+          icon_separator = " │ ",
+          group_separator = "──",
+        },
+      },
+    },
   },
   {
     "mbbill/undotree",
@@ -76,24 +84,6 @@ return {
     event = "BufReadPost",
     main = "ibl",
     opts = { indent = { char = "│" } },
-  },
-  {
-    "rcarriga/nvim-notify",
-    event = "VeryLazy",
-    config = function()
-      vim.notify = require("notify")
-      require("notify").setup({
-        fps = 1,
-        render = "minimal",
-        stages = "static",
-        timeout = 2500,
-        on_open = function(win)
-          local config = vim.api.nvim_win_get_config(win)
-          config.border = S.Border
-          vim.api.nvim_win_set_config(win, config)
-        end,
-      })
-    end,
   },
   {
     "norcalli/nvim-colorizer.lua",

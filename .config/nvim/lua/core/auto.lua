@@ -100,8 +100,8 @@ autocmd("ColorScheme", {
     hl(0, "SignColumn", { link = "Normal" })
     hl(0, "WinSeparator", { link = "Normal" })
     hl(0, "LspSignatureActiveParameter", {
-      fg = rb.dragonInk,
-      bg = rp.lotusYellow[400],
+      fg = rp.lotusYellow[400],
+      bg = rb.dragonInk,
       bold = true,
     })
     hl(

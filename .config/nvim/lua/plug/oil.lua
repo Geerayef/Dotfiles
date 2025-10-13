@@ -1,6 +1,5 @@
 return {
   "stevearc/oil.nvim",
-  priority = 990,
   opts = {
     default_file_explorer = true,
     columns = { "icon" },
