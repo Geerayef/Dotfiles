@@ -1,4 +1,3 @@
-vim.g.loaded_matchit = 1
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
@@ -111,11 +110,12 @@ o.sessionoptions = "buffers,curdir,folds,help,tabpages,localoptions"
 
 -- ~ Chars
 local ui = S.Icons.ui
-o.listchars = { tab = ui.arrow_right .. " ", nbsp = ui.space, trail = ui.dot_s }
+o.listchars =
+  { tab = ui.angle_right_s .. " ", nbsp = ui.space, trail = ui.dot_s }
 o.fillchars = {
   fold = ui.dot_l,
-  foldopen = ui.angle_down_s,
-  foldclose = ui.angle_right_s,
+  foldopen = ui.arrow_down,
+  foldclose = ui.arrow_right,
   foldsep = " ",
   diff = "╱",
   eob = " ",

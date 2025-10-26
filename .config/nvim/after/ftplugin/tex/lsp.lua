@@ -1,7 +1,9 @@
 local texlab = {
-  on_attach = require("core.func").LSPAttach,
+  name = "TexLab LS",
+  cmd = { "texlab" },
+  on_attach = LSP.attach,
   filetypes = { "tex", "plaintex", "bib" },
-  root_patterns = { "*.tex", "*.bib", ".latexmkrc" },
+  root_markers = { "*.tex", "*.bib", ".latexmkrc" },
   settings = {
     texlab = {
       rootDirectory = nil,
@@ -26,12 +28,11 @@ local texlab = {
       formatterLineLength = 80,
     },
   },
-  cmd = { "texlab" },
 }
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(texlab) end
+    function() LSP.start(texlab) end
   )
 end)

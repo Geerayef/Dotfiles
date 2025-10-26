@@ -1,8 +1,10 @@
+---@type vim.lsp.Config
 local hls = {
-  on_attach = require("core.func").LSPAttach,
+  name = "Haskell LS",
+  cmd = { "haskell-language-server-wrapper", "--lsp" },
+  on_attach = LSP.attach,
   filetypes = { "haskell", "lhaskell", "cabal" },
-  root_patterns = { "*.hs", "*.cabal", "hie.yaml", "*.project" },
-  cmd = { "haskell-language-server-wrapper", "--lsp", "-j", "4" },
+  root_markers = { "*.hs" },
   settings = {
     haskell = { cabalFormattingProvider = "", formattingProvider = "" },
   },
@@ -11,6 +13,6 @@ local hls = {
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(hls) end
+    function() LSP.start(hls) end
   )
 end)

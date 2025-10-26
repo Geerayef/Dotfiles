@@ -71,10 +71,7 @@ return {
           })
         end,
       },
-      opts = {
-        system_prompt = system_prompt,
-        language = "English",
-      },
+      opts = { system_prompt = system_prompt, language = "English" },
       strategies = {
         chat = { adapter = { name = "ollama", model = "qwen2.5-coder:3b" } },
         inline = {

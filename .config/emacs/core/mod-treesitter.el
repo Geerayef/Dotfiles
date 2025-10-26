@@ -14,7 +14,7 @@
           (c-or-c++-mode . c-or-c++-ts-mode)
           (rust-mode . rust-ts-mode)
           (go-mode . go-ts-mode)
-          (haskell-mode . haskell-ts-mode)
+          ;; (haskell-mode . haskell-ts-mode)
           (python-mode . python-ts-mode)
           (lua-mode . lua-ts-mode)
           (bash-mode . bash-ts-mode)

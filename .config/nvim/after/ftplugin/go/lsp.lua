@@ -1,13 +1,14 @@
 local gopls = {
-  on_attach = require("core.func").LSPAttach,
-  filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_patterns = { "*.go", "main.go", "go.mod", "go.work", "go.sum" },
+  name = "Go PLS",
   cmd = { "gopls", "serve" },
+  on_attach = LSP.attach,
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  root_markers = { "*.go", "main.go", "go.mod", "go.work", "go.sum" },
 }
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(gopls) end
+    function() LSP.start(gopls) end
   )
 end)

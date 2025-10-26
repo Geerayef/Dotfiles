@@ -1,14 +1,15 @@
 local bashls = {
-  on_attach = require("core.func").LSPAttach,
-  filetypes = { "bash", "sh" },
-  root_patterns = { ".shellcheckrc" },
-  settings = { bashIde = { globPattern = "*@(.bash|.inc|.sh|.command)" } },
+  name = "Bash LS",
   cmd = { "bash-language-server", "start" },
+  on_attach = LSP.attach,
+  filetypes = { "bash", "sh" },
+  root_markers = { ".shellcheckrc" },
+  settings = { bashIde = { globPattern = "*@(.bash|.inc|.sh|.command)" } },
 }
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(bashls) end
+    function() LSP.start(bashls) end
   )
 end)

@@ -1,7 +1,9 @@
 local rust_analyzer = {
-  on_attach = require("core.func").LSPAttach,
+  name = "Rust Analyzer LS",
+  cmd = { "rust-analyzer" },
+  on_attach = LSP.attach,
   filetypes = { "rust" },
-  root_patterns = {
+  root_markers = {
     "*.rs",
     "mod.rs",
     "Cargo.toml",
@@ -16,12 +18,11 @@ local rust_analyzer = {
       checkOnSave = false,
     },
   },
-  cmd = { "rust-analyzer" },
 }
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(rust_analyzer) end
+    function() LSP.start(rust_analyzer) end
   )
 end)

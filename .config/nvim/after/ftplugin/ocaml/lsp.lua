@@ -1,8 +1,10 @@
 local ocamlls = {
-  on_attach = require("core.func").LSPAttach,
+  name = "OCaml LS",
+  cmd = { "ocamllsp" },
+  on_attach = LSP.attach,
   capabilities = { handleSwitchImplIntf = true },
   filetypes = { "ocaml", "ocamlinterface", "opam", "dune" },
-  root_patterns = {
+  root_markers = {
     "*.ml",
     "*.mli",
     "*.opam",
@@ -14,12 +16,11 @@ local ocamlls = {
     ".ocp-indent",
     ".opam",
   },
-  cmd = { "ocamllsp" },
 }
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(ocamlls) end
+    function() LSP.start(ocamlls) end
   )
 end)

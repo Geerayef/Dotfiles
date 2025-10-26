@@ -3,7 +3,6 @@ return {
   --   "mrcjkb/haskell-tools.nvim",
   --   version = "^6",
   --   ft = "haskell",
-  --   keys = { { "<leader>Hrt", "<cmd>Haskell repl toggle<cr>" } },
   --   config = function()
   --     return {
   --       tools = {
@@ -16,7 +15,7 @@ return {
   --           auto_focus = false,
   --         },
   --         definition = { hoogle_signature_fallback = true },
-  --         repl = { prefer = "cabal" },
+  --         repl = { prefer = "stack" },
   --         -- tags = {},
   --         -- log = {},
   --         -- open_url = {},
@@ -25,10 +24,7 @@ return {
   --         on_attach = require("core.func").LSPAttach,
   --         capabilities = require("util.lsp").default.config.capabilities,
   --         settings = {
-  --           haskell = {
-  --             cabalFormattingProvider = "fourmolu",
-  --             formattingProvider = "hlint",
-  --           },
+  --           haskell = { cabalFormattingProvider = "", formattingProvider = "" },
   --         },
   --       },
   --       -- dap = {},

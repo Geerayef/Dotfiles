@@ -31,6 +31,7 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
     lazy = true,
+    config = { select = { lookahead = true }, move = { set_jumps = true } },
     keys = {
       {
         "af",
@@ -179,6 +180,5 @@ return {
         desc = "Go to previous class end",
       },
     },
-    config = { select = { lookahead = true }, move = { set_jumps = true } },
   },
 }

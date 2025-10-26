@@ -1,13 +1,14 @@
 local taplo = {
-  on_attach = require("core.func").LSPAttach,
-  filetypes = { "toml" },
-  root_patterns = { "keymap.toml", "yazi.toml", "*.toml" },
+  name = "Taplo LS",
   cmd = { "taplo", "lsp", "stdio" },
+  on_attach = LSP.attach,
+  filetypes = { "toml" },
+  root_markers = { "keymap.toml", "yazi.toml", "*.toml" },
 }
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(taplo) end
+    function() LSP.start(taplo) end
   )
 end)

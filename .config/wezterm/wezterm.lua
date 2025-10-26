@@ -5,8 +5,7 @@ local G = W.GLOBAL
 local C = W.config_builder()
 local a = W.action
 local nf = W.nerdfonts
-local rb = require("road").base
-local rp = require("road").palette
+local rb, rp = require("road").base, require("road").palette
 local font = {
   fam = "Iosevka",
   fam_fb = "IosevkaTerm Nerd Font Mono",
@@ -19,6 +18,7 @@ G.icon_proc = {
   ["dune"] = nf.seti_ocaml,
   ["ocamlc"] = nf.seti_ocaml,
   ["cargo"] = nf.dev_rust,
+  ["rustup"] = nf.dev_rust,
   ["lua"] = nf.seti_lua,
   ["fish"] = nf.fa_terminal,
   ["zsh"] = nf.dev_terminal,
@@ -29,6 +29,7 @@ G.icon_proc = {
   ["git"] = nf.dev_git,
   ["gh"] = nf.dev_github_badge,
   ["presenterm"] = nf.fa_hashtag,
+  ["moor"] = nf.seti_ruby,
   ["moar"] = nf.seti_ruby,
   ["sudo"] = nf.fa_hashtag,
 }
@@ -108,23 +109,11 @@ C.key_tables = {
 
 -- ~ Statusbar ------------------------------------------------------------- ~ --
 
-local bat = function()
-  local b = W.battery_info()
-  return nf.md_battery_90
-    .. " "
-    .. string.format("%.0f%%", b[1].state_of_charge * 100)
-end
-
-W.on(
-  "format-tab-title",
-  function(tab)
-    return " "
-      .. (G.icon_proc[tab.active_pane.foreground_process_name:match(
-        "([^/\\]+)$"
-      )] or "○ ")
-      .. " "
-  end
-)
+W.on("format-tab-title", function(tab)
+  local program =
+    string.gmatch(tab.active_pane.foreground_process_name, "([^/\\]+)$")
+  return " " .. (G.icon_proc[program()] or "○ ") .. " "
+end)
 
 W.on("update-status", function(win, _)
   local s_clr = rb.emerald
@@ -206,7 +195,7 @@ C.force_reverse_video_cursor = false
 -- Grayscale (dark) (terminal.sexy) | Black Metal (Marduk) (base16) | VWbug (terminal.sexy)
 -- Unsifted Wheat (terminal.sexy) | Twilight (Gogh)
 -- Gruvbox Material (Gogh) | Shic (terminal.sexy) | Terminix Dark (Gogh)
-C.color_scheme = "Mars"
+C.color_scheme = "Shic (terminal.sexy)"
 C.colors = {
   background = rb.dragonInk,
   cursor_fg = rb.dragonInk,
@@ -240,7 +229,7 @@ elseif string.match(font.fam_fb, "Jet") ~= nil then
 end
 -- stylua: ignore end
 C.unicode_version = 14
-C.font_size = 14
+C.font_size = 15
 C.font_dirs = { "~/.local/share/fonts/", "/usr/share/fonts/TTF/" }
 C.font = W.font_with_fallback({
   { family = font.fam, harfbuzz_features = font.feat, style = "Normal" },
@@ -249,7 +238,7 @@ C.font = W.font_with_fallback({
   { family = "Symbols Nerd Font Mono" },
   { family = "Font Awesome" },
 })
-C.line_height = 1.7
+C.line_height = 1.6
 C.freetype_load_target = "Light"
 -- C.freetype_render_target = "HorizontalLcd"
 C.freetype_load_flags = "NO_HINTING|MONOCHROME"

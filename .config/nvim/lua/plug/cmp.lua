@@ -2,13 +2,11 @@ return {
   "saghen/blink.cmp",
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
-    {
-      "L3MON4D3/LuaSnip",
-      version = "v2.*",
-      build = "make install_jsregexp",
-      dependencies = { "rafamadriz/friendly-snippets" },
-      config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
-    },
+    "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    build = "make install_jsregexp",
+    dependencies = "rafamadriz/friendly-snippets",
+    config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
   },
   version = "1.*",
   opts = {
@@ -18,8 +16,6 @@ return {
         ["<S-Tab>"] = { "show_and_insert", "select_prev" },
         ["<C-n>"] = { "select_next", "fallback" },
         ["<C-p>"] = { "select_prev", "fallback" },
-        ["<C-b>"] = { "scroll_documentation_up" },
-        ["<C-f>"] = { "scroll_documentation_down" },
         ["<C-Space>"] = { "show_and_insert", "fallback" },
         ["<C-'>"] = { "show_documentation", "hide_documentation" },
         ["<C-e>"] = { "cancel", "hide" },

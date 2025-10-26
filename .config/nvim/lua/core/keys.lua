@@ -1,8 +1,35 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-local map = F.map
-local bmap = F.bmap
+---Map key sequence to action.
+---Verbose. Buffer local.
+---@param mode string|table # Mode{s}
+---@param l string # Left side of mapping
+---@param r string|function # Right side of mapping
+---@param buf number # Buffer ID
+---@param desc string # Mapping description
+local function bmap(mode, l, r, buf, desc)
+  vim.keymap.set(mode, l, r, { buffer = buf, desc = desc })
+end
+
+---Map key sequence to action.
+---Wrapper for `vim.keymap.set`.
+---@param mode string|table # Mode{s}
+---@param l string # Left side of mapping
+---@param r string|function # Right side of mapping
+---@param desc string # Mapping description
+---@param opts? vim.keymap.set.Opts # Options to vim.keymap.set
+local function map(mode, l, r, desc, opts)
+  local bo = { silent = true, desc = "" }
+  bo.desc = #desc ~= 0 and desc or ("[" .. r .. "]")
+  if opts then
+    for k, v in pairs(opts) do
+      bo[k] = v
+    end
+  end
+  vim.keymap.set(mode, l, r, bo)
+end
+
 local cmd = vim.cmd
 
 -- ~ General --------------------------------------------------------------- ~ --
@@ -73,7 +100,7 @@ map("t", "<Esc>", "<C-\\><C-n>", "Terminal escape")
 -- Navigation
 map("n", "<leader>cd", function()
   vim.cmd({ cmd = "cd", args = { "%:p:h" } })
-  F.Notify("INFO", string.format("CWD: %s", vim.fn.getcwd()))
+  F.notify("INFO", string.format("CWD: %s", vim.fn.getcwd()))
 end, "[c]hange to current working [d]irectory")
 
 -- ~ Plugin ---------------------------------------------------------------- ~ --
@@ -92,7 +119,6 @@ map(
 -- stylua: ignore start
 -- Flash
 map({"n", "x", "o"}, "<leader>j", function() require("flash").jump() end, "Flash [j]ump" )
-map({"n", "x", "o"}, "<leader>t", function() require("flash").treesitter() end, "Flash [t]reesitter" )
 map("c", "<C-s>", function() require("flash").toggle() end, "Toggle Flash Search")
 
 -- FZF Lua

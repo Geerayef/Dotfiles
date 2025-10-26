@@ -1,4 +1,5 @@
-local rb = require("clrs.road").base
+local road = require("clrs.road")
+local rb, rp = road.base, road.palette
 return {
   { "bettervim/yugen.nvim", lazy = vim.g.theme ~= "yugen" },
   { "vinitkumar/oscura-vim", lazy = vim.g.theme ~= "oscura" },
@@ -6,17 +7,11 @@ return {
     "amedoeyes/eyes.nvim",
     lazy = vim.g.theme ~= "eyes",
     opts = {
-      extend = { highlights = { Normal = { bg = rb.dragonInk } } },
-      features = {
-        plugins = {
-          codeium = false,
-          dap_ui = false,
-          illuminate = false,
-          leap = false,
-          mason = false,
-          mini_indentscope = false,
-          neo_tree = false,
-          noice = false,
+      highlights = { core = "all", plugins = "all" },
+      extend = {
+        highlights = {
+          Normal = { bg = rb.dragonInk },
+          ["@function"] = { fg = rp.lotusYellow[400] },
         },
       },
     },

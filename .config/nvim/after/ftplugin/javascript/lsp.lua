@@ -1,5 +1,6 @@
 local biome = {
-  on_attach = require("core.func").LSPAttach,
+  name = "Biome LS",
+  on_attach = LSP.attach,
   filetypes = {
     "javascript",
     "typescript",
@@ -8,7 +9,7 @@ local biome = {
     "jsonc",
     "css",
   },
-  root_patterns = {
+  root_markers = {
     "package.json",
     "biome.json",
     "biome.jsonc",
@@ -22,22 +23,23 @@ local biome = {
 }
 
 local tslsp = {
-  on_attach = require("core.func").LSPAttach,
+  name = "TypeScript LS",
+  on_attach = LSP.attach,
   filetypes = { "javascript", "typescript" },
-  root_patterns = { "package.json", "*.js", "*.ts" },
+  root_markers = { "package.json", "*.js", "*.ts" },
   cmd = { "typescript-language-server", "--stdio" },
 }
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(biome) end
+    function() LSP.start(biome) end
   )
 end)
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(tslsp) end
+    function() LSP.start(tslsp) end
   )
 end)

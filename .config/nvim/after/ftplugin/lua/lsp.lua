@@ -1,9 +1,11 @@
 vim.opt.shiftwidth = 2
 
 local luals = {
-  on_attach = require("core.func").LSPAttach,
+  name = "Lua LS",
+  cmd = { "lua-language-server" },
+  on_attach = LSP.attach,
   filetypes = { "lua" },
-  root_patterns = {
+  root_markers = {
     ".luarc.json",
     ".luarc.jsonc",
     "*.lua",
@@ -13,12 +15,11 @@ local luals = {
     "lazy-lock.json",
   },
   settings = { Lua = {} },
-  cmd = { "lua-language-server" },
 }
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(luals) end
+    function() LSP.start(luals) end
   )
 end)

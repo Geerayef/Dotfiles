@@ -3,7 +3,6 @@ return {
   cmd = "FzfLua",
   opts = {
     { "max-perf", "telescope" },
-    -- fzf_bin = "sk",
     fzf_opts = { ["--layout"] = "reverse", ["--marker"] = false },
     defaults = { compat_warn = false, no_header = true, no_header_i = true },
     winopts = {
@@ -30,25 +29,10 @@ return {
     },
     keymap = {
       builtin = {
-        true,
         ["<M-Esc>"] = "hide",
         ["<F1>"] = "toggle-help",
-        ["<F2>"] = "toggle-fullscreen",
-        -- Only valid with the "builtin" previewer
-        ["<F3>"] = "toggle-preview-wrap",
+        ["<F2>"] = "toggle-preview-wrap",
         ["<M-p>"] = "toggle-preview",
-        -- Rotate preview clockwise/counter-clockwise
-        -- ["<F5>"] = "toggle-preview-ccw",
-        -- ["<F6>"] = "toggle-preview-cw",
-        -- `ts-ctx` binds require `nvim-treesitter-context`
-        -- ["<F7>"] = "toggle-preview-ts-ctx",
-        -- ["<F8>"] = "preview-ts-ctx-dec",
-        -- ["<F9>"] = "preview-ts-ctx-inc",
-        -- ["<S-Left>"] = "preview-reset",
-        -- ["<S-down>"] = "preview-page-down",
-        -- ["<S-up>"] = "preview-page-up",
-        -- ["<M-S-down>"] = "preview-down",
-        -- ["<M-S-up>"] = "preview-up",
       },
       fzf = {
         true,
@@ -59,26 +43,11 @@ return {
         ["ctrl-a"] = "beginning-of-line",
         ["ctrl-e"] = "end-of-line",
         ["alt-a"] = "toggle-all",
+        ["alt-g"] = "first",
+        ["alt-G"] = "last",
         ["alt-p"] = "toggle-preview",
       },
     },
-    -- actions = {
-    --   files = {
-    --     ["default"] = require("fzf-lua").actions.file_edit_or_qf,
-    --     ["ctrl-x"] = require("fzf-lua").actions.file_split,
-    --     ["ctrl-v"] = require("fzf-lua").actions.file_vsplit,
-    --     ["ctrl-t"] = require("fzf-lua").actions.file_tabedit,
-    --     ["alt-q"] = require("fzf-lua").actions.file_sel_to_qf,
-    --     ["alt-l"] = require("fzf-lua").actions.file_sel_to_ll,
-    --   },
-    --   buffers = {
-    --     ["default"] = require("fzf-lua").actions.buf_edit,
-    --     ["alt-x"] = require("fzf-lua").actions.buf_del,
-    --     ["ctrl-x"] = require("fzf-lua").actions.buf_split,
-    --     ["ctrl-v"] = require("fzf-lua").actions.buf_vsplit,
-    --     ["ctrl-t"] = require("fzf-lua").actions.buf_tabedit,
-    --   },
-    -- },
     files = { winopts = { width = 0.4 } },
     oldfiles = { winopts = { title = " Old files ", width = 0.4 } },
     buffers = { winopts = { width = 0.4 } },

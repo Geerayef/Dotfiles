@@ -46,7 +46,7 @@
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits nil)
   (eglot-sync-connect 0)
-  (eglot-report-progress nil)
+  (eglot-report-progress t)
   :config
   (fset #'jsonrpc--log-event #'ignore)
   (setq-default eglot-events-buffer-size 0)
@@ -65,6 +65,10 @@
   (push '(python-ts-mode . ("basedpyright-langserver" "--stdio")) eglot-server-programs)
   (push '(ocaml-ts-mode . ("ocamllsp")) eglot-server-programs)
   (push '(js-ts-mode . ("biome" "lsp-proxy")) eglot-server-programs)
+  (push '((haskell-ts-mode haskell-mode) . ("haskell-language-server-wrapper" "--lsp")) eglot-server-programs)
+  (setq-default eglot-workspace-configuration
+                '(:haskell (:plugin (:stan (:globalOn :json-false))
+                                    :formattingProvider "")))
   :bind
   (:map eglot-mode-map
         ("C-c l c a" . eglot-code-actions)

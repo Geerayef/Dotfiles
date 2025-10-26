@@ -1,5 +1,7 @@
 local biome = {
-  on_attach = require("core.func").LSPAttach,
+  name = "Biome LS",
+  cmd = { "biome", "lsp-proxy" },
+  on_attach = LSP.attach,
   filetypes = {
     "javascript",
     "typescript",
@@ -8,13 +10,12 @@ local biome = {
     "jsonc",
     "css",
   },
-  root_patterns = { "package.json", "biome.json", "biome.jsonc" },
-  cmd = { "biome", "lsp-proxy" },
+  root_markers = { "package.json", "biome.json", "biome.jsonc" },
 }
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(biome) end
+    function() LSP.start(biome) end
   )
 end)

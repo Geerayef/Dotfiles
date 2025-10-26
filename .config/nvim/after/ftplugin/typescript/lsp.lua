@@ -1,16 +1,19 @@
 local tsserver = {
-  on_attach = require("core.func").LSPAttach,
+  name = "TypeScript LS",
+  cmd = { "typescript-language-server", "--stdio" },
+  on_attach = LSP.attach,
   init_options = {
     preferences = { disableSuggestions = true },
     hostInfo = "neovim",
   },
   filetypes = { "javascript", "typescript" },
-  root_patterns = { "package.json", "jsconfig.json", "tsconfig.json" },
-  cmd = { "typescript-language-server", "--stdio" },
+  root_markers = { "package.json", "jsconfig.json", "tsconfig.json" },
 }
 
 local biome = {
-  on_attach = require("core.func").LSPAttach,
+  name = "Biome LS",
+  cmd = { "biome", "lsp-proxy" },
+  on_attach = LSP.attach,
   filetypes = {
     "javascript",
     "typescript",
@@ -19,19 +22,18 @@ local biome = {
     "jsonc",
     "css",
   },
-  root_patterns = { "package.json", "biome.json", "biome.jsonc" },
-  cmd = { "biome", "lsp-proxy" },
+  root_markers = { "package.json", "biome.json", "biome.jsonc" },
 }
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(tsserver) end
+    function() LSP.start(tsserver) end
   )
 end)
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(biome) end
+    function() LSP.start(biome) end
   )
 end)

@@ -1,7 +1,7 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    lazy = not F.IsBufInRepo(vim.api.nvim_get_current_buf()),
+    lazy = not require("util.git").in_repo(vim.api.nvim_get_current_buf()),
     dependencies = { "NeogitOrg/neogit", "sindrets/diffview.nvim" },
     cmd = "Gitsigns",
     opts = {

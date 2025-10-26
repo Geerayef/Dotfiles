@@ -1,17 +1,20 @@
 local ruff = {
-  on_attach = require("core.func").LSPAttach,
+  name = "Ruff LS",
   cmd = { "ruff", "server" },
+  on_attach = LSP.attach,
   filetypes = { "python" },
-  root_patterns = { "*.py" },
+  root_markers = { "*.py" },
   settings = {
     lint = { preview = true },
   },
 }
 
 local basedpyright = {
-  on_attach = require("core.func").LSPAttach,
+  name = "BasedPyright LS",
+  cmd = { "basedpyright-langserver", "--stdio" },
+  on_attach = LSP.attach,
   filetypes = { "python" },
-  root_patterns = { "*.py" },
+  root_markers = { "*.py" },
   settings = {
     python = {
       analysis = {
@@ -21,19 +24,18 @@ local basedpyright = {
       },
     },
   },
-  cmd = { "basedpyright-langserver", "--stdio" },
 }
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(ruff) end
+    function() LSP.start(ruff) end
   )
 end)
 
 vim.schedule(function()
   vim.api.nvim_win_call(
     vim.api.nvim_get_current_win(),
-    function() require("util.lsp").start(basedpyright) end
+    function() LSP.start(basedpyright) end
   )
 end)

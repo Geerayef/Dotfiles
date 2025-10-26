@@ -7,6 +7,7 @@
 (use-package biome :ensure nil)
 (use-package pqls :ensure nil)
 (use-package go :ensure nil)
+(use-package haskell :ensure nil)
 
 (provide 'mod-lang)
 ;;; mod-lang.el ends here

@@ -13,9 +13,10 @@ autocmd("FileType", {
 autocmd("BufReadPre", {
   desc = "Better handle large files.",
   group = augroup("LargeFileSettings", { clear = true }),
+  pattern = "*",
   callback = function(info)
     vim.b.bigfile = false
-    if F.IsLargeFile(info.buf) then
+    if FS.file_large(info.buf) then
       vim.b.bigfile = true
       vim.opt_local.spell = false
       vim.opt_local.swapfile = false
@@ -79,13 +80,19 @@ autocmd("FileType", {
   desc = "Close specific buffers with `q`.",
   group = augroup("qCloseSpecialFT", { clear = true }),
   pattern = table.concat(S.FtSpecial, ","),
-  callback = function() F.bmap("n", "q", "<C-w>c", 0, "Close current buffer.") end,
+  callback = function()
+    vim.keymap.set("n", "q", "<C-w>c", {
+      buffer = 0,
+      desc = "Close current buffer.",
+    })
+  end,
 })
 
 --- ~ Apply custom UI highlights
 autocmd("ColorScheme", {
   desc = "Apply custom highlights after loading the main colorscheme.",
   group = augroup("CustomHighlights", { clear = true }),
+  pattern = "*",
   callback = function()
     local road = require("clrs.road")
     local rb, rp = road.base, road.palette
@@ -99,22 +106,16 @@ autocmd("ColorScheme", {
     hl(0, "TabLineSel", { fg = rb.lotusYellow })
     hl(0, "SignColumn", { link = "Normal" })
     hl(0, "WinSeparator", { link = "Normal" })
+    hl(0, "Comment", { fg = rb.paynesGray, italic = true })
     hl(0, "LspSignatureActiveParameter", {
       fg = rp.lotusYellow[400],
       bg = rb.dragonInk,
       bold = true,
     })
-    hl(
-      0,
-      "ActionPreviewTitle",
-      { fg = rb.dragonInk, bg = rp.lotusYellow[400], bold = true }
-    )
+    hl(0, "ActionPreviewTitle", {
+      fg = rp.lotusYellow[400],
+      bg = rb.dragonInk,
+      bold = true,
+    })
   end,
-})
-
--- ~ GRIM
-autocmd("TabNew", {
-  desc = "Initiate GRIM tabline when creating a new tab.",
-  group = augroup("TabLine", { clear = true }),
-  callback = function() require("util.tabline").Init() end,
 })

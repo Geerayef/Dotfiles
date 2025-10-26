@@ -1,5 +1,3 @@
-GRIM = {}
-
 local last_active_win = {}
 
 vim.api.nvim_create_autocmd("WinEnter", {
@@ -38,7 +36,7 @@ local tab_active_p = function(tab)
   return tab == vim.api.nvim_get_current_tabpage()
 end
 
-GRIM.Tabline = function()
+local tabline = function()
   local tabline = ""
   local tabs = vim.api.nvim_list_tabpages()
   for i, tab in ipairs(tabs) do
@@ -74,7 +72,7 @@ GRIM.Tabline = function()
   return tabline
 end
 
-GRIM.Highlight = function()
+local highlight = function()
   local rp = require("clrs.road").palette
   local hl = vim.api.nvim_set_hl
   hl(0, "TabLine", { fg = "#666666", bg = "NONE" })
@@ -87,9 +85,13 @@ GRIM.Highlight = function()
   hl(0, "GRIMInactiveRight", { fg = "NONE", bg = "NONE" })
 end
 
-GRIM.Init = function()
-  GRIM.Highlight()
-  vim.o.tabline = "%!v:lua.GRIM.Tabline()"
+local init = function()
+  highlight()
+  vim.o.tabline = "%!v:lua.GRIM.tabline()"
 end
 
+GRIM = {
+  init = init,
+  tabline = tabline,
+}
 return GRIM

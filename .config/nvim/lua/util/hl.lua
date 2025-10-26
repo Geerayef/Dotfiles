@@ -1,5 +1,3 @@
-local M = {}
-
 ---Wrapper for `nvim_get_hl()`.
 ---Does not create a highlight group if it doesn't exist.
 ---(Default: `opts.create = false`).
@@ -7,7 +5,7 @@ local M = {}
 ---@param ns_id integer
 ---@param opts { name: string?, id: integer?, link: boolean?, create: boolean?, [any]: any }
 ---@return vim.api.keyset.hl_info # Highlight attributes
-function M.get(ns_id, opts)
+local get = function(ns_id, opts)
   local no_winhl_link = opts.winhl_link == false
   opts.winhl_link = nil
   opts.create = opts.create or false
@@ -30,7 +28,7 @@ end
 ---@param col_start integer # Start of (byte-indexed) column range to highlight
 ---@param col_end integer # End of (byte-indexed) column range to highlight (-1: highlight to the end of line)
 ---@return nil
-function M.buf_add(buf, ns_id, hl_group, line, col_start, col_end)
+local buf_add = function(buf, ns_id, hl_group, line, col_start, col_end)
   if vim.fn.hlexists(hl_group) == 0 then return end
   vim.api.nvim_buf_add_highlight(buf, ns_id, hl_group, line, col_start, col_end)
 end
@@ -39,7 +37,7 @@ end
 ---@param buf integer
 ---@param hlgroup string
 -- TODO: What to do with this? ---@param range winbar_symbol_range_t?
-function M.range_single(buf, hlgroup, range)
+local range_single = function(buf, hlgroup, range)
   if not vim.api.nvim_buf_is_valid(buf) then return end
   local ns = vim.api.nvim_create_namespace(hlgroup)
   vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
@@ -49,7 +47,7 @@ function M.range_single(buf, hlgroup, range)
         or 0
       local end_col = linenr == range["end"].line and range["end"].character
         or -1
-      M.buf_add(buf, ns, hlgroup, linenr, start_col, end_col)
+      HL.buf_add(buf, ns, hlgroup, linenr, start_col, end_col)
     end
   end
 end
@@ -58,8 +56,8 @@ end
 ---@param buf integer
 ---@param hlgroup string
 ---@param line integer? # 1-indexed line number
-function M.line_single(buf, hlgroup, line)
-  M.range_single(buf, hlgroup, line and {
+local line_single = function(buf, hlgroup, line)
+  HL.range_single(buf, hlgroup, line and {
     start = { line = line - 1, character = 0 },
     ["end"] = { line = line - 1, character = -1 },
   })
@@ -69,7 +67,7 @@ end
 ---In case of conflict use values from the right most highlight group.
 ---@vararg string # Highlight group names
 ---@return vim.api.keyset.highlight # Merged highlight attributes
-function M.merge(...)
+local merge = function(...)
   -- Eliminate nil values in vararg
   local hl_names = {}
   for _, hl_name in pairs({ ... }) do
@@ -77,7 +75,7 @@ function M.merge(...)
   end
   local hl_attr = vim.tbl_map(
     function(hl_name)
-      return M.get(0, {
+      return HL.get(0, {
         name = hl_name,
         winhl_link = false,
       })
@@ -91,7 +89,7 @@ end
 ---@param fbg? string|integer
 ---@param default? integer
 ---@return integer|string|nil
-function M.normalize_fg_or_bg(attr_type, fbg, default)
+local normalize_fg_or_bg = function(attr_type, fbg, default)
   if not fbg then return default end
   local data_type = type(fbg)
   if data_type == "number" then
@@ -102,7 +100,7 @@ function M.normalize_fg_or_bg(attr_type, fbg, default)
   end
   if data_type == "string" then
     if vim.fn.hlexists(fbg) == 1 then
-      return M.get(0, {
+      return HL.get(0, {
         name = fbg,
         winhl_link = false,
       })[attr_type]
@@ -124,13 +122,13 @@ end
 ---Side effect: change `attr` table
 ---@param attr vim.api.keyset.highlight # Highlight attributes
 ---@return table # Normalized highlight attributes
-function M.normalize(attr)
+local normalize = function(attr)
   if attr.link then
     local num_keys = #vim.tbl_keys(attr)
     if num_keys <= 1 then return attr end
-    attr.fg = M.normalize_fg_or_bg("fg", attr.fg)
-    attr.bg = M.normalize_fg_or_bg("bg", attr.bg)
-    attr = vim.tbl_extend("force", M.get(0, {
+    attr.fg = HL.normalize_fg_or_bg("fg", attr.fg)
+    attr.bg = HL.normalize_fg_or_bg("bg", attr.bg)
+    attr = vim.tbl_extend("force", HL.get(0, {
       name = attr.link,
       winhl_link = false,
     }) or {}, attr)
@@ -141,10 +139,10 @@ function M.normalize(attr)
   local bg = attr.bg
   local ctermfg = attr.ctermfg
   local ctermbg = attr.ctermbg
-  attr.fg = M.normalize_fg_or_bg("fg", fg)
-  attr.bg = M.normalize_fg_or_bg("bg", bg)
-  attr.ctermfg = M.normalize_fg_or_bg("ctermfg", ctermfg or fg)
-  attr.ctermbg = M.normalize_fg_or_bg("ctermbg", ctermbg or bg)
+  attr.fg = HL.normalize_fg_or_bg("fg", fg)
+  attr.bg = HL.normalize_fg_or_bg("bg", bg)
+  attr.ctermfg = HL.normalize_fg_or_bg("ctermfg", ctermfg or fg)
+  attr.ctermbg = HL.normalize_fg_or_bg("ctermbg", ctermbg or bg)
   return attr
 end
 
@@ -154,8 +152,8 @@ end
 ---@param name string
 ---@param attr vim.api.keyset.highlight # Highlight attributes
 ---@return nil
-function M.set(ns_id, name, attr)
-  vim.api.nvim_set_hl(ns_id, name, M.normalize(attr))
+local set = function(ns_id, name, attr)
+  vim.api.nvim_set_hl(ns_id, name, HL.normalize(attr))
 end
 
 ---Set default highlight attributes, normalize highlight attributes before setting.
@@ -163,9 +161,9 @@ end
 ---@param name string
 ---@param attr vim.api.keyset.highlight # Highlight attributes
 ---@return nil
-function M.set_default(ns_id, name, attr)
+local set_default = function(ns_id, name, attr)
   attr.default = true
-  return vim.api.nvim_set_hl(ns_id, name, M.normalize(attr))
+  return vim.api.nvim_set_hl(ns_id, name, HL.normalize(attr))
 end
 
 local todec = {
@@ -196,7 +194,7 @@ local todec = {
 ---Convert hexadecimal to decimal.
 ---@param hex string
 ---@return integer dec
-function M.hex2dec(hex)
+local hex2dec = function(hex)
   local digit = 1
   local dec = 0
   while digit <= #hex do
@@ -210,7 +208,7 @@ end
 ---@param int integer
 ---@param n_digits integer? # Number of digits used for the hex code
 ---@return string hex
-function M.dec2hex(int, n_digits)
+local dec2hex = function(int, n_digits)
   return not n_digits and string.format("%x", int)
     or string.format("%0" .. n_digits .. "x", int)
 end
@@ -218,22 +216,22 @@ end
 ---Convert hex to rgb.
 ---@param hex string # hex code
 ---@return integer[] rgb
-function M.hex2rgb(hex)
+local hex2rgb = function(hex)
   return {
-    M.hex2dec(string.sub(hex, 1, 2)),
-    M.hex2dec(string.sub(hex, 3, 4)),
-    M.hex2dec(string.sub(hex, 5, 6)),
+    HL.hex2dec(string.sub(hex, 1, 2)),
+    HL.hex2dec(string.sub(hex, 3, 4)),
+    HL.hex2dec(string.sub(hex, 5, 6)),
   }
 end
 
 ---Convert rgb to hex.
 ---@param rgb integer[]
 ---@return string
-function M.rgb2hex(rgb)
+local rgb2hex = function(rgb)
   local hex = {
-    M.dec2hex(math.floor(rgb[1])),
-    M.dec2hex(math.floor(rgb[2])),
-    M.dec2hex(math.floor(rgb[3])),
+    HL.dec2hex(math.floor(rgb[1])),
+    HL.dec2hex(math.floor(rgb[2])),
+    HL.dec2hex(math.floor(rgb[3])),
   }
   hex = {
     string.rep("0", 2 - #hex[1]) .. hex[1],
@@ -248,21 +246,21 @@ end
 ---@param c2 number|string|table # The second color, in hex, dec, or rgb
 ---@param alpha number? # Weight of the first color [0-1] (Default: 0.5)
 ---@return { hex: string, dec: integer, r: integer, g: integer, b: integer }
-function M.cblend(c1, c2, alpha)
+local cblend = function(c1, c2, alpha)
   alpha = alpha or 0.5
-  c1 = type(c1) == "number" and M.dec2hex(c1, 6) or c1
-  c2 = type(c2) == "number" and M.dec2hex(c2, 6) or c2
-  local rgb1 = type(c1) == "string" and M.hex2rgb(c1:gsub("#", "", 1)) or c1
-  local rgb2 = type(c2) == "string" and M.hex2rgb(c2:gsub("#", "", 1)) or c2
+  c1 = type(c1) == "number" and HL.dec2hex(c1, 6) or c1
+  c2 = type(c2) == "number" and HL.dec2hex(c2, 6) or c2
+  local rgb1 = type(c1) == "string" and HL.hex2rgb(c1:gsub("#", "", 1)) or c1
+  local rgb2 = type(c2) == "string" and HL.hex2rgb(c2:gsub("#", "", 1)) or c2
   local rgb_blended = {
     alpha * rgb1[1] + (1 - alpha) * rgb2[1],
     alpha * rgb1[2] + (1 - alpha) * rgb2[2],
     alpha * rgb1[3] + (1 - alpha) * rgb2[3],
   }
-  local hex = M.rgb2hex(rgb_blended)
+  local hex = HL.rgb2hex(rgb_blended)
   return {
     hex = "#" .. hex,
-    dec = M.hex2dec(hex),
+    dec = HL.hex2dec(hex),
     r = math.floor(rgb_blended[1]),
     g = math.floor(rgb_blended[2]),
     b = math.floor(rgb_blended[3]),
@@ -274,16 +272,35 @@ end
 ---@param h2 string|table # The second hlgroup name or highlight attribute table
 ---@param alpha number? # Weight of the first color [0-1] (Default: 0.5)
 ---@return table # Merged color or highlight attributes
-function M.blend(h1, h2, alpha)
-  h1 = type(h1) == "table" and h1 or M.get(0, { name = h1, winhl_link = false })
-  h2 = type(h2) == "table" and h2 or M.get(0, { name = h2, winhl_link = false })
-  local fg = h1.fg and h2.fg and M.cblend(h1.fg, h2.fg, alpha).dec
+local blend = function(h1, h2, alpha)
+  h1 = type(h1) == "table" and h1
+    or HL.get(0, { name = h1, winhl_link = false })
+  h2 = type(h2) == "table" and h2
+    or HL.get(0, { name = h2, winhl_link = false })
+  local fg = h1.fg and h2.fg and HL.cblend(h1.fg, h2.fg, alpha).dec
     or h1.fg
     or h2.fg
-  local bg = h1.bg and h2.bg and M.cblend(h1.bg, h2.bg, alpha).dec
+  local bg = h1.bg and h2.bg and HL.cblend(h1.bg, h2.bg, alpha).dec
     or h1.bg
     or h2.bg
   return vim.tbl_deep_extend("force", h1, h2, { fg = fg, bg = bg })
 end
 
-return M
+HL = {
+  get = get,
+  buf_add = buf_add,
+  range_single = range_single,
+  line_single = line_single,
+  merge = merge,
+  normalize_fg_or_bg = normalize_fg_or_bg,
+  normalize = normalize,
+  set = set,
+  set_default = set_default,
+  hex2dec = hex2dec,
+  dec2hex = dec2hex,
+  hex2rgb = hex2rgb,
+  rgb2hex = rgb2hex,
+  cblend = cblend,
+  blend = blend,
+}
+return HL
