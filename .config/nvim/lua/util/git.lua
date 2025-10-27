@@ -125,8 +125,15 @@ end
 ---@return boolean
 local in_repo = function(buf)
   local buf_path = vim.api.nvim_buf_get_name(buf)
-  local gitdir = vim.fs.root(buf_path, ".git")
-  return gitdir ~= nil and #gitdir > 0 and #gitdir < #buf_path
+  if buf_path == "" then return false end
+  local buf_dir = vim.fn.fnamemodify(buf_path, ":h")
+  local result = vim
+    .system(
+      { "git", "-C", buf_dir, "rev-parse", "--is-inside-work-tree" },
+      { text = true }
+    )
+    :wait()
+  return result.code == 0 and result.stdout == "true"
 end
 
 GIT = {

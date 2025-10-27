@@ -1,9 +1,14 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    lazy = not require("util.git").in_repo(vim.api.nvim_get_current_buf()),
-    dependencies = { "NeogitOrg/neogit", "sindrets/diffview.nvim" },
-    cmd = "Gitsigns",
+    event = "BufRead",
+    cond = not require("util.git").in_repo(vim.api.nvim_get_current_buf()),
+    dependencies = {
+      "NeogitOrg/neogit",
+      "sindrets/diffview.nvim",
+      "tpope/vim-fugitive",
+      "rbong/vim-flog",
+    },
     opts = {
       signs = {
         add = { text = "│" },
@@ -48,6 +53,17 @@ return {
       kind = "floating",
       integrations = { fzf_lua = true },
       use_per_project_settings = true,
+      signs = {
+        hunk = { S.Icons.ui.arrow_right, S.Icons.ui.arrow_down },
+        item = { S.Icons.ui.arrow_right, S.Icons.ui.arrow_down },
+        section = { S.Icons.ui.arrow_right, S.Icons.ui.arrow_down },
+      },
     },
+  },
+  { "tpope/vim-fugitive", cmd = { "G", "Git" } },
+  {
+    "rbong/vim-flog",
+    cmd = { "Flog", "Flogsplit", "Floggit" },
+    dependencies = { "tpope/vim-fugitive" },
   },
 }
