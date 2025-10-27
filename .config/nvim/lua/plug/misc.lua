@@ -19,8 +19,19 @@ return {
   { "stevearc/quicker.nvim", event = "VeryLazy", opts = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "MunifTanjim/nui.nvim", lazy = true },
-  { "folke/zen-mode.nvim", cmd = "ZenMode" },
-  { "folke/twilight.nvim", lazy = true },
+  { "folke/twilight.nvim", lazy = true, cmd = "Twilight" },
+  {
+    "cdmill/focus.nvim",
+    cmd = { "Focus", "Zen", "Narrow" },
+    opts = {
+      window = { backdrop = 1 },
+      plugins = {
+        gitsigns = { enabled = true },
+        diagnostics = { enabled = true },
+        twilight = { enabled = true },
+      },
+    },
+  },
   {
     "j-hui/fidget.nvim",
     version = false,
@@ -36,6 +47,17 @@ return {
         },
       },
     },
+  },
+  {
+    "lukas-reineke/virt-column.nvim",
+    event = "BufReadPost",
+    opts = { char = "│", highlight = "Comment" },
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    event = "BufReadPost",
+    opts = { indent = { char = "│" } },
   },
   {
     "mbbill/undotree",
@@ -77,12 +99,6 @@ return {
       },
       prompt = { prefix = { { " ⚡ ", "FlashPromptIcon" } } },
     },
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPost",
-    main = "ibl",
-    opts = { indent = { char = "│" } },
   },
   {
     "norcalli/nvim-colorizer.lua",
