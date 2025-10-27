@@ -4,6 +4,11 @@ return {
   { "bettervim/yugen.nvim", lazy = vim.g.theme ~= "yugen" },
   { "vinitkumar/oscura-vim", lazy = vim.g.theme ~= "oscura" },
   {
+    "webhooked/kanso.nvim",
+    lazy = vim.g.theme ~= "kanso",
+    opts = { compile = true, background = { dark = "zen", light = "mist" } },
+  },
+  {
     "amedoeyes/eyes.nvim",
     lazy = vim.g.theme ~= "eyes",
     opts = {

@@ -1,3 +1,4 @@
+vim.o.tabstop = 2
 vim.opt.shiftwidth = 2
 
 local luals = {

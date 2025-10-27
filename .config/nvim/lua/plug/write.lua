@@ -13,6 +13,21 @@ return {
           completions = { lsp = { enabled = true } },
           render_modes = true,
           bullet = { icons = { S.Icons.ui.dot }, right_pad = 1 },
+          checkbox = {
+            custom = {
+              working = { raw = "[>]", rendered = ui.angle_right_l .. " " },
+              important = { raw = "[!]", rendered = ui.diamond .. " " },
+            },
+          },
+        },
+      },
+      {
+        "hedyhli/markdown-toc.nvim",
+        ft = "markdown",
+        cmd = "Mtoc",
+        opts = {
+          toc_list = { markers = "-" },
+          fences = { start_text = "TOC start", end_text = "TOC end" },
         },
       },
     },
