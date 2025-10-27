@@ -119,8 +119,8 @@ map({ "n", "x", "o" }, "<leader>j", function() require("flash").jump() end, "Fla
 
 -- stylua: ignore start
 -- FZF Lua
-map("n", "<C-x><C-f>", "<cmd>FzfLua complete_file<CR>", "FzfLua complete path")
-map("n", "<C-x><C-l>", "<cmd>FzfLua complete_line<CR>", "FzfLua complete line")
+map({ "n", "i" }, "<C-x><C-f>", "<cmd>FzfLua complete_file<CR>", "FzfLua complete path")
+map({ "n", "i" }, "<C-x><C-l>", "<cmd>FzfLua complete_line<CR>", "FzfLua complete line")
 map("n", "<leader>sf", "<cmd>FzfLua files<CR>", "FzfLua [s]earch [f]iles")
 map("n", "<leader>sh", "<cmd>FzfLua helptags<CR>", "FzfLua [s]earch [h]elp")
 map("n", "<leader>sg", "<cmd>FzfLua live_grep<CR>", "FzfLua [s]earch [g]rep")
