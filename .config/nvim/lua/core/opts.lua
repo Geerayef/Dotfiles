@@ -81,6 +81,7 @@ o.showmode = false
 o.showmatch = true
 o.switchbuf = "usetab,uselast,useopen"
 o.signcolumn = "yes"
+o.colorcolumn = { 80, 96 }
 o.ruler = false
 o.pumblend = 0
 o.list = true

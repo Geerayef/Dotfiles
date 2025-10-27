@@ -18,7 +18,7 @@ return {
         ["<C-p>"] = { "select_prev", "fallback" },
         ["<C-Space>"] = { "show_and_insert", "fallback" },
         ["<C-'>"] = { "show_documentation", "hide_documentation" },
-        ["<C-e>"] = { "cancel", "hide" },
+        ["<Esc>"] = { "cancel", "hide" },
         ["<C-y>"] = { "accept", "select_and_accept" },
       },
     },
