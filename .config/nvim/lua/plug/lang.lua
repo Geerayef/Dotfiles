@@ -1,36 +1,37 @@
 return {
-  -- {
-  --   "mrcjkb/haskell-tools.nvim",
-  --   version = "^6",
-  --   ft = "haskell",
-  --   config = function()
-  --     return {
-  --       tools = {
-  --         codeLens = { autoRefresh = true },
-  --         hoogle = { mode = "browser" },
-  --         hover = {
-  --           enable = true,
-  --           border = S.Border,
-  --           stylize_markdown = true,
-  --           auto_focus = false,
-  --         },
-  --         definition = { hoogle_signature_fallback = true },
-  --         repl = { prefer = "stack" },
-  --         -- tags = {},
-  --         -- log = {},
-  --         -- open_url = {},
-  --       },
-  --       hls = {
-  --         on_attach = require("core.func").LSPAttach,
-  --         capabilities = require("util.lsp").default.config.capabilities,
-  --         settings = {
-  --           haskell = { cabalFormattingProvider = "", formattingProvider = "" },
-  --         },
-  --       },
-  --       -- dap = {},
-  --     }
-  --   end,
-  -- },
+  { "tarides/ocaml.nvim", ft = "ocaml" },
+  {
+    "mrcjkb/haskell-tools.nvim",
+    version = "^6",
+    lazy = false,
+    ft = "haskell",
+    config = function()
+      return {
+        tools = {
+          hoogle = { mode = "browser" },
+          hover = {
+            enable = true,
+            border = S.Border,
+            stylize_markdown = true,
+            auto_focus = false,
+          },
+          definition = { hoogle_signature_fallback = true },
+          repl = { prefer = "stack" },
+          -- tags = {},
+          -- log = {},
+          -- open_url = {},
+        },
+        hls = {
+          on_attach = require("util.func").LSPAttach,
+          capabilities = vim.lsp.config["*"].capabilities,
+          settings = {
+            haskell = { cabalFormattingProvider = "", formattingProvider = "" },
+          },
+        },
+        -- dap = {},
+      }
+    end,
+  },
   -- {
   --   "ranjithshegde/ccls.nvim",
   --   ft = { "c", "h", "cpp", "hpp" },
@@ -62,7 +63,7 @@ return {
   --         args = { "--index=." },
   --         offset_encoding = "utf-32",
   --         root_dir = require("util.fs").root(vim.api.nvim_buf_get_name(0)),
-  --         on_attach = require("core.func").LspAttach,
+  --         on_attach = require("util.func").LspAttach,
   --       },
   --     },
   --   },

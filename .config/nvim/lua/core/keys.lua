@@ -118,8 +118,7 @@ map(
 )
 
 -- Flash
-map({ "n", "x", "o" }, "<leader>j", function() require("flash").jump() end, "Flash [j]ump")
-map("c", "<C-s>", function() require("flash").toggle() end, "Toggle Flash Search")
+map({"n", "x", "o"}, "<leader>j", function() require("flash").jump() end, "Flash [j]ump" )
 
 -- FZF Lua
 map("n", "<C-x><C-f>", "<cmd>FzfLua complete_file<CR>", "FzfLua complete path")

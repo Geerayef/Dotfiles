@@ -1,9 +1,4 @@
 return {
-  -- {
-  --   name = "porphyrio",
-  --   dir = "~/dev/porphyrio/",
-  --   lazy = false,
-  -- },
   { "nvim-lua/plenary.nvim", lazy = true },
   { "tpope/vim-surround", event = "CursorHold" },
   { "tpope/vim-sleuth", event = { "BufNewFile", "BufReadPost" } },
@@ -72,14 +67,14 @@ return {
   },
   {
     "folke/flash.nvim",
-    lazy = true,
     opts = {
       labels = "asdfghjklqwertyuiopzxcvbnm",
       label = {
+        uppercase = false,
         current = false,
         after = false,
         before = true,
-        rainbow = { enabled = true },
+        rainbow = { enabled = true, shade = 1 },
       },
       search = { mode = "fuzzy" },
       jump = {
@@ -93,11 +88,11 @@ return {
         char = {
           autohide = true,
           jump_labels = true,
-          label = { exclude = "hjkliadcor" },
           multi_line = false,
+          jump = { autojump = true },
+          label = { exclude = "hjkliadcor" },
         },
       },
-      prompt = { prefix = { { " ⚡ ", "FlashPromptIcon" } } },
     },
   },
   {

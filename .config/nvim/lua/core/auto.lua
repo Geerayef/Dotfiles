@@ -16,7 +16,7 @@ autocmd("BufReadPre", {
   pattern = "*",
   callback = function(info)
     vim.b.bigfile = false
-    if FS.file_large(info.buf) then
+    if require("util.fs").file_large(info.buf) then
       vim.b.bigfile = true
       vim.opt_local.spell = false
       vim.opt_local.swapfile = false
