@@ -7,10 +7,7 @@ local error = function(cmd, msg, lvl)
   lvl = lvl or "ERROR"
   F.notify(
     lvl,
-    "Failed to execute command: `"
-      .. table.concat(cmd, " ")
-      .. "`.\nOutput was: "
-      .. msg
+    "Failed to execute command: `" .. table.concat(cmd, " ") .. "`.\nOutput was: " .. msg
   )
 end
 
@@ -102,8 +99,7 @@ local diffstat = function(buf)
       local stat = { added = 0, removed = 0, changed = 0 }
       for _, line in ipairs(vim.split(out.stdout, "\n")) do
         if line:find("^@@ ") then
-          local num_lines_old, num_lines_new =
-            line:match("^@@ %-%d+,?(%d*) %+%d+,?(%d*)")
+          local num_lines_old, num_lines_new = line:match("^@@ %-%d+,?(%d*) %+%d+,?(%d*)")
           num_lines_old = tonumber(num_lines_old) or 1
           num_lines_new = tonumber(num_lines_new) or 1
           local num_lines_changed = math.min(num_lines_old, num_lines_new)
@@ -128,10 +124,7 @@ local in_repo = function(buf)
   if buf_path == "" then return false end
   local buf_dir = vim.fn.fnamemodify(buf_path, ":h")
   local result = vim
-    .system(
-      { "git", "-C", buf_dir, "rev-parse", "--is-inside-work-tree" },
-      { text = true }
-    )
+    .system({ "git", "-C", buf_dir, "rev-parse", "--is-inside-work-tree" }, { text = true })
     :wait()
   return result.code == 0 and result.stdout == "true"
 end
