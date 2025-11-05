@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 vim.lsp.config("*", {
   root_markers = S.root_markers,
   single_file_support = true,
@@ -9,11 +10,16 @@ vim.lsp.config("*", {
       textDocument = {
         documentFormattingProvider = false,
         codelens = { enable = true },
+        semanticTokens = { multilineTokenSupport = true },
         completion = {
           completionItem = {
             snippetSupport = true,
             resolveSupport = {
-              properties = { "detail", "documentation", "additionalTextEdits" },
+              properties = {
+                "detail",
+                "documentation",
+                "additionalTextEdits",
+              },
             },
           },
         },

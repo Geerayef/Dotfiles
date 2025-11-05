@@ -6,7 +6,10 @@ local active_clients = {}
 ---@return nil
 local attach = function(client, bufnr)
   Key.LSP(client, bufnr)
-  if client.server_capabilities and client.server_capabilities.code_lens then
+  if
+    client.server_capabilities
+    and client.server_capabilities.codeLensProvider ~= nil
+  then
     vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
       group = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true }),
       buffer = bufnr,
@@ -24,8 +27,9 @@ local capabilities_update = function(capabilities)
   return vim.tbl_deep_extend(
     "keep",
     capabilities_cmp,
-    capabilities,
-    vim.lsp.config["*"].capabilities
+    capabilities ~= nil and capabilities or {},
+    vim.lsp.config["*"].capabilities,
+    {}
   )
 end
 
@@ -56,12 +60,19 @@ local start = function(config, opts)
   )
   if client_id ~= nil then
     if
-      not vim.tbl_contains(LSP.active_clients, function(e) return e[2] == config.cmd[1] end, {
-        predicate = true,
-      })
+      not vim.tbl_contains(
+        LSP.active_clients,
+        function(e) return e[2] == config.cmd[1] end,
+        {
+          predicate = true,
+        }
+      )
     then
       table.insert(LSP.active_clients, { client_id, config.cmd[1] })
-      F.notify("INFO", "[LSP] Start " .. config.cmd[1] .. " (ID: " .. client_id .. ")")
+      F.notify(
+        "INFO",
+        "[LSP] Start " .. config.cmd[1] .. " (ID: " .. client_id .. ")"
+      )
     end
     return client_id
   end
@@ -77,7 +88,8 @@ end
 ---@param client_or_id integer|vim.lsp.Client
 ---@param opts lsp_soft_stop_opts_t?
 local stop = function(client_or_id, opts)
-  local client = type(client_or_id) == "number" and vim.lsp.get_client_by_id(client_or_id)
+  local client = type(client_or_id) == "number"
+      and vim.lsp.get_client_by_id(client_or_id)
     or client_or_id --[[@as vim.lsp.Client]]
   if not client then return end
   opts = opts or {}
@@ -119,7 +131,10 @@ local restart = function(client_id)
   if not client then return end
   local config = client.config --[[@as vim.lsp.Config]]
   local attached_buffers = client.attached_buffers
-  F.notify("LSP", "@LSP.restart; Attached buffers = " .. vim.fn.string(attached_buffers))
+  F.notify(
+    "LSP",
+    "@LSP.restart; Attached buffers = " .. vim.fn.string(attached_buffers)
+  )
   LSP.stop(client, {
     on_close = function(c)
       for buf, _ in pairs(c.attached_buffers) do
@@ -134,7 +149,9 @@ end
 vim.api.nvim_create_user_command("LSPRestart ", function(opts)
   if opts.args then
     local client_id = tonumber(opts.args)
-    if client_id ~= nil then vim.defer_fn(function() LSP.restart(client_id) end, 1) end
+    if client_id ~= nil then
+      vim.defer_fn(function() LSP.restart(client_id) end, 1)
+    end
     F.notify("LSP", "Restarting client " .. opts.args .. ".")
   end
 end, { nargs = 1, desc = "Restart LSP client with given ID." })
@@ -142,7 +159,8 @@ end, { nargs = 1, desc = "Restart LSP client with given ID." })
 ---Show active LSP clients.
 local buf_active_clients = function()
   local s = vim.fn.substitute
-  local tbl_langs = s(s(vim.fn.string(LSP.active_clients), "[", "", "g"), "]", "", "g")
+  local tbl_langs =
+    s(s(vim.fn.string(LSP.active_clients), "[", "", "g"), "]", "", "g")
   if tbl_langs == "" then
     F.notify("LSP", "No active clients.")
   else
