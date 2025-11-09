@@ -63,7 +63,7 @@ return {
   { "tpope/vim-fugitive", cmd = { "G", "Git" } },
   {
     "rbong/vim-flog",
-    cmd = { "Flog", "Flogsplit", "Floggit" },
+    cmd = { "Flog", "Floggit", "Flogsplit" },
     dependencies = { "tpope/vim-fugitive" },
   },
 }

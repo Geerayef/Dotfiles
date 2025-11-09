@@ -195,7 +195,7 @@ C.force_reverse_video_cursor = false
 -- Grayscale (dark) (terminal.sexy) | Black Metal (Marduk) (base16) | VWbug (terminal.sexy)
 -- Unsifted Wheat (terminal.sexy) | Twilight (Gogh)
 -- Gruvbox Material (Gogh) | Shic (terminal.sexy) | Terminix Dark (Gogh)
-C.color_scheme = "Shic (terminal.sexy)"
+C.color_scheme = "Gruvbox Material (Gogh)"
 C.colors = {
   background = rb.dragonInk,
   cursor_fg = rb.dragonInk,
@@ -240,8 +240,8 @@ C.font = W.font_with_fallback({
 })
 C.line_height = 1.6
 C.freetype_load_target = "Light"
--- C.freetype_render_target = "HorizontalLcd"
-C.freetype_load_flags = "NO_HINTING|MONOCHROME"
+C.freetype_render_target = "Normal"
+C.freetype_load_flags = "NO_AUTOHINT|DEFAULT"
 C.underline_position = "-0.2cell"
 
 -- Workspace
