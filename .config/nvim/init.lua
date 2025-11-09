@@ -1,3 +1,4 @@
+GRIM = {}
 vim.g.theme = "yugen"
 require("util.static")
 require("core.opts")
@@ -9,5 +10,5 @@ require("util.lsp")
 require("lazyTim")
 require("core.auto")
 if vim.g.neovide then require("core.vide") end
-GRIM.init()
+GRIM.tab.init()
 vim.cmd.colorscheme(vim.g.theme)

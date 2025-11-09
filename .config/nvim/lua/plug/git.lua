@@ -1,14 +1,11 @@
 return {
+  { "tpope/vim-fugitive", cmd = { "G", "Git" } },
+  { "rbong/vim-flog", cmd = "Flog", dependencies = { "tpope/vim-fugitive" } },
   {
     "lewis6991/gitsigns.nvim",
     event = "BufRead",
-    cond = not require("util.git").in_repo(vim.api.nvim_get_current_buf()),
-    dependencies = {
-      "NeogitOrg/neogit",
-      "sindrets/diffview.nvim",
-      "tpope/vim-fugitive",
-      "rbong/vim-flog",
-    },
+    cond = not require("util.git").versioned_p(vim.api.nvim_get_current_buf()),
+    dependencies = { "NeogitOrg/neogit", "sindrets/diffview.nvim" },
     opts = {
       signs = {
         add = { text = "│" },
@@ -34,18 +31,6 @@ return {
     },
   },
   {
-    "sindrets/diffview.nvim",
-    cmd = {
-      "DiffviewOpen",
-      "DiffviewClose",
-      "DiffviewToggleFiles",
-      "DiffviewFocusFiles",
-      "DiffviewRefresh",
-      "DiffviewFileHistory",
-    },
-    opts = { file_panel = { listing_style = "list" } },
-  },
-  {
     "NeogitOrg/neogit",
     cmd = "Neogit",
     opts = {
@@ -60,10 +45,16 @@ return {
       },
     },
   },
-  { "tpope/vim-fugitive", cmd = { "G", "Git" } },
   {
-    "rbong/vim-flog",
-    cmd = { "Flog", "Floggit", "Flogsplit" },
-    dependencies = { "tpope/vim-fugitive" },
+    "sindrets/diffview.nvim",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFiles",
+      "DiffviewRefresh",
+      "DiffviewFileHistory",
+    },
+    opts = { file_panel = { listing_style = "list" } },
   },
 }

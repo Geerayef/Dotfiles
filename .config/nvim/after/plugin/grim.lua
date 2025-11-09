@@ -85,13 +85,10 @@ local highlight = function()
   hl(0, "GRIMInactiveRight", { fg = "NONE", bg = "NONE" })
 end
 
-local init = function()
-  highlight()
-  vim.o.tabline = "%!v:lua.GRIM.tabline()"
-end
-
-GRIM = {
-  init = init,
-  tabline = tabline,
+GRIM.tab = {
+  init = function()
+    highlight()
+    vim.o.tabline = "%!v:lua.GRIM.tab.line()"
+  end,
+  line = tabline,
 }
-return GRIM
