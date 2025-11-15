@@ -23,7 +23,7 @@ return {
         haskell = { "fourmolu" },
         cabal = { "cabal-gild" },
         rust = { "rustfmt" },
-        go = { "gofmt" },
+        go = { "gofumpt" },
         lua = { "stylua" },
         python = { "ruff_format" },
         fish = { "fish_indent" },

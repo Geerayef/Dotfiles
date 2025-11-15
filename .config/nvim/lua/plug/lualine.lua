@@ -21,7 +21,7 @@ return {
           {
             function() return " " end,
             color = { bg = "NONE" },
-            padding = { left = 10, right = 0 },
+            padding = { left = 13, right = 0 },
           },
         },
         lualine_c = {

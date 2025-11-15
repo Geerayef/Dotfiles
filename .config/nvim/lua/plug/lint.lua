@@ -10,7 +10,7 @@ return {
       python = { "ruff" },
       haskell = { "hlint" },
       rust = { "clippy" },
-      golangcilint = { "golangcilint" },
+      go = { "revive" },
       lua = { "luacheck" },
       sh = { "shellcheck" },
       fish = { "fish" },

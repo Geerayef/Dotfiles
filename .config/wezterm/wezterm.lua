@@ -140,9 +140,10 @@ W.on("update-status", function(win, _)
     { Text = "    " },
     { Foreground = { Color = s_clr } },
     { Text = nf.oct_table .. " " .. s },
+    { Text = "    " },
     "ResetAttributes",
     { Foreground = { Color = rb.mintCream } },
-    { Text = " │ " },
+    { Text = "│ " },
   }))
   win:set_right_status(W.format({
     { Foreground = { Color = rb.mintCream } },
@@ -194,8 +195,8 @@ C.force_reverse_video_cursor = false
 -- Colors
 -- Grayscale (dark) (terminal.sexy) | Black Metal (Marduk) (base16) | VWbug (terminal.sexy)
 -- Unsifted Wheat (terminal.sexy) | Twilight (Gogh)
--- Gruvbox Material (Gogh) | Shic (terminal.sexy) | Terminix Dark (Gogh)
-C.color_scheme = "Gruvbox Material (Gogh)"
+-- Gruvbox Material (Gogh) | Shic (terminal.sexy) | Terminix Dark (Gogh) | Navy and Ivory (terminal.sexy)
+C.color_scheme = "Navy and Ivory (terminal.sexy)"
 C.colors = {
   background = rb.dragonInk,
   cursor_fg = rb.dragonInk,
@@ -241,7 +242,7 @@ C.font = W.font_with_fallback({
 C.line_height = 1.6
 C.freetype_load_target = "Light"
 C.freetype_render_target = "Normal"
-C.freetype_load_flags = "NO_AUTOHINT|DEFAULT"
+C.freetype_load_flags = "DEFAULT|NO_AUTOHINT"
 C.underline_position = "-0.2cell"
 
 -- Workspace

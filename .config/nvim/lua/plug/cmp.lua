@@ -2,11 +2,15 @@ return {
   "saghen/blink.cmp",
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
-    "L3MON4D3/LuaSnip",
-    version = "v2.*",
-    build = "make install_jsregexp",
-    dependencies = "rafamadriz/friendly-snippets",
-    config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
+    {
+      "L3MON4D3/LuaSnip",
+      version = "v2.*",
+      build = "make install_jsregexp",
+      dependencies = "rafamadriz/friendly-snippets",
+      config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
+    },
+    { "mikavilpas/blink-ripgrep.nvim", version = "*" },
+    { "disrupted/blink-cmp-conventional-commits" },
   },
   version = "1.*",
   opts = {
@@ -61,7 +65,24 @@ return {
         winhighlight = "BlinkCmpMenu:Normal,BlinkCmpMenuBorder:FloatBorder,BlinkCmpLabelDescription:Normal,BlinkCmpSource:Normal",
       },
     },
-    sources = { default = { "lsp", "path", "snippets", "buffer" } },
+    sources = {
+      default = {
+        "lsp",
+        "path",
+        "snippets",
+        "buffer",
+        "ripgrep",
+        "conventional_commits",
+      },
+      providers = {
+        ripgrep = { name = "RipGrep", module = "blink-ripgrep" },
+        conventional_commits = {
+          name = "Conventional Commits",
+          module = "blink-cmp-conventional-commits",
+          enabled = vim.bo.filetype == "gitcommit",
+        },
+      },
+    },
     snippets = { preset = "luasnip" },
     fuzzy = { implementation = "rust" },
   },

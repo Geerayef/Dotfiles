@@ -3,7 +3,7 @@ return {
   { "rbong/vim-flog", cmd = "Flog", dependencies = { "tpope/vim-fugitive" } },
   {
     "lewis6991/gitsigns.nvim",
-    event = "BufRead",
+    lazy = not require("util.git").versioned_p(vim.api.nvim_get_current_buf()),
     cond = not require("util.git").versioned_p(vim.api.nvim_get_current_buf()),
     dependencies = { "NeogitOrg/neogit", "sindrets/diffview.nvim" },
     opts = {

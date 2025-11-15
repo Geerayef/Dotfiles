@@ -1,3 +1,6 @@
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 local gopls = {
   name = "Go PLS",
   cmd = { "gopls", "serve" },

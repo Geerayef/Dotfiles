@@ -13,30 +13,28 @@ $time\
 $line_break\
 $cmd_duration\
 $ocaml\
+$golang\
 $lua\
-$conda\
-$python"""
+$python\
+$conda"""
 
 add_newline = true
 scan_timeout = 10
 
 [directory]
 read_only = " "
-read_only_style = "red bold"
-style = "#EBA0AC bold"
 
 [character]
 # [❯] [❮] [λ] [⟫] [⟪] [] [] [] [∘] [] [∙] [⊙] [○] [●] [⊚] [] [≡]
-success_symbol = "[≡](#94E2D5)"
-error_symbol = "[≡](#F38BA8)"
-vimcmd_symbol = "[∘](#6C7086)"
+success_symbol = "λ"
+error_symbol = "λ"
+vimcmd_symbol = "λ"
 
 [git_branch]
 format = " [$branch:$remote_branch]($style)"
-style = "#89DCEB"
 
 [git_status]
-format = "[[([*](#89DCEB) \\[($conflicted )($untracked )($modified )($staged )($renamed )$deleted\\])](#F9E2AF) ($ahead_behind $stashed)](cyan)"
+format = "[[([*]($style) \\[($conflicted )($untracked )($modified )($staged )($renamed )$deleted\\])]($style) ($ahead_behind $stashed)]($style)"
 conflicted = "!"
 untracked = "?"
 modified = "~"
@@ -48,11 +46,9 @@ stashed = "≡"
 [git_state]
 disabled = false
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
-style = "#313244"
 
 [cmd_duration]
 format = "[$duration]($style) "
-style = "#A6E3A1"
 
 [ocaml]
 format = '[$symbol ($switch_indicator$switch_name): ($version)]($style)'
@@ -71,6 +67,12 @@ detect_files = [
 ]
 detect_folders = ["_opam", "esy.lock"]
 style = "#FAB387 bold"
+
+[golang]
+format = '[$symbol $version]($style)'
+version_format = '${raw}'
+symbol = ""
+style = "#69D8FE"
 
 [python]
 format = '[$virtualenv (${version})]($style) '

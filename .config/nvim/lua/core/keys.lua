@@ -119,13 +119,14 @@ map({ "n", "x", "o" }, "<leader>j", function() require("flash").jump() end, "Fla
 
 -- stylua: ignore start
 -- FZF Lua
-map({ "n", "i" }, "<C-x><C-f>", "<cmd>FzfLua complete_file<CR>", "FzfLua complete path")
-map({ "n", "i" }, "<C-x><C-l>", "<cmd>FzfLua complete_line<CR>", "FzfLua complete line")
+map("i", "<C-x><C-f>", "<cmd>FzfLua complete_file<CR>", "FzfLua complete path")
+map("i", "<C-x><C-l>", "<cmd>FzfLua complete_line<CR>", "FzfLua complete line")
 map("n", "<leader>sf", "<cmd>FzfLua files<CR>", "FzfLua [s]earch [f]iles")
 map("n", "<leader>sh", "<cmd>FzfLua helptags<CR>", "FzfLua [s]earch [h]elp")
 map("n", "<leader>sg", "<cmd>FzfLua live_grep<CR>", "FzfLua [s]earch [g]rep")
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword<CR>", "FzfLua [s]earch [w]ord")
 map("n", "<leader>sd", "<cmd>FzfLua diagnostics_document<CR>", "FzfLua [s]earch [d]iagnostics")
+map("n", "<leader>sd", "<cmd>FzfLua diagnostics_workspace<CR>", "FzfLua [s]earch [w]orkspace")
 map("n", "<leader>ss", "<cmd>FzfLua spell_suggest<CR>", "FzFLua [s]earch [s]pell suggestions")
 map("n", "<leader>?", "<cmd>FzfLua oldfiles<CR>", "[?] FzfLua recent files")
 map("n", "<leader> ", "<cmd>FzfLua buffers<CR>", "[ ] FzfLua open buffers")
@@ -215,7 +216,12 @@ map(
   "DAP [H]over"
 )
 
--- Quicker
+-- NoNeckPain
+map("n", "<leader>Zt", function()
+  require("no-neck-pain").toggle()
+  require("twilight").toggle()
+end, "Zen")
+map("n", "<leader>Zp", function() require("no-neck-pain").resize() end, "Zen")
 
 -- ~ LSP ------------------------------------------------------------------ ~ --
 

@@ -11,22 +11,11 @@ return {
     event = "BufReadPost",
     dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
   },
-  { "stevearc/quicker.nvim", event = "VeryLazy", opts = true },
+  { "stevearc/quicker.nvim", ft = "qf", opts = true },
   { "nvim-tree/nvim-web-devicons", lazy = true },
   { "MunifTanjim/nui.nvim", lazy = true },
   { "folke/twilight.nvim", lazy = true, cmd = "Twilight" },
-  {
-    "cdmill/focus.nvim",
-    cmd = { "Focus", "Zen", "Narrow" },
-    opts = {
-      window = { backdrop = 1 },
-      plugins = {
-        gitsigns = { enabled = true },
-        diagnostics = { enabled = true },
-        twilight = { enabled = true },
-      },
-    },
-  },
+  { "shortcuts/no-neck-pain.nvim", version = "*" },
   {
     "j-hui/fidget.nvim",
     version = false,
@@ -34,11 +23,12 @@ return {
     opts = {
       notification = {
         override_vim_notify = true,
-        window = { max_width = 80, y_padding = 1 },
+        window = { max_width = 64, y_padding = 1, align = "top" },
         view = {
+          stack_upwards = false,
           reflow = "ellipsis",
           icon_separator = " │ ",
-          group_separator = "───",
+          group_separator = "───────────",
         },
       },
     },
@@ -70,15 +60,14 @@ return {
     lazy = true,
     version = false,
     opts = {
-      labels = "asdfghjklqwertyuiopzxcvbnm",
+      labels = "ghfjdkslaytbvnrucmeiwoqpxz",
       label = {
         uppercase = false,
         current = false,
         after = false,
         before = true,
-        rainbow = { enabled = true, shade = 1 },
+        rainbow = { enabled = true, shade = 2 },
       },
-      search = { mode = "fuzzy" },
       jump = {
         history = true,
         register = true,

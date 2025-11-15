@@ -4,7 +4,7 @@ local augroup = vim.api.nvim_create_augroup
 --- ~ Tree-Sitter auto-start
 autocmd("FileType", {
   desc = "Automatically start Tree-Sitter",
-  pattern = S.TSEnsure,
+  pattern = table.concat(S.TSEnsure, ","),
   group = augroup("AutoTreeSitter", { clear = true }),
   callback = function() vim.treesitter.start() end,
 })

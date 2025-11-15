@@ -1,10 +1,8 @@
-return setmetatable({}, {
-  __index = function(tbl, key)
-    local ok, mod = pcall(require, "util." .. key)
-    if ok then
-      rawset(tbl, key, mod)
-      return mod
-    end
-    return {}
-  end,
-})
+require("util.static")
+require("util.func")
+require("util.fs")
+require("util.lsp")
+require("util.git")
+require("util.buf")
+require("util.hl")
+require("util.pql")
