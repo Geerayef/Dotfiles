@@ -1,5 +1,5 @@
 return {
-  { "tarides/ocaml.nvim", ft = "ocaml" },
+  { "tarides/ocaml.nvim", ft = "ocaml", opts = { keymaps = {} } },
   { "gpanders/nvim-parinfer", ft = { "scheme", "commonlisp", "fennel" } },
   {
     "ranjithshegde/ccls.nvim",
