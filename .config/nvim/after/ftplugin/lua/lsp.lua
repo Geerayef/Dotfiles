@@ -11,6 +11,7 @@ local luals = {
   settings = { Lua = {} },
 }
 
+---@type vim.lsp.Config
 local emmyluals = {
   name = "EmmyLua",
   cmd = { "emmylua_ls" },
