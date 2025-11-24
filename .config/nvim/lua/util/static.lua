@@ -180,7 +180,6 @@ S.Icons = {
 
 S.root_markers = {
   -- [Lua]
-  -- "init.lua",
   ".luacheckrc",
   ".luarc.json",
   ".luarc.jsonc",
