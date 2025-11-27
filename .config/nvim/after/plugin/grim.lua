@@ -1,4 +1,5 @@
 local last_active_win = {}
+local devicons = require("nvim-web-devicons")
 
 vim.api.nvim_create_autocmd("WinEnter", {
   callback = function()
@@ -54,16 +55,29 @@ local tabline = function()
       or "%#GRIMInactiveText#"
     local hl_right = tab_active_p(tab) and "%#GRIMActiveRight#"
       or "%#GRIMInactiveRight#"
+    local hl_icon = "GRIMIcon" .. i
+    local icon, color = devicons.get_icon_color(
+      name_buf_active,
+      vim.fn.fnamemodify(name_buf_active, ":e"),
+      { default = true }
+    )
+    vim.api.nvim_set_hl(0, hl_icon, { fg = color, bg = "NONE" })
     tabline = tabline .. hl_left .. " "
     tabline = tabline
       .. hl_text
       .. i
       .. "."
       .. " "
+      .. "%#"
+      .. hl_icon
+      .. "#"
+      .. icon
+      .. hl_text
+      .. " "
       .. name_buf_active
       .. " "
       .. (count_tab_wins > 1 and "[" .. count_tab_wins .. "] " or "")
-      .. (buf_modified and S.Icons.ui.dot or " ")
+      .. (buf_modified and S.Icons.ui.dot_l or " ")
       .. " "
       .. "|"
     tabline = tabline .. hl_right .. ""
