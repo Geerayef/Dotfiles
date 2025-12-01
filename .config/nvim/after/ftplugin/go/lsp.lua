@@ -1,6 +1,7 @@
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
+---@type vim.lsp.Config
 local gopls = {
   name = "Go PLS",
   cmd = { "gopls", "serve" },
@@ -72,9 +73,8 @@ local gopls = {
   },
 }
 
+vim.lsp.config("gopls", gopls)
+
 vim.schedule(function()
-  vim.api.nvim_win_call(
-    vim.api.nvim_get_current_win(),
-    function() LSP.start(gopls) end
-  )
+  vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() LSP.start(gopls) end)
 end)

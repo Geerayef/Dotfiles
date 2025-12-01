@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 local ruff = {
   name = "Ruff LS",
   cmd = { "ruff", "server" },
@@ -9,6 +10,7 @@ local ruff = {
   },
 }
 
+---@type vim.lsp.Config
 local basedpyright = {
   name = "BasedPyright LS",
   cmd = { "basedpyright-langserver", "--stdio" },
@@ -27,15 +29,9 @@ local basedpyright = {
 }
 
 vim.schedule(function()
-  vim.api.nvim_win_call(
-    vim.api.nvim_get_current_win(),
-    function() LSP.start(ruff) end
-  )
+  vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() LSP.start(ruff) end)
 end)
 
 vim.schedule(function()
-  vim.api.nvim_win_call(
-    vim.api.nvim_get_current_win(),
-    function() LSP.start(basedpyright) end
-  )
+  vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() LSP.start(basedpyright) end)
 end)

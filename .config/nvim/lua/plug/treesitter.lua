@@ -10,9 +10,7 @@ return {
       ts.install(
         vim
           .iter(S.TSEnsure)
-          :filter(
-            function(parser) return not vim.tbl_contains(installed, parser) end
-          )
+          :filter(function(parser) return not vim.tbl_contains(installed, parser) end)
           :totable()
       )
     end,
@@ -31,7 +29,6 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
     lazy = true,
-    config = { select = { lookahead = true }, move = { set_jumps = true } },
     keys = {
       {
         "af",
@@ -57,38 +54,24 @@ return {
       },
       {
         "<M-C-n>",
-        function()
-          require("nvim-treesitter-textobjects.swap").swap_next(
-            "@parameter.inner"
-          )
-        end,
+        function() require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner") end,
         desc = "Swap next parameter",
       },
       {
         "<M-C-p>",
         function()
-          require("nvim-treesitter-textobjects.swap").swap_previous(
-            "@parameter.inner"
-          )
+          require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.inner")
         end,
         desc = "Swap previous parameter",
       },
       {
         "<S-M-C-n>",
-        function()
-          require("nvim-treesitter-textobjects.swap").swap_next(
-            "@function.outer"
-          )
-        end,
+        function() require("nvim-treesitter-textobjects.swap").swap_next("@function.outer") end,
         desc = "Swap next function",
       },
       {
         "<S-M-C-p>",
-        function()
-          require("nvim-treesitter-textobjects.swap").swap_previous(
-            "@function.outer"
-          )
-        end,
+        function() require("nvim-treesitter-textobjects.swap").swap_previous("@function.outer") end,
         desc = "Swap previous function",
       },
       {
@@ -180,5 +163,6 @@ return {
         desc = "Go to previous class end",
       },
     },
+    config = { select = { lookahead = true }, move = { set_jumps = true } },
   },
 }

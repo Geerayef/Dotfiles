@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 local texlab = {
   name = "TexLab LS",
   cmd = { "texlab" },
@@ -31,8 +32,5 @@ local texlab = {
 }
 
 vim.schedule(function()
-  vim.api.nvim_win_call(
-    vim.api.nvim_get_current_win(),
-    function() LSP.start(texlab) end
-  )
+  vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() LSP.start(texlab) end)
 end)

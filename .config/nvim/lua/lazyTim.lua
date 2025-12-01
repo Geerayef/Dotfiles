@@ -20,7 +20,7 @@ require("lazy").setup({
   ui = {
     title = " Lazy ",
     border = S.Border,
-    size = { width = 1, height = 1 },
+    size = { width = 0.75, height = 0.75 },
   },
   performance = {
     rtp = {

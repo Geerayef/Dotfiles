@@ -1,6 +1,7 @@
 return {
   "jellydn/hurl.nvim",
   ft = "hurl",
+  cond = vim.g.vscode == nil,
   opts = {
     debug = false,
     show_notification = false,

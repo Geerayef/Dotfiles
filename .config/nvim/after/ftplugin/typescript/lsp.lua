@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 local tsserver = {
   name = "TypeScript LS",
   cmd = { "typescript-language-server", "--stdio" },
@@ -10,6 +11,7 @@ local tsserver = {
   root_markers = { "package.json", "jsconfig.json", "tsconfig.json" },
 }
 
+---@type vim.lsp.Config
 local biome = {
   name = "Biome LS",
   cmd = { "biome", "lsp-proxy" },
@@ -26,14 +28,8 @@ local biome = {
 }
 
 vim.schedule(function()
-  vim.api.nvim_win_call(
-    vim.api.nvim_get_current_win(),
-    function() LSP.start(tsserver) end
-  )
+  vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() LSP.start(tsserver) end)
 end)
 vim.schedule(function()
-  vim.api.nvim_win_call(
-    vim.api.nvim_get_current_win(),
-    function() LSP.start(biome) end
-  )
+  vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() LSP.start(biome) end)
 end)

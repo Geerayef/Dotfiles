@@ -4,9 +4,7 @@ return {
   keys = {
     {
       "<leader>F",
-      function()
-        require("conform").format({ async = true, lsp_fallback = true })
-      end,
+      function() require("conform").format({ async = true, lsp_fallback = true }) end,
       mode = "n",
       desc = "[F]ormat current buffer",
     },
@@ -29,6 +27,7 @@ return {
         fish = { "fish_indent" },
         sh = { "shfmt" },
         bash = { "shfmt" },
+        hurl = { "hurlfmt" },
         markdown = { "mdformat" },
         json = { "biome" },
         jsonc = { "biome" },
@@ -60,6 +59,9 @@ return {
           command = "cabal-gild",
           args = { "--crlf=strict", "--stdin", "$FILENAME" },
           stdin = true,
+        },
+        gofumpt = {
+          prepend_args = { "-extra" },
         },
       },
     })

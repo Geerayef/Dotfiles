@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 local yamlls = {
   on_attach = LSP.attach,
   cmd = { "yaml-language-server", "--stdio" },
@@ -13,8 +14,5 @@ local yamlls = {
 }
 
 vim.schedule(function()
-  vim.api.nvim_win_call(
-    vim.api.nvim_get_current_win(),
-    function() LSP.start(yamlls) end
-  )
+  vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() LSP.start(yamlls) end)
 end)

@@ -63,12 +63,12 @@ return {
           },
           {
             function() return "│" end,
-            cond = function() return require("util.git").versioned_p(0) end,
+            cond = function() return require("lua.grim.git").versioned_p(0) end,
             color = { bg = "NONE" },
           },
           {
             "diff",
-            cond = function() return require("util.git").versioned_p(0) end,
+            cond = function() return require("lua.grim.git").versioned_p(0) end,
             source = function()
               local g = vim.b.gitsigns_status_dict
               if g then
@@ -110,7 +110,9 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-      extensions = { "oil", "quickfix", "man" },
+      extensions = { "oil", "quickfix", "man", "fzf", "lazy" },
+      tabline = {},
+      winbar = {},
     })
   end,
 }

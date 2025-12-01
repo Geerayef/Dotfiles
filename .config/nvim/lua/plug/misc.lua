@@ -1,52 +1,24 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
+  { "tpope/vim-sleuth", event = "BufReadPost" },
+  { "tpope/vim-eunuch", event = "CmdlineEnter" },
   { "tpope/vim-surround", event = "CursorHold" },
-  { "tpope/vim-sleuth", event = { "BufNewFile", "BufReadPost" } },
-  { "phelipetls/jsonpath.nvim", ft = "json" },
+  { "guns/vim-sexp", event = "VeryLazy" },
+  { "lewis6991/fileline.nvim" },
+  { "andrewferrier/debugprint.nvim", version = "*", event = "VeryLazy", opts = true },
+  { "phelipetls/jsonpath.nvim", ft = "json", opts = true },
   { "numToStr/Comment.nvim", event = "CursorHold", opts = true },
   { "windwp/nvim-autopairs", event = "BufModifiedSet", opts = true },
   {
     "echasnovski/mini.ai",
     version = false,
-    event = "BufReadPost",
-    dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
-  },
-  { "stevearc/quicker.nvim", ft = "qf", opts = true },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "MunifTanjim/nui.nvim", lazy = true },
-  { "folke/twilight.nvim", lazy = true, cmd = "Twilight" },
-  { "shortcuts/no-neck-pain.nvim", version = "*" },
-  {
-    "j-hui/fidget.nvim",
-    version = false,
     event = "VeryLazy",
-    opts = {
-      notification = {
-        override_vim_notify = true,
-        window = { max_width = 64, y_padding = 1, align = "top" },
-        view = {
-          stack_upwards = false,
-          reflow = "ellipsis",
-          icon_separator = " │ ",
-          group_separator = "───────────",
-        },
-      },
-    },
-  },
-  {
-    "lukas-reineke/virt-column.nvim",
-    event = "BufReadPost",
-    opts = { char = "│", highlight = "Comment" },
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    event = "BufReadPost",
-    opts = { indent = { char = "│" } },
+    dependencies = "nvim-treesitter/nvim-treesitter-textobjects",
   },
   {
     "mbbill/undotree",
-    event = "BufReadPost",
+    event = "VeryLazy",
+    cond = vim.g.vscode == nil,
     config = function()
       vim.g.undotree_WindowLayout = 4
       vim.g.undotree_ShortIndicators = 1
@@ -57,38 +29,70 @@ return {
   },
   {
     "folke/flash.nvim",
-    lazy = true,
     version = false,
+    lazy = true,
     opts = {
-      labels = "ghfjdkslaytbvnrucmeiwoqpxz",
+      labels = "asdfghjklzxcvbnmqwertyuiop",
       label = {
         uppercase = false,
         current = false,
         after = false,
         before = true,
-        rainbow = { enabled = true, shade = 2 },
+        rainbow = { enabled = true, shade = 1 },
       },
-      jump = {
-        history = true,
-        register = true,
-        nohlsearch = true,
-        autojump = true,
-      },
+      jump = { history = true, register = true, nohlsearch = true, autojump = true },
       modes = {
         search = { enabled = true },
-        char = {
-          autohide = true,
-          jump_labels = true,
-          multi_line = false,
-          jump = { autojump = true },
-          label = { exclude = "hjkliadcor" },
+        char = { jump_labels = true, label = { exclude = "hjkliadcor" }, multi_line = false },
+      },
+    },
+  },
+  { "MunifTanjim/nui.nvim", lazy = true },
+  { "nvim-tree/nvim-web-devicons", lazy = true },
+  { "folke/twilight.nvim", cmd = "Twilight" },
+  { "stevearc/quicker.nvim", ft = "qf", opts = { borders = { vert = "│" } } },
+  { "shortcuts/no-neck-pain.nvim", event = "VeryLazy", opts = true },
+  {
+    "j-hui/fidget.nvim",
+    version = false,
+    event = "VeryLazy",
+    cond = vim.g.vscode == nil,
+    opts = {
+      notification = {
+        override_vim_notify = true,
+        window = {
+          winblend = 0,
+          max_width = 64,
+          x_padding = 4,
+          y_padding = 1,
+          tabstop = 4,
+          align = "top",
+        },
+        view = {
+          reflow = "ellipsis",
+          icon_separator = " │ ",
+          group_separator = "────────",
         },
       },
     },
   },
   {
+    "lukas-reineke/virt-column.nvim",
+    event = "VeryLazy",
+    cond = vim.g.vscode == nil,
+    opts = { char = "│", highlight = "Comment" },
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    event = "VeryLazy",
+    cond = vim.g.vscode == nil,
+    opts = { indent = { char = "│" } },
+  },
+  {
     "norcalli/nvim-colorizer.lua",
     cmd = "ColorizerToggle",
+    cond = vim.g.vscode == nil,
     opts = { ["*"] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true } },
   },
 }

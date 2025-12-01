@@ -1,11 +1,9 @@
 return {
   { "tpope/vim-fugitive", cmd = { "G", "Git" } },
-  { "rbong/vim-flog", cmd = "Flog", dependencies = { "tpope/vim-fugitive" } },
+  { "rbong/vim-flog", cmd = "Flog", dependencies = "tpope/vim-fugitive" },
   {
     "lewis6991/gitsigns.nvim",
-    lazy = not require("util.git").versioned_p(vim.api.nvim_get_current_buf()),
-    cond = not require("util.git").versioned_p(vim.api.nvim_get_current_buf()),
-    dependencies = { "NeogitOrg/neogit", "sindrets/diffview.nvim" },
+    event = "VeryLazy",
     opts = {
       signs = {
         add = { text = "│" },

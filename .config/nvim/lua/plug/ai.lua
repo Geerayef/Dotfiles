@@ -54,7 +54,7 @@ return {
           return require("codecompanion.adapters").extend("ollama", {
             name = "ollama",
             schema = {
-              model = { default = "qwen2.5-coder:3b" },
+              model = { default = "qwen2.5-coder:7b" },
               num_ctx = { default = 16384 },
               temperature = {
                 order = 2,
@@ -71,11 +71,14 @@ return {
           })
         end,
       },
-      opts = { system_prompt = system_prompt, language = "English" },
+      opts = {
+        system_prompt = system_prompt,
+        language = "English",
+      },
       strategies = {
-        chat = { adapter = { name = "ollama", model = "qwen2.5-coder:3b" } },
+        chat = { adapter = { name = "ollama", model = "qwen2.5-coder:7b" } },
         inline = {
-          adapter = { name = "ollama", model = "qwen2.5-coder:3b" },
+          adapter = { name = "ollama", model = "qwen2.5-coder:7b" },
           keymaps = {
             accept_change = {
               modes = { n = "<leader>Sa" },
@@ -87,7 +90,7 @@ return {
             },
           },
         },
-        cmd = { adapter = { name = "ollama", model = "qwen2.5-coder:3b" } },
+        cmd = { adapter = { name = "ollama", model = "qwen2.5-coder:7b" } },
       },
       display = {
         action_palette = { width = 0.75, height = 0.4, provider = "fzf_lua" },
@@ -98,7 +101,7 @@ return {
     "nomnivore/ollama.nvim",
     cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
     opts = {
-      model = "qwen2.5-coder:3b",
+      model = "qwen2.5-coder:7b",
       url = "http://127.0.0.1:11434",
       serve = {
         on_start = false,

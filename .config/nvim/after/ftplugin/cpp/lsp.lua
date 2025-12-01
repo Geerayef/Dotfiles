@@ -1,6 +1,6 @@
 vim.opt.shiftwidth = 2
-
-local server
+---@type vim.lsp.Config
+local server = {}
 
 if vim.fn.executable("clangd") then
   F.notify("INFO", "[LSP] C|C++: Clangd.")
@@ -66,8 +66,5 @@ else
 end
 
 vim.schedule(function()
-  vim.api.nvim_win_call(
-    vim.api.nvim_get_current_win(),
-    function() LSP.start(server) end
-  )
+  vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() LSP.start(server) end)
 end)

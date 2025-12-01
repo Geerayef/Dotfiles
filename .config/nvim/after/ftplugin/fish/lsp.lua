@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 local fishlsp = {
   on_attach = LSP.attach,
   cmd = { "fish-lsp", "start" },
@@ -6,8 +7,5 @@ local fishlsp = {
 }
 
 vim.schedule(function()
-  vim.api.nvim_win_call(
-    vim.api.nvim_get_current_win(),
-    function() LSP.start(fishlsp) end
-  )
+  vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() LSP.start(fishlsp) end)
 end)

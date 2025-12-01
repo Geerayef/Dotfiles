@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 local ocamlls = {
   name = "OCaml LS",
   cmd = { "ocamllsp" },
@@ -19,8 +20,5 @@ local ocamlls = {
 }
 
 vim.schedule(function()
-  vim.api.nvim_win_call(
-    vim.api.nvim_get_current_win(),
-    function() LSP.start(ocamlls) end
-  )
+  vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() LSP.start(ocamlls) end)
 end)

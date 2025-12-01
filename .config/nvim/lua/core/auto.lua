@@ -4,7 +4,7 @@ local augroup = vim.api.nvim_create_augroup
 --- ~ Tree-Sitter auto-start
 autocmd("FileType", {
   desc = "Automatically start Tree-Sitter",
-  pattern = table.concat(S.TSEnsure, ","),
+  pattern = S.TSEnsure,
   group = augroup("AutoTreeSitter", { clear = true }),
   callback = function() vim.treesitter.start() end,
 })
@@ -16,7 +16,7 @@ autocmd("BufReadPre", {
   pattern = "*",
   callback = function(info)
     vim.b.bigfile = false
-    if require("util.fs").file_large(info.buf) then
+    if require("grim.fs").file_large(info.buf) then
       vim.b.bigfile = true
       vim.opt_local.spell = false
       vim.opt_local.swapfile = false
@@ -49,7 +49,7 @@ autocmd("TextYankPost", {
 })
 
 --- ~ Auto cd
-autocmd("BufWinEnter", {
+autocmd({ "TabEnter", "BufEnter", "BufWinEnter" }, {
   desc = "Automatically change current working directory based on predefined markers.",
   group = augroup("AutoCWD", { clear = true }),
   pattern = "*",
@@ -66,7 +66,7 @@ autocmd("BufWinEnter", {
       end
       vim.api.nvim_win_call(win, function()
         local dir_from = vim.fn.getcwd(0)
-        local dir_to = require("util.fs").root(info.file)
+        local dir_to = require("grim.fs").root(info.file)
         if dir_to ~= nil and dir_to ~= "" and dir_to ~= dir_from then
           pcall(vim.cmd.cd, dir_to)
         end
@@ -97,16 +97,24 @@ autocmd("ColorScheme", {
     local road = require("clrs.road")
     local rb, rp = road.base, road.palette
     local hl = vim.api.nvim_set_hl
+    -- UI
     hl(0, "Normal", { fg = rb.mintCream, bg = rb.dragonInk })
     hl(0, "NormalNC", { link = "Normal" })
     hl(0, "NormalFloat", { link = "Normal" })
     hl(0, "FloatBorder", { link = "Normal" })
-    hl(0, "RenderMarkdownCode", { bg = "bg" })
     hl(0, "CursorLineNr", { fg = rb.lotusYellow })
     hl(0, "TabLineSel", { fg = rb.lotusYellow })
     hl(0, "SignColumn", { link = "Normal" })
     hl(0, "WinSeparator", { link = "Normal" })
-    hl(0, "Comment", { fg = rb.paynesGray, italic = true })
+    hl(0, "CursorLine", { bg = rp.charcoal[200] })
+    hl(0, "MatchParen", {
+      fg = rb.mintCream,
+      bg = rp.charcoal[200],
+      bold = true,
+      underline = true,
+    })
+    hl(0, "RenderMarkdownCode", { bg = rb.dragonInk })
+    hl(0, "GitSignsCurrentLineBlame", { link = "Comment" })
     hl(0, "LspSignatureActiveParameter", {
       fg = rp.lotusYellow[400],
       bg = rb.dragonInk,
@@ -117,5 +125,11 @@ autocmd("ColorScheme", {
       bg = rb.dragonInk,
       bold = true,
     })
+    -- Syntax
+    vim.cmd.highlight({ args = { "Keyword", "cterm=bold", "gui=bold" } })
+    hl(0, "@keyword", { bold = true })
+    hl(0, "Comment", { fg = rb.paynesGray, italic = true })
+    hl(0, "Function", { fg = rp.lotusYellow[400] })
+    hl(0, "@function", { fg = rp.lotusYellow[400] })
   end,
 })

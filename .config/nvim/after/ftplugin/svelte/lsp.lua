@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 local svelte = {
   name = "Svelte LS",
   cmd = { "svelteserver", "--stdio" },
@@ -6,6 +7,7 @@ local svelte = {
   root_markers = { "biome.json", "biome.jsonc", "svelte.config.js" },
 }
 
+---@type vim.lsp.Config
 local biome = {
   name = "Biome LS",
   cmd = { "biome", "lsp-proxy" },
@@ -22,14 +24,8 @@ local biome = {
 }
 
 vim.schedule(function()
-  vim.api.nvim_win_call(
-    vim.api.nvim_get_current_win(),
-    function() LSP.start(svelte) end
-  )
+  vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() LSP.start(svelte) end)
 end)
 vim.schedule(function()
-  vim.api.nvim_win_call(
-    vim.api.nvim_get_current_win(),
-    function() LSP.start(biome) end
-  )
+  vim.api.nvim_win_call(vim.api.nvim_get_current_win(), function() LSP.start(biome) end)
 end)

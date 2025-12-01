@@ -3,8 +3,7 @@ local devicons = require("nvim-web-devicons")
 
 vim.api.nvim_create_autocmd("WinEnter", {
   callback = function()
-    last_active_win[vim.api.nvim_get_current_tabpage()] =
-      vim.api.nvim_get_current_win()
+    last_active_win[vim.api.nvim_get_current_tabpage()] = vim.api.nvim_get_current_win()
   end,
 })
 
@@ -33,9 +32,7 @@ local get_normal_wins = function(tab)
   )
 end
 
-local tab_active_p = function(tab)
-  return tab == vim.api.nvim_get_current_tabpage()
-end
+local tab_active_p = function(tab) return tab == vim.api.nvim_get_current_tabpage() end
 
 local tabline = function()
   local tabline = ""
@@ -49,12 +46,9 @@ local tabline = function()
     local buf_active = vim.api.nvim_win_get_buf(win_current or wins_visible[1])
     local name_buf_active = get_buf_name(buf_active)
     local buf_modified = vim.bo[buf_active].modified
-    local hl_left = tab_active_p(tab) and "%#GRIMActiveLeft#"
-      or "%#GRIMInactiveLeft#"
-    local hl_text = tab_active_p(tab) and "%#GRIMActiveText#"
-      or "%#GRIMInactiveText#"
-    local hl_right = tab_active_p(tab) and "%#GRIMActiveRight#"
-      or "%#GRIMInactiveRight#"
+    local hl_left = tab_active_p(tab) and "%#GRIMActiveLeft#" or "%#GRIMInactiveLeft#"
+    local hl_text = tab_active_p(tab) and "%#GRIMActiveText#" or "%#GRIMInactiveText#"
+    local hl_right = tab_active_p(tab) and "%#GRIMActiveRight#" or "%#GRIMInactiveRight#"
     local hl_icon = "GRIMIcon" .. i
     local icon, color = devicons.get_icon_color(
       name_buf_active,

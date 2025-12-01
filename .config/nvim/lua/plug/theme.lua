@@ -2,7 +2,6 @@ local road = require("clrs.road")
 local rb, rp = road.base, road.palette
 return {
   { "bettervim/yugen.nvim", lazy = vim.g.theme ~= "yugen" },
-  { "vinitkumar/oscura-vim", lazy = vim.g.theme ~= "oscura" },
   {
     "webhooked/kanso.nvim",
     lazy = vim.g.theme ~= "kanso",
@@ -16,6 +15,7 @@ return {
       extend = {
         highlights = {
           Normal = { bg = rb.dragonInk },
+          ["@comment"] = { fg = rb.paynesGray },
           ["@function"] = { fg = rp.lotusYellow[400] },
         },
       },

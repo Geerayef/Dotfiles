@@ -100,24 +100,26 @@ map("t", "<Esc>", "<C-\\><C-n>", "Terminal escape")
 
 -- Navigation
 map("n", "<leader>cd", function()
-  vim.cmd({ cmd = "cd", args = { "%:p:h" } })
+  cmd({ cmd = "cd", args = { "%:p:h" } })
   F.notify("INFO", string.format("CWD: %s", vim.fn.getcwd()))
 end, "[c]hange to current working [d]irectory")
 
 -- ~ Plugin --------------------------------------------------------------- ~ --
 
--- stylua: ignore start
 map("n", "<leader>L", cmd.Lazy, "[L]azy")
 map("n", "<leader>f", cmd.Oil, "Oil [f]ile browser")
 map("n", "<leader>of", "<cmd>Oil --float<CR>", "[o]il [f]loat")
-map("n", "<leader>u", vim.cmd.UndotreeToggle, "[u]ndo tree")
-map("n", "y<C-p>", function() vim.fn.setreg("+", require("jsonpath").get()) end,
+map("n", "<leader>u", cmd.UndotreeToggle, "[u]ndo tree")
+map(
+  "n",
+  "y<C-p>",
+  function() vim.fn.setreg("+", require("jsonpath").get()) end,
   "[y]ank JSON[p]ath"
 )
-map({ "n", "x", "o" }, "<leader>j", function() require("flash").jump() end, "Flash [j]ump")
--- stylua: ignore end
 
--- stylua: ignore start
+-- Flash
+map({ "n", "x", "o" }, "<leader>j", function() require("flash").jump() end, "Flash [j]ump")
+
 -- FZF Lua
 map("i", "<C-x><C-f>", "<cmd>FzfLua complete_file<CR>", "FzfLua complete path")
 map("i", "<C-x><C-l>", "<cmd>FzfLua complete_line<CR>", "FzfLua complete line")
@@ -126,14 +128,17 @@ map("n", "<leader>sh", "<cmd>FzfLua helptags<CR>", "FzfLua [s]earch [h]elp")
 map("n", "<leader>sg", "<cmd>FzfLua live_grep<CR>", "FzfLua [s]earch [g]rep")
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword<CR>", "FzfLua [s]earch [w]ord")
 map("n", "<leader>sd", "<cmd>FzfLua diagnostics_document<CR>", "FzfLua [s]earch [d]iagnostics")
-map("n", "<leader>sd", "<cmd>FzfLua diagnostics_workspace<CR>", "FzfLua [s]earch [w]orkspace")
+map(
+  "n",
+  "<leader>wd",
+  "<cmd>FzfLua diagnostics_workspace<CR>",
+  "FzfLua [w]orkspace [d]iagnostrics"
+)
 map("n", "<leader>ss", "<cmd>FzfLua spell_suggest<CR>", "FzFLua [s]earch [s]pell suggestions")
 map("n", "<leader>?", "<cmd>FzfLua oldfiles<CR>", "[?] FzfLua recent files")
 map("n", "<leader> ", "<cmd>FzfLua buffers<CR>", "[ ] FzfLua open buffers")
 map("n", "<leader>/", "<cmd>FzfLua blines<CR>", "[/] FzfLua search buffer")
--- stylua: ignore end
 
--- stylua: ignore start
 -- Git
 -- Neogit
 map("n", "<leader>G", "<cmd>Neogit<CR>", "Neo[G]it")
@@ -148,29 +153,97 @@ map("n", "<leader>Gf", "<cmd>G fetch<CR>", "Fu[G]itive [f]etch")
 map("n", "<leader>Gpl", "<cmd>G pull --rebase<CR>", "Fu[G]itive [p]u[l]l")
 map("n", "<leader>Gps", function() input(":G push ") end, "Fu[G]itive [p]u[s]h")
 map("n", "<leader>Gr", function() input(":G restore ") end, "Fu[G]itive [r]estore")
-map("n", "<leader>Grs", function() input(":G restore --staged ") end, "Fu[G]itive [r]estore [s]taged")
+map(
+  "n",
+  "<leader>Grs",
+  function() input(":G restore --staged ") end,
+  "Fu[G]itive [r]estore [s]taged"
+)
 map("n", "<leader>Gs", "<cmd>G status<CR>", "Fu[G]itive [s]tatus")
 map("n", "<leader>Gst", "<cmd>G stash<CR>", "Fu[G]itive [s]tash")
 map("n", "<leader>Gstp", "<cmd>G stash pop<CR>", "Fu[G]itive [s]tash [p]op")
 -- Gitsigns
 map("n", "]h", function()
-  if vim.wo.diff then cmd.normal({ "]c", bang = true })
-  else require("gitsigns").nav_hunk("next") end
+  if vim.wo.diff then
+    cmd.normal({ "]c", bang = true })
+  else
+    require("gitsigns").nav_hunk("next")
+  end
 end, "Gitsigns next [h]unk")
 map("n", "[h", function()
-  if vim.wo.diff then cmd.normal({ "[c", bang = true })
-  else require("gitsigns").nav_hunk("prev") end
+  if vim.wo.diff then
+    cmd.normal({ "[c", bang = true })
+  else
+    require("gitsigns").nav_hunk("prev")
+  end
 end, "Gitsigns previous [h]unk")
 map("n", "<leader>hp", "<cmd>Gitsigns preview_hunk<CR>", "Gitsigns [h]unk [p]review")
 map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>", "Gitsigns [h]unk [s]tage")
 map("n", "<leader>hS", "<cmd>Gitsigns undo_stage_hunk<CR>", "Gitsigns [h]unk un[S]tage")
 map("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>", "Gitsigns [h]unk [r]eset")
 map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>", "Gitsigns [h]unk [d]iff")
-map("n", "<leader>htd", "<cmd>Gitsigns toggle_deleted<CR>", "Gitsigns [h]unk [t]oggle [d]eleted")
-map("n", "<leader>htlb", "<cmd>Gitsigns toggle_current_line_blame<CR>", "Gitsigns [h]unk [t]oggle [l]ine [b]lame")
--- stylua: ignore end
+map(
+  "n",
+  "<leader>htd",
+  "<cmd>Gitsigns toggle_deleted<CR>",
+  "Gitsigns [h]unk [t]oggle [d]eleted"
+)
+map(
+  "n",
+  "<leader>htlb",
+  "<cmd>Gitsigns toggle_current_line_blame<CR>",
+  "Gitsigns [h]unk [t]oggle [l]ine [b]lame"
+)
+-- Windows
+if vim.fn.has("win32") == 1 or vim.fn.has("wsl") == 1 then
+  map("n", "<leader>Wgs", function() input(":!git.exe status<CR>") end, "[W]indows [g]it [a]dd")
+  map("n", "<leader>Wga", function() input(":!git.exe add ") end, "[W]indows [g]it [a]dd")
+  map(
+    "n",
+    "<leader>Wga.",
+    function() input(":!git.exe add .<CR>") end,
+    "[W]indows [g]it [a]dd CWD"
+  )
+  map(
+    "n",
+    "<leader>Wgb",
+    function() input(":!git.exe branch<CR>") end,
+    "[W]indows [g]it [b]ranch"
+  )
+  map("n", "<leader>Wgc", function() input(":!git.exe commit ") end, "[W]indows [g]it [c]ommit")
+  map(
+    "n",
+    "<leader>Wgca",
+    function() input(":!git.exe commit --amend<CR>") end,
+    "[W]indows [g]it [c]ommit [a]mend"
+  )
+  map(
+    "n",
+    "<leader>Wgch",
+    function() input(":!git.exe checkout ") end,
+    "[W]indows [g]it [c][h]eckout"
+  )
+  map(
+    "n",
+    "<leader>Wgf",
+    function() input(":!git.exe fetch<CR>") end,
+    "[W]indows [g]it [f]etch"
+  )
+  map(
+    "n",
+    "<leader>Wgpl",
+    function() input(":!git.exe pull --rebase<CR>") end,
+    "[W]indows [g]it [p]u[l]l"
+  )
+  map("n", "<leader>Wgps", function() input(":!git.exe push ") end, "[W]indows [g]it [p]u[s]h")
+  map(
+    "n",
+    "<leader>Wgr",
+    function() input(":!git.exe restore ") end,
+    "[W]indows [g]it [r]estore"
+  )
+end
 
--- stylua: ignore start
 -- Markdown & Obsidian
 map("n", "<leader>on", "<cmd>Obsidian new<CR>", "[o]bsidian [n]ew note")
 map("n", "<leader>ot", "<cmd>Obsidian template<CR>", "[o]bsidian [t]emplate note")
@@ -185,8 +258,12 @@ map("n", "<leader>od", "<cmd>Obsidian today<CR>", "[o]bsidian to[d]ay")
 map("n", "<leader>ow", "<cmd>Obsidian workspace<CR>", "[o]bsidian [w]orkspace")
 map("n", "<leader>oc", "<cmd>Obsidian toggle_checkbox<CR>", "[o]bsidian [c]heckbox")
 map("n", "<leader>oq", "<cmd>Obsidian quick_switch<CR>", "[o]bsidian [q]uick switch")
-map({ "n", "x" }, "<leader>oxn", "<cmd>Obsidian extract_note<CR>", "[o]bsidian e[x]tract [n]ote")
--- stylua: ignore end
+map(
+  { "n", "x" },
+  "<leader>oxn",
+  "<cmd>Obsidian extract_note<CR>",
+  "[o]bsidian e[x]tract [n]ote"
+)
 
 -- Colorizer
 map("n", "<leader>ct", cmd.ColorizerToggle, "[c]olorizer [t]oggle")
@@ -209,40 +286,67 @@ map("n", "<M-d>F", function()
   local b = w.sidebar(w.frames, { height = 10 }, "belowright split")
   return b.toggle()
 end, "DAP [F]rames")
-map(
-  "n",
-  "<M-d>H",
-  function() return require("dap.ui.widgets").hover() end,
-  "DAP [H]over"
-)
+map("n", "<M-d>H", function() return require("dap.ui.widgets").hover() end, "DAP [H]over")
 
 -- NoNeckPain
-map("n", "<leader>Zt", function()
-  require("no-neck-pain").toggle()
+map("n", "<leader>Zen", function()
   require("twilight").toggle()
-end, "Zen")
-map("n", "<leader>Zp", function() require("no-neck-pain").resize() end, "Zen")
+  require("no-neck-pain").toggle()
+end, "NoNeckPain [Zen]")
+map("n", "<leader>Zp", cmd.NoNeckPainScratchPad, "NoNeckPain [Z]en scratch [p]ad")
 
 -- ~ LSP ------------------------------------------------------------------ ~ --
 
--- stylua: ignore start
-local lsp  = function(_, buf)
+Key = {}
+function Key.LSP(_, buf)
   local blsp = vim.lsp.buf
   bmap("n", "K", function() blsp.hover({ border = S.Border }) end, buf, "LSP hover")
-  bmap("n", "<C-k>", function() blsp.signature_help({ border = S.Border }) end, buf, "LSP signature")
+  bmap(
+    "n",
+    "<C-k>",
+    function() blsp.signature_help({ border = S.Border }) end,
+    buf,
+    "LSP signature"
+  )
   bmap("n", "<leader>lrn", blsp.rename, buf, "[l]SP [r]e[n]ame")
   bmap("n", "<leader>lca", "<cmd>FzfLua lsp_code_actions<CR>", buf, "[l]SP [c]ode [a]ction")
-  bmap("n", "<leader>lgD", "<cmd>FzfLua lsp_declarations<CR>", buf, "[l]SP [g]o to [D]eclaration")
+  bmap(
+    "n",
+    "<leader>lgD",
+    "<cmd>FzfLua lsp_declarations<CR>",
+    buf,
+    "[l]SP [g]o to [D]eclaration"
+  )
   bmap("n", "<leader>lgd", "<cmd>FzfLua lsp_definitions<CR>", buf, "[l]SP [g]o to [d]efinition")
   bmap("n", "<leader>lgr", "<cmd>FzfLua lsp_references<CR>", buf, "[l]SP [g]o to [r]eferences")
-  bmap("n", "<leader>lgi", "<cmd>FzfLua lsp_implementations<CR>", buf, "[l]SP [g]o to [i]mplementation")
-  bmap("n", "<leader>lgt", "<cmd>FzfLua lsp_type_definitions<CR>", buf, "[l]SP [g]o to [t]ype definition")
-  bmap("n", "<leader>lsd", "<cmd>FzfLua lsp_document_symbols<CR>", buf, "[l]SP [s]ymbols [d]ocument")
-  bmap("n", "<leader>lsw", "<cmd>FzfLua lsp_live_workspace_symbols<CR>", buf, "[l]SP [s]ymbols [w]orkspace")
-  -- bmap("n", "<leader>lfwa", blsp.add_workspace_folder, buf, "LSP [f]older [w]orkspace [a]dd")
-  -- bmap("n", "<leader>lfwr", blsp.remove_workspace_folder, buf, "LSP [f]older [w]orkspace [r]emove")
+  bmap(
+    "n",
+    "<leader>lgi",
+    "<cmd>FzfLua lsp_implementations<CR>",
+    buf,
+    "[l]SP [g]o to [i]mplementation"
+  )
+  bmap(
+    "n",
+    "<leader>lgt",
+    "<cmd>FzfLua lsp_type_definitions<CR>",
+    buf,
+    "[l]SP [g]o to [t]ype definition"
+  )
+  bmap(
+    "n",
+    "<leader>lsd",
+    "<cmd>FzfLua lsp_document_symbols<CR>",
+    buf,
+    "[l]SP [s]ymbols [d]ocument"
+  )
+  bmap(
+    "n",
+    "<leader>lsw",
+    "<cmd>FzfLua lsp_live_workspace_symbols<CR>",
+    buf,
+    "[l]SP [s]ymbols [w]orkspace"
+  )
 end
--- stylua: ignore end
 
-Key = { LSP = lsp }
 return Key

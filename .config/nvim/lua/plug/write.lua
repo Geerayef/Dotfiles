@@ -49,13 +49,13 @@ return {
       },
       daily_notes = {
         folder = "daily",
-        date_format = "%d-%m-%Y",
+        date_format = "%Y-%m-%d",
         alias_format = "%B %-d, %Y",
         template = nil,
       },
       templates = {
         folder = "template",
-        date_format = "%d-%m-%Y",
+        date_format = "%Y-%m-%d",
         time_format = "%H:%M",
         -- `substitutions`: map for custom variables. `key`: variable, `value`: function.
         substitutions = {},
@@ -63,11 +63,10 @@ return {
       legacy_commands = false,
       frontmatter = { enabled = false },
       footer = { enabled = true },
-      completion = { blink = true, nvim_cmp = false, min_chars = 2 },
-      follow_url_func = function(url) vim.system({ "xdg-open", url }) end,
+      completion = { blink = true, min_chars = 2 },
+      follow_url_func = vim.ui.open,
       preferred_link_style = "markdown",
-      sort_by = "path",
-      sort_reversed = false,
+      search = { sort_reversed = false, sort_by = "path" },
       picker = { name = "fzf-lua" },
       checkbox = {
         enabled = true,

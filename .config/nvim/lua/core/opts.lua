@@ -5,7 +5,11 @@ vim.g.loaded_python3_provider = 0
 
 local o = vim.opt
 
-o.shell = "/usr/bin/fish"
+if vim.fn.has("win32") then
+  o.shell = "pwsh.exe"
+else
+  o.shell = "/usr/bin/fish"
+end
 o.shortmess:append("IWSsac")
 if vim.fn.executable("rg") == 1 then
   o.grepprg =
@@ -71,7 +75,7 @@ o.background = "dark"
 o.number = true
 o.relativenumber = true
 o.cursorline = true
-o.cursorlineopt = "number"
+o.cursorlineopt = "both"
 o.title = false
 o.showtabline = 1
 o.laststatus = 3
@@ -92,7 +96,7 @@ o.winborder = "single"
 
 -- ~ Behaviour
 o.lazyredraw = false
-o.updatetime = 200
+o.updatetime = 100
 o.belloff = "all"
 o.splitright = true
 o.splitbelow = true
@@ -111,8 +115,7 @@ o.sessionoptions = "buffers,curdir,folds,help,tabpages,localoptions"
 
 -- ~ Chars
 local ui = S.Icons.ui
-o.listchars =
-  { tab = ui.angle_right_s .. " ", nbsp = ui.space, trail = ui.dot_s }
+o.listchars = { tab = ui.angle_right_s .. " ", nbsp = ui.space, trail = ui.dot_s }
 o.fillchars = {
   fold = ui.dot_l,
   foldopen = ui.arrow_down,

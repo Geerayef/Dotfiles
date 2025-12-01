@@ -7,6 +7,6 @@ vim.opt.commentstring = "// %s"
 vim.keymap.set(
   "n",
   "<leader>PQL",
-  function() require("util.pql")(vim.api.nvim_get_current_buf()) end,
+  function() require("lua.grim.pql")(vim.api.nvim_get_current_buf()) end,
   { buffer = true, desc = "Execute current PQLS buffer." }
 )

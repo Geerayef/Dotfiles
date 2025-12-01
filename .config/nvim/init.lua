@@ -1,6 +1,14 @@
+vim.g.did_install_default_menus = 1
 GRIM = {}
 vim.g.theme = "yugen"
-require("util")
+require("grim.static")
+require("grim.func")
+require("grim.fs")
+require("grim.buf")
+require("grim.git")
+require("grim.hl")
+require("grim.lsp")
+require("grim.pql")
 require("core.opts")
 require("core.keys")
 require("core.diag")
