@@ -85,15 +85,15 @@ map(
 )
 
 -- Commandline
-vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", {})
-vim.api.nvim_set_keymap("c", "<C-e>", "<End>", {})
-vim.api.nvim_set_keymap("c", "<C-f>", "<Right>", {})
-vim.api.nvim_set_keymap("c", "<C-b>", "<Left>", {})
-vim.api.nvim_set_keymap("c", "<C-j>", "<Down>", {})
-vim.api.nvim_set_keymap("c", "<C-k>", "<Up>", {})
-vim.api.nvim_set_keymap("c", "<C-d>", "<Del>", {})
-vim.api.nvim_set_keymap("c", "<M-b>", "<S-Left>", {})
-vim.api.nvim_set_keymap("c", "<M-f>", "<S-Right>", {})
+-- vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", {})
+-- vim.api.nvim_set_keymap("c", "<C-e>", "<End>", {})
+-- vim.api.nvim_set_keymap("c", "<C-f>", "<Right>", {})
+-- vim.api.nvim_set_keymap("c", "<C-b>", "<Left>", {})
+-- vim.api.nvim_set_keymap("c", "<C-j>", "<Down>", {})
+-- vim.api.nvim_set_keymap("c", "<C-k>", "<Up>", {})
+-- vim.api.nvim_set_keymap("c", "<C-d>", "<Del>", {})
+-- vim.api.nvim_set_keymap("c", "<M-b>", "<S-Left>", {})
+-- vim.api.nvim_set_keymap("c", "<M-f>", "<S-Right>", {})
 
 -- Terminal
 map("t", "<Esc>", "<C-\\><C-n>", "Terminal escape")

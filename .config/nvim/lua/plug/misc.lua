@@ -2,6 +2,7 @@ return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "tpope/vim-sleuth", event = "BufReadPost" },
   { "tpope/vim-eunuch", event = "CmdlineEnter" },
+  { "tpope/vim-repeat", event = "CursorHold" },
   { "tpope/vim-surround", event = "CursorHold" },
   { "guns/vim-sexp", event = "VeryLazy" },
   { "lewis6991/fileline.nvim" },
@@ -56,7 +57,6 @@ return {
     "j-hui/fidget.nvim",
     version = false,
     event = "VeryLazy",
-    cond = vim.g.vscode == nil,
     opts = {
       notification = {
         override_vim_notify = true,
@@ -79,20 +79,17 @@ return {
   {
     "lukas-reineke/virt-column.nvim",
     event = "VeryLazy",
-    cond = vim.g.vscode == nil,
     opts = { char = "│", highlight = "Comment" },
   },
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     event = "VeryLazy",
-    cond = vim.g.vscode == nil,
     opts = { indent = { char = "│" } },
   },
   {
     "norcalli/nvim-colorizer.lua",
     cmd = "ColorizerToggle",
-    cond = vim.g.vscode == nil,
     opts = { ["*"] = { RRGGBBAA = true, rgb_fn = true, hsl_fn = true } },
   },
 }

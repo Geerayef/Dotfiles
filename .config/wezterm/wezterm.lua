@@ -196,7 +196,7 @@ C.force_reverse_video_cursor = false
 -- Grayscale (dark) (terminal.sexy) | Black Metal (Marduk) (base16) | VWbug (terminal.sexy)
 -- Unsifted Wheat (terminal.sexy) | Twilight (Gogh)
 -- Gruvbox Material (Gogh) | Shic (terminal.sexy) | Terminix Dark (Gogh) | Navy and Ivory (terminal.sexy)
-C.color_scheme = "Navy and Ivory (terminal.sexy)"
+C.color_scheme = "Gruvbox Material (Gogh)"
 C.colors = {
   background = rb.dragonInk,
   cursor_fg = rb.dragonInk,

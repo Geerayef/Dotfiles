@@ -2,6 +2,7 @@ vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_python3_provider = 0
+vim.g.did_install_default_menus = 1
 
 local o = vim.opt
 
@@ -36,8 +37,8 @@ o.linebreak = true
 o.breakindent = true
 o.breakindentopt = "list:-1"
 o.showbreak = "  "
-o.complete:append("i,kspell")
-o.completeopt = "menu,menuone,noselect"
+o.complete:append("f,i,kspell")
+o.completeopt = "menuone,noselect,noinsert,fuzzy"
 o.showfulltag = true
 o.virtualedit = "block"
 o.wildmenu = true
@@ -112,6 +113,7 @@ o.hlsearch = true
 o.incsearch = true
 o.mouse = ""
 o.sessionoptions = "buffers,curdir,folds,help,tabpages,localoptions"
+o.synmaxcol = 256
 
 -- ~ Chars
 local ui = S.Icons.ui

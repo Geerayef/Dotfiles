@@ -1,8 +1,0 @@
-require("util.static")
-require("util.func")
-require("util.fs")
-require("util.lsp")
-require("util.git")
-require("util.buf")
-require("util.hl")
-require("util.pql")

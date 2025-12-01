@@ -7,6 +7,7 @@
   "diagnostics.globals": ["vim"],
   "runtime.version": "LuaJIT",
   "runtime.path": [
+    "$XDG_DATA_HOME/nvim/lazy",
     "?.lua",
     "./?.lua",
     "?/init.lua",
@@ -19,8 +20,7 @@
     "/usr/local/share/lua/5.4/?.lua",
     "/usr/local/share/lua/5.4/?/init.lua",
     "/usr/share/nvim",
-    "/usr/share/nvim/runtime",
-    "$XDG_DATA_HOME/nvim/lazy"
+    "/usr/share/nvim/runtime"
   ],
   "workspace.checkThirdParty": false,
   "workspace.library": [

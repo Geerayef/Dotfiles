@@ -1,3 +1,6 @@
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+
 ---@type vim.lsp.Config
 local tsserver = {
   name = "TypeScript LS",

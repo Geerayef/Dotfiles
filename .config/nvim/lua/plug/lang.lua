@@ -1,4 +1,5 @@
 return {
+  { "guns/vim-sexp", event = "VeryLazy" },
   { "tarides/ocaml.nvim", ft = "ocaml", opts = { keymaps = {} } },
   { "gpanders/nvim-parinfer", ft = { "scheme", "commonlisp", "fennel" } },
   {
