@@ -12,7 +12,7 @@ return {
           preset = "obsidian",
           completions = { lsp = { enabled = true } },
           render_modes = true,
-          bullet = { icons = { S.Icons.ui.dot }, right_pad = 1 },
+          bullet = { icons = { ui.dot }, right_pad = 1 },
           checkbox = {
             custom = {
               working = { raw = "[>]", rendered = ui.angle_right_l .. " " },

@@ -1,4 +1,5 @@
 return {
+  { "folke/lazydev.nvim", ft = "lua", opts = true },
   { "guns/vim-sexp", event = "VeryLazy" },
   { "tarides/ocaml.nvim", ft = "ocaml", opts = { keymaps = {} } },
   { "gpanders/nvim-parinfer", ft = { "scheme", "commonlisp", "fennel" } },
@@ -33,7 +34,7 @@ return {
           args = { "--index=." },
           offset_encoding = "utf-32",
           root_dir = FS.root(vim.api.nvim_buf_get_name(0)),
-          on_attach = F.LspAttach,
+          on_attach = LSP.attach,
         },
       },
     },
