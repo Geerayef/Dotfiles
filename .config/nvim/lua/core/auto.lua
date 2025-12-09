@@ -102,11 +102,11 @@ autocmd("ColorScheme", {
     hl(0, "NormalNC", { link = "Normal" })
     hl(0, "NormalFloat", { link = "Normal" })
     hl(0, "FloatBorder", { link = "Normal" })
+    hl(0, "CursorLine", { bg = rp.charcoal[100] })
     hl(0, "CursorLineNr", { fg = rb.lotusYellow })
     hl(0, "TabLineSel", { fg = rb.lotusYellow })
     hl(0, "SignColumn", { link = "Normal" })
     hl(0, "WinSeparator", { link = "Normal" })
-    hl(0, "CursorLine", { bg = rp.charcoal[200] })
     hl(0, "MatchParen", {
       fg = rb.mintCream,
       bg = rp.charcoal[200],

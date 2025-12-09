@@ -60,6 +60,7 @@ return {
       notification = {
         override_vim_notify = true,
         window = {
+          border = S.BorderSimple,
           winblend = 0,
           max_width = 64,
           x_padding = 4,
@@ -70,7 +71,7 @@ return {
         view = {
           reflow = "ellipsis",
           icon_separator = " │ ",
-          group_separator = "────────",
+          group_separator = "────────────────────────",
         },
       },
     },

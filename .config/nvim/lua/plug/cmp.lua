@@ -10,6 +10,11 @@ return {
       config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
     },
     { "disrupted/blink-cmp-conventional-commits" },
+    {
+      dir = "~/dev/blink-conjure/",
+      name = "blink-conjure",
+      dev = true,
+    },
   },
   version = "1.*",
   opts = {
@@ -17,7 +22,7 @@ return {
       completion = { ghost_text = { enabled = true } },
       keymap = {
         ["<C-Space>"] = { "show", "fallback" },
-        ["<C-e>"] = { "hide" },
+        ["<C-e>"] = { "hide", "fallback" },
         ["<C-y>"] = { "accept", "select_and_accept" },
         ["<C-n>"] = { "select_next", "fallback" },
         ["<C-p>"] = { "select_prev", "fallback" },
@@ -68,23 +73,22 @@ return {
     sources = {
       default = {
         "lsp",
-        "path",
         "snippets",
         "buffer",
+        "path",
         "conjure",
         "conventional_commits",
         "omni",
+        "lazydev",
       },
       providers = {
-        conjure = {
-          name = "Conjure",
-          module = "util.blink-cmp-conjure",
-        },
+        conjure = { name = "Conjure", module = "blink-conjure" },
         conventional_commits = {
           name = "Conventional Commits",
           module = "blink-cmp-conventional-commits",
           enabled = vim.bo.filetype == "gitcommit",
         },
+        lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
       },
     },
     snippets = { preset = "luasnip" },
