@@ -117,7 +117,7 @@ local diffstat = function(buf)
   return vim.b[buf].git_diffstat
 end
 
----@param buf number # Buffer ID
+---@param buf integer # Buffer ID
 ---@return boolean
 local versioned_p = function(buf)
   local buf_path = vim.api.nvim_buf_get_name(buf)
@@ -126,7 +126,7 @@ local versioned_p = function(buf)
   local result = vim
     .system({ "git", "-C", buf_dir, "rev-parse", "--is-inside-work-tree" }, { text = true })
     :wait()
-  return result.code == 0 and result.stdout == "true"
+  return result.code == 0 and string.match(result.stdout, "true") ~= nil
 end
 
 GIT = {

@@ -63,12 +63,16 @@ return {
           },
           {
             function() return "│" end,
-            cond = function() return GIT.versioned_p(0) end,
+            cond = function()
+              return require("grim.git").versioned_p(vim.api.nvim_get_current_buf())
+            end,
             color = { bg = "NONE" },
           },
           {
             "diff",
-            cond = function() return GIT.versioned_p(0) end,
+            cond = function()
+              return require("grim.git").versioned_p(vim.api.nvim_get_current_buf())
+            end,
             source = function()
               local g = vim.b.gitsigns_status_dict
               if g then
