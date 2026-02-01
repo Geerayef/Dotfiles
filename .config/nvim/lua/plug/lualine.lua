@@ -18,14 +18,10 @@ return {
       sections = {
         lualine_a = {},
         lualine_b = {
-          {
-            function() return " " end,
-            color = { bg = "NONE" },
-            padding = { left = 13, right = 0 },
-          },
+          { function() return " " end, padding = { left = 13, right = 0 } },
         },
         lualine_c = {
-          { function() return "│" end, color = { bg = "NONE" }, padding = 0 },
+          { function() return "│" end, padding = 0 },
           {
             "filename",
             cond = function() return vim.fn.empty(vim.fn.expand("%:t")) ~= 1 end,
@@ -98,11 +94,7 @@ return {
           { "branch", icon = i.git.branch },
         },
         lualine_y = {
-          {
-            function() return " " end,
-            color = { bg = "NONE" },
-            padding = { left = 0, right = 3 },
-          },
+          { function() return " " end, padding = { left = 0, right = 3 } },
         },
         lualine_z = {},
       },

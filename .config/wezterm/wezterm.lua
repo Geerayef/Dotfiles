@@ -230,16 +230,16 @@ elseif string.match(font.fam_fb, "Jet") ~= nil then
 end
 -- stylua: ignore end
 C.unicode_version = 14
-C.font_size = 15
+C.font_size = 14
 C.font_dirs = { "~/.local/share/fonts/", "/usr/share/fonts/TTF/" }
 C.font = W.font_with_fallback({
   { family = font.fam, harfbuzz_features = font.feat, style = "Normal" },
-  { family = font.fam, harfbuzz_features = font.feat, style = "Oblique" },
+  { family = "JetBrainsMono NFM" },
   { family = font.fam_fb, harfbuzz_features = font.feat_fb },
   { family = "Symbols Nerd Font Mono" },
   { family = "Font Awesome" },
 })
-C.line_height = 1.6
+C.line_height = 1.7
 C.freetype_load_target = "Light"
 C.freetype_render_target = "Normal"
 C.freetype_load_flags = "DEFAULT|NO_AUTOHINT"

@@ -319,7 +319,6 @@ S.TSEnsure = {
   "hyprlang",
   "hurl",
   "json",
-  "jsonc",
   "jq",
   "ini",
   "toml",

@@ -17,7 +17,7 @@ local emmyluals = {
   cmd = { "emmylua_ls" },
   on_attach = LSP.attach,
   filetypes = { "lua" },
-  root_markers = { "*.lua", "init.lua" },
+  root_markers = { ".emmyrc.json", ".luarc.json" },
 }
 
 vim.lsp.config("emmylua_ls", emmyluals)

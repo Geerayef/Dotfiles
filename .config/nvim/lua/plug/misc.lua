@@ -71,7 +71,7 @@ return {
         view = {
           reflow = "ellipsis",
           icon_separator = " │ ",
-          group_separator = "────────────────────────",
+          group_separator = "    ----    ",
         },
       },
     },

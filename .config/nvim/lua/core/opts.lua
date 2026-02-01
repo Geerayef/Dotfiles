@@ -6,11 +6,7 @@ vim.g.did_install_default_menus = 1
 
 local o = vim.opt
 
-if vim.fn.has("win32") then
-  o.shell = "pwsh.exe"
-else
-  o.shell = "/usr/bin/fish"
-end
+o.shell = "/usr/bin/fish"
 o.shortmess:append("IWSsac")
 if vim.fn.executable("rg") == 1 then
   o.grepprg =
