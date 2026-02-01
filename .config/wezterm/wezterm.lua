@@ -193,10 +193,8 @@ C.default_cursor_style = "SteadyBlock"
 C.force_reverse_video_cursor = false
 
 -- Colors
--- Grayscale (dark) (terminal.sexy) | Black Metal (Marduk) (base16) | VWbug (terminal.sexy)
--- Unsifted Wheat (terminal.sexy) | Twilight (Gogh)
--- Gruvbox Material (Gogh) | Shic (terminal.sexy) | Terminix Dark (Gogh) | Navy and Ivory (terminal.sexy)
-C.color_scheme = "Batman"
+-- Gruvbox Material (Gogh)
+C.color_scheme = "Gruvbox Material (Gogh)"
 C.colors = {
   background = rb.dragonInk,
   cursor_fg = rb.dragonInk,
@@ -234,8 +232,8 @@ C.font_size = 14
 C.font_dirs = { "~/.local/share/fonts/", "/usr/share/fonts/TTF/" }
 C.font = W.font_with_fallback({
   { family = font.fam, harfbuzz_features = font.feat, style = "Normal" },
-  { family = "JetBrainsMono NFM" },
   { family = font.fam_fb, harfbuzz_features = font.feat_fb },
+  { family = "JetBrainsMono NFM" },
   { family = "Symbols Nerd Font Mono" },
   { family = "Font Awesome" },
 })
