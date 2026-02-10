@@ -65,9 +65,7 @@ C.keys = {
   map("f", a.Search("CurrentSelectionOrEmptyString")),
   -- Tab
   map("t", a.SpawnTab("CurrentPaneDomain")),
-  map("[", a.ActivateTabRelative(-1)),
   map("p", a.ActivateTabRelative(-1)),
-  map("]", a.ActivateTabRelative(1)),
   map("n", a.ActivateTabRelative(1)),
   -- Move
   map("m", a.ActivateKeyTable({ name = "move_tab", one_shot = false })),
@@ -112,7 +110,7 @@ C.key_tables = {
 W.on("format-tab-title", function(tab)
   local program =
     string.gmatch(tab.active_pane.foreground_process_name, "([^/\\]+)$")
-  return " " .. (G.icon_proc[program()] or "○ ") .. " "
+  return " " .. (G.icon_proc[program()] or nf.fa_gear) .. " "
 end)
 
 W.on("update-status", function(win, _)
@@ -135,23 +133,17 @@ W.on("update-status", function(win, _)
     s = "LDR "
     s_clr = rb.rustyRed
   end
-  local time = W.strftime("%H:%M")
   win:set_left_status(W.format({
     { Text = "    " },
     { Foreground = { Color = s_clr } },
     { Text = nf.oct_table .. " " .. s },
     { Text = "    " },
     "ResetAttributes",
-    { Foreground = { Color = rb.mintCream } },
     { Text = "│ " },
   }))
-  win:set_right_status(W.format({
-    { Foreground = { Color = rb.mintCream } },
-    -- { Text = bat() .. " " },
-    { Text = nf.md_clock .. " " .. time },
-    "ResetAttributes",
-    { Text = "    " },
-  }))
+  win:set_right_status(
+    W.format({ { Text = nf.md_clock .. " " .. W.strftime("%H:%M") .. "    " } })
+  )
 end)
 
 -- ~ Option ---------------------------------------------------------------- ~ --
@@ -193,9 +185,12 @@ C.default_cursor_style = "SteadyBlock"
 C.force_reverse_video_cursor = false
 
 -- Colors
--- Gruvbox Material (Gogh)
-C.color_scheme = "Gruvbox Material (Gogh)"
+-- Batman | Gruvbox dark, hard (base16) | Digerati (terminal.sexy) | Mona Lisa (Gogh)
+-- | Nature Suede (terminal.sexy)
+-- Base: Dawn (terminal.sexy)
+C.color_scheme = "Batman"
 C.colors = {
+  foreground = rb.mintCream,
   background = rb.dragonInk,
   cursor_fg = rb.dragonInk,
   cursor_bg = rb.lotusYellow,
@@ -205,9 +200,6 @@ C.colors = {
       bg_color = rb.mintCream,
       fg_color = rb.dragonInk,
       intensity = "Bold",
-      underline = "None",
-      italic = false,
-      strikethrough = false,
     },
     inactive_tab = { bg_color = rb.dragonInk, fg_color = rb.mintCream },
   },

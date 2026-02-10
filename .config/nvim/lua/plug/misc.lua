@@ -4,6 +4,7 @@ return {
   { "tpope/vim-eunuch", event = "CmdlineEnter" },
   { "tpope/vim-repeat", event = "CursorHold" },
   { "tpope/vim-surround", event = "CursorHold" },
+  { "tpope/vim-sexp-mappings-for-regular-people", ft = "scheme" },
   { "lewis6991/fileline.nvim" },
   { "andrewferrier/debugprint.nvim", version = "*", event = "VeryLazy", opts = true },
   { "phelipetls/jsonpath.nvim", ft = "json", opts = true },

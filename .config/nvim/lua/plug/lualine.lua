@@ -62,7 +62,6 @@ return {
             cond = function()
               return require("grim.git").versioned_p(vim.api.nvim_get_current_buf())
             end,
-            color = { bg = "NONE" },
           },
           {
             "diff",
