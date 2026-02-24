@@ -187,11 +187,12 @@ S.root_markers = {
   ".stylua.toml",
   "lazy-lock.json",
   -- [OCaml]
-  "dune",
+  -- "dune",
   "dune-project",
   "dune-workspace",
   ".ocamlformat",
   ".ocp-indent",
+  "*.opam",
   ".opam",
   -- [Haskell]
   "*.cabal",
@@ -203,6 +204,7 @@ S.root_markers = {
   "package.yaml.lock",
   -- [GO]
   "main.go",
+  "build.go",
   "go.mod",
   "go.work",
   "go.sum",

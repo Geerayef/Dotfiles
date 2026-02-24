@@ -32,10 +32,9 @@ return {
     "NeogitOrg/neogit",
     cmd = "Neogit",
     opts = {
-      graph_style = "kitty",
-      kind = "floating",
-      integrations = { fzf_lua = true },
-      use_per_project_settings = true,
+      graph_style = "unicode",
+      kind = "replace",
+      integrations = { fzf_lua = true, diffview = true },
       signs = {
         hunk = { S.Icons.ui.arrow_right, S.Icons.ui.arrow_down },
         item = { S.Icons.ui.arrow_right, S.Icons.ui.arrow_down },
@@ -44,7 +43,7 @@ return {
     },
   },
   {
-    "sindrets/diffview.nvim",
+    "dlyongemallo/diffview.nvim",
     cmd = {
       "DiffviewOpen",
       "DiffviewClose",
@@ -53,6 +52,32 @@ return {
       "DiffviewRefresh",
       "DiffviewFileHistory",
     },
-    opts = { file_panel = { listing_style = "list" } },
+    opts = {
+      show_help_hints = true,
+      view = {
+        file_history = { layout = "diff1_plain" },
+      },
+      file_panel = {
+        listing_style = "list",
+        win_config = {
+          type = "float",
+          width = math.floor(vim.api.nvim_win_get_width(0) * 0.4),
+          height = math.floor(vim.api.nvim_win_get_height(0) * 0.5),
+          col = vim.o.columns * 0.25,
+          row = vim.o.lines * 0.25,
+        },
+      },
+      file_history_panel = {
+        listing_style = "list",
+        commit_subject_max_length = 80,
+        win_config = {
+          type = "float",
+          width = math.floor(vim.api.nvim_win_get_width(0) * 0.8),
+          height = math.floor(vim.api.nvim_win_get_height(0) * 0.5),
+          col = vim.o.columns * 0.1,
+          row = vim.o.lines * 0.25,
+        },
+      },
+    },
   },
 }

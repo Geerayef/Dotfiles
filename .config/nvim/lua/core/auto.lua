@@ -67,9 +67,7 @@ autocmd({ "TabEnter", "BufEnter", "BufWinEnter" }, {
       vim.api.nvim_win_call(win, function()
         local dir_from = vim.fn.getcwd(0)
         local dir_to = require("grim.fs").root(info.file)
-        if dir_to ~= nil and dir_to ~= "" and dir_to ~= dir_from then
-          pcall(vim.cmd.cd, dir_to)
-        end
+        if dir_to ~= nil and dir_to ~= "" and dir_to ~= dir_from then pcall(vim.cmd.cd, dir_to) end
       end)
     end)
   end,

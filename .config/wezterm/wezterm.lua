@@ -105,6 +105,10 @@ C.key_tables = {
   },
 }
 
+for i = 1, 8 do
+  table.insert(C.keys, map(tostring(i), a.ActivateTab(i - 1)))
+end
+
 -- ~ Statusbar ------------------------------------------------------------- ~ --
 
 W.on("format-tab-title", function(tab)
