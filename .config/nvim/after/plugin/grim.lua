@@ -1,5 +1,7 @@
 local last_active_win = {}
 local devicons = require("nvim-web-devicons")
+local rb = require("clrs.road").base
+local rp = require("clrs.road").palette
 
 vim.api.nvim_create_autocmd("WinEnter", {
   callback = function()
@@ -34,34 +36,49 @@ end
 
 local tab_active_p = function(tab) return tab == vim.api.nvim_get_current_tabpage() end
 
+local highlight = function()
+  local hl = vim.api.nvim_set_hl
+  hl(0, "TabLine", { fg = rp.charcoal[700], bg = rb.dragonInk })
+  hl(0, "TabLineFill", { bg = rb.dragonInk })
+  hl(0, "GRIMActive", { bg = rb.dragonInk })
+  hl(0, "GRIMInactive", { fg = rp.charcoal[700], bg = rb.dragonInk })
+  hl(0, "GRIMActiveText", { fg = rb.lotusYellow, bg = rb.dragonInk })
+  hl(0, "GRIMInactiveText", { fg = rp.charcoal[700], bg = rb.dragonInk })
+end
+
 local tabline = function()
-  local tabline = ""
+  local line_format = ""
+  local hlgrp = {
+    GRIMActive = "%#GRIMActive#",
+    GRIMInactive = "%#GRIMInactive#",
+    GRIMActiveText = "%#GRIMActiveText#",
+    GRIMInactiveText = "%#GRIMInactiveText#",
+  }
   local tabs = vim.api.nvim_list_tabpages()
   for i, tab in ipairs(tabs) do
+    local tab_active = tab_active_p(tab)
     local wins_visible = get_normal_wins(tab)
     local count_tab_wins = #wins_visible
-    local win_current = tab_active_p(tab) and vim.api.nvim_get_current_win()
+    local win_current = tab_active and vim.api.nvim_get_current_win()
       or last_active_win[tab]
       or wins_visible[1]
     local buf_active = vim.api.nvim_win_get_buf(win_current or wins_visible[1])
     local name_buf_active = get_buf_name(buf_active)
     local buf_modified = vim.bo[buf_active].modified
-    local hl_left = tab_active_p(tab) and "%#GRIMActiveLeft#" or "%#GRIMInactiveLeft#"
-    local hl_text = tab_active_p(tab) and "%#GRIMActiveText#" or "%#GRIMInactiveText#"
-    local hl_right = tab_active_p(tab) and "%#GRIMActiveRight#" or "%#GRIMInactiveRight#"
+    local hl_text = tab_active and hlgrp.GRIMActiveText or hlgrp.GRIMInactiveText
+    local hl_def = tab_active and hlgrp.GRIMActive or hlgrp.GRIMInactive
     local hl_icon = "GRIMIcon" .. i
     local icon, color = devicons.get_icon_color(
       name_buf_active,
       vim.fn.fnamemodify(name_buf_active, ":e"),
       { default = true }
     )
-    vim.api.nvim_set_hl(0, hl_icon, { fg = color, bg = "NONE" })
-    tabline = tabline .. hl_left .. " "
-    tabline = tabline
+    vim.api.nvim_set_hl(0, hl_icon, { fg = color, bg = rb.dragonInk })
+    line_format = line_format .. hl_def .. " "
+    line_format = line_format
       .. hl_text
       .. i
-      .. "."
-      .. " "
+      .. ". "
       .. "%#"
       .. hl_icon
       .. "#"
@@ -72,31 +89,15 @@ local tabline = function()
       .. " "
       .. (count_tab_wins > 1 and "[" .. count_tab_wins .. "] " or "")
       .. (buf_modified and S.Icons.ui.dot_l or " ")
-      .. " "
-      .. "|"
-    tabline = tabline .. hl_right .. ""
-    tabline = tabline .. "%#TabLine#"
+      .. " |"
+    line_format = line_format .. hl_def .. "%#TabLine#"
   end
-  return tabline
-end
-
-local highlight = function()
-  local rp = require("clrs.road").palette
-  local hl = vim.api.nvim_set_hl
-  hl(0, "TabLine", { fg = "#666666", bg = "NONE" })
-  hl(0, "TabLineFill", { bg = "NONE" })
-  hl(0, "GRIMActiveLeft", { fg = "NONE", bg = "NONE" })
-  hl(0, "GRIMActiveText", { fg = rp.lotusYellow["DEFAULT"], bg = "NONE" })
-  hl(0, "GRIMActiveRight", { fg = "NONE", bg = "NONE" })
-  hl(0, "GRIMInactiveLeft", { fg = "NONE", bg = "NONE" })
-  hl(0, "GRIMInactiveText", { fg = rp.charcoal[700], bg = "NONE" })
-  hl(0, "GRIMInactiveRight", { fg = "NONE", bg = "NONE" })
+  line_format = line_format .. "%#TabLineFill#"
+  highlight()
+  return line_format
 end
 
 GRIM.tab = {
-  init = function()
-    highlight()
-    vim.o.tabline = "%!v:lua.GRIM.tab.line()"
-  end,
+  init = function() vim.o.tabline = "%!v:lua.GRIM.tab.line()" end,
   line = tabline,
 }
