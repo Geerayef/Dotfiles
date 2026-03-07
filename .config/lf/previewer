@@ -1,0 +1,29 @@
+#!/usr/bin/env fish
+
+function draw -d "Draw preview." -a file w h x y
+    # wezterm imgcat --width $w --height $h --position $x,$y $file </dev/null
+    set -l format (printf "%ux%u@%ux%u" $w $h $x $y)
+    kitten icat --stdin no --transfer-mode memory --place $format $file </dev/null >/dev/tty
+    exit 1
+end
+
+function main -d "LF: Previewer"
+    set -f file $argv[1]
+    set -f h $argv[2]
+    set -f w $argv[3]
+    set -f x $argv[4]
+    set -f y $argv[5]
+    set -f terminal_cols (tput cols)
+    set -f terminal_rows (tput lines)
+
+    switch (handlr mime  $file | awk 'NR == 2 { print $2 }')
+        case "image/*"
+            draw $file $terminal_cols $terminal_rows $x $y
+        case "text/*"
+            bat --strip-ansi always $file
+        case "application/*"
+            bat --strip-ansi always $file
+    end
+end
+
+main $argv

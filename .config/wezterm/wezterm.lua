@@ -112,9 +112,8 @@ end
 -- ~ Statusbar ------------------------------------------------------------- ~ --
 
 W.on("format-tab-title", function(tab)
-  local program =
-    string.gmatch(tab.active_pane.foreground_process_name, "([^/\\]+)$")
-  return " " .. (G.icon_proc[program()] or nf.fa_gear) .. " "
+  local program = string.match(tab.active_pane.foreground_process_name, "%w+$")
+  return " " .. (program and G.icon_proc[program] or nf.fa_gear) .. " "
 end)
 
 W.on("update-status", function(win, _)
@@ -175,13 +174,14 @@ C.scrollback_lines = 2000
 C.audible_bell = "Disabled"
 C.set_environment_variables = { CURRENT_TERM = "wezterm" }
 C.check_for_updates = false
+C.enable_kitty_keyboard = true
 
 -- Window
 C.window_background_opacity = 1
 C.window_decorations = "NONE"
 C.window_frame = {}
 C.window_padding = { left = "0%", right = "0%", top = "0%", bottom = "0%" }
-C.use_resize_increments = true
+C.use_resize_increments = false
 C.adjust_window_size_when_changing_font_size = false
 C.enable_scroll_bar = false
 C.inactive_pane_hsb = { saturation = 1, brightness = 1 }

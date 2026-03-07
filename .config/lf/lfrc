@@ -1,30 +1,26 @@
 # ~ Options ---------------------------------------------------------------- ~ #
 
-# interpreter for shell commands
 set shell bash
-# set '-eu' options for shell commands
-# These options are used to have safer shell commands. Option '-e' is used to
-# exit on error and option '-u' is used to give error for unset variables.
-# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
-# $fx variables contain names with '*' or '?' characters. However, this option
-# is used selectively within individual commands as it can be limiting at
-# times.
 set shellopts '-eu'
-# set internal field separator (IFS) to "\n" for shell commands
-# This is useful to automatically split file names in $fs and $fx properly
-# since default file separator used in these variables (i.e. 'filesep' option)
-# is newline. You need to consider the values of these options and create your
-# commands accordingly.
 set ifs "\n"
-# leave some space at the top and the bottom of the screen
+
 set scrolloff 4
-# Use the `dim` attribute instead of underline for the cursor in the preview pane
+set cursoractivefmt "\033[30;43m"
 set cursorpreviewfmt "\033[7;2m"
+set errorfmt "\033[1;33m%s\033[0m"
 set ratios 1:1
 set hidden true
 set number true
 set relativenumber true
 set icons true
+set drawbox true
+set tabstop 4
+
+set incfilter true
+set incsearch true
+set findlen 2
+set previewer "~/.config/lf/previewer"
+set cleaner "~/.config/lf/cleaner"
 
 # ~ Command ---------------------------------------------------------------- ~ #
 
@@ -103,7 +99,6 @@ map ` !true
 # execute current file (must be executable)
 map * $$f
 map o $handlr open $f
-# mkdir command. See wiki if you want it to select created dir
 map a :push %mkdir<space>
 map d trash
 map x cut

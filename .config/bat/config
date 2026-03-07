@@ -1,4 +1,5 @@
 --style="numbers,changes"
---theme="Sublime Snazzy"
+--theme="zenburn"
 --wrap=character
 --paging=never
+--color=always

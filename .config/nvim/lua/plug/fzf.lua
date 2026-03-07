@@ -4,7 +4,6 @@ return {
   opts = {
     { "max-perf", "telescope" },
     fzf_opts = { ["--layout"] = "reverse", ["--marker"] = false },
-    defaults = { compat_warn = false, no_header = true, no_header_i = true },
     winopts = {
       header = false,
       height = 0.4,
@@ -12,10 +11,9 @@ return {
       row = 0.5,
       col = 0.5,
       border = S.Border,
-      treesitter = { enabled = true },
+      treesitter = true,
       backdrop = 100,
       preview = {
-        -- default = "bat",
         border = "noborder",
         wrap = "nowrap",
         hidden = "hidden",
@@ -54,7 +52,7 @@ return {
     oldfiles = { winopts = { title = " Old files ", width = 0.4 } },
     buffers = { winopts = { width = 0.4 } },
     helptags = {
-      winopts = { width = 1.0, height = 0.75, row = 1.0, col = 0.0 },
+      winopts = { width = 1.0, height = 0.5, row = 1.0, col = 0.0 },
     },
   },
 }
