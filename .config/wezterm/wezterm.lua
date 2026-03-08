@@ -10,7 +10,7 @@ local font = {
   fam = "Iosevka",
   fam_fb = "IosevkaTerm Nerd Font Mono",
   feat = { "calt=1", "clig=1", "liga=1", "dlig=1" },
-  feat_fb = {},
+  feat_fb = { "calt=1", "clig=1", "liga=1", "dlig=1" },
 }
 
 G.icon_proc = {
@@ -117,7 +117,7 @@ W.on("format-tab-title", function(tab)
 end)
 
 W.on("update-status", function(win, _)
-  local s_clr = rb.emerald
+  local s_clr = rb.lotusYellow
   local s = win:active_workspace()
   if win:active_key_table() then
     s = win:active_key_table()
@@ -130,7 +130,7 @@ W.on("update-status", function(win, _)
     elseif s == "search_mode" then
       s = "FIND"
     end
-    s_clr = rp.gunmetal[900]
+    s_clr = rb.mintCream
   end
   if win:leader_is_active() then
     s = "LDR "
@@ -140,8 +140,8 @@ W.on("update-status", function(win, _)
     { Text = "    " },
     { Foreground = { Color = s_clr } },
     { Text = nf.oct_table .. " " .. s },
-    { Text = "    " },
     "ResetAttributes",
+    { Text = "    " },
     { Text = "│ " },
   }))
   win:set_right_status(
@@ -201,7 +201,7 @@ C.colors = {
   tab_bar = {
     background = rb.dragonInk,
     active_tab = {
-      bg_color = rb.mintCream,
+      bg_color = rb.lotusYellow,
       fg_color = rb.dragonInk,
       intensity = "Bold",
     },
@@ -224,7 +224,7 @@ elseif string.match(font.fam_fb, "Jet") ~= nil then
 end
 -- stylua: ignore end
 C.unicode_version = 14
-C.font_size = 14
+C.font_size = 12
 C.font_dirs = { "~/.local/share/fonts/", "/usr/share/fonts/TTF/" }
 C.font = W.font_with_fallback({
   { family = font.fam, harfbuzz_features = font.feat, style = "Normal" },
@@ -233,7 +233,7 @@ C.font = W.font_with_fallback({
   { family = "Symbols Nerd Font Mono" },
   { family = "Font Awesome" },
 })
-C.line_height = 1.7
+C.line_height = 1.95
 C.freetype_load_target = "Light"
 C.freetype_render_target = "Normal"
 C.freetype_load_flags = "DEFAULT|NO_AUTOHINT"
