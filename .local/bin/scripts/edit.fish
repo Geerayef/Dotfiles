@@ -26,7 +26,7 @@ else if test -n "$CURRENT_TERM"
                 kitty $EDITOR $argv
             end
         case '*'
-            echo "~~~~~ [INFO] Environment variable CURRENT TERM is not set."
+            echo " >>> [INFO] edit.fish -- Environment variable CURRENT TERM is not set."
     end
 else
     $TERM -e $EDITOR $argv
