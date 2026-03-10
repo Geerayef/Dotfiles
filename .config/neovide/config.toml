@@ -6,14 +6,14 @@ srgb = false
 idle = true
 frame = "none"
 title-hidden = true
-tabs = false
+tabs = true
 
 [font]
 normal = { family = "Iosevka", style = "Regular" }
 bold = { family = "Iosevka", style = "Bold" }
-italic = { family = "Iosevka", style = "Italic" }
-bold_italic = { family = "Iosevka", style = "BoldItalic" }
-size = 16
+italic = { family = "Iosevka", style = "Light Oblique" }
+bold_italic = { family = "Iosevka", style = "Bold Italic" }
+size = 14
 
 [font.features]
 IosevkaTermNFM = [ "calt=1", "clig=1", "liga=1", "dlig=1", "cv26=12", "cv85=6", "+ss10" ]
