@@ -5,9 +5,7 @@
 local root = function(file, root_markers)
   if not file or file == "" or not vim.uv.fs_stat(file) then return nil end
   root_markers = root_markers or S.root_markers
-  if vim.tbl_contains(root_markers, vim.fs.basename(file)) then
-    return vim.fs.dirname(file)
-  end
+  if vim.tbl_contains(root_markers, vim.fs.basename(file)) then return vim.fs.dirname(file) end
   local proximity_threshold = 2
   local closest = ""
   local closest_proximity = 32

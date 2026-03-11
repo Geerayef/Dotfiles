@@ -40,82 +40,57 @@ When given a task:
 ]]
 
 return {
-  {
-    "olimorris/codecompanion.nvim",
-    cmd = {
-      "CodeCompanion",
-      "CodeCompanionActions",
-      "CodeCompanionChat",
-      "CodeCompanionCmd",
-    },
-    opts = {
-      adapters = {
-        ["ollama"] = function()
-          return require("codecompanion.adapters").extend("ollama", {
-            name = "ollama",
-            schema = {
-              model = { default = "qwen2.5-coder:7b" },
-              num_ctx = { default = 16384 },
-              temperature = {
-                order = 2,
-                mapping = "parameters",
-                type = "number",
-                optional = true,
-                default = 0.8,
-                desc = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.",
-                validate = function(n)
-                  return n >= 0 and n <= 2, "Must be between 0 and 2"
-                end,
-              },
-            },
-          })
-        end,
-      },
-      opts = {
-        system_prompt = system_prompt,
-        language = "English",
-      },
-      strategies = {
-        chat = { adapter = { name = "ollama", model = "qwen2.5-coder:7b" } },
-        inline = {
-          adapter = { name = "ollama", model = "qwen2.5-coder:7b" },
-          keymaps = {
-            accept_change = {
-              modes = { n = "<leader>Sa" },
-              description = "LLM [S]uggestion [a]ccept",
-            },
-            reject_change = {
-              modes = { n = "<leader>Sr" },
-              description = "LLM [S]uggestion [r]eject",
+  "olimorris/codecompanion.nvim",
+  cmd = {
+    "CodeCompanion",
+    "CodeCompanionActions",
+    "CodeCompanionChat",
+    "CodeCompanionCmd",
+  },
+  opts = {
+    adapters = {
+      ["ollama"] = function()
+        return require("codecompanion.adapters").extend("ollama", {
+          name = "ollama",
+          schema = {
+            model = { default = "qwen2.5-coder:7b" },
+            num_ctx = { default = 16384 },
+            temperature = {
+              order = 2,
+              mapping = "parameters",
+              type = "number",
+              optional = true,
+              default = 0.8,
+              desc = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.",
+              validate = function(n) return n >= 0 and n <= 2, "Must be between 0 and 2" end,
             },
           },
-        },
-        cmd = { adapter = { name = "ollama", model = "qwen2.5-coder:7b" } },
-      },
-      display = {
-        action_palette = { width = 0.75, height = 0.4, provider = "fzf_lua" },
-      },
+        })
+      end,
     },
-  },
-  {
-    "nomnivore/ollama.nvim",
-    cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
     opts = {
-      model = "qwen2.5-coder:7b",
-      url = "http://127.0.0.1:11434",
-      serve = {
-        on_start = false,
-        command = "ollama",
-        args = { "serve" },
-        stop_command = "pkill",
-        stop_args = { "-SIGTERM", "ollama" },
-      },
-      prompts = {
-        buf = {
-          prompt = "With user input ($input), consider the file $fname with contents $buf, optional selection $sel and respond.",
-          system = system_prompt,
+      system_prompt = system_prompt,
+      language = "English",
+    },
+    strategies = {
+      chat = { adapter = { name = "ollama", model = "qwen2.5-coder:7b" } },
+      inline = {
+        adapter = { name = "ollama", model = "qwen2.5-coder:7b" },
+        keymaps = {
+          accept_change = {
+            modes = { n = "<leader>Sa" },
+            description = "LLM [S]uggestion [a]ccept",
+          },
+          reject_change = {
+            modes = { n = "<leader>Sr" },
+            description = "LLM [S]uggestion [r]eject",
+          },
         },
       },
+      cmd = { adapter = { name = "ollama", model = "qwen2.5-coder:7b" } },
+    },
+    display = {
+      action_palette = { width = 0.75, height = 0.4, provider = "fzf_lua" },
     },
   },
 }

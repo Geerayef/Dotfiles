@@ -1,10 +1,11 @@
 vim.diagnostic.config({
-  severity_sort = true,
-  signs = true,
   underline = true,
-  update_in_insert = false,
   virtual_text = true,
   virtual_lines = false,
+  update_in_insert = false,
+  severity_sort = true,
+  signs = true,
+  jump = { float = true },
   float = {
     scope = "line",
     source = "if_many",

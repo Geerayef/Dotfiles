@@ -9,7 +9,6 @@ return {
       dependencies = "rafamadriz/friendly-snippets",
       config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
     },
-    { "disrupted/blink-cmp-conventional-commits" },
   },
   version = "1.*",
   opts = {
@@ -71,15 +70,7 @@ return {
         "snippets",
         "buffer",
         "path",
-        "conventional_commits",
         "omni",
-      },
-      providers = {
-        conventional_commits = {
-          name = "Conventional Commits",
-          module = "blink-cmp-conventional-commits",
-          enabled = vim.bo.filetype == "gitcommit",
-        },
       },
     },
     snippets = { preset = "luasnip" },

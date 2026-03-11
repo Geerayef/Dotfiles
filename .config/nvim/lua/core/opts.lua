@@ -2,15 +2,13 @@ vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_python3_provider = 0
-vim.g.did_install_default_menus = 1
 
 local o = vim.opt
 
 o.shell = "/usr/bin/fish"
 o.shortmess:append("IWSsac")
 if vim.fn.executable("rg") == 1 then
-  o.grepprg =
-    "rg --vimgrep --hidden --color=never --no-heading --line-number --column --with-filename  --smart-case --trim --"
+  o.grepprg = "rg -. --color=never --no-heading -n --column -H  -S --trim --"
 end
 
 -- ~ File
@@ -34,12 +32,12 @@ o.breakindent = true
 o.breakindentopt = "list:-1"
 o.showbreak = "  "
 o.complete:append("f,i,kspell")
-o.completeopt = "menuone,noselect,noinsert,fuzzy"
+o.completeopt = "fuzzy,menuone,noselect,noinsert,popup"
 o.showfulltag = true
 o.virtualedit = "block"
 o.wildmenu = true
-o.wildmode = "list:longest,list:full"
-o.wildoptions = "fuzzy,pum"
+o.wildmode = "longest,full,noselect"
+o.wildoptions = "pum"
 o.wildignore:append({
   ".javac",
   "node_modules",
@@ -108,7 +106,7 @@ o.inccommand = "split"
 o.hlsearch = true
 o.incsearch = true
 o.mouse = ""
-o.sessionoptions = "buffers,curdir,folds,help,tabpages,localoptions"
+o.sessionoptions = "buffers,curdir,folds,tabpages,localoptions"
 o.synmaxcol = 256
 
 -- ~ Chars

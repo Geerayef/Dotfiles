@@ -8,14 +8,6 @@ return {
     opts = { compile = true, background = { dark = "zen", light = "mist" } },
   },
   {
-    "sainnhe/gruvbox-material",
-    lazy = vim.g.theme ~= "gruvbox-material",
-    config = function()
-      vim.g.gruvbox_material_enable_italic = false
-      vim.g.gruvbox_material_background = "hard"
-    end,
-  },
-  {
     "amedoeyes/eyes.nvim",
     lazy = vim.g.theme ~= "eyes",
     opts = {

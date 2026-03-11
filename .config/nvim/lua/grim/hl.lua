@@ -2,9 +2,9 @@
 ---Does not create a highlight group if it doesn't exist.
 ---(Default: `opts.create = false`).
 ---`opts.winhl_link`: Get highlight attributes without effect of `winhl`
----@param ns_id integer
+---@param ns_id integer # Namespace ID
 ---@param opts { name: string?, id: integer?, link: boolean?, create: boolean?, [any]: any }
----@return vim.api.keyset.hl_info # Highlight attributes
+---@return vim.api.keyset.get_hl_info # Highlight attributes
 local get = function(ns_id, opts)
   local no_winhl_link = opts.winhl_link == false
   opts.winhl_link = nil
@@ -43,10 +43,8 @@ local range_single = function(buf, hlgroup, range)
   vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
   if range then
     for linenr = range.start.line, range["end"].line do
-      local start_col = linenr == range.start.line and range.start.character
-        or 0
-      local end_col = linenr == range["end"].line and range["end"].character
-        or -1
+      local start_col = linenr == range.start.line and range.start.character or 0
+      local end_col = linenr == range["end"].line and range["end"].character or -1
       HL.buf_add(buf, ns, hlgroup, linenr, start_col, end_col)
     end
   end
@@ -93,9 +91,7 @@ local normalize_fg_or_bg = function(attr_type, fbg, default)
   if not fbg then return default end
   local data_type = type(fbg)
   if data_type == "number" then
-    if attr_type:match("^cterm") then
-      return fbg >= 0 and fbg <= 255 and fbg or default
-    end
+    if attr_type:match("^cterm") then return fbg >= 0 and fbg <= 255 and fbg or default end
     return fbg
   end
   if data_type == "string" then
@@ -152,9 +148,7 @@ end
 ---@param name string
 ---@param attr vim.api.keyset.highlight # Highlight attributes
 ---@return nil
-local set = function(ns_id, name, attr)
-  vim.api.nvim_set_hl(ns_id, name, HL.normalize(attr))
-end
+local set = function(ns_id, name, attr) vim.api.nvim_set_hl(ns_id, name, HL.normalize(attr)) end
 
 ---Set default highlight attributes, normalize highlight attributes before setting.
 ---@param ns_id integer
@@ -209,8 +203,7 @@ end
 ---@param n_digits integer? # Number of digits used for the hex code
 ---@return string hex
 local dec2hex = function(int, n_digits)
-  return not n_digits and string.format("%x", int)
-    or string.format("%0" .. n_digits .. "x", int)
+  return not n_digits and string.format("%x", int) or string.format("%0" .. n_digits .. "x", int)
 end
 
 ---Convert hex to rgb.
@@ -273,16 +266,10 @@ end
 ---@param alpha number? # Weight of the first color [0-1] (Default: 0.5)
 ---@return table # Merged color or highlight attributes
 local blend = function(h1, h2, alpha)
-  h1 = type(h1) == "table" and h1
-    or HL.get(0, { name = h1, winhl_link = false })
-  h2 = type(h2) == "table" and h2
-    or HL.get(0, { name = h2, winhl_link = false })
-  local fg = h1.fg and h2.fg and HL.cblend(h1.fg, h2.fg, alpha).dec
-    or h1.fg
-    or h2.fg
-  local bg = h1.bg and h2.bg and HL.cblend(h1.bg, h2.bg, alpha).dec
-    or h1.bg
-    or h2.bg
+  h1 = type(h1) == "table" and h1 or HL.get(0, { name = h1, winhl_link = false })
+  h2 = type(h2) == "table" and h2 or HL.get(0, { name = h2, winhl_link = false })
+  local fg = h1.fg and h2.fg and HL.cblend(h1.fg, h2.fg, alpha).dec or h1.fg or h2.fg
+  local bg = h1.bg and h2.bg and HL.cblend(h1.bg, h2.bg, alpha).dec or h1.bg or h2.bg
   return vim.tbl_deep_extend("force", h1, h2, { fg = fg, bg = bg })
 end
 

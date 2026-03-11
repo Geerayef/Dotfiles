@@ -8,9 +8,7 @@ vim.g.maplocalleader = " "
 ---@param r string|function # Right side of mapping
 ---@param buf number # Buffer ID
 ---@param desc string # Mapping description
-local function bmap(mode, l, r, buf, desc)
-  vim.keymap.set(mode, l, r, { buffer = buf, desc = desc })
-end
+local function bmap(mode, l, r, buf, desc) vim.keymap.set(mode, l, r, { buffer = buf, desc = desc }) end
 
 ---Map key sequence to action.
 ---Wrapper for `vim.keymap.set`.
@@ -71,18 +69,8 @@ map("n", "<leader>tml", "<cmd>tabmove +1<CR>", "[t]ab [m]ove [l] right")
 map("n", "<leader>tmh", "<cmd>tabmove -1<CR>", "[t]ab [m]ove [h] left")
 
 -- Diagnostic
-map(
-  "n",
-  "]d",
-  function() vim.diagnostic.jump({ count = 1, float = true }) end,
-  "Next ] [d]iagnostic"
-)
-map(
-  "n",
-  "[d",
-  function() vim.diagnostic.jump({ count = -1, float = true }) end,
-  "Previous [ [d]iagnostic"
-)
+map("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, "Next ] [d]iagnostic")
+map("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, "Previous [ [d]iagnostic")
 
 -- Commandline
 vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", {})
@@ -126,12 +114,7 @@ map("n", "<leader>sh", "<cmd>FzfLua helptags<CR>", "FzfLua [s]earch [h]elp")
 map("n", "<leader>sg", "<cmd>FzfLua live_grep<CR>", "FzfLua [s]earch [g]rep")
 map("n", "<leader>sw", "<cmd>FzfLua grep_cword<CR>", "FzfLua [s]earch [w]ord")
 map("n", "<leader>sd", "<cmd>FzfLua diagnostics_document<CR>", "FzfLua [s]earch [d]iagnostics")
-map(
-  "n",
-  "<leader>wd",
-  "<cmd>FzfLua diagnostics_workspace<CR>",
-  "FzfLua [w]orkspace [d]iagnostrics"
-)
+map("n", "<leader>wd", "<cmd>FzfLua diagnostics_workspace<CR>", "FzfLua [w]orkspace [d]iagnostrics")
 map("n", "<leader>ss", "<cmd>FzfLua spell_suggest<CR>", "FzFLua [s]earch [s]pell suggestions")
 map("n", "<leader>?", "<cmd>FzfLua oldfiles<CR>", "[?] FzfLua recent files")
 map("n", "<leader> ", "<cmd>FzfLua buffers<CR>", "[ ] FzfLua open buffers")
@@ -180,12 +163,7 @@ map("n", "<leader>hs", "<cmd>Gitsigns stage_hunk<CR>", "Gitsigns [h]unk [s]tage"
 map("n", "<leader>hS", "<cmd>Gitsigns undo_stage_hunk<CR>", "Gitsigns [h]unk un[S]tage")
 map("n", "<leader>hr", "<cmd>Gitsigns reset_hunk<CR>", "Gitsigns [h]unk [r]eset")
 map("n", "<leader>hd", "<cmd>Gitsigns diffthis<CR>", "Gitsigns [h]unk [d]iff")
-map(
-  "n",
-  "<leader>htd",
-  "<cmd>Gitsigns toggle_deleted<CR>",
-  "Gitsigns [h]unk [t]oggle [d]eleted"
-)
+map("n", "<leader>htd", "<cmd>Gitsigns toggle_deleted<CR>", "Gitsigns [h]unk [t]oggle [d]eleted")
 map(
   "n",
   "<leader>htlb",
@@ -196,18 +174,8 @@ map(
 if vim.fn.has("win32") == 1 or vim.fn.has("wsl") == 1 then
   map("n", "<leader>Wgs", function() input(":!git.exe status<CR>") end, "[W]indows [g]it [a]dd")
   map("n", "<leader>Wga", function() input(":!git.exe add ") end, "[W]indows [g]it [a]dd")
-  map(
-    "n",
-    "<leader>Wga.",
-    function() input(":!git.exe add .<CR>") end,
-    "[W]indows [g]it [a]dd CWD"
-  )
-  map(
-    "n",
-    "<leader>Wgb",
-    function() input(":!git.exe branch<CR>") end,
-    "[W]indows [g]it [b]ranch"
-  )
+  map("n", "<leader>Wga.", function() input(":!git.exe add .<CR>") end, "[W]indows [g]it [a]dd CWD")
+  map("n", "<leader>Wgb", function() input(":!git.exe branch<CR>") end, "[W]indows [g]it [b]ranch")
   map("n", "<leader>Wgc", function() input(":!git.exe commit ") end, "[W]indows [g]it [c]ommit")
   map(
     "n",
@@ -221,12 +189,7 @@ if vim.fn.has("win32") == 1 or vim.fn.has("wsl") == 1 then
     function() input(":!git.exe checkout ") end,
     "[W]indows [g]it [c][h]eckout"
   )
-  map(
-    "n",
-    "<leader>Wgf",
-    function() input(":!git.exe fetch<CR>") end,
-    "[W]indows [g]it [f]etch"
-  )
+  map("n", "<leader>Wgf", function() input(":!git.exe fetch<CR>") end, "[W]indows [g]it [f]etch")
   map(
     "n",
     "<leader>Wgpl",
@@ -234,12 +197,7 @@ if vim.fn.has("win32") == 1 or vim.fn.has("wsl") == 1 then
     "[W]indows [g]it [p]u[l]l"
   )
   map("n", "<leader>Wgps", function() input(":!git.exe push ") end, "[W]indows [g]it [p]u[s]h")
-  map(
-    "n",
-    "<leader>Wgr",
-    function() input(":!git.exe restore ") end,
-    "[W]indows [g]it [r]estore"
-  )
+  map("n", "<leader>Wgr", function() input(":!git.exe restore ") end, "[W]indows [g]it [r]estore")
 end
 
 -- Markdown & Obsidian
@@ -256,12 +214,7 @@ map("n", "<leader>od", "<cmd>Obsidian today<CR>", "[o]bsidian to[d]ay")
 map("n", "<leader>ow", "<cmd>Obsidian workspace<CR>", "[o]bsidian [w]orkspace")
 map("n", "<leader>oc", "<cmd>Obsidian toggle_checkbox<CR>", "[o]bsidian [c]heckbox")
 map("n", "<leader>oq", "<cmd>Obsidian quick_switch<CR>", "[o]bsidian [q]uick switch")
-map(
-  { "n", "x" },
-  "<leader>oxn",
-  "<cmd>Obsidian extract_note<CR>",
-  "[o]bsidian e[x]tract [n]ote"
-)
+map({ "n", "x" }, "<leader>oxn", "<cmd>Obsidian extract_note<CR>", "[o]bsidian e[x]tract [n]ote")
 
 -- Colorizer
 map("n", "<leader>ct", cmd.ColorizerToggle, "[c]olorizer [t]oggle")
@@ -308,13 +261,7 @@ function Key.LSP(_, buf)
   )
   bmap("n", "<leader>lrn", blsp.rename, buf, "[l]SP [r]e[n]ame")
   bmap("n", "<leader>lca", "<cmd>FzfLua lsp_code_actions<CR>", buf, "[l]SP [c]ode [a]ction")
-  bmap(
-    "n",
-    "<leader>lgD",
-    "<cmd>FzfLua lsp_declarations<CR>",
-    buf,
-    "[l]SP [g]o to [D]eclaration"
-  )
+  bmap("n", "<leader>lgD", "<cmd>FzfLua lsp_declarations<CR>", buf, "[l]SP [g]o to [D]eclaration")
   bmap("n", "<leader>lgd", "<cmd>FzfLua lsp_definitions<CR>", buf, "[l]SP [g]o to [d]efinition")
   bmap("n", "<leader>lgr", "<cmd>FzfLua lsp_references<CR>", buf, "[l]SP [g]o to [r]eferences")
   bmap(

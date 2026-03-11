@@ -1,20 +1,16 @@
 return {
-  { "folke/lazydev.nvim", ft = "lua", opts = true },
-  { "guns/vim-sexp", event = "VeryLazy" },
   { "tarides/ocaml.nvim", ft = "ocaml", opts = { keymaps = {} } },
-  { "gpanders/nvim-parinfer", ft = { "scheme", "commonlisp", "fennel" } },
+  {
+    "guns/vim-sexp",
+    ft = { "scheme", "lisp", "commonlisp", "fennel", "clojure" },
+    dependencies = { "tpope/vim-sexp-mappings-for-regular-people", "gpanders/nvim-parinfer" },
+  },
   {
     "ranjithshegde/ccls.nvim",
     ft = { "c", "h", "cpp", "hpp" },
     opts = {
       win_config = {
-        sidebar = {
-          size = 50,
-          position = "topleft",
-          split = "vnew",
-          width = 50,
-          height = 20,
-        },
+        sidebar = { size = 50, position = "topleft", split = "vnew", width = 50, height = 20 },
         float = {
           style = "minimal",
           relative = "editor",

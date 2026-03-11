@@ -4,29 +4,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
-    opts = {
-      signs = {
-        add = { text = "│" },
-        change = { text = "│" },
-        delete = { text = "_" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "~" },
-        untracked = { text = "┆" },
-      },
-      signcolumn = true,
-      numhl = false,
-      linehl = false,
-      word_diff = false,
-      watch_gitdir = { follow_files = true },
-      auto_attach = true,
-      preview_config = {
-        border = S.Border,
-        style = "minimal",
-        relative = "cursor",
-        row = 0,
-        col = 1,
-      },
-    },
+    opts = { numhl = true, preview_config = { border = S.Border } },
   },
   {
     "NeogitOrg/neogit",
@@ -54,9 +32,7 @@ return {
     },
     opts = {
       show_help_hints = true,
-      view = {
-        file_history = { layout = "diff1_plain" },
-      },
+      view = { file_history = { layout = "diff1_plain" } },
       file_panel = {
         listing_style = "list",
         win_config = {
