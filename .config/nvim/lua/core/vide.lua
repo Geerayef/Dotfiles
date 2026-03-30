@@ -2,7 +2,7 @@ vim.g.neovide_refresh_rate = 60
 vim.g.neovide_refresh_rate_idle = 5
 vim.g.neovide_fullscreen = false
 vim.g.neovide_scale_factor = 1.2
-vim.g.neovide_transparency = 1
+vim.g.neovide_opacity = 1
 
 vim.g.neovide_theme = "dark"
 vim.g.neovide_text_gamma = 0

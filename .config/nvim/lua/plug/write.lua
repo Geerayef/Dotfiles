@@ -7,7 +7,6 @@ return {
     dependencies = {
       {
         "MeanderingProgrammer/render-markdown.nvim",
-        ft = { "markdown", "codecompanion" },
         opts = {
           preset = "obsidian",
           completions = { lsp = { enabled = true } },
@@ -23,7 +22,6 @@ return {
       },
       {
         "hedyhli/markdown-toc.nvim",
-        ft = "markdown",
         cmd = "Mtoc",
         opts = {
           toc_list = { markers = "-" },
@@ -64,8 +62,7 @@ return {
       frontmatter = { enabled = false },
       footer = { enabled = true },
       completion = { blink = true, min_chars = 2 },
-      follow_url_func = vim.ui.open,
-      preferred_link_style = "markdown",
+      link = { style = "markdown" },
       search = { sort_reversed = false, sort_by = "path" },
       picker = { name = "fzf-lua" },
       checkbox = {
@@ -73,22 +70,7 @@ return {
         create_new = true,
         order = { " ", "x", ">", "!", "-" },
       },
-      ui = {
-        enable = false,
-        update_debounce = 200,
-        checkboxes = {
-          [" "] = { char = ui.box_empty, hl_group = "ObsidianTodo" },
-          ["x"] = { char = ui.box_check, hl_group = "ObsidianDone" },
-          [">"] = { char = ui.circle_right, hl_group = "ObsidianRightArrow" },
-          ["!"] = { char = ui.diamond, hl_group = "ObsidianTilde" },
-          ["-"] = { char = ui.clock, hl_group = "ObsidianRightArrow" },
-        },
-        bullets = { char = ui.dot, hl_group = "ObsidianBullet" },
-        external_link_icon = {
-          char = ui.link,
-          hl_group = "ObsidianExtLinkIcon",
-        },
-      },
+      ui = { enable = false },
     },
   },
   -- {

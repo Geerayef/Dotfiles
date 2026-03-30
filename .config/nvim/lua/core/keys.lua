@@ -69,8 +69,18 @@ map("n", "<leader>tml", "<cmd>tabmove +1<CR>", "[t]ab [m]ove [l] right")
 map("n", "<leader>tmh", "<cmd>tabmove -1<CR>", "[t]ab [m]ove [h] left")
 
 -- Diagnostic
-map("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, "Next ] [d]iagnostic")
-map("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, "Previous [ [d]iagnostic")
+map(
+  "n",
+  "]d",
+  function() vim.diagnostic.jump({ count = 1, float = true }) end,
+  "Next ] [d]iagnostic"
+)
+map(
+  "n",
+  "[d",
+  function() vim.diagnostic.jump({ count = -1, float = true }) end,
+  "Previous [ [d]iagnostic"
+)
 
 -- Commandline
 vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", {})
@@ -215,9 +225,6 @@ map("n", "<leader>ow", "<cmd>Obsidian workspace<CR>", "[o]bsidian [w]orkspace")
 map("n", "<leader>oc", "<cmd>Obsidian toggle_checkbox<CR>", "[o]bsidian [c]heckbox")
 map("n", "<leader>oq", "<cmd>Obsidian quick_switch<CR>", "[o]bsidian [q]uick switch")
 map({ "n", "x" }, "<leader>oxn", "<cmd>Obsidian extract_note<CR>", "[o]bsidian e[x]tract [n]ote")
-
--- Colorizer
-map("n", "<leader>ct", cmd.ColorizerToggle, "[c]olorizer [t]oggle")
 
 -- DAP
 map("n", "<M-d>c", cmd.DapContinue, "DAP [c]ontinue")

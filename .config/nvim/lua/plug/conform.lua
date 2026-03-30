@@ -12,7 +12,6 @@ return {
   config = function()
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     require("conform").setup({
-      -- format_after_save = { async = false, lsp_fallback = true },
       formatters_by_ft = {
         c = { "clang-format" },
         cpp = { "clang-format" },
@@ -34,22 +33,11 @@ return {
         javascript = { "biome" },
         typescript = { "biome" },
         yaml = { "yamlfmt" },
+        css = { "biome" },
       },
       formatters = {
         ["clang-format"] = { prepend_args = { "--style=file" } },
         dune = { command = "dune", args = { "format-dune-file" } },
-        ruff_format = {
-          command = "ruff",
-          args = {
-            "format",
-            "--force-exclude",
-            "--stdin-filename",
-            "$FILENAME",
-            "-",
-          },
-          stdin = true,
-        },
-        beautysh = { prepend_args = { "-i", "2" } },
         shfmt = {
           inherit = false,
           command = "shfmt",
@@ -60,9 +48,7 @@ return {
           args = { "--crlf=strict", "--stdin", "$FILENAME" },
           stdin = true,
         },
-        gofumpt = {
-          prepend_args = { "-extra" },
-        },
+        gofumpt = { prepend_args = { "-extra" } },
       },
     })
   end,

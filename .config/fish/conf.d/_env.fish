@@ -11,6 +11,7 @@ set -gx FZF_BASE (which fzf)
 set -gx STARSHIP_CONFIG "$XDG_CONFIG_HOME/starship/starship.toml"
 set -gx RUFF_CACHE_DIR "$XDG_CACHE_HOME/ruff"
 set -gx PNPM_HOME "$XDG_DATA_HOME/pnpm"
+set -gx __GL_SHADER_DISK_CACHE_PATH "$XDG_CACHE_HOME/nv"
 
 # ~  General
 set -gx TERM wezterm
@@ -27,8 +28,6 @@ set -gx GTK_THEME Material
 set -gx VK_DRIVER_FILES /usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json
 set -gx MOOR "-colors=auto -wrap -statusbar plain -terminal-fg -no-linenumbers=false"
 set -gx BUN_INSTALL "$HOME/.local"
-set -gx LUA_PATH "$HOME/.local/lib/lua/?.lua;$HOME/.local/lib/lua/?/?.lua;$HOME/.local/lib/lua/?/init.lua;$HOME/.local/lib/lua/?/lua/?.lua;$HOME/.local/lib/lua/?/lua/init.lua;;"
-# Haskell: GHCUP
+set -gax LUA_PATH "$HOME/.local/lib/lua/?.lua;$HOME/.local/lib/lua/?/?.lua;$HOME/.local/lib/lua/?/init.lua;$HOME/.local/lib/lua/?/lua/?.lua;$HOME/.local/lib/lua/?/lua/init.lua;;"
 set -gx GHCUP_USE_XDG_DIRS 1
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
-set -gx PATH $HOME/.cabal/bin $PATH /home/tib/.local/bin

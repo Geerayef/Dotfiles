@@ -5,12 +5,23 @@ local G = W.GLOBAL
 local C = W.config_builder()
 local a = W.action
 local nf = W.nerdfonts
-local rb, rp = require("road").base, require("road").palette
+local rb = require("road").base
 local font = {
-  fam = "Iosevka",
-  fam_fb = "IosevkaTerm Nerd Font Mono",
-  feat = { "calt=1", "clig=1", "liga=1", "dlig=1" },
-  feat_fb = { "calt=1", "clig=1", "liga=1", "dlig=1" },
+  family = "Iosevka",
+  family_fallback = "IosevkaTerm Nerd Font Mono",
+  feature = { "calt=1", "clig=1", "liga=1", "dlig=1" },
+  feature_fallback = {
+    "calt=1",
+    "clig=1",
+    "liga=1",
+    "dlig=1",
+    "ss10",
+    "cv01=2",
+    "cv10=6",
+    "cv26=12",
+    "cv59=16",
+    "cv85=6",
+  },
 }
 
 G.icon_proc = {
@@ -36,9 +47,7 @@ G.icon_proc = {
 
 -- ~ Key ------------------------------------------------------------------ ~ --
 
-local function map(key, action)
-  return { key = key, mods = "LEADER", action = action }
-end
+local function map(key, action) return { key = key, mods = "LEADER", action = action } end
 
 C.disable_default_key_bindings = true
 C.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 }
@@ -53,9 +62,13 @@ C.keys = {
   { key = "phys:Space", mods = "SHIFT|CTRL", action = a.QuickSelect },
   -- Pane
   map("h", a.ActivatePaneDirection("Left")),
+  { key = "h", mods = "LEADER|CTRL", action = a.ActivatePaneDirection("Left") },
   map("j", a.ActivatePaneDirection("Down")),
+  { key = "j", mods = "LEADER|CTRL", action = a.ActivatePaneDirection("Down") },
   map("k", a.ActivatePaneDirection("Up")),
+  { key = "k", mods = "LEADER|CTRL", action = a.ActivatePaneDirection("Up") },
   map("l", a.ActivatePaneDirection("Right")),
+  { key = "l", mods = "LEADER|CTRL", action = a.ActivatePaneDirection("Right") },
   map("s", a.SplitVertical({ domain = "CurrentPaneDomain" })),
   map("v", a.SplitHorizontal({ domain = "CurrentPaneDomain" })),
   map("x", a.CloseCurrentPane({ confirm = true })),
@@ -66,7 +79,9 @@ C.keys = {
   -- Tab
   map("t", a.SpawnTab("CurrentPaneDomain")),
   map("p", a.ActivateTabRelative(-1)),
+  { key = "p", mods = "LEADER|CTRL", action = a.ActivateTabRelative(-1) },
   map("n", a.ActivateTabRelative(1)),
+  { key = "n", mods = "LEADER|CTRL", action = a.ActivateTabRelative(1) },
   -- Move
   map("m", a.ActivateKeyTable({ name = "move_tab", one_shot = false })),
   { key = "{", mods = "LEADER|SHIFT", action = a.MoveTabRelative(-1) },
@@ -144,9 +159,7 @@ W.on("update-status", function(win, _)
     { Text = "    " },
     { Text = "│ " },
   }))
-  win:set_right_status(
-    W.format({ { Text = nf.md_clock .. " " .. W.strftime("%H:%M") .. "    " } })
-  )
+  win:set_right_status(W.format({ { Text = nf.md_clock .. " " .. W.strftime("%H:%M") .. "    " } }))
 end)
 
 -- ~ Option ---------------------------------------------------------------- ~ --
@@ -210,25 +223,12 @@ C.colors = {
 }
 
 -- Font
--- stylua: ignore start
-if string.match(font.fam_fb, "Term") ~= nil then
-  font.feat_fb = { "calt=1", "clig=1", "liga=1", "dlig=1", "ss10", "cv01=2", "cv10=6", "cv26=12", "cv59=16", "cv85=6" }
-elseif string.match(font.fam_fb, "Fira") ~= nil then
-  font.feat_fb = { "zero", "calt=1", "clig=1", "liga=1", "dlig=1", "cv01", "cv02", "cv04", "cv08", "cv29", "cv30",
-    "cv31", "ss01", "ss02", "ss05", "ss09" }
-elseif string.match(font.fam_fb, "Victor") ~= nil then
-  font.feat_fb = { "zero", "calt=1", "clig=1", "liga=1", "dlig=1", "cv01", "cv02", "cv04", "cv08", "cv29", "cv30",
-    "cv31", "ss01", "ss02", "ss05", "ss09" }
-elseif string.match(font.fam_fb, "Jet") ~= nil then
-  font.feat_fb = { "calt=1", "clig=1", "liga=1", "dlig=1", "cv04", "cv07", "cv08", "cv17" }
-end
--- stylua: ignore end
 C.unicode_version = 14
 C.font_size = 12
 C.font_dirs = { "~/.local/share/fonts/", "/usr/share/fonts/TTF/" }
 C.font = W.font_with_fallback({
-  { family = font.fam, harfbuzz_features = font.feat, style = "Normal" },
-  { family = font.fam_fb, harfbuzz_features = font.feat_fb },
+  { family = font.family, harfbuzz_features = font.feature },
+  { family = font.family_fallback, harfbuzz_features = font.feature_fallback },
   { family = "JetBrainsMono NFM" },
   { family = "Symbols Nerd Font Mono" },
   { family = "Font Awesome" },
@@ -240,6 +240,6 @@ C.freetype_load_flags = "DEFAULT|NO_AUTOHINT"
 C.underline_position = "-0.2cell"
 
 -- Workspace
-C.default_workspace = "home"
+C.default_workspace = "grux"
 
 return C

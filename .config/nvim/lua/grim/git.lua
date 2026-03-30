@@ -40,11 +40,6 @@ local execute = function(cmd, lvl)
   return { success = true, output = shell_out }
 end
 
-vim.api.nvim_create_autocmd("FileChangedShellPost", {
-  group = vim.api.nvim_create_augroup("RefreshGitBranchCache", {}),
-  callback = function(info) vim.b[info.buf].git_branch = nil end,
-})
-
 ---[async] Get current branch name.
 ---@param buf integer? # Buffer handle (Default: current buffer)
 ---@return string # Git branch name
@@ -67,11 +62,6 @@ local branch = function(buf)
   end
   return vim.b[buf].git_branch
 end
-
-vim.api.nvim_create_autocmd({ "BufWrite", "FileChangedShellPost" }, {
-  group = vim.api.nvim_create_augroup("RefreshGitDiffCache", {}),
-  callback = function(info) vim.b[info.buf].git_diffstat = nil end,
-})
 
 ---[async] Get diff stats for current buffer.
 ---@param buf integer? # Buffer handle (Default: current buffer)

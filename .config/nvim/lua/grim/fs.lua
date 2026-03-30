@@ -8,10 +8,10 @@ local root = function(file, root_markers)
   if vim.tbl_contains(root_markers, vim.fs.basename(file)) then return vim.fs.dirname(file) end
   local proximity_threshold = 2
   local closest = ""
-  local closest_proximity = 32
+  local proximity_closest = 16
   local root = ""
   local root_depth = 0
-  local root_proximity = 0
+  local proximity_root = 0
   local _, file_depth = file:gsub("/", "")
   local mark_path = ""
   for _, mark in ipairs(root_markers) do
@@ -25,10 +25,10 @@ local root = function(file, root_markers)
       if root ~= nil and root ~= "" then
         root = vim.uv.fs_realpath(root) --[[@as string]]
         _, root_depth = root:gsub("/", "")
-        root_proximity = file_depth - root_depth
-        if root_proximity <= closest_proximity then
-          if root_proximity <= proximity_threshold then return root end
-          closest_proximity = root_proximity
+        proximity_root = file_depth - root_depth
+        if proximity_root <= proximity_closest then
+          if proximity_root <= proximity_threshold then return root end
+          proximity_closest = proximity_root
           closest = root
         end
       end

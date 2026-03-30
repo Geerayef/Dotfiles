@@ -41,7 +41,7 @@ return {
           },
           {
             "diagnostics",
-            sources = { "nvim_lsp", "nvim_diagnostic" },
+            sources = { "nvim_lsp", "nvim_diagnostic", "nvim_workspace_diagnostic" },
             symbols = {
               error = i.diagnostics.error,
               warn = i.diagnostics.warn,

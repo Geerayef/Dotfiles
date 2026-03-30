@@ -2,6 +2,8 @@
 
 alias rm="rm -I"
 alias C="clear"
+alias v="nvim"
+alias nv="neovide"
 if test -e "$(command -v eza)"
     alias ls="eza -a --color=always --icons=always --group-directories-first"
     alias la="eza -aG --color=always --icons=always --group-directories-first"
@@ -10,14 +12,6 @@ if test -e "$(command -v eza)"
     alias lt="eza -aT -L 1 --color=always --icons=always --group-directories-first"
     alias l.="eza -af --color=always --icons=always --group-directories-first"
     alias lp="eza -a --color=never --icons=never --group-directories-first"
-else if test -e "$(command -v exa)"
-    alias ls="exa -a --color=always --icons=always --group-directories-first"
-    alias la="exa -aG --color=always --icons=always --group-directories-first"
-    alias ll="exa -la --color=always --icons=always --group-directories-first"
-    alias lT="exa -aT -L 2 --color=always --icons=always --group-directories-first"
-    alias lt="exa -aT -L 1 --color=always --icons=always --group-directories-first"
-    alias l.="exa -af --color=always --icons=always --group-directories-first"
-    alias lp="exa -a --color=never --icons=never --group-directories-first"
 else
     alias ls="ls -a --color=always --group-directories-first"
     alias l.="ls -A | grep -E '^\.' --group-directories-first"
@@ -25,9 +19,6 @@ else
     alias ll="ls -la --color=always --group-directories-first"
     alias lp="ls -a --color=never --group-directories-first"
 end
-
-alias v="nvim"
-alias nv="neovide"
 
 abbr -a ts tree-sitter
 
@@ -100,9 +91,9 @@ else if test $SYSTEM_PACKAGE_MANAGER = dnf
 else if test $SYSTEM_PACKAGE_MANAGER = pacman
     abbr -a pi "sudo pacman -S --needed"
     abbr -a pu "sudo pacman -Syu"
-    abbr -a pr "sudo pacman -Rn"
+    abbr -a pr "sudo pacman -Rs"
     abbr -a pq "sudo pacman -Qs"
     abbr -a ps "sudo pacman -Ss"
 else
-    echo "[ ERROR ] | Please set the SYSTEM_PACKAGE_MANAGER environment variable to the name of your system package manager."
+    echo "[ ERROR ] | SYSTEM_PACKAGE_MANAGER environment variable is not set."
 end

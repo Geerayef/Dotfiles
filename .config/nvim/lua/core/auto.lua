@@ -134,3 +134,14 @@ autocmd("ColorScheme", {
     hl(0, "@function.builtin", { fg = rp.lotusYellow[400] })
   end,
 })
+
+-- From GRIM.GIT
+-- autocmd("FileChangedShellPost", {
+--   group = augroup("RefreshGitBranchCache", { clear = true }),
+--   callback = function(info) vim.b[info.buf].git_branch = nil end,
+-- })
+--
+-- autocmd({ "BufWrite", "FileChangedShellPost" }, {
+--   group = augroup("RefreshGitDiffCache", { clear = true }),
+--   callback = function(info) vim.b[info.buf].git_diffstat = nil end,
+-- })
