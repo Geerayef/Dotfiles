@@ -10,7 +10,7 @@ return {
       width = 0.8,
       row = 0.5,
       col = 0.5,
-      border = S.Border,
+      border = GRIM.static.border,
       treesitter = true,
       backdrop = 100,
       preview = {

@@ -1,46 +1,25 @@
----Print error.
----@param cmd number[] # Git command
----@param msg string # Error message
----@param lvl string? # Error log level (Default: WARN)
----@return nil
-local error = function(cmd, msg, lvl)
-  lvl = lvl or "ERROR"
-  F.notify(
-    lvl,
-    "Failed to execute command: `" .. table.concat(cmd, " ") .. "`.\nOutput was: " .. msg
-  )
-end
-
 ---Execute a Git command in given directory.
----@param path number # Git repo path
+---@param path string # Git repo path
 ---@param cmd string[] # Git command
----@param lvl string? # Error log level (vim.log.levels | nil | false: hide errors)
----@return { success: boolean, output: number }
-local execute_in = function(path, cmd, lvl)
+---@return { success: boolean, output: string }
+local execute_in = function(path, cmd)
   local shell_args = { "git", "-C", path, unpack(cmd) }
   local shell_out = vim.fn.system(shell_args)
-  if vim.v.shell_error ~= 0 then
-    if lvl then GIT.error(shell_args, shell_out, lvl) end
-    return { success = false, output = shell_out }
-  end
+  if vim.v.shell_error ~= 0 then return { success = false, output = shell_out } end
   return { success = true, output = shell_out }
 end
 
 ---Execute a Git command in current directory.
 ---@param cmd string[] # Git command
----@param lvl string? # Error log level (vim.log.levels | nil | false: hide errors)
----@return { success: boolean, output: number }
-local execute = function(cmd, lvl)
+---@return { success: boolean, output: string }
+local execute = function(cmd)
   local shell_args = { "git", unpack(cmd) }
   local shell_out = vim.fn.system(shell_args)
-  if vim.v.shell_error ~= 0 then
-    if lvl then GIT.error(shell_args, shell_out, lvl) end
-    return { success = false, output = shell_out }
-  end
+  if vim.v.shell_error ~= 0 then return { success = false, output = shell_out } end
   return { success = true, output = shell_out }
 end
 
----[async] Get current branch name.
+---Get current branch name.
 ---@param buf integer? # Buffer handle (Default: current buffer)
 ---@return string # Git branch name
 local branch = function(buf)
@@ -49,62 +28,53 @@ local branch = function(buf)
   if vim.b[buf].git_branch then return vim.b[buf].git_branch end
   vim.b[buf].git_branch = ""
   local dir = vim.fs.dirname(vim.api.nvim_buf_get_name(buf))
-  if dir then
-    pcall(
-      vim.system,
+  local name = vim
+    .system(
       { "git", "-C", dir, "rev-parse", "--abbrev-ref", "HEAD" },
       { stderr = false },
-      function(err)
-        local branch = err.stdout:gsub("\n.*", "")
-        pcall(vim.api.nvim_buf_set_var, buf, "git_branch", branch)
-      end
+      function(out) return out.stdout and string.gsub(out.stdout, "\n.*", "") end
     )
-  end
-  return vim.b[buf].git_branch
+    :wait()
+  return name
 end
 
----[async] Get diff stats for current buffer.
+---Get diff stats for current buffer.
 ---@param buf integer? # Buffer handle (Default: current buffer)
----@return {added: integer?, removed: integer?, changed: integer?} # Diff stats
+---@return {added: integer, removed: integer, changed: integer} # Diff stats
 local diffstat = function(buf)
   buf = buf or vim.api.nvim_get_current_buf()
-  if not vim.api.nvim_buf_is_valid(buf) then return {} end
+  if not vim.api.nvim_buf_is_valid(buf) then return { added = 0, removed = 0, changed = 0 } end
   if vim.b[buf].git_diffstat then return vim.b[buf].git_diffstat end
   vim.b[buf].git_diffstat = {}
   local path = vim.fs.normalize(vim.api.nvim_buf_get_name(buf))
   local dir = vim.fs.dirname(path)
+  local stat = { added = 0, removed = 0, changed = 0 }
   if dir and GIT.branch(buf):find("%S") then
-    pcall(vim.system, {
-      "git",
-      "-C",
-      dir,
-      "--no-pager",
-      "diff",
-      "-U0",
-      "--no-color",
-      "--no-ext-diff",
-      "--",
-      path,
-    }, { stderr = false }, function(out)
-      local stat = { added = 0, removed = 0, changed = 0 }
-      for _, line in ipairs(vim.split(out.stdout, "\n")) do
-        if line:find("^@@ ") then
-          local num_lines_old, num_lines_new = line:match("^@@ %-%d+,?(%d*) %+%d+,?(%d*)")
-          num_lines_old = tonumber(num_lines_old) or 1
-          num_lines_new = tonumber(num_lines_new) or 1
-          local num_lines_changed = math.min(num_lines_old, num_lines_new)
-          stat.changed = stat.changed + num_lines_changed
-          if num_lines_old > num_lines_new then
-            stat.removed = stat.removed + num_lines_old - num_lines_changed
-          else
-            stat.added = stat.added + num_lines_new - num_lines_changed
+    stat = vim
+      .system(
+        { "git", "-C", dir, "--no-pager", "diff", "-U0", "--no-color", "--no-ext-diff", "--", path },
+        { stderr = false },
+        function(out)
+          for _, line in ipairs(vim.split(out.stdout, "\n")) do
+            if line:find("^@@ ") then
+              local num_lines_old, num_lines_new = line:match("^@@ %-%d+,?(%d*) %+%d+,?(%d*)")
+              num_lines_old = tonumber(num_lines_old) or 1
+              num_lines_new = tonumber(num_lines_new) or 1
+              local num_lines_changed = math.min(num_lines_old, num_lines_new)
+              stat.changed = stat.changed + num_lines_changed
+              if num_lines_old > num_lines_new then
+                stat.removed = stat.removed + num_lines_old - num_lines_changed
+              else
+                stat.added = stat.added + num_lines_new - num_lines_changed
+              end
+            end
           end
+          return stat
         end
-      end
-      pcall(vim.api.nvm_buf_set_var, buf, "git_diffstat", stat)
-    end)
+      )
+      :wait()
   end
-  return vim.b[buf].git_diffstat
+  return stat
 end
 
 ---@param buf integer # Buffer ID
@@ -119,7 +89,14 @@ local versioned_p = function(buf)
   return result.code == 0 and string.match(result.stdout, "true") ~= nil
 end
 
-GIT = {
+---@class git
+---@field error fun()
+---@field execute fun()
+---@field execute_in fun()
+---@field diffstat fun()
+---@field branch fun()
+---@field versioned_p fun()
+return {
   error = error,
   execute = execute,
   execute_in = execute_in,
@@ -127,4 +104,3 @@ GIT = {
   branch = branch,
   versioned_p = versioned_p,
 }
-return GIT

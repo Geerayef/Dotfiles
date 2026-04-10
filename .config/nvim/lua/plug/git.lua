@@ -4,7 +4,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
-    opts = { numhl = true, preview_config = { border = S.Border } },
+    opts = { numhl = true, preview_config = { border = GRIM.static.border } },
   },
   {
     "NeogitOrg/neogit",
@@ -14,9 +14,9 @@ return {
       kind = "replace",
       integrations = { fzf_lua = true, diffview = true },
       signs = {
-        hunk = { S.Icons.ui.arrow_right, S.Icons.ui.arrow_down },
-        item = { S.Icons.ui.arrow_right, S.Icons.ui.arrow_down },
-        section = { S.Icons.ui.arrow_right, S.Icons.ui.arrow_down },
+        hunk = { GRIM.static.icon.ui.arrow_right, GRIM.static.icon.ui.arrow_down },
+        item = { GRIM.static.icon.ui.arrow_right, GRIM.static.icon.ui.arrow_down },
+        section = { GRIM.static.icon.ui.arrow_right, GRIM.static.icon.ui.arrow_down },
       },
     },
   },

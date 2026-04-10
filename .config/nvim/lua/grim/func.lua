@@ -2,9 +2,10 @@
 ---@param lvl string # Log level
 local notify = function(lvl, msg)
   if lvl == nil or msg == nil then return end
-  local level = lvl:upper()
-  vim.notify("[" .. level .. "] -- " .. msg, vim.log.levels[lvl])
+  local level = string.upper(lvl)
+  vim.notify("[" .. level .. "] -- " .. msg, vim.log.levels[level])
 end
 
-F = { notify = notify }
-return F
+---@class func
+---@field notify fun(msg: string, lvl: string): nil
+return { notify = notify }

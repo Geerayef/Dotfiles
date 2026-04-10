@@ -258,11 +258,11 @@ map("n", "<leader>Zp", cmd.NoNeckPainScratchPad, "NoNeckPain [Z]en scratch [p]ad
 Key = {}
 function Key.LSP(_, buf)
   local blsp = vim.lsp.buf
-  bmap("n", "K", function() blsp.hover({ border = S.Border }) end, buf, "LSP hover")
+  bmap("n", "K", function() blsp.hover({ border = GRIM.static.border }) end, buf, "LSP hover")
   bmap(
     "n",
     "<C-k>",
-    function() blsp.signature_help({ border = S.Border }) end,
+    function() blsp.signature_help({ border = GRIM.static.border }) end,
     buf,
     "LSP signature"
   )

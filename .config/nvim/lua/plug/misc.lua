@@ -65,7 +65,7 @@ return {
       notification = {
         override_vim_notify = true,
         window = {
-          border = S.BorderSimple,
+          border = GRIM.static.border_simple,
           winblend = 0,
           max_width = 64,
           x_padding = 4,

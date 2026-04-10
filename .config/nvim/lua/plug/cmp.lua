@@ -42,7 +42,7 @@ return {
       documentation = {
         auto_show = true,
         window = {
-          border = S.Border,
+          border = GRIM.static.border,
           winhighlight = "BlinkCmpDoc:Normal,BlinkCmpDocBorder:FloatBorder,None:Search",
         },
       },
@@ -50,7 +50,7 @@ return {
       accept = { dot_repeat = false, create_undo_point = false },
       menu = {
         max_height = 20,
-        border = S.Border,
+        border = GRIM.static.border,
         auto_show = false,
         draw = {
           treesitter = { "lsp" },

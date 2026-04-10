@@ -110,7 +110,7 @@ o.sessionoptions = "buffers,curdir,folds,tabpages,localoptions"
 o.synmaxcol = 256
 
 -- ~ Chars
-local ui = S.Icons.ui
+local ui = GRIM.static.icon.ui
 o.listchars = { tab = ui.angle_right_s .. " ", nbsp = ui.space, trail = ui.dot_s }
 o.fillchars = {
   fold = ui.dot_l,

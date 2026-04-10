@@ -1,4 +1,4 @@
-local ui = S.Icons.ui
+local i = GRIM.static.icon.ui
 return {
   {
     "obsidian-nvim/obsidian.nvim",
@@ -11,11 +11,11 @@ return {
           preset = "obsidian",
           completions = { lsp = { enabled = true } },
           render_modes = true,
-          bullet = { icons = { ui.dot }, right_pad = 1 },
+          bullet = { icons = { i.dot }, right_pad = 1 },
           checkbox = {
             custom = {
-              working = { raw = "[>]", rendered = ui.angle_right_l .. " " },
-              important = { raw = "[!]", rendered = ui.diamond .. " " },
+              working = { raw = "[>]", rendered = i.angle_right_l .. " " },
+              important = { raw = "[!]", rendered = i.diamond .. " " },
             },
           },
         },
@@ -65,11 +65,7 @@ return {
       link = { style = "markdown" },
       search = { sort_reversed = false, sort_by = "path" },
       picker = { name = "fzf-lua" },
-      checkbox = {
-        enabled = true,
-        create_new = true,
-        order = { " ", "x", ">", "!", "-" },
-      },
+      checkbox = { enabled = true, create_new = true, order = { " ", "x", ">", "!", "-" } },
       ui = { enable = false },
     },
   },

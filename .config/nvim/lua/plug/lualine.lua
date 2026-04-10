@@ -1,6 +1,6 @@
 local road = require("clrs.road")
 local rp, rb = road.palette, road.base
-local i = S.Icons
+local i = GRIM.static.icon
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",

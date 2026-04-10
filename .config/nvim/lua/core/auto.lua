@@ -4,7 +4,7 @@ local augroup = vim.api.nvim_create_augroup
 --- ~ Tree-Sitter auto-start
 autocmd("FileType", {
   desc = "Automatically start Tree-Sitter",
-  pattern = S.TSEnsure,
+  pattern = GRIM.static.treesitter_grammars,
   group = augroup("AutoTreeSitter", { clear = true }),
   callback = function() vim.treesitter.start() end,
 })
@@ -16,7 +16,7 @@ autocmd("BufReadPre", {
   pattern = "*",
   callback = function(info)
     vim.b.bigfile = false
-    if require("grim.fs").file_large(info.buf) then
+    if GRIM.fs.file_large_p(info.buf) then
       vim.b.bigfile = true
       vim.opt_local.spell = false
       vim.opt_local.swapfile = false
@@ -66,7 +66,7 @@ autocmd({ "TabEnter", "BufEnter", "BufWinEnter" }, {
       end
       vim.api.nvim_win_call(win, function()
         local dir_from = vim.fn.getcwd(0)
-        local dir_to = require("grim.fs").root(info.file)
+        local dir_to = GRIM.fs.root(info.file)
         if dir_to ~= nil and dir_to ~= "" and dir_to ~= dir_from then pcall(vim.cmd.cd, dir_to) end
       end)
     end)
@@ -77,7 +77,15 @@ autocmd({ "TabEnter", "BufEnter", "BufWinEnter" }, {
 autocmd("FileType", {
   desc = "Close specific buffers with `q`.",
   group = augroup("qCloseSpecialFT", { clear = true }),
-  pattern = table.concat(S.FtSpecial, ","),
+  pattern = table.concat({
+    "qf",
+    "git",
+    "lazy",
+    "help",
+    "fugitive",
+    "checkhealth",
+    "NeogitStatus",
+  }, ","),
   callback = function()
     vim.keymap.set("n", "q", "<C-w>c", {
       buffer = 0,

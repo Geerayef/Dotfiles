@@ -9,7 +9,7 @@ return {
       local installed = ts.get_installed()
       ts.install(
         vim
-          .iter(S.TSEnsure)
+          .iter(GRIM.static.treesitter_grammars)
           :filter(function(parser) return not vim.tbl_contains(installed, parser) end)
           :totable()
       )
@@ -59,9 +59,7 @@ return {
       },
       {
         "<M-C-p>",
-        function()
-          require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.inner")
-        end,
+        function() require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.inner") end,
         desc = "Swap previous parameter",
       },
       {
@@ -121,10 +119,7 @@ return {
       {
         "][",
         function()
-          require("nvim-treesitter-textobjects.move").goto_next_start(
-            "@class.outer",
-            "textobjects"
-          )
+          require("nvim-treesitter-textobjects.move").goto_next_start("@class.outer", "textobjects")
         end,
         mode = { "n", "x", "o" },
         desc = "Go to next class start",
@@ -132,10 +127,7 @@ return {
       {
         "]]",
         function()
-          require("nvim-treesitter-textobjects.move").goto_next_end(
-            "@class.outer",
-            "textobjects"
-          )
+          require("nvim-treesitter-textobjects.move").goto_next_end("@class.outer", "textobjects")
         end,
         mode = { "n", "x", "o" },
         desc = "Go to next class end",

@@ -21,6 +21,6 @@ vim.diagnostic.config({
       end
       return t.message
     end,
-    border = S.BorderSimple,
+    border = GRIM.static.border_simple,
   },
 })

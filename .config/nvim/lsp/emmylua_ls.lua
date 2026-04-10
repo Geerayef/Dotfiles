@@ -3,4 +3,5 @@ return {
   name = "EmmyLua",
   cmd = { "emmylua_ls" },
   filetypes = { "lua" },
+  workspace_required = false,
 }

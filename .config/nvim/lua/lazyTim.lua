@@ -19,7 +19,7 @@ require("lazy").setup({
   change_detection = { notify = false },
   ui = {
     title = " Lazy ",
-    border = S.Border,
+    border = GRIM.static.border,
     size = { width = 1, height = 1 },
   },
   performance = {

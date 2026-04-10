@@ -4,11 +4,7 @@ return {
   config = function()
     local dap = require("dap")
     local path_debugee = function()
-      return vim.fn.input(
-        "Path to executable: ",
-        vim.fn.getcwd() .. "/",
-        "file"
-      )
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
     end
     -- Python ----------------------------------------------------------------------
     dap.adapters.python = function(cb, config)
@@ -17,10 +13,7 @@ return {
         local host = (config.connect or config).host or "127.0.0.1"
         cb({
           type = "server",
-          port = assert(
-            port,
-            "`connect.port` is required for a python `attach` configuration"
-          ),
+          port = assert(port, "`connect.port` is required for a python `attach` configuration"),
           host = host,
           options = { source_filetype = "python" },
         })
@@ -52,10 +45,7 @@ return {
         -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings
         program = "${file}",
         pythonPath = function()
-          if
-            os.getenv("VIRTUAL_ENV") ~= nil
-            and os.getenv("PYENV_VIRTUAL_ENV") ~= nil
-          then
+          if os.getenv("VIRTUAL_ENV") ~= nil and os.getenv("PYENV_VIRTUAL_ENV") ~= nil then
             return (os.getenv("PYENV_VIRTUAL_ENV") .. "/bin/python")
           elseif os.getenv("CONDA_PREFIX") ~= nil then
             return (os.getenv("CONDA_PREFIX") .. "/bin/python")
@@ -73,8 +63,7 @@ return {
     }
     dap.adapters.codelldb = {
       type = "executable",
-      command = os.getenv("HOME")
-        .. "/software/codelldb/extension/adapter/codelldb",
+      command = os.getenv("HOME") .. "/software/codelldb/extension/adapter/codelldb",
     }
     dap.configurations.cpp = {
       {
@@ -96,12 +85,12 @@ return {
     dap.configurations.c = dap.configurations.cpp
     --------------------------------------------------------------------------------
     vim.fn.sign_define("DapBreakpoint", {
-      text = S.Icons.ui.circle_circle,
+      text = GRIM.static.icon.ui.circle_circle,
       texthl = "DiagnosticError",
       numhl = "",
     })
     vim.fn.sign_define("DapStopped", {
-      text = S.Icons.ui.angle_right_l,
+      text = GRIM.static.icon.ui.angle_right_l,
       texthl = "DiagnosticHint",
       numhl = "",
     })
