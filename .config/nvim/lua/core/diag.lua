@@ -1,13 +1,15 @@
 vim.diagnostic.config({
-  underline = true,
   virtual_text = true,
   virtual_lines = false,
-  update_in_insert = false,
   severity_sort = true,
-  signs = true,
-  jump = { float = true },
+  jump = {
+    on_jump = function(diagnostic, bufid)
+      if not diagnostic then return end
+      vim.diagnostic.open_float({ bufnr = bufid, scope = "cursor" })
+    end,
+  },
   float = {
-    scope = "line",
+    scope = "cursor",
     source = "if_many",
     format = function(d)
       local code = d.code

@@ -1,5 +1,1 @@
-return {
-  std = "LuaJIT",
-  globals = { "vim", "F", "Key", "S", "LSP" },
-  allow_defined = true,
-}
+return { std = "LuaJIT", globals = { "vim", "GRIM" }, allow_defined = true }

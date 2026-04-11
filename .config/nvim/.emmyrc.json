@@ -14,11 +14,8 @@
   },
   "diagnostics": {
     "enable": true,
-    "disable": [],
-    "enables": [],
-    "globals": ["vim", "F", "FS", "GIT", "LSP", "S"],
-    "globalsRegex": ["vim", "F", "FS", "GIT", "LSP", "S"],
-    "severity": {},
+    "globals": ["vim", "GRIM"],
+    "globalsRegex": ["vim", "GRIM"],
     "diagnosticInterval": 500
   },
   "doc": { "syntax": "md" },
@@ -54,14 +51,14 @@
       "lua/?/init.lua",
       "?/lua/?.lua",
       "?/lua/?/init.lua",
+      "$XDG_DATA_HOME/nvim/lazy",
       "/usr/share/luajit-2.1/?.lua",
       "/usr/share/lua/5.4/?.lua",
       "/usr/share/lua/5.4/?/init.lua",
       "/usr/local/share/lua/5.4/?.lua",
       "/usr/local/share/lua/5.4/?/init.lua",
       "/usr/share/nvim",
-      "/usr/share/nvim/runtime",
-      "$XDG_DATA_HOME/nvim/lazy"
+      "/usr/share/nvim/runtime"
     ],
     "classDefaultCall": {
       "functionName": "",
@@ -85,8 +82,8 @@
     "ignoreGlobs": [],
     "library": [
       "$VIMRUNTIME",
-      "$LLS_Addons/luvit",
       "$XDG_DATA_HOME/nvim/lazy",
+      "$LLS_Addons/luvit",
       "?/luvit"
     ],
     "workspaceRoots": [],

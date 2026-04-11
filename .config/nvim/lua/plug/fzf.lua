@@ -11,7 +11,7 @@ return {
       row = 0.5,
       col = 0.5,
       border = GRIM.static.border,
-      treesitter = true,
+      -- treesitter = true,
       backdrop = 100,
       preview = {
         border = "noborder",

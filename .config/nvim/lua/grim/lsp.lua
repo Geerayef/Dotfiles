@@ -8,7 +8,7 @@ local attach = function(client, bufid)
   vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
     group = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true }),
     buffer = bufid,
-    callback = vim.lsp.codelens.refresh,
+    callback = function() vim.lsp.codelens.enable(true, { bufnr = bufid }) end,
   })
 end
 
