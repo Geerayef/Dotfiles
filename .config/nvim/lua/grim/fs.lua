@@ -4,7 +4,9 @@
 ---@return string? # Absolute path of the root directory
 local root = function(path, root_markers)
   if not path or path == "" or not vim.uv.fs_stat(path) then return nil end
-  if not root_markers or #root_markers == 0 then root_markers = GRIM.static.root_markers end
+  if not root_markers or #root_markers == 0 then
+    root_markers = vim.fn.flatten(GRIM.static.root_markers) ---@as string[]
+  end
   if vim.tbl_contains(root_markers, vim.fs.basename(path)) then return vim.fs.dirname(path) end
   local proximity_threshold = 2
   local closest = ""
@@ -19,7 +21,7 @@ local root = function(path, root_markers)
       path = path,
       upward = true,
       type = mark:match("/$") and "directory" or "file",
-    })[1]
+    })[1] ---@as string
     if mark_path ~= nil and mark_path ~= "" then
       path_root = vim.fs.dirname(mark_path)
       if path_root ~= nil and path_root ~= "" then
@@ -70,7 +72,8 @@ local file_large_p = function(buf)
   return ok and stat ~= nil and stat.size > size_threshold
 end
 
----@class fs
+---GRIM.fs provides file system interoperation utilities.
+---@class GRIM.fs
 ---@field root fun(path: string, root_markers: string[]?): string
 ---@field file_read fun(path: string): string?
 ---@field file_write fun(path: string, content: string): boolean

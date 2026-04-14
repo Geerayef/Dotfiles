@@ -97,6 +97,7 @@ local tabline = function()
   return format
 end
 
----@class tab
+---GRIM.tab provies the tabline.
+---@class GRIM.tab
 ---@field line fun(): string -- # GRIM tab line definition
 return { line = tabline }

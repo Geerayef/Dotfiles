@@ -97,7 +97,7 @@ map("t", "<Esc>", "<C-\\><C-n>", "Terminal escape")
 -- Navigation
 map("n", "<leader>cd", function()
   cmd({ cmd = "cd", args = { "%:p:h" } })
-  F.notify("INFO", string.format("CWD: %s", vim.fn.getcwd()))
+  GRIM.func.notify("INFO", string.format("CWD: %s", vim.fn.getcwd()))
 end, "[c]hange to current working [d]irectory")
 
 -- ~ Plugin --------------------------------------------------------------- ~ --

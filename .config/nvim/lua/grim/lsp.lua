@@ -1,4 +1,4 @@
---- LSP on_attach function.
+---LSP on_attach function.
 ---@function GRIM.lsp.attach
 ---@param client vim.lsp.Client
 ---@param bufid integer
@@ -12,7 +12,8 @@ local attach = function(client, bufid)
   })
 end
 
----@class lsp
+---GRIM.lsp provides LSP related utilities.
+---@class GRIM.lsp
 ---@field attach fun(client: vim.lsp.Client, bufid: integer): nil
 return {
   attach = attach,

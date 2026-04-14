@@ -36,7 +36,7 @@ end
 
 ---Merge highlight attributes.
 ---In case of conflict use values from the right most highlight group.
----@vararg string # Highlight group names
+---@param ... string # Highlight group names
 ---@return vim.api.keyset.highlight # Merged highlight attributes
 local merge = function(...)
   local hlids = vim.tbl_filter(function(e) return e ~= nil end, { ... })
@@ -218,22 +218,21 @@ local blend = function(h1, h2, alpha)
   return vim.tbl_deep_extend("force", h1, h2, { fg = fg, bg = bg })
 end
 
----@class hl
----@field get fun()
----@field buf_add fun()
----@field range_single fun()
----@field line_single fun()
----@field merge fun()
----@field attribute_normalise fun()
----@field normalise fun()
----@field set fun()
----@field set_default fun()
----@field hex2dec fun()
----@field dec2hex fun()
----@field hex2rgb fun()
----@field rgb2hex fun()
----@field cblend fun()
----@field blend fun()
+---GRIM.hl provides color and highlight groups management utilities.
+---@class GRIM.hl
+---@field get fun(nsid: integer, opts: vim.api.keyset.get_highlight): vim.api.keyset.get_hl_info
+---@field apply fun(bufid: integer, hlid: string, range: { start: [ integer, integer ], finish: [ integer, integer ] })
+---@field merge fun(...: string): vim.api.keyset.highlight
+---@field attribute_normalise fun(attribute: ("fg"|"bg"|"ctermfg"|"ctermbg"), fbg: (string|integer)?, default: integer?): (string|integer)?
+---@field normalise fun(attribute: vim.api.keyset.highlight): table
+---@field set fun(nsid: integer, name: string, attributes: vim.api.keyset.highlight): nil
+---@field set_default fun(nsid: integer, name: string, attribute: vim.api.keyset.highlight): nil
+---@field hex2dec fun(hex: string): dec: integer
+---@field dec2hex fun(int: integer, n_digits: integer?): hex: string
+---@field hex2rgb fun(hex: string): rgb: integer[]
+---@field rgb2hex fun(rgb: integer[]): string
+---@field cblend fun(c1: (table|string|number), c2: (table|string|number), alpha: number?): { b: integer, dec: integer, g: integer, hex: string, r: integer }
+---@field blend fun(h1: (table|string), h2: (table|string), alpha: number?): table
 return {
   get = get,
   apply = apply,
