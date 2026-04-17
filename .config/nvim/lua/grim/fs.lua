@@ -5,7 +5,7 @@
 local root = function(path, root_markers)
   if not path or path == "" or not vim.uv.fs_stat(path) then return nil end
   if not root_markers or #root_markers == 0 then
-    root_markers = vim.fn.flatten(GRIM.static.root_markers) ---@as string[]
+    root_markers = vim.iter(vim.tbl_values(GRIM.static.root_markers)):flatten():totable() ---@as string[]
   end
   if vim.tbl_contains(root_markers, vim.fs.basename(path)) then return vim.fs.dirname(path) end
   local proximity_threshold = 2

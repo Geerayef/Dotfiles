@@ -3,5 +3,6 @@ return {
   name = "EmmyLua",
   cmd = { "emmylua_ls" },
   filetypes = { "lua" },
-  workspace_required = false,
+  root_markers = GRIM.static.root_markers.lua,
+  on_attach = function() Key.LSP(_, vim.api.nvim_get_current_buf()) end,
 }

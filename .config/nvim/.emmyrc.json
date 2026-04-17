@@ -15,7 +15,6 @@
   "diagnostics": {
     "enable": true,
     "globals": ["vim", "GRIM"],
-    "globalsRegex": ["vim", "GRIM"],
     "diagnosticInterval": 500
   },
   "doc": { "syntax": "md" },
@@ -40,12 +39,8 @@
     "externalToolRangeFormat": null,
     "useDiff": false
   },
-  "resource": { "paths": [] },
   "runtime": {
     "version": "LuaJIT",
-    "requireLikeFunction": [],
-    "frameworkVersions": [],
-    "extensions": [],
     "requirePattern": [
       "lua/?.lua",
       "lua/?/init.lua",
@@ -61,12 +56,9 @@
       "/usr/share/nvim/runtime"
     ],
     "classDefaultCall": {
-      "functionName": "",
       "forceNonColon": false,
       "forceReturnSelf": false
-    },
-    "nonstandardSymbol": [],
-    "special": {}
+    }
   },
   "semanticTokens": { "enable": true },
   "signature": { "detailSignatureHelper": true },
@@ -78,19 +70,12 @@
     "docBaseConstMatchBaseType": true
   },
   "workspace": {
-    "ignoreDir": [],
-    "ignoreGlobs": [],
     "library": [
       "$VIMRUNTIME",
       "$XDG_DATA_HOME/nvim/lazy",
       "$LLS_Addons/luvit",
       "?/luvit"
     ],
-    "workspaceRoots": [],
-    "preloadFileSize": 0,
-    "encoding": "utf-8",
-    "moduleMap": [],
-    "reindexDuration": 5000,
-    "enableReindex": true
+    "encoding": "utf-8"
   }
 }

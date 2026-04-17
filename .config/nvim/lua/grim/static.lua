@@ -3,7 +3,7 @@
 ---@field border_simple string[]
 ---@field border table<string, string>
 ---@field icon table<string, string|table<string, string>>
----@field root_markers table<string, string[]>
+---@field root_markers table<[string], string[]>
 ---@field treesitter_grammars string[]
 return {
   border_simple = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
@@ -105,8 +105,7 @@ return {
     },
   },
   root_markers = {
-    -- [Lua]
-    {
+    lua = {
       ".emmyrc.json",
       ".luacheckrc",
       ".luarc.json",
@@ -114,8 +113,7 @@ return {
       ".stylua.toml",
       "lazy-lock.json",
     },
-    -- [OCaml]
-    {
+    ocaml = {
       "dune-project",
       "dune-workspace",
       ".ocamlformat",
@@ -123,8 +121,7 @@ return {
       "*.opam",
       ".opam",
     },
-    -- [Haskell]
-    {
+    haskell = {
       "*.cabal",
       "cabal.project",
       "cabal.project.local",
@@ -133,16 +130,14 @@ return {
       "package.yaml",
       "package.yaml.lock",
     },
-    -- [Go]
-    {
+    go = {
       "main.go",
       "build.go",
       "go.mod",
       "go.work",
       "go.sum",
     },
-    -- [C|C++] (Clangd|CCLS)
-    {
+    c = {
       ".ccls",
       "compile_commands.json",
       "compile_flags.txt",
@@ -150,8 +145,7 @@ return {
       ".clang-tidy",
       ".clang-format",
     },
-    -- [Python]
-    {
+    python = {
       "__init__.py",
       ".ruff.toml",
       "ruff.toml",
@@ -163,16 +157,14 @@ return {
       "pyrightconfig.json",
       "Pipfile",
     },
-    -- [Rust]
-    {
+    rust = {
       "Cargo.toml",
       "Cargo.lock",
       "mod.rs",
       "rust-project.json",
       "package.json",
     },
-    -- [JS/TS]
-    {
+    javascript = {
       "tsconfig.json",
       "jsconfig.json",
       "biome.json",
@@ -184,8 +176,7 @@ return {
       "bun.lock",
       "deno.lock",
     },
-    -- [Generic]
-    {
+    generic = {
       "meson.build",
       "meson_options.txt",
       "*.ini",
