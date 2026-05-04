@@ -233,12 +233,13 @@ end
 ---@field rgb2hex fun(rgb: integer[]): string
 ---@field cblend fun(c1: (table|string|number), c2: (table|string|number), alpha: number?): { b: integer, dec: integer, g: integer, hex: string, r: integer }
 ---@field blend fun(h1: (table|string), h2: (table|string), alpha: number?): table
+---@type GRIM.hl
 return {
   get = get,
   apply = apply,
   merge = merge,
   attribute_normalise = attribute_normalise,
-  normalize = normalise,
+  normalise = normalise,
   set = set,
   set_default = set_default,
   hex2dec = hex2dec,

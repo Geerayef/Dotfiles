@@ -38,7 +38,7 @@
   bottom: 1em;
   left: 1em;
   right: unset;
-  border-radius: 1em;
+  border-radius: 0em;
   padding: 1em;
   height: auto;
   line-height: auto;
@@ -54,7 +54,7 @@
   align-items: unset;
 }
 .HUD:after {
-  border-radius: unset;
+  border-radius: 0em;
   border: none;
   background: #11111b;
 }
@@ -79,7 +79,7 @@
 }
 body {
   overflow: hidden;
-  border-radius: 1em;
+  border-radius: 0em;
 }
 body.has-dark {
   overflow: hidden;
@@ -91,7 +91,7 @@ body:after {
 }
 #bar {
   background: #11111b;
-  border-radius: unset;
+  border-radius: 0em;
   border-bottom: unset;
 }
 .has-dark #bar {
@@ -175,7 +175,7 @@ body:after {
 }
 #list {
   background: rgb(247 246 246);
-  border-radius: unset;
+  border-radius: 0em;
   padding: 1em;
 }
 .has-dark #list {
@@ -186,7 +186,7 @@ body:after {
   margin: 0.1em;
   margin-top: 0em;
   border: unset;
-  border-radius: 1em;
+  border-radius: 0em;
   height: 3em;
 }
 .item::before {
@@ -305,7 +305,7 @@ body:after {
 .r {
   color: #838686;
   border: none;
-  border-radius: unset;
+  border-radius: 0em;
   box-shadow: unset;
   background: unset;
   height: 1em;

@@ -1,10 +1,11 @@
 return {
   "Olical/conjure",
-  ft = { "scheme", "commonlisp", "lua", "fennel", "python" },
+  ft = { "scheme", "commonlisp", "lua", "fennel", "python", "ocaml" },
   init = function()
     vim.g["conjure#mapping#enable_defaults"] = false
     vim.g["conjure#extract#tree_sitter#enabled"] = true
     -- Key
+    vim.g["conjure#mapping#def_word"] = { "Cgd" }
     vim.g["conjure#mapping#log_close_visible"] = "Clq"
     vim.g["conjure#mapping#log_buf"] = "Clb"
     vim.g["conjure#mapping#log_split"] = "Cls"
@@ -26,7 +27,6 @@ return {
     vim.g["conjure#mapping#eval_buf"] = "Ceb"
     vim.g["conjure#mapping#eval_visual"] = "CE"
     vim.g["conjure#mapping#eval_motion"] = "CE"
-    vim.g["conjure#mapping#def_word"] = { "gd" }
     -- Scheme
     vim.g["conjure#filetype_suffixes#scheme"] = { "ss", "scm" }
     vim.g["conjure#client#scheme#stdio#command"] = "petite"

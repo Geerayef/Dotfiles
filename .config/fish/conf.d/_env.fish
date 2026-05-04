@@ -28,6 +28,6 @@ set -gx GTK_THEME Material
 set -gx VK_DRIVER_FILES /usr/share/vulkan/icd.d/intel_icd.x86_64.json:/usr/share/vulkan/icd.d/nvidia_icd.json
 set -gx MOOR "-colors=auto -wrap -statusbar plain -terminal-fg -no-linenumbers=false"
 set -gx BUN_INSTALL "$HOME/.local"
-set -gax LUA_PATH "$HOME/.local/lib/lua/?.lua;$HOME/.local/lib/lua/?/?.lua;$HOME/.local/lib/lua/?/init.lua;$HOME/.local/lib/lua/?/lua/?.lua;$HOME/.local/lib/lua/?/lua/init.lua;;"
+# set -gax LUA_PATH "$HOME/.local/lib/lua/?.lua;$HOME/.local/lib/lua/?/?.lua;$HOME/.local/lib/lua/?/init.lua;$HOME/.local/lib/lua/?/lua/?.lua;$HOME/.local/lib/lua/?/lua/init.lua;;"
 set -gx GHCUP_USE_XDG_DIRS 1
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
