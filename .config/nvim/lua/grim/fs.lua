@@ -78,7 +78,6 @@ end
 ---@field file_read fun(path: string): string?
 ---@field file_write fun(path: string, content: string): boolean
 ---@field file_large_p fun(buf: integer): boolean
----@type GRIM.fs
 return {
   root = root,
   file_read = file_read,

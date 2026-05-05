@@ -9,5 +9,4 @@ end
 ---GRIM.func provides generic wrappers around Neovim's builtin functionality.
 ---@class GRIM.func
 ---@field notify fun(msg: string, lvl: string): nil
----@type GRIM.func
 return { notify = notify }

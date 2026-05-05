@@ -20,6 +20,9 @@
   },
   "workspace": {
     "library": [
+      "/usr/share/nvim/runtime",
+      "/home/tib/.local/share/nvim/lazy",
+      "/home/tib/.config/nvim",
       "$VIMRUNTIME",
       "$XDG_DATA_HOME/nvim/lazy",
       "$XDG_CONFIG_HOME/nvim"

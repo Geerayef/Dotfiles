@@ -4,5 +4,5 @@ return {
   cmd = { "ocamllsp" },
   capabilities = { handleSwitchImplIntf = true },
   filetypes = { "ocaml", "opam", "dune" },
-  root_markers = { "*.ml", "*.mli", "*.opam", "*.dune" },
+  root_markers = GRIM.static.root_markers.ocaml,
 }

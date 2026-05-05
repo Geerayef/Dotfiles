@@ -1,8 +1,7 @@
 ---@type vim.lsp.Config
 return {
-  name = "Ruff LS",
-  cmd = { "ruff", "server" },
+  name = "Ty LS",
+  cmd = { "ty", "server" },
   filetypes = { "python" },
   root_markers = GRIM.static.root_markers.python,
-  init_options = { settings = { lint = { preview = true } } },
 }

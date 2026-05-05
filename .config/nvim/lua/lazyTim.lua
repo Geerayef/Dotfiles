@@ -20,7 +20,7 @@ require("lazy").setup({
   ui = {
     title = " Lazy ",
     border = GRIM.static.border,
-    size = { width = 1, height = 0.75 },
+    size = { width = 0.75, height = 0.75 },
   },
   performance = {
     rtp = {

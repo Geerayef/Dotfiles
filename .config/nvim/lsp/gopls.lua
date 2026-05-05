@@ -3,7 +3,7 @@ return {
   name = "GoPLS",
   cmd = { "gopls", "serve" },
   filetypes = { "go", "gomod", "gowork", "gotmpl" },
-  root_markers = { "*.go" },
+  root_markers = GRIM.static.root_markers.go,
   settings = {
     gopls = {
       usePlaceholders = true,

@@ -16,5 +16,4 @@ end
 ---GRIM.lsp provides LSP related utilities.
 ---@class GRIM.lsp
 ---@field attach fun(client: vim.lsp.Client, bufid: integer): nil
----@type GRIM.lsp
 return { attach = attach }

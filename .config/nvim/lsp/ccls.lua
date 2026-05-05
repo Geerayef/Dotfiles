@@ -21,15 +21,5 @@ return {
     },
   },
   filetypes = { "c", "cpp" },
-  root_markers = {
-    "*.c",
-    "*.h",
-    ".ccls",
-    "*.cmake",
-    "cmake*/",
-    "CMakePresets.json",
-    "CTestConfig.cmake",
-    "compile_commands.json",
-    "compile_flags.txt",
-  },
+  root_markers = GRIM.static.root_markers.c,
 }

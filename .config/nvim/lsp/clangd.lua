@@ -22,14 +22,5 @@ return {
     textDocument = { completion = { editsNearCursor = true }, switchSourceHeader = true },
   },
   filetypes = { "c", "cpp" },
-  root_markers = {
-    "*.c",
-    "*.h",
-    "*.cpp",
-    "*.hpp",
-    "*.cmake",
-    "cmake*/",
-    "CMakePresets.json",
-    "CTestConfig.cmake",
-  },
+  root_markers = GRIM.static.root_markers.c,
 }

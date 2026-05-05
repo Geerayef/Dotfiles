@@ -4,5 +4,5 @@ return {
   cmd = { "typescript-language-server", "--stdio" },
   init_options = { hostInfo = "neovim" },
   filetypes = { "javascript", "typescript" },
-  root_markers = { "package.json", "*.js", "*.ts" },
+  root_markers = GRIM.static.root_markers.javascript,
 }

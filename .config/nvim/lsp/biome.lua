@@ -17,5 +17,5 @@ return {
     "typescriptreact",
     "vue",
   },
-  root_markers = { "*.js", ".ts", "*.json", "*.jsonc", "*.css", "*.html" },
+  root_markers = GRIM.static.root_markers.javascript,
 }

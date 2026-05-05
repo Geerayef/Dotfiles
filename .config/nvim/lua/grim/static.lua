@@ -5,7 +5,6 @@
 ---@field icon table<string, string|table<string, string>>
 ---@field root_markers table<string, string[]>
 ---@field treesitter_grammars string[]
----@type GRIM.static
 return {
   border_simple = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
   border = {
@@ -122,6 +121,9 @@ return {
       ".ocp-indent",
       "*.opam",
       ".opam",
+      "*.dune",
+      "*.ml",
+      "*.mli",
     },
     haskell = {
       "*.cabal",
@@ -131,6 +133,7 @@ return {
       "stack.yaml",
       "package.yaml",
       "package.yaml.lock",
+      "*.hs",
     },
     go = {
       "main.go",
@@ -138,6 +141,7 @@ return {
       "go.mod",
       "go.work",
       "go.sum",
+      "*.go",
     },
     c = {
       ".ccls",
@@ -146,11 +150,16 @@ return {
       ".clangd",
       ".clang-tidy",
       ".clang-format",
+      "*.cmake",
+      "cmake*/",
+      "CMakePresets.json",
+      "CTestConfig.cmake",
     },
     python = {
       "__init__.py",
       ".ruff.toml",
       "ruff.toml",
+      "ty.toml",
       "pyproject.toml",
       ".pyproject.toml",
       "setup.py",
@@ -179,6 +188,8 @@ return {
       "bun.lock",
       "deno.lock",
     },
+    sh = { ".shellcheckrc", "shellcheckrc" },
+    fish = { "config.fish", "conf.d", "*.fish" },
     generic = {
       "meson.build",
       "meson_options.txt",

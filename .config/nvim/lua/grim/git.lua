@@ -96,7 +96,6 @@ end
 ---@field diffstat fun(buf: integer?): { added: integer, changed: integer, removed: integer }
 ---@field branch fun(buf: integer?): string
 ---@field versioned_p fun(buf: integer): boolean
----@type GRIM.git
 return {
   execute = execute,
   execute_in = execute_in,
