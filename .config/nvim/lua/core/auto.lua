@@ -110,15 +110,19 @@ autocmd("ColorScheme", {
     hl(0, "FloatBorder", { link = "Normal" })
     hl(0, "CursorLine", { bg = rp.jet[200] })
     hl(0, "CursorLineNr", { fg = rb.lotusYellow, bold = true })
-    hl(0, "TabLineSel", { fg = rb.lotusYellow })
     hl(0, "SignColumn", { link = "Normal" })
-    hl(0, "WinSeparator", { link = "Normal" })
     hl(0, "MatchParen", {
       fg = rb.mintCream,
       bg = rp.charcoal[200],
       bold = true,
       underline = true,
     })
+    hl(0, "WinSeparator", { link = "Normal" })
+    hl(0, "TabLineSel", { fg = rb.lotusYellow })
+    hl(0, "StatusLine", { bg = rb.dragonInk })
+    hl(0, "StatusLineNC", { bg = rb.dragonInk })
+    hl(0, "StatusLineTerm", { link = "StatusLine" })
+    hl(0, "StatusLineTermNC", { link = "StatusLineNC" })
     hl(0, "RenderMarkdownCode", { bg = rb.dragonInk })
     hl(0, "GitSignsCurrentLineBlame", { link = "Comment" })
     hl(0, "LspSignatureActiveParameter", {
@@ -142,14 +146,3 @@ autocmd("ColorScheme", {
     hl(0, "@function.builtin", { fg = rp.lotusYellow[400] })
   end,
 })
-
--- From GRIM.GIT
--- autocmd("FileChangedShellPost", {
---   group = augroup("RefreshGitBranchCache", { clear = true }),
---   callback = function(info) vim.b[info.buf].git_branch = nil end,
--- })
---
--- autocmd({ "BufWrite", "FileChangedShellPost" }, {
---   group = augroup("RefreshGitDiffCache", { clear = true }),
---   callback = function(info) vim.b[info.buf].git_diffstat = nil end,
--- })

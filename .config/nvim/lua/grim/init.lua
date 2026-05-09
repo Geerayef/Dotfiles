@@ -5,12 +5,12 @@
 ---@field hl GRIM.hl
 ---@field lsp GRIM.lsp
 ---@field static GRIM.static
----@field tab GRIM.tab
----@module "fs"
----@module "func"
----@module "git"
----@module "hl"
----@module "lsp"
----@module "static"
-GRIM = {}
+GRIM = {
+  fs = require("grim.fs"),
+  func = require("grim.func"),
+  git = require("grim.git"),
+  hl = require("grim.hl"),
+  lsp = require("grim.lsp"),
+  static = require("grim.static"),
+}
 return setmetatable(GRIM, { __index = function(_, k) return require("grim." .. k) end })

@@ -19,12 +19,12 @@ vim.lsp.config("*", {
           },
         },
       },
-    },
+    } --[[@as lsp.ClientCapabilities]],
     (function()
       local ok, blink = pcall(require, "blink.cmp")
       if ok and blink.get_lsp_capabilities then
         return blink.get_lsp_capabilities(vim.lsp.config["*"].capabilities)
       end
-    end)()
-  ),
+    end)() --[[@as lsp.ClientCapabilities]]
+  ) --[[@as lsp.ClientCapabilities]],
 } --[[@as vim.lsp.Config]])

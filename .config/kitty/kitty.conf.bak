@@ -10,10 +10,10 @@ linux_display_server wayland
 font_size 12.0
 force_ltr yes
 disable_ligatures never
-# font_family family="IosevkaTerm Nerd Font Mono"
-# bold_font family="IosevkaTerm Nerd Font Mono" style="Bold"
-# italic_font family="IosevkaTerm Nerd Font Mono" style="Light Oblique"
-# bold_italic_font family="IosevkaTerm Nerd Font Mono" style="Bold Oblique"
+font_family family="IosevkaTerm Nerd Font Mono"
+bold_font family="IosevkaTerm Nerd Font Mono" style="Bold"
+italic_font family="IosevkaTerm Nerd Font Mono" style="Light Oblique"
+bold_italic_font family="IosevkaTerm Nerd Font Mono" style="Bold Oblique"
 modify_font cell_height 200%
 modify_font underline_position -150%
 
@@ -141,11 +141,3 @@ map kitty_mod+y new_window nvim @selection
 # map kitty_mod+delete  clear_terminal reset active
 # map cmd+k             clear_terminal to_cursor active
 map kitty_mod+f5      load_config_file
-
-
-# BEGIN_KITTY_FONTS
-font_family      family='IosevkaTerm Nerd Font Mono' features='+zero +calt +dlig +frac +lnum +onum +ss10'
-bold_font        family='IosevkaTerm Nerd Font Mono' features='+calt +dlig +frac +lnum +onum +ss10 +zero'
-italic_font      family='IosevkaTerm Nerd Font Mono' features='+calt +zero +dlig +frac +lnum +onum +ss10'
-bold_italic_font family='IosevkaTerm Nerd Font Mono' features='+calt +zero +dlig +frac +lnum +onum +ss10'
-# END_KITTY_FONTS

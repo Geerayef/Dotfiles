@@ -1,4 +1,5 @@
 local last_active_win = {}
+
 local devicons = require("nvim-web-devicons")
 local rb = require("clrs.road").base
 local rp = require("clrs.road").palette

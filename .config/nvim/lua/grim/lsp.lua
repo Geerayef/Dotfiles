@@ -6,11 +6,6 @@
 local attach = function(client, bufid)
   Key.LSP(client, bufid)
   vim.lsp.codelens.enable(true, { bufnr = bufid })
-  vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
-    group = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true }),
-    buffer = bufid,
-    callback = function() end,
-  })
 end
 
 ---GRIM.lsp provides LSP related utilities.
