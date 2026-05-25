@@ -140,12 +140,13 @@ return {
     local mod = {
       file = component.group({
         component.file.name(vim.api.nvim_get_current_buf()),
-        component.buffer.modified(),
+        component.buffer.modified(vim.api.nvim_get_current_buf()),
         component.buffer.search(),
-        component.buffer.readonly(),
+        component.buffer.readonly(vim.api.nvim_get_current_buf()),
         component.buffer.help(),
         component.buffer.qlist(),
       }, " ", config.file.lalign, 32, 0),
+      macro = component.group({ component.macro() }, "", true, 16, 0),
       git = component.group({ component.git(vim.api.nvim_get_current_buf()) }, "", false, 24, 0),
       diagnostics = component.group({
         next(vim.diagnostic.count(vim.api.nvim_get_current_buf()))
@@ -158,6 +159,7 @@ return {
     return table.concat({
       mod.head,
       mod.file,
+      mod.macro,
       component.trunc,
       component.align,
       mod.diagnostics,
