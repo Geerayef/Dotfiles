@@ -1,8 +1,8 @@
 vim.lsp.config("*", {
-  root_markers = vim.iter(vim.tbl_values(GRIM.static.root_markers)):flatten():totable(),
   single_file_support = true,
   on_attach = GRIM.lsp.attach,
-  root_dir = GRIM.fs.root(vim.api.nvim_buf_get_name(0)),
+  root_dir = function(bufid, on) return on(GRIM.fs.root(bufid)) end,
+  root_markers = vim.iter(GRIM.static.root_markers):flatten():totable(),
   capabilities = vim.tbl_deep_extend(
     "force",
     vim.lsp.protocol.make_client_capabilities(),

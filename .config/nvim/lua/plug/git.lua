@@ -4,7 +4,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
-    opts = { numhl = true, preview_config = { border = GRIM.static.border } },
+    opts = { preview_config = { border = GRIM.static.border } },
   },
   {
     "NeogitOrg/neogit",

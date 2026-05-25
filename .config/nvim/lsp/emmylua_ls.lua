@@ -1,8 +1,9 @@
---- @type vim.lsp.Config
+---@type vim.lsp.Config
 return {
-  name = "EmmyLua",
-  cmd = { "emmylua_ls" },
+  name = "EmmyLua LS",
+  cmd = { "emmylua_ls", "--editor", "neovim" },
   filetypes = { "lua" },
-  root_markers = GRIM.static.root_markers.lua,
-  settings = { emmylua = { workspace = { library = vim.api.nvim_get_runtime_file("", true) } } },
+  root_markers = GRIM.static.root_markers,
+  settings = { codeLens = { enable = true }, hint = { enable = true } },
+  workspace_required = false,
 }

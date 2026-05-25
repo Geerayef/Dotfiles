@@ -218,6 +218,7 @@ local blend = function(h1, h2, alpha)
   return vim.tbl_deep_extend("force", h1, h2, { fg = fg, bg = bg })
 end
 
+---@package GRIM.hl
 ---GRIM.hl provides color and highlight groups management utilities.
 ---@class GRIM.hl
 ---@field get fun(nsid: integer, opts: vim.api.keyset.get_highlight): vim.api.keyset.get_hl_info

@@ -3,5 +3,8 @@ return {
   name = "Lua LS",
   cmd = { "lua-language-server" },
   filetypes = { "lua" },
-  root_markers = GRIM.static.root_markers.lua,
+  root_markers = GRIM.static.root_markers,
+  settings = {
+    Lua = { codeLens = { enable = true }, hint = { enable = true, semicolon = "Disable" } },
+  },
 }

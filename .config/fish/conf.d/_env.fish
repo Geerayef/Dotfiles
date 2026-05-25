@@ -4,7 +4,6 @@ set -gx XDG_CACHE_HOME "$HOME/.cache"
 set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -gx XDG_STATE_HOME "$HOME/.local/state"
 set -gx XDG_DATA_HOME "$HOME/.local/share"
-set -gx ZDOTDIR "$XDG_CONFIG_HOME/zsh"
 set -gx BASHDOTDIR "$XDG_CONFIG_HOME/bash"
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
 set -gx FZF_BASE (which fzf)

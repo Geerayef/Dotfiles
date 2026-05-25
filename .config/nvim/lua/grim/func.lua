@@ -6,7 +6,51 @@ local notify = function(lvl, msg)
   vim.notify("[" .. level .. "] -- " .. msg, vim.log.levels[level])
 end
 
+---@param predicate fun(x: any): bool
+---@param t table
+---@return table
+local filter = function(predicate, t)
+  local new_tbl = {}
+  for _i, v in ipairs(t) do
+    if predicate(v) then table.insert(new_tbl, v) end
+  end
+  return new_tbl
+end
+
+---@generic T
+---@param func fun(x: T, ...: any): T
+---@param t table
+---@param acc T
+---@return T
+local reduce = function(func, t, acc)
+  local result = acc
+  for _i, v in ipairs(t) do
+    result = func(result, v)
+  end
+  return result
+end
+
+---Immutable table
+---@param t table
+---return table
+local immutable = function(t)
+  return setmetatable({}, {
+    __index = t,
+    __newindex = function() error("Attempt to modify immutable table") end,
+  })
+end
+
+---@package GRIM.func
 ---GRIM.func provides generic wrappers around Neovim's builtin functionality.
 ---@class GRIM.func
 ---@field notify fun(msg: string, lvl: string): nil
-return { notify = notify }
+---@field filter fun(predicate: fun(x: any): boolean, t: table): table
+---@generic T: any
+---@field reduce fun(func: fun(x: T, ...: any): T, t: table, acc: T): T
+---@field immutable fun(t: table): table
+return {
+  notify = notify,
+  filter = filter,
+  reduce = reduce,
+  immutable = immutable,
+}

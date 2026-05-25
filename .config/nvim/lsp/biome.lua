@@ -17,5 +17,4 @@ return {
     "typescriptreact",
     "vue",
   },
-  root_markers = GRIM.static.root_markers.javascript,
 }

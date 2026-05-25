@@ -1,3 +1,6 @@
+---GRIM.line.tab provies the GRIM tab line.
+---@alias GRIM.line.tab fun(): string
+
 local last_active_win = {}
 
 local devicons = require("nvim-web-devicons")
@@ -98,7 +101,5 @@ local tabline = function()
   return format
 end
 
----GRIM.tab provies the tabline.
----@class GRIM.tab
----@field line fun(): string -- # GRIM tab line definition
-return { line = tabline }
+---@type GRIM.line.tab
+return tabline

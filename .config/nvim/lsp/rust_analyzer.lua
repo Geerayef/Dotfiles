@@ -3,7 +3,6 @@ return {
   name = "Rust LS",
   cmd = { "rust-analyzer" },
   filetypes = { "rust" },
-  root_markers = GRIM.static.root_markers.rust,
   settings = {
     ["rust-analyzer"] = {
       imports = { prefix = "self", granularity = { group = "module" } },

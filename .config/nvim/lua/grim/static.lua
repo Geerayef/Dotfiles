@@ -1,9 +1,10 @@
+---@package GRIM.static
 ---GRIM.static provides a collection of static resources.
 ---@class GRIM.static
 ---@field border_simple string[]
----@field border table<string, string>
----@field icon table<string, string|table<string, string>>
----@field root_markers table<string, string[]>
+---@field border [string[]]
+---@field icon table
+---@field root_markers [string[]]
 ---@field treesitter_grammars string[]
 return {
   border_simple = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
@@ -25,21 +26,28 @@ return {
     command = "",
     git = {
       branch = "",
-      added = " ",
-      added_simple = "⁺ ",
-      modified = "󰝤 ",
-      modified_simple = "∼ ",
-      modified_simple_up = "° ",
-      removed = " ",
-      removed_simple = "⁻ ",
+      add = " ",
+      add_simple = "⁺ ",
+      change = "󰝤 ",
+      change_simple = "∼ ",
+      change_simple_up = "° ",
+      del = " ",
+      del_simple = "⁻ ",
     },
     diagnostics = {
       error = " ",
-      error_simple = "×",
+      error_empty = " ",
+      error_simple = "× ",
+      error_ascii = "e ",
       warn = " ",
+      warn_empty = " ",
+      warn_ascii = "w ",
       info = " ",
+      info_empty = "󰋽 ",
+      info_ascii = "i ",
       hint = "󰌵 ",
-      hintfull = " ",
+      hint_empty = " ",
+      hint_ascii = "h ",
     },
     ui = {
       angle_down_s = "",
@@ -58,6 +66,7 @@ return {
       box_empty = "󰄱",
       box_full = "󰝤",
       check = "󰄬",
+      check_circle = "",
       circle_circle = "",
       circle_circle_l = "◉",
       circle_full = "●",
@@ -75,6 +84,7 @@ return {
       lock = "",
       space = "␣",
       triangle_right_s = "",
+      separator_statusline = "│",
       whirl = "⌘",
     },
     kind_icons = {
@@ -106,7 +116,8 @@ return {
     },
   },
   root_markers = {
-    lua = {
+    -- [Lua]
+    {
       ".emmyrc.json",
       ".luacheckrc",
       ".luarc.json",
@@ -114,7 +125,8 @@ return {
       ".stylua.toml",
       "lazy-lock.json",
     },
-    ocaml = {
+    -- [OCaml]
+    {
       "dune-project",
       "dune-workspace",
       ".ocamlformat",
@@ -125,7 +137,8 @@ return {
       "*.ml",
       "*.mli",
     },
-    haskell = {
+    -- [Haskell]
+    {
       "*.cabal",
       "cabal.project",
       "cabal.project.local",
@@ -135,7 +148,8 @@ return {
       "package.yaml.lock",
       "*.hs",
     },
-    go = {
+    -- [Go]
+    {
       "main.go",
       "build.go",
       "go.mod",
@@ -143,19 +157,17 @@ return {
       "go.sum",
       "*.go",
     },
-    c = {
-      ".ccls",
-      "compile_commands.json",
-      "compile_flags.txt",
-      ".clangd",
-      ".clang-tidy",
-      ".clang-format",
-      "*.cmake",
-      "cmake*/",
-      "CMakePresets.json",
-      "CTestConfig.cmake",
+    -- [Rust]
+    {
+      "Cargo.toml",
+      "Cargo.lock",
+      "mod.rs",
+      "rust-analyzer.json",
+      "rust-project.json",
+      "package.json",
     },
-    python = {
+    -- [Python]
+    {
       "__init__.py",
       ".ruff.toml",
       "ruff.toml",
@@ -168,15 +180,25 @@ return {
       "pyrightconfig.json",
       "Pipfile",
     },
-    rust = {
-      "Cargo.toml",
-      "Cargo.lock",
-      "mod.rs",
-      "rust-analyzer.json",
-      "rust-project.json",
-      "package.json",
+    -- [sh]
+    { ".shellcheckrc", "shellcheckrc" },
+    -- [Fish]
+    { "config.fish", "conf.d", "*.fish" },
+    -- [C/C++]
+    {
+      ".ccls",
+      "compile_commands.json",
+      "compile_flags.txt",
+      ".clangd",
+      ".clang-tidy",
+      ".clang-format",
+      "*.cmake",
+      "cmake*/",
+      "CMakePresets.json",
+      "CTestConfig.cmake",
     },
-    javascript = {
+    -- [JS/TS]
+    {
       "tsconfig.json",
       "jsconfig.json",
       "biome.json",
@@ -188,9 +210,8 @@ return {
       "bun.lock",
       "deno.lock",
     },
-    sh = { ".shellcheckrc", "shellcheckrc" },
-    fish = { "config.fish", "conf.d", "*.fish" },
-    generic = {
+    -- [Generic]
+    {
       "meson.build",
       "meson_options.txt",
       "*.ini",

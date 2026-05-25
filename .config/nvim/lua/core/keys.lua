@@ -53,8 +53,6 @@ map("n", "<leader>bd", "<cmd>bd!<CR>", "[b]uffer [d]elete")
 
 -- Search
 map("n", "<leader>nh", cmd.nohl, "[n]o [h]ighlights")
-map("n", "n", "nzzzv", "Vertically center on next matching search")
-map("n", "N", "Nzzzv", "Vertically center on previous matching search")
 
 -- Yank/Paste
 map("n", "x", '"_x', "Cut rightward character without saving to buffer")

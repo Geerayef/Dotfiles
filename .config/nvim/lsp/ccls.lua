@@ -21,5 +21,4 @@ return {
     },
   },
   filetypes = { "c", "cpp" },
-  root_markers = GRIM.static.root_markers.c,
 }

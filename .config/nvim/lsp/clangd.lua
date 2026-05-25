@@ -22,5 +22,4 @@ return {
     textDocument = { completion = { editsNearCursor = true }, switchSourceHeader = true },
   },
   filetypes = { "c", "cpp" },
-  root_markers = GRIM.static.root_markers.c,
 }

@@ -5,7 +5,7 @@
 local root = function(path, root_markers)
   if not path or path == "" or not vim.uv.fs_stat(path) then return nil end
   if not root_markers or #root_markers == 0 then
-    root_markers = vim.iter(vim.tbl_values(GRIM.static.root_markers)):flatten():totable() ---@as string[]
+    root_markers = vim.iter(GRIM.static.root_markers):flatten():totable() ---@as string[]
   end
   if vim.tbl_contains(root_markers, vim.fs.basename(path)) then return vim.fs.dirname(path) end
   local proximity_threshold = 2
@@ -72,6 +72,7 @@ local file_large_p = function(buf)
   return ok and stat ~= nil and stat.size > size_threshold
 end
 
+---@package GRIM.fs
 ---GRIM.fs provides file system interoperation utilities.
 ---@class GRIM.fs
 ---@field root fun(path: string, root_markers: string[]?): string

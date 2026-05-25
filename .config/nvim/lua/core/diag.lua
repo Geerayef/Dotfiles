@@ -25,4 +25,22 @@ vim.diagnostic.config({
     end,
     border = GRIM.static.border_simple,
   },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.HINT] = GRIM.static.icon.diagnostics.hint_ascii,
+      [vim.diagnostic.severity.INFO] = GRIM.static.icon.diagnostics.info_ascii,
+      [vim.diagnostic.severity.WARN] = GRIM.static.icon.diagnostics.warn_ascii,
+      [vim.diagnostic.severity.ERROR] = GRIM.static.icon.diagnostics.error_ascii,
+    },
+    linehl = { [vim.diagnostic.severity.ERROR] = "ErrorMsg" },
+    numhl = { [vim.diagnostic.severity.WARN] = "WarningMsg" },
+  },
+  status = {
+    format = {
+      [vim.diagnostic.severity.HINT] = GRIM.static.icon.diagnostics.hint_empty,
+      [vim.diagnostic.severity.INFO] = GRIM.static.icon.diagnostics.info_empty,
+      [vim.diagnostic.severity.WARN] = GRIM.static.icon.diagnostics.warn_empty,
+      [vim.diagnostic.severity.ERROR] = GRIM.static.icon.diagnostics.error_empty,
+    },
+  },
 })

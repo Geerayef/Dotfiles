@@ -3,6 +3,5 @@ return {
   name = "Ruff LS",
   cmd = { "ruff", "server" },
   filetypes = { "python" },
-  root_markers = GRIM.static.root_markers.python,
   init_options = { settings = { lint = { preview = true } } },
 }
