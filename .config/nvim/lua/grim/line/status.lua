@@ -13,7 +13,6 @@
 ---GRIM.line.status provides the GRIM status line.
 ---@class GRIM.line.status
 ---@field init fun(opts: GRIM.line.status.config): string
----@field component table
 
 -- Config ------------------------------------------------------------------------------------------
 
@@ -78,6 +77,7 @@ local component = {
     if GRIM.git.versioned_p(bufid) then
       local status = GRIM.git.diffstat(bufid)
       return table.concat({
+        " ",
         status.added > 0 and config.symbols.git.add .. status.added or "",
         status.changed > 0 and config.symbols.git.change .. status.changed or "",
         status.removed > 0 and config.symbols.git.del .. status.removed or "",
@@ -99,6 +99,13 @@ local component = {
   --     })
   --   end
   -- end,
+  ---@param bufid integer
+  ---@return string
+  diagnostics = function(bufid)
+    return next(vim.diagnostic.count(bufid))
+        and table.concat({ vim.diagnostic.status(), config.symbols.sep }, " ")
+      or ""
+  end,
   ---Padding.
   ---@param char string
   ---@param size integer
@@ -137,22 +144,19 @@ return {
   ---@return string # GRIM status line format string
   init = function(opts)
     config = vim.tbl_deep_extend("force", config, opts)
+    local bufid = vim.api.nvim_get_current_buf()
     local mod = {
       file = component.group({
-        component.file.name(vim.api.nvim_get_current_buf()),
-        component.buffer.modified(vim.api.nvim_get_current_buf()),
+        component.file.name(bufid),
+        component.buffer.modified(bufid),
         component.buffer.search(),
-        component.buffer.readonly(vim.api.nvim_get_current_buf()),
+        component.buffer.readonly(bufid),
         component.buffer.help(),
         component.buffer.qlist(),
       }, " ", config.file.lalign, 32, 0),
       macro = component.group({ component.macro() }, "", true, 16, 0),
-      git = component.group({ component.git(vim.api.nvim_get_current_buf()) }, "", false, 24, 0),
-      diagnostics = component.group({
-        next(vim.diagnostic.count(vim.api.nvim_get_current_buf()))
-            and (vim.diagnostic.status() .. " " .. config.symbols.sep)
-          or "",
-      }, " ", false, 24, 0),
+      git = component.group({ component.git(bufid) }, "", false, 24, 0),
+      diagnostics = component.group({ component.diagnostics(bufid) }, "", false, 24, 0),
       head = table.concat({ component.pad(" ", config.padding.head), config.symbols.sep, " " }),
       tail = component.pad(" ", config.padding.tail),
     }
@@ -160,12 +164,12 @@ return {
       mod.head,
       mod.file,
       mod.macro,
-      component.trunc,
       component.align,
+      component.trunc,
       mod.diagnostics,
       mod.git,
       mod.tail,
     })
   end,
-  component = component,
+  -- component = component,
 }
