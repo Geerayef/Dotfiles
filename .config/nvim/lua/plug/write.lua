@@ -1,72 +1,88 @@
+local rb = require("clrs.road").base
 local i = GRIM.static.icon.ui
 return {
   {
-    "obsidian-nvim/obsidian.nvim",
+    "nvim-orgmode/orgmode",
     version = "*",
-    ft = "markdown",
-    dependencies = {
-      {
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          preset = "obsidian",
-          completions = { lsp = { enabled = true } },
-          render_modes = true,
-          bullet = { icons = { i.dot }, right_pad = 1 },
-          checkbox = {
-            custom = {
-              working = { raw = "[>]", rendered = i.angle_right_l .. " " },
-              important = { raw = "[!]", rendered = i.diamond .. " " },
-            },
-          },
-        },
+    event = "VeryLazy",
+    ft = "org",
+    opts = {
+      org_agenda_files = "~/org/**/*",
+      org_default_notes_file = "~/org/note.org",
+      org_todo_keywords = {
+        "TODO",
+        "NEXT",
+        "WAIT",
+        "MEETING",
+        "INACTIVE",
+        "CANCELLED",
+        "|",
+        "DONE",
       },
-      {
-        "hedyhli/markdown-toc.nvim",
-        cmd = "Mtoc",
-        opts = {
-          toc_list = { markers = "-" },
-          fences = { start_text = "TOC start", end_text = "TOC end" },
+      org_todo_keyword_faces = {
+        TODO = table.concat({ ":foreground", rb.lotusYellow, ":weight", "bold" }, " "),
+        NEXT = table.concat({ ":foreground", rb.cadetGray, ":slant", "italic" }, " "),
+        WAIT = table.concat({ ":foreground", rb.rustyRed, ":underline", "on" }, " "),
+        MEETING = table.concat({ ":foreground", rb.gunmetal }, " "),
+        INACTIVE = table.concat({ ":foreground", rb.charcoal }, " "),
+        CANCELLED = table.concat({ ":foreground", rb.mintCream }, " "),
+        DONE = table.concat({ ":foreground", rb.emerald }, " "),
+      },
+      org_hide_emphasis_markers = true,
+      org_ellipsis = i.ellipsis,
+      org_log_into_drawer = "LOGBOOK",
+      org_capture_templates = {
+        d = {
+          description = "Daily",
+          template = "* %<%B %-d, %Y> \n\t%?",
+          target = "~/org/daily/%<%Y-%m-%d>.org",
+        },
+        T = "Task",
+        Tf = {
+          description = "Task: feature",
+          template = "* %^{PROMPT}%?\n %u",
+          target = "~/org/task/Phoenix.%<%Y.%m.%d>_feat_%^{PROMPT}.org",
+        },
+        Tt = {
+          description = "Task: test",
+          template = "* %^{PROMPT}%?\n %u",
+          target = "~/org/task/Phoenix.%<%Y.%m.%d>_test_%^{PROMPT}.org",
+        },
+        Tx = {
+          description = "Task: fix",
+          template = "* %^{PROMPT}%?\n %u",
+          target = "~/org/task/Phoenix.%<%Y.%m.%d>_fix_%^{PROMPT}.org",
+        },
+        Tc = {
+          description = "Task: chore",
+          template = "* %^{PROMPT}%?\n %u",
+          target = "~/org/task/Phoenix.%<%Y.%m.%d>_chore_%^{PROMPT}.org",
         },
       },
     },
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
     opts = {
-      workspaces = {
-        { name = "notes", path = "~/notes", strict = true },
-        {
-          name = "self",
-          path = "~/notes/self",
-          strict = true,
-          overrides = { notes_subdir = "" },
-        },
-        {
-          name = "dev",
-          path = "~/notes/dev",
-          strict = true,
-          overrides = { notes_subdir = "" },
+      preset = "none",
+      completions = { lsp = { enabled = true }, blink = { enabled = true } },
+      render_modes = true,
+      bullet = { icons = { i.dot }, right_pad = 1 },
+      checkbox = {
+        custom = {
+          working = { raw = "[>]", rendered = i.angle_right_l .. " " },
+          important = { raw = "[!]", rendered = i.exclamation .. " " },
         },
       },
-      daily_notes = {
-        folder = "daily",
-        date_format = "%Y-%m-%d",
-        alias_format = "%B %-d, %Y",
-        template = nil,
-      },
-      templates = {
-        folder = "template",
-        date_format = "%Y-%m-%d",
-        time_format = "%H:%M",
-        -- `substitutions`: map for custom variables. `key`: variable, `value`: function.
-        substitutions = {},
-      },
-      legacy_commands = false,
-      frontmatter = { enabled = false },
-      footer = { enabled = true },
-      completion = { blink = true, min_chars = 2 },
-      link = { style = "markdown" },
-      search = { sort_reversed = false, sort_by = "path" },
-      picker = { name = "fzf-lua" },
-      checkbox = { enabled = true, create_new = true, order = { " ", "x", ">", "!", "-" } },
-      ui = { enable = false },
+      yaml = { enabled = true, render_modes = true },
+    },
+  },
+  {
+    "hedyhli/markdown-toc.nvim",
+    cmd = "Mtoc",
+    opts = {
+      toc_list = { markers = "-" },
+      fences = { start_text = "TOC start", end_text = "TOC end" },
     },
   },
   -- {
@@ -74,16 +90,26 @@ return {
   --   dependencies = { "micangl/cmp-vimtex" },
   --   ft = { "tex" },
   --   config = function()
-  --     vim.g["tex_flavor"] = "latex" -- how to read tex files
-  --     vim.g["tex_indent_items"] = 0 -- turn off enumerate indent
-  --     vim.g["tex_indent_brace"] = 0 -- turn off brace indent
-  --     -- vim.g['vimtex_view_method'] = 'zathura'     -- main variant with xdotool (requires X11; not compatible with wayland)
-  --     vim.g["vimtex_view_method"] = "zathura_simple" -- for variant without xdotool to avoid errors in wayland
-  --     vim.g["vimtex_quickfix_mode"] = 0 -- suppress error reporting on save and build
-  --     vim.g["vimtex_mappings_enabled"] = 0 -- Ignore mappings
-  --     vim.g["vimtex_indent_enabled"] = 0 -- Auto Indent
-  --     vim.g["vimtex_syntax_enabled"] = 1 -- Syntax highlighting
-  --     vim.g["vimtex_context_pdf_viewer"] = "zathura" -- external PDF viewer run from vimtex menu command
+  --     -- how to read tex files
+  --     vim.g["tex_flavor"] = "latex"
+  --     -- turn off enumerate indent
+  --     vim.g["tex_indent_items"] = 0
+  --     -- turn off brace indent
+  --     vim.g["tex_indent_brace"] = 0
+  --     -- main variant with xdotool (requires X11; not compatible with wayland)
+  --     -- vim.g['vimtex_view_method'] = 'zathura'
+  --     -- for variant without xdotool to avoid errors in wayland
+  --     vim.g["vimtex_view_method"] = "zathura_simple"
+  --     -- suppress error reporting on save and build
+  --     vim.g["vimtex_quickfix_mode"] = 0
+  --     -- Ignore mappings
+  --     vim.g["vimtex_mappings_enabled"] = 0
+  --     -- Auto Indent
+  --     vim.g["vimtex_indent_enabled"] = 0
+  --     -- Syntax highlighting
+  --     vim.g["vimtex_syntax_enabled"] = 1
+  --     -- external PDF viewer run from vimtex menu command
+  --     vim.g["vimtex_context_pdf_viewer"] = "zathura"
   --     vim.g["vimtex_log_ignore"] = {
   --       "Underfull",
   --       "Overfull",
