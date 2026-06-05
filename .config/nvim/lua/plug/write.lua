@@ -7,8 +7,8 @@ return {
     event = "VeryLazy",
     ft = "org",
     opts = {
-      org_agenda_files = "~/org/**/*",
-      org_default_notes_file = "~/org/note.org",
+      org_agenda_files = "~/notes/**/*",
+      org_default_notes_file = "~/notes/note.org",
       org_todo_keywords = {
         "TODO",
         "NEXT",
@@ -35,28 +35,28 @@ return {
         d = {
           description = "Daily",
           template = "* %<%B %-d, %Y> \n\t%?",
-          target = "~/org/daily/%<%Y-%m-%d>.org",
+          target = "~/notes/daily/%<%Y-%m-%d>.org",
         },
         T = "Task",
         Tf = {
           description = "Task: feature",
           template = "* %^{PROMPT}%?\n %u",
-          target = "~/org/task/Phoenix.%<%Y.%m.%d>_feat_%^{PROMPT}.org",
+          target = "~/notes/task/Phoenix.%<%Y.%m.%d>_feat_%^{PROMPT}.org",
         },
         Tt = {
           description = "Task: test",
           template = "* %^{PROMPT}%?\n %u",
-          target = "~/org/task/Phoenix.%<%Y.%m.%d>_test_%^{PROMPT}.org",
+          target = "~/notes/task/Phoenix.%<%Y.%m.%d>_test_%^{PROMPT}.org",
         },
         Tx = {
           description = "Task: fix",
           template = "* %^{PROMPT}%?\n %u",
-          target = "~/org/task/Phoenix.%<%Y.%m.%d>_fix_%^{PROMPT}.org",
+          target = "~/notes/task/Phoenix.%<%Y.%m.%d>_fix_%^{PROMPT}.org",
         },
         Tc = {
           description = "Task: chore",
           template = "* %^{PROMPT}%?\n %u",
-          target = "~/org/task/Phoenix.%<%Y.%m.%d>_chore_%^{PROMPT}.org",
+          target = "~/notes/task/Phoenix.%<%Y.%m.%d>_chore_%^{PROMPT}.org",
         },
       },
     },
