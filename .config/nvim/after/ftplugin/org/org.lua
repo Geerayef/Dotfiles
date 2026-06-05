@@ -1,7 +1,7 @@
--- Options
-
+vim.o.wrap = true
+vim.opt.textwidth = 80
 vim.opt.colorcolumn = { 80 }
-
--- LSP
-
-vim.lsp.enable("org")
+vim.o.spell = true
+vim.o.spelllang = "en_gb"
+vim.o.spelloptions = "camel"
+vim.lsp.enable("org", true)

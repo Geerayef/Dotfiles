@@ -96,7 +96,7 @@ require("vim._core.ui2").enable({
     targets = {
       [""] = "msg",
       empty = "cmd",
-      bufwrite = "msg",
+      bufwrite = "cmd",
       confirm = "cmd",
       emsg = "pager",
       echo = "msg",
@@ -123,8 +123,8 @@ require("vim._core.ui2").enable({
     },
     cmd = { height = 0.5 },
     dialog = { height = 0.5 },
-    msg = { height = 0.3, timeout = 5000 },
-    pager = { height = 0.5 },
+    msg = { height = 0.5, timeout = 5000 },
+    pager = { height = 0.75 },
   },
 })
 
