@@ -1,3 +1,10 @@
+---GRIM.git provides utilities for working with Git.
+---@class GRIM.git
+---@field execute fun(cmd: string[], opts?: vim.SystemOpts, on?: fun(out: vim.SystemCompleted): any): any
+---@field branch fun(buf: integer?): string
+---@field diffstat fun(buf: integer?): { added: integer, changed: integer, removed: integer }
+---@field versioned_p fun(buf: integer): boolean
+
 ---Execute a Git command in current directory.
 ---@generic T
 ---@param on fun(out: vim.SystemCompleted): T? # Optional function for processing output.
@@ -83,14 +90,7 @@ local versioned_p = function(bufid)
   )
 end
 
----@package GRIM.git
----GRIM.git provides utilities for working with Git.
----@class GRIM.git
----@generic T
----@field execute fun(cmd: string[], opts?: vim.SystemOpts, on?: fun(out: vim.SystemCompleted): T): T
----@field branch fun(buf: integer?): string
----@field diffstat fun(buf: integer?): { added: integer, changed: integer, removed: integer }
----@field versioned_p fun(buf: integer): boolean
+---@type GRIM.git
 return {
   execute = execute,
   branch = branch,

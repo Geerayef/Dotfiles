@@ -1,3 +1,10 @@
+---GRIM.func provides generic wrappers around Neovim's builtin functionality.
+---@class GRIM.func
+---@field notify fun(msg: string, lvl: string): nil
+---@field filter fun(predicate: fun(x: any): boolean, t: table): table
+---@field reduce fun(func: fun(x: any, ...: any): any, t: table, acc: any): any
+---@field immutable fun(t: table): table
+
 ---@param msg string # Message to display
 ---@param lvl string # Log level
 local notify = function(lvl, msg)
@@ -40,14 +47,7 @@ local immutable = function(t)
   })
 end
 
----@package GRIM.func
----GRIM.func provides generic wrappers around Neovim's builtin functionality.
----@class GRIM.func
----@field notify fun(msg: string, lvl: string): nil
----@field filter fun(predicate: fun(x: any): boolean, t: table): table
----@generic T: any
----@field reduce fun(func: fun(x: T, ...: any): T, t: table, acc: T): T
----@field immutable fun(t: table): table
+---@type GRIM.func
 return {
   notify = notify,
   filter = filter,

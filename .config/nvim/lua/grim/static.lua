@@ -1,4 +1,3 @@
----@package GRIM.static
 ---GRIM.static provides a collection of static resources.
 ---@class GRIM.static
 ---@field border_simple string[]
@@ -6,6 +5,8 @@
 ---@field icon table
 ---@field root_markers [string[]]
 ---@field treesitter_grammars string[]
+
+---@type GRIM.static
 return {
   border_simple = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
   border = {
@@ -80,6 +81,7 @@ return {
       dot_l = "•",
       dot_s = "·",
       ellipsis = "…",
+      exclamation = "",
       link = "",
       lock = "",
       space = "␣",
@@ -235,6 +237,7 @@ return {
       "MAKEFILE",
       "TODO",
       "TODO.md",
+      "TODO.org",
       "README",
       "README.md",
       "README.org",
@@ -242,6 +245,7 @@ return {
       "README.pdf",
       "license",
       "LICENSE",
+      "*.org",
       ".git/",
       ".gitignore",
       "src/",

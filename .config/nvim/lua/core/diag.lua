@@ -1,3 +1,5 @@
+local i = GRIM.static.icon
+local severity = vim.diagnostic.severity
 vim.diagnostic.config({
   virtual_text = true,
   virtual_lines = false,
@@ -27,20 +29,27 @@ vim.diagnostic.config({
   },
   signs = {
     text = {
-      [vim.diagnostic.severity.HINT] = GRIM.static.icon.diagnostics.hint_ascii,
-      [vim.diagnostic.severity.INFO] = GRIM.static.icon.diagnostics.info_ascii,
-      [vim.diagnostic.severity.WARN] = GRIM.static.icon.diagnostics.warn_ascii,
-      [vim.diagnostic.severity.ERROR] = GRIM.static.icon.diagnostics.error_ascii,
+      [severity.HINT] = i.diagnostics.hint_ascii,
+      [severity.INFO] = i.diagnostics.info_ascii,
+      [severity.WARN] = i.diagnostics.warn_ascii,
+      [severity.ERROR] = i.diagnostics.error_ascii,
     },
-    linehl = { [vim.diagnostic.severity.ERROR] = "ErrorMsg" },
-    numhl = { [vim.diagnostic.severity.WARN] = "WarningMsg" },
   },
   status = {
-    format = {
-      [vim.diagnostic.severity.HINT] = GRIM.static.icon.diagnostics.hint_empty,
-      [vim.diagnostic.severity.INFO] = GRIM.static.icon.diagnostics.info_empty,
-      [vim.diagnostic.severity.WARN] = GRIM.static.icon.diagnostics.warn_empty,
-      [vim.diagnostic.severity.ERROR] = GRIM.static.icon.diagnostics.error_empty,
-    },
+    format = function(counts)
+      local d = {
+        [severity.HINT] = { i.diagnostics.hint_empty, "DiagnosticHint" },
+        [severity.INFO] = { i.diagnostics.info_empty, "DiagnosticInfo" },
+        [severity.WARN] = { i.diagnostics.warn_empty, "DiagnosticWarn" },
+        [severity.ERROR] = { i.diagnostics.error_empty, "DiagnosticError" },
+      }
+      return table.concat(
+        vim
+          .iter(vim.tbl_keys(counts))
+          :map(function(s) return ("%%#%s#%s %s"):format(d[s][2], d[s][1], counts[s]) end)
+          :totable(),
+        " "
+      )
+    end,
   },
 })

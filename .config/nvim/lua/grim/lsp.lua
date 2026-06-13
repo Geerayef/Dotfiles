@@ -1,3 +1,7 @@
+---GRIM.lsp provides LSP related utilities.
+---@class GRIM.lsp
+---@field attach fun(client: vim.lsp.Client, bufid: integer): nil
+
 ---LSP on_attach function.
 ---@function GRIM.lsp.attach
 ---@param client vim.lsp.Client
@@ -8,8 +12,5 @@ local attach = function(client, bufid)
   vim.lsp.codelens.enable(true, { bufnr = bufid })
 end
 
----@package GRIM.lsp
----GRIM.lsp provides LSP related utilities.
----@class GRIM.lsp
----@field attach fun(client: vim.lsp.Client, bufid: integer): nil
+---@type GRIM.lsp
 return { attach = attach }

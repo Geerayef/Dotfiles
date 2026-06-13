@@ -1,4 +1,12 @@
+---GRIM.fs provides file system interoperation utilities.
+---@class GRIM.fs
+---@field root fun(path: string, root_markers: string[]?): string
+---@field file_read fun(path: string): string?
+---@field file_write fun(path: string, content: string): boolean
+---@field file_large_p fun(buf: integer): boolean
+
 ---Compute the path of file's root directory.
+---@type fun(path: string, root_markers: string[]?): string?
 ---@param path string # File path
 ---@param root_markers string[]? # Files or directories marking the root
 ---@return string? # Absolute path of the root directory
@@ -40,6 +48,7 @@ local root = function(path, root_markers)
 end
 
 ---Read file contents.
+---@type fun(path: string): string?
 ---@param path string # File path relative to CWD
 ---@return string?
 local file_read = function(path)
@@ -52,6 +61,7 @@ local file_read = function(path)
 end
 
 ---Write string into file.
+---@type fun(path: string, content: string): boolean
 ---@param path string # File path relative to CWD
 ---@param content string
 ---@return boolean success
@@ -64,6 +74,7 @@ local file_write = function(path, content)
   return true
 end
 
+---@type fun (buf: integer): boolean
 ---@param buf integer # Buffer ID
 ---@return boolean
 local file_large_p = function(buf)
@@ -72,13 +83,7 @@ local file_large_p = function(buf)
   return ok and stat ~= nil and stat.size > size_threshold
 end
 
----@package GRIM.fs
----GRIM.fs provides file system interoperation utilities.
----@class GRIM.fs
----@field root fun(path: string, root_markers: string[]?): string
----@field file_read fun(path: string): string?
----@field file_write fun(path: string, content: string): boolean
----@field file_large_p fun(buf: integer): boolean
+---@type GRIM.fs
 return {
   root = root,
   file_read = file_read,
