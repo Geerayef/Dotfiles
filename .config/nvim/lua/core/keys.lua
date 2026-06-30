@@ -51,9 +51,6 @@ map(
 -- Buffers
 map("n", "<leader>bd", "<cmd>bd!<CR>", "[b]uffer [d]elete")
 
--- Search
-map("n", "<leader>nh", cmd.nohl, "[n]o [h]ighlights")
-
 -- Yank/Paste
 map("n", "x", '"_x', "Cut rightward character without saving to buffer")
 map("x", "<leader>P", '"_dP', "Past from system clipboard")
