@@ -4,6 +4,7 @@ return {
   {
     "nvim-orgmode/orgmode",
     version = "*",
+    cond = vim.g.vscode == nil,
     event = "VeryLazy",
     ft = "org",
     opts = {
@@ -56,29 +57,31 @@ return {
         T = "Task",
         Tf = {
           description = "Task: feature",
-          template = "* %^{PROMPT}\n\t%u\n\t%?\n\n** TODO [/]\n\t- [ ] \n\n** Deliverables",
-          target = "~/notes/task/Phoenix.%<%Y.%m.%d>_feat_%^{PROMPT}.org",
+          template = "* %^{Title}\n\t%u\n\t%?\n\n** TODO [/]\n\t- [ ] \n\n** Deliverables",
+          target = "~/notes/task/Phoenix.%<%Y.%m.%d>_feat_%^{File:Name}.org",
         },
         Tt = {
           description = "Task: test",
-          template = "* %^{PROMPT}\n\t%u\n\t%?\n\n** TODO [/]\n\t- [ ] \n\n** Deliverables",
-          target = "~/notes/task/Phoenix.%<%Y.%m.%d>_test_%^{PROMPT}.org",
+          template = "* %^{Title}\n\t%u\n\t%?\n\n** TODO [/]\n\t- [ ] \n\n** Deliverables",
+          target = "~/notes/task/Phoenix.%<%Y.%m.%d>_test_%^{File:Name}.org",
         },
         Tx = {
           description = "Task: fix",
-          template = "* %^{PROMPT}\n\t%u\n\t%?\n\n** TODO [/]\n\t- [ ] \n\n** Deliverables",
-          target = "~/notes/task/Phoenix.%<%Y.%m.%d>_fix_%^{PROMPT}.org",
+          template = "* %^{Title}\n\t%u\n\t%?\n\n** TODO [/]\n\t- [ ] \n\n** Deliverables",
+          target = "~/notes/task/Phoenix.%<%Y.%m.%d>_fix_%^{File:Name}.org",
         },
         Tc = {
           description = "Task: chore",
-          template = "* %^{PROMPT}\n\t%u\n\t%?\n\n** TODO [/]\n\t- [ ] \n\n** Deliverables",
-          target = "~/notes/task/Phoenix.%<%Y.%m.%d>_chore_%^{PROMPT}.org",
+          template = "* %^{Title}\n\t%u\n\t%?\n\n** TODO [/]\n\t- [ ] \n\n** Deliverables",
+          target = "~/notes/task/Phoenix.%<%Y.%m.%d>_chore_%^{File:Name}.org",
         },
       },
     },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    cond = vim.g.vscode == nil,
+    ft = "markdown",
     opts = {
       preset = "none",
       completions = { lsp = { enabled = true }, blink = { enabled = true } },
@@ -95,6 +98,7 @@ return {
   },
   {
     "hedyhli/markdown-toc.nvim",
+    cond = vim.g.vscode == nil,
     cmd = "Mtoc",
     opts = {
       toc_list = { markers = "-" },
