@@ -66,7 +66,7 @@ o.suffixesadd:append({ ".java", ".rs" })
 
 -- ~ UI
 o.termguicolors = true
-o.background = "dark"
+o.background = vim.g.background
 o.number = true
 o.relativenumber = true
 o.numberwidth = 8

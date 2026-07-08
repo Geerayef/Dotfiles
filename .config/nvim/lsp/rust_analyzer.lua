@@ -9,8 +9,8 @@ return {
       cargo = { buildScripts = { enable = true } },
       checkOnSave = false,
       lens = {
-        debug = { enable = true },
         enable = true,
+        debug = { enable = true },
         implementations = { enable = true },
         references = {
           adt = { enable = true },

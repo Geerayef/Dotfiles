@@ -3,11 +3,6 @@ local rb, rp = road.base, road.palette
 return {
   { "bettervim/yugen.nvim", lazy = vim.g.theme ~= "yugen" },
   {
-    "webhooked/kanso.nvim",
-    lazy = vim.g.theme ~= "kanso",
-    opts = { compile = true, background = { dark = "zen", light = "mist" } },
-  },
-  {
     "amedoeyes/eyes.nvim",
     lazy = vim.g.theme ~= "eyes",
     opts = {

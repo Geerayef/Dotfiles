@@ -1,4 +1,5 @@
 vim.g.did_install_default_menus = 1
+vim.g.background = "dark"
 vim.g.theme = "yugen"
 require("grim") --[[@as GRIM]]
 require("core.opts")

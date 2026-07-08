@@ -100,6 +100,7 @@ autocmd("ColorScheme", {
   group = augroup("CustomHighlights", { clear = true }),
   pattern = "*",
   callback = function()
+    if vim.g.theme ~= "yugen" then return end
     local road = require("clrs.road")
     local rb, rp = road.base, road.palette
     local hl = vim.api.nvim_set_hl
