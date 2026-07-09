@@ -32,3 +32,4 @@ Dotfiles/
 .local/bin/bun*
 .config/nvim/parser/pqls.so
 .config/nvim/queries/pqls
+.config/btop/
