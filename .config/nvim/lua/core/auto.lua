@@ -109,9 +109,13 @@ autocmd("ColorScheme", {
     hl(0, "NormalNC", { link = "Normal" })
     hl(0, "NormalFloat", { link = "Normal" })
     hl(0, "FloatBorder", { link = "Normal" })
+    hl(0, "Cursor", { fg = rb.dragonInk, bold = true })
     hl(0, "CursorLine", { bg = rp.jet[200] })
     hl(0, "CursorLineNr", { fg = rb.lotusYellow, bold = true })
     hl(0, "SignColumn", { link = "Normal" })
+    hl(0, "Search", { bg = rb.raisinBlack, fg = rb.citron })
+    hl(0, "CurSearch", { bg = rb.citron, fg = rb.raisinBlack })
+    hl(0, "IncSearch", { bg = rb.raisinBlack, fg = rb.cadetGray })
     hl(0, "MatchParen", {
       fg = rb.mintCream,
       bold = true,
@@ -126,12 +130,12 @@ autocmd("ColorScheme", {
     hl(0, "RenderMarkdownCode", { bg = rb.dragonInk })
     hl(0, "GitSignsCurrentLineBlame", { link = "Comment" })
     hl(0, "LspSignatureActiveParameter", {
-      fg = rp.lotusYellow[400],
+      fg = rp.lotusYellow[500],
       bg = rb.dragonInk,
       bold = true,
     })
     hl(0, "ActionPreviewTitle", {
-      fg = rp.lotusYellow[400],
+      fg = rp.lotusYellow[500],
       bg = rb.dragonInk,
       bold = true,
     })
@@ -139,14 +143,14 @@ autocmd("ColorScheme", {
     vim.cmd.highlight({ args = { "Keyword", "cterm=bold", "gui=bold" } })
     hl(0, "@keyword", { bold = true })
     hl(0, "Comment", { fg = rp.dragonInk[800], italic = true })
-    hl(0, "Function", { fg = rp.lotusYellow[400] })
-    hl(0, "@function", { fg = rp.lotusYellow[400] })
-    hl(0, "@function.call", { fg = rp.lotusYellow[400] })
-    hl(0, "@function.macro", { fg = rp.lotusYellow[400] })
-    hl(0, "@function.builtin", { fg = rp.lotusYellow[400] })
+    hl(0, "Function", { fg = rp.lotusYellow[500] })
+    hl(0, "@function", { fg = rp.lotusYellow[500] })
+    hl(0, "@function.call", { fg = rp.lotusYellow[500] })
+    hl(0, "@function.macro", { fg = rp.lotusYellow[500] })
+    hl(0, "@function.builtin", { fg = rp.lotusYellow[500] })
     -- Org
     hl(0, "@org.code", { fg = rp.dragonInk[800] })
-    hl(0, "@org.verbatim", { fg = rp.emerald[700] })
+    hl(0, "@org.verbatim", { fg = rp.emerald[300] })
   end,
 })
 
