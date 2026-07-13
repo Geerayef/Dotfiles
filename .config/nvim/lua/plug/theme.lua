@@ -16,4 +16,9 @@ return {
       },
     },
   },
+  {
+    "metalelf0/kintsugi-nvim",
+    lazy = string.match(vim.g.theme, "^kintsugi") ~= "kintugi",
+    opts = { variant = "flared" },
+  },
 }

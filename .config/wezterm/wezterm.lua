@@ -228,7 +228,7 @@ C.font_size = 12
 C.font_dirs = { "~/.local/share/fonts/", "/usr/share/fonts/TTF/" }
 C.font = W.font_with_fallback({
   { family = font.family, harfbuzz_features = font.feature },
-  { family = "JetBrainsMono NFM" },
+  { family = "VictorMono NFM" },
   { family = font.family_fallback, harfbuzz_features = font.feature_fallback },
   { family = "Symbols Nerd Font" },
   { family = "Font Awesome" },

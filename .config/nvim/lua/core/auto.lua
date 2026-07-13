@@ -114,7 +114,6 @@ autocmd("ColorScheme", {
     hl(0, "SignColumn", { link = "Normal" })
     hl(0, "MatchParen", {
       fg = rb.mintCream,
-      bg = rp.charcoal[200],
       bold = true,
       underline = true,
     })
@@ -139,12 +138,15 @@ autocmd("ColorScheme", {
     -- Syntax
     vim.cmd.highlight({ args = { "Keyword", "cterm=bold", "gui=bold" } })
     hl(0, "@keyword", { bold = true })
-    hl(0, "Comment", { fg = rb.paynesGray, italic = true })
+    hl(0, "Comment", { fg = rp.dragonInk[800], italic = true })
     hl(0, "Function", { fg = rp.lotusYellow[400] })
     hl(0, "@function", { fg = rp.lotusYellow[400] })
     hl(0, "@function.call", { fg = rp.lotusYellow[400] })
     hl(0, "@function.macro", { fg = rp.lotusYellow[400] })
     hl(0, "@function.builtin", { fg = rp.lotusYellow[400] })
+    -- Org
+    hl(0, "@org.code", { fg = rp.dragonInk[800] })
+    hl(0, "@org.verbatim", { fg = rp.emerald[700] })
   end,
 })
 
