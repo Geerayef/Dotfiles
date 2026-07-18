@@ -6,11 +6,10 @@ cursor-color = #FFF779
 cursor-style = block
 cursor-style-blink = false
 cursor-text = #010204
-font-family = Iosevka
-font-family = IosevkaTerm NFM
-font-family-bold = Iosevka Bold
-font-family-bold-italic = Iosevka Bold Italic
-font-family-italic = Iosevka Italic
+font-family = Ioskeley
+font-family-bold = Ioskeley Bold
+font-family-bold-italic = Ioskeley Bold Oblique
+font-family-italic = Ioskeley Oblique
 font-size = 12
 font-synthetic-style = false
 gtk-custom-css = ./ghostty.css
@@ -24,6 +23,7 @@ window-padding-color = background
 window-padding-x = 0
 window-padding-y = 0
 window-theme = dark
+keybind = ctrl+q>r=reload_config
 keybind = ctrl+q>t=new_tab
 keybind = ctrl+q>n=next_tab
 keybind = ctrl+q>p=previous_tab

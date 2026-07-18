@@ -173,7 +173,7 @@ C.status_update_interval = 1000
 
 -- Performance
 C.enable_wayland = true
-C.animation_fps = 1
+C.animation_fps = 24
 C.max_fps = 24
 local gpus = W.gui.enumerate_gpus()
 C.webgpu_preferred_adapter = gpus[1]
