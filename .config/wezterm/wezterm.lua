@@ -7,7 +7,7 @@ local a = W.action
 local nf = W.nerdfonts
 local rb = require("road").base
 local font = {
-  family = "Iosevka",
+  family = "Ioskeley",
   family_fallback = "IosevkaTerm Nerd Font Mono",
   feature = { "calt=1", "clig=1", "liga=1", "dlig=1" },
   feature_fallback = {
@@ -234,9 +234,9 @@ C.font = W.font_with_fallback({
   { family = "Font Awesome" },
 })
 C.line_height = 1.95
-C.freetype_load_target = "Light"
-C.freetype_render_target = "Normal"
-C.freetype_load_flags = "DEFAULT|NO_AUTOHINT"
+-- C.freetype_load_target = "Light"
+-- C.freetype_render_target = "Normal"
+C.freetype_load_flags = "DEFAULT"
 C.underline_position = "-0.2cell"
 
 -- Workspace
