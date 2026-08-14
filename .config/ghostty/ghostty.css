@@ -1,3 +1,5 @@
-headerbar, tabbar {
-    padding: 0;
+tabbar {
+    height: 0.01rem;
+    padding: 0px;
+    margin: 0px;
 }

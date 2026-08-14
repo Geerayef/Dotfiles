@@ -233,10 +233,10 @@ C.font = W.font_with_fallback({
   { family = "Symbols Nerd Font" },
   { family = "Font Awesome" },
 })
-C.line_height = 1.95
--- C.freetype_load_target = "Light"
--- C.freetype_render_target = "Normal"
-C.freetype_load_flags = "DEFAULT"
+C.line_height = 1.9
+C.freetype_load_target = "Light"
+C.freetype_render_target = "Normal"
+C.freetype_load_flags = "DEFAULT|NO_AUTOHINT"
 C.underline_position = "-0.2cell"
 
 -- Workspace
