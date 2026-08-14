@@ -42,12 +42,12 @@ local tab_active_p = function(tab) return tab == vim.api.nvim_get_current_tabpag
 
 local highlight = function()
   local hl = vim.api.nvim_set_hl
-  hl(0, "TabLine", { fg = rp.charcoal[700], bg = rb.dragonInk })
-  hl(0, "TabLineFill", { bg = rb.dragonInk })
-  hl(0, "GRIMActive", { bg = rb.dragonInk })
-  hl(0, "GRIMInactive", { fg = rp.charcoal[700], bg = rb.dragonInk })
-  hl(0, "GRIMActiveText", { fg = rb.lotusYellow, bg = rb.dragonInk })
-  hl(0, "GRIMInactiveText", { fg = rp.charcoal[700], bg = rb.dragonInk })
+  hl(0, "TabLine", { link = "Normal" })
+  hl(0, "TabLineFill", { link = "Normal" })
+  hl(0, "GRIMActive", { link = "Normal" })
+  hl(0, "GRIMInactive", { link = "Normal" })
+  hl(0, "GRIMActiveText", { fg = rb.lotusYellow })
+  hl(0, "GRIMInactiveText", { fg = rp.charcoal[700] })
 end
 
 local tabline = function()
@@ -77,7 +77,7 @@ local tabline = function()
       vim.fn.fnamemodify(name_buf_active, ":e"),
       { default = true }
     )
-    vim.api.nvim_set_hl(0, hl_icon, { fg = color, bg = rb.dragonInk })
+    vim.api.nvim_set_hl(0, hl_icon, { fg = color })
     format = format .. hl_def .. " "
     format = format
       .. hl_text

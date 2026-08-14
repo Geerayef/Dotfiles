@@ -205,22 +205,6 @@ if vim.fn.has("win32") == 1 or vim.fn.has("wsl") == 1 then
   map("n", "<leader>Wgr", function() input(":!git.exe restore ") end, "[W]indows [g]it [r]estore")
 end
 
--- Markdown & Obsidian
-map("n", "<leader>on", "<cmd>Obsidian new<CR>", "[o]bsidian [n]ew note")
-map("n", "<leader>ot", "<cmd>Obsidian template<CR>", "[o]bsidian [t]emplate note")
-map({ "n", "x" }, "<leader>oln", "<cmd>Obsidian link<CR>", "[o]bsidian [l]ink [n]ew")
-map("n", "<leader>olf", "<cmd>Obsidian follow_link<CR>", "[o]bsidian [l]ink [f]ollow")
-map("n", "<leader>olb", "<cmd>Obsidian backlinks<CR>", "[o]bsidian [l]ink [b]aclinks")
-map("n", "<leader>oss", "<cmd>Obsidian search<CR>", "[o]bsidian [s]earch [s]")
-map("n", "<leader>ost", "<cmd>Obsidian tags<CR>", "[o]bsidian [s]earch [t]ags")
-map("n", "<leader>osd", "<cmd>Obsidian dailies<CR>", "[o]bsidian [s]earch [d]ailies")
-map("n", "<leader>osl", "<cmd>Obsidian links<CR>", "[o]bsidian [s]earch [l]inks")
-map("n", "<leader>od", "<cmd>Obsidian today<CR>", "[o]bsidian to[d]ay")
-map("n", "<leader>ow", "<cmd>Obsidian workspace<CR>", "[o]bsidian [w]orkspace")
-map("n", "<leader>oc", "<cmd>Obsidian toggle_checkbox<CR>", "[o]bsidian [c]heckbox")
-map("n", "<leader>oq", "<cmd>Obsidian quick_switch<CR>", "[o]bsidian [q]uick switch")
-map({ "n", "x" }, "<leader>oxn", "<cmd>Obsidian extract_note<CR>", "[o]bsidian e[x]tract [n]ote")
-
 -- DAP
 map("n", "<M-d>c", cmd.DapContinue, "DAP [c]ontinue")
 map("n", "<M-d>o", cmd.DapStepOver, "DAP step [o]ver")

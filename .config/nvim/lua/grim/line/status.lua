@@ -171,5 +171,4 @@ return {
       mod.tail,
     })
   end,
-  -- component = component,
 }

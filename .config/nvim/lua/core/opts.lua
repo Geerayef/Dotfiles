@@ -7,9 +7,7 @@ local o = vim.opt
 
 o.shell = "/usr/bin/fish"
 o.shortmess:append("IWSsac")
-if vim.fn.executable("rg") == 1 then
-  o.grepprg = "rg -. --color=never --no-heading -n --column -H  -S --trim --"
-end
+if vim.fn.executable("rg") == 1 then o.grepprg = "rg --vimgrep -uu --color=never -S --trim --" end
 
 -- ~ File
 vim.cmd.syntax("on")
@@ -66,7 +64,7 @@ o.suffixesadd:append({ ".java", ".rs" })
 
 -- ~ UI
 o.termguicolors = true
-o.background = vim.g.background
+o.background = "dark"
 o.number = true
 o.relativenumber = true
 o.numberwidth = 8
@@ -76,7 +74,7 @@ o.title = false
 o.showtabline = 1
 o.laststatus = 3
 o.showcmd = false
-o.cmdheight = 0
+o.cmdheight = 1
 o.showmode = false
 o.showmatch = true
 o.switchbuf = "usetab,uselast,useopen"
@@ -90,45 +88,48 @@ o.conceallevel = 2
 o.guifont = "Iosevka,IosevkaTerm NFM:h16"
 o.linespace = 8
 o.winborder = "single"
-require("vim._core.ui2").enable({
-  enable = true,
-  msg = {
-    targets = {
-      [""] = "msg",
-      empty = "cmd",
-      bufwrite = "cmd",
-      confirm = "cmd",
-      emsg = "pager",
-      echo = "msg",
-      echomsg = "msg",
-      echoerr = "pager",
-      completion = "cmd",
-      list_cmd = "pager",
-      lua_error = "pager",
-      lua_print = "msg",
-      progress = "pager",
-      rpc_error = "pager",
-      quickfix = "msg",
-      search_cmd = "cmd",
-      search_count = "cmd",
-      shell_cmd = "pager",
-      shell_err = "pager",
-      shell_out = "pager",
-      shell_ret = "msg",
-      undo = "msg",
-      verbose = "pager",
-      wildlist = "cmd",
-      wmsg = "msg",
-      typed_cmd = "cmd",
+if vim.g.vscode == nil then
+  require("vim._core.ui2").enable({
+    enable = true,
+    msg = {
+      targets = {
+        [""] = "cmd",
+        bufwrite = "cmd",
+        completion = "cmd",
+        confirm = "cmd",
+        echo = "cmd",
+        echoerr = "pager",
+        echomsg = "msg",
+        empty = "cmd",
+        emsg = "pager",
+        list_cmd = "pager",
+        lua_error = "pager",
+        lua_print = "msg",
+        progress = "msg",
+        quickfix = "msg",
+        rpc_error = "pager",
+        search_cmd = "msg",
+        search_count = "msg",
+        shell_cmd = "pager",
+        shell_err = "pager",
+        shell_out = "pager",
+        shell_ret = "pager",
+        typed_cmd = "cmd",
+        undo = "msg",
+        verbose = "pager",
+        wildlist = "cmd",
+        wmsg = "msg",
+      },
+      cmd = { height = 0.5 },
+      dialog = { height = 0.5 },
+      msg = { height = 0.3, timeout = 5000 },
+      pager = { height = 1 },
     },
-    cmd = { height = 0.5 },
-    dialog = { height = 0.5 },
-    msg = { height = 0.5, timeout = 5000 },
-    pager = { height = 0.75 },
-  },
-})
+  })
+end
 
 -- ~ Behaviour
+o.exrc = true
 o.lazyredraw = false
 o.updatetime = 100
 o.belloff = "all"

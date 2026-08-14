@@ -45,7 +45,7 @@ autocmd("TextYankPost", {
   desc = "Highlight yanked text.",
   group = augroup("YankHighlight", { clear = true }),
   pattern = "*",
-  callback = function() vim.hl.on_yank() end,
+  callback = function() vim.hl.on_yank({ higroup = "CursorLineNr" }) end,
 })
 
 --- ~ Auto cd
@@ -60,7 +60,7 @@ autocmd({ "TabEnter", "BufEnter", "BufWinEnter" }, {
       if
         not vim.api.nvim_buf_is_valid(info.buf)
         or not vim.api.nvim_win_is_valid(win)
-        or not vim.api.nvim_win_get_buf(win) == info.buf
+        or vim.api.nvim_win_get_buf(win) ~= info.buf
       then
         return
       end
@@ -100,67 +100,79 @@ autocmd("ColorScheme", {
   group = augroup("CustomHighlights", { clear = true }),
   pattern = "*",
   callback = function()
-    if vim.g.theme ~= "yugen" then return end
     local road = require("clrs.road")
     local rb, rp = road.base, road.palette
     local hl = vim.api.nvim_set_hl
-    -- UI
-    hl(0, "Normal", { fg = rb.mintCream, bg = rb.dragonInk })
-    hl(0, "NormalNC", { link = "Normal" })
-    hl(0, "NormalFloat", { link = "Normal" })
-    hl(0, "FloatBorder", { link = "Normal" })
-    hl(0, "Cursor", { fg = rb.dragonInk, bold = true })
-    hl(0, "CursorLine", { bg = rp.jet[200] })
-    hl(0, "CursorLineNr", { fg = rb.lotusYellow, bold = true })
-    hl(0, "SignColumn", { link = "Normal" })
-    hl(0, "Search", { bg = rb.raisinBlack, fg = rb.citron })
-    hl(0, "CurSearch", { bg = rb.citron, fg = rb.raisinBlack })
-    hl(0, "IncSearch", { bg = rb.raisinBlack, fg = rb.cadetGray })
-    hl(0, "MatchParen", {
-      fg = rb.mintCream,
-      bold = true,
-      underline = true,
-    })
-    hl(0, "WinSeparator", { link = "Normal" })
-    hl(0, "TabLineSel", { fg = rb.lotusYellow })
-    hl(0, "StatusLine", { bg = rb.dragonInk })
-    hl(0, "StatusLineNC", { bg = rb.dragonInk })
-    hl(0, "StatusLineTerm", { link = "StatusLine" })
-    hl(0, "StatusLineTermNC", { link = "StatusLineNC" })
-    hl(0, "RenderMarkdownCode", { bg = rb.dragonInk })
-    hl(0, "GitSignsCurrentLineBlame", { link = "Comment" })
-    hl(0, "LspSignatureActiveParameter", {
-      fg = rp.lotusYellow[500],
-      bg = rb.dragonInk,
-      bold = true,
-    })
-    hl(0, "ActionPreviewTitle", {
-      fg = rp.lotusYellow[500],
-      bg = rb.dragonInk,
-      bold = true,
-    })
-    -- Syntax
-    vim.cmd.highlight({ args = { "Keyword", "cterm=bold", "gui=bold" } })
-    hl(0, "@keyword", { bold = true })
-    hl(0, "Comment", { fg = rp.dragonInk[800], italic = true })
-    hl(0, "Function", { fg = rp.lotusYellow[500] })
-    hl(0, "@function", { fg = rp.lotusYellow[500] })
-    hl(0, "@function.call", { fg = rp.lotusYellow[500] })
-    hl(0, "@function.macro", { fg = rp.lotusYellow[500] })
-    hl(0, "@function.builtin", { fg = rp.lotusYellow[500] })
-    -- Org
-    hl(0, "@org.code", { fg = rp.dragonInk[800] })
-    hl(0, "@org.verbatim", { fg = rp.emerald[300] })
+    if string.match(vim.g.theme, "mfd%-%a*") ~= nil then
+      -- Syntax
+      hl(0, "Function", { cterm = { bold = true }, bold = true, fg = rp.lotusYellow[500] })
+      hl(0, "@function", { cterm = { bold = true }, bold = true, fg = rp.lotusYellow[500] })
+      hl(0, "@function.call", { fg = rp.lotusYellow[500] })
+      hl(0, "@function.macro", { cterm = { bold = true }, bold = true, fg = rp.lotusYellow[500] })
+      hl(0, "@function.builtin", {
+        cterm = { bold = true, italic = true },
+        bold = true,
+        italic = true,
+        fg = rp.lotusYellow[500],
+      })
+      hl(0, "@lsp.type.function", {
+        cterm = { bold = true },
+        bold = true,
+        fg = rp.lotusYellow[500],
+      })
+      hl(0, "@method", { cterm = { bold = true }, bold = true, fg = rp.lotusYellow[500] })
+      hl(0, "@method.call", { fg = rp.lotusYellow[500] })
+      hl(0, "@lsp.type.method", { cterm = { bold = true }, bold = true, fg = rp.lotusYellow[500] })
+    end
+    if vim.g.theme == "kintsugi-flared" then hl(0, "FloatBorder", { fg = rp.mintCream[300] }) end
+    if vim.g.theme == "yugen" then
+      -- UI
+      hl(0, "Normal", { fg = rb.mintCream, bg = rb.dragonInk })
+      hl(0, "NormalNC", { link = "Normal" })
+      hl(0, "NormalFloat", { link = "Normal" })
+      hl(0, "FloatBorder", { link = "Normal" })
+      hl(0, "Cursor", { fg = rb.dragonInk, bold = true })
+      hl(0, "CursorLine", { bg = rp.jet[200] })
+      hl(0, "CursorLineNr", { fg = rb.lotusYellow, bold = true })
+      hl(0, "SignColumn", { link = "Normal" })
+      hl(0, "Search", { bg = rb.raisinBlack, fg = rb.citron })
+      hl(0, "CurSearch", { bg = rb.citron, fg = rb.dragonInk, bold = true })
+      hl(0, "IncSearch", { bg = rb.raisinBlack, fg = rb.cadetGray })
+      hl(0, "MatchParen", { fg = rb.mintCream, bold = true, underline = true })
+      hl(0, "WinSeparator", { link = "Normal" })
+      hl(0, "TabLineSel", { fg = rb.lotusYellow })
+      hl(0, "Visual", { fg = rb.citron, bg = rb.raisinBlack })
+      hl(0, "StatusLine", { bg = rb.dragonInk })
+      hl(0, "StatusLineNC", { bg = rb.dragonInk })
+      hl(0, "StatusLineTerm", { link = "StatusLine" })
+      hl(0, "StatusLineTermNC", { link = "StatusLineNC" })
+      hl(0, "PmenuSel", { fg = rb.citron, bg = rb.jet, bold = true })
+      hl(0, "RenderMarkdownCode", { bg = rb.dragonInk })
+      hl(0, "GitSignsCurrentLineBlame", { link = "Comment" })
+      hl(0, "LspSignatureActiveParameter", {
+        fg = rp.lotusYellow[500],
+        bg = rb.dragonInk,
+        bold = true,
+      })
+      hl(0, "ActionPreviewTitle", {
+        fg = rp.lotusYellow[500],
+        bg = rb.dragonInk,
+        bold = true,
+      })
+      hl(0, "DiagnosticError", { fg = rp.rustyRed[200] })
+      -- Syntax
+      vim.cmd.highlight({ args = { "Keyword", "cterm=bold", "gui=bold" } })
+      hl(0, "@keyword", { bold = true })
+      hl(0, "Comment", { fg = rp.dragonInk[800], italic = true })
+      hl(0, "Function", { fg = rp.lotusYellow[500] })
+      hl(0, "@function", { fg = rp.lotusYellow[500] })
+      hl(0, "@function.call", { fg = rp.lotusYellow[500] })
+      hl(0, "@function.macro", { fg = rp.lotusYellow[500] })
+      hl(0, "@function.builtin", { fg = rp.lotusYellow[500] })
+      -- Org
+      hl(0, "@org.agenda.scheduled", { fg = rb.citron })
+      hl(0, "@org.code", { link = "@string" })
+      hl(0, "@org.verbatim", { link = "@type" })
+    end
   end,
-})
-
--- From GRIM.GIT
-autocmd("FileChangedShellPost", {
-  group = augroup("RefreshGitBranchCache", { clear = true }),
-  callback = function(info) vim.b[info.buf].git_branch = nil end,
-})
-
-autocmd({ "BufWrite", "FileChangedShellPost" }, {
-  group = augroup("RefreshGitDiffCache", { clear = true }),
-  callback = function(info) vim.b[info.buf].git_diffstat = nil end,
 })
