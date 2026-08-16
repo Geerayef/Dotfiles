@@ -40,7 +40,9 @@ end
 
 local tab_active_p = function(tab) return tab == vim.api.nvim_get_current_tabpage() end
 
-local highlight = function()
+---@param count int # Count of tabs
+---@param colors [string] # Colors of icons
+local highlight = function(count, colors)
   local hl = vim.api.nvim_set_hl
   hl(0, "TabLine", { link = "Normal" })
   hl(0, "TabLineFill", { link = "Normal" })
@@ -48,6 +50,9 @@ local highlight = function()
   hl(0, "GRIMInactive", { link = "Normal" })
   hl(0, "GRIMActiveText", { fg = rb.lotusYellow })
   hl(0, "GRIMInactiveText", { fg = rp.charcoal[700] })
+  for i = 1, count do
+    hl(0, "GRIMIcon" .. i, { fg = colors[i] })
+  end
 end
 
 local tabline = function()
@@ -59,6 +64,7 @@ local tabline = function()
     GRIMInactiveText = "%#GRIMInactiveText#",
   }
   local tabs = vim.api.nvim_list_tabpages()
+  local colors_icon = {}
   for i, tab in ipairs(tabs) do
     local tab_active = tab_active_p(tab)
     local wins_visible = get_normal_wins(tab)
@@ -77,7 +83,7 @@ local tabline = function()
       vim.fn.fnamemodify(name_buf_active, ":e"),
       { default = true }
     )
-    vim.api.nvim_set_hl(0, hl_icon, { fg = color })
+    colors_icon[#colors_icon + 1] = color
     format = format .. hl_def .. " "
     format = format
       .. hl_text
@@ -97,7 +103,7 @@ local tabline = function()
     format = format .. hl_def .. "%#TabLine#"
   end
   format = format .. "%#TabLineFill#"
-  highlight()
+  highlight(#tabs, colors_icon)
   return format
 end
 

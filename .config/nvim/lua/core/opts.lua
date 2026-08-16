@@ -88,45 +88,43 @@ o.conceallevel = 2
 o.guifont = "Iosevka,IosevkaTerm NFM:h16"
 o.linespace = 8
 o.winborder = "single"
-if vim.g.vscode == nil then
-  require("vim._core.ui2").enable({
-    enable = true,
-    msg = {
-      targets = {
-        [""] = "cmd",
-        bufwrite = "cmd",
-        completion = "cmd",
-        confirm = "cmd",
-        echo = "cmd",
-        echoerr = "pager",
-        echomsg = "msg",
-        empty = "cmd",
-        emsg = "pager",
-        list_cmd = "pager",
-        lua_error = "pager",
-        lua_print = "msg",
-        progress = "msg",
-        quickfix = "msg",
-        rpc_error = "pager",
-        search_cmd = "msg",
-        search_count = "msg",
-        shell_cmd = "pager",
-        shell_err = "pager",
-        shell_out = "pager",
-        shell_ret = "pager",
-        typed_cmd = "cmd",
-        undo = "msg",
-        verbose = "pager",
-        wildlist = "cmd",
-        wmsg = "msg",
-      },
-      cmd = { height = 0.5 },
-      dialog = { height = 0.5 },
-      msg = { height = 0.3, timeout = 5000 },
-      pager = { height = 1 },
+require("vim._core.ui2").enable({
+  enable = true,
+  msg = {
+    targets = {
+      [""] = "cmd",
+      bufwrite = "cmd",
+      completion = "cmd",
+      confirm = "cmd",
+      echo = "cmd",
+      echoerr = "pager",
+      echomsg = "msg",
+      empty = "cmd",
+      emsg = "pager",
+      list_cmd = "pager",
+      lua_error = "pager",
+      lua_print = "msg",
+      progress = "msg",
+      quickfix = "msg",
+      rpc_error = "pager",
+      search_cmd = "msg",
+      search_count = "msg",
+      shell_cmd = "pager",
+      shell_err = "pager",
+      shell_out = "pager",
+      shell_ret = "pager",
+      typed_cmd = "cmd",
+      undo = "msg",
+      verbose = "pager",
+      wildlist = "cmd",
+      wmsg = "msg",
     },
-  })
-end
+    cmd = { height = 0.5 },
+    dialog = { height = 0.5 },
+    msg = { height = 0.3, timeout = 5000 },
+    pager = { height = 1 },
+  },
+})
 
 -- ~ Behaviour
 o.exrc = true

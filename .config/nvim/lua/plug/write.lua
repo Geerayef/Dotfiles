@@ -4,7 +4,6 @@ return {
   {
     "nvim-orgmode/orgmode",
     version = "*",
-    cond = vim.g.vscode == nil,
     event = "VeryLazy",
     ft = "org",
     opts = {
@@ -80,7 +79,6 @@ return {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    cond = vim.g.vscode == nil,
     ft = "markdown",
     opts = {
       preset = "none",
@@ -98,7 +96,6 @@ return {
   },
   {
     "hedyhli/markdown-toc.nvim",
-    cond = vim.g.vscode == nil,
     cmd = "Mtoc",
     opts = {
       toc_list = { markers = "-" },
