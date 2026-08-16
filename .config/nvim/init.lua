@@ -1,6 +1,6 @@
 vim.g.did_install_default_menus = 1
 vim.g.background = "dark"
-vim.g.theme = "mfd-stealth"
+vim.g.theme = "mfd-mono"
 require("grim")
 require("core.opts")
 require("core.keys")

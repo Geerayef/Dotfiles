@@ -6,6 +6,8 @@ local C = W.config_builder()
 local a = W.action
 local nf = W.nerdfonts
 local rb = require("road").base
+-- Batman | Gruvbox dark, hard (base16)
+local colorscheme = "MFD Mono (Accessibility 5)"
 local font = {
   family = "Ioskeley",
   family_fallback = "IosevkaTerm Nerd Font Mono",
@@ -202,25 +204,27 @@ C.default_cursor_style = "SteadyBlock"
 C.force_reverse_video_cursor = false
 
 -- Colors
--- Batman | Gruvbox dark, hard (base16) | Digerati (terminal.sexy) | Mona Lisa (Gogh)
--- | Nature Suede (terminal.sexy)
--- Base: Dawn (terminal.sexy)
-C.color_scheme = "Batman"
-C.colors = {
-  foreground = rb.mintCream,
-  background = rb.dragonInk,
-  cursor_fg = rb.dragonInk,
-  cursor_bg = rb.lotusYellow,
-  tab_bar = {
+C.color_scheme_dirs = { "~/.config/wezterm/colors" }
+C.color_scheme = colorscheme
+if string.match(colorscheme, "^MFD") then
+  C.colors = {}
+else
+  C.colors = {
+    foreground = rb.mintCream,
     background = rb.dragonInk,
-    active_tab = {
-      bg_color = rb.lotusYellow,
-      fg_color = rb.dragonInk,
-      intensity = "Bold",
+    cursor_fg = rb.dragonInk,
+    cursor_bg = rb.lotusYellow,
+    tab_bar = {
+      background = rb.dragonInk,
+      active_tab = {
+        bg_color = rb.lotusYellow,
+        fg_color = rb.dragonInk,
+        intensity = "Bold",
+      },
+      inactive_tab = { bg_color = rb.dragonInk, fg_color = rb.mintCream },
     },
-    inactive_tab = { bg_color = rb.dragonInk, fg_color = rb.mintCream },
-  },
-}
+  }
+end
 
 -- Font
 C.unicode_version = 14

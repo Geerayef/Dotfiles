@@ -1,0 +1,60 @@
+[metadata]
+name = "MFD Stealth (Accessibility 5)"
+author = "Derived from kungfusheep/mfd.nvim"
+origin_url = "https://github.com/kungfusheep/mfd.nvim"
+
+[colors]
+foreground = "#84A684"
+background = "#0D1410"
+cursor_bg = "#9ABB9A"
+cursor_border = "#9ABB9A"
+cursor_fg = "#0D1410"
+selection_bg = "#1A2A1A"
+selection_fg = "#84A684"
+ansi = [
+  "#0D1410",
+  "#5F775F",
+  # "#668066",
+  "#FFF779",
+  # "#6E8A6E", ## String
+  "#FFF779",
+  "#759375", ## Dir
+  "#7D9D7D",
+  "#84A684", ## Flag
+  "#84A684",
+]
+brights = [
+  "#567756",
+  "#84A684",
+  # "#87AA87",
+  "#FFF779",
+  "#8BAE8B",
+  "#8EB38E",
+  "#91B791",
+  "#95BB95",
+  # "#9FC89F",
+  "#FFBE89",
+]
+
+[colors.tab_bar]
+background = "#0D1410"
+
+[colors.tab_bar.active_tab]
+bg_color = "#1A2A1A"
+fg_color = "#84A684"
+
+[colors.tab_bar.inactive_tab]
+bg_color = "#0D1410"
+fg_color = "#567756"
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color = "#1A2A1A"
+fg_color = "#84A684"
+
+[colors.tab_bar.new_tab]
+bg_color = "#0D1410"
+fg_color = "#567756"
+
+[colors.tab_bar.new_tab_hover]
+bg_color = "#1A2A1A"
+fg_color = "#84A684"

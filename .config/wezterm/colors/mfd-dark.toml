@@ -1,0 +1,59 @@
+[metadata]
+name = "MFD Dark (Accessibility 5)"
+author = "Derived from kungfusheep/mfd.nvim"
+origin_url = "https://github.com/kungfusheep/mfd.nvim"
+
+[colors]
+foreground = "#9EB180"
+background = "#1E2D1E"
+cursor_bg = "#AABC88"
+cursor_border = "#AABC88"
+cursor_fg = "#1E2D1E"
+selection_bg = "#2A3D2A"
+selection_fg = "#9EB180"
+ansi = [
+  "#1E2D1E",
+  "#7C8B65",
+  # "#83936A",
+  "#FFF779",
+  # "#8A9A70", ## String
+  "#FFF779",
+  "#90A275", ## Dir
+  "#97A97B",
+  "#9EB180", ## Flag
+  "#9EB180",
+]
+brights = [
+  "#638563",
+  "#9EB180",
+  # "#A0B382",
+  "#FFF779",
+  "#A2B583", ## File
+  "#A4B885", ## Dir
+  "#A6BA86",
+  "#A8BC88",
+  "#AEC38D",
+]
+
+[colors.tab_bar]
+background = "#1E2D1E"
+
+[colors.tab_bar.active_tab]
+bg_color = "#2A3D2A"
+fg_color = "#9EB180"
+
+[colors.tab_bar.inactive_tab]
+bg_color = "#1E2D1E"
+fg_color = "#6D8D4F"
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color = "#2A3D2A"
+fg_color = "#9EB180"
+
+[colors.tab_bar.new_tab]
+bg_color = "#1E2D1E"
+fg_color = "#6D8D4F"
+
+[colors.tab_bar.new_tab_hover]
+bg_color = "#2A3D2A"
+fg_color = "#9EB180"

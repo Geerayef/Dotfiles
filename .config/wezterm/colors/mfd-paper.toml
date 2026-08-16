@@ -1,0 +1,56 @@
+[metadata]
+name = "MFD Paper (Accessibility 5)"
+author = "Derived from kungfusheep/mfd.nvim"
+origin_url = "https://github.com/kungfusheep/mfd.nvim"
+
+[colors]
+foreground = "#002611"
+background = "#BBC5B7"
+cursor_bg = "#001008"
+cursor_border = "#001008"
+cursor_fg = "#BBC5B7"
+selection_bg = "#A0B0A0"
+selection_fg = "#002611"
+ansi = [
+  "#001008",
+  "#002611",
+  "#003317",
+  "#00411D",
+  "#004E23",
+  "#005C29",
+  "#00692F",
+  "#BBC5B7",
+]
+brights = [
+  "#002611",
+  "#00692F",
+  "#007A37",
+  "#008B3E",
+  "#009C46",
+  "#00AC4D",
+  "#00BD55",
+  "#E6EBE5",
+]
+
+[colors.tab_bar]
+background = "#BBC5B7"
+
+[colors.tab_bar.active_tab]
+bg_color = "#A0B0A0"
+fg_color = "#002611"
+
+[colors.tab_bar.inactive_tab]
+bg_color = "#BBC5B7"
+fg_color = "#5D695D"
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color = "#A0B0A0"
+fg_color = "#002611"
+
+[colors.tab_bar.new_tab]
+bg_color = "#BBC5B7"
+fg_color = "#5D695D"
+
+[colors.tab_bar.new_tab_hover]
+bg_color = "#A0B0A0"
+fg_color = "#002611"
