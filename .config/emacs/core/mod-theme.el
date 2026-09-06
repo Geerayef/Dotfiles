@@ -32,16 +32,12 @@
   :ensure t
   :demand t)
 
-(require 'mfd)
-(setq
- mfd-accessibility-contrast 5
- mfd-terminal-cursor-sync t)
-;; (enable-theme (intern gracs/theme))
-
-;; (use-package mfd
-;;   :ensure nil
-;;   :config
-;;   (setq mfd-accessibility-contrast 5))
+(use-package mfd
+  :ensure nil
+  :demand t
+  :config
+  (setq mfd-accessibility-contrast 5
+        mfd-terminal-cursor-sync t))
 
 (when (not (string-match-p "mfd" gracs/theme))
   (custom-set-faces

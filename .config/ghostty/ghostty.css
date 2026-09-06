@@ -1,5 +1,49 @@
-tabbar {
-    height: 0.01rem;
+window {
     padding: 0px;
     margin: 0px;
+    border-radius: 0px;
+}
+
+headerbar {
+    min-height: 4px;
+    padding: 0px;
+    margin: 0px;
+    background-color: #010204;
+    border-radius: 0px;
+}
+
+tabbar {
+    background-color: #010204;
+}
+
+tabbar tabbox {
+    margin: 0px;
+    padding: 0px;
+    min-height: 4px;
+    font-family: monospace;
+    background-color: #010204;
+    border-radius: 0px;
+}
+
+tabbar tabbox tab {
+    margin: 0px;
+    padding: 0px;
+    color: #d4e3d8;
+    background-color: #010204;
+    border-radius: 0px;
+}
+
+tabbar tabbox tab:selected {
+    font-weight: bold;
+    color: #fff779;
+    background-color: #010204;
+    border-radius: 0px;
+    border-bottom: 1px solid #fff779;
+}
+
+tabbar tabbox tab label {
+    padding: 0px;
+    margin: 0px;
+    font-size: 12px;
+    border-radius: 0px;
 }

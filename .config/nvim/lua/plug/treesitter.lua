@@ -18,7 +18,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "BufReadPost",
-    config = {
+    opts = {
       max_lines = 1,
       multiline_threshold = 2,
       trim_scope = "inner",
@@ -155,6 +155,6 @@ return {
         desc = "Go to previous class end",
       },
     },
-    config = { select = { lookahead = true }, move = { set_jumps = true } },
+    opts = { select = { lookahead = true }, move = { set_jumps = true } },
   },
 }
