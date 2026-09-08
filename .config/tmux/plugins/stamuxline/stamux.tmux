@@ -25,9 +25,9 @@ setoptw() {
 }
 
 main() {
-  local stamux_dir="$HOME/.config/tmux/plugins/stamuxline"
-  local theme="$(getopt "@stamux" "kanagawa")"
-  source "${stamux_dir}/${theme}.tmuxtheme"
+  local dir_tmux_theme="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/colors"
+  local theme="$(getopt "@stamux" "foot")"
+  source "${dir_tmux_theme}/${theme}.tmuxtheme"
   # status
   setopt status "on"
   setopt status-bg "${bg}"

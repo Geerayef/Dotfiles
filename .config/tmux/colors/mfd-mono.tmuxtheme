@@ -1,0 +1,24 @@
+# MFD Mono
+
+fg="#D0D0D8"
+bg="#08080C"
+sel-bg="#1A1A22"
+sel-fg="#D0D0D8"
+
+r0="#08080C"
+r1="#727276"
+r2="#FFF779"
+r3="#FFF779"
+r4="#AAAAB1"
+r5="#BDBDC4"
+r6="#D0D0D8"
+r7="#D0D0D8"
+
+b0="#6A6A7A"
+b1="#D0D0D8"
+b2="#FFF779"
+b3="#DFDFE8"
+b4="#E7E7EF"
+b5="#EEEEF7"
+b6="#F6F6FF"
+b7="#F6F6FF"

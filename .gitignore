@@ -5,8 +5,8 @@ Dotfiles/
 .config/zsh/.zsh_plugins.zsh
 .config/zsh/.p10k.zsh
 .config/nvim/lazy-lock.json
+!.config/tmux/plugins/stamuxline/
 .config/tmux/plugins/
-.config/tmux/plugins/*
 .config/nnn/.selection
 .config/nnn/sessions/
 .config/nnn/.lastd
