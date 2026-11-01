@@ -146,6 +146,7 @@ o.incsearch = true
 o.mouse = ""
 o.sessionoptions = "buffers,curdir,folds,tabpages,localoptions"
 o.synmaxcol = 256
+o.shada = "!,'256,/16384,:16384,s16,h,r/tmp/,r/private/"
 
 -- ~ Chars
 local ui = GRIM.static.icon.ui

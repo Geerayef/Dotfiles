@@ -2,8 +2,10 @@ return {
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   opts = {
-    { "max-perf", "telescope" },
+    { "max-perf", "borderless-full" },
     fzf_opts = { ["--layout"] = "reverse", ["--marker"] = false },
+    fzf_colors = true,
+    hls = { border = "Normal", fzf = { border = "Normal" } },
     winopts = {
       header = false,
       height = 0.4,
@@ -11,7 +13,6 @@ return {
       row = 0.5,
       col = 0.5,
       border = GRIM.static.border,
-      -- treesitter = true,
       backdrop = 100,
       preview = {
         border = "noborder",
@@ -36,8 +37,8 @@ return {
         true,
         ["ctrl-z"] = "abort",
         ["ctrl-u"] = "unix-line-discard",
-        ["ctrl-f"] = "half-page-down",
-        ["ctrl-b"] = "half-page-up",
+        ["ctrl-f"] = "preview-half-page-down",
+        ["ctrl-b"] = "preview-half-page-up",
         ["ctrl-a"] = "beginning-of-line",
         ["ctrl-e"] = "end-of-line",
         ["alt-a"] = "toggle-all",

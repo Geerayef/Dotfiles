@@ -7,7 +7,7 @@ local a = W.action
 local nf = W.nerdfonts
 local rb = require("road").base
 -- Batman | Gruvbox dark, hard (base16)
-local colorscheme = "MFD Mono (Accessibility 5)"
+local colorscheme = "MFD Stealth (Accessibility 5)"
 local font = {
   family = "Ioskeley",
   family_fallback = "IosevkaTerm Nerd Font Mono",
