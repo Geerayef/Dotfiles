@@ -2,6 +2,7 @@ return {
   "Olical/conjure",
   ft = { "scheme", "commonlisp", "lua", "fennel", "python", "ocaml" },
   init = function()
+    vim.g["conjure#mapping#prefix"] = vim.g.mapleader
     vim.g["conjure#mapping#enable_defaults"] = false
     vim.g["conjure#extract#tree_sitter#enabled"] = true
     -- Key
@@ -27,6 +28,9 @@ return {
     vim.g["conjure#mapping#eval_buf"] = "Ceb"
     vim.g["conjure#mapping#eval_visual"] = "CE"
     vim.g["conjure#mapping#eval_motion"] = "CE"
+    -- Lua
+    vim.g["conjure#client#lua#neovim#mapping#reset_env"] = ""
+    vim.g["conjure#client#lua#neovim#mapping#reset_all_envs"] = ""
     -- Scheme
     vim.g["conjure#filetype_suffixes#scheme"] = { "ss", "scm" }
     vim.g["conjure#client#scheme#stdio#command"] = "petite"

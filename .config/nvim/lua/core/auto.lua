@@ -94,6 +94,34 @@ autocmd("FileType", {
   end,
 })
 
+
+--- ~ LSP progress
+do
+  local _pg = augroup("GRIM.lsp_progress", { clear = true })
+  autocmd("LspProgress", {
+    desc = "Show LSP server progress in a floating window.",
+    group = _pg,
+    pattern = { "begin", "report", "end" },
+    callback = function(event) GRIM.progress.on_progress(event.data) end,
+  })
+  autocmd("LspDetach", {
+    desc = "Cleanup LSP progress state when a client detaches.",
+    group = _pg,
+    callback = function(event) GRIM.progress.on_lsp_detach(event.data) end,
+  })
+  autocmd({ "VimResized", "TermLeave" }, {
+    desc = "Reposition done LSP progress floats after terminal resize / fzf leave.",
+    group = _pg,
+    pattern = "*",
+    callback = function() GRIM.progress.on_resized() end,
+  })
+  autocmd("TabEnter", {
+    desc = "Re-render LSP progress floats in the entered tabpage.",
+    group = _pg,
+    callback = function() GRIM.progress.on_tab_enter() end,
+  })
+end
+
 --- ~ Apply custom UI highlights
 autocmd("ColorScheme", {
   desc = "Apply custom highlights after loading the main colorscheme.",

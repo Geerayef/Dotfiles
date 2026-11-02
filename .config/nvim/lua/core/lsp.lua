@@ -1,11 +1,11 @@
 vim.lsp.config("*", {
   single_file_support = true,
   on_attach = GRIM.lsp.attach,
-  root_dir = function(bufid, on) return on(GRIM.fs.root(bufid)) end,
+  root_dir = function(bufid, on) return on(GRIM.fs.root(vim.api.nvim_buf_get_name(bufid))) end,
   root_markers = vim.iter(GRIM.static.root_markers):flatten():totable(),
   capabilities = vim.tbl_deep_extend(
     "force",
-    vim.lsp.protocol.make_client_capabilities(),
+    vim.lsp.protocol.make_client_capabilities() --[[@as lsp.ClientCapabilities]],
     {
       workspace = { didChangeWatchedFiles = { dynamicRegistration = true } },
       textDocument = {

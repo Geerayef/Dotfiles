@@ -1,5 +1,6 @@
 return {
   "saghen/blink.cmp",
+  version = "1.*",
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     {
@@ -10,7 +11,6 @@ return {
       config = function() require("luasnip.loaders.from_vscode").lazy_load() end,
     },
   },
-  version = "1.*",
   opts = {
     cmdline = {
       completion = { ghost_text = { enabled = true } },
@@ -43,7 +43,6 @@ return {
         auto_show = true,
         window = {
           border = GRIM.static.border,
-          -- winhighlight = "BlinkCmpDoc:Normal,BlinkCmpDocBorder:FloatBorder,None:Search",
         },
       },
       trigger = { show_on_keyword = false, show_on_trigger_character = false },
@@ -61,10 +60,25 @@ return {
           },
           components = { kind_icon = { highlight = "Normal" } },
         },
-        -- winhighlight = "BlinkCmpMenu:Normal,BlinkCmpMenuBorder:FloatBorder,BlinkCmpLabelDescription:Normal,BlinkCmpSource:Normal",
       },
     },
-    sources = { default = { "lsp", "snippets", "buffer", "path", "omni" } },
+    sources = {
+      default = {
+        "lsp",
+        "snippets",
+        "buffer",
+        "omni",
+        "path",
+      },
+      per_filetype = { org = { "orgmode" } },
+      providers = {
+        orgmode = {
+          name = "Orgmode",
+          module = "orgmode.org.autocompletion.blink",
+          fallbacks = { "buffer" },
+        },
+      },
+    },
     snippets = { preset = "luasnip" },
     fuzzy = { implementation = "rust" },
   },

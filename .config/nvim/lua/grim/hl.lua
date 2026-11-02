@@ -1,18 +1,6 @@
 ---GRIM.hl provides color and highlight groups management utilities.
 ---@class GRIM.hl
----@field get fun(nsid: integer, opts: vim.api.keyset.get_highlight): vim.api.keyset.get_hl_info
----@field apply fun(bufid: integer, hlid: string, range: { start: [ integer, integer ], finish: [ integer, integer ] })
----@field merge fun(...: string): vim.api.keyset.highlight
----@field attribute_normalise fun(attribute: ("fg"|"bg"|"ctermfg"|"ctermbg"), fbg: (string|integer)?, default: integer?): (string|integer)?
----@field normalise fun(attribute: vim.api.keyset.highlight): table
----@field set fun(nsid: integer, name: string, attributes: vim.api.keyset.highlight): nil
----@field set_default fun(nsid: integer, name: string, attribute: vim.api.keyset.highlight): nil
----@field hex2dec fun(hex: string): dec: integer
----@field dec2hex fun(int: integer, n_digits: integer?): hex: string
----@field hex2rgb fun(hex: string): rgb: integer[]
----@field rgb2hex fun(rgb: integer[]): string
----@field cblend fun(c1: (table|string|number), c2: (table|string|number), alpha: number?): { b: integer, dec: integer, g: integer, hex: string, r: integer }
----@field blend fun(h1: (table|string), h2: (table|string), alpha: number?): table
+local hl = {}
 
 ---Wrapper for `nvim_get_hl()`.
 ---Does not create a highlight group if it doesn't exist.
@@ -21,7 +9,7 @@
 ---@param nsid integer # Namespace ID
 ---@param opts vim.api.keyset.get_highlight
 ---@return vim.api.keyset.get_hl_info # Highlight attributes
-local get = function(nsid, opts)
+function hl.get(nsid, opts)
   local link_p = opts.link == false
   opts.link = nil
   opts.create = opts.create or false
@@ -40,7 +28,7 @@ end
 ---@param hlid string # Highlight group ID
 ---@param range { start: [ integer, integer ], finish: [ integer, integer ] } # Range is two line-column pairs
 ---@return nil
-local apply = function(bufid, hlid, range)
+function hl.apply(bufid, hlid, range)
   if not vim.api.nvim_buf_is_valid(bufid) then return end
   if range and type(range) ~= "table" then return end
   if not (range.start and range.finish) then return end
@@ -54,10 +42,10 @@ end
 ---In case of conflict use values from the right most highlight group.
 ---@param ... string # Highlight group names
 ---@return vim.api.keyset.highlight # Merged highlight attributes
-local merge = function(...)
+function hl.merge(...)
   local hlids = vim.tbl_filter(function(e) return e ~= nil end, { ... })
   local hl_attributes = vim.tbl_map(
-    function(hlid) return get(0, { name = hlid, link = false }) end,
+    function(hlid) return hl.get(0, { name = hlid, link = false }) end,
     hlids
   )
   return vim.tbl_extend("force", unpack(hl_attributes))
@@ -75,7 +63,7 @@ local attribute_normalise = function(attribute, fbg, default)
     return fbg
   end
   if type_fbg == "string" then
-    if vim.fn.hlexists(fbg) == 1 then return get(0, { name = fbg, link = false })[attribute] end
+    if vim.fn.hlexists(fbg) == 1 then return hl.get(0, { name = fbg, link = false })[attribute] end
     if fbg:match("^#%x%x%x%x%x%x$") and attribute:match("^cterm") then return default end
     return fbg
   end
@@ -85,14 +73,14 @@ end
 ---Normalise highlight attributes.
 ---@param attribute vim.api.keyset.highlight
 ---@return table
-local normalise = function(attribute)
+function hl.normalise(attribute)
   if attribute.link then
     if #vim.tbl_keys(attribute) < 2 then return attribute end
     attribute.fg = attribute_normalise("fg", attribute.fg)
     attribute.bg = attribute_normalise("bg", attribute.bg)
     local hl_linked = type(attribute.link) == "string" and { name = attribute.link, link = false }
       or { id = attribute.link, link = false }
-    attribute = vim.tbl_extend("force", get(0, hl_linked) or {}, attribute)
+    attribute = vim.tbl_extend("force", hl.get(0, hl_linked) or {}, attribute)
     attribute.link = nil
     return attribute
   end
@@ -108,16 +96,16 @@ end
 ---@param name string
 ---@param attributes vim.api.keyset.highlight # Highlight attributes
 ---@return nil
-local set = function(nsid, name, attributes) vim.api.nvim_set_hl(nsid, name, normalise(attributes)) end
+function hl.set(nsid, name, attributes) vim.api.nvim_set_hl(nsid, name, hl.normalise(attributes)) end
 
 ---Set default highlight attributes, normalise highlight attributes before setting.
 ---@param nsid integer
 ---@param name string
 ---@param attribute vim.api.keyset.highlight # Highlight attributes
 ---@return nil
-local set_default = function(nsid, name, attribute)
+function hl.set_default(nsid, name, attribute)
   attribute.default = true
-  return vim.api.nvim_set_hl(nsid, name, normalise(attribute))
+  return vim.api.nvim_set_hl(nsid, name, hl.normalise(attribute))
 end
 
 local hex2decimal = {
@@ -200,7 +188,7 @@ end
 ---@param c2 number|string|table
 ---@param alpha number?
 ---@return { hex: string, dec: integer, r: integer, g: integer, b: integer }
-local cblend = function(c1, c2, alpha)
+function hl.cblend(c1, c2, alpha)
   alpha = alpha or 0.5
   c1 = type(c1) == "number" and dec2hex(c1, 6) or c1
   c2 = type(c2) == "number" and dec2hex(c2, 6) or c2
@@ -226,27 +214,12 @@ end
 ---@param h2 string|table
 ---@param alpha number?
 ---@return table
-local blend = function(h1, h2, alpha)
-  h1 = type(h1) == "table" and h1 or get(0, { name = h1, winhl_link = false })
-  h2 = type(h2) == "table" and h2 or get(0, { name = h2, winhl_link = false })
-  local fg = h1.fg and h2.fg and cblend(h1.fg, h2.fg, alpha).dec or h1.fg or h2.fg
-  local bg = h1.bg and h2.bg and cblend(h1.bg, h2.bg, alpha).dec or h1.bg or h2.bg
+function hl.blend(h1, h2, alpha)
+  h1 = type(h1) == "table" and h1 or hl.get(0, { name = h1, winhl_link = false })
+  h2 = type(h2) == "table" and h2 or hl.get(0, { name = h2, winhl_link = false })
+  local fg = h1.fg and h2.fg and hl.cblend(h1.fg, h2.fg, alpha).dec or h1.fg or h2.fg
+  local bg = h1.bg and h2.bg and hl.cblend(h1.bg, h2.bg, alpha).dec or h1.bg or h2.bg
   return vim.tbl_deep_extend("force", h1, h2, { fg = fg, bg = bg })
 end
 
----@type GRIM.hl
-return {
-  get = get,
-  apply = apply,
-  merge = merge,
-  attribute_normalise = attribute_normalise,
-  normalise = normalise,
-  set = set,
-  set_default = set_default,
-  hex2dec = hex2dec,
-  dec2hex = dec2hex,
-  hex2rgb = hex2rgb,
-  rgb2hex = rgb2hex,
-  cblend = cblend,
-  blend = blend,
-}
+return hl

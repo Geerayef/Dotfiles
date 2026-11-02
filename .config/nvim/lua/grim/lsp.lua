@@ -1,16 +1,18 @@
----GRIM.lsp provides LSP related utilities.
 ---@class GRIM.lsp
----@field attach fun(client: vim.lsp.Client, bufid: integer): nil
+local lsp = {}
 
 ---LSP on_attach function.
 ---@function GRIM.lsp.attach
 ---@param client vim.lsp.Client
 ---@param bufid integer
 ---@return nil
-local attach = function(client, bufid)
+function lsp.attach(client, bufid)
   Key.LSP(client, bufid)
-  vim.lsp.codelens.enable(true, { bufnr = bufid })
+  if client and client.name ~= "markdown_oxide" then
+    vim.lsp.codelens.enable(true, { bufnr = bufid })
+  end
 end
 
+---GRIM.lsp provides LSP related utilities.
 ---@type GRIM.lsp
-return { attach = attach }
+return lsp

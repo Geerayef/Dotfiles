@@ -1,13 +1,6 @@
 ---GRIM.static provides a collection of static resources.
 ---@class GRIM.static
----@field border_simple string[]
----@field border [string[]]
----@field icon table
----@field root_markers [string[]]
----@field treesitter_grammars string[]
-
----@type GRIM.static
-return {
+local static = {
   border_simple = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
   border = {
     { "┌", "Normal" },
@@ -19,13 +12,16 @@ return {
     { "└", "Normal" },
     { "│", "Normal" },
   },
-  spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
   icon = {
     mode = "",
     normal = "",
     visual = "",
     insert = "",
     command = "",
+    lambda = "λ",
+    spinner = {
+      dots_l = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
+    },
     git = {
       branch = "",
       add = " ",
@@ -82,7 +78,7 @@ return {
       dot_l = "•",
       dot_s = "·",
       ellipsis = "…",
-      exclamation = "",
+      exclamation = "󰈅",
       link = "",
       lock = "",
       space = "␣",
@@ -122,9 +118,10 @@ return {
     -- [Lua]
     {
       ".emmyrc.json",
-      ".luacheckrc",
       ".luarc.json",
       ".luarc.jsonc",
+      ".luacheckrc",
+      "stylua.toml",
       ".stylua.toml",
       "lazy-lock.json",
     },
@@ -171,7 +168,10 @@ return {
     },
     -- [Python]
     {
-      "__init__.py",
+      -- "__init__.py",
+      "main.py",
+      "uv.lock",
+      ".python-version",
       ".ruff.toml",
       "ruff.toml",
       "ty.toml",
@@ -204,6 +204,14 @@ return {
     {
       "tsconfig.json",
       "jsconfig.json",
+      ".oxlintrc.json",
+      ".oxlintrc.jsonc",
+      "oxlint.config.ts",
+      ".oxfmtrc.json",
+      ".oxfmtrc.jsonc",
+      "oxfmt.config.ts",
+      "vite.config.ts",
+      "vite.config.js",
       "biome.json",
       "biome.jsonc",
       "package-lock.json",
@@ -231,6 +239,10 @@ return {
       "settings.json",
       "configure.ac",
       "configure.sh",
+      "compose.yml",
+      "compose.yaml",
+      "docker-compose.yml",
+      "docker-compose.yaml",
       ".editorconfig",
       "Makefile",
       "MakeFile",
@@ -239,14 +251,13 @@ return {
       "TODO",
       "TODO.md",
       "TODO.org",
-      -- "README",
-      -- "README.md",
-      -- "README.org",
-      -- "README.txt",
-      -- "README.pdf",
+      "README",
+      "README.md",
+      "README.org",
+      "README.txt",
+      "README.pdf",
       "license",
       "LICENSE",
-      "*.org",
       ".git/",
       ".gitignore",
       "src/",
@@ -300,3 +311,6 @@ return {
     "http",
   },
 }
+
+---@type GRIM.static
+return static

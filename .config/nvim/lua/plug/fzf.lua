@@ -12,10 +12,11 @@ return {
       width = 0.8,
       row = 0.5,
       col = 0.5,
-      border = GRIM.static.border,
+      border = GRIM.static.border_simple,
       backdrop = 100,
       preview = {
-        border = "noborder",
+        default = "bat",
+        border = "none",
         wrap = "nowrap",
         hidden = "hidden",
         vertical = "down:50%",

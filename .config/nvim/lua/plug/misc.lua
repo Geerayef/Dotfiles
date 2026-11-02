@@ -57,30 +57,6 @@ return {
   { "folke/twilight.nvim", cmd = "Twilight" },
   { "stevearc/quicker.nvim", ft = "qf", opts = { borders = { vert = "│" } } },
   { "shortcuts/no-neck-pain.nvim", event = "VeryLazy", opts = true },
-  {
-    "j-hui/fidget.nvim",
-    version = false,
-    event = "VeryLazy",
-    opts = {
-      notification = {
-        override_vim_notify = true,
-        window = {
-          border = GRIM.static.border_simple,
-          winblend = 0,
-          max_width = 64,
-          x_padding = 4,
-          y_padding = 1,
-          tabstop = 4,
-          align = "bottom",
-        },
-        view = {
-          reflow = "ellipsis",
-          icon_separator = " │ ",
-          group_separator = "----------------",
-        },
-      },
-    },
-  },
   { "lukas-reineke/virt-column.nvim", event = "VeryLazy", opts = { char = "│" } },
   {
     "lukas-reineke/indent-blankline.nvim",

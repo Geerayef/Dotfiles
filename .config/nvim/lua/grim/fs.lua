@@ -1,16 +1,12 @@
 ---GRIM.fs provides file system interoperation utilities.
 ---@class GRIM.fs
----@field root fun(path: string, root_markers: string[]?): string
----@field file_read fun(path: string): string?
----@field file_write fun(path: string, content: string): boolean
----@field file_large_p fun(buf: integer): boolean
+local fs = {}
 
 ---Compute the path of file's root directory.
----@type fun(path: string, root_markers: string[]?): string?
 ---@param path string # File path
 ---@param root_markers string[]? # Files or directories marking the root
 ---@return string? # Absolute path of the root directory
-local root = function(path, root_markers)
+function fs.root(path, root_markers)
   if not path or path == "" or not vim.uv.fs_stat(path) then return nil end
   if not root_markers or #root_markers == 0 then
     root_markers = vim.iter(GRIM.static.root_markers):flatten():totable() ---@as string[]
@@ -19,11 +15,11 @@ local root = function(path, root_markers)
   local proximity_threshold = 2
   local closest = ""
   local proximity_closest = 16
-  local path_root = ""
-  local root_depth = 0
-  local proximity_root = 0
+  local path_root
+  local root_depth
+  local proximity_root
   local _, file_depth = path:gsub("/", "")
-  local mark_path = ""
+  local mark_path
   for _, mark in ipairs(root_markers) do
     mark_path = vim.fs.find(mark, {
       path = path,
@@ -48,10 +44,9 @@ local root = function(path, root_markers)
 end
 
 ---Read file contents.
----@type fun(path: string): string?
 ---@param path string # File path relative to CWD
 ---@return string?
-local file_read = function(path)
+function fs.file_read(path)
   local file, err = io.open(path, "r")
   if err ~= nil then return err end
   if not file then return nil end
@@ -61,11 +56,10 @@ local file_read = function(path)
 end
 
 ---Write string into file.
----@type fun(path: string, content: string): boolean
 ---@param path string # File path relative to CWD
 ---@param content string
 ---@return boolean success
-local file_write = function(path, content)
+function fs.file_write(path, content)
   local file, err = io.open(path, "w")
   if err ~= nil then return false end
   if not file then return false end
@@ -74,19 +68,12 @@ local file_write = function(path, content)
   return true
 end
 
----@type fun (buf: integer): boolean
 ---@param buf integer # Buffer ID
 ---@return boolean
-local file_large_p = function(buf)
+function fs.file_large_p(buf)
   local size_threshold = 1024 * 1024
   local ok, stat = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
   return ok and stat ~= nil and stat.size > size_threshold
 end
 
----@type GRIM.fs
-return {
-  root = root,
-  file_read = file_read,
-  file_write = file_write,
-  file_large_p = file_large_p,
-}
+return fs

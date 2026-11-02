@@ -87,18 +87,22 @@ local component = {
     end
     return ""
   end,
-  -- gitsigns = function(bufid)
-  --   if GRIM.git.versioned_p(bufid) then
-  --     local g = vim.b.gitsigns_status_dict
-  --     if not g then return "" end
-  --     -- { added = g.added, modified = g.changed, removed = g.removed }
-  --     -- added = { config.symbols.git.add, fg = rp.emerald[300] }
-  --     -- modified = { confing.symbols.git.change_simple_up, fg = rp.lotusYellow[200] }
-  --     -- removed = { config.symbols.git.del, fg = rb.rustyRed }
-  --     return table.concat({
-  --     })
-  --   end
-  -- end,
+  gitsigns = function(bufid)
+    if GRIM.git.versioned_p(bufid) then
+      local g = vim.b.gitsigns_status_dict
+      if not g or g == nil then
+        return table.concat({ " ", config.symbols.git.branch, GRIM.git.branch(bufid) }, " ")
+      end
+      return table.concat({
+        " ",
+        (g.added and g.added > 0) and config.symbols.git.add .. g.added or "",
+        (g.removed and g.removed > 0) and config.symbols.git.change .. g.removed or "",
+        (g.changed and g.changed > 0) and config.symbols.git.del .. g.changed or "",
+        config.symbols.git.branch,
+        g.head,
+      }, " ")
+    end
+  end,
   ---@param bufid integer
   ---@return string
   diagnostics = function(bufid)
@@ -155,7 +159,8 @@ return {
         component.buffer.qlist(),
       }, " ", config.file.lalign, 32, 0),
       macro = component.group({ component.macro() }, "", true, 16, 0),
-      git = component.group({ component.git(bufid) }, "", false, 24, 0),
+      -- git = component.group({ component.git(bufid) }, "", false, 24, 0),
+      git = component.group({ component.gitsigns(bufid) }, "", false, 24, 0),
       diagnostics = component.group({ component.diagnostics(bufid) }, "", false, 24, 0),
       head = table.concat({ component.pad(" ", config.padding.head), config.symbols.sep, " " }),
       tail = component.pad(" ", config.padding.tail),

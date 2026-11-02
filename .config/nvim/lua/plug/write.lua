@@ -3,7 +3,6 @@ local i = GRIM.static.icon.ui
 return {
   {
     "nvim-orgmode/orgmode",
-    version = "*",
     event = "VeryLazy",
     ft = "org",
     opts = {
@@ -43,6 +42,7 @@ return {
         CANCELLED = table.concat({ ":foreground", rb.mintCream }, " "),
         DONE = table.concat({ ":foreground", rb.emerald }, " "),
       },
+      org_adapt_indentation = false,
       org_hide_emphasis_markers = true,
       org_ellipsis = i.ellipsis,
       org_log_into_drawer = "LOGBOOK",
